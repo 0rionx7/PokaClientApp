@@ -1,0 +1,79 @@
+@use '../../variables';
+@use '../../colors';
+
+.card {
+  width: var(--card-width);
+  height: var(--card-height);
+  font-family: Montserrat;
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+  background-color: colors.$deck-background;
+  border-radius: 0.3rem;
+  border: 1px solid black;
+  padding: 0.2rem;
+  &.selected {
+    translate: 0 variables.$selected-shift;
+    background-color: #fabb7e;
+    box-shadow: 0 calc(-0.1 * var(--card-height)) #3fa603,
+      0 calc(-0.1 * var(--card-height) - 1px) black;
+  }
+  &[class*='v-'] {
+    padding: 0.3rem 0.1rem 0.3rem 0.3rem;
+  }
+  &[class*='10'] {
+    [class='value'] {
+      /* transform: scaleX(0.8); */
+      /* font-weight: 800; */
+      transform: rotateY(30deg);
+      translate: 1px;
+    }
+  }
+  [class*='value-suit'] {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 20%;
+    &[class*='H'],
+    &[class*='D'] {
+      color: red;
+    }
+    svg {
+      width: calc(0.23 * var(--card-width));
+      height: calc(0.23 * var(--card-width));
+    }
+  }
+  .value {
+    text-align: center;
+    font-weight: 700;
+    font-size: calc(0.4 * var(--card-width));
+    line-height: calc(0.4 * var(--card-width));
+  }
+  .back-side {
+    height: 100%;
+    width: 100%;
+    border-radius: 7px;
+    background-color: #ea0000cf;
+    background-clip: content-box;
+    box-shadow: inset 0px 0px 12px 2px black;
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
+}
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 730px) {
+  .card {
+    padding: 0.1rem;
+    justify-content: center;
+    .value {
+      font-size: calc(0.7 * var(--card-width));
+      line-height: calc(0.7 * var(--card-width));
+    }
+    svg {
+      width: calc(0.4 * var(--card-width)) !important;
+      height: calc(0.4 * var(--card-width)) !important;
+    }
+  }
+}

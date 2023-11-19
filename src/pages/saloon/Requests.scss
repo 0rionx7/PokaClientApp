@@ -1,0 +1,58 @@
+.requests {
+  padding: 0.6rem;
+  background-color: #c6ae82;
+  box-shadow: inset 0px 0px 8px black;
+  border-radius: 1rem;
+  width: 90%;
+  height: 2rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  column-gap: 0.5rem;
+}
+.requests-title {
+  color: bisque;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+.request-tableName {
+  background-color: rgb(155, 142, 122);
+  border-radius: 1rem;
+  padding: 0.2rem 0.6rem;
+  position: relative;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 8fr 2fr;
+  width: 31%;
+  &.joined {
+    background-color: rgb(45, 125, 70);
+    cursor: pointer;
+    &:hover > .tool-tip {
+      visibility: visible;
+      top: -100%;
+      left: 50%;
+      &:hover {
+        visibility: hidden;
+      }
+    }
+  }
+  .info {
+    visibility: hidden;
+  }
+  .cancel {
+    display: grid;
+    place-items: center;
+    background-color: red;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.6rem;
+    cursor: pointer;
+    color: white;
+    .tool-tip {
+      top: -100%;
+    }
+  }
+}

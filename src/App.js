@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from 'react';
+import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
+import { useRedirectedLoginMutation } from 'src/features/authSlice/useRedirectedLoginMutation';
+import useOnlineStatus from 'src/hooks/useOnlineStatus';
+import { socket } from 'src/features/gameApi/gameApi';
+import useJoinRejected from 'src/hooks/useJoinRejected';
+import useJoinApproved from 'src/hooks/useJoinApproved';
 
 function App() {
+  const { token } = useSelector(state => state.auth);
+  const [redirectionalLogin] = useRedirectedLoginMutation();
+  const approvedRequestInfo = useJoinApproved();
+  const rejectedRequestInfo = useJoinRejected();
+  const onlineStatusInfo = useOnlineStatus();
+
+  useEffect(() => {
+    socket.on('connect', () => {
+      if (token) redirectionalLogin();
+    });
+    return () => socket.removeAllListeners('connect');
+  }, [token, redirectionalLogin]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {onlineStatusInfo}
+      {approvedRequestInfo}
+      {rejectedRequestInfo}
+      <Outlet />
+    </>
   );
 }
 

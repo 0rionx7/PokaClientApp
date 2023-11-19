@@ -1,0 +1,42 @@
+@use '../../_variables.scss';
+@import '../../mixins.scss';
+
+.card-decoration {
+  @include decoration-content-layout;
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 86%;
+  align-self: flex-end;
+  flex: 1 0;
+  // background-color: rgb(221, 187, 146);
+  // border: 1px solid rgb(219, 33, 33);
+  border-radius: 0.3rem;
+  svg {
+    width: calc(0.13 * var(--card-width));
+    height: calc(0.13 * var(--card-width));
+  }
+  .silhouette-suit {
+    position: absolute;
+    width: calc(0.19 * var(--card-width));
+    height: calc(0.19 * var(--card-width));
+    &:first-child {
+      top: 1px;
+      left: 1px;
+    }
+    &:nth-child(2) {
+      bottom: 1px;
+      right: 1px;
+      transform: rotateZ(180deg);
+    }
+  }
+  .e-poka-logo {
+    font-size: 0.3rem;
+  }
+}
+@media only screen and (max-width: 730px) {
+  .card-decoration {
+    position: absolute !important;
+    display: none !important;
+  }
+}

@@ -1,0 +1,40 @@
+@use '../../_colors.scss';
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.user-subscription {
+  flex-direction: column;
+  justify-content: space-around;
+  height: 4rem;
+  button {
+    height: 2rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+}
+.edit-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+  &:hover {
+    color: #f56700;
+  }
+}
+.confirm-btn {
+  margin-left: 1rem;
+}
+.cancel-btn {
+  padding: 0.3rem;
+  margin-left: 1rem;
+  font-weight: 600;
+}
+.error {
+  color: red;
+  margin-left: 1rem;
+  font-size: 0.6rem;
+}

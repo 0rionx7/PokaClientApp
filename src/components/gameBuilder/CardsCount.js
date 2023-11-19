@@ -1,0 +1,31 @@
+import { Fragment } from 'react';
+import { useFormikContext } from 'formik';
+
+import { gameNames } from 'src/common/text-constants';
+import Radio from 'src/components/ui/Radio';
+
+const CardsCount = ({ name }) => {
+  const { values } = useFormikContext();
+
+  let countOptions = [2, 3, 4, 5];
+  if (name === 'cornerLength') countOptions = [2, 3, 4];
+  if (name === 'railroadLength') countOptions = [2, 3, 4, 5, 6, 7];
+  if (values.gameName === gameNames.POKER) countOptions = [5, 6, 7];
+
+  return (
+    <>
+      {countOptions.map(count => (
+        <Fragment key={count}>
+          <Radio
+            name={name}
+            value={count}
+            checked={+values[name] === count}
+            className="checkbox"
+          />
+        </Fragment>
+      ))}
+    </>
+  );
+};
+
+export default CardsCount;

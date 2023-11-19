@@ -1,0 +1,94 @@
+.builder-item {
+  select[name='gameName'],
+  select[name='startingCard'] {
+    height: 2rem;
+    border-radius: 7px;
+    background-color: bisque;
+    text-align: center;
+    font-weight: bold;
+    > option {
+      font-weight: 600;
+    }
+  }
+  select[name='gameName'] {
+    flex: 0.9 0;
+    font-size: 0.75rem;
+  }
+  select[name='startingCard'] {
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    width: 3rem;
+  }
+  .tool-tip {
+    font-weight: normal;
+  }
+  input[name='mirrorWins'],
+  input[name='allDiscardedWins'] {
+    margin-right: 0.4rem;
+  }
+  label {
+    cursor: pointer;
+  }
+  .title {
+    width: 8rem;
+  }
+  .options {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: center;
+  }
+  .controls {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    .form-control {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+  .game-chooser {
+    flex: 1 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  div.options div:first-of-type {
+    margin-right: 0.4rem;
+  }
+  .active-title {
+    border: 2px solid bisque;
+    border-radius: 7px 0 0 7px;
+    background-color: #ff6a00b4;
+    margin: 0;
+    border-right: none;
+    font-size: 0.65rem;
+    padding-left: 0.2rem;
+    .checkbox:checked {
+      width: 0.9rem;
+      height: 0.9rem;
+    }
+  }
+  .active-counter {
+    border: 2px solid bisque;
+    border-radius: 0 7px 7px 0;
+    background-color: #ff6a00b4;
+
+    border-left: none;
+  }
+  .form-control:not(.active-title) {
+    margin-right: 0.8rem;
+  }
+}
+.deal-btn {
+  height: 3rem;
+  width: 40vw;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background-color: #e94009;
+  border-radius: 1rem;
+  &:hover {
+    background-color: #ff490d;
+  }
+}

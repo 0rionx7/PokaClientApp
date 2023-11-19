@@ -1,0 +1,47 @@
+@use '../../colors.scss';
+
+.account-menu {
+  width: 8rem;
+  height: 3rem;
+  background-color: colors.$secondary-color;
+  border-radius: 0.3rem;
+  margin-right: 0.6rem;
+
+  svg {
+    margin-right: 0.3rem;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  span {
+    color: green;
+    svg {
+      display: inline;
+    }
+  }
+}
+.menu-item {
+  width: 100%;
+  height: 50%;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0 0.5rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  &:hover {
+    background-color: rgb(153, 135, 112);
+    &:first-child {
+      border-radius: 0.3rem 0.3rem 0 0;
+    }
+    &:nth-child(2) {
+      border-radius: 0 0 0.3rem 0.3rem;
+    }
+  }
+}
+.user-logged {
+  color: colors.$secondary-color;
+  margin-right: 0.5rem;
+  cursor: default;
+}

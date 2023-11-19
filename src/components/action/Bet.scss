@@ -1,0 +1,81 @@
+.bet {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-areas:
+    'bet b-1 amount b-25 fold'
+    'bet b-5 all b-100 fold';
+  align-items: center;
+  justify-items: center;
+  height: 100%;
+  max-width: 70vw;
+  * {
+    font-weight: 600;
+    font-size: 0.8rem !important;
+  }
+  input {
+    height: 2rem;
+    font-size: 1.2rem;
+  }
+  label {
+    font-size: 0.7rem;
+  }
+  .bet-amount {
+    width: 6vw;
+    height: 1.5rem;
+  }
+  .amount-error {
+    position: absolute;
+    bottom: -0.8rem;
+    font-size: 0.8rem;
+    color: red;
+  }
+  .form-control span {
+    font-size: 0.6rem !important;
+    color: rgb(172, 172, 165);
+  }
+  button {
+    padding: 0;
+  }
+}
+.call {
+  display: flex;
+  width: 100%;
+}
+.call-btn {
+  white-space: pre-line;
+  width: 5rem;
+  flex: 1 0;
+}
+.all-in {
+  grid-area: all;
+  margin-left: 0.3rem;
+  flex: 1 0;
+  height: 2.5rem;
+  background-color: #9e25df;
+  &:hover {
+    background-color: #7a1cac;
+  }
+}
+.place-bet {
+  grid-area: bet;
+  white-space: pre-line;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 11vw;
+  height: 100%;
+  button {
+    width: 100%;
+    flex: 1 0;
+    span {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+    }
+  }
+  > div {
+    color: bisque;
+  }
+  &.fold {
+    grid-area: fold;
+  }
+}

@@ -1,0 +1,13 @@
+.players-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+  flex: 1 0 auto;
+  color: black;
+}
+.builder-overlay {
+  justify-content: flex-start;
+  grid-template-columns: 1fr 1fr;
+}

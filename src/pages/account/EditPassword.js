@@ -1,0 +1,98 @@
+import { useState } from 'react';
+import { Field, Form, Formik } from 'formik';
+
+import { useChangePasswordMutation } from 'src/features/authSlice/authApi';
+import Button from 'src/components/ui/Button';
+import { editSvg } from 'src/assets/svgs/various';
+import classes from './UserName.module.scss';
+
+const EditPassword = () => {
+  const [changePassword] = useChangePasswordMutation();
+  const [edit, setEdit] = useState(false);
+
+  if (!edit)
+    return (
+      <div className={classes['flex-center']} style={{ height: '2.2rem' }}>
+        *********
+        <div onClick={() => setEdit(!edit)} className={classes['edit-btn']}>
+          {editSvg} Αλλαγή κωδικού.
+        </div>
+      </div>
+    );
+
+  const initialValues = {
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
+  };
+  const validate = values => {
+    if (values.newPassword !== values.confirmPassword)
+      return { password: 'Λάθος επαλήθευση κωδικού.' };
+  };
+  const submitHandler = async (values, { setErrors, setStatus, resetForm }) => {
+    const result = await changePassword(values);
+    if (result.error) setErrors({ password: result.error.data });
+    else {
+      setStatus({ success: 'Επιτυχής αλλαγή κωδικού.' });
+      setTimeout(() => {
+        resetForm();
+        setEdit(false);
+      }, 1000);
+    }
+  };
+
+  return (
+    <Formik
+      key="password"
+      initialValues={initialValues}
+      onSubmit={submitHandler}
+      validate={validate}
+      validateOnChange={false}
+      validateOnBlur={false}
+      enableReinitialize>
+      {({ setErrors, submitForm, errors, status }) => (
+        <>
+          <Form onFocus={() => setErrors({})}>
+            <div className="form-control">
+              <label htmlFor="currentPassword">Τρέχων κωδικός</label>
+              <Field id="currentPassword" name="currentPassword" type="text" />
+            </div>
+            <div className="form-control">
+              <label htmlFor="newPassword">Νέος κωδικός</label>
+              <Field id="newPassword" name="newPassword" type="text" />
+            </div>
+            <div className="form-control">
+              <label htmlFor="confirmPassword">Επαλήθευση κωδικού</label>
+              <Field id="confirmPassword" name="confirmPassword" type="text" />
+            </div>
+            <h4
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                left: '110%',
+                color: 'red',
+                width: '8rem',
+              }}>
+              {errors?.password}
+              <span style={{ color: '#1cf31c', fontWeight: 600 }}>
+                {status?.success}
+              </span>
+            </h4>
+          </Form>
+          <Button
+            prompt="Υποβολή"
+            onClick={submitForm}
+            className={classes['confirm-btn'] + ' green'}
+          />
+          <Button
+            prompt="X"
+            className={classes['cancel-btn'] + ' red'}
+            onClick={() => setEdit(false)}
+          />
+        </>
+      )}
+    </Formik>
+  );
+};
+
+export default EditPassword;

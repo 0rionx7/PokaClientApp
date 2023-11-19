@@ -1,0 +1,41 @@
+@use '../../_colors.scss';
+
+.btn-base {
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 0.3rem;
+  padding: 0.3rem 1.5rem;
+  background-color: teal;
+  border: none;
+  color: bisque;
+  white-space: pre-line;
+  &:hover,
+  &:active {
+    background-color: #11acac;
+  }
+  &:disabled {
+    background-color: rgb(151, 149, 145);
+    cursor: not-allowed;
+    &:hover {
+      background-color: red;
+    }
+  }
+}
+.red {
+  background-color: red;
+  &:hover {
+    background-color: colors.$btn-red-hover;
+  }
+}
+.green {
+  background-color: green;
+  &:hover {
+    background-color: colors.$btn-green-hover;
+  }
+}
+.orange {
+  background-color: #f56700;
+  &:hover {
+    background-color: #c25200;
+  }
+}

@@ -1,0 +1,28 @@
+import { Fragment } from 'react';
+import { useFormikContext } from 'formik';
+
+import { infoText } from 'src/common/text-constants';
+import Radio from 'src/components/ui/Radio';
+
+const Dilemma = ({ name, options }) => {
+  const { values } = useFormikContext();
+
+  return (
+    <>
+      {options.map(option => (
+        <Fragment key={option}>
+          <Radio
+            name={name}
+            className="checkbox"
+            label={option}
+            value={option}
+            checked={values[name] === option}
+            info={infoText[option]}
+          />
+        </Fragment>
+      ))}
+    </>
+  );
+};
+
+export default Dilemma;

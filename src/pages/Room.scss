@@ -1,0 +1,16 @@
+@use '../colors.scss';
+
+.room {
+  display: grid;
+  place-self: center;
+  grid-template:
+    'table table' 1fr
+    'ribbon ribbon' 18vh;
+  height: 100%;
+  width: 100%;
+  .ribbon {
+    grid-area: ribbon;
+    display: flex;
+    background: colors.$nav-color;
+  }
+}

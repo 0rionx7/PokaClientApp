@@ -1,0 +1,53 @@
+@use '../../variables';
+@use '../../_colors.scss';
+@import './TableGrids';
+
+$handCards-shift: calc(-0.35 * var(--card-height));
+@mixin top-player-submitted-shift {
+  top: $handCards-shift;
+  &.submitted {
+    top: calc($handCards-shift - 1 * variables.$selected-shift);
+  }
+}
+
+.table {
+  display: grid;
+  grid-area: table;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+  width: 100%;
+  grid-gap: 1px;
+  padding: 0.5rem;
+  background-color: #112423;
+  @include table-grids;
+}
+.waiting-content {
+  display: grid;
+  place-self: center;
+}
+.poker-table {
+  position: absolute;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  transform: rotateX(24deg);
+  border-radius: 40vh;
+  background-color: #2d2616;
+  box-shadow: inset 0 0 30px 0px black;
+  .tsoxa {
+    place-self: center;
+    height: 90%;
+    width: 95%;
+    border-radius: 40vh;
+    box-shadow: inset 0 0 18px 0px black;
+    background: colors.$main-color;
+  }
+}
+.save-btn {
+  justify-self: center;
+  padding: 1rem;
+  margin-top: 1rem;
+}

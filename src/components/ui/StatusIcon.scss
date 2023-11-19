@@ -1,0 +1,13 @@
+.status {
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: help;
+}
+.status:hover + .tool-tip {
+  visibility: visible;
+  &:hover {
+    visibility: hidden;
+  }
+}

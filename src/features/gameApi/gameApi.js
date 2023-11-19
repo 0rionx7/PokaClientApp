@@ -1,0 +1,121 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createAction } from '@reduxjs/toolkit';
+import io from 'socket.io-client';
+
+import { playerEntry, updateAll } from 'src/common/utilities-functions';
+
+export const baseUrl = process.env.REACT_APP_POKA_API;
+export const socket = io(baseUrl);
+
+// for avoiding circular dependency (can't access gameApi before initialization bug)
+const removeRequest = createAction('gameState/removeRequest');
+const setHandCards = createAction('gameState/setHandCards');
+const setTableCards = createAction('gameState/setTableCards');
+
+export const gameApi = createApi({
+  reducerPath: 'gameApi',
+  baseQuery: fetchBaseQuery({
+    baseUrl,
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().auth.token;
+      if (token) headers.set('authorization', `Bearer ${token}`);
+      return headers;
+    },
+  }),
+  tagTypes: ['User', 'Tables'],
+  endpoints: build => ({
+    getGameState: build.query({
+      query: gameId => `/gameState/${gameId}`,
+      keepUnusedDataFor: 1,
+      async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
+        arg,
+        {
+          dispatch,
+          getState,
+          cacheEntryRemoved,
+          cacheDataLoaded,
+          updateCachedData, // available for query endpoints only
+        }
+      ) {
+        if (!arg) return;
+        try {
+          await cacheDataLoaded;
+          const { gameId } = getState().gameState;
+
+          function stateUpdateListener(stateUpdate) {
+            // because might receive stateUpdate @ player socketId
+            if (gameId === stateUpdate._id)
+              updateCachedData(draft => {
+                //for not to reset preselected cards ( players selected before their round )
+                if (!draft.currentPlayerStateList?.[0]?.selecting?.submit) {
+                  if (stateUpdate.playersStateList) {
+                    const hostPlayerName = getState().auth.username;
+                    const updatedHostState = stateUpdate.playersStateList.find(
+                      playerEntry(hostPlayerName)
+                    );
+                    dispatch(setHandCards(updatedHostState.handCards));
+                  }
+                  if (stateUpdate.tableCards)
+                    dispatch(setTableCards(stateUpdate.tableCards));
+                }
+
+                return { ...draft, ...stateUpdate };
+              });
+          }
+
+          function closingBetListener({ _id, playersStateList }) {
+            if (gameId === _id) {
+              playersStateList = updateAll(playersStateList, { denying: 0 });
+              updateCachedData(draft => ({ ...draft, playersStateList }));
+            }
+          }
+
+          socket.on('stateUpdated', stateUpdateListener);
+          socket.on('closingBet', closingBetListener);
+          await cacheEntryRemoved;
+          socket.removeAllListeners('stateUpdated');
+          socket.removeAllListeners('closingBet');
+        } catch (error) {
+          console.log(error);
+        }
+      },
+    }),
+    getTables: build.query({
+      query: () => 'tables',
+      providesTags: ['Tables'],
+      async onCacheEntryAdded(
+        _arg,
+        { dispatch, cacheEntryRemoved, cacheDataLoaded, updateCachedData }
+      ) {
+        try {
+          await cacheDataLoaded;
+          const tableCreatedListener = ({ tableName }) => {
+            updateCachedData(draft => {
+              draft.push({ tableName });
+            });
+          };
+          const tableDeletedListerner = tableName => {
+            dispatch(
+              gameApi.endpoints.getTables.initiate(undefined, {
+                forceRefetch: true,
+              })
+            );
+            dispatch(removeRequest(tableName));
+          };
+          socket.on('tableCreated', tableCreatedListener);
+          socket.on('tableDeleted', tableDeletedListerner);
+          await cacheEntryRemoved;
+          socket.off('tableCreated', tableCreatedListener);
+          socket.off('tableDeleted', tableDeletedListerner);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      keepUnusedDataFor: 0,
+    }),
+  }),
+});
+
+export const { useGetGameStateQuery, useGetTablesQuery } = gameApi;
+
+export const gameApiReducer = gameApi.reducer;

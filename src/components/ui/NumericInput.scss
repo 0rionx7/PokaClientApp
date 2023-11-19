@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 0 0.4rem 0 0.4rem;
+  button {
+    width: 1.2rem;
+    height: 50%;
+    border-radius: 7px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    &:hover {
+      filter: brightness(3);
+    }
+    &:first-child {
+      margin-right: 0.8rem;
+    }
+  }
+}

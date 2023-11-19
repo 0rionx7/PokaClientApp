@@ -1,0 +1,30 @@
+.action-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0;
+  padding: 0.3rem;
+  button {
+    font-size: 0.8rem;
+  }
+  &.full-width {
+    margin-left: -1.5vw;
+  }
+  .results-board {
+    border-radius: 0.3rem;
+    max-width: 70vw;
+  }
+}
+.buttons-container {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+  width: 100%;
+  max-width: 75vw;
+  padding: 1rem;
+  button {
+    width: 20vw;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,29 @@
+@use '../../_colors.scss';
+
+.payment-result {
+  display: grid;
+  place-items: center;
+  gap: 3rem;
+  height: 100%;
+  width: 100%;
+  background-color: colors.$sand-tan-shadow;
+  section {
+    align-self: flex-end;
+    text-align: center;
+  }
+  button {
+    align-self: flex-start;
+    padding: 2.5rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+.failed-options {
+  display: flex;
+  gap: 0.5rem;
+  width: 25rem;
+  button {
+    height: 5rem;
+    width: 20rem;
+    padding: 0;
+  }
+}

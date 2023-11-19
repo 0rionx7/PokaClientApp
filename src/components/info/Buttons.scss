@@ -1,0 +1,22 @@
+@use '../../colors';
+
+.btns {
+  display: flex;
+  height: 2.3vh;
+  .selected,
+  :hover {
+    background-color: colors.$accent-color;
+  }
+}
+.info-button {
+  flex: 1 0;
+  padding: 0 0.8rem;
+  background-color: #394646;
+  border-radius: 0 0.5rem 0 0;
+  border-left: 1px solid black;
+  font-weight: 600;
+  font-size: 0.5rem;
+  &:last-child {
+    border-radius: 0;
+  }
+}

@@ -1,0 +1,37 @@
+@use '../../colors.scss';
+
+.main-grid {
+  display: grid;
+  position: relative;
+  height: 100%;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: max-content 1fr;
+  grid-template-areas:
+    'header header'
+    'sideNav main ';
+}
+.main-area {
+  grid-area: main;
+}
+.yin-yang {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: colors.$nav-color;
+}
+.footer {
+  display: flex;
+  align-items: center;
+  color: #d5bc9f;
+  height: 8vh;
+  font-size: 0.65rem;
+  gap: 0.5rem;
+  & p {
+    cursor: pointer;
+    &:hover {
+      color: bisque;
+    }
+  }
+}

@@ -1,0 +1,28 @@
+.info {
+  display: flex;
+  overflow: hidden;
+  font-size: 0.7rem;
+}
+.info-content {
+  display: flex;
+  flex-direction: column;
+  width: 44vw;
+  overflow: hidden;
+  font-size: 0.7rem;
+  &.hidden {
+    width: 0;
+  }
+}
+.toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-end;
+  width: 1.5vw;
+  z-index: 100;
+  height: 100%;
+  cursor: pointer;
+  border-radius: 0 0.5rem 0.5rem 0;
+  border-left: 1px solid black;
+  background-color: #a29280;
+}

@@ -1,0 +1,31 @@
+.standings {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0;
+  white-space: nowrap;
+  background-color: rgb(112 108 101);
+  overflow: hidden;
+  overflow-y: auto;
+  padding: 0.5rem 1.5rem;
+  .status + .tool-tip {
+    top: -140%;
+    left: 10%;
+  }
+}
+.standings-container {
+  background-color: rgb(112 108 101);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0.5rem;
+}
+.player-name {
+  overflow: hidden;
+  text-align: center;
+  font-weight: 600;
+}
+.cava {
+  justify-self: center;
+}
