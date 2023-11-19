@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 
 import { useSitOutMutation } from 'features/gameApi/gameStateMutations/useSitOutMutation';
 import { socket, useGetGameStateQuery } from 'features/gameApi/gameApi';
-import DealerScreen from 'components/dealer/DealerScreen';
 import { playerEntry } from 'common/utilities-functions';
+import DealerScreen from 'components/dealer/DealerScreen';
 import StayLeave from 'components/action/StayLeave';
 import Players from 'components/player/Players';
 import Waiting from 'components/table/Waiting';

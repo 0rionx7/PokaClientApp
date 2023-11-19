@@ -1,4 +1,3 @@
 choose deck color
 υποχρεοση το κεντρο στον στοχο
 οπτιονσ 2 3 4 για stayro maybe
-check for app headers config

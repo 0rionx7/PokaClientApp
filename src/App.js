@@ -3,8 +3,8 @@ import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useRedirectedLoginMutation } from 'features/authSlice/useRedirectedLoginMutation';
-import useOnlineStatus from 'hooks/useOnlineStatus';
 import { socket } from 'features/gameApi/gameApi';
+import useOnlineStatus from 'hooks/useOnlineStatus';
 import useJoinRejected from 'hooks/useJoinRejected';
 import useJoinApproved from 'hooks/useJoinApproved';
 

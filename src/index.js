@@ -1,4 +1,5 @@
 import { createRoot } from 'react-dom/client';
+import reportWebVitals from 'reportWebVitals';
 import { Provider } from 'react-redux';
 import {
   createBrowserRouter,
@@ -6,22 +7,21 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import reportWebVitals from 'reportWebVitals';
 import './index.scss';
 
-import FailedPayment from 'pages/subscription/FailedPayment';
-import { store } from 'store/store';
-import Layout from 'components/layout/Layout';
-import Account from 'pages/account/Account';
 import SubscriptionOptions from 'pages/subscription/SubscriptionOptions';
 import SuccessfulPayment from 'pages/subscription/SuccessfulPayment';
+import FailedPayment from 'pages/subscription/FailedPayment';
 import AccountDetails from 'pages/account/AccountDetails';
+import Account from 'pages/account/Account';
 import Saloon from 'pages/saloon/Saloon';
-import Welcome from 'pages/Welcome';
 import Register from 'pages/Register';
+import Welcome from 'pages/Welcome';
 import Login from 'pages/Login';
-import RouteGuard from 'lib/route-guard';
 import Room from 'pages/Room';
+import Layout from 'components/layout/Layout';
+import RouteGuard from 'lib/route-guard';
+import { store } from 'store/store';
 import App from 'App';
 
 const container = document.getElementById('root');
