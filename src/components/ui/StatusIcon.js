@@ -6,7 +6,7 @@ const StatusIcon = ({ playerState }) => {
 
   if (playerState.sittingOut) {
     color = 'red';
-    status = 'απουσιάζει';
+    status = 'δεν έχει καθήσει';
   } else if (playerState.resta === 0) {
     color = 'orange';
     status = 'ταπί';

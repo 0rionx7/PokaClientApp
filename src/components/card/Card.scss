@@ -8,13 +8,13 @@
   display: flex;
   justify-content: center;
   gap: 0.3rem;
-  background-color: colors.$deck-background;
+  background-color: white;
   border-radius: 0.3rem;
   border: 1px solid black;
   padding: 0.2rem;
   &.selected {
     translate: 0 variables.$selected-shift;
-    background-color: #fabb7e;
+    background-color: bisque;
     box-shadow: 0 calc(-0.1 * var(--card-height)) #3fa603,
       0 calc(-0.1 * var(--card-height) - 1px) black;
   }
