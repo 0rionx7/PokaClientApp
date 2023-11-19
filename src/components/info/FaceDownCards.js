@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import { orderName } from 'src/common/text-constants';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { orderName } from 'common/text-constants';
 
 const FaceDownCards = () => {
   const { gameId } = useParams();

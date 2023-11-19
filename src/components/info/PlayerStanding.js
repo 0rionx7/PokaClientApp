@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import StatusIcon from 'src/components/ui/StatusIcon';
+import StatusIcon from 'components/ui/StatusIcon';
 import './Standings.scss';
 
 const PlayerStanding = ({ playerState }) => {

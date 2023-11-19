@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import GameBuilder from 'src/components/gameBuilder/GameBuilder';
-import ListedPlayers from 'src/components/dealer/ListedPlayers';
-import { playerEntry } from 'src/common/utilities-functions';
-import Overlay from 'src/components/ui/Overlay';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import GameBuilder from 'components/gameBuilder/GameBuilder';
+import ListedPlayers from 'components/dealer/ListedPlayers';
+import { playerEntry } from 'common/utilities-functions';
+import Overlay from 'components/ui/Overlay';
 import './DealerScreen.scss';
 
 const DealerScreen = () => {

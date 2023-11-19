@@ -1,6 +1,6 @@
-import { useNextRoundMutation } from 'src/features/gameApi/gameStateMutations/useNextRoundMutation';
-import Button from 'src/components/ui/Button';
-import Overlay from 'src/components/ui/Overlay';
+import { useNextRoundMutation } from 'features/gameApi/gameStateMutations/useNextRoundMutation';
+import Button from 'components/ui/Button';
+import Overlay from 'components/ui/Overlay';
 import './Renew.scss';
 
 const NextRound = () => {

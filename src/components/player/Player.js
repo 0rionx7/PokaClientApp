@@ -2,12 +2,12 @@ import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import PlayerInfo from 'src/components/player/PlayerInfo';
-import HandCards from 'src/components/player/HandCards';
-import useSitOutTimer from 'src/hooks/useSitOutTimer';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import PlayerInfo from 'components/player/PlayerInfo';
+import HandCards from 'components/player/HandCards';
+import useSitOutTimer from 'hooks/useSitOutTimer';
 import './Player.scss';
-import { playerEntry } from 'src/common/utilities-functions';
+import { playerEntry } from 'common/utilities-functions';
 
 const emptyList = [];
 

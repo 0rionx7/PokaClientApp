@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import { useDenyCardMutation } from 'src/features/gameApi/gameStateMutations/useDenyCardMutation';
-import useSnackBar from 'src/hooks/useSnackBar';
-import Button from 'src/components/ui/Button';
+import { useDenyCardMutation } from 'features/gameApi/gameStateMutations/useDenyCardMutation';
+import useSnackBar from 'hooks/useSnackBar';
+import Button from 'components/ui/Button';
 
 const DenyAccept = () => {
   const [denyCard, { isLoading, error }] = useDenyCardMutation();

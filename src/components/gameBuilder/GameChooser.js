@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Field, useFormikContext } from 'formik';
 
-import { games, builderDefaults } from 'src/common/games';
-import { setCurrentChoosenGame } from 'src/features/gameStateSlice/gameStateSlice';
+import { games, builderDefaults } from 'common/games';
+import { setCurrentChoosenGame } from 'features/gameStateSlice/gameStateSlice';
 
 const startCard = [2, 3, 4, 5, 6, 7];
 

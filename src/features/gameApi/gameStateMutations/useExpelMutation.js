@@ -1,7 +1,7 @@
 import {
   ERROR_RESPONSE,
   UNAUTHORISED_REQUEST_ERROR,
-} from 'src/common/text-constants';
+} from 'common/text-constants';
 import { baseUrl, gameApi } from '../gameApi';
 
 export const { useExpelMutation } = gameApi.injectEndpoints({

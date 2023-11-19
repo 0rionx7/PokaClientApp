@@ -1,5 +1,5 @@
-import { jack, king, queen } from 'src/assets/svgs/figures';
-import { suits } from 'src/assets/svgs/suits';
+import { jack, king, queen } from 'assets/svgs/figures';
+import { suits } from 'assets/svgs/suits';
 import './Card.scss';
 
 const FaceContent = ({ card }) => {

@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 
-import { useRestartGameMutation } from 'src/features/gameApi/gameStateMutations/useReastartGameMutation';
-import { setGameInfo } from 'src/features/gameStateSlice/gameStateSlice';
-import { createTableTitle } from 'src/common/text-functions';
-import useSnackBar from 'src/hooks/useSnackBar';
+import { useRestartGameMutation } from 'features/gameApi/gameStateMutations/useReastartGameMutation';
+import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
+import { createTableTitle } from 'common/text-functions';
+import useSnackBar from 'hooks/useSnackBar';
 import classes from './Account.module.scss';
 
 const LastGame = ({ savedGame }) => {

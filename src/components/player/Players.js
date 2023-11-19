@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import { playerEntry } from 'src/common/utilities-functions';
-import Player from 'src/components/player/Player';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { playerEntry } from 'common/utilities-functions';
+import Player from 'components/player/Player';
 
 const emptyList = [];
 

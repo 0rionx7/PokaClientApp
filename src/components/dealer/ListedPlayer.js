@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useJoinTableMutation } from 'src/features/gameApi/gameStateMutations/useJoinTableMutation';
-import { useCancelRequestMutation } from 'src/features/gameApi/gameStateMutations/useCancelRequestMutation';
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import StatusIcon from 'src/components/ui/StatusIcon';
-import useSnackBar from 'src/hooks/useSnackBar';
+import { useJoinTableMutation } from 'features/gameApi/gameStateMutations/useJoinTableMutation';
+import { useCancelRequestMutation } from 'features/gameApi/gameStateMutations/useCancelRequestMutation';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import StatusIcon from 'components/ui/StatusIcon';
+import useSnackBar from 'hooks/useSnackBar';
 
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();

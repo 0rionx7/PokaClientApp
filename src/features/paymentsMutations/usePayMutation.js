@@ -3,8 +3,8 @@ import {
   UNAUTHORISED_REQUEST_ERROR,
   paymentsDescription,
   subscriptionOptions,
-} from 'src/common/text-constants';
-import { baseUrl, gameApi } from 'src/features/gameApi/gameApi';
+} from 'common/text-constants';
+import { baseUrl, gameApi } from 'features/gameApi/gameApi';
 
 export const { usePayMutation } = gameApi.injectEndpoints({
   endpoints: build => ({
@@ -16,7 +16,7 @@ export const { usePayMutation } = gameApi.injectEndpoints({
         else return UNAUTHORISED_REQUEST_ERROR;
 
         const { username, email } =
-          getState().gameApi.queries['getUser(undefined)'].data?.user;
+          getState().gameApi.queries['getUser(undefined)'].data.user;
 
         const customer = {
           fullName: username,

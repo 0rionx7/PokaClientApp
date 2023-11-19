@@ -1,4 +1,4 @@
-import { cardsName, cardsNameOf, handKind } from 'src/common/text-constants';
+import { cardsName, cardsNameOf, handKind } from 'common/text-constants';
 
 export function createTableTitle(tableName) {
   const names = tableName?.split('_');
@@ -64,7 +64,7 @@ export function betPrompt(value, minBet, resta, error) {
   if (error) return <span>{error}</span>;
   switch (value) {
     case 0:
-      return <> 'ΝΤΟΥΚΟΥ'</>;
+      return <> &apos;ΝΤΟΥΚΟΥ&apos;</>;
     case minBet:
       return (
         <>

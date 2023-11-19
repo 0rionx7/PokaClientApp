@@ -2,8 +2,8 @@ import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import EmojiPicker, { Theme } from 'emoji-picker-react';
 
-import { socket } from 'src/features/gameApi/gameApi';
-import { sendSvg } from 'src/assets/svgs/various';
+import { socket } from 'features/gameApi/gameApi';
+import { sendSvg } from 'assets/svgs/various';
 
 const ChatInput = () => {
   const playerName = useSelector(state => state.auth.username);

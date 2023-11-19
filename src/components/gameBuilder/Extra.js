@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 
-import { gameNames } from 'src/common/text-constants';
-import CheckBox from 'src/components/ui/CheckBox';
+import { gameNames } from 'common/text-constants';
+import CheckBox from 'components/ui/CheckBox';
 
 const Extra = () => {
   const { values } = useFormikContext();

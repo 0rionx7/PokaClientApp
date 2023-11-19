@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import { inGameFistList } from 'src/common/utilities-functions';
-import PlayerResult from 'src/components/action/PlayerResult';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { inGameFistList } from 'common/utilities-functions';
+import PlayerResult from 'components/action/PlayerResult';
 import './Results.scss';
 
 const emptyList = [];
@@ -28,7 +28,7 @@ const Results = () => {
       <div className="player-result">
         <span>Κατ.</span>
         <span style={{ overflow: 'hidden' }}>Παίκτης</span>
-        <span>"Φύλο"</span>
+        <span>&quot;Φύλο&quot;</span>
         <span>Κέρδη/Απώλ.</span>
       </div>
       {renderList.map(playerState => (

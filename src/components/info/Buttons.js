@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
-import { infoButtons } from 'src/common/text-constants';
-import Button from 'src/components/ui/Button';
+import { infoButtons } from 'common/text-constants';
+import Button from 'components/ui/Button';
 import './Buttons.scss';
 
 const Buttons = ({ setSelected, selected }) => {

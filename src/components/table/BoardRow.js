@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import RenderedCard from 'src/components/table/RenderedCard';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import RenderedCard from 'components/table/RenderedCard';
 
 const BoardRow = ({ rowIndexes, row, rows }) => {
   const { gameId } = useParams();

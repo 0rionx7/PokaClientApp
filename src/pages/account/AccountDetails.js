@@ -1,10 +1,10 @@
-import { useGetUserQuery } from 'src/features/authSlice/authApi';
-import UserSubscription from 'src/pages/account/UserSubscription';
-import AccountItem from 'src/pages/account/AccountItem';
-import EditPassword from 'src/pages/account/EditPassword';
-import LastGame from 'src/pages/account/LastGame';
-import UserName from 'src/pages/account/UserName';
-import Frame from 'src/components/ui/Frame';
+import { useGetUserQuery } from 'features/authSlice/authApi';
+import UserSubscription from 'pages/account/UserSubscription';
+import AccountItem from 'pages/account/AccountItem';
+import EditPassword from 'pages/account/EditPassword';
+import LastGame from 'pages/account/LastGame';
+import UserName from 'pages/account/UserName';
+import Frame from 'components/ui/Frame';
 import classes from './Account.module.scss';
 
 const AccountDetails = () => {

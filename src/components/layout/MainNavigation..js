@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { accountSvg } from 'src/assets/svgs/various';
-import AccountloggedInMenu from 'src/components/layout/AccountLogedIn';
+import { accountSvg } from 'assets/svgs/various';
+import AccountloggedInMenu from 'components/layout/AccountLogedIn';
 import './MainNavigation.scss';
 
 const MainNavigation = () => {
@@ -19,7 +19,7 @@ const MainNavigation = () => {
         {username && !showMenu && (
           <>
             <Link to="/saloon" className="nav-link">
-              "Σαλούν"
+              Σαλούν
             </Link>
             <Link to="/account" className="nav-link">
               Λογαριασμός

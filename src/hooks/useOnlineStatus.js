@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import useSnackBar from 'src/hooks/useSnackBar';
+import useSnackBar from 'hooks/useSnackBar';
 
 const useOnlineStatus = () => {
   const { snackElement, setSnackInfo } = useSnackBar({

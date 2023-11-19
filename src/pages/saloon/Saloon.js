@@ -1,6 +1,6 @@
-import OpenTable from 'src/pages/saloon/OpenTable';
-import AvailableTables from 'src/pages/saloon/AvailableTables';
-import Requests from 'src/pages/saloon/Requests';
+import OpenTable from 'pages/saloon/OpenTable';
+import AvailableTables from 'pages/saloon/AvailableTables';
+import Requests from 'pages/saloon/Requests';
 import './Saloon.scss';
 
 const Saloon = () => {

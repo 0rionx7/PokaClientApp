@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import { playerEntry } from 'src/common/utilities-functions';
-import Card from 'src/components/card/Card';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { playerEntry } from 'common/utilities-functions';
+import Card from 'components/card/Card';
 
 const RenderedCard = ({ index }) => {
   const tableCards = useSelector(state => state.gameState.tableCards);

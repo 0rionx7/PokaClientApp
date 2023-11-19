@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
-import { useRegisterMutation } from 'src/features/authSlice/useRegisterMutation';
-import Button from 'src/components/ui/Button';
-import Frame from 'src/components/ui/Frame';
+import { useRegisterMutation } from 'features/authSlice/useRegisterMutation';
+import Button from 'components/ui/Button';
+import Frame from 'components/ui/Frame';
 
 const Register = () => {
   const [register] = useRegisterMutation();

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import LoadingSpinner from 'src/components/ui/LoadingSpinner';
-import useMessageService from 'src/hooks/useMessageService';
-import Action from 'src/components/action/Action';
-import Table from 'src/components/table/Table';
-import Info from 'src/components/info/Info';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import LoadingSpinner from 'components/ui/LoadingSpinner';
+import useMessageService from 'hooks/useMessageService';
+import Action from 'components/action/Action';
+import Table from 'components/table/Table';
+import Info from 'components/info/Info';
 import './Room.scss';
 
 const Room = () => {

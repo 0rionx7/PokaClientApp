@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import Request from 'src/pages/saloon/Request';
+import Request from 'pages/saloon/Request';
 import './Requests.scss';
 
 const Requests = () => {

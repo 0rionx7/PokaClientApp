@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { usePayMutation } from 'src/features/paymentsMutations/usePayMutation';
-import SubscriptionItem from 'src/pages/subscription/SubscriptionItem';
-import { useGetUserQuery } from 'src/features/authSlice/authApi';
-import LoadingSpinner from 'src/components/ui/LoadingSpinner';
-import Overlay from 'src/components/ui/Overlay';
-import Frame from 'src/components/ui/Frame';
-import { subscriptionOptions } from 'src/common/text-constants';
-import { paymentsIcons } from 'src/assets/svgs/payments';
+import { usePayMutation } from 'features/paymentsMutations/usePayMutation';
+import SubscriptionItem from 'pages/subscription/SubscriptionItem';
+import { useGetUserQuery } from 'features/authSlice/authApi';
+import LoadingSpinner from 'components/ui/LoadingSpinner';
+import Overlay from 'components/ui/Overlay';
+import Frame from 'components/ui/Frame';
+import { subscriptionOptions } from 'common/text-constants';
+import { paymentsIcons } from 'assets/svgs/payments';
 
 const SubscriptionOptions = () => {
   const [commitPayment, { data, isLoading, isSuccess }] = usePayMutation();

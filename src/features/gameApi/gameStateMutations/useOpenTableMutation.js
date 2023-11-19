@@ -1,7 +1,7 @@
 import {
   ERROR_RESPONSE,
   UNAUTHORISED_REQUEST_ERROR,
-} from 'src/common/text-constants';
+} from 'common/text-constants';
 import { baseUrl, socket, gameApi } from '../gameApi';
 
 export const { useOpenTableMutation, endpoints: openTableEndpoint } =

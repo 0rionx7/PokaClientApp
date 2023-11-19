@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router';
 
-import { useRenewCavaMutation } from 'src/features/gameApi/gameStateMutations/useRenewCavaMutation';
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import useSnackBar from 'src/hooks/useSnackBar';
-import Button from 'src/components/ui/Button';
+import { useRenewCavaMutation } from 'features/gameApi/gameStateMutations/useRenewCavaMutation';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import useSnackBar from 'hooks/useSnackBar';
+import Button from 'components/ui/Button';
 
 const RenewOptions = () => {
   const { gameId } = useParams();

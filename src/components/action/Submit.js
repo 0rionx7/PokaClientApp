@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useSubmitCardsMutation } from 'src/features/gameApi/gameStateMutations/useSubmitCardsMutation';
-import { useEvaluateHandMutation } from 'src/features/gameApi/gameStateMutations/useEvaluateHandMutation';
-import { selectedCard } from 'src/common/utilities-functions';
-import { describeHand } from 'src/common/text-functions';
-import Overlay from 'src/components/ui/Overlay';
-import useSnackBar from 'src/hooks/useSnackBar';
-import Button from 'src/components/ui/Button';
+import { useSubmitCardsMutation } from 'features/gameApi/gameStateMutations/useSubmitCardsMutation';
+import { useEvaluateHandMutation } from 'features/gameApi/gameStateMutations/useEvaluateHandMutation';
+import { selectedCard } from 'common/utilities-functions';
+import { describeHand } from 'common/text-functions';
+import Overlay from 'components/ui/Overlay';
+import useSnackBar from 'hooks/useSnackBar';
+import Button from 'components/ui/Button';
 
 const Submit = () => {
   const { handCards, tableCards } = useSelector(state => state.gameState);

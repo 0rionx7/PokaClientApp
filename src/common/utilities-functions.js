@@ -1,6 +1,6 @@
-import { gameNames } from 'src/common/text-constants';
+import { gameNames } from 'common/text-constants';
 
-import { tabloCount } from 'src/common/text-constants';
+import { tabloCount } from 'common/text-constants';
 
 export function selectedCardsIndexes(cards) {
   return cards.reduce((acc, curr, i) => {

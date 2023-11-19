@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import { createTableTitle } from 'src/common/text-functions';
-import { gamesInfo } from 'src/common/text-constants';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { createTableTitle } from 'common/text-functions';
+import { gamesInfo } from 'common/text-constants';
 import './Info.scss';
 
 const descriptionTitles = ['ΔΙΑΤΑΞΗ:', 'ΟΜΑΔΕΣ:', 'ΑΝΟΙΓΜΑ:', 'ΕΠΙΛΟΓΕΣ:'];

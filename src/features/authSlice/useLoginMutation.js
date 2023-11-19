@@ -1,5 +1,5 @@
-import { baseUrl, gameApi, socket } from 'src/features/gameApi/gameApi';
-import { ERROR_RESPONSE } from 'src/common/text-constants';
+import { baseUrl, gameApi, socket } from 'features/gameApi/gameApi';
+import { ERROR_RESPONSE } from 'common/text-constants';
 
 export const { useLoginMutation, endpoints: loginEndpoint } =
   gameApi.injectEndpoints({

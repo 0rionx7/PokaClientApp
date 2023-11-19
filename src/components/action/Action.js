@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import { playerEntry } from 'src/common/utilities-functions';
-import NextRound from 'src/components/action/NextRound';
-import Results from 'src/components/action/Results';
-import LiveInfo from 'src/components/action/LiveInfo';
-import Play from 'src/components/action/Play';
-import Renew from 'src/components/action/Renew';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { playerEntry } from 'common/utilities-functions';
+import NextRound from 'components/action/NextRound';
+import Results from 'components/action/Results';
+import LiveInfo from 'components/action/LiveInfo';
+import Play from 'components/action/Play';
+import Renew from 'components/action/Renew';
 import './Action.scss';
 
 const Action = ({ hideInfo }) => {

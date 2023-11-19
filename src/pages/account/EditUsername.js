@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 
-import { useUsernameChangeMutation } from 'src/features/authSlice/authApi';
-import Button from 'src/components/ui/Button';
+import { useUsernameChangeMutation } from 'features/authSlice/authApi';
+import Button from 'components/ui/Button';
 import classes from './UserName.module.scss';
 
 const EditUsername = ({ cancelEdit }) => {

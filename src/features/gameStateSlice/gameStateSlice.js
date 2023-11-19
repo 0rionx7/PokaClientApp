@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { cancelRequestEndpoint } from 'src/features/gameApi/gameStateMutations/useCancelRequestMutation';
-import { openTableEndpoint } from 'src/features/gameApi/gameStateMutations/useOpenTableMutation';
-import { requestJoinEndpoint } from 'src/features/gameApi/gameStateMutations/useRequestJoinMutation';
-import { sitOutEndpoint } from 'src/features/gameApi/gameStateMutations/useSitOutMutation';
-import { logout } from 'src/features/authSlice/authSlice';
-import { faceUp } from 'src/common/utilities-functions';
+import { cancelRequestEndpoint } from 'features/gameApi/gameStateMutations/useCancelRequestMutation';
+import { openTableEndpoint } from 'features/gameApi/gameStateMutations/useOpenTableMutation';
+import { requestJoinEndpoint } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
+import { sitOutEndpoint } from 'features/gameApi/gameStateMutations/useSitOutMutation';
+import { logout } from 'features/authSlice/authSlice';
+import { faceUp } from 'common/utilities-functions';
 
 export const gameStateSlice = createSlice({
   name: 'gameState',

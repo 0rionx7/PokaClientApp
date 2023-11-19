@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import { countFem } from 'src/common/text-constants';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { countFem } from 'common/text-constants';
 
 const Denies = () => {
   const { gameId } = useParams();

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import EditUsername from 'src/pages/account/EditUsername';
-import { editSvg } from 'src/assets/svgs/various';
+import EditUsername from 'pages/account/EditUsername';
+import { editSvg } from 'assets/svgs/various';
 import classes from './UserName.module.scss';
 
 const UserName = () => {

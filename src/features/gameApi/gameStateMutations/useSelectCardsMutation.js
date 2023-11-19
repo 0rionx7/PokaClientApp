@@ -1,8 +1,8 @@
 import {
   ERROR_RESPONSE,
   UNAUTHORISED_REQUEST_ERROR,
-} from 'src/common/text-constants';
-import { selectedCardsIndexes } from 'src/common/utilities-functions';
+} from 'common/text-constants';
+import { selectedCardsIndexes } from 'common/utilities-functions';
 import { baseUrl, gameApi } from '../gameApi';
 
 export const { useSelectCardsMutation } = gameApi.injectEndpoints({

@@ -6,23 +6,23 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import reportWebVitals from 'src/reportWebVitals';
+import reportWebVitals from 'reportWebVitals';
 import './index.scss';
 
-import FailedPayment from 'src/pages/subscription/FailedPayment';
-import { store } from 'src/store/store';
-import Layout from 'src/components/layout/Layout';
-import Account from 'src/pages/account/Account';
-import SubscriptionOptions from 'src/pages/subscription/SubscriptionOptions';
-import SuccessfulPayment from 'src/pages/subscription/SuccessfulPayment';
-import Saloon from 'src/pages/saloon/Saloon';
-import Welcome from 'src/pages/Welcome';
-import Register from 'src/pages/Register';
-import Login from 'src/pages/Login';
-import RouteGuard from 'src/lib/route-guard';
-import Room from 'src/pages/Room';
-import App from 'src/App';
-import AccountDetails from 'src/pages/account/AccountDetails';
+import FailedPayment from 'pages/subscription/FailedPayment';
+import { store } from 'store/store';
+import Layout from 'components/layout/Layout';
+import Account from 'pages/account/Account';
+import SubscriptionOptions from 'pages/subscription/SubscriptionOptions';
+import SuccessfulPayment from 'pages/subscription/SuccessfulPayment';
+import AccountDetails from 'pages/account/AccountDetails';
+import Saloon from 'pages/saloon/Saloon';
+import Welcome from 'pages/Welcome';
+import Register from 'pages/Register';
+import Login from 'pages/Login';
+import RouteGuard from 'lib/route-guard';
+import Room from 'pages/Room';
+import App from 'App';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

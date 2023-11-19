@@ -2,15 +2,15 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useSitOutMutation } from 'src/features/gameApi/gameStateMutations/useSitOutMutation';
-import { socket, useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import DealerScreen from 'src/components/dealer/DealerScreen';
-import { playerEntry } from 'src/common/utilities-functions';
-import StayLeave from 'src/components/action/StayLeave';
-import Players from 'src/components/player/Players';
-import Waiting from 'src/components/table/Waiting';
-import SitOut from 'src/components/action/SitOut';
-import Board from 'src/components/table/Board';
+import { useSitOutMutation } from 'features/gameApi/gameStateMutations/useSitOutMutation';
+import { socket, useGetGameStateQuery } from 'features/gameApi/gameApi';
+import DealerScreen from 'components/dealer/DealerScreen';
+import { playerEntry } from 'common/utilities-functions';
+import StayLeave from 'components/action/StayLeave';
+import Players from 'components/player/Players';
+import Waiting from 'components/table/Waiting';
+import SitOut from 'components/action/SitOut';
+import Board from 'components/table/Board';
 import './Table.scss';
 
 const Table = () => {

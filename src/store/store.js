@@ -6,9 +6,9 @@ import {
 } from '../features/gameStateSlice/gameStateSlice';
 import { errorHandling } from '../features/middleware/errorHandling';
 import { authReducer, authSlice } from '../features/authSlice/authSlice';
-import { tableSittingListener } from 'src/features/middleware/tableSittingListener';
-import { logoutEffects } from 'src/features/middleware/logoutEffects';
-import { cancelRequestEffects } from 'src/features/middleware/cancelRequestEffects';
+import { tableSittingListener } from 'features/middleware/tableSittingListener';
+import { logoutEffects } from 'features/middleware/logoutEffects';
+import { cancelRequestEffects } from 'features/middleware/cancelRequestEffects';
 
 export const store = configureStore({
   reducer: {

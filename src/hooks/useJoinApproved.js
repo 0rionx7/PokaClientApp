@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setJoinedRequest } from 'src/features/gameStateSlice/gameStateSlice';
-import ApprovedRequest from 'src/pages/ApprovedRequest';
-import { socket } from 'src/features/gameApi/gameApi';
-import useSnackBar from 'src/hooks/useSnackBar';
+import { setJoinedRequest } from 'features/gameStateSlice/gameStateSlice';
+import ApprovedRequest from 'pages/ApprovedRequest';
+import { socket } from 'features/gameApi/gameApi';
+import useSnackBar from 'hooks/useSnackBar';
 
 const useJoinApproved = () => {
   const dispatch = useDispatch();

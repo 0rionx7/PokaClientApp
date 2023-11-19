@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { createAction } from '@reduxjs/toolkit';
 import io from 'socket.io-client';
 
-import { playerEntry, updateAll } from 'src/common/utilities-functions';
+import { playerEntry, updateAll } from 'common/utilities-functions';
 
 export const baseUrl = process.env.REACT_APP_POKA_API;
 export const socket = io(baseUrl);
@@ -42,7 +42,7 @@ export const gameApi = createApi({
           await cacheDataLoaded;
           const { gameId } = getState().gameState;
 
-          function stateUpdateListener(stateUpdate) {
+          const stateUpdateListener = stateUpdate => {
             // because might receive stateUpdate @ player socketId
             if (gameId === stateUpdate._id)
               updateCachedData(draft => {
@@ -61,14 +61,14 @@ export const gameApi = createApi({
 
                 return { ...draft, ...stateUpdate };
               });
-          }
+          };
 
-          function closingBetListener({ _id, playersStateList }) {
+          const closingBetListener = ({ _id, playersStateList }) => {
             if (gameId === _id) {
               playersStateList = updateAll(playersStateList, { denying: 0 });
               updateCachedData(draft => ({ ...draft, playersStateList }));
             }
-          }
+          };
 
           socket.on('stateUpdated', stateUpdateListener);
           socket.on('closingBet', closingBetListener);

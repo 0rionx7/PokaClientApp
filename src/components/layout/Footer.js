@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import { useLoginMutation } from 'src/features/authSlice/useLoginMutation';
-import { logout } from 'src/features/authSlice/authSlice';
-import Button from 'src/components/ui/Button';
+import { useLoginMutation } from 'features/authSlice/useLoginMutation';
+import { logout } from 'features/authSlice/authSlice';
+import Button from 'components/ui/Button';
 
 const Footer = () => {
   const [login] = useLoginMutation();

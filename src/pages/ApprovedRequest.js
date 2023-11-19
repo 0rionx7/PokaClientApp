@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useRequestJoinMutation } from 'src/features/gameApi/gameStateMutations/useRequestJoinMutation';
-import { setGameInfo } from 'src/features/gameStateSlice/gameStateSlice';
-import { createTableTitle } from 'src/common/text-functions';
-import Button from 'src/components/ui/Button';
+import { useRequestJoinMutation } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
+import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
+import { createTableTitle } from 'common/text-functions';
+import Button from 'components/ui/Button';
 import './ApprovedRequest.scss';
 
 const ApprovedRequest = ({ tableName }) => {

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import BoardRow from 'src/components/table/BoardRow';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import BoardRow from 'components/table/BoardRow';
 import './Board.scss';
 
 const Board = () => {

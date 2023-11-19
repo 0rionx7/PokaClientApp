@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import { playerEntry } from 'src/common/utilities-functions';
-import DenyAccept from 'src/components/action/DenyAccept';
-import Bet from 'src/components/action/Bet';
-import Swap from 'src/components/action/Swap';
-import Submit from 'src/components/action/Submit';
-import Discard from 'src/components/action/Discard';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { playerEntry } from 'common/utilities-functions';
+import DenyAccept from 'components/action/DenyAccept';
+import Bet from 'components/action/Bet';
+import Swap from 'components/action/Swap';
+import Submit from 'components/action/Submit';
+import Discard from 'components/action/Discard';
 import './Action.scss';
 
 const Play = () => {

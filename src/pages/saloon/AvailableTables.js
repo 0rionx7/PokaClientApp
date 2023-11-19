@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useGetTablesQuery } from 'src/features/gameApi/gameApi';
-import AvailableTable from 'src/pages/saloon/AvailableTable';
+import { useGetTablesQuery } from 'features/gameApi/gameApi';
+import AvailableTable from 'pages/saloon/AvailableTable';
 
 const emptyList = [];
 

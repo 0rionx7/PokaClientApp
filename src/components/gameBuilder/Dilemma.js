@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { useFormikContext } from 'formik';
 
-import { infoText } from 'src/common/text-constants';
-import Radio from 'src/components/ui/Radio';
+import { infoText } from 'common/text-constants';
+import Radio from 'components/ui/Radio';
 
 const Dilemma = ({ name, options }) => {
   const { values } = useFormikContext();

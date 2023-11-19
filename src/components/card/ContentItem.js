@@ -1,5 +1,5 @@
-import { aceOfSpades } from 'src/assets/svgs/figures';
-import { suits } from 'src/assets/svgs/suits';
+import { aceOfSpades } from 'assets/svgs/figures';
+import { suits } from 'assets/svgs/suits';
 import './Card.scss';
 
 const ContentItem = ({ card, i }) => {

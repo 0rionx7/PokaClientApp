@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useSelectCardsMutation } from 'src/features/gameApi/gameStateMutations/useSelectCardsMutation';
-import useSnackBar from 'src/hooks/useSnackBar';
-import Button from 'src/components/ui/Button';
-import { selectedCard } from 'src/common/utilities-functions';
+import { useSelectCardsMutation } from 'features/gameApi/gameStateMutations/useSelectCardsMutation';
+import useSnackBar from 'hooks/useSnackBar';
+import Button from 'components/ui/Button';
+import { selectedCard } from 'common/utilities-functions';
 
 const Discard = ({ selecting }) => {
   const hostPlayerHandCards = useSelector(state => state.gameState.handCards);

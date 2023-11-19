@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from 'src/components/ui/Button';
-import { exitSvg } from 'src/assets/svgs/various';
-import Overlay from 'src/components/ui/Overlay';
+import Button from 'components/ui/Button';
+import { exitSvg } from 'assets/svgs/various';
+import Overlay from 'components/ui/Overlay';
 
 const SitOut = () => {
   const [showDiag, setShowDiag] = useState(false);

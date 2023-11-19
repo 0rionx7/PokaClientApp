@@ -1,7 +1,7 @@
-import ChatInput from 'src/components/info/chat/ChatInput';
-import Messages from 'src/components/info/chat/Messages';
+import ChatInput from 'components/info/chat/ChatInput';
+import Messages from 'components/info/chat/Messages';
 import './ChatBox.scss';
-import { ChatErrorBoundary } from 'src/components/info/chat/ChatErrorBoundary';
+import { ChatErrorBoundary } from 'components/info/chat/ChatErrorBoundary';
 
 const ChatBox = () => {
   return (

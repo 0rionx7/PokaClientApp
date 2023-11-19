@@ -1,15 +1,15 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import PlayHandCards from 'src/components/info/PlayHandCards';
-import FaceDownCards from 'src/components/info/FaceDownCards';
-import { tabloCount } from 'src/common/text-constants';
-import Denies from 'src/components/info/Denies';
-import Swaps from 'src/components/info/Swaps';
-import Hats from 'src/components/info/Hats';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import PlayHandCards from 'components/info/PlayHandCards';
+import FaceDownCards from 'components/info/FaceDownCards';
+import { tabloCount } from 'common/text-constants';
+import Denies from 'components/info/Denies';
+import Swaps from 'components/info/Swaps';
+import Hats from 'components/info/Hats';
 import './GameInfo.scss';
-import { createTableTitle } from 'src/common/text-functions';
+import { createTableTitle } from 'common/text-functions';
 import { useMemo } from 'react';
 
 const GameInfo = () => {

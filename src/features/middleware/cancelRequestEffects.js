@@ -1,5 +1,5 @@
-import { gameApi } from 'src/features/gameApi/gameApi';
-import { cancelRequestEndpoint } from 'src/features/gameApi/gameStateMutations/useCancelRequestMutation';
+import { gameApi } from 'features/gameApi/gameApi';
+import { cancelRequestEndpoint } from 'features/gameApi/gameStateMutations/useCancelRequestMutation';
 
 export const cancelRequestEffects =
   ({ dispatch }) =>

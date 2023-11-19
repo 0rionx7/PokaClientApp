@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useFormikContext } from 'formik';
 
-import { dealingOrders, infoText } from 'src/common/text-constants';
-import CheckBox from 'src/components/ui/CheckBox';
-import NumericInput from 'src/components/ui/NumericInput';
+import { dealingOrders, infoText } from 'common/text-constants';
+import CheckBox from 'components/ui/CheckBox';
+import NumericInput from 'components/ui/NumericInput';
 
 const DealingOptions = () => {
   const { values, setFieldValue } = useFormikContext();

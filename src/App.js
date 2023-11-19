@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useRedirectedLoginMutation } from 'src/features/authSlice/useRedirectedLoginMutation';
-import useOnlineStatus from 'src/hooks/useOnlineStatus';
-import { socket } from 'src/features/gameApi/gameApi';
-import useJoinRejected from 'src/hooks/useJoinRejected';
-import useJoinApproved from 'src/hooks/useJoinApproved';
+import { useRedirectedLoginMutation } from 'features/authSlice/useRedirectedLoginMutation';
+import useOnlineStatus from 'hooks/useOnlineStatus';
+import { socket } from 'features/gameApi/gameApi';
+import useJoinRejected from 'hooks/useJoinRejected';
+import useJoinApproved from 'hooks/useJoinApproved';
 
 function App() {
   const { token } = useSelector(state => state.auth);

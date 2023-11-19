@@ -3,10 +3,10 @@ import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 
-import { useOpenTableMutation } from 'src/features/gameApi/gameStateMutations/useOpenTableMutation';
-import StartingCard from 'src/pages/saloon/StartingCard';
-import Button from 'src/components/ui/Button';
-import Reaction from 'src/pages/saloon/Reaction';
+import { useOpenTableMutation } from 'features/gameApi/gameStateMutations/useOpenTableMutation';
+import StartingCard from 'pages/saloon/StartingCard';
+import Button from 'components/ui/Button';
+import Reaction from 'pages/saloon/Reaction';
 import './OpenTable.scss';
 
 const OpenTable = () => {
@@ -68,11 +68,11 @@ const OpenTable = () => {
                 </Field>
               </div>
               <div className="form-control">
-                <label htmlFor="cava">"Κάβα"</label>
+                <label htmlFor="cava">&quot;Κάβα&quot;</label>
                 <Field id="cava" name="cava" type="number" />
               </div>
               <div className="form-control">
-                <label htmlFor="chip">"Τσίπ""</label>
+                <label htmlFor="chip">&quot;Τσίπ&quot;</label>
                 <Field id="chip" name="chip" type="number" />
               </div>
               <div className="form-control">

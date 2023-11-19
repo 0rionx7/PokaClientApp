@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import PlayerStanding from 'src/components/info/PlayerStanding';
-import { inGameFistList } from 'src/common/utilities-functions';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import PlayerStanding from 'components/info/PlayerStanding';
+import { inGameFistList } from 'common/utilities-functions';
 import './Standings.scss';
 
 const emptyList = [];

@@ -1,4 +1,4 @@
-import ListedPlayer from 'src/components/dealer/ListedPlayer';
+import ListedPlayer from 'components/dealer/ListedPlayer';
 import './ListedPlayers.scss';
 
 const ListedPlayers = ({ playersStateList, title }) => {

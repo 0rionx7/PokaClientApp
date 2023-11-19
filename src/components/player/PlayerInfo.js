@@ -1,9 +1,9 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import useTimerBar from 'src/hooks/useTimerBar';
-import Card from 'src/components/card/Card';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import useTimerBar from 'hooks/useTimerBar';
+import Card from 'components/card/Card';
 
 const PlayerInfo = ({ playerState }) => {
   const { gameId } = useParams();
@@ -27,7 +27,7 @@ const PlayerInfo = ({ playerState }) => {
         {playerDeals && (
           <>
             <div className="dealer">D</div>
-            <div className="tool-tip">"Ντίιλερ"</div>
+            <div className="tool-tip">&quot;Ντίιλερ&quot;</div>
           </>
         )}
         {!playerState.isInGame && !playerState.sittingOut && (

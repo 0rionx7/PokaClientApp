@@ -1,10 +1,10 @@
 import {
   ERROR_RESPONSE,
   UNAUTHORISED_REQUEST_ERROR,
-} from 'src/common/text-constants';
+} from 'common/text-constants';
 import { baseUrl, gameApi } from '../gameApi';
-import { isMirror, selectedCardsIndexes } from 'src/common/utilities-functions';
-import { gameNames } from 'src/common/text-constants';
+import { isMirror, selectedCardsIndexes } from 'common/utilities-functions';
+import { gameNames } from 'common/text-constants';
 
 export const { useEvaluateHandMutation } = gameApi.injectEndpoints({
   endpoints: build => ({

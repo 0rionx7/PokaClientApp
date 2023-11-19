@@ -1,4 +1,4 @@
-import { gameApi } from 'src/features/gameApi/gameApi';
+import { gameApi } from 'features/gameApi/gameApi';
 
 export const authApi = gameApi.injectEndpoints({
   endpoints: build => ({

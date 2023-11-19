@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux';
 
-import { toggleSelectedCard } from 'src/features/gameStateSlice/gameStateSlice';
-import { suits, symbols } from 'src/assets/svgs/suits';
-import Content from 'src/components/card/Content';
-import { cardBack } from 'src/assets/svgs/various';
+import { toggleSelectedCard } from 'features/gameStateSlice/gameStateSlice';
+import { suits, symbols } from 'assets/svgs/suits';
+import Content from 'components/card/Content';
+import { cardBack } from 'assets/svgs/various';
 import './Card.scss';
 
 const Card = ({ card, canBeSelected }) => {

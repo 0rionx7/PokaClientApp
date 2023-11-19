@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useCancelRequestMutation } from 'src/features/gameApi/gameStateMutations/useCancelRequestMutation';
-import { useRequestJoinMutation } from 'src/features/gameApi/gameStateMutations/useRequestJoinMutation';
-// import { useGetTablesQuery } from 'src/features/gameApi/gameApi';
+import { useCancelRequestMutation } from 'features/gameApi/gameStateMutations/useCancelRequestMutation';
+import { useRequestJoinMutation } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
+// import { useGetTablesQuery } from 'features/gameApi/gameApi';
 import {
   removeRequest,
   setGameInfo,
-} from 'src/features/gameStateSlice/gameStateSlice';
+} from 'features/gameStateSlice/gameStateSlice';
 import './Requests.scss';
 
 const Request = ({ tableIfo }) => {

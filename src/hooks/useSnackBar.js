@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import LoadingSpinner from 'src/components/ui/LoadingSpinner';
+import LoadingSpinner from 'components/ui/LoadingSpinner';
 
-import Overlay from 'src/components/ui/Overlay';
+import Overlay from 'components/ui/Overlay';
 
 const useSnackBar = ({ secs = 2, height } = {}) => {
   const [info, setSnackInfo] = useState(null);

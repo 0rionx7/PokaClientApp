@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 
-import { builderTitles, gameNames } from 'src/common/text-constants';
+import { builderTitles, gameNames } from 'common/text-constants';
 
 const BuilderItem = ({ title, element }) => {
   const { values } = useFormikContext();

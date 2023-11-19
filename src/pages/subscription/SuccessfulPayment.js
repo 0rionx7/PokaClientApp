@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useRedirectedLoginMutation } from 'src/features/authSlice/useRedirectedLoginMutation';
-import { socket } from 'src/features/gameApi/gameApi';
-import Button from 'src/components/ui/Button';
+import { useRedirectedLoginMutation } from 'features/authSlice/useRedirectedLoginMutation';
+import { socket } from 'features/gameApi/gameApi';
+import Button from 'components/ui/Button';
 import './SuccessfulPayment.scss';
 
 const SuccessfulPayment = () => {

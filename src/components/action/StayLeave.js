@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useRequestJoinMutation } from 'src/features/gameApi/gameStateMutations/useRequestJoinMutation';
-import useSnackBar from 'src/hooks/useSnackBar';
-import Overlay from 'src/components/ui/Overlay';
-import Button from 'src/components/ui/Button';
+import { useRequestJoinMutation } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
+import useSnackBar from 'hooks/useSnackBar';
+import Overlay from 'components/ui/Overlay';
+import Button from 'components/ui/Button';
 import './StayLeave.scss';
 
 const StayLeave = () => {

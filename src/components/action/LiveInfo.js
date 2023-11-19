@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
 import './LiveInfo.scss';
 
 const LiveInfo = () => {

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import GameDescription from 'src/components/info/GameDescription';
-import { collapseVertical } from 'src/assets/svgs/various';
-import { infoButtons } from 'src/common/text-constants';
-import Standings from 'src/components/info/Standings';
-import Results from 'src/components/action/Results';
-import GameInfo from 'src/components/info/GameInfo';
-import ChatBox from 'src/components/info/chat/ChatBox';
-import Buttons from 'src/components/info/Buttons';
+import GameDescription from 'components/info/GameDescription';
+import { collapseVertical } from 'assets/svgs/various';
+import { infoButtons } from 'common/text-constants';
+import Standings from 'components/info/Standings';
+import Results from 'components/action/Results';
+import GameInfo from 'components/info/GameInfo';
+import ChatBox from 'components/info/chat/ChatBox';
+import Buttons from 'components/info/Buttons';
 import './Info.scss';
 
 const Info = ({ hideInfo, toggleHideInfo }) => {

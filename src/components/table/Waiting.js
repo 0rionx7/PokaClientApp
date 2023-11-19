@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import Overlay from 'src/components/ui/Overlay';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import Overlay from 'components/ui/Overlay';
 import './Table.scss';
 
 const Waiting = () => {

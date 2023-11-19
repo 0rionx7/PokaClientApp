@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import Card from 'src/components/card/Card';
+import Card from 'components/card/Card';
 import './HandCards.scss';
 
 const HandCards = ({ cards, canBeSelected, bet }) => {

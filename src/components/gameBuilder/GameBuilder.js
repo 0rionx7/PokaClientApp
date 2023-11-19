@@ -9,28 +9,28 @@ import {
   errorMessages,
   gameNames,
   tabloCount,
-} from 'src/common/text-constants';
-import { useSetGameVariantMutation } from 'src/features/gameApi/gameStateMutations/useSetGameVariantMutation';
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
+} from 'common/text-constants';
+import { useSetGameVariantMutation } from 'features/gameApi/gameStateMutations/useSetGameVariantMutation';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
 import {
   createGameVariant,
   isHere,
   notEnoughCards,
-} from 'src/common/utilities-functions';
-import BuilderItem from 'src/components/gameBuilder/BuilderItem';
-import GameChooser from 'src/components/gameBuilder/GameChooser';
-import DealingOptions from 'src/components/gameBuilder/DealingOptions';
-import WinningOrder from 'src/components/gameBuilder/WinningOrder';
-import Dilemma from 'src/components/gameBuilder/Dilemma';
-import HandCardsInPlay from 'src/components/gameBuilder/HandCardsInPlay';
-import FaceDown from 'src/components/gameBuilder/FaceDown';
-import CardsCount from 'src/components/gameBuilder/CardsCount';
-import Extra from 'src/components/gameBuilder/Extra';
-import Options from 'src/components/gameBuilder/Options';
-import { builderDefaults } from 'src/common/games';
-import useSnackBar from 'src/hooks/useSnackBar';
-import Button from 'src/components/ui/Button';
-import Frame from 'src/components/ui/Frame';
+} from 'common/utilities-functions';
+import BuilderItem from 'components/gameBuilder/BuilderItem';
+import GameChooser from 'components/gameBuilder/GameChooser';
+import DealingOptions from 'components/gameBuilder/DealingOptions';
+import WinningOrder from 'components/gameBuilder/WinningOrder';
+import Dilemma from 'components/gameBuilder/Dilemma';
+import HandCardsInPlay from 'components/gameBuilder/HandCardsInPlay';
+import FaceDown from 'components/gameBuilder/FaceDown';
+import CardsCount from 'components/gameBuilder/CardsCount';
+import Extra from 'components/gameBuilder/Extra';
+import Options from 'components/gameBuilder/Options';
+import { builderDefaults } from 'common/games';
+import useSnackBar from 'hooks/useSnackBar';
+import Button from 'components/ui/Button';
+import Frame from 'components/ui/Frame';
 import './GameBuilder.scss';
 
 const GameBuilder = () => {

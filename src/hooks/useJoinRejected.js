@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { socket } from 'src/features/gameApi/gameApi';
-import { removeRequest } from 'src/features/gameStateSlice/gameStateSlice';
-import { createTableTitle } from 'src/common/text-functions';
-import useSnackBar from 'src/hooks/useSnackBar';
+import { socket } from 'features/gameApi/gameApi';
+import { removeRequest } from 'features/gameStateSlice/gameStateSlice';
+import { createTableTitle } from 'common/text-functions';
+import useSnackBar from 'hooks/useSnackBar';
 
 const useJoinRejected = () => {
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });

@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
 
-import { useBetMutation } from 'src/features/gameApi/gameStateMutations/useBetMutation';
-import { useGetGameStateQuery } from 'src/features/gameApi/gameApi';
-import { betPrompt } from 'src/common/text-functions';
-import Button from 'src/components/ui/Button';
+import { useBetMutation } from 'features/gameApi/gameStateMutations/useBetMutation';
+import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { betPrompt } from 'common/text-functions';
+import Button from 'components/ui/Button';
 import './Bet.scss';
 
 const Bet = ({ bet, resta }) => {

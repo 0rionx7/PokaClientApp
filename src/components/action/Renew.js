@@ -1,5 +1,5 @@
-import RenewOptions from 'src/components/action/RenewOptions';
-import Overlay from 'src/components/ui/Overlay';
+import RenewOptions from 'components/action/RenewOptions';
+import Overlay from 'components/ui/Overlay';
 import './Renew.scss';
 
 const Renew = () => {

@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 import { Fragment } from 'react';
-import CheckBox from 'src/components/ui/CheckBox';
+import CheckBox from 'components/ui/CheckBox';
 
 const HandCardsInPlay = () => {
   const { values } = useFormikContext();

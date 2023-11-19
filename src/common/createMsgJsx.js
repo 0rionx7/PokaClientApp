@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
-import { describeTime } from 'src/common/text-functions';
+import { describeTime } from 'common/text-functions';
 
 export function createMessageJsx({ event, ...data }, index) {
   switch (event) {
-    case 'neeext':
+    case 'neeext': {
       const timeOut = data.reaction * (data.submitting ? 2 : 1);
       return (
         <Fragment key={index}>
@@ -16,6 +16,7 @@ export function createMessageJsx({ event, ...data }, index) {
           <br />
         </Fragment>
       );
+    }
     case 'newMessage':
       return (
         <Fragment key={index}>

@@ -1,8 +1,8 @@
 import { Fragment } from 'react';
 import { useFormikContext } from 'formik';
 
-import { gameNames } from 'src/common/text-constants';
-import Radio from 'src/components/ui/Radio';
+import { gameNames } from 'common/text-constants';
+import Radio from 'components/ui/Radio';
 
 const CardsCount = ({ name }) => {
   const { values } = useFormikContext();

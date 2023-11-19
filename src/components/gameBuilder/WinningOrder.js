@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 import { Fragment } from 'react';
-import Radio from 'src/components/ui/Radio';
-import { winningOrders } from 'src/common/text-constants';
+import Radio from 'components/ui/Radio';
+import { winningOrders } from 'common/text-constants';
 
 const WinningOrder = () => {
   const { values } = useFormikContext();
