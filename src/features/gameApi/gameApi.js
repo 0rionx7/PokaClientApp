@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import { playerEntry, updateAll } from 'common/utilities-functions';
 
 export const baseUrl = process.env.REACT_APP_POKA_API;
-export const socket = io(baseUrl);
+export const socket = io(baseUrl, { transports: ['websocket'] });
 
 // for avoiding circular dependency (can't access gameApi before initialization bug)
 const removeRequest = createAction('gameState/removeRequest');
