@@ -9,7 +9,7 @@ const UserName = () => {
   const playerName = useSelector(state => state.auth.username);
   const [edit, setEdit] = useState(false);
 
-  if (edit) return <EditUsername cancelEdit={() => setEdit(false)} />;
+  if (edit) return <EditUsername stopEditing={() => setEdit(false)} />;
 
   return (
     <div className={classes['flex-center']}>

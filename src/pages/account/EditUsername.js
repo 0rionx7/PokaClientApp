@@ -5,7 +5,7 @@ import { useUsernameChangeMutation } from 'features/authSlice/authApi';
 import Button from 'components/ui/Button';
 import classes from './UserName.module.scss';
 
-const EditUsername = ({ cancelEdit }) => {
+const EditUsername = ({ stopEditing }) => {
   const playerName = useSelector(state => state.auth.username);
   const [changeUsername] = useUsernameChangeMutation();
 
@@ -19,10 +19,10 @@ const EditUsername = ({ cancelEdit }) => {
     const result = await changeUsername({
       username: values.username.trim(),
     });
-    if (result?.error?.data?.includes('duplicate'))
+    if (result?.error?.data === 'duplicate')
       setErrors({ username: 'Το όνομα χρήστη είναι ήδη καταχωρημένο.' });
     else if (result?.error?.data) setErrors({ username: result.error.data });
-    else cancelEdit();
+    else stopEditing();
   };
 
   return (
@@ -52,7 +52,7 @@ const EditUsername = ({ cancelEdit }) => {
           <Button
             prompt="X"
             className={classes['cancel-btn'] + ' red'}
-            onClick={cancelEdit}
+            onClick={stopEditing}
           />
         </Form>
       )}
