@@ -4,13 +4,11 @@ import { loginEndpoint } from 'features/authSlice/useLoginMutation';
 import { registerEndpoint } from 'features/authSlice/useRegisterMutation';
 import { redirectedLoginEndpoint } from 'features/authSlice/useRedirectedLoginMutation';
 
-const initialState = { username: '', token: '' };
-
 export const authSlice = createSlice({
   name: 'auth',
-  initialState,
+  initialState: { username: '', token: '' },
   reducers: {
-    logout: (_state, _action) => initialState,
+    logout: (_state, _action) => authSlice.getInitialState(),
   },
   extraReducers: builder => {
     builder.addMatcher(
