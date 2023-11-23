@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import { useLoginMutation } from 'features/authSlice/useLoginMutation';
+import { useLoginMutation } from 'features/authSlice/authApi';
 import { logout } from 'features/authSlice/authSlice';
 import Button from 'components/ui/Button';
 

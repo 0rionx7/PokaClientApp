@@ -1,7 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { authApi } from 'features/authSlice/authApi';
-import { loginEndpoint } from 'features/authSlice/useLoginMutation';
-import { registerEndpoint } from 'features/authSlice/useRegisterMutation';
 import { redirectedLoginEndpoint } from 'features/authSlice/useRedirectedLoginMutation';
 
 export const authSlice = createSlice({
@@ -13,10 +11,10 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder.addMatcher(
       isAnyOf(
-        loginEndpoint.login.matchFulfilled,
-        registerEndpoint.register.matchFulfilled,
-        redirectedLoginEndpoint.redirectedLogin.matchFulfilled,
-        authApi.endpoints.usernameChange.matchFulfilled
+        authApi.endpoints.login.matchFulfilled,
+        authApi.endpoints.register.matchFulfilled,
+        authApi.endpoints.usernameChange.matchFulfilled,
+        redirectedLoginEndpoint.redirectedLogin.matchFulfilled
       ),
       (_state, action) => ({ ...action.payload })
     );
