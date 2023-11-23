@@ -8,8 +8,8 @@ export const authApi = gameApi.injectEndpoints({
     }),
     register: build.mutation({
       query: userData => ({
-        url: 'user/login',
-        method: 'POST',
+        url: 'user/register',
+        method: 'PUT',
         body: { ...userData, socketId: socket.id },
       }),
     }),
