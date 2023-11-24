@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
 
-import { useBetMutation } from 'features/gameApi/gameStateMutations/useBetMutation';
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { useBetMutation, useGetGameStateQuery } from 'features/gameApi/gameApi';
 import { betPrompt } from 'common/text-functions';
 import Button from 'components/ui/Button';
 import './Bet.scss';
@@ -40,7 +39,7 @@ const Bet = ({ bet, resta }) => {
   return (
     <Formik
       initialValues={{ amount: minBet }}
-      onSubmit={async ({ amount }) => await placeBet(amount)}
+      onSubmit={async ({ amount }) => await placeBet({ gameId, amount })}
       validate={validate}
       enableReinitialize // for Reinitialize  initial values!!!
     >
@@ -68,7 +67,7 @@ const Bet = ({ bet, resta }) => {
             <div>ΑΠΟΣΥΡΘΗΤΕ</div>
             <Button
               prompt="ΠΑΣΟ"
-              onClick={() => placeBet(-1)}
+              onClick={() => placeBet({ gameId, amount: -1 })}
               disabled={isSubmitting || isSuccess}
               className="fold red"
             />

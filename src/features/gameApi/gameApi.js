@@ -113,9 +113,17 @@ export const gameApi = createApi({
       },
       keepUnusedDataFor: 0,
     }),
+    bet: build.mutation({
+      query: betInfo => ({
+        url: '/gameState/bet',
+        method: 'PATCH',
+        body: betInfo,
+      }),
+    }),
   }),
 });
 
-export const { useGetGameStateQuery, useGetTablesQuery } = gameApi;
+export const { useGetGameStateQuery, useGetTablesQuery, useBetMutation } =
+  gameApi;
 
 export const gameApiReducer = gameApi.reducer;
