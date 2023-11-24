@@ -27,6 +27,7 @@ const Action = ({ hideInfo }) => {
   const [currentPlayer] = currentPlayerStateList;
   const hostTurn = currentPlayer?.playerName === hostPlayerName;
 
+  if (!gameId) return null;
   return (
     <div className={'action-container ' + (hideInfo ? 'full-width' : '')}>
       {hostTurn ? (

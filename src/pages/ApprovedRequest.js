@@ -12,9 +12,10 @@ const ApprovedRequest = ({ tableName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const joinHandler = async e => {
+  const joinHandler = async _ => {
     const { data } = await requestJoin({ tableName });
     if (!data) return;
+    console.log(data);
     const { id, ...gameInfo } = data;
     dispatch(setGameInfo(gameInfo));
     navigate(`/table/${data.gameId}`);
