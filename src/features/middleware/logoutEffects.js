@@ -1,7 +1,6 @@
 import { authApi } from 'features/authSlice/authApi';
 import { logout } from 'features/authSlice/authSlice';
-
-import { cancelRequestEndpoint } from 'features/gameApi/gameStateMutations/useCancelRequestMutation';
+import { gameApi } from 'features/gameApi/gameApi';
 
 export const logoutEffects =
   ({ getState, dispatch }) =>
@@ -10,7 +9,7 @@ export const logoutEffects =
     if (logout.match(action)) {
       dispatch(authApi.endpoints.logout.initiate());
       getState().gameState.joinRequests.forEach(request => {
-        dispatch(cancelRequestEndpoint.cancelRequest.initiate(request));
+        dispatch(gameApi.endpoints.cancelRequest.initiate(request));
       });
     }
     return next(action);

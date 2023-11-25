@@ -1,5 +1,5 @@
 import { createListenerMiddleware } from '@reduxjs/toolkit';
-import { cancelRequestEndpoint } from 'features/gameApi/gameStateMutations/useCancelRequestMutation';
+import { gameApi } from 'features/gameApi/gameApi';
 
 export const tableSittingListener = createListenerMiddleware();
 
@@ -10,7 +10,7 @@ tableSittingListener.startListening({
   },
   effect: (_action, { getState, dispatch }) => {
     getState().gameState.joinRequests.forEach(request => {
-      dispatch(cancelRequestEndpoint.cancelRequest.initiate(request));
+      dispatch(gameApi.endpoints.cancelRequest.initiate(request));
     });
   },
 });

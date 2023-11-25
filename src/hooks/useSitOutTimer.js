@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useNextRoundMutation } from 'features/gameApi/gameStateMutations/useNextRoundMutation';
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import {
+  useGetGameStateQuery,
+  useNextRoundMutation,
+} from 'features/gameApi/gameApi';
 import { useExpelMutation } from 'features/gameApi/gameStateMutations/useExpelMutation';
 import { useSitOutMutation } from 'features/gameApi/gameStateMutations/useSitOutMutation';
 

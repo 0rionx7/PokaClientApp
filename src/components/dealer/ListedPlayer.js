@@ -2,8 +2,10 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useJoinTableMutation } from 'features/gameApi/gameStateMutations/useJoinTableMutation';
-import { useCancelRequestMutation } from 'features/gameApi/gameStateMutations/useCancelRequestMutation';
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import {
+  useCancelRequestMutation,
+  useGetGameStateQuery,
+} from 'features/gameApi/gameApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import useSnackBar from 'hooks/useSnackBar';
 

@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useCancelRequestMutation } from 'features/gameApi/gameStateMutations/useCancelRequestMutation';
 import { useRequestJoinMutation } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
-// import { useGetTablesQuery } from 'features/gameApi/gameApi';
+import { useCancelRequestMutation } from 'features/gameApi/gameApi';
+import { useGetTablesQuery } from 'features/gameApi/gameApi';
 import {
   removeRequest,
   setGameInfo,
@@ -12,7 +12,7 @@ import {
 import './Requests.scss';
 
 const Request = ({ tableIfo }) => {
-  // const { refetch } = useGetTablesQuery();
+  const { refetch } = useGetTablesQuery();
   const [cancelHoveredPropagation, setCancelHoveredPropagation] =
     useState(false);
   const [cancelRequest] = useCancelRequestMutation();
@@ -23,7 +23,7 @@ const Request = ({ tableIfo }) => {
   const cancelHandler = async (tableName, event) => {
     event.stopPropagation();
     cancelRequest({ tableName });
-    // refetch();
+    refetch();
   };
 
   const joinTableHandler = async (tableName, approved, _event) => {

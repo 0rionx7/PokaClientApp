@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { cancelRequestEndpoint } from 'features/gameApi/gameStateMutations/useCancelRequestMutation';
 import { openTableEndpoint } from 'features/gameApi/gameStateMutations/useOpenTableMutation';
 import { requestJoinEndpoint } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
 import { sitOutEndpoint } from 'features/gameApi/gameStateMutations/useSitOutMutation';
 import { logout } from 'features/authSlice/authSlice';
 import { faceUp } from 'common/utilities-functions';
+import { gameApi } from 'features/gameApi/gameApi';
 
 export const gameStateSlice = createSlice({
   name: 'gameState',
@@ -72,7 +72,7 @@ export const gameStateSlice = createSlice({
         }
       )
       .addMatcher(
-        cancelRequestEndpoint.cancelRequest.matchFulfilled,
+        gameApi.endpoints.cancelRequest.matchFulfilled,
         (state, action) => {
           state.joinRequests = state.joinRequests.filter(
             requestInfo => requestInfo.tableName !== action.payload.tableName

@@ -1,9 +1,12 @@
-import { useNextRoundMutation } from 'features/gameApi/gameStateMutations/useNextRoundMutation';
+import { useParams } from 'react-router-dom';
+
+import { useNextRoundMutation } from 'features/gameApi/gameApi';
 import Button from 'components/ui/Button';
 import Overlay from 'components/ui/Overlay';
 import './Renew.scss';
 
 const NextRound = () => {
+  const { gameId } = useParams();
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
 
   return (
@@ -12,7 +15,7 @@ const NextRound = () => {
         prompt={
           isSuccess ? <h2>αναμονή υπολοίπων...</h2> : <h2>Επόμενος γύρος</h2>
         }
-        onClick={() => nextRound()}
+        onClick={() => nextRound(gameId)}
         disabled={isLoading || isSuccess}
         className="orange next-round"
       />
