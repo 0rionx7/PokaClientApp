@@ -3,11 +3,12 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
+  socket,
   useGetGameStateQuery,
   useNextRoundMutation,
+  useSitOutMutation,
 } from 'features/gameApi/gameApi';
 import { useExpelMutation } from 'features/gameApi/gameStateMutations/useExpelMutation';
-import { useSitOutMutation } from 'features/gameApi/gameStateMutations/useSitOutMutation';
 
 const emptyList = [];
 
@@ -38,7 +39,11 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
     let timer;
     if (isActive && !kind) {
       const timeOut = reaction * (submitting ? 2 : 1);
-      timer = setTimeout(() => sitOut(true), timeOut * 1000);
+      const { gameId } = useParams();
+      timer = setTimeout(
+        () => sitOut({ gameId, socketId: socket.id, cancellable: true }),
+        timeOut * 1000
+      );
     } else if (kind && !sittingOut)
       timer = setTimeout(nextRound, reaction * 1000);
 

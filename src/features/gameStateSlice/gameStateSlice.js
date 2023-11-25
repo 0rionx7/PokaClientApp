@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { openTableEndpoint } from 'features/gameApi/gameStateMutations/useOpenTableMutation';
 import { requestJoinEndpoint } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
-import { sitOutEndpoint } from 'features/gameApi/gameStateMutations/useSitOutMutation';
 import { logout } from 'features/authSlice/authSlice';
 import { faceUp } from 'common/utilities-functions';
 import { gameApi } from 'features/gameApi/gameApi';
@@ -57,7 +56,7 @@ export const gameStateSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(logout, (_state, _action) => gameStateSlice.getInitialState())
-      .addMatcher(sitOutEndpoint.sitOut.matchFulfilled, (_state, _action) =>
+      .addMatcher(gameApi.endpoints.sitOut.matchFulfilled, (_state, _action) =>
         gameStateSlice.getInitialState()
       )
       .addMatcher(

@@ -2,8 +2,11 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useSitOutMutation } from 'features/gameApi/gameStateMutations/useSitOutMutation';
-import { socket, useGetGameStateQuery } from 'features/gameApi/gameApi';
+import {
+  socket,
+  useGetGameStateQuery,
+  useSitOutMutation,
+} from 'features/gameApi/gameApi';
 import { playerEntry } from 'common/utilities-functions';
 import DealerScreen from 'components/dealer/DealerScreen';
 import StayLeave from 'components/action/StayLeave';
@@ -29,7 +32,7 @@ const Table = () => {
     });
 
   useEffect(() => {
-    return () => sitOut();
+    return () => sitOut({ gameId, socketId: socket.id });
   }, [sitOut]);
 
   useEffect(() => {

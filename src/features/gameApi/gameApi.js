@@ -120,10 +120,45 @@ export const gameApi = createApi({
         body: betInfo,
       }),
     }),
+    cancelRequest: build.mutation({
+      query: cancelInfo => ({
+        url: '/gameState/cancelRequest',
+        method: 'PATCH',
+        body: cancelInfo,
+      }),
+    }),
+    denyCard: build.mutation({
+      query: denyInfo => ({
+        url: '/gameState/deny',
+        method: 'PATCH',
+        body: denyInfo,
+      }),
+    }),
+    nextRound: build.mutation({
+      query: gameId => ({
+        url: '/gameState/nextRound',
+        method: 'PATCH',
+        body: { gameId },
+      }),
+    }),
+    sitOut: build.mutation({
+      query: sitOutInfo => ({
+        url: '/gameState/sitOut',
+        method: 'PATCH',
+        body: sitOutInfo,
+      }),
+    }),
   }),
 });
 
-export const { useGetGameStateQuery, useGetTablesQuery, useBetMutation } =
-  gameApi;
+export const {
+  useGetGameStateQuery,
+  useGetTablesQuery,
+  useBetMutation,
+  useCancelRequestMutation,
+  useDenyCardMutation,
+  useNextRoundMutation,
+  useSitOutMutation,
+} = gameApi;
 
 export const gameApiReducer = gameApi.reducer;
