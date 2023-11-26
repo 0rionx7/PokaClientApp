@@ -145,7 +145,14 @@ export const gameApi = createApi({
       query: sitOutInfo => ({
         url: '/gameState/sitOut',
         method: 'PATCH',
-        body: sitOutInfo,
+        body: { ...sitOutInfo, socketId: socket.id },
+      }),
+    }),
+    restartGame: build.mutation({
+      query: gameInfo => ({
+        url: '/gameState/restart',
+        method: 'POST',
+        body: { ...gameInfo, socketId: socket.id },
       }),
     }),
   }),
@@ -159,6 +166,7 @@ export const {
   useDenyCardMutation,
   useNextRoundMutation,
   useSitOutMutation,
+  useRestartGameMutation,
 } = gameApi;
 
 export const gameApiReducer = gameApi.reducer;

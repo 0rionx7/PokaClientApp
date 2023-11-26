@@ -41,7 +41,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
       const timeOut = reaction * (submitting ? 2 : 1);
       const { gameId } = useParams();
       timer = setTimeout(
-        () => sitOut({ gameId, socketId: socket.id, cancellable: true }),
+        () => sitOut({ gameId, cancellable: true }),
         timeOut * 1000
       );
     } else if (kind && !sittingOut)

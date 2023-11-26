@@ -32,7 +32,7 @@ const Table = () => {
     });
 
   useEffect(() => {
-    return () => sitOut({ gameId, socketId: socket.id });
+    return () => sitOut({ gameId });
   }, [sitOut]);
 
   useEffect(() => {
