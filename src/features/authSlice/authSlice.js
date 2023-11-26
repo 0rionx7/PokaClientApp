@@ -1,6 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { authApi } from 'features/authSlice/authApi';
-import { redirectedLoginEndpoint } from 'features/authSlice/useRedirectedLoginMutation';
 
 export const authSlice = createSlice({
   name: 'auth',
@@ -14,7 +13,7 @@ export const authSlice = createSlice({
         authApi.endpoints.login.matchFulfilled,
         authApi.endpoints.register.matchFulfilled,
         authApi.endpoints.usernameChange.matchFulfilled,
-        redirectedLoginEndpoint.redirectedLogin.matchFulfilled
+        authApi.endpoints.redirectedLogin.matchFulfilled
       ),
       (_state, action) => ({ ...action.payload })
     );

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useReconnectedLoginMutation } from 'features/authSlice/useReconnectedLoginMutation';
+import { useReconnectedLoginMutation } from 'features/authSlice/authApi';
 import { socket } from 'features/gameApi/gameApi';
 import useOnlineStatus from 'hooks/useOnlineStatus';
 import useJoinRejected from 'hooks/useJoinRejected';
