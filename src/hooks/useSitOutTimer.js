@@ -3,12 +3,11 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-  socket,
+  useExpelMutation,
   useGetGameStateQuery,
   useNextRoundMutation,
   useSitOutMutation,
 } from 'features/gameApi/gameApi';
-import { useExpelMutation } from 'features/gameApi/gameStateMutations/useExpelMutation';
 
 const emptyList = [];
 
@@ -73,6 +72,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
       const timeOut = reaction * (submitting ? 2 : 1);
       timer = setTimeout(() => {
         expel({
+          gameId,
           playerName: hasTurn?.playerName,
           socketId: hasTurn?.socketId,
         });

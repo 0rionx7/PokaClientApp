@@ -213,6 +213,13 @@ export const gameApi = createApi({
         body: handInfo,
       }),
     }),
+    expel: build.mutation({
+      query: expelInfo => ({
+        url: '/gameState/expel',
+        method: 'PATCH',
+        body: expelInfo,
+      }),
+    }),
   }),
 });
 
@@ -233,6 +240,7 @@ export const {
   useJoinTableMutation,
   useEvaluateHandMutation,
   useSubmitCardsMutation,
+  useExpelMutation,
 } = gameApi;
 
 export const gameApiReducer = gameApi.reducer;
