@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useRequestJoinMutation } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
 import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
+import { useRequestJoinMutation } from 'features/gameApi/gameApi';
 import { createTableTitle } from 'common/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import './AvailableTables.scss';
 
 const AvailableTable = ({ tableInfo }) => {
   const [requestJoin, { isLoading, error }] = useRequestJoinMutation();
-  const { snackElement, setSnackInfo } = useSnackBar();
+  const joinRequests = useSelector(state => state.gameState.joinRequests);
+  const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -20,6 +21,8 @@ const AvailableTable = ({ tableInfo }) => {
 
   const clickHandler = async () => {
     if (isLoading) return;
+    if (joinRequests.length >= 3)
+      return setSnackInfo('Έχετε συμπληρώσει των μέγιστο αριθμό αιτήσεων.');
     const { data } = await requestJoin({ tableName: tableInfo.tableName });
     if (!data?.gameId) return;
     const { id, ...gameInfo } = data;

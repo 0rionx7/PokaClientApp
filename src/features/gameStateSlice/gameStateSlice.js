@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { requestJoinEndpoint } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
 import { logout } from 'features/authSlice/authSlice';
 import { faceUp } from 'common/utilities-functions';
 import { gameApi } from 'features/gameApi/gameApi';
@@ -63,7 +62,7 @@ export const gameStateSlice = createSlice({
         (state, action) => ({ ...state, ...action.payload })
       )
       .addMatcher(
-        requestJoinEndpoint.requestJoin.matchFulfilled,
+        gameApi.endpoints.requestJoin.matchFulfilled,
         (state, action) => {
           if (!action.payload?.id)
             state.joinRequests.push({ tableName: action.payload.tableName });

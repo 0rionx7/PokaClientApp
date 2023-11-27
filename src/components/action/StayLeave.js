@@ -1,17 +1,18 @@
 import { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { useRequestJoinMutation } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
+import { useRequestJoinMutation } from 'features/gameApi/gameApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';
 import './StayLeave.scss';
 
 const StayLeave = () => {
-  const { gameId } = useParams();
-  const navigate = useNavigate();
+  const gameId = useSelector(state => state.gameState.gameId);
   const [requestJoin, { isLoading, error }] = useRequestJoinMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (error) setSnackInfo(error.data);

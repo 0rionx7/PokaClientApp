@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useRequestJoinMutation } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
-import { useCancelRequestMutation } from 'features/gameApi/gameApi';
+import {
+  useCancelRequestMutation,
+  useRequestJoinMutation,
+} from 'features/gameApi/gameApi';
 import { useGetTablesQuery } from 'features/gameApi/gameApi';
 import {
   removeRequest,
