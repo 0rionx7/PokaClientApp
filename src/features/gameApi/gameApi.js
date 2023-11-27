@@ -193,6 +193,13 @@ export const gameApi = createApi({
         },
       }),
     }),
+    joinTable: build.mutation({
+      query: joinInfo => ({
+        url: '/gameState/join',
+        method: 'PATCH',
+        body: joinInfo,
+      }),
+    }),
   }),
 });
 
@@ -210,6 +217,7 @@ export const {
   useSetGameVariantMutation,
   useSelectCardsMutation,
   useRequestJoinMutation,
+  useJoinTableMutation,
 } = gameApi;
 
 export const gameApiReducer = gameApi.reducer;

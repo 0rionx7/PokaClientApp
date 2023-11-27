@@ -1,18 +1,21 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useJoinTableMutation } from 'features/gameApi/gameStateMutations/useJoinTableMutation';
 import {
   useCancelRequestMutation,
   useGetGameStateQuery,
+  useJoinTableMutation,
 } from 'features/gameApi/gameApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import useSnackBar from 'hooks/useSnackBar';
 
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();
-  const { tableName } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({ tableName: data?.tableName }),
+  const { tableName, playersStateList } = useGetGameStateQuery(gameId, {
+    selectFromResult: ({ data }) => ({
+      tableName: data?.tableName,
+      playersStateList: data?.playersStateList,
+    }),
   });
   const [joinTable, { isLoading, error }] = useJoinTableMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
@@ -23,7 +26,12 @@ const ListedPlayer = ({ playerState, clickable }) => {
   }, [error, setSnackInfo]);
 
   const clickHandler = () => {
-    if (clickable && !isLoading) joinTable(playerState);
+    if (playersStateList.length === 8)
+      return setSnackInfo('έχει συμπληρωθεί το καρέ');
+    if (clickable && !isLoading) {
+      const { playerName, socketId } = playerState;
+      joinTable({ playerName, socketId, gameId });
+    }
   };
 
   const cancelHandler = e => {
