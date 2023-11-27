@@ -206,6 +206,13 @@ export const gameApi = createApi({
         body: handInfo,
       }),
     }),
+    submitCards: build.mutation({
+      query: handInfo => ({
+        url: '/gameState/submit',
+        method: 'PATCH',
+        body: handInfo,
+      }),
+    }),
   }),
 });
 
@@ -225,6 +232,7 @@ export const {
   useRequestJoinMutation,
   useJoinTableMutation,
   useEvaluateHandMutation,
+  useSubmitCardsMutation,
 } = gameApi;
 
 export const gameApiReducer = gameApi.reducer;

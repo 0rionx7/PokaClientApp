@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useSubmitCardsMutation } from 'features/gameApi/gameStateMutations/useSubmitCardsMutation';
 import {
   useEvaluateHandMutation,
   useGetGameStateQuery,
+  useSubmitCardsMutation,
 } from 'features/gameApi/gameApi';
 import { isMirror, selectedCardsIndexes } from 'common/utilities-functions';
 import { describeHand } from 'common/text-functions';
@@ -79,7 +79,13 @@ const Submit = () => {
           <Overlay />
           <Button
             prompt={<h3>{description}</h3>}
-            onClick={() => submitHand()}
+            onClick={() =>
+              submitHand({
+                gameId,
+                submittedHandCardsIndexes,
+                submittedTableCardsIndexes,
+              })
+            }
             disabled={submitting || submissionSuccess}
             className="green"
             style={{ fontSize: '.7rem' }}
@@ -94,7 +100,7 @@ const Submit = () => {
         </>
       ) : (
         <Button
-          prompt={prompt}
+          prompt={'ΑΞΙΟΛΟΓΗΣΗ ΕΠΙΛΕΓΜΕΝΩΝ ΧΑΡΤΙΩΝ'}
           onClick={evaluateHandHandler}
           disabled={eveluating || evaluationSuccess}
           className="orange"
