@@ -111,7 +111,6 @@ export const gameApi = createApi({
           console.log(error);
         }
       },
-      keepUnusedDataFor: 0,
     }),
     openTable: build.mutation({
       query: openTableData => ({
@@ -200,6 +199,13 @@ export const gameApi = createApi({
         body: joinInfo,
       }),
     }),
+    evaluateHand: build.mutation({
+      query: handInfo => ({
+        url: '/gameState/evaluate',
+        method: 'POST',
+        body: handInfo,
+      }),
+    }),
   }),
 });
 
@@ -218,6 +224,7 @@ export const {
   useSelectCardsMutation,
   useRequestJoinMutation,
   useJoinTableMutation,
+  useEvaluateHandMutation,
 } = gameApi;
 
 export const gameApiReducer = gameApi.reducer;

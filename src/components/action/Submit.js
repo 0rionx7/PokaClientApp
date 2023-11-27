@@ -2,14 +2,22 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useSubmitCardsMutation } from 'features/gameApi/gameStateMutations/useSubmitCardsMutation';
-import { useEvaluateHandMutation } from 'features/gameApi/gameStateMutations/useEvaluateHandMutation';
-import { selectedCard } from 'common/utilities-functions';
+import {
+  useEvaluateHandMutation,
+  useGetGameStateQuery,
+} from 'features/gameApi/gameApi';
+import { isMirror, selectedCardsIndexes } from 'common/utilities-functions';
 import { describeHand } from 'common/text-functions';
 import Overlay from 'components/ui/Overlay';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
+import { gameNames } from 'common/text-constants';
 
 const Submit = () => {
+  const gameId = useSelector(state => state.gameState.gameId);
+  const { gameName } = useGetGameStateQuery(gameId, {
+    selectFromResult: ({ data }) => ({ gameName: data?.gameName }),
+  });
   const { handCards, tableCards } = useSelector(state => state.gameState);
   const [
     submitHand,
@@ -31,25 +39,37 @@ const Submit = () => {
   ] = useEvaluateHandMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
 
-  const selectedHandCardsCount = handCards
-    .concat(tableCards)
-    .filter(selectedCard).length;
-  let error;
-  if (selectedHandCardsCount > 5)
-    error = `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για 5`;
-  useEffect(() => setSnackInfo(error), [setSnackInfo, error]);
+  const submittedHandCardsIndexes = selectedCardsIndexes(handCards);
+  const submittedTableCardsIndexes = selectedCardsIndexes(tableCards);
+
+  const selectedHandCardsCount =
+    submittedHandCardsIndexes.length + submittedTableCardsIndexes.length;
 
   useEffect(() => {
     if (evaluationError || submitionError)
       setSnackInfo(evaluationError?.data || submitionError?.data);
   }, [evaluationError, submitionError, setSnackInfo]);
 
-  const prompt = error ? (
-    <>Λάθος επιλογή</>
-  ) : (
-    <>ΑΞΙΟΛΟΓΗΣΗ ΕΠΙΛΕΓΜΕΝΩΝ ΧΑΡΤΙΩΝ</>
-  );
   let description = describeHand(data?.evaluatedHand, true);
+
+  const evaluateHandHandler = () => {
+    if (selectedHandCardsCount > 5)
+      return setSnackInfo(
+        `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για 5`
+      );
+    if (
+      submittedHandCardsIndexes.concat(submittedTableCardsIndexes).length !==
+        5 &&
+      gameName !== gameNames.GRAVEYARD &&
+      !(gameName === gameNames.MAMUT && isMirror(tableCards, handCards))
+    )
+      return setSnackInfo(` Επιλέξτε συνολικά 5 χαρτιά`);
+    evaluateHand({
+      gameId,
+      submittedHandCardsIndexes,
+      submittedTableCardsIndexes,
+    });
+  };
 
   return (
     <div className="buttons-container">
@@ -75,8 +95,8 @@ const Submit = () => {
       ) : (
         <Button
           prompt={prompt}
-          onClick={() => evaluateHand()}
-          disabled={error || eveluating || evaluationSuccess}
+          onClick={evaluateHandHandler}
+          disabled={eveluating || evaluationSuccess}
           className="orange"
         />
       )}
