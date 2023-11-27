@@ -1,5 +1,5 @@
 import { createListenerMiddleware } from '@reduxjs/toolkit';
-import { gameApi } from 'features/gameApi/gameApi';
+import { gameApi } from 'features/gameStateSlice/gameApi';
 
 export const tableSittingListener = createListenerMiddleware();
 

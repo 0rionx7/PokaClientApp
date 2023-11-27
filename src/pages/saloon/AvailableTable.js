@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
-import { useRequestJoinMutation } from 'features/gameApi/gameApi';
+import { useRequestJoinMutation } from 'features/gameStateSlice/gameApi';
 import { createTableTitle } from 'common/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import './AvailableTables.scss';

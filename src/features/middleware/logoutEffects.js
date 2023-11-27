@@ -1,6 +1,6 @@
 import { authApi } from 'features/authSlice/authApi';
 import { logout } from 'features/authSlice/authSlice';
-import { gameApi } from 'features/gameApi/gameApi';
+import { gameApi } from 'features/gameStateSlice/gameApi';
 
 export const logoutEffects =
   ({ getState, dispatch }) =>

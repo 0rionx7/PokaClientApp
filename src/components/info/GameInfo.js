@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
 import PlayHandCards from 'components/info/PlayHandCards';
 import FaceDownCards from 'components/info/FaceDownCards';
 import { tabloCount } from 'common/text-constants';

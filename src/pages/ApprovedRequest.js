@@ -1,8 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-
-import { useRequestJoinMutation } from 'features/gameApi/gameApi';
+import { useRequestJoinMutation } from 'features/gameStateSlice/gameApi';
 import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
 import { createTableTitle } from 'common/text-functions';
 import Button from 'components/ui/Button';

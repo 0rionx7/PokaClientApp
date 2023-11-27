@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
 import PlayerInfo from 'components/player/PlayerInfo';
 import HandCards from 'components/player/HandCards';
 import useSitOutTimer from 'hooks/useSitOutTimer';

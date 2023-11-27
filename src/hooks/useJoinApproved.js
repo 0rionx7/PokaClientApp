@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { setJoinedRequest } from 'features/gameStateSlice/gameStateSlice';
 import ApprovedRequest from 'pages/ApprovedRequest';
-import { socket } from 'features/gameApi/gameApi';
+import { socket } from 'features/gameStateSlice/gameApi';
 import useSnackBar from 'hooks/useSnackBar';
 
 const useJoinApproved = () => {

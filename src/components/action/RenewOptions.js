@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import {
   useGetGameStateQuery,
   useRenewCavaMutation,
-} from 'features/gameApi/gameApi';
+} from 'features/gameStateSlice/gameApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 

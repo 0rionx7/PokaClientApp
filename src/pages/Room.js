@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import useMessageService from 'hooks/useMessageService';
 import Action from 'components/action/Action';

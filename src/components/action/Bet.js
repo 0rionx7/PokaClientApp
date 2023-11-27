@@ -2,7 +2,10 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
 
-import { useBetMutation, useGetGameStateQuery } from 'features/gameApi/gameApi';
+import {
+  useBetMutation,
+  useGetGameStateQuery,
+} from 'features/gameStateSlice/gameApi';
 import { betPrompt } from 'common/text-functions';
 import Button from 'components/ui/Button';
 import './Bet.scss';

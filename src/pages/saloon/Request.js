@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import {
   useCancelRequestMutation,
   useRequestJoinMutation,
-} from 'features/gameApi/gameApi';
-import { useGetTablesQuery } from 'features/gameApi/gameApi';
+} from 'features/gameStateSlice/gameApi';
+import { useGetTablesQuery } from 'features/gameStateSlice/gameApi';
 import {
   removeRequest,
   setGameInfo,

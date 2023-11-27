@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useRequestJoinMutation } from 'features/gameApi/gameApi';
+import { useRequestJoinMutation } from 'features/gameStateSlice/gameApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';

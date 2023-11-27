@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import { useRedirectedLoginMutation } from 'features/authSlice/authApi';
-import { socket } from 'features/gameApi/gameApi';
+import { socket } from 'features/gameStateSlice/gameApi';
 import Button from 'components/ui/Button';
 import './SuccessfulPayment.scss';
 

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { gameApiReducer, gameApi } from '../features/gameApi/gameApi';
+import { gameApiReducer, gameApi } from '../features/gameStateSlice/gameApi';
 import {
   gameStateReducer,
   gameStateSlice,
@@ -8,7 +8,6 @@ import { errorHandling } from '../features/middleware/errorHandling';
 import { authReducer, authSlice } from '../features/authSlice/authSlice';
 import { tableSittingListener } from 'features/middleware/tableSittingListener';
 import { logoutEffects } from 'features/middleware/logoutEffects';
-import { cancelRequestEffects } from 'features/middleware/cancelRequestEffects';
 
 export const store = configureStore({
   reducer: {
@@ -19,10 +18,5 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware()
       .prepend(tableSittingListener.middleware)
-      .concat(
-        gameApi.middleware,
-        logoutEffects,
-        cancelRequestEffects,
-        errorHandling
-      ),
+      .concat(gameApi.middleware, logoutEffects, errorHandling),
 });

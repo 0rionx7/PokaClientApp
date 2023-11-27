@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
 import GameBuilder from 'components/gameBuilder/GameBuilder';
 import ListedPlayers from 'components/dealer/ListedPlayers';
 import { playerEntry } from 'common/utilities-functions';

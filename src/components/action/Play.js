@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
 import { playerEntry } from 'common/utilities-functions';
 import DenyAccept from 'components/action/DenyAccept';
 import Bet from 'components/action/Bet';

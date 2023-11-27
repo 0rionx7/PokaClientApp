@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useDenyCardMutation } from 'features/gameApi/gameApi';
+import { useDenyCardMutation } from 'features/gameStateSlice/gameApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 

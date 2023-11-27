@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 import { logout } from 'features/authSlice/authSlice';
 import { faceUp } from 'common/utilities-functions';
-import { gameApi } from 'features/gameApi/gameApi';
+import { gameApi } from 'features/gameStateSlice/gameApi';
 
 export const gameStateSlice = createSlice({
   name: 'gameState',

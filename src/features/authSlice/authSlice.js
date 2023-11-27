@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+
 import { authApi } from 'features/authSlice/authApi';
 
 export const authSlice = createSlice({

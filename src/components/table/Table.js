@@ -6,7 +6,7 @@ import {
   socket,
   useGetGameStateQuery,
   useSitOutMutation,
-} from 'features/gameApi/gameApi';
+} from 'features/gameStateSlice/gameApi';
 import { playerEntry } from 'common/utilities-functions';
 import DealerScreen from 'components/dealer/DealerScreen';
 import StayLeave from 'components/action/StayLeave';

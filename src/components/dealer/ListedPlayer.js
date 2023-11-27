@@ -5,7 +5,7 @@ import {
   useCancelRequestMutation,
   useGetGameStateQuery,
   useJoinTableMutation,
-} from 'features/gameApi/gameApi';
+} from 'features/gameStateSlice/gameApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import useSnackBar from 'hooks/useSnackBar';
 

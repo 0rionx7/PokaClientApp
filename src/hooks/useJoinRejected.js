@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { socket } from 'features/gameApi/gameApi';
+import { socket } from 'features/gameStateSlice/gameApi';
 import { removeRequest } from 'features/gameStateSlice/gameStateSlice';
 import { createTableTitle } from 'common/text-functions';
 import useSnackBar from 'hooks/useSnackBar';

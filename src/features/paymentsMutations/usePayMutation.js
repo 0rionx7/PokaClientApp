@@ -4,7 +4,7 @@ import {
   paymentsDescription,
   subscriptionOptions,
 } from 'common/text-constants';
-import { baseUrl, gameApi } from 'features/gameApi/gameApi';
+import { baseUrl, gameApi } from 'features/gameStateSlice/gameApi';
 
 export const { usePayMutation } = gameApi.injectEndpoints({
   endpoints: build => ({

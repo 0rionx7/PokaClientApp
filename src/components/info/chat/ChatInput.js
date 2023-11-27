@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import EmojiPicker, { Theme } from 'emoji-picker-react';
 
-import { socket } from 'features/gameApi/gameApi';
+import { socket } from 'features/gameStateSlice/gameApi';
 import { sendSvg } from 'assets/svgs/various';
 
 const ChatInput = () => {

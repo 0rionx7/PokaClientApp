@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectedCard, selectedCardsIndexes } from 'common/utilities-functions';
-import { useSelectCardsMutation } from 'features/gameApi/gameApi';
+import { useSelectCardsMutation } from 'features/gameStateSlice/gameApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 

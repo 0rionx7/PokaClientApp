@@ -7,7 +7,7 @@ import {
   useGetGameStateQuery,
   useNextRoundMutation,
   useSitOutMutation,
-} from 'features/gameApi/gameApi';
+} from 'features/gameStateSlice/gameApi';
 
 const emptyList = [];
 
