@@ -10,8 +10,11 @@ import {
   gameNames,
   tabloCount,
 } from 'common/text-constants';
-import { useSetGameVariantMutation } from 'features/gameApi/gameStateMutations/useSetGameVariantMutation';
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+
+import {
+  useGetGameStateQuery,
+  useSetGameVariantMutation,
+} from 'features/gameApi/gameApi';
 import {
   createGameVariant,
   isHere,
@@ -75,7 +78,7 @@ const GameBuilder = () => {
 
   const submitHandler = async (values, { setErrors }) => {
     const gameVariant = createGameVariant(values);
-    const result = await setGameVariant(gameVariant);
+    const result = await setGameVariant({ gameId, gameInfo: gameVariant });
     if (result?.error?.data) {
       setErrors({ buildGame: result.error.data });
       setSnackInfo(result.error.data);

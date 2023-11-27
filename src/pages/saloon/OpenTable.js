@@ -3,7 +3,7 @@ import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 
-import { useOpenTableMutation } from 'features/gameApi/gameStateMutations/useOpenTableMutation';
+import { useOpenTableMutation } from 'features/gameApi/gameApi';
 import StartingCard from 'pages/saloon/StartingCard';
 import Button from 'components/ui/Button';
 import Reaction from 'pages/saloon/Reaction';

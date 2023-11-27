@@ -113,6 +113,13 @@ export const gameApi = createApi({
       },
       keepUnusedDataFor: 0,
     }),
+    openTable: build.mutation({
+      query: openTableData => ({
+        url: '/gameState',
+        method: 'POST',
+        body: { openTableData, socketId: socket.id },
+      }),
+    }),
     bet: build.mutation({
       query: betInfo => ({
         url: '/gameState/bet',
@@ -155,6 +162,27 @@ export const gameApi = createApi({
         body: { ...gameInfo, socketId: socket.id },
       }),
     }),
+    renewCava: build.mutation({
+      query: renewInfo => ({
+        url: '/gameState/renew',
+        method: 'PATCH',
+        body: renewInfo,
+      }),
+    }),
+    setGameVariant: build.mutation({
+      query: gameInfo => ({
+        url: '/gameState/variant',
+        method: 'PATCH',
+        body: gameInfo,
+      }),
+    }),
+    selectCards: build.mutation({
+      query: selectInfo => ({
+        url: '/gameState/select',
+        method: 'PATCH',
+        body: selectInfo,
+      }),
+    }),
   }),
 });
 
@@ -167,6 +195,10 @@ export const {
   useNextRoundMutation,
   useSitOutMutation,
   useRestartGameMutation,
+  useOpenTableMutation,
+  useRenewCavaMutation,
+  useSetGameVariantMutation,
+  useSelectCardsMutation,
 } = gameApi;
 
 export const gameApiReducer = gameApi.reducer;

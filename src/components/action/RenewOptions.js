@@ -1,16 +1,15 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router';
+import { useSelector } from 'react-redux';
 
-import { useRenewCavaMutation } from 'features/gameApi/gameStateMutations/useRenewCavaMutation';
-import { useGetGameStateQuery } from 'features/gameApi/gameApi';
+import {
+  useGetGameStateQuery,
+  useRenewCavaMutation,
+} from 'features/gameApi/gameApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 
 const RenewOptions = () => {
-  const { gameId } = useParams();
-  const navigate = useNavigate();
-
+  const gameId = useSelector(state => state.gameState.gameId);
   const { cava } = useGetGameStateQuery(gameId, {
     selectFromResult: ({ data }) => ({ cava: data.cava }),
   });
@@ -30,7 +29,7 @@ const RenewOptions = () => {
         {options.map(option => (
           <Button
             prompt={option}
-            onClick={() => renew(option)}
+            onClick={() => renew({ gameId, amount: option })}
             disabled={isLoading || isSuccess}
             className="green"
             key={option}

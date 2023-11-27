@@ -44,14 +44,14 @@ export const authApi = gameApi.injectEndpoints({
     changePassword: build.mutation({
       query: userData => ({
         url: 'user/passwordChange',
-        method: 'PUT',
+        method: 'PATCH',
         body: userData,
       }),
     }),
     usernameChange: build.mutation({
       query: username => ({
         url: 'user/usernameChange',
-        method: 'PUT',
+        method: 'PATCH',
         body: username,
       }),
       invalidatesTags: ['User'],

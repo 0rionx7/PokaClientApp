@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { openTableEndpoint } from 'features/gameApi/gameStateMutations/useOpenTableMutation';
 import { requestJoinEndpoint } from 'features/gameApi/gameStateMutations/useRequestJoinMutation';
 import { logout } from 'features/authSlice/authSlice';
 import { faceUp } from 'common/utilities-functions';
@@ -60,7 +59,7 @@ export const gameStateSlice = createSlice({
         gameStateSlice.getInitialState()
       )
       .addMatcher(
-        openTableEndpoint.openTable.matchFulfilled,
+        gameApi.endpoints.openTable.matchFulfilled,
         (state, action) => ({ ...state, ...action.payload })
       )
       .addMatcher(
