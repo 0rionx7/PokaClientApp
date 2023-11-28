@@ -3,13 +3,14 @@ import { useSelector } from 'react-redux';
 
 import { useGetTablesQuery } from 'features/gameStateSlice/gameApi';
 import AvailableTable from 'pages/saloon/AvailableTable';
+import Button from 'components/ui/Button';
 
 const emptyList = [];
 
 const AvailableTables = () => {
   const joinRequests = useSelector(state => state.gameState.joinRequests);
   const [query, setfQuery] = useState('');
-  const { availableTables } = useGetTablesQuery(undefined, {
+  const { availableTables, refetch } = useGetTablesQuery(undefined, {
     selectFromResult: ({ data }) => {
       const availableTables = data?.filter(
         tableInfo =>
@@ -36,26 +37,21 @@ const AvailableTables = () => {
           onChange={e => setfQuery(e.target.value)}
         />
       </div>
-      {!availableTables.length ? (
-        <div className="tables-container">
-          <div className="available-tables">
+      <h3>Ανοικτά τραπέζια</h3>
+      <Button className="green" prompt="ανανέωση λίστας" onClick={refetch} />
+      <div className="tables-container">
+        <div className="available-tables">
+          {!availableTables.length ? (
             <div className="available-table" style={{ cursor: 'auto' }}>
               Δεν υπάρχει διαθέσιμο τραπέζι.
             </div>
-          </div>
+          ) : (
+            availableTables?.map((tableInfo, i) => (
+              <AvailableTable tableInfo={tableInfo} key={i} />
+            ))
+          )}
         </div>
-      ) : (
-        <>
-          <h3>Ανοικτά τραπέζια</h3>
-          <div className="tables-container">
-            <div className="available-tables">
-              {availableTables?.map((tableInfo, i) => (
-                <AvailableTable tableInfo={tableInfo} key={i} />
-              ))}
-            </div>
-          </div>
-        </>
-      )}
+      </div>
     </div>
   );
 };
