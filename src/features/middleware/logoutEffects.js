@@ -5,8 +5,6 @@ export const logoutEffects =
   ({ dispatch }) =>
   next =>
   action => {
-    if (logout.match(action)) {
-      dispatch(authApi.endpoints.logout.initiate());
-    }
+    if (logout.match(action)) dispatch(authApi.endpoints.logout.initiate());
     return next(action);
   };

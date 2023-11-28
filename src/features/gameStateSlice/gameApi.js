@@ -111,6 +111,7 @@ export const gameApi = createApi({
           console.log(error);
         }
       },
+      keepUnusedDataFor: 0,
     }),
     openTable: build.mutation({
       query: openTableData => ({

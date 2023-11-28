@@ -22,7 +22,6 @@ const AvailableTables = () => {
       );
       return { availableTables: queryTables || emptyList };
     },
-    refetchOnMountOrArgChange: true,
   });
 
   return (
