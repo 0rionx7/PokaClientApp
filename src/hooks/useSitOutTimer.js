@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-  useExpelMutation,
   useGetGameStateQuery,
   useNextRoundMutation,
   useSitOutMutation,
@@ -16,16 +15,12 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const hostPlayerName = useSelector(state => state.auth.username);
   const [sitOut] = useSitOutMutation();
   const [nextRound] = useNextRoundMutation();
-  const [expel] = useExpelMutation();
-  const { playersStateList, currentPlayerStateList, reaction, dealer } =
-    useGetGameStateQuery(gameId, {
-      selectFromResult: ({ data }) => ({
-        playersStateList: data?.playersStateList || emptyList,
-        currentPlayerStateList: data?.currentPlayerStateList || emptyList,
-        reaction: data?.reaction,
-        dealer: data?.dealer,
-      }),
-    });
+  const { currentPlayerStateList, reaction } = useGetGameStateQuery(gameId, {
+    selectFromResult: ({ data }) => ({
+      currentPlayerStateList: data?.currentPlayerStateList || emptyList,
+      reaction: data?.reaction,
+    }),
+  });
 
   const { kind } = handInfo;
   const hasTurn = currentPlayerStateList?.at(0);
@@ -51,45 +46,6 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
     sittingOut,
     sitOut,
     reaction,
-    submitting,
-  ]);
-
-  useEffect(() => {
-    if (!isHostPlayer) return;
-    const lastInList = playersStateList?.at(-1)?.playerName;
-    let timer;
-    if (
-      playerName === lastInList &&
-      !dealer &&
-      !kind &&
-      !hasTurn?.sittingOut &&
-      !(hasTurn?.playerName === hostPlayerName)
-    ) {
-      const timeOut = reaction * (submitting ? 2 : 1);
-      timer = setTimeout(() => {
-        expel({
-          gameId,
-          playerName: hasTurn?.playerName,
-          socketId: hasTurn?.socketId,
-        });
-      }, timeOut * 1.2 * 1000);
-    }
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [
-    playerName,
-    hasTurn?.playerName,
-    isHostPlayer,
-    kind,
-    hasTurn?.sittingOut,
-    hasTurn?.socketId,
-    expel,
-    reaction,
-    dealer,
-    hostPlayerName,
-    playersStateList,
     submitting,
   ]);
 };
