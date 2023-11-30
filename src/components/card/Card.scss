@@ -71,7 +71,7 @@
       font-size: calc(0.7 * var(--card-width));
       line-height: calc(0.7 * var(--card-width));
     }
-    svg {
+    :not([class='back-side']) svg {
       width: calc(0.4 * var(--card-width)) !important;
       height: calc(0.4 * var(--card-width)) !important;
     }
