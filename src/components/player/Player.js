@@ -21,7 +21,7 @@ const Player = ({ playerState, index }) => {
       hostPlayerState: data?.playersStateList.find(playerEntry(hostPlayerName)),
     }),
   });
-  // useSitOutTimer(playerState);
+  useSitOutTimer(playerState);
 
   const isHostPlayer = playerState.playerName === hostPlayerName;
   const playerSubmitted = playerState.submittedHand.length;

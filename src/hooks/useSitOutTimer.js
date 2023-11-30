@@ -37,12 +37,8 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
     if (!isHostPlayer || reaction === 101) return;
     let timer;
     if (isActive && !kind) {
-      const timeOut = reaction * (submitting ? 2 : 1);
-      const { gameId } = useParams();
-      timer = setTimeout(
-        () => sitOut({ gameId, cancellable: true }),
-        timeOut * 1000
-      );
+      const timeOut = (submitting ? 2 : 1) * reaction * 1000;
+      timer = setTimeout(() => sitOut({ gameId, cancellable: true }), timeOut);
     } else if (kind && !sittingOut)
       timer = setTimeout(nextRound, reaction * 1000);
 
@@ -60,10 +56,10 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
 
   useEffect(() => {
     if (!isHostPlayer) return;
-    const dealerName = playersStateList?.at(-1)?.playerName;
+    const lastInList = playersStateList?.at(-1)?.playerName;
     let timer;
     if (
-      playerName === dealerName &&
+      playerName === lastInList &&
       !dealer &&
       !kind &&
       !hasTurn?.sittingOut &&

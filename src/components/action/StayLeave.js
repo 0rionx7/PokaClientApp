@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useRequestJoinMutation } from 'features/gameStateSlice/gameApi';
 import useSnackBar from 'hooks/useSnackBar';
@@ -9,7 +8,7 @@ import Button from 'components/ui/Button';
 import './StayLeave.scss';
 
 const StayLeave = () => {
-  const gameId = useSelector(state => state.gameState.gameId);
+  const { gameId } = useParams();
   const [requestJoin, { isLoading, error }] = useRequestJoinMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ const StayLeave = () => {
   }, [error, setSnackInfo]);
 
   return (
-    <Overlay>
+    <Overlay style={{ zIndex: 200 }}>
       {snackElement}
       <div className="sitback">
         <div>{'Έχετε σηκωθεί απο το τραπέζι.\nΘέλετε να ξανακαθήσετε;'}</div>
