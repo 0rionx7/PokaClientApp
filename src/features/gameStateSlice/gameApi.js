@@ -40,7 +40,7 @@ export const gameApi = createApi({
         if (!arg) return;
         try {
           await cacheDataLoaded;
-          const { gameId } = getState().gameState;
+          const gameId = getState().gameState.gameId;
 
           const stateUpdateListener = stateUpdate => {
             // because might receive stateUpdate @ player socketId
