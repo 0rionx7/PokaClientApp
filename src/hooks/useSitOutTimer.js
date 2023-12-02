@@ -33,7 +33,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
     let timer;
     if (isActive && !kind) {
       const timeOut = (submitting ? 2 : 1) * reaction * 1000;
-      timer = setTimeout(() => sitOut({ gameId, cancellable: true }), timeOut);
+      timer = setTimeout(() => sitOut({ gameId, timedout: true }), timeOut);
     } else if (kind && !sittingOut)
       timer = setTimeout(nextRound, reaction * 1000);
 
