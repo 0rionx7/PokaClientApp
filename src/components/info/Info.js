@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import GameDescription from 'components/info/GameDescription';
+import { useEmoji } from 'components/info/chat/EmojiProvider';
 import { collapseVertical } from 'assets/svgs/various';
 import { infoButtons } from 'common/text-constants';
 import Standings from 'components/info/Standings';
@@ -12,6 +13,12 @@ import './Info.scss';
 
 const Info = ({ hideInfo, toggleHideInfo }) => {
   const [selected, setSelected] = useState(infoButtons.GAME_DESCRIPTION);
+  const { _, setShowPicker } = useEmoji();
+
+  const toggleHandler = () => {
+    toggleHideInfo();
+    setShowPicker(false);
+  };
 
   return (
     <div className="info">
@@ -23,7 +30,7 @@ const Info = ({ hideInfo, toggleHideInfo }) => {
         {selected === infoButtons.STANDINGS && <Standings />}
         {selected === infoButtons.LAST_GAME_RESULTS && <Results />}
       </div>
-      <div className="toggle-btn" onClick={toggleHideInfo}>
+      <div className="toggle-btn" onClick={toggleHandler}>
         {collapseVertical}
       </div>
     </div>

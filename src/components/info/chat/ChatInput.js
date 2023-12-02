@@ -1,21 +1,24 @@
 import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+
 import EmojiPicker, { Theme } from 'emoji-picker-react';
 
+import { useEmoji } from 'components/info/chat/EmojiProvider';
 import { socket } from 'features/gameStateSlice/gameApi';
 import { sendSvg } from 'assets/svgs/various';
 
 const ChatInput = () => {
+  const { gameId } = useParams();
   const playerName = useSelector(state => state.auth.username);
-  const gameId = useSelector(state => state.gameState.gameId);
-  const [showPicker, setShowPicker] = useState(false);
+  const { showPicker, setShowPicker } = useEmoji();
   const [message, setMessage] = useState('');
   const inputRef = useRef();
 
   const handleSubmit = event => {
     event.preventDefault();
-    setShowPicker(false);
     socket.emit('postMessage', { gameId, playerName, message });
+    setShowPicker(false);
     setMessage('');
   };
 
@@ -33,7 +36,7 @@ const ChatInput = () => {
             value={message}
             onChange={e => setMessage(e.target.value)}
             className="text-input"
-            placeholder="πληκτρολογήστε το μήνυμα σας"
+            placeholder="εισάγετε το μήνυμα σας"
           />
           <button>{sendSvg}</button>
         </div>
