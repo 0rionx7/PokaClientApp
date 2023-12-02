@@ -26,6 +26,7 @@ export const gameStateSlice = createSlice({
       state.handCards = action.payload.map(faceUp);
     },
     setGameInfo: (state, action) => ({ ...state, ...action.payload }),
+    resetGameState: (state, action) => gameStateSlice.getInitialState(),
     postMessage: (state, action) => {
       state.messages.push(action.payload);
     },
@@ -54,9 +55,6 @@ export const gameStateSlice = createSlice({
   extraReducers: builder =>
     builder
       .addCase(logout, (_state, _action) => gameStateSlice.getInitialState())
-      .addMatcher(gameApi.endpoints.sitOut.matchFulfilled, (_state, _action) =>
-        gameStateSlice.getInitialState()
-      )
       .addMatcher(
         gameApi.endpoints.openTable.matchFulfilled,
         (state, action) => ({ ...state, ...action.payload })

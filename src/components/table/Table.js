@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import {
+  gameApi,
   socket,
   useGetGameStateQuery,
   useSitOutMutation,
@@ -19,6 +20,7 @@ import './Table.scss';
 const Table = () => {
   const { gameId } = useParams();
   const [sitOut] = useSitOutMutation();
+  const dispatch = useDispatch();
   const hostPlayerName = useSelector(state => state.auth.username);
   const { dealer, playersCount, hostPlayerState, refetch } =
     useGetGameStateQuery(gameId, {
@@ -32,7 +34,10 @@ const Table = () => {
     });
 
   useEffect(() => {
-    return () => sitOut({ gameId });
+    return () => {
+      sitOut({ gameId });
+      dispatch(gameApi.util.resetApiState());
+    };
   }, [sitOut]);
 
   useEffect(() => {
