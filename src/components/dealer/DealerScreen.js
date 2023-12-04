@@ -1,7 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import {
+  useGetGameStateQuery,
+  useGetRequestsQuery,
+} from 'features/gameStateSlice/gameApi';
 import GameBuilder from 'components/gameBuilder/GameBuilder';
 import ListedPlayers from 'components/dealer/ListedPlayers';
 import { playerEntry } from 'common/utilities-functions';
@@ -11,14 +14,14 @@ import './DealerScreen.scss';
 const DealerScreen = () => {
   const hostPlayerName = useSelector(state => state.auth.username);
   const { gameId } = useParams();
-  const { playersStateList, joinRequests } = useGetGameStateQuery(gameId, {
+  const { playersStateList } = useGetGameStateQuery(gameId, {
     selectFromResult: ({ data }) => ({
       playersStateList: data.playersStateList,
       hostPlayerState: data.playersStateList.find(playerEntry(hostPlayerName)),
-      joinRequests: data.joinRequests,
       dealer: data.dealer,
     }),
   });
+  const { data: joinRequests } = useGetRequestsQuery(gameId);
 
   return (
     <Overlay className="builder-overlay">
@@ -28,7 +31,7 @@ const DealerScreen = () => {
           playersStateList={playersStateList}
           title="Συμμετέχοντες"
         />
-        {joinRequests.length > 0 && (
+        {joinRequests?.length > 0 && (
           <ListedPlayers
             playersStateList={joinRequests}
             title="Αιτούντες συμμετοχής"

@@ -112,6 +112,27 @@ export const gameApi = createApi({
         }
       },
     }),
+    getRequests: build.query({
+      query: gameId => `/requests/${gameId}`,
+      async onCacheEntryAdded(
+        _arg,
+        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
+      ) {
+        try {
+          await cacheDataLoaded;
+          const requestsUpdateListener = joinRequests => {
+            updateCachedData(_draft => joinRequests);
+          };
+
+          socket.on('requestsUpdate', requestsUpdateListener);
+          await cacheEntryRemoved;
+          socket.off('requestsUpdate', requestsUpdateListener);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      keepUnusedDataFor: 0,
+    }),
     openTable: build.mutation({
       query: openTableData => ({
         url: '/gameState',
@@ -184,7 +205,7 @@ export const gameApi = createApi({
     }),
     requestJoin: build.mutation({
       query: requestInfo => ({
-        url: '/gameState/requestJoin',
+        url: '/requests/join',
         method: 'PATCH',
         body: {
           ...requestInfo,
@@ -219,6 +240,7 @@ export const gameApi = createApi({
 export const {
   useGetGameStateQuery,
   useGetTablesQuery,
+  useGetRequestsQuery,
   useBetMutation,
   useCancelRequestMutation,
   useDenyCardMutation,
