@@ -29,18 +29,14 @@ const ListedPlayer = ({ playerState, clickable }) => {
     if (playersStateList.length === 8)
       return setSnackInfo('έχει συμπληρωθεί το καρέ');
     if (clickable && !isLoading) {
-      const { playerName, socketId } = playerState;
-      joinTable({ playerName, socketId, gameId });
+      const { playerName } = playerState;
+      joinTable({ playerName, gameId });
     }
   };
 
   const cancelHandler = e => {
     e.stopPropagation();
-    cancelRequest({
-      tableName,
-      userName: playerState.playerName,
-      socketId: playerState.socketId,
-    });
+    cancelRequest({ tableName, userName: playerState.playerName });
   };
 
   return (
