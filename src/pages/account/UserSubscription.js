@@ -8,7 +8,7 @@ const UserSubscription = () => {
   const navigate = useNavigate();
   const { subExpiration } = useGetUserQuery(undefined, {
     selectFromResult: ({ data }) => ({
-      subExpiration: data?.user.subExpiration,
+      subExpiration: data?.subExpiration,
     }),
   });
 

@@ -9,7 +9,7 @@ import classes from './Account.module.scss';
 
 const AccountDetails = () => {
   const { lastGame } = useGetUserQuery(undefined, {
-    selectFromResult: ({ data }) => ({ lastGame: data?.user.lastGame }),
+    selectFromResult: ({ data }) => ({ lastGame: data?.lastGame }),
     refetchOnMountOrArgChange: true, // for updating account LastGAme
   });
 
