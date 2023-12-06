@@ -112,38 +112,6 @@ export const gameApi = createApi({
         }
       },
     }),
-    getRequests: build.query({
-      query: tableName => `/requests/${tableName}`,
-      async onCacheEntryAdded(
-        _arg,
-        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
-      ) {
-        try {
-          await cacheDataLoaded;
-          const requestAddedListener = reqInfo => {
-            updateCachedData(draft => {
-              draft.push(reqInfo);
-            });
-          };
-          const requestRemovedListener = ({ username }) => {
-            updateCachedData(draft =>
-              draft.filter(reqInfo => reqInfo.username !== username)
-            );
-          };
-
-          socket.on('requestAdded', requestAddedListener);
-          socket.on('requestCanceled', requestRemovedListener);
-          socket.on('joinApproved', requestRemovedListener);
-          await cacheEntryRemoved;
-          socket.off('requestAdded', requestAddedListener);
-          socket.off('requestCanceled', requestRemovedListener);
-          socket.off('joinApproved', requestRemovedListener);
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      keepUnusedDataFor: 0,
-    }),
     openTable: build.mutation({
       query: openTableData => ({
         url: '/gameState',
@@ -200,13 +168,6 @@ export const gameApi = createApi({
         body: handInfo,
       }),
     }),
-    nextRound: build.mutation({
-      query: gameId => ({
-        url: '/gameState/nextRound',
-        method: 'PATCH',
-        body: { gameId },
-      }),
-    }),
     renewCava: build.mutation({
       query: renewInfo => ({
         url: '/gameState/renew',
@@ -214,38 +175,11 @@ export const gameApi = createApi({
         body: renewInfo,
       }),
     }),
-    sitOut: build.mutation({
-      query: sitOutInfo => ({
-        url: '/gameState/sitOut',
+    nextRound: build.mutation({
+      query: gameId => ({
+        url: '/gameState/nextRound',
         method: 'PATCH',
-        body: { ...sitOutInfo, socketId: socket.id },
-      }),
-    }),
-    requestJoin: build.mutation({
-      query: requestInfo => ({
-        url: '/requests/join',
-        method: 'PATCH',
-        body: {
-          ...requestInfo,
-          socketId: socket.id,
-        },
-      }),
-    }),
-    cancelRequest: build.mutation({
-      query: cancelInfo => ({
-        url: '/requests/cancel',
-        method: 'PATCH',
-        body: cancelInfo,
-      }),
-    }),
-    rejoin: build.mutation({
-      query: requestInfo => ({
-        url: '/gameState/rejoin',
-        method: 'PATCH',
-        body: {
-          ...requestInfo,
-          socketId: socket.id,
-        },
+        body: { gameId },
       }),
     }),
     joinTable: build.mutation({
@@ -255,28 +189,42 @@ export const gameApi = createApi({
         body: joinInfo,
       }),
     }),
+    sitDown: build.mutation({
+      query: requestInfo => ({
+        url: '/gameState/sitDodn',
+        method: 'PATCH',
+        body: {
+          ...requestInfo,
+          socketId: socket.id,
+        },
+      }),
+    }),
+    sitOut: build.mutation({
+      query: sitOutInfo => ({
+        url: '/gameState/sitOut',
+        method: 'PATCH',
+        body: { ...sitOutInfo, socketId: socket.id },
+      }),
+    }),
   }),
 });
 
 export const {
   useGetGameStateQuery,
   useGetTablesQuery,
-  useGetRequestsQuery,
-  useBetMutation,
-  useCancelRequestMutation,
-  useDenyCardMutation,
-  useNextRoundMutation,
-  useSitOutMutation,
-  useRestartGameMutation,
   useOpenTableMutation,
-  useRenewCavaMutation,
+  useRestartGameMutation,
   useSetGameVariantMutation,
+  useBetMutation,
+  useDenyCardMutation,
   useSelectCardsMutation,
-  useRequestJoinMutation,
-  useRejoinMutation,
-  useJoinTableMutation,
   useEvaluateHandMutation,
   useSubmitCardsMutation,
+  useRenewCavaMutation,
+  useNextRoundMutation,
+  useJoinTableMutation,
+  useSitDownMutation,
+  useSitOutMutation,
 } = gameApi;
 
 export const gameApiReducer = gameApi.reducer;

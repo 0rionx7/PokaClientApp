@@ -1,9 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import {
-  useGetGameStateQuery,
-  useGetRequestsQuery,
-} from 'features/gameStateSlice/gameApi';
+import { useGetRequestsQuery } from 'features/gameStateSlice/requestsApi';
+import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
 import GameBuilder from 'components/gameBuilder/GameBuilder';
 import ListedPlayers from 'components/dealer/ListedPlayers';
 import Overlay from 'components/ui/Overlay';

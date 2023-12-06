@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
-  useCancelRequestMutation,
   useGetGameStateQuery,
   useJoinTableMutation,
 } from 'features/gameStateSlice/gameApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import useSnackBar from 'hooks/useSnackBar';
+import { useCancelRequestMutation } from 'features/gameStateSlice/requestsApi';
 
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();
