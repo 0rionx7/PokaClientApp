@@ -1,52 +1,43 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import {
-  useCancelRequestMutation,
-  useRequestJoinMutation,
+  useGetTablesQuery,
+  useSitDownMutation,
 } from 'features/gameStateSlice/gameApi';
-import { useGetTablesQuery } from 'features/gameStateSlice/gameApi';
-import {
-  removeRequest,
-  setGameInfo,
-} from 'features/gameStateSlice/gameStateSlice';
+import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
+import { useCancelRequestMutation } from 'features/gameStateSlice/requestsApi';
 import './Requests.scss';
 
 const Request = ({ tableIfo }) => {
+  const { username } = useSelector(state => state.auth);
   const { refetch } = useGetTablesQuery();
+  const [sitDown] = useSitDownMutation();
   const [cancelHoveredPropagation, setCancelHoveredPropagation] =
     useState(false);
   const [cancelRequest] = useCancelRequestMutation();
-  const [requestJoin] = useRequestJoinMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const cancelHandler = async (tableName, event) => {
     event.stopPropagation();
-    cancelRequest({ tableName });
+    cancelRequest({ tableName, username });
     refetch();
   };
 
-  const joinTableHandler = async (tableName, approved, _event) => {
-    if (!approved) return;
-    const { data } = await requestJoin({ tableName });
-    dispatch(removeRequest(tableName));
-    if (!data.id) return;
-    const { id, ...gameInfo } = data;
-    dispatch(setGameInfo(gameInfo));
+  const joinTableHandler = async gameId => {
+    if (!gameId) return;
+    const { data } = await sitDown({ gameId });
+    if (!data?.gameId) return;
+    dispatch(setGameInfo(data));
     navigate(`/table/${data.gameId}`);
   };
 
   return (
     <div className={'request-tableName ' + (tableIfo.joined ? 'joined' : '')}>
       {!cancelHoveredPropagation && <div className="tool-tip">Καθήστε</div>}
-      <div
-        onClick={joinTableHandler.bind(
-          null,
-          tableIfo.tableName,
-          tableIfo.joined
-        )}>
+      <div onClick={joinTableHandler.bind(null, tableIfo.joined)}>
         {tableIfo.tableName?.split('_')?.[0]}
       </div>
       <div

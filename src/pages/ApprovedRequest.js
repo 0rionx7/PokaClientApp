@@ -1,22 +1,21 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useRequestJoinMutation } from 'features/gameStateSlice/gameApi';
 import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
+import { useSitDownMutation } from 'features/gameStateSlice/gameApi';
 import { createTableTitle } from 'common/text-functions';
 import Button from 'components/ui/Button';
 import './ApprovedRequest.scss';
 
-const ApprovedRequest = ({ tableName }) => {
-  const [requestJoin] = useRequestJoinMutation();
+const ApprovedRequest = ({ gameId, tableName }) => {
+  const [sitDown] = useSitDownMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const joinHandler = async _ => {
-    const { data } = await requestJoin({ tableName });
-    if (!data) return;
-    const { id, ...gameInfo } = data;
-    dispatch(setGameInfo(gameInfo));
+    const { data } = await sitDown({ gameId });
+    if (!data?.gameId) return;
+    dispatch(setGameInfo(data));
     navigate(`/table/${data.gameId}`);
   };
 

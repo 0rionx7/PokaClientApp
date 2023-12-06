@@ -35,11 +35,11 @@ export const gameStateSlice = createSlice({
         tableInfo => tableInfo.tableName !== action.payload
       );
     },
-    setJoinedRequest: (state, action) => {
+    setRequestGameId: (state, action) => {
       const joinedRequest = state.joinRequests.find(
-        ({ tableName }) => tableName === action.payload
+        ({ tableName }) => tableName === action.payload.tableName
       );
-      if (joinedRequest) joinedRequest.joined = true;
+      if (joinedRequest) joinedRequest.joined = action.payload.gameId;
     },
     toggleSelectedCard: (state, action) => {
       const selectedCard = card =>
@@ -72,6 +72,12 @@ export const gameStateSlice = createSlice({
             requestInfo => requestInfo.tableName !== action.payload.tableName
           );
         }
+      )
+      .addMatcher(
+        gameApi.endpoints.sitDown.matchFulfilled,
+        (state, _action) => {
+          state.joinRequests = [];
+        }
       ),
 });
 
@@ -84,6 +90,6 @@ export const {
   resetGameState,
   removeRequest,
   postMessage,
-  setJoinedRequest,
+  setRequestGameId,
 } = gameStateSlice.actions;
 export const gameStateReducer = gameStateSlice.reducer;

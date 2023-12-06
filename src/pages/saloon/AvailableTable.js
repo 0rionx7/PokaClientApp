@@ -25,7 +25,7 @@ const AvailableTable = ({ tableInfo }) => {
   const clickHandler = async () => {
     if (isLoading || sittingDown) return;
     if (tableInfo.joined) {
-      const { data } = await sitDown({ tableName: tableInfo.tableName });
+      const { data } = await sitDown({ gameId: tableInfo.joined });
       if (!data?.gameId) return;
       dispatch(setGameInfo(data));
       navigate(`/table/${data.gameId}`);
