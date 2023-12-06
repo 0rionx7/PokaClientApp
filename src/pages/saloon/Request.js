@@ -11,7 +11,6 @@ import { useCancelRequestMutation } from 'features/gameStateSlice/requestsApi';
 import './Requests.scss';
 
 const Request = ({ tableIfo }) => {
-  const { username } = useSelector(state => state.auth);
   const { refetch } = useGetTablesQuery();
   const [sitDown] = useSitDownMutation();
   const [cancelHoveredPropagation, setCancelHoveredPropagation] =
@@ -22,7 +21,7 @@ const Request = ({ tableIfo }) => {
 
   const cancelHandler = async (tableName, event) => {
     event.stopPropagation();
-    cancelRequest({ tableName, username });
+    cancelRequest({ tableName });
     refetch();
   };
 
