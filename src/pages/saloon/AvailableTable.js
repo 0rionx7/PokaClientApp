@@ -29,6 +29,7 @@ const AvailableTable = ({ tableInfo }) => {
       if (!data?.gameId) return;
       dispatch(setGameInfo(data));
       navigate(`/table/${data.gameId}`);
+      return;
     }
     if (joinRequests.length >= 3)
       return setSnackInfo('Έχετε συμπληρώσει των μέγιστο αριθμό αιτήσεων.');

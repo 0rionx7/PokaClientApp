@@ -2,3 +2,4 @@ choose deck color
 υποχρεοση το κεντρο στον στοχο
 οπτιονσ 2 3 4 για stayro maybe
 order tables chronologicaly
+on disconn force logout
