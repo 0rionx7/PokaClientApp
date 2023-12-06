@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setJoinedRequest } from 'features/gameStateSlice/gameStateSlice';
 import ApprovedRequest from 'pages/ApprovedRequest';
@@ -7,6 +7,7 @@ import { socket } from 'features/gameStateSlice/gameApi';
 import useSnackBar from 'hooks/useSnackBar';
 
 const useJoinApproved = () => {
+  const username = useSelector(state => state.auth.username);
   const dispatch = useDispatch();
   const { snackElement, setSnackInfo } = useSnackBar({
     height: '100%',
@@ -14,12 +15,18 @@ const useJoinApproved = () => {
   });
 
   useEffect(() => {
-    socket.on('joinApproved', tableInfo => {
-      dispatch(setJoinedRequest(tableInfo.tableName));
-      setSnackInfo(<ApprovedRequest tableName={tableInfo.tableName} />);
+    socket.on('joinApproved', approveInfo => {
+      if (approveInfo.username !== username) return;
+      dispatch(setJoinedRequest(approveInfo.tableName));
+      setSnackInfo(
+        <ApprovedRequest
+          gameId={approveInfo.gameId}
+          tableName={approveInfo.tableName}
+        />
+      );
     });
     return () => socket.removeAllListeners('joinApproved');
-  }, [dispatch, setSnackInfo]);
+  }, [dispatch, setSnackInfo, username]);
 
   return snackElement;
 };

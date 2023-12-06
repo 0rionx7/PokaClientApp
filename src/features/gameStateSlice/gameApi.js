@@ -113,20 +113,31 @@ export const gameApi = createApi({
       },
     }),
     getRequests: build.query({
-      query: gameId => `/requests/${gameId}`,
+      query: tableName => `/requests/${tableName}`,
       async onCacheEntryAdded(
         _arg,
         { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
       ) {
         try {
           await cacheDataLoaded;
-          const requestsUpdateListener = joinRequests => {
-            updateCachedData(_draft => joinRequests);
+          const requestAddedListener = reqInfo => {
+            updateCachedData(draft => {
+              draft.push(reqInfo);
+            });
+          };
+          const requestRemovedListener = ({ username }) => {
+            updateCachedData(draft =>
+              draft.filter(reqInfo => reqInfo.username !== username)
+            );
           };
 
-          socket.on('requestsUpdate', requestsUpdateListener);
+          socket.on('requestAdded', requestAddedListener);
+          socket.on('requestCanceled', requestRemovedListener);
+          socket.on('joinApproved', requestRemovedListener);
           await cacheEntryRemoved;
-          socket.off('requestsUpdate', requestsUpdateListener);
+          socket.off('requestAdded', requestAddedListener);
+          socket.off('requestCanceled', requestRemovedListener);
+          socket.off('joinApproved', requestRemovedListener);
         } catch (error) {
           console.log(error);
         }
@@ -140,53 +151,11 @@ export const gameApi = createApi({
         body: { openTableData, socketId: socket.id },
       }),
     }),
-    bet: build.mutation({
-      query: betInfo => ({
-        url: '/gameState/bet',
-        method: 'PATCH',
-        body: betInfo,
-      }),
-    }),
-    cancelRequest: build.mutation({
-      query: cancelInfo => ({
-        url: '/gameState/cancelRequest',
-        method: 'PATCH',
-        body: cancelInfo,
-      }),
-    }),
-    denyCard: build.mutation({
-      query: denyInfo => ({
-        url: '/gameState/deny',
-        method: 'PATCH',
-        body: denyInfo,
-      }),
-    }),
-    nextRound: build.mutation({
-      query: gameId => ({
-        url: '/gameState/nextRound',
-        method: 'PATCH',
-        body: { gameId },
-      }),
-    }),
-    sitOut: build.mutation({
-      query: sitOutInfo => ({
-        url: '/gameState/sitOut',
-        method: 'PATCH',
-        body: { ...sitOutInfo, socketId: socket.id },
-      }),
-    }),
     restartGame: build.mutation({
       query: gameInfo => ({
         url: '/gameState/restart',
         method: 'POST',
         body: { ...gameInfo, socketId: socket.id },
-      }),
-    }),
-    renewCava: build.mutation({
-      query: renewInfo => ({
-        url: '/gameState/renew',
-        method: 'PATCH',
-        body: renewInfo,
       }),
     }),
     setGameVariant: build.mutation({
@@ -196,28 +165,25 @@ export const gameApi = createApi({
         body: gameInfo,
       }),
     }),
+    bet: build.mutation({
+      query: betInfo => ({
+        url: '/gameState/bet',
+        method: 'PATCH',
+        body: betInfo,
+      }),
+    }),
+    denyCard: build.mutation({
+      query: denyInfo => ({
+        url: '/gameState/deny',
+        method: 'PATCH',
+        body: denyInfo,
+      }),
+    }),
     selectCards: build.mutation({
       query: selectInfo => ({
         url: '/gameState/select',
         method: 'PATCH',
         body: selectInfo,
-      }),
-    }),
-    requestJoin: build.mutation({
-      query: requestInfo => ({
-        url: '/requests/join',
-        method: 'PATCH',
-        body: {
-          ...requestInfo,
-          socketId: socket.id,
-        },
-      }),
-    }),
-    joinTable: build.mutation({
-      query: joinInfo => ({
-        url: '/gameState/join',
-        method: 'PATCH',
-        body: joinInfo,
       }),
     }),
     evaluateHand: build.mutation({
@@ -232,6 +198,61 @@ export const gameApi = createApi({
         url: '/gameState/submit',
         method: 'PATCH',
         body: handInfo,
+      }),
+    }),
+    nextRound: build.mutation({
+      query: gameId => ({
+        url: '/gameState/nextRound',
+        method: 'PATCH',
+        body: { gameId },
+      }),
+    }),
+    renewCava: build.mutation({
+      query: renewInfo => ({
+        url: '/gameState/renew',
+        method: 'PATCH',
+        body: renewInfo,
+      }),
+    }),
+    sitOut: build.mutation({
+      query: sitOutInfo => ({
+        url: '/gameState/sitOut',
+        method: 'PATCH',
+        body: { ...sitOutInfo, socketId: socket.id },
+      }),
+    }),
+    requestJoin: build.mutation({
+      query: requestInfo => ({
+        url: '/requests/join',
+        method: 'PATCH',
+        body: {
+          ...requestInfo,
+          socketId: socket.id,
+        },
+      }),
+    }),
+    cancelRequest: build.mutation({
+      query: cancelInfo => ({
+        url: '/requests/cancel',
+        method: 'PATCH',
+        body: cancelInfo,
+      }),
+    }),
+    rejoin: build.mutation({
+      query: requestInfo => ({
+        url: '/gameState/rejoin',
+        method: 'PATCH',
+        body: {
+          ...requestInfo,
+          socketId: socket.id,
+        },
+      }),
+    }),
+    joinTable: build.mutation({
+      query: joinInfo => ({
+        url: '/gameState/join',
+        method: 'PATCH',
+        body: joinInfo,
       }),
     }),
   }),
@@ -252,6 +273,7 @@ export const {
   useSetGameVariantMutation,
   useSelectCardsMutation,
   useRequestJoinMutation,
+  useRejoinMutation,
   useJoinTableMutation,
   useEvaluateHandMutation,
   useSubmitCardsMutation,

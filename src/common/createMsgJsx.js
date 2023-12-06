@@ -46,10 +46,10 @@ export function createMessageJsx({ event, ...data }, index) {
           <br />
         </Fragment>
       );
-    case 'playerRequested':
+    case 'requestAdded':
       return (
         <Fragment key={index}>
-          Ο παίκτης <span>{data.playerName}</span> ζήτησε θέση στο τραπέζι.
+          Ο παίκτης <span>{data.username}</span> ζήτησε θέση στο τραπέζι.
           <br />
         </Fragment>
       );

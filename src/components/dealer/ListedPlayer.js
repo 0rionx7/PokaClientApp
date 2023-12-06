@@ -36,7 +36,11 @@ const ListedPlayer = ({ playerState, clickable }) => {
 
   const cancelHandler = e => {
     e.stopPropagation();
-    cancelRequest({ tableName, userName: playerState.playerName });
+    cancelRequest({
+      tableName,
+      username: playerState.playerName,
+      showInfo: true,
+    });
   };
 
   return (

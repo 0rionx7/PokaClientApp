@@ -26,7 +26,7 @@ export const gameStateSlice = createSlice({
       state.handCards = action.payload.map(faceUp);
     },
     setGameInfo: (state, action) => ({ ...state, ...action.payload }),
-    resetGameState: (state, action) => gameStateSlice.getInitialState(),
+    resetGameState: (_state, _action) => gameStateSlice.getInitialState(),
     postMessage: (state, action) => {
       state.messages.push(action.payload);
     },
@@ -62,8 +62,7 @@ export const gameStateSlice = createSlice({
       .addMatcher(
         gameApi.endpoints.requestJoin.matchFulfilled,
         (state, action) => {
-          if (!action.payload?.id)
-            state.joinRequests.push({ tableName: action.payload.tableName });
+          state.joinRequests.push({ tableName: action.payload });
         }
       )
       .addMatcher(

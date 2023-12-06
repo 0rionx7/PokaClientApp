@@ -13,7 +13,7 @@ const socketEvents = [
   'playerSwapped',
   'playerDenied',
   'playerSittingOut',
-  'playerRequested',
+  'requestAdded',
 ];
 
 const useMessageService = () => {

@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 import {
   useGetGameStateQuery,
@@ -7,34 +6,38 @@ import {
 } from 'features/gameStateSlice/gameApi';
 import GameBuilder from 'components/gameBuilder/GameBuilder';
 import ListedPlayers from 'components/dealer/ListedPlayers';
-import { playerEntry } from 'common/utilities-functions';
 import Overlay from 'components/ui/Overlay';
 import './DealerScreen.scss';
 
 const DealerScreen = () => {
-  const hostPlayerName = useSelector(state => state.auth.username);
   const { gameId } = useParams();
-  const { playersStateList } = useGetGameStateQuery(gameId, {
+  const { playersStateList, tableName } = useGetGameStateQuery(gameId, {
     selectFromResult: ({ data }) => ({
       playersStateList: data.playersStateList,
-      hostPlayerState: data.playersStateList.find(playerEntry(hostPlayerName)),
-      dealer: data.dealer,
+      tableName: data.tableName,
     }),
   });
-  const { data: joinRequests } = useGetRequestsQuery(gameId);
+  const { requestedStates } = useGetRequestsQuery(tableName, {
+    selectFromResult: ({ data }) => ({
+      requestedStates: data?.map(request => ({
+        playerName: request.username,
+        isSubscribed: new Date(request.subExpiration) - Date.now() > 0,
+      })),
+    }),
+  });
 
   return (
     <Overlay className="builder-overlay">
       <GameBuilder />
       <div className="players-info">
         <ListedPlayers
-          playersStateList={playersStateList}
           title="Συμμετέχοντες"
+          playersStateList={playersStateList}
         />
-        {joinRequests?.length > 0 && (
+        {requestedStates?.length > 0 && (
           <ListedPlayers
-            playersStateList={joinRequests}
             title="Αιτούντες συμμετοχής"
+            playersStateList={requestedStates}
           />
         )}
       </div>

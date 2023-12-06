@@ -13,9 +13,9 @@ const useJoinRejected = () => {
   const { gameId } = useParams();
 
   useEffect(() => {
-    socket.on('joinRejected', tableName => {
+    socket.on('requestCanceled', ({ tableName, showInfo }) => {
       dispatch(removeRequest(tableName));
-      if (!gameId)
+      if (!gameId && showInfo)
         setSnackInfo(
           <>
             Η αίτηση συμμετοχής σας για το τραπέζι {createTableTitle(tableName)}{' '}
@@ -23,7 +23,7 @@ const useJoinRejected = () => {
           </>
         );
     });
-    return () => socket.removeAllListeners('joinRejected');
+    return () => socket.removeAllListeners('requestCanceled');
   }, [dispatch, setSnackInfo, gameId]);
 
   return snackElement;
