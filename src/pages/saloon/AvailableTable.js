@@ -13,7 +13,7 @@ const AvailableTable = ({ tableInfo }) => {
   const [requestJoin, { isLoading, error }] = useRequestJoinMutation();
   const [sitDown, { isLoading: sittingDown, error: sitdownError }] =
     useSitDownMutation();
-  const joinRequests = useSelector(state => state.gameState.joinRequests);
+  const joinRequests = useSelector(state => state.auth.joinRequests);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });

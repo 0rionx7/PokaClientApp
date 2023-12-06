@@ -13,7 +13,7 @@ import './Info.scss';
 
 const Info = ({ hideInfo, toggleHideInfo }) => {
   const [selected, setSelected] = useState(infoButtons.GAME_DESCRIPTION);
-  const { _, setShowPicker } = useEmoji();
+  const { setShowPicker } = useEmoji();
 
   const toggleHandler = () => {
     toggleHideInfo();

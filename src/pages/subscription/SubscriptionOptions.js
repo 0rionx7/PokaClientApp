@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 
 import { usePayMutation } from 'features/paymentsMutations/usePayMutation';
 import SubscriptionItem from 'pages/subscription/SubscriptionItem';

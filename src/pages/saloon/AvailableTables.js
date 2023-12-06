@@ -8,7 +8,7 @@ import Button from 'components/ui/Button';
 const emptyList = [];
 
 const AvailableTables = () => {
-  const joinRequests = useSelector(state => state.gameState.joinRequests);
+  const joinRequests = useSelector(state => state.auth.joinRequests);
   const [query, setfQuery] = useState('');
   const { availableTables, refetch } = useGetTablesQuery(undefined, {
     selectFromResult: ({ data }) => {

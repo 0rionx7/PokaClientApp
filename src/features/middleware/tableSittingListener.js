@@ -9,7 +9,7 @@ tableSittingListener.startListening({
     return currentState.gameState.gameId !== previousState.gameState.gameId;
   },
   effect: (_action, { getState, dispatch }) => {
-    getState().gameState.joinRequests.forEach(({ tableName }) => {
+    getState().auth.joinRequests.forEach(({ tableName }) => {
       dispatch(gameApi.endpoints.cancelRequest.initiate({ tableName }));
     });
   },

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setRequestGameId } from 'features/gameStateSlice/gameStateSlice';
-import ApprovedRequest from 'pages/ApprovedRequest';
 import { socket } from 'features/gameStateSlice/gameApi';
+import ApprovedRequest from 'pages/ApprovedRequest';
 import useSnackBar from 'hooks/useSnackBar';
+import { setRequestGameId } from 'features/authSlice/authSlice';
 
 const useJoinApproved = () => {
   const username = useSelector(state => state.auth.username);

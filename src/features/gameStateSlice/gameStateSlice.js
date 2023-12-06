@@ -12,7 +12,6 @@ export const gameStateSlice = createSlice({
     tableCards: [],
     handCards: [],
     messages: [],
-    joinRequests: [],
     currentChoosenGame: '',
   },
   reducers: {
@@ -29,17 +28,6 @@ export const gameStateSlice = createSlice({
     resetGameState: (_state, _action) => gameStateSlice.getInitialState(),
     postMessage: (state, action) => {
       state.messages.push(action.payload);
-    },
-    removeRequest: (state, action) => {
-      state.joinRequests = state.joinRequests.filter(
-        tableInfo => tableInfo.tableName !== action.payload
-      );
-    },
-    setRequestGameId: (state, action) => {
-      const joinedRequest = state.joinRequests.find(
-        ({ tableName }) => tableName === action.payload.tableName
-      );
-      if (joinedRequest) joinedRequest.joined = action.payload.gameId;
     },
     toggleSelectedCard: (state, action) => {
       const selectedCard = card =>
@@ -58,26 +46,6 @@ export const gameStateSlice = createSlice({
       .addMatcher(
         gameApi.endpoints.openTable.matchFulfilled,
         (state, action) => ({ ...state, ...action.payload })
-      )
-      .addMatcher(
-        gameApi.endpoints.requestJoin.matchFulfilled,
-        (state, action) => {
-          state.joinRequests.push({ tableName: action.payload });
-        }
-      )
-      .addMatcher(
-        gameApi.endpoints.cancelRequest.matchFulfilled,
-        (state, action) => {
-          state.joinRequests = state.joinRequests.filter(
-            requestInfo => requestInfo.tableName !== action.payload.tableName
-          );
-        }
-      )
-      .addMatcher(
-        gameApi.endpoints.sitDown.matchFulfilled,
-        (state, _action) => {
-          state.joinRequests = [];
-        }
       ),
 });
 
@@ -88,8 +56,6 @@ export const {
   toggleSelectedCard,
   setGameInfo,
   resetGameState,
-  removeRequest,
   postMessage,
-  setRequestGameId,
 } = gameStateSlice.actions;
 export const gameStateReducer = gameStateSlice.reducer;
