@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     if (!gameId) dispatch(resetGameState());
-  }, [gameId]);
+  }, [dispatch, gameId]);
 
   return (
     <>

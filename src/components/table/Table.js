@@ -38,7 +38,7 @@ const Table = () => {
       sitOut({ gameId });
       dispatch(gameApi.util.resetApiState());
     };
-  }, [sitOut]);
+  }, [dispatch, gameId, sitOut]);
 
   useEffect(() => {
     socket.on('connect', refetch);

@@ -50,6 +50,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
     sitOut,
     reaction,
     submitting,
+    gameId,
   ]);
 };
 
