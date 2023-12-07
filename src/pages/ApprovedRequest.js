@@ -1,7 +1,5 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { setGameInfo } from 'features/gameState/gameStateSlice';
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
 import { createTableTitle } from 'common/text-functions';
 import Button from 'components/ui/Button';
@@ -9,14 +7,11 @@ import './ApprovedRequest.scss';
 
 const ApprovedRequest = ({ gameId, tableName }) => {
   const [sitDown] = useSitDownMutation();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const joinHandler = async _ => {
     const { data } = await sitDown({ gameId });
-    if (!data?.gameId) return;
-    dispatch(setGameInfo(data));
-    navigate(`/table/${data.gameId}`);
+    if (data?.gameId) navigate(`/table/${data.gameId}`);
   };
 
   return (

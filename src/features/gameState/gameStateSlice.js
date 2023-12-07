@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { logout } from 'features/account/accountSlice';
 import { faceUp } from 'common/utilities-functions';
 import { gameStateApi } from 'features/gameState/gameStateApi';
 
@@ -24,8 +23,6 @@ export const gameStateSlice = createSlice({
     setHandCards: (state, action) => {
       state.handCards = action.payload.map(faceUp);
     },
-    setGameInfo: (state, action) => ({ ...state, ...action.payload }),
-    resetGameState: (_state, _action) => gameStateSlice.getInitialState(),
     postMessage: (state, action) => {
       state.messages.push(action.payload);
     },
@@ -42,10 +39,16 @@ export const gameStateSlice = createSlice({
   },
   extraReducers: builder =>
     builder
-      .addCase(logout, (_state, _action) => gameStateSlice.getInitialState())
       .addMatcher(
-        gameStateApi.endpoints.openTable.matchFulfilled,
+        isAnyOf(
+          gameStateApi.endpoints.openTable.matchFulfilled,
+          gameStateApi.endpoints.sitDown.matchFulfilled
+        ),
         (state, action) => ({ ...state, ...action.payload })
+      )
+      .addMatcher(
+        gameStateApi.endpoints.sitOut.matchFulfilled,
+        (_state, _action) => gameStateSlice.getInitialState()
       ),
 });
 
@@ -54,8 +57,6 @@ export const {
   setCurrentChoosenGame,
   setHandCards,
   toggleSelectedCard,
-  setGameInfo,
-  resetGameState,
   postMessage,
 } = gameStateSlice.actions;
 export const gameStateReducer = gameStateSlice.reducer;

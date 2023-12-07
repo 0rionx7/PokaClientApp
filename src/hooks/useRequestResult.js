@@ -12,11 +12,15 @@ const useRequestResult = () => {
   const username = useSelector(state => state.account.username);
   const { gameId } = useParams();
   const dispatch = useDispatch();
-  const { rejectedElement, setRejectPopUp } = useSnackBar({ height: '100%' });
-  const { approvedElement, setApprovedPopUp } = useSnackBar({
-    height: '100%',
-    secs: 7,
-  });
+  const { snackElement: rejectedElement, setSnackInfo: setRejectPopUp } =
+    useSnackBar({
+      height: '100%',
+    });
+  const { snackElement: approvedElement, setSnackInfo: setApprovedPopUp } =
+    useSnackBar({
+      height: '100%',
+      secs: 7,
+    });
 
   useEffect(() => {
     socket.on('joinApproved', approveInfo => {
