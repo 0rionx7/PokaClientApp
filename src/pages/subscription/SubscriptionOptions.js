@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 import { usePayMutation } from 'features/paymentsMutations/usePayMutation';
 import SubscriptionItem from 'pages/subscription/SubscriptionItem';
-import { useGetUserQuery } from 'features/authSlice/authApi';
+import { useGetUserQuery } from 'features/account/accountApi';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import Overlay from 'components/ui/Overlay';
 import Frame from 'components/ui/Frame';

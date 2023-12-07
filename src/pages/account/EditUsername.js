@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 import { Field, Form, Formik } from 'formik';
 
-import { useUsernameChangeMutation } from 'features/authSlice/authApi';
+import { useUsernameChangeMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import classes from './UserName.module.scss';
 
 const EditUsername = ({ stopEditing }) => {
-  const playerName = useSelector(state => state.auth.username);
+  const playerName = useSelector(state => state.account.username);
   const [changeUsername] = useUsernameChangeMutation();
 
   const validate = values => {

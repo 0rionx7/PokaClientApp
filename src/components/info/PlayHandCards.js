@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 
 const PlayHandCards = () => {
   const { gameId } = useParams();

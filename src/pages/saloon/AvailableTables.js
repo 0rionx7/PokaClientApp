@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { useGetTablesQuery } from 'features/gameStateSlice/gameApi';
+import { useGetTablesQuery } from 'features/gameState/gameStateApi';
 import AvailableTable from 'pages/saloon/AvailableTable';
 import Button from 'components/ui/Button';
 
 const emptyList = [];
 
 const AvailableTables = () => {
-  const joinRequests = useSelector(state => state.auth.joinRequests);
+  const joinRequests = useSelector(state => state.account.joinRequests);
   const [query, setfQuery] = useState('');
   const { availableTables, refetch } = useGetTablesQuery(undefined, {
     selectFromResult: ({ data }) => {

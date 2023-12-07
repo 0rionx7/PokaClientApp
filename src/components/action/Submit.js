@@ -5,7 +5,7 @@ import {
   useEvaluateHandMutation,
   useGetGameStateQuery,
   useSubmitCardsMutation,
-} from 'features/gameStateSlice/gameApi';
+} from 'features/gameState/gameStateApi';
 import { isMirror, selectedCardsIndexes } from 'common/utilities-functions';
 import { describeHand } from 'common/text-functions';
 import Overlay from 'components/ui/Overlay';

@@ -2,9 +2,9 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useRequestJoinMutation } from 'features/gameStateSlice/requestsApi';
-import { useSitDownMutation } from 'features/gameStateSlice/gameApi';
-import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
+import { useRequestJoinMutation } from 'features/account/requestsApi';
+import { useSitDownMutation } from 'features/gameState/gameStateApi';
+import { setGameInfo } from 'features/gameState/gameStateSlice';
 import { createTableTitle } from 'common/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import './AvailableTables.scss';
@@ -13,7 +13,7 @@ const AvailableTable = ({ tableInfo }) => {
   const [requestJoin, { isLoading, error }] = useRequestJoinMutation();
   const [sitDown, { isLoading: sittingDown, error: sitdownError }] =
     useSitDownMutation();
-  const joinRequests = useSelector(state => state.auth.joinRequests);
+  const joinRequests = useSelector(state => state.account.joinRequests);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });

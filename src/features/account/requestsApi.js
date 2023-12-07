@@ -1,6 +1,6 @@
-import { gameApi, socket } from 'features/gameStateSlice/gameApi';
+import { gameStateApi, socket } from 'features/gameState/gameStateApi';
 
-export const requestsApi = gameApi.injectEndpoints({
+export const requestsApi = gameStateApi.injectEndpoints({
   endpoints: build => ({
     getRequests: build.query({
       query: tableName => `/requests/${tableName}`,

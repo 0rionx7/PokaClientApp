@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import RenderedCard from 'components/table/RenderedCard';
 
 const BoardRow = ({ rowIndexes, row, rows }) => {

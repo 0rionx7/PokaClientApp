@@ -6,7 +6,7 @@ import { editSvg } from 'assets/svgs/various';
 import classes from './UserName.module.scss';
 
 const UserName = () => {
-  const playerName = useSelector(state => state.auth.username);
+  const playerName = useSelector(state => state.account.username);
   const [edit, setEdit] = useState(false);
 
   if (edit) return <EditUsername stopEditing={() => setEdit(false)} />;

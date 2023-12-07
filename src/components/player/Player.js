@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import PlayerInfo from 'components/player/PlayerInfo';
 import HandCards from 'components/player/HandCards';
 import useSitOutTimer from 'hooks/useSitOutTimer';
@@ -12,7 +12,7 @@ import { playerEntry } from 'common/utilities-functions';
 const emptyList = [];
 
 const Player = ({ playerState, index }) => {
-  const hostPlayerName = useSelector(state => state.auth.username);
+  const hostPlayerName = useSelector(state => state.account.username);
   const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
   const { gameId } = useParams();
   const { hostPlayerState } = useGetGameStateQuery(gameId, {

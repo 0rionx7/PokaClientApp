@@ -3,14 +3,14 @@ import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 
-import { useOpenTableMutation } from 'features/gameStateSlice/gameApi';
+import { useOpenTableMutation } from 'features/gameState/gameStateApi';
 import StartingCard from 'pages/saloon/StartingCard';
 import Button from 'components/ui/Button';
 import Reaction from 'pages/saloon/Reaction';
 import './OpenTable.scss';
 
 const OpenTable = () => {
-  const playerName = useSelector(state => state.auth.username);
+  const playerName = useSelector(state => state.account.username);
   const [openTable] = useOpenTableMutation();
   const navigate = useNavigate();
 

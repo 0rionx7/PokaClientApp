@@ -5,12 +5,12 @@ import { useParams } from 'react-router-dom';
 import EmojiPicker, { Theme } from 'emoji-picker-react';
 
 import { useEmoji } from 'components/info/chat/EmojiProvider';
-import { socket } from 'features/gameStateSlice/gameApi';
+import { socket } from 'features/gameState/gameStateApi';
 import { sendSvg } from 'assets/svgs/various';
 
 const ChatInput = () => {
   const { gameId } = useParams();
-  const playerName = useSelector(state => state.auth.username);
+  const playerName = useSelector(state => state.account.username);
   const { showPicker, setShowPicker } = useEmoji();
   const [message, setMessage] = useState('');
   const inputRef = useRef();

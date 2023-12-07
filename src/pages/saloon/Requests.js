@@ -4,7 +4,7 @@ import Request from 'pages/saloon/Request';
 import './Requests.scss';
 
 const Requests = () => {
-  const joinRequests = useSelector(state => state.auth.joinRequests);
+  const joinRequests = useSelector(state => state.account.joinRequests);
 
   if (!joinRequests.length) return null;
 

@@ -4,19 +4,19 @@ import {
   paymentsDescription,
   subscriptionOptions,
 } from 'common/text-constants';
-import { baseUrl, gameApi } from 'features/gameStateSlice/gameApi';
+import { baseUrl, gameStateApi } from 'features/gameState/gameStateApi';
 
-export const { usePayMutation } = gameApi.injectEndpoints({
+export const { usePayMutation } = gameStateApi.injectEndpoints({
   endpoints: build => ({
     pay: build.mutation({
       queryFn: async (title, { getState }, _extraOptions) => {
-        const { token } = getState().auth;
+        const { token } = getState().account;
         const headers = new Headers({ 'Content-type': 'application/json' });
         if (token) headers.set('authorization', `Bearer ${token}`);
         else return UNAUTHORISED_REQUEST_ERROR;
 
         const { username, email } =
-          getState().gameApi.queries['getUser(undefined)'].data;
+          getState().gameStateApi.queries['getUser(undefined)'].data;
 
         const customer = {
           fullName: username,

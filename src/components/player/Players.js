@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { playerEntry } from 'common/utilities-functions';
 import Player from 'components/player/Player';
 
@@ -9,7 +9,7 @@ const emptyList = [];
 
 const Players = () => {
   const { gameId } = useParams();
-  const hostPlayerName = useSelector(state => state.auth.username);
+  const hostPlayerName = useSelector(state => state.account.username);
   const { playersStateList } = useGetGameStateQuery(gameId, {
     selectFromResult: ({ data }) => {
       const playersStateList = data?.playersStateList.slice();

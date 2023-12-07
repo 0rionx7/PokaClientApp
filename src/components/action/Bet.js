@@ -5,7 +5,7 @@ import { Field, Form, Formik } from 'formik';
 import {
   useBetMutation,
   useGetGameStateQuery,
-} from 'features/gameStateSlice/gameApi';
+} from 'features/gameState/gameStateApi';
 import { betPrompt } from 'common/text-functions';
 import Button from 'components/ui/Button';
 import './Bet.scss';

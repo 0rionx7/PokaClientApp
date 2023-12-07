@@ -1,6 +1,6 @@
-import { gameApi, socket } from 'features/gameStateSlice/gameApi';
+import { gameStateApi, socket } from 'features/gameState/gameStateApi';
 
-export const authApi = gameApi.injectEndpoints({
+export const accountApi = gameStateApi.injectEndpoints({
   endpoints: build => ({
     getUser: build.query({
       query: () => 'user',
@@ -69,4 +69,4 @@ export const {
   useRegisterMutation,
   useChangePasswordMutation,
   useUsernameChangeMutation,
-} = authApi;
+} = accountApi;

@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { logout } from 'features/authSlice/authSlice';
+import { logout } from 'features/account/accountSlice';
 import { faceUp } from 'common/utilities-functions';
-import { gameApi } from 'features/gameStateSlice/gameApi';
+import { gameStateApi } from 'features/gameState/gameStateApi';
 
 export const gameStateSlice = createSlice({
   name: 'gameState',
@@ -44,7 +44,7 @@ export const gameStateSlice = createSlice({
     builder
       .addCase(logout, (_state, _action) => gameStateSlice.getInitialState())
       .addMatcher(
-        gameApi.endpoints.openTable.matchFulfilled,
+        gameStateApi.endpoints.openTable.matchFulfilled,
         (state, action) => ({ ...state, ...action.payload })
       ),
 });

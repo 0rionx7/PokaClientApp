@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 
-import { toggleSelectedCard } from 'features/gameStateSlice/gameStateSlice';
+import { toggleSelectedCard } from 'features/gameState/gameStateSlice';
 import { suits, symbols } from 'assets/svgs/suits';
 import Content from 'components/card/Content';
 import { cardBack } from 'assets/svgs/various';

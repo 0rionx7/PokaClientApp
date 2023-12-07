@@ -1,8 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
-
-import { useRegisterMutation } from 'features/authSlice/authApi';
+import { useRegisterMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
 

@@ -1,13 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { socket } from 'features/gameStateSlice/gameApi';
+import { socket } from 'features/gameState/gameStateApi';
 import ApprovedRequest from 'pages/ApprovedRequest';
 import useSnackBar from 'hooks/useSnackBar';
-import { setRequestGameId } from 'features/authSlice/authSlice';
+import { setRequestGameId } from 'features/account/accountSlice';
 
 const useJoinApproved = () => {
-  const username = useSelector(state => state.auth.username);
+  const username = useSelector(state => state.account.username);
   const dispatch = useDispatch();
   const { snackElement, setSnackInfo } = useSnackBar({
     height: '100%',

@@ -12,12 +12,12 @@ const removeRequest = createAction('gameState/removeRequest');
 const setHandCards = createAction('gameState/setHandCards');
 const setTableCards = createAction('gameState/setTableCards');
 
-export const gameApi = createApi({
-  reducerPath: 'gameApi',
+export const gameStateApi = createApi({
+  reducerPath: 'gameStateApi',
   baseQuery: fetchBaseQuery({
     baseUrl,
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
+      const token = getState().account.token;
       if (token) headers.set('authorization', `Bearer ${token}`);
       return headers;
     },
@@ -49,7 +49,7 @@ export const gameApi = createApi({
                 //for not to reset preselected cards ( players selected before their turn )
                 if (!draft.currentPlayerStateList?.[0]?.selecting?.submit) {
                   if (stateUpdate.playersStateList) {
-                    const hostPlayerName = getState().auth.username;
+                    const hostPlayerName = getState().account.username;
                     const updatedHostState = stateUpdate.playersStateList.find(
                       playerEntry(hostPlayerName)
                     );
@@ -96,7 +96,7 @@ export const gameApi = createApi({
           };
           const tableDeletedListerner = tableName => {
             dispatch(
-              gameApi.endpoints.getTables.initiate(undefined, {
+              gameStateApi.endpoints.getTables.initiate(undefined, {
                 forceRefetch: true,
               })
             );
@@ -225,6 +225,6 @@ export const {
   useJoinTableMutation,
   useSitDownMutation,
   useSitOutMutation,
-} = gameApi;
+} = gameStateApi;
 
-export const gameApiReducer = gameApi.reducer;
+export const gameApiReducer = gameStateApi.reducer;

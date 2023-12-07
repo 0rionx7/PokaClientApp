@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { useDispatch } from 'react-redux';
 
-import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
-import { useRestartGameMutation } from 'features/gameStateSlice/gameApi';
+import { setGameInfo } from 'features/gameState/gameStateSlice';
+import { useRestartGameMutation } from 'features/gameState/gameStateApi';
 import { createTableTitle } from 'common/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import classes from './Account.module.scss';

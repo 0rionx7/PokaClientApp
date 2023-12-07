@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Field, Form, Formik } from 'formik';
 
-import { useChangePasswordMutation } from 'features/authSlice/authApi';
+import { useChangePasswordMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import { editSvg } from 'assets/svgs/various';
 import classes from './UserName.module.scss';

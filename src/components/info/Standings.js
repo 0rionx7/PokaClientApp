@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import PlayerStanding from 'components/info/PlayerStanding';
 import { inGameFistList } from 'common/utilities-functions';
 import './Standings.scss';

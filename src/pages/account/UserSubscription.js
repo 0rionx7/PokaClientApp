@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useGetUserQuery } from 'features/authSlice/authApi';
+import { useGetUserQuery } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import classes from './UserName.module.scss';
 

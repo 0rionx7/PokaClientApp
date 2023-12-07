@@ -14,7 +14,7 @@ import {
 import {
   useGetGameStateQuery,
   useSetGameVariantMutation,
-} from 'features/gameStateSlice/gameApi';
+} from 'features/gameState/gameStateApi';
 import {
   createGameVariant,
   isHere,

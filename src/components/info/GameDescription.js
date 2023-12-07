@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { createTableTitle } from 'common/text-functions';
 import { gamesInfo } from 'common/text-constants';
 import './Info.scss';
@@ -18,7 +18,7 @@ const GameDescription = () => {
       dealer: data.dealer,
     }),
   });
-  const hostPlayerName = useSelector(state => state.auth.username);
+  const hostPlayerName = useSelector(state => state.account.username);
   const currentChoosenGame = useSelector(
     state => state.gameState.currentChoosenGame
   );

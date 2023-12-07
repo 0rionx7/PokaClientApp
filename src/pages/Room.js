@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import EmojiProvider from 'components/info/chat/EmojiProvider';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import useMessageService from 'hooks/useMessageService';

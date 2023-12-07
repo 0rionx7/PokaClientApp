@@ -1,22 +1,25 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { gameApiReducer, gameApi } from '../features/gameStateSlice/gameApi';
+import {
+  gameApiReducer,
+  gameStateApi,
+} from '../features/gameState/gameStateApi';
 import {
   gameStateReducer,
   gameStateSlice,
-} from '../features/gameStateSlice/gameStateSlice';
+} from '../features/gameState/gameStateSlice';
 import { errorHandling } from '../features/middleware/errorHandling';
-import { authReducer, authSlice } from '../features/authSlice/authSlice';
+import { authReducer, accountSlice } from '../features/account/accountSlice';
 import { sitDownListener } from 'features/middleware/sitDownListener';
 import { logoutEffects } from 'features/middleware/logoutEffects';
 
 export const store = configureStore({
   reducer: {
+    [accountSlice.name]: authReducer,
     [gameStateSlice.name]: gameStateReducer,
-    [gameApi.reducerPath]: gameApiReducer,
-    [authSlice.name]: authReducer,
+    [gameStateApi.reducerPath]: gameApiReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware()
       .prepend(sitDownListener.middleware)
-      .concat(gameApi.middleware, logoutEffects, errorHandling),
+      .concat(gameStateApi.middleware, logoutEffects, errorHandling),
 });

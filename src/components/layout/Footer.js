@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
-import { useLoginMutation } from 'features/authSlice/authApi';
-import { logout } from 'features/authSlice/authSlice';
+import { useLoginMutation } from 'features/account/accountApi';
+import { logout } from 'features/account/accountSlice';
 import Button from 'components/ui/Button';
 
 const Footer = () => {

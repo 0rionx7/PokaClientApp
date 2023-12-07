@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import useTimerBar from 'hooks/useTimerBar';
 import Card from 'components/card/Card';
 
@@ -14,7 +14,7 @@ const PlayerInfo = ({ playerState }) => {
     }),
   });
   const timerBar = useTimerBar(playerState);
-  const hostPlayerName = useSelector(state => state.auth.username);
+  const hostPlayerName = useSelector(state => state.account.username);
 
   const isHostPlayer = playerState.playerName === hostPlayerName;
   const playerDeals = playerState.playerName === (dealer ? dealer : lastAtList);

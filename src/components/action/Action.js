@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameStateSlice/gameApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { playerEntry } from 'common/utilities-functions';
 import NextRound from 'components/action/NextRound';
 import Results from 'components/action/Results';
@@ -12,7 +12,7 @@ import './Action.scss';
 
 const Action = ({ hideInfo }) => {
   const { gameId } = useParams();
-  const hostPlayerName = useSelector(state => state.auth.username);
+  const hostPlayerName = useSelector(state => state.account.username);
   const { hostPlayerState, currentPlayerStateList, dealer } =
     useGetGameStateQuery(gameId, {
       selectFromResult: ({ data }) => ({

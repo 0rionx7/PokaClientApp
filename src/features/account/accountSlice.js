@@ -1,17 +1,17 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { gameApi } from 'features/gameStateSlice/gameApi';
-import { authApi } from 'features/authSlice/authApi';
+import { gameStateApi } from 'features/gameState/gameStateApi';
+import { accountApi } from 'features/account/accountApi';
 
-export const authSlice = createSlice({
-  name: 'auth',
+export const accountSlice = createSlice({
+  name: 'account',
   initialState: {
     username: '',
     token: '',
     joinRequests: [],
   },
   reducers: {
-    logout: (_state, _action) => authSlice.getInitialState(),
+    logout: (_state, _action) => accountSlice.getInitialState(),
     removeRequest: (state, action) => {
       state.joinRequests = state.joinRequests.filter(
         tableInfo => tableInfo.tableName !== action.payload
@@ -28,21 +28,21 @@ export const authSlice = createSlice({
     builder
       .addMatcher(
         isAnyOf(
-          authApi.endpoints.login.matchFulfilled,
-          authApi.endpoints.register.matchFulfilled,
-          authApi.endpoints.usernameChange.matchFulfilled,
-          authApi.endpoints.redirectedLogin.matchFulfilled
+          accountApi.endpoints.login.matchFulfilled,
+          accountApi.endpoints.register.matchFulfilled,
+          accountApi.endpoints.usernameChange.matchFulfilled,
+          accountApi.endpoints.redirectedLogin.matchFulfilled
         ),
         (state, action) => ({ ...state, ...action.payload })
       )
       .addMatcher(
-        gameApi.endpoints.requestJoin.matchFulfilled,
+        gameStateApi.endpoints.requestJoin.matchFulfilled,
         (state, action) => {
           state.joinRequests.push({ tableName: action.payload });
         }
       )
       .addMatcher(
-        gameApi.endpoints.cancelRequest.matchFulfilled,
+        gameStateApi.endpoints.cancelRequest.matchFulfilled,
         (state, action) => {
           state.joinRequests = state.joinRequests.filter(
             requestInfo => requestInfo.tableName !== action.payload.tableName
@@ -52,5 +52,5 @@ export const authSlice = createSlice({
   },
 });
 
-export const authReducer = authSlice.reducer;
-export const { logout, removeRequest, setRequestGameId } = authSlice.actions;
+export const authReducer = accountSlice.reducer;
+export const { logout, removeRequest, setRequestGameId } = accountSlice.actions;

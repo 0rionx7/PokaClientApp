@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
-  gameApi,
+  gameStateApi,
   socket,
   useGetGameStateQuery,
   useSitOutMutation,
-} from 'features/gameStateSlice/gameApi';
+} from 'features/gameState/gameStateApi';
 import { playerEntry } from 'common/utilities-functions';
 import DealerScreen from 'components/dealer/DealerScreen';
 import StayLeave from 'components/action/StayLeave';
@@ -21,7 +21,7 @@ const Table = () => {
   const { gameId } = useParams();
   const [sitOut] = useSitOutMutation();
   const dispatch = useDispatch();
-  const hostPlayerName = useSelector(state => state.auth.username);
+  const hostPlayerName = useSelector(state => state.account.username);
   const { dealer, playersCount, hostPlayerState, refetch } =
     useGetGameStateQuery(gameId, {
       selectFromResult: ({ data }) => ({
@@ -36,7 +36,7 @@ const Table = () => {
   useEffect(() => {
     return () => {
       sitOut({ gameId });
-      dispatch(gameApi.util.resetApiState());
+      dispatch(gameStateApi.util.resetApiState());
     };
   }, [dispatch, gameId, sitOut]);
 

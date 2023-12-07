@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useSitDownMutation } from 'features/gameStateSlice/gameApi';
+import { useSitDownMutation } from 'features/gameState/gameStateApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { socket } from 'features/gameStateSlice/gameApi';
-import { postMessage } from 'features/gameStateSlice/gameStateSlice';
+import { socket } from 'features/gameState/gameStateApi';
+import { postMessage } from 'features/gameState/gameStateSlice';
 
 const socketEvents = [
   'neeext',

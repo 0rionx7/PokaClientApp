@@ -5,9 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import {
   useGetTablesQuery,
   useSitDownMutation,
-} from 'features/gameStateSlice/gameApi';
-import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
-import { useCancelRequestMutation } from 'features/gameStateSlice/requestsApi';
+} from 'features/gameState/gameStateApi';
+import { setGameInfo } from 'features/gameState/gameStateSlice';
+import { useCancelRequestMutation } from 'features/account/requestsApi';
 import './Requests.scss';
 
 const Request = ({ tableIfo }) => {

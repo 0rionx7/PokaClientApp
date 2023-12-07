@@ -7,7 +7,7 @@ import AccountloggedInMenu from 'components/layout/AccountLogedIn';
 import './MainNavigation.scss';
 
 const MainNavigation = () => {
-  const username = useSelector(state => state.auth.username);
+  const username = useSelector(state => state.account.username);
   const [showMenu, setShowMenu] = useState(false);
 
   return (

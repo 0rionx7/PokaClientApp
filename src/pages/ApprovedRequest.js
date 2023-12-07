@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { setGameInfo } from 'features/gameStateSlice/gameStateSlice';
-import { useSitDownMutation } from 'features/gameStateSlice/gameApi';
+import { setGameInfo } from 'features/gameState/gameStateSlice';
+import { useSitDownMutation } from 'features/gameState/gameStateApi';
 import { createTableTitle } from 'common/text-functions';
 import Button from 'components/ui/Button';
 import './ApprovedRequest.scss';

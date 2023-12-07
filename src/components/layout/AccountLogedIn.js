@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { logOutSvg, settingsSvg } from 'assets/svgs/various';
-import { logout } from 'features/authSlice/authSlice';
+import { logout } from 'features/account/accountSlice';
 
 const AccountloggedInMenu = ({ setShowMenu }) => {
   const dispatch = useDispatch();

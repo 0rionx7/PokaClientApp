@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
-import { useLoginMutation } from 'features/authSlice/authApi';
+import { useLoginMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
 import CheckBox from 'components/ui/CheckBox';

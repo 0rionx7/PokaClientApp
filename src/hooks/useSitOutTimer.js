@@ -6,13 +6,13 @@ import {
   useGetGameStateQuery,
   useNextRoundMutation,
   useSitOutMutation,
-} from 'features/gameStateSlice/gameApi';
+} from 'features/gameState/gameStateApi';
 
 const emptyList = [];
 
 const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const { gameId } = useParams();
-  const hostPlayerName = useSelector(state => state.auth.username);
+  const hostPlayerName = useSelector(state => state.account.username);
   const [sitOut] = useSitOutMutation();
   const [nextRound] = useNextRoundMutation();
   const { currentPlayerStateList, reaction } = useGetGameStateQuery(gameId, {

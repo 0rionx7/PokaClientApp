@@ -1,4 +1,4 @@
-import { useGetUserQuery } from 'features/authSlice/authApi';
+import { useGetUserQuery } from 'features/account/accountApi';
 import UserSubscription from 'pages/account/UserSubscription';
 import AccountItem from 'pages/account/AccountItem';
 import EditPassword from 'pages/account/EditPassword';
