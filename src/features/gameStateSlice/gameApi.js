@@ -46,7 +46,7 @@ export const gameApi = createApi({
             // because might receive stateUpdate @ player socketId
             if (gameId === stateUpdate._id)
               updateCachedData(draft => {
-                //for not to reset preselected cards ( players selected before their round )
+                //for not to reset preselected cards ( players selected before their turn )
                 if (!draft.currentPlayerStateList?.[0]?.selecting?.submit) {
                   if (stateUpdate.playersStateList) {
                     const hostPlayerName = getState().auth.username;

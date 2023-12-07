@@ -1,9 +1,9 @@
 import { createListenerMiddleware } from '@reduxjs/toolkit';
 import { gameApi } from 'features/gameStateSlice/gameApi';
 
-export const tableSittingListener = createListenerMiddleware();
+export const sitDownListener = createListenerMiddleware();
 
-tableSittingListener.startListening({
+sitDownListener.startListening({
   predicate: (_action, currentState, previousState) => {
     if (!currentState.gameState.gameId) return false;
     return currentState.gameState.gameId !== previousState.gameState.gameId;

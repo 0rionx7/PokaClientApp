@@ -6,7 +6,7 @@ import {
 } from '../features/gameStateSlice/gameStateSlice';
 import { errorHandling } from '../features/middleware/errorHandling';
 import { authReducer, authSlice } from '../features/authSlice/authSlice';
-import { tableSittingListener } from 'features/middleware/tableSittingListener';
+import { sitDownListener } from 'features/middleware/sitDownListener';
 import { logoutEffects } from 'features/middleware/logoutEffects';
 
 export const store = configureStore({
@@ -17,6 +17,6 @@ export const store = configureStore({
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware()
-      .prepend(tableSittingListener.middleware)
+      .prepend(sitDownListener.middleware)
       .concat(gameApi.middleware, logoutEffects, errorHandling),
 });

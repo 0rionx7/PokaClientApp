@@ -48,12 +48,6 @@ export const authSlice = createSlice({
             requestInfo => requestInfo.tableName !== action.payload.tableName
           );
         }
-      )
-      .addMatcher(
-        gameApi.endpoints.sitDown.matchFulfilled,
-        (state, _action) => {
-          state.joinRequests = [];
-        }
       );
   },
 });
