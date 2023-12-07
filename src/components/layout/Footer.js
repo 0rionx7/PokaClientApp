@@ -1,31 +1,32 @@
-import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 import { useLoginMutation } from 'features/account/accountApi';
-import { logout } from 'features/account/accountSlice';
 import Button from 'components/ui/Button';
 
 const Footer = () => {
   const [login] = useLoginMutation();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const loginButtons = (
-    <>
-      <Button onClick={() => loginHandler('Machine')} prompt="Machine" />
-      <Button onClick={() => loginHandler('Thanos')} prompt="Thanos" />
-      <Button onClick={() => loginHandler('Koulis')} prompt="Koulis" />
-      <Button onClick={() => loginHandler('alela')} prompt="alela" />
-      <Button onClick={() => loginHandler('Doc')} prompt="Doc" />
-      <Button onClick={() => loginHandler('q')} prompt="q" />
-      <Button onClick={() => loginHandler('a')} prompt="a" />
-      <Button onClick={() => loginHandler('z')} prompt="z" />
-    </>
-  );
-  const loginHandler = async username => {
-    dispatch(logout());
-    await login({ username, password: '' });
-    navigate('/saloon');
-  };
+
+  let loginButtons;
+  {
+    const loginHandler = async username => {
+      await login({ username, password: '' });
+      navigate('/saloon');
+    };
+    loginButtons = (
+      <>
+        <Button onClick={() => loginHandler('Machine')} prompt="Machine" />
+        <Button onClick={() => loginHandler('Thanos')} prompt="Thanos" />
+        <Button onClick={() => loginHandler('Koulis')} prompt="Koulis" />
+        <Button onClick={() => loginHandler('alela')} prompt="alela" />
+        <Button onClick={() => loginHandler('Doc')} prompt="Doc" />
+        <Button onClick={() => loginHandler('q')} prompt="q" />
+        <Button onClick={() => loginHandler('a')} prompt="a" />
+        <Button onClick={() => loginHandler('z')} prompt="z" />
+      </>
+    );
+  }
+
   return (
     <div className="footer">
       {loginButtons}

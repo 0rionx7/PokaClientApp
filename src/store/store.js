@@ -10,7 +10,6 @@ import {
 import { errorHandling } from '../features/middleware/errorHandling';
 import { authReducer, accountSlice } from '../features/account/accountSlice';
 import { sitDownListener } from 'features/middleware/sitDownListener';
-import { logoutEffects } from 'features/middleware/logoutEffects';
 
 export const store = configureStore({
   reducer: {
@@ -21,5 +20,5 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware()
       .prepend(sitDownListener.middleware)
-      .concat(gameStateApi.middleware, logoutEffects, errorHandling),
+      .concat(gameStateApi.middleware, errorHandling),
 });

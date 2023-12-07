@@ -1,11 +1,10 @@
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
+import { useLogOutMutation } from 'features/account/accountApi';
 import { logOutSvg, settingsSvg } from 'assets/svgs/various';
-import { logout } from 'features/account/accountSlice';
 
 const AccountloggedInMenu = ({ setShowMenu }) => {
-  const dispatch = useDispatch();
+  const [logOut] = useLogOutMutation();
 
   return (
     <div className="account-menu" onClick={() => setShowMenu(false)}>
@@ -15,7 +14,7 @@ const AccountloggedInMenu = ({ setShowMenu }) => {
       <div
         className="menu-item"
         style={{ color: 'red' }}
-        onClick={() => dispatch(logout())}>
+        onClick={() => logOut()}>
         {logOutSvg}Αποσύνδεση
       </div>
     </div>

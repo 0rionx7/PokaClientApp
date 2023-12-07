@@ -11,7 +11,6 @@ export const accountSlice = createSlice({
     joinRequests: [],
   },
   reducers: {
-    logout: (_state, _action) => accountSlice.getInitialState(),
     removeRequest: (state, action) => {
       state.joinRequests = state.joinRequests.filter(
         tableInfo => tableInfo.tableName !== action.payload
@@ -36,6 +35,10 @@ export const accountSlice = createSlice({
         (state, action) => ({ ...state, ...action.payload })
       )
       .addMatcher(
+        accountApi.endpoints.logout.matchFulfilled,
+        (_state, _action) => accountSlice.getInitialState()
+      )
+      .addMatcher(
         gameStateApi.endpoints.requestJoin.matchFulfilled,
         (state, action) => {
           state.joinRequests.push({ tableName: action.payload });
@@ -53,4 +56,4 @@ export const accountSlice = createSlice({
 });
 
 export const authReducer = accountSlice.reducer;
-export const { logout, removeRequest, setRequestGameId } = accountSlice.actions;
+export const { removeRequest, setRequestGameId } = accountSlice.actions;
