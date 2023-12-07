@@ -39,7 +39,7 @@ const ListedPlayer = ({ playerState, clickable }) => {
     cancelRequest({
       tableName,
       username: playerState.playerName,
-      showInfo: true,
+      showPopUp: true,
     });
   };
 

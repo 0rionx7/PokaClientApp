@@ -1,22 +1,17 @@
 import { useEffect } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { useReconnectedLoginMutation } from 'features/account/accountApi';
-import { resetGameState } from 'features/gameState/gameStateSlice';
 import { socket } from 'features/gameState/gameStateApi';
 import useOnlineStatus from 'hooks/useOnlineStatus';
-import useJoinRejected from 'hooks/useJoinRejected';
-import useJoinApproved from 'hooks/useJoinApproved';
+import useRequestResult from 'hooks/useRequestResult';
 
 function App() {
-  const { gameId } = useParams();
   const { token } = useSelector(state => state.account);
   const [reconnectedLogin] = useReconnectedLoginMutation();
-  const approvedRequestInfo = useJoinApproved();
-  const rejectedRequestInfo = useJoinRejected();
-  const onlineStatusInfo = useOnlineStatus();
-  const dispatch = useDispatch();
+  const { approvedElement, rejectedElement } = useRequestResult();
+  const offLineElement = useOnlineStatus();
 
   useEffect(() => {
     socket.on('connect', () => {
@@ -25,15 +20,11 @@ function App() {
     return () => socket.removeAllListeners('connect');
   }, [token, reconnectedLogin]);
 
-  useEffect(() => {
-    if (!gameId) dispatch(resetGameState());
-  }, [dispatch, gameId]);
-
   return (
     <>
-      {onlineStatusInfo}
-      {approvedRequestInfo}
-      {rejectedRequestInfo}
+      {offLineElement}
+      {approvedElement}
+      {rejectedElement}
       <Outlet />
     </>
   );
