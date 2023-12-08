@@ -1,26 +1,24 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { playerEntry } from 'common/utilities-functions';
 import PlayerInfo from 'components/player/PlayerInfo';
 import HandCards from 'components/player/HandCards';
 import useSitOutTimer from 'hooks/useSitOutTimer';
 import './Player.scss';
-import { playerEntry } from 'common/utilities-functions';
-
-const emptyList = [];
 
 const Player = ({ playerState, index }) => {
   const hostPlayerName = useSelector(state => state.account.username);
   const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
   const { gameId } = useParams();
-  const { hostPlayerState } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      currentPlayerStateList: data?.currentPlayerStateList || emptyList,
-      hostPlayerState: data?.playersStateList.find(playerEntry(hostPlayerName)),
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
+
+  const hostPlayerState = useMemo(
+    () => data?.playersStateList.find(playerEntry(hostPlayerName)),
+    [data?.playersStateList, hostPlayerName]
+  );
   useSitOutTimer(playerState);
 
   const isHostPlayer = playerState.playerName === hostPlayerName;

@@ -17,7 +17,7 @@ const AvailableTable = ({ tableInfo }) => {
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
 
   useEffect(() => {
-    if (error || sitdownError) setSnackInfo(error.data || sitdownError.data);
+    if (error || sitdownError) setSnackInfo(error?.data || sitdownError.data);
   }, [error, sitdownError, setSnackInfo]);
 
   const clickHandler = async () => {

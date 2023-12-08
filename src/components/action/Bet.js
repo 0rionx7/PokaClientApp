@@ -12,17 +12,10 @@ import './Bet.scss';
 
 const Bet = ({ bet, resta }) => {
   const { gameId } = useParams();
-  const { maxBet, chip, currentPlayerStateList } = useGetGameStateQuery(
-    gameId,
-    {
-      selectFromResult: ({ data }) => ({
-        maxBet: data?.maxBet,
-        chip: data?.chip,
-        currentPlayerStateList: data?.currentPlayerStateList,
-      }),
-    }
-  );
   const [placeBet, { reset, isSuccess }] = useBetMutation();
+  const {
+    data: { maxBet, chip, currentPlayerStateList },
+  } = useGetGameStateQuery(gameId);
 
   const minBet = Math.min(maxBet, resta) - bet;
   const betAmounts = [chip, 5 * chip, 25 * chip, 100 * chip];

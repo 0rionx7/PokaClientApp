@@ -6,11 +6,9 @@ import classes from './UserName.module.scss';
 
 const UserSubscription = () => {
   const navigate = useNavigate();
-  const { subExpiration } = useGetUserQuery(undefined, {
-    selectFromResult: ({ data }) => ({
-      subExpiration: data?.subExpiration,
-    }),
-  });
+  const {
+    data: { subExpiration },
+  } = useGetUserQuery(undefined);
 
   if (!subExpiration || new Date(subExpiration) <= Date.now())
     return <div>Δέν έχετε ενεργή συνδρομή.</div>;

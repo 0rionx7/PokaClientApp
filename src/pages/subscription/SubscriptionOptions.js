@@ -12,11 +12,9 @@ import { paymentsIcons } from 'assets/svgs/payments';
 const SubscriptionOptions = () => {
   const [commitPayment, { data, isLoading, isSuccess }] = usePayMutation();
   useGetUserQuery();
-  const { subExpiration } = useGetUserQuery(undefined, {
-    selectFromResult: ({ data }) => ({
-      subExpiration: data?.subExpiration,
-    }),
-  });
+  const {
+    data: { subExpiration },
+  } = useGetUserQuery(undefined);
 
   useEffect(() => {
     if (data?.orderCode)

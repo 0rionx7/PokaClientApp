@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -13,12 +14,12 @@ import './Action.scss';
 const Play = () => {
   const { gameId } = useParams();
   const hostPlayerName = useSelector(state => state.account.username);
-  const { hostPlayerState } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      hostPlayerState: data.playersStateList.find(playerEntry(hostPlayerName)),
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
 
+  const hostPlayerState = useMemo(
+    () => data?.playersStateList.find(playerEntry(hostPlayerName)),
+    [data?.playersStateList, hostPlayerName]
+  );
   const betting = hostPlayerState.betting;
   const swapping = hostPlayerState.selecting?.swaps;
   const submitting = hostPlayerState.selecting?.submit;

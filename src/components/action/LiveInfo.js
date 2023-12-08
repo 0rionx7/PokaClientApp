@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
@@ -5,16 +6,15 @@ import './LiveInfo.scss';
 
 const LiveInfo = () => {
   const { gameId } = useParams();
-  const { pot, currentPlayerStateList, playersStateList, gamesCount } =
-    useGetGameStateQuery(gameId, {
-      selectFromResult: ({ data }) => ({
-        gamesCount: data.gamesCount,
-        pot: data.playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
-        currentPlayerStateList: data.currentPlayerStateList,
-        playersStateList: data.playersStateList,
-      }),
-    });
+  const {
+    data: { currentPlayerStateList, playersStateList, gamesCount },
+  } = useGetGameStateQuery(gameId);
   const [currentPlayer] = currentPlayerStateList;
+
+  const pot = useMemo(
+    () => playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
+    [playersStateList]
+  );
 
   return (
     <div className="live-info">

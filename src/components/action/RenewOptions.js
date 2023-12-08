@@ -10,11 +10,11 @@ import Button from 'components/ui/Button';
 
 const RenewOptions = () => {
   const gameId = useSelector(state => state.gameState.gameId);
-  const { cava } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({ cava: data.cava }),
-  });
   const [renew, { isSuccess, isLoading, error }] = useRenewCavaMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
+  const {
+    data: { cava },
+  } = useGetGameStateQuery(gameId);
 
   useEffect(() => {
     if (error) setSnackInfo(error.data);
