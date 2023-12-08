@@ -18,7 +18,6 @@ const AvailableTables = () => {
       !joinRequests?.some(({ tableName }) => tableName === tableInfo.tableName)
   );
 
-  console.log(availableTables);
   return (
     <div className="saloon-tables">
       <div className="form-control">
