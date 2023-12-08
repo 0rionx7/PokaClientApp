@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import { useGetTablesQuery } from 'features/gameState/gameStateApi';
@@ -10,14 +10,20 @@ const AvailableTables = () => {
   const [query, setfQuery] = useState('');
   const { data, refetch } = useGetTablesQuery();
 
-  const availableTables = data?.filter(
-    tableInfo =>
-      tableInfo.tableName
-        .toLowerCase()
-        .startsWith(query.trim().toLowerCase()) &&
-      !joinRequests?.some(({ tableName }) => tableName === tableInfo.tableName)
+  const availableTables = useMemo(
+    () =>
+      data?.filter(
+        tableInfo =>
+          tableInfo.tableName
+            .toLowerCase()
+            .startsWith(query.trim().toLowerCase()) &&
+          !joinRequests?.some(
+            ({ tableName }) => tableName === tableInfo.tableName
+          )
+      ),
+    [data, joinRequests, query]
   );
-  console.log('available');
+
   return (
     <div className="saloon-tables">
       <div className="form-control">
