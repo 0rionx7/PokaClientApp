@@ -23,15 +23,10 @@ const useRequestResult = () => {
     });
 
   useEffect(() => {
-    socket.on('joinApproved', approveInfo => {
-      if (approveInfo.username !== username) return;
-      dispatch(setRequestGameId(approveInfo));
-      setApprovedPopUp(
-        <ApprovedRequest
-          gameId={approveInfo.gameId}
-          tableName={approveInfo.tableName}
-        />
-      );
+    socket.on('joinApproved', requestInfo => {
+      if (requestInfo.username !== username) return;
+      dispatch(setRequestGameId(requestInfo));
+      setApprovedPopUp(<ApprovedRequest requestInfo={requestInfo} />);
     });
     return () => socket.removeAllListeners('joinApproved');
   }, [dispatch, setApprovedPopUp, username]);
