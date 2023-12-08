@@ -35,7 +35,7 @@ export const accountSlice = createSlice({
         (state, action) => ({ ...state, ...action.payload })
       )
       .addMatcher(
-        accountApi.endpoints.logout.matchFulfilled,
+        accountApi.endpoints.logOut.matchFulfilled,
         (_state, _action) => accountSlice.getInitialState()
       )
       .addMatcher(

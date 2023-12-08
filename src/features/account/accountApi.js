@@ -34,7 +34,7 @@ export const accountApi = gameStateApi.injectEndpoints({
         body: { orderCode, socketId: socket.id },
       }),
     }),
-    logout: build.mutation({
+    logOut: build.mutation({
       query: _ => ({
         url: 'user/logout',
         method: 'POST',
@@ -62,11 +62,11 @@ export const accountApi = gameStateApi.injectEndpoints({
 
 export const {
   useGetUserQuery,
+  useRegisterMutation,
   useLoginMutation,
   useReconnectedLoginMutation,
   useRedirectedLoginMutation,
   useLogOutMutation,
-  useRegisterMutation,
   useChangePasswordMutation,
   useUsernameChangeMutation,
 } = accountApi;
