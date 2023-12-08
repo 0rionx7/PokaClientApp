@@ -42,7 +42,8 @@ export const gameStateSlice = createSlice({
       .addMatcher(
         isAnyOf(
           gameStateApi.endpoints.openTable.matchFulfilled,
-          gameStateApi.endpoints.sitDown.matchFulfilled
+          gameStateApi.endpoints.sitDown.matchFulfilled,
+          gameStateApi.endpoints.restartGame.matchFulfilled
         ),
         (state, action) => ({ ...state, ...action.payload })
       )

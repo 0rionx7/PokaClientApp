@@ -94,6 +94,13 @@ export const gameStateApi = createApi({
               draft.push({ tableName });
             });
           };
+          const tableRestartedListerner = _ => {
+            dispatch(
+              gameStateApi.endpoints.getTables.initiate(undefined, {
+                forceRefetch: true,
+              })
+            );
+          };
           const tableDeletedListerner = deletedTable => {
             updateCachedData(draft =>
               draft.filter(({ tableName }) => tableName !== deletedTable)
@@ -101,9 +108,11 @@ export const gameStateApi = createApi({
             dispatch(removeRequest(deletedTable));
           };
           socket.on('tableCreated', tableCreatedListener);
+          socket.on('tableRestarted', tableRestartedListerner);
           socket.on('tableDeleted', tableDeletedListerner);
           await cacheEntryRemoved;
           socket.off('tableCreated', tableCreatedListener);
+          socket.off('tableRestarted', tableRestartedListerner);
           socket.off('tableDeleted', tableDeletedListerner);
         } catch (error) {
           console.log(error);
