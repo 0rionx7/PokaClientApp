@@ -26,7 +26,7 @@ export const gameStateApi = createApi({
   endpoints: build => ({
     getGameState: build.query({
       query: gameId => `/gameState/${gameId}`,
-      keepUnusedDataFor: 1,
+      keepUnusedDataFor: 0,
       async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
         arg,
         {

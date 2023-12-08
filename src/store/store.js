@@ -9,7 +9,6 @@ import {
 } from '../features/gameState/gameStateSlice';
 import { errorHandling } from '../features/middleware/errorHandling';
 import { authReducer, accountSlice } from '../features/account/accountSlice';
-import { sitDownListener } from 'features/middleware/sitDownListener';
 
 export const store = configureStore({
   reducer: {
@@ -18,7 +17,5 @@ export const store = configureStore({
     [gameStateApi.reducerPath]: gameApiReducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware()
-      .prepend(sitDownListener.middleware)
-      .concat(gameStateApi.middleware, errorHandling),
+    getDefaultMiddleware().concat(gameStateApi.middleware, errorHandling),
 });

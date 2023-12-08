@@ -5,13 +5,13 @@ import { createTableTitle } from 'common/text-functions';
 import Button from 'components/ui/Button';
 import './ApprovedRequest.scss';
 
-const ApprovedRequest = ({ gameId, tableName }) => {
+const ApprovedRequest = ({ requestInfo: { gameId, tableName } }) => {
   const [sitDown] = useSitDownMutation();
   const navigate = useNavigate();
 
   const joinHandler = async _ => {
     const { data } = await sitDown({ gameId });
-    if (data?.gameId) navigate(`/table/${data.gameId}`);
+    if (data?.gameId) navigate(`/table/${gameId}`);
   };
 
   return (
