@@ -17,7 +17,7 @@ const AvailableTables = () => {
         .startsWith(query.trim().toLowerCase()) &&
       !joinRequests?.some(({ tableName }) => tableName === tableInfo.tableName)
   );
-
+  console.log('available');
   return (
     <div className="saloon-tables">
       <div className="form-control">
