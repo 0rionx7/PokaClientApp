@@ -5,26 +5,20 @@ import { useGetTablesQuery } from 'features/gameState/gameStateApi';
 import AvailableTable from 'pages/saloon/AvailableTable';
 import Button from 'components/ui/Button';
 
-const emptyList = [];
-
 const AvailableTables = () => {
   const joinRequests = useSelector(state => state.account.joinRequests);
   const [query, setfQuery] = useState('');
-  const { availableTables, refetch } = useGetTablesQuery(undefined, {
-    selectFromResult: ({ data }) => {
-      const availableTables = data?.filter(
-        tableInfo =>
-          !joinRequests?.some(
-            ({ tableName }) => tableName === tableInfo.tableName
-          )
-      );
-      const queryTables = availableTables?.filter(tableInfo =>
-        tableInfo.tableName.toLowerCase().startsWith(query.trim().toLowerCase())
-      );
-      return { availableTables: queryTables || emptyList };
-    },
-  });
+  const { data, refetch } = useGetTablesQuery();
 
+  const availableTables = data?.filter(
+    tableInfo =>
+      tableInfo.tableName
+        .toLowerCase()
+        .startsWith(query.trim().toLowerCase()) &&
+      !joinRequests?.some(({ tableName }) => tableName === tableInfo.tableName)
+  );
+
+  console.log(availableTables);
   return (
     <div className="saloon-tables">
       <div className="form-control">
@@ -41,7 +35,7 @@ const AvailableTables = () => {
       <Button className="green" prompt="ανανέωση λίστας" onClick={refetch} />
       <div className="tables-container">
         <div className="available-tables">
-          {!availableTables.length ? (
+          {!availableTables?.length ? (
             <div className="available-table" style={{ cursor: 'auto' }}>
               Δεν υπάρχει διαθέσιμο τραπέζι.
             </div>
