@@ -10,7 +10,7 @@ const ApprovedRequest = ({ requestInfo: { gameId, tableName } }) => {
   const navigate = useNavigate();
 
   const joinHandler = async _ => {
-    const { data } = await sitDown({ gameId });
+    const { data } = await sitDown({ gameId, tableName });
     if (data?.gameId) navigate(`/table/${gameId}`);
   };
 

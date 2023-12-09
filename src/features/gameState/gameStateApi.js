@@ -25,7 +25,9 @@ export const gameStateApi = createApi({
   tagTypes: ['User', 'Tables'],
   endpoints: build => ({
     getGameState: build.query({
-      query: gameId => `/gameState/${gameId}`,
+      query: gameId => {
+        return { url: `/gameState/${gameId}`, params: { socketId: socket.id } };
+      },
       keepUnusedDataFor: 0,
       async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
         arg,
@@ -94,12 +96,16 @@ export const gameStateApi = createApi({
               draft.push({ tableName });
             });
           };
-          const tableRestartedListerner = _ => {
-            dispatch(
-              gameStateApi.endpoints.getTables.initiate(undefined, {
-                forceRefetch: true,
-              })
-            );
+          const tableRestartedListerner = tableName => {
+            updateCachedData(draft => {
+              const table = draft.find(entry => entry.tableName === tableName);
+              if (!table) draft.push({ tableName });
+            });
+          };
+          const joinedTableRestartedListerner = tableInfo => {
+            updateCachedData(draft => {
+              draft.push(tableInfo);
+            });
           };
           const tableDeletedListerner = deletedTable => {
             updateCachedData(draft =>
@@ -107,12 +113,15 @@ export const gameStateApi = createApi({
             );
             dispatch(removeRequest(deletedTable));
           };
+
           socket.on('tableCreated', tableCreatedListener);
           socket.on('tableRestarted', tableRestartedListerner);
+          socket.on('joinedTableRestarted', joinedTableRestartedListerner);
           socket.on('tableDeleted', tableDeletedListerner);
           await cacheEntryRemoved;
           socket.off('tableCreated', tableCreatedListener);
           socket.off('tableRestarted', tableRestartedListerner);
+          socket.off('joinedTableRestarted', joinedTableRestartedListerner);
           socket.off('tableDeleted', tableDeletedListerner);
         } catch (error) {
           console.log(error);
@@ -131,6 +140,12 @@ export const gameStateApi = createApi({
         url: '/gameState/restart',
         method: 'POST',
         body: { ...gameInfo, socketId: socket.id },
+      }),
+    }),
+    logOutAll: build.mutation({
+      query: _ => ({
+        url: '/user/logOutAll',
+        method: 'PATCH',
       }),
     }),
     setGameVariant: build.mutation({
@@ -197,14 +212,39 @@ export const gameStateApi = createApi({
       }),
     }),
     sitDown: build.mutation({
-      query: requestInfo => ({
-        url: '/gameState/sitDodn',
+      query: ({ gameId }) => ({
+        url: '/gameState/sitDown',
         method: 'PATCH',
         body: {
-          ...requestInfo,
+          gameId,
           socketId: socket.id,
         },
       }),
+      async onQueryStarted(
+        { gameId, tableName },
+        { dispatch, queryFulfilled }
+      ) {
+        if (tableName) {
+          const patchResult = dispatch(
+            gameStateApi.util.updateQueryData('getTables', undefined, draft => {
+              const tableJoined = draft.find(
+                availableTable => availableTable.tableName === tableName
+              );
+              tableJoined.joined = gameId;
+            })
+          );
+          try {
+            await queryFulfilled;
+          } catch {
+            patchResult.undo();
+          }
+          /**
+           * Alternatively, on failure you can invalidate the corresponding cache tags
+           * to trigger a re-fetch:
+           * dispatch(api.util.invalidateTags(['Post']))
+           */
+        }
+      },
     }),
     sitOut: build.mutation({
       query: sitOutInfo => ({
@@ -232,6 +272,7 @@ export const {
   useJoinTableMutation,
   useSitDownMutation,
   useSitOutMutation,
+  useLogOutAllMutation,
 } = gameStateApi;
 
 export const gameApiReducer = gameStateApi.reducer;

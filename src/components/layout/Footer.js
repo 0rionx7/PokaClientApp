@@ -2,9 +2,11 @@ import { useNavigate } from 'react-router';
 
 import { useLoginMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
+import { useLogOutAllMutation } from 'features/gameState/gameStateApi';
 
 const Footer = () => {
   const [login] = useLoginMutation();
+  const [logOutAll] = useLogOutAllMutation();
   const navigate = useNavigate();
 
   let loginButtons;
@@ -13,6 +15,7 @@ const Footer = () => {
       await login({ username, password: '' });
       navigate('/saloon');
     };
+
     loginButtons = (
       <>
         <Button onClick={() => loginHandler('Machine')} prompt="Machine" />
@@ -22,7 +25,7 @@ const Footer = () => {
         <Button onClick={() => loginHandler('Doc')} prompt="Doc" />
         <Button onClick={() => loginHandler('q')} prompt="q" />
         <Button onClick={() => loginHandler('a')} prompt="a" />
-        <Button onClick={() => loginHandler('z')} prompt="z" />
+        <Button onClick={() => logOutAll()} prompt="z" />
       </>
     );
   }

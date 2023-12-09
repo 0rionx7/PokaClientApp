@@ -55,5 +55,5 @@ export const accountSlice = createSlice({
   },
 });
 
-export const authReducer = accountSlice.reducer;
+export const accountReducer = accountSlice.reducer;
 export const { removeRequest, setRequestGameId } = accountSlice.actions;

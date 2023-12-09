@@ -34,7 +34,7 @@ export const gameStateSlice = createSlice({
       const handIndex = state.handCards.findIndex(selectedCard);
       const tableIndex = state.tableCards.findIndex(selectedCard);
       if (handIndex !== -1) toggleCard(state.handCards, handIndex);
-      if (tableIndex !== -1) toggleCard(state.tableCards, tableIndex);
+      else toggleCard(state.tableCards, tableIndex);
     },
   },
   extraReducers: builder =>
@@ -46,6 +46,13 @@ export const gameStateSlice = createSlice({
           gameStateApi.endpoints.restartGame.matchFulfilled
         ),
         (state, action) => ({ ...state, ...action.payload })
+      )
+      .addMatcher(
+        gameStateApi.endpoints.getGameState.matchFulfilled,
+        (state, action) => {
+          state.gameId = action.payload._id;
+          state.tableName = action.payload.tableName;
+        }
       )
       .addMatcher(
         gameStateApi.endpoints.sitOut.matchFulfilled,

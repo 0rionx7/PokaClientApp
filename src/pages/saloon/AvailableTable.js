@@ -23,7 +23,10 @@ const AvailableTable = ({ tableInfo }) => {
   const clickHandler = async () => {
     if (isLoading || sittingDown) return;
     if (tableInfo.joined) {
-      const { data } = await sitDown({ gameId: tableInfo.joined });
+      const { data } = await sitDown({
+        gameId: tableInfo.joined,
+        tableName: tableInfo.tableName,
+      });
       if (data?.gameId) return navigate(`/table/${data.gameId}`);
     }
     if (joinRequests.length >= 3)
