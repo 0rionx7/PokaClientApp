@@ -8,11 +8,11 @@ import {
   gameStateSlice,
 } from '../features/gameState/gameStateSlice';
 import { errorHandling } from '../features/middleware/errorHandling';
-import { authReducer, accountSlice } from '../features/account/accountSlice';
+import { accountReducer, accountSlice } from '../features/account/accountSlice';
 
 export const store = configureStore({
   reducer: {
-    [accountSlice.name]: authReducer,
+    [accountSlice.name]: accountReducer,
     [gameStateSlice.name]: gameStateReducer,
     [gameStateApi.reducerPath]: gameApiReducer,
   },
