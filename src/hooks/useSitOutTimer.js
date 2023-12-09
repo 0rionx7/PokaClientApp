@@ -38,7 +38,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
         timeOut
       );
     } else if (kind && !sittingOut)
-      timer = setTimeout(nextRound, reaction * 1000);
+      timer = setTimeout(() => nextRound(gameId), reaction * 1200);
 
     return () => clearTimeout(timer);
   }, [
