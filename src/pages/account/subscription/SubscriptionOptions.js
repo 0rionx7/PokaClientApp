@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { usePayMutation } from 'features/paymentsMutations/usePayMutation';
-import SubscriptionItem from 'pages/subscription/SubscriptionItem';
+import SubscriptionItem from 'pages/account/subscription/SubscriptionItem';
 import { useGetUserQuery } from 'features/account/accountApi';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import Overlay from 'components/ui/Overlay';
@@ -12,9 +12,7 @@ import { paymentsIcons } from 'assets/svgs/payments';
 const SubscriptionOptions = () => {
   const [commitPayment, { data, isLoading, isSuccess }] = usePayMutation();
   useGetUserQuery();
-  const {
-    data: { subExpiration },
-  } = useGetUserQuery(undefined);
+  const { data: userData } = useGetUserQuery(undefined);
 
   useEffect(() => {
     if (data?.orderCode)
@@ -32,13 +30,16 @@ const SubscriptionOptions = () => {
     );
 
   const noSubscription =
-    !subExpiration || new Date(subExpiration) <= Date.now();
-  const expiresAt = new Date(subExpiration).toLocaleDateString('el-GR', {
-    weekday: 'long',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  });
+    !userData?.subExpiration || new Date(userData?.subExpiration) <= Date.now();
+  const expiresAt = new Date(userData?.subExpiration).toLocaleDateString(
+    'el-GR',
+    {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    }
+  );
 
   return (
     <div className="subscription">

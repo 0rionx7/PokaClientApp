@@ -9,9 +9,9 @@ import {
 } from 'react-router-dom';
 import './index.scss';
 
-import SubscriptionOptions from 'pages/subscription/SubscriptionOptions';
-import SuccessfulPayment from 'pages/subscription/SuccessfulPayment';
-import FailedPayment from 'pages/subscription/FailedPayment';
+import SubscriptionOptions from 'pages/account/subscription/SubscriptionOptions';
+import SuccessfulPayment from 'pages/account/subscription/SuccessfulPayment';
+import FailedPayment from 'pages/account/subscription/FailedPayment';
 import AccountDetails from 'pages/account/AccountDetails';
 import Account from 'pages/account/Account';
 import Saloon from 'pages/saloon/Saloon';
