@@ -22,7 +22,7 @@ const useTimerBar = playerState => {
   useEffect(() => {
     let timer;
     const period = reaction * (submitting ? 20 : 10);
-    if (isActive && !handInfo.kind && width > 0) {
+    if (isActive && !handInfo.kind && reaction !== 101 && width > 0) {
       timer = setInterval(() => setWidth(pre => pre - 1), period);
     }
 
