@@ -20,7 +20,7 @@ export const requestsApi = gameStateApi.injectEndpoints({
               draft.filter(reqInfo => reqInfo.username !== username)
             );
           };
-
+          // dealers screen requests handlers=======================
           socket.on('requestAdded', requestAddedListener);
           socket.on('requestCanceled', requestRemovedListener);
           socket.on('joinApproved', requestRemovedListener);

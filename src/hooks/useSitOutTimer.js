@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -7,51 +7,68 @@ import {
   useNextRoundMutation,
   useSitOutMutation,
 } from 'features/gameState/gameStateApi';
-
-const emptyList = [];
+import { setHasNexted } from 'features/gameState/gameStateSlice';
 
 const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const { gameId } = useParams();
   const hostPlayerName = useSelector(state => state.account.username);
+  const hasNexted = useSelector(state => state.gameState.hasNexted);
   const [sitOut] = useSitOutMutation();
+  const dispatch = useDispatch();
   const [nextRound] = useNextRoundMutation();
-  const { currentPlayerStateList, reaction } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      currentPlayerStateList: data?.currentPlayerStateList || emptyList,
-      reaction: data?.reaction,
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
 
   const { kind } = handInfo;
-  const hasTurn = currentPlayerStateList?.at(0);
+  const hasTurn = data?.currentPlayerStateList?.at(0);
   const submitting = hasTurn?.selecting?.submit;
   const isHostPlayer = playerName === hostPlayerName;
-  const isActive = playerName === hasTurn?.playerName;
+  const isPlaying = playerName === hasTurn?.playerName;
 
   useEffect(() => {
-    if (!isHostPlayer || reaction === 101) return;
+    if (!isHostPlayer || data?.reaction === 101) return;
     let timer;
-    if (isActive && !kind) {
-      const timeOut = (submitting ? 2 : 1) * reaction * 1000;
+    if (isPlaying && !kind) {
+      const timeOut = (submitting ? 2 : 1) * data?.reaction * 1000;
       timer = setTimeout(
         () => sitOut({ gameId, timedout: 'timedout' }),
         timeOut
       );
-    } else if (kind && !sittingOut)
-      timer = setTimeout(() => nextRound(gameId), reaction * 1200);
+    }
 
     return () => clearTimeout(timer);
   }, [
     kind,
     isHostPlayer,
-    isActive,
+    isPlaying,
     nextRound,
     sittingOut,
     sitOut,
-    reaction,
+    data?.reaction,
     submitting,
     gameId,
   ]);
+
+  useEffect(() => {
+    if (!isHostPlayer || data?.reaction === 101) return;
+    let timer;
+    if (kind && !sittingOut && !hasNexted)
+      timer = setTimeout(() => nextRound(gameId), data?.reaction * 1200);
+
+    return () => clearTimeout(timer);
+  }, [
+    kind,
+    isHostPlayer,
+    nextRound,
+    sittingOut,
+    data?.reaction,
+    hasNexted,
+    gameId,
+  ]);
+
+  useEffect(() => {
+    if (!isHostPlayer || data?.reaction === 101) return;
+    if (!kind) dispatch(setHasNexted(false));
+  }, [kind, isHostPlayer, dispatch, data?.reaction]);
 };
 
 export default useSitOutTimer;

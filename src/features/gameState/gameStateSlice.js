@@ -12,6 +12,7 @@ export const gameStateSlice = createSlice({
     handCards: [],
     messages: [],
     currentChoosenGame: '',
+    hasNexted: false,
   },
   reducers: {
     setTableCards: (state, action) => {
@@ -25,6 +26,9 @@ export const gameStateSlice = createSlice({
     },
     postMessage: (state, action) => {
       state.messages.push(action.payload);
+    },
+    setHasNexted: (state, action) => {
+      state.hasNexted = action.payload;
     },
     toggleSelectedCard: (state, action) => {
       const selectedCard = card =>
@@ -57,6 +61,12 @@ export const gameStateSlice = createSlice({
       .addMatcher(
         gameStateApi.endpoints.sitOut.matchFulfilled,
         (_state, _action) => gameStateSlice.getInitialState()
+      )
+      .addMatcher(
+        gameStateApi.endpoints.nextRound.matchFulfilled,
+        (state, _action) => {
+          state.hasNexted = true;
+        }
       ),
 });
 
@@ -66,5 +76,6 @@ export const {
   setHandCards,
   toggleSelectedCard,
   postMessage,
+  setHasNexted,
 } = gameStateSlice.actions;
 export const gameStateReducer = gameStateSlice.reducer;
