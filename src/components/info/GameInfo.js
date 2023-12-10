@@ -15,26 +15,18 @@ import { useMemo } from 'react';
 const GameInfo = () => {
   const { gameId } = useParams();
   const {
-    gameName,
-    tableName,
-    startingCard,
-    allDiscardedWins,
-    bomba,
-    mirrorWins,
-    winningOrder,
-    tablo,
-  } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      gameName: data.gameName,
-      tableName: data.tableName,
-      startingCard: data.startingCard,
-      allDiscardedWins: data.allDiscardedWins,
-      bomba: data.bomba,
-      tablo: data.tablo,
-      mirrorWins: data.mirrorWins,
-      winningOrder: data.winningOrder,
-    }),
-  });
+    data: {
+      gameName,
+      tableName,
+      startingCard,
+      allDiscardedWins,
+      bomba,
+      mirrorWins,
+      winningOrder,
+      tablo,
+      gamesCount,
+    },
+  } = useGetGameStateQuery(gameId);
 
   const tableTitle = useMemo(() => createTableTitle(tableName), [tableName]);
 
@@ -50,6 +42,7 @@ const GameInfo = () => {
     <div className="game-info">
       <div className="info-container">
         <div className="table-name">{tableTitle}</div>
+        <div className="games-count">{gamesCount}ο παιχνίδι</div>
         <div className="gameName">
           <span>
             {gameName}
