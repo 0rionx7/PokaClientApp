@@ -1,15 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  useGetTablesQuery,
-  useSitDownMutation,
-} from 'features/gameState/gameStateApi';
+import { useSitDownMutation } from 'features/gameState/gameStateApi';
 import { useCancelRequestMutation } from 'features/account/requestsApi';
 import './Requests.scss';
 
 const Request = ({ tableIfo }) => {
-  const { refetch } = useGetTablesQuery();
   const [sitDown] = useSitDownMutation();
   const [cancelHoveredPropagation, setCancelHoveredPropagation] =
     useState(false);
@@ -19,7 +15,6 @@ const Request = ({ tableIfo }) => {
   const cancelHandler = async (tableName, event) => {
     event.stopPropagation();
     cancelRequest({ tableName });
-    refetch();
   };
 
   const joinTableHandler = async (gameId, tableName) => {
