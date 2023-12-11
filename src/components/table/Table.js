@@ -20,16 +20,10 @@ const Table = () => {
   const { gameId } = useParams();
   const [sitOut] = useSitOutMutation();
   const hostPlayerName = useSelector(state => state.account.username);
-  const { dealer, playersCount, hostPlayerState, refetch } =
-    useGetGameStateQuery(gameId, {
-      selectFromResult: ({ data }) => ({
-        dealer: data.dealer,
-        playersCount: data.playersStateList.length,
-        hostPlayerState: data.playersStateList.find(
-          playerEntry(hostPlayerName)
-        ),
-      }),
-    });
+  const { data, refetch } = useGetGameStateQuery(gameId);
+  const hostPlayerState = data.playersStateList.find(
+    playerEntry(hostPlayerName)
+  );
 
   useEffect(() => {
     return () => sitOut({ gameId });
@@ -41,13 +35,14 @@ const Table = () => {
   }, [refetch]);
 
   return (
-    <div className={'table players-' + playersCount}>
+    <div className={'table players-' + data.playersStateList.length}>
       <div className="poker-table">
         <div className="tsoxa"></div>
       </div>
       <Board />
       <Players />
-      {dealer && (dealer === hostPlayerName ? <DealerScreen /> : <Waiting />)}
+      {data.dealer &&
+        (data.dealer === hostPlayerName ? <DealerScreen /> : <Waiting />)}
       {hostPlayerState.sittingOut ? <StayLeave /> : <SitOut />}
     </div>
   );

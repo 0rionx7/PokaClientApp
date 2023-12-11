@@ -48,7 +48,6 @@ const router = createBrowserRouter(
           path="table/:gameId"
           element={<RouteGuard element={<Room />} />}
         />
-        {/* <Route path="table/:gameId" element={<Room />} /> */}
       </Route>
     </Route>
   )

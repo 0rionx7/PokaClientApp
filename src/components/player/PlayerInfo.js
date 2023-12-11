@@ -7,15 +7,12 @@ import Card from 'components/card/Card';
 
 const PlayerInfo = ({ playerState }) => {
   const { gameId } = useParams();
-  const { lastAtList, dealer } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      lastAtList: data?.playersStateList.at(-1).playerName,
-      dealer: data?.dealer,
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
   const timerBar = useTimerBar(playerState);
   const hostPlayerName = useSelector(state => state.account.username);
 
+  const dealer = data.dealer;
+  const lastAtList = data.playersStateList.at(-1).playerName;
   const isHostPlayer = playerState.playerName === hostPlayerName;
   const playerDeals = playerState.playerName === (dealer ? dealer : lastAtList);
 

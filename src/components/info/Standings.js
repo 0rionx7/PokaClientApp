@@ -5,19 +5,15 @@ import PlayerStanding from 'components/info/PlayerStanding';
 import { inGameFistList } from 'common/utilities-functions';
 import './Standings.scss';
 
-const emptyList = [];
 const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.'];
 
 const Standings = () => {
   const { gameId } = useParams();
-  const { playersStateList } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      playersStateList:
-        data.playersStateList.slice().sort((a, b) => b.resta - a.resta) ||
-        emptyList,
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
 
+  const playersStateList = data.playersStateList
+    .slice()
+    .sort((a, b) => b.resta - a.resta);
   const renderList = inGameFistList(playersStateList);
 
   return (

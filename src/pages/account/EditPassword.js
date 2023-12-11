@@ -1,14 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Field, Form, Formik } from 'formik';
 
 import { useChangePasswordMutation } from 'features/account/accountApi';
-import Button from 'components/ui/Button';
 import { editSvg } from 'assets/svgs/various';
+import Button from 'components/ui/Button';
 import classes from './UserName.module.scss';
 
 const EditPassword = () => {
-  const [changePassword] = useChangePasswordMutation();
   const [edit, setEdit] = useState(false);
+  const [changePassword, { isLoading, isSuccess, reset }] =
+    useChangePasswordMutation();
+
+  useEffect(() => {
+    if (!edit) reset();
+  }, [edit, reset]);
 
   if (!edit)
     return (
@@ -29,15 +34,12 @@ const EditPassword = () => {
     if (values.newPassword !== values.confirmPassword)
       return { password: 'Λάθος επαλήθευση κωδικού.' };
   };
-  const submitHandler = async (values, { setErrors, setStatus, resetForm }) => {
+  const submitHandler = async (values, { setErrors, setStatus }) => {
     const result = await changePassword(values);
     if (result.error) setErrors({ password: result.error.data });
     else {
       setStatus({ success: 'Επιτυχής αλλαγή κωδικού.' });
-      setTimeout(() => {
-        resetForm();
-        setEdit(false);
-      }, 1000);
+      setTimeout(() => setEdit(false), 1000);
     }
   };
 
@@ -82,6 +84,7 @@ const EditPassword = () => {
           <Button
             prompt="Υποβολή"
             onClick={submitForm}
+            disabled={isLoading || isSuccess}
             className={classes['confirm-btn'] + ' green'}
           />
           <Button

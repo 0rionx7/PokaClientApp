@@ -3,31 +3,25 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 
-const emptyList = [];
-
 const useTimerBar = playerState => {
   const { gameId } = useParams();
-  const { currentPlayerStateList, reaction } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      currentPlayerStateList: data?.currentPlayerStateList || emptyList,
-      reaction: data?.reaction,
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
+  const [width, setWidth] = useState(100);
+
   const { playerName, handInfo } = playerState;
-  const [currentPlayerState] = currentPlayerStateList;
+  const [currentPlayerState] = data?.currentPlayerStateList;
   const isActive = currentPlayerState?.playerName === playerName;
   const submitting = currentPlayerState?.selecting?.submit;
-  const [width, setWidth] = useState(100);
 
   useEffect(() => {
     let timer;
-    const period = reaction * (submitting ? 20 : 10);
-    if (isActive && !handInfo.kind && reaction !== 101 && width > 0) {
+    const period = data?.reaction * (submitting ? 20 : 10);
+    if (isActive && !handInfo.kind && data?.reaction !== 101 && width > 0) {
       timer = setInterval(() => setWidth(pre => pre - 1), period);
     }
 
     return () => clearInterval(timer);
-  }, [isActive, handInfo.kind, width, reaction, submitting]);
+  }, [isActive, handInfo.kind, width, data?.reaction, submitting]);
 
   useEffect(() => setWidth(100), [isActive]);
 

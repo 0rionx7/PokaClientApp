@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
 import { useLoginMutation } from 'features/account/accountApi';
+import CheckBox from 'components/ui/CheckBox';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
-import CheckBox from 'components/ui/CheckBox';
 import './LoginRegister.scss';
 
 const Login = () => {
@@ -45,7 +45,7 @@ const Login = () => {
 
     const result = await login(values);
     if (result?.error?.data) setErrors({ login: result.error.data });
-    else navigate('/saloon');
+    else navigate('/saloon', { replace: true });
   };
 
   return (

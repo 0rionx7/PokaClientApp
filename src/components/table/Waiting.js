@@ -6,13 +6,13 @@ import './Table.scss';
 
 const Waiting = () => {
   const { gameId } = useParams();
-  const { dealer } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({ dealer: data.dealer }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
 
   return (
     <Overlay>
-      <div className="waiting-content">Αναμονή να μοιράσει ο {dealer}</div>
+      <div className="waiting-content">
+        Αναμονή να μοιράσει ο {data?.dealer}
+      </div>
     </Overlay>
   );
 };

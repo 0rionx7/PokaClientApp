@@ -5,18 +5,13 @@ import {
   useGetGameStateQuery,
   useJoinTableMutation,
 } from 'features/gameState/gameStateApi';
+import { useCancelRequestMutation } from 'features/account/requestsApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import useSnackBar from 'hooks/useSnackBar';
-import { useCancelRequestMutation } from 'features/account/requestsApi';
 
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();
-  const { tableName, playersStateList } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      tableName: data?.tableName,
-      playersStateList: data?.playersStateList,
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
   const [joinTable, { isLoading, error }] = useJoinTableMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [cancelRequest] = useCancelRequestMutation();
@@ -26,7 +21,7 @@ const ListedPlayer = ({ playerState, clickable }) => {
   }, [error, setSnackInfo]);
 
   const clickHandler = () => {
-    if (playersStateList.length === 8)
+    if (data?.playersStateList.length === 8)
       return setSnackInfo('έχει συμπληρωθεί το καρέ');
     if (clickable && !isLoading) {
       const { playerName } = playerState;
@@ -37,7 +32,7 @@ const ListedPlayer = ({ playerState, clickable }) => {
   const cancelHandler = e => {
     e.stopPropagation();
     cancelRequest({
-      tableName,
+      tableName: data?.tableName,
       username: playerState.playerName,
       showPopUp: true,
     });

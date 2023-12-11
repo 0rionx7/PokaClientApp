@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
@@ -6,20 +7,19 @@ import './Board.scss';
 
 const Board = () => {
   const { gameId } = useParams();
-  const { boardClass, rowsIndexes, pot } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      boardClass: data.boardClass,
-      rowsIndexes: data.rowsIndexes,
-      pot: data.playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
+
+  const pot = useMemo(
+    () => data?.playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
+    [data?.playersStateList]
+  );
 
   return (
-    <div className={'board ' + boardClass}>
-      {!rowsIndexes?.length && pot > 0 && (
+    <div className={'board ' + data?.boardClass}>
+      {!data?.rowsIndexes?.length && pot > 0 && (
         <div className="pot 0">ποτ: {pot}</div>
       )}
-      {rowsIndexes?.map((rowIndexes, i, { length }) => (
+      {data?.rowsIndexes?.map((rowIndexes, i, { length }) => (
         <BoardRow rowIndexes={rowIndexes} row={i} rows={length} key={i} />
       ))}
     </div>

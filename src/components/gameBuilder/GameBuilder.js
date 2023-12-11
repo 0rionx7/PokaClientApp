@@ -10,7 +10,6 @@ import {
   gameNames,
   tabloCount,
 } from 'common/text-constants';
-
 import {
   useGetGameStateQuery,
   useSetGameVariantMutation,
@@ -38,21 +37,17 @@ import './GameBuilder.scss';
 
 const GameBuilder = () => {
   const { gameId } = useParams();
-  const { noOthersInPlay, allOthersTapi, startingCard, playersCount } =
-    useGetGameStateQuery(gameId, {
-      selectFromResult: ({ data }) => ({
-        playersCount: data.playersStateList.length,
-        startingCard: data.startingCard,
-        noOthersInPlay: data.playersStateList.filter(isHere).length === 1,
-        allOthersTapi:
-          data?.playersStateList.filter(
-            state => state.resta > 0 && !state.sittingOut
-          ).length === 1,
-      }),
-    });
+  const { data } = useGetGameStateQuery(gameId);
   const [setGameVariant] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [domReady, setDomReady] = useState(false);
+
+  const playersCount = data.playersStateList.length;
+  const noOthersInPlay = data.playersStateList.filter(isHere).length === 1;
+  const allOthersTapi =
+    data.playersStateList.filter(state => state.resta > 0 && !state.sittingOut)
+      .length === 1;
+
   useEffect(() => setDomReady(true), []);
 
   let btnPrompt;
@@ -62,7 +57,7 @@ const GameBuilder = () => {
   const initialValues = {
     gameName: gameNames.MAMUT,
     ...builderDefaults,
-    startingCard,
+    startingCard: data.startingCard,
   };
   const validate = values => {
     const errors = {};
@@ -99,7 +94,7 @@ const GameBuilder = () => {
           <Frame>
             <BuilderItem
               title={builderTitles.GAME}
-              element={<GameChooser startingCard={startingCard} />}
+              element={<GameChooser startingCard={data.startingCard} />}
             />
             <BuilderItem
               title={builderTitles.WINNING_ORDER}

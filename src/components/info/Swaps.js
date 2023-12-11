@@ -5,17 +5,16 @@ import { countFem } from 'common/text-constants';
 
 const Swaps = () => {
   const { gameId } = useParams();
-  const { swaps } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({ swaps: data.swaps }),
-  });
-  if (!swaps) return null;
+  const { data } = useGetGameStateQuery(gameId);
+
+  if (!data.swaps) return null;
 
   return (
     <>
       {' και '}
       <span>
-        {countFem[swaps]} ΑΛΛΑΓ
-        {swaps > 1 ? 'ΕΣ' : 'Η'}
+        {countFem[data.swaps]} ΑΛΛΑΓ
+        {data.swaps > 1 ? 'ΕΣ' : 'Η'}
       </span>
     </>
   );

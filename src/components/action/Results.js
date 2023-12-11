@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
@@ -5,22 +6,22 @@ import { inGameFistList } from 'common/utilities-functions';
 import PlayerResult from 'components/action/PlayerResult';
 import './Results.scss';
 
-const emptyList = [];
-
 const Results = () => {
   const { gameId } = useParams();
-  const { playersStateList } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      playersStateList:
-        data.playersStateList
-          .slice()
-          .sort((a, b) =>
-            b.amountWon - a.amountWon !== 0
-              ? b.amountWon - a.amountWon
-              : b.handInfo.handValue - a.handInfo.handValue
-          ) || emptyList,
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
+
+  const playersStateList = useMemo(
+    () =>
+      data?.playersStateList
+        .slice()
+        .sort((a, b) =>
+          b.amountWon - a.amountWon !== 0
+            ? b.amountWon - a.amountWon
+            : b.handInfo.handValue - a.handInfo.handValue
+        ),
+    [data?.playersStateList]
+  );
+
   const renderList = inGameFistList(playersStateList);
 
   return (

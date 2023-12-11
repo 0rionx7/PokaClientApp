@@ -5,17 +5,16 @@ import { countFem } from 'common/text-constants';
 
 const Denies = () => {
   const { gameId } = useParams();
-  const { denies } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({ denies: data.denies }),
-  });
-  if (!denies) return null;
+  const { data } = useGetGameStateQuery(gameId);
+
+  if (!data?.denies) return null;
 
   return (
     <>
       {'με '}
       <span>
-        {countFem[denies]} ΑΡΝΗΣ
-        {denies > 1 ? 'ΕΙΣ ' : 'Η '}
+        {countFem[data?.denies]} ΑΡΝΗΣ
+        {data?.denies > 1 ? 'ΕΙΣ ' : 'Η '}
       </span>
     </>
   );

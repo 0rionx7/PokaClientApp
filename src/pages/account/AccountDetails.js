@@ -8,10 +8,7 @@ import Frame from 'components/ui/Frame';
 import classes from './Account.module.scss';
 
 const AccountDetails = () => {
-  const { lastGame } = useGetUserQuery(undefined, {
-    selectFromResult: ({ data }) => ({ lastGame: data?.lastGame }),
-    refetchOnMountOrArgChange: true, // for updating account LastGAme
-  });
+  const { data } = useGetUserQuery();
 
   return (
     <div className={classes.account}>
@@ -27,9 +24,9 @@ const AccountDetails = () => {
           title="ΔΙΑΧΕΙΡΗΣΗ ΣΥΝΔΡΟΜΗΣ"
           style={{ height: '5rem' }}
         />
-        {lastGame && (
+        {data?.lastGame && (
           <AccountItem
-            element={<LastGame savedGame={lastGame} />}
+            element={<LastGame savedGame={data?.lastGame} />}
             title="ΕΠΑΝΕΚΚΙΝΗΣΗ τελ. ΠΑΙΧΝΙΔΙΟΥ"
           />
         )}

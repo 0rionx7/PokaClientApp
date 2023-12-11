@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
@@ -5,13 +6,14 @@ import RenderedCard from 'components/table/RenderedCard';
 
 const BoardRow = ({ rowIndexes, row, rows }) => {
   const { gameId } = useParams();
-  const { rowClass, pot } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      pot: data?.playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
-      rowClass: data?.rowsClasses?.[row] || '',
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
+
+  const pot = useMemo(
+    () => data.playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
+    [data.playersStateList]
+  );
   const potLine = Math.floor(rows / 2);
+  const rowClass = data.rowsClasses?.[row] || '';
   let className = 'pot';
   if (rows % 2 === 0) className += ' shift';
 

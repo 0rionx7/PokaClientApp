@@ -8,17 +8,15 @@ import {
 } from 'features/gameState/gameStateApi';
 import { isMirror, selectedCardsIndexes } from 'common/utilities-functions';
 import { describeHand } from 'common/text-functions';
-import Overlay from 'components/ui/Overlay';
-import useSnackBar from 'hooks/useSnackBar';
-import Button from 'components/ui/Button';
 import { gameNames } from 'common/text-constants';
+import useSnackBar from 'hooks/useSnackBar';
+import Overlay from 'components/ui/Overlay';
+import Button from 'components/ui/Button';
 
 const Submit = () => {
-  const gameId = useSelector(state => state.gameState.gameId);
-  const { gameName } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({ gameName: data?.gameName }),
-  });
   const { handCards, tableCards } = useSelector(state => state.gameState);
+  const gameId = useSelector(state => state.gameState.gameId);
+  const { data: gameData } = useGetGameStateQuery(gameId);
   const [
     submitHand,
     {
@@ -60,8 +58,10 @@ const Submit = () => {
     if (
       submittedHandCardsIndexes.concat(submittedTableCardsIndexes).length !==
         5 &&
-      gameName !== gameNames.GRAVEYARD &&
-      !(gameName === gameNames.MAMUT && isMirror(tableCards, handCards))
+      gameData.gameName !== gameNames.GRAVEYARD &&
+      !(
+        gameData.gameName === gameNames.MAMUT && isMirror(tableCards, handCards)
+      )
     )
       return setSnackInfo(` Επιλέξτε συνολικά 5 χαρτιά`);
     evaluateHand({

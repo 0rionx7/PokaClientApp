@@ -11,19 +11,18 @@ const descriptionTitles = ['ΔΙΑΤΑΞΗ:', 'ΟΜΑΔΕΣ:', 'ΑΝΟΙΓΜΑ:'
 
 const GameDescription = () => {
   const { gameId } = useParams();
-  const { gameName, dealer, tableName } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      gameName: data.gameName,
-      tableName: data.tableName,
-      dealer: data.dealer,
-    }),
-  });
+  const { data } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(state => state.account.username);
   const currentChoosenGame = useSelector(
     state => state.gameState.currentChoosenGame
   );
-  const game = hostPlayerName === dealer ? currentChoosenGame : gameName;
-  const tableTitle = useMemo(() => createTableTitle(tableName), [tableName]);
+
+  const game =
+    hostPlayerName === data.dealer ? currentChoosenGame : data.gameName;
+  const tableTitle = useMemo(
+    () => createTableTitle(data.tableName),
+    [data.tableName]
+  );
 
   if (!game)
     return (

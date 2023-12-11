@@ -5,18 +5,14 @@ import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 
 const Hats = () => {
   const { gameId } = useParams();
-  const { hats, obligation } = useGetGameStateQuery(gameId, {
-    selectFromResult: ({ data }) => ({
-      hats: data.hats,
-      obligation: data.obligation,
-    }),
-  });
-  if (!hats) return null;
+  const { data } = useGetGameStateQuery(gameId);
+
+  if (!data.hats) return null;
 
   return (
     <div>
-      με <span>{count[hats]}</span> {'καπέλο '}
-      {obligation ? <span> ΥΠΟΧΡΕΩΣΗ</span> : ''}
+      με <span>{count[data.hats]}</span> {'καπέλο '}
+      {data.obligation ? <span> ΥΠΟΧΡΕΩΣΗ</span> : ''}
     </div>
   );
 };

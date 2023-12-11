@@ -5,16 +5,9 @@ import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 
 const PlayHandCards = () => {
   const { gameId } = useParams();
-  const { handCardsInPlay, skarto, cardsInHand } = useGetGameStateQuery(
-    gameId,
-    {
-      selectFromResult: ({ data }) => ({
-        handCardsInPlay: data.handCardsInPlay?.slice().sort(),
-        cardsInHand: data.cardsInHand,
-        skarto: data.skarto,
-      }),
-    }
-  );
+  const { data } = useGetGameStateQuery(gameId);
+
+  const handCardsInPlay = data.handCardsInPlay?.slice().sort();
 
   let extraHandCards = [];
   for (let i = 0; i < handCardsInPlay.length; i++) {
@@ -28,8 +21,8 @@ const PlayHandCards = () => {
 
   return (
     <div>
-      <span>{cardsInHand}</span> {'χαρτιά στο χέρι '}
-      {skarto && <span> συν ΈΝΑ ΣΚΑΡΤΟ,</span>} {`"παίζουν" `}
+      <span>{data.cardsInHand}</span> {'χαρτιά στο χέρι '}
+      {data.skarto && <span> συν ΈΝΑ ΣΚΑΡΤΟ,</span>} {`"παίζουν" `}
       {extraHandCards}
     </div>
   );
