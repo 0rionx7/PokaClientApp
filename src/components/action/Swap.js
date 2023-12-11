@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { selectedCard, selectedCardsIndexes } from 'common/utilities-functions';
@@ -7,8 +8,8 @@ import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 
 const Swap = ({ selecting }) => {
+  const { gameId } = useParams();
   const handCards = useSelector(state => state.gameState.handCards);
-  const gameId = useSelector(state => state.gameState.gameId);
   const [selectCards, { isLoading, isSuccess, error: swapError }] =
     useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();

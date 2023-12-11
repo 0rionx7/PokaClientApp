@@ -12,8 +12,8 @@ const Requests = () => {
     <>
       <div className="requests-title">Ενεργές αιτήσεις</div>
       <div className="requests">
-        {joinRequests.map((tableIfo, i) => (
-          <Request key={i} tableIfo={tableIfo} />
+        {joinRequests.map((tableInfo, i) => (
+          <Request key={i} tableInfo={tableInfo} />
         ))}
       </div>
     </>

@@ -17,6 +17,7 @@ function App() {
     socket.on('connect', () => {
       if (token) reconnectedLogin();
     });
+
     return () => socket.removeAllListeners('connect');
   }, [token, reconnectedLogin]);
 

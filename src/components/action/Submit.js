@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
 import {
   useEvaluateHandMutation,
@@ -14,8 +15,8 @@ import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';
 
 const Submit = () => {
+  const { gameId } = useParams();
   const { handCards, tableCards } = useSelector(state => state.gameState);
-  const gameId = useSelector(state => state.gameState.gameId);
   const { data: gameData } = useGetGameStateQuery(gameId);
   const [
     submitHand,

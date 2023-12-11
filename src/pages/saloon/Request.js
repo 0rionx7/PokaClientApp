@@ -5,16 +5,16 @@ import { useSitDownMutation } from 'features/gameState/gameStateApi';
 import { useCancelRequestMutation } from 'features/account/requestsApi';
 import './Requests.scss';
 
-const Request = ({ tableIfo }) => {
+const Request = ({ tableInfo }) => {
   const [sitDown] = useSitDownMutation();
   const [cancelHoveredPropagation, setCancelHoveredPropagation] =
     useState(false);
   const [cancelRequest] = useCancelRequestMutation();
   const navigate = useNavigate();
 
-  const cancelHandler = async (tableName, event) => {
+  const cancelHandler = async event => {
     event.stopPropagation();
-    cancelRequest({ tableName });
+    cancelRequest(tableInfo);
   };
 
   const joinTableHandler = async (gameId, tableName) => {
@@ -24,21 +24,21 @@ const Request = ({ tableIfo }) => {
   };
 
   return (
-    <div className={'request-tableName ' + (tableIfo.joined ? 'joined' : '')}>
+    <div className={'request-tableName ' + (tableInfo.joined ? 'joined' : '')}>
       {!cancelHoveredPropagation && <div className="tool-tip">Καθήστε</div>}
       <div
         onClick={joinTableHandler.bind(
           null,
-          tableIfo.joined,
-          tableIfo.tableName
+          tableInfo.joined,
+          tableInfo.tableName
         )}>
-        {tableIfo.tableName?.split('_')?.[0]}
+        {tableInfo.tableName?.split('_')?.[0]}
       </div>
       <div
         className="cancel"
         onMouseOver={() => setCancelHoveredPropagation(true)}
         onMouseLeave={() => setCancelHoveredPropagation(false)}
-        onClick={cancelHandler.bind(null, tableIfo.tableName)}>
+        onClick={cancelHandler}>
         X<div className="tool-tip">Ακύρωση</div>
       </div>
     </div>
