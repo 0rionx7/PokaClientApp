@@ -30,7 +30,7 @@ const Table = () => {
   }, [gameId, sitOut]);
 
   useEffect(() => {
-    socket.on('connect', refetch);
+    socket.on('connect', () => refetch());
     return () => socket.removeAllListeners('connect');
   }, [refetch]);
 
