@@ -57,7 +57,6 @@ export const accountApi = gameStateApi.injectEndpoints({
       invalidatesTags: ['User'],
     }),
   }),
-  overrideExisting: false,
 });
 
 export const {

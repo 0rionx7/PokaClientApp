@@ -57,7 +57,6 @@ export const requestsApi = gameStateApi.injectEndpoints({
       }),
     }),
   }),
-  overrideExisting: false,
 });
 
 export const {

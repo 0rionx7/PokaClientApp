@@ -89,12 +89,7 @@ export const gameStateApi = createApi({
       ) {
         try {
           await cacheDataLoaded;
-          const tableCreatedListener = tableName => {
-            updateCachedData(draft => {
-              draft.push({ tableName });
-            });
-          };
-          const tableRestartedListerner = tableInfo => {
+          const tableCreatedListener = tableInfo => {
             updateCachedData(draft => {
               draft.push(tableInfo);
             });
@@ -106,11 +101,9 @@ export const gameStateApi = createApi({
           };
 
           socket.on('tableCreated', tableCreatedListener);
-          socket.on('tableRestarted', tableRestartedListerner);
           socket.on('tableDeleted', tableDeletedListerner);
           await cacheEntryRemoved;
           socket.off('tableCreated', tableCreatedListener);
-          socket.off('tableRestarted', tableRestartedListerner);
           socket.off('tableDeleted', tableDeletedListerner);
         } catch (error) {
           console.log(error);
