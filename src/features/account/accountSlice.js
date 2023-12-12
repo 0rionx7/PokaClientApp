@@ -11,16 +11,16 @@ export const accountSlice = createSlice({
     joinRequests: [],
   },
   reducers: {
-    removeRequest: (state, action) => {
+    requestRejected: (state, action) => {
       state.joinRequests = state.joinRequests.filter(
-        tableInfo => tableInfo.tableName !== action.payload
+        tableInfo => tableInfo.tableName !== action.payload.tableName
       );
     },
     setRequestGameId: (state, action) => {
-      const joinedRequest = state.joinRequests.find(
+      const approvedRequest = state.joinRequests.find(
         ({ tableName }) => tableName === action.payload.tableName
       );
-      if (joinedRequest) joinedRequest.joined = action.payload.gameId;
+      if (approvedRequest) approvedRequest.joined = action.payload.gameId;
     },
   },
   extraReducers: builder => {
@@ -37,6 +37,16 @@ export const accountSlice = createSlice({
       .addMatcher(
         accountApi.endpoints.logOut.matchFulfilled,
         (_state, _action) => accountSlice.getInitialState()
+      )
+      .addMatcher(
+        isAnyOf(
+          gameStateApi.endpoints.openTable.matchFulfilled,
+          gameStateApi.endpoints.restartGame.matchFulfilled,
+          gameStateApi.endpoints.sitDown.matchFulfilled
+        ),
+        (state, _action) => {
+          state.joinRequests = [];
+        }
       )
       .addMatcher(
         gameStateApi.endpoints.requestJoin.matchFulfilled,
@@ -56,4 +66,4 @@ export const accountSlice = createSlice({
 });
 
 export const accountReducer = accountSlice.reducer;
-export const { removeRequest, setRequestGameId } = accountSlice.actions;
+export const { requestRejected, setRequestGameId } = accountSlice.actions;

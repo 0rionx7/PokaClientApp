@@ -5,7 +5,7 @@ import { createTableTitle } from 'common/text-functions';
 import Button from 'components/ui/Button';
 import './ApprovedRequest.scss';
 
-const ApprovedRequest = ({ requestInfo: { gameId, tableName } }) => {
+const ApprovedRequest = ({ requestInfo: { tableName, gameId } }) => {
   const [sitDown] = useSitDownMutation();
   const navigate = useNavigate();
 

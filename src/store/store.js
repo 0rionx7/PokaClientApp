@@ -10,6 +10,8 @@ import {
 } from '../features/gameState/gameStateSlice';
 import { errorHandling } from '../features/middleware/errorHandling';
 import { accountReducer, accountSlice } from '../features/account/accountSlice';
+import { updateTables } from 'features/middleware/updateTables';
+import { updateRequests } from 'features/middleware/updateRequests';
 
 export const store = configureStore({
   reducer: {
@@ -18,5 +20,10 @@ export const store = configureStore({
     [gameStateApi.reducerPath]: gameApiReducer,
   },
   middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(gameStateApi.middleware, errorHandling),
+    getDefaultMiddleware().concat(
+      gameStateApi.middleware,
+      updateTables,
+      updateRequests,
+      errorHandling
+    ),
 });

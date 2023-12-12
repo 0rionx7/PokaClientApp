@@ -2,7 +2,10 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { removeRequest, setRequestGameId } from 'features/account/accountSlice';
+import {
+  requestRejected,
+  setRequestGameId,
+} from 'features/account/accountSlice';
 import { createTableTitle } from 'common/text-functions';
 import { socket } from 'features/gameState/gameStateApi';
 import ApprovedRequest from 'pages/ApprovedRequest';
@@ -24,7 +27,6 @@ const useRequestResult = () => {
 
   useEffect(() => {
     socket.on('joinApproved', requestInfo => {
-      if (requestInfo.username !== username) return;
       dispatch(setRequestGameId(requestInfo));
       setApprovedPopUp(<ApprovedRequest requestInfo={requestInfo} />);
     });
@@ -32,8 +34,8 @@ const useRequestResult = () => {
   }, [dispatch, setApprovedPopUp, username]);
 
   useEffect(() => {
-    socket.on('requestCanceled', ({ tableName, showPopUp }) => {
-      dispatch(removeRequest(tableName));
+    socket.on('requestRejected', ({ tableName, showPopUp }) => {
+      dispatch(requestRejected({ tableName }));
       if (!gameId && showPopUp)
         setRejectPopUp(
           <>
@@ -42,7 +44,7 @@ const useRequestResult = () => {
           </>
         );
     });
-    return () => socket.removeAllListeners('requestCanceled');
+    return () => socket.removeAllListeners('requestRejected');
   }, [dispatch, setRejectPopUp, gameId]);
 
   return { approvedElement, rejectedElement };

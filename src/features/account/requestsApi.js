@@ -23,11 +23,9 @@ export const requestsApi = gameStateApi.injectEndpoints({
           // dealers screen requests handlers=======================
           socket.on('requestAdded', requestAddedListener);
           socket.on('requestCanceled', requestRemovedListener);
-          socket.on('joinApproved', requestRemovedListener);
           await cacheEntryRemoved;
           socket.off('requestAdded', requestAddedListener);
           socket.off('requestCanceled', requestRemovedListener);
-          socket.off('joinApproved', requestRemovedListener);
         } catch (error) {
           console.log(error);
         }
@@ -51,6 +49,13 @@ export const requestsApi = gameStateApi.injectEndpoints({
         body: cancelInfo,
       }),
     }),
+    rejectRequest: build.mutation({
+      query: rejectlInfo => ({
+        url: '/requests/reject',
+        method: 'PATCH',
+        body: rejectlInfo,
+      }),
+    }),
   }),
   overrideExisting: false,
 });
@@ -59,4 +64,5 @@ export const {
   useGetRequestsQuery,
   useRequestJoinMutation,
   useCancelRequestMutation,
+  useRejectRequestMutation,
 } = requestsApi;

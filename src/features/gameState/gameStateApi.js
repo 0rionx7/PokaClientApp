@@ -8,7 +8,6 @@ export const baseUrl = process.env.REACT_APP_POKA_API;
 export const socket = io(baseUrl, { transports: ['websocket'] });
 
 // for avoiding circular dependency (can't access gameApi before initialization bug)
-const removeRequest = createAction('gameState/removeRequest');
 const setHandCards = createAction('gameState/setHandCards');
 const setTableCards = createAction('gameState/setTableCards');
 
@@ -42,11 +41,10 @@ export const gameStateApi = createApi({
         if (!arg) return;
         try {
           await cacheDataLoaded;
-          const gameId = getState().gameState.gameId;
 
           const stateUpdateListener = stateUpdate => {
             // because might receive stateUpdate @ player socketId
-            if (gameId === stateUpdate._id)
+            if (arg === stateUpdate._id)
               updateCachedData(draft => {
                 //for not to reset preselected cards ( players selected before their turn )
                 if (!draft.currentPlayerStateList?.[0]?.selecting?.submit) {
@@ -66,7 +64,7 @@ export const gameStateApi = createApi({
           };
 
           const closingBetListener = ({ _id, playersStateList }) => {
-            if (gameId === _id) {
+            if (arg === _id) {
               playersStateList = updateAll(playersStateList, { denying: 0 });
               updateCachedData(draft => ({ ...draft, playersStateList }));
             }
@@ -87,7 +85,7 @@ export const gameStateApi = createApi({
       providesTags: ['Tables'],
       async onCacheEntryAdded(
         _arg,
-        { dispatch, cacheEntryRemoved, cacheDataLoaded, updateCachedData }
+        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
       ) {
         try {
           await cacheDataLoaded;
@@ -96,13 +94,7 @@ export const gameStateApi = createApi({
               draft.push({ tableName });
             });
           };
-          const tableRestartedListerner = tableName => {
-            updateCachedData(draft => {
-              const table = draft.find(entry => entry.tableName === tableName);
-              if (!table) draft.push({ tableName });
-            });
-          };
-          const joinedTableRestartedListerner = tableInfo => {
+          const tableRestartedListerner = tableInfo => {
             updateCachedData(draft => {
               draft.push(tableInfo);
             });
@@ -111,17 +103,14 @@ export const gameStateApi = createApi({
             updateCachedData(draft =>
               draft.filter(({ tableName }) => tableName !== deletedTable)
             );
-            dispatch(removeRequest(deletedTable));
           };
 
           socket.on('tableCreated', tableCreatedListener);
           socket.on('tableRestarted', tableRestartedListerner);
-          socket.on('joinedTableRestarted', joinedTableRestartedListerner);
           socket.on('tableDeleted', tableDeletedListerner);
           await cacheEntryRemoved;
           socket.off('tableCreated', tableCreatedListener);
           socket.off('tableRestarted', tableRestartedListerner);
-          socket.off('joinedTableRestarted', joinedTableRestartedListerner);
           socket.off('tableDeleted', tableDeletedListerner);
         } catch (error) {
           console.log(error);
@@ -220,31 +209,6 @@ export const gameStateApi = createApi({
           socketId: socket.id,
         },
       }),
-      async onQueryStarted(
-        { gameId, tableName },
-        { dispatch, queryFulfilled }
-      ) {
-        if (tableName) {
-          const patchResult = dispatch(
-            gameStateApi.util.updateQueryData('getTables', undefined, draft => {
-              const tableJoined = draft.find(
-                availableTable => availableTable.tableName === tableName
-              );
-              tableJoined.joined = gameId;
-            })
-          );
-          try {
-            await queryFulfilled;
-          } catch {
-            patchResult.undo();
-          }
-          /**
-           * Alternatively, on failure you can invalidate the corresponding cache tags
-           * to trigger a re-fetch:
-           * dispatch(api.util.invalidateTags(['Post']))
-           */
-        }
-      },
     }),
     sitOut: build.mutation({
       query: sitOutInfo => ({

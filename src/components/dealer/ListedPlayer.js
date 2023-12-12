@@ -5,7 +5,7 @@ import {
   useGetGameStateQuery,
   useJoinTableMutation,
 } from 'features/gameState/gameStateApi';
-import { useCancelRequestMutation } from 'features/account/requestsApi';
+import { useRejectRequestMutation } from 'features/account/requestsApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import useSnackBar from 'hooks/useSnackBar';
 
@@ -14,7 +14,7 @@ const ListedPlayer = ({ playerState, clickable }) => {
   const { data } = useGetGameStateQuery(gameId);
   const [joinTable, { isLoading, error }] = useJoinTableMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
-  const [cancelRequest] = useCancelRequestMutation();
+  const [rejectRequest] = useRejectRequestMutation();
 
   useEffect(() => {
     if (error) setSnackInfo(error.message);
@@ -31,7 +31,7 @@ const ListedPlayer = ({ playerState, clickable }) => {
 
   const cancelHandler = e => {
     e.stopPropagation();
-    cancelRequest({
+    rejectRequest({
       tableName: data?.tableName,
       username: playerState.playerName,
       showPopUp: true,
