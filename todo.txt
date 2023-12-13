@@ -3,4 +3,3 @@ choose deck color
 οπτιονσ 2 3 4 για stayro maybe
 order tables chronologicaly
 try catch or error handling on joinHandlers etc
-update User last game without refetch

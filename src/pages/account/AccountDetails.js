@@ -8,7 +8,9 @@ import Frame from 'components/ui/Frame';
 import classes from './Account.module.scss';
 
 const AccountDetails = () => {
-  const { data } = useGetUserQuery();
+  const { data } = useGetUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   return (
     <div className={classes.account}>
