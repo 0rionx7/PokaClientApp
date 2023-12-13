@@ -19,7 +19,7 @@ const Player = ({ playerState, index }) => {
     () => data?.playersStateList.find(playerEntry(hostPlayerName)),
     [data?.playersStateList, hostPlayerName]
   );
-  useSitOutTimer(playerState);
+  // useSitOutTimer(playerState);
 
   const isHostPlayer = playerState.playerName === hostPlayerName;
   const playerSubmitted = playerState.submittedHand.length;
@@ -45,6 +45,12 @@ const Player = ({ playerState, index }) => {
       <div className="player-info">
         <PlayerInfo playerState={playerState} />
         <div className="avatar"></div>
+        {playerState.bet > 0 && (
+          <div className="total-bet">
+            {playerState.bet}
+            <div className="tool-tip ">συν.ποντάρισμα</div>
+          </div>
+        )}
       </div>
     </div>
   );

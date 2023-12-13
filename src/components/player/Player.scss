@@ -135,6 +135,25 @@
     border-radius: 2px;
     width: 100%;
   }
+  .total-bet {
+    position: absolute;
+    bottom: -0.7rem;
+    right: variables.$avatar-size;
+    width: fit-content;
+    padding: 0.1rem 0.5rem;
+    border-radius: 7px;
+    color: rgba(255, 228, 196, 0.588);
+    background-color: #9d97944e;
+    font-size: 0.6rem;
+    &:hover {
+      .tool-tip {
+        visibility: visible;
+      }
+      svg {
+        fill: red;
+      }
+    }
+  }
   .avatar {
     position: absolute;
     right: 0;
