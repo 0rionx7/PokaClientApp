@@ -44,7 +44,7 @@ const Player = ({ playerState, index }) => {
       />
       <div className="player-info">
         <PlayerInfo playerState={playerState} />
-        <div className="avatar"></div>
+        <div className="avatar">{playerState.playerName.slice(0, 1)}</div>
         {playerState.bet > 0 && (
           <div className="total-bet">
             {playerState.bet}

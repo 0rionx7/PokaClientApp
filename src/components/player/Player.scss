@@ -156,10 +156,16 @@
   }
   .avatar {
     position: absolute;
+    display: grid;
+    place-items: center;
     right: 0;
     height: variables.$avatar-size;
     width: variables.$avatar-size;
     border-radius: 50%;
-    background-color: rgba(118, 203, 32, 0.656);
+    background-color: rgb(90 135 44);
+    color: black;
+    font-size: 2rem;
+    font-family: Yellowtail;
+    /* text-align: center; */
   }
 }
