@@ -35,7 +35,9 @@ const Action = ({ hideInfo }) => {
         !dealer && !currentPlayer?.handInfo?.kind && <LiveInfo />
       )}
       {currentPlayer?.handInfo?.kind && <Results />}
-      {hostPlayerState.resta === 0 && !hostPlayerState.sittingOut && <Renew />}
+      {hostPlayerState.resta === 0 &&
+        !hostPlayerState.sittingOut &&
+        (currentPlayer?.handInfo?.kind || dealer) && <Renew />}
       {hostPlayerState.resta > 0 && currentPlayer?.handInfo?.kind && (
         <NextRound />
       )}
