@@ -20,7 +20,7 @@ const RenewOptions = () => {
     if (error) setSnackInfo(error.data);
   }, [error, setSnackInfo]);
 
-  const options = [0.25 * cava, 0.5 * cava, 0.75 * cava, cava];
+  const options = [0.2 * cava, 0.5 * cava, 0.8 * cava, cava];
 
   return (
     <>

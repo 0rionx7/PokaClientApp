@@ -42,14 +42,9 @@
     }
   }
 }
-.pot {
+.kaves {
   position: absolute;
-  padding: 0.1rem 0.5rem;
-  border-radius: 7px;
-  color: rgba(255, 228, 196, 0.588);
-  font-size: 0.7rem;
-  background-color: #9d97944e;
-  text-wrap: nowrap;
+  display: grid;
   &:not([class*='0']) {
     // 0 for no bordrow
     right: calc(100% + 4px);
@@ -58,5 +53,23 @@
   }
   &.shift {
     top: 0;
+  }
+}
+.pot {
+  padding: 0.1rem 0.5rem;
+  border-radius: 7px;
+  margin-bottom: 0.2rem;
+  color: rgba(255, 228, 196, 0.588);
+  font-size: 0.7rem;
+  background-color: #9d97944e;
+  text-wrap: nowrap;
+  &:first-child {
+    text-align: right;
+    margin-bottom: 0.5rem;
+  }
+  span:not(:first-child) {
+    &::before {
+      content: ', ';
+    }
   }
 }

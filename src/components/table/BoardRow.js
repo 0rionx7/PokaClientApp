@@ -1,26 +1,27 @@
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import RenderedCard from 'components/table/RenderedCard';
+import Kava from 'components/table/Kava';
 
-const BoardRow = ({ rowIndexes, row, rows }) => {
+const BoardRow = ({ rowIndexes, row, rows, totalPot }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
 
-  const pot = useMemo(
-    () => data.playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
-    [data.playersStateList]
-  );
   const potLine = Math.floor(rows / 2);
   const rowClass = data.rowsClasses?.[row] || '';
-  let className = 'pot';
-  if (rows % 2 === 0) className += ' shift';
+  let kavesClass = 'kaves';
+  if (rows % 2 === 0) kavesClass += ' shift';
 
   return (
     <div className={'board-row ' + rowClass}>
-      {potLine === row && pot > 0 && (
-        <div className={className}>ποτ: {pot}</div>
+      {potLine === row && totalPot > 0 && (
+        <div className={kavesClass}>
+          <div className="pot">ποτ: {totalPot}</div>
+          {data.kaves.map((kavaInfo, i) => (
+            <Kava kavaInfo={kavaInfo} key={i} />
+          ))}
+        </div>
       )}
       {rowIndexes.map(index => (
         <RenderedCard index={index} key={index} />
