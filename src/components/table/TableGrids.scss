@@ -16,11 +16,10 @@
       '.        player-1        .' variables.$player-height;
     grid-template-columns: 1fr variables.$board-width 1fr;
     .p-2 {
-      place-self: flex-start;
+      align-self: flex-start;
     }
     .p-3 {
       align-self: flex-start;
-      justify-self: flex-end;
     }
   }
   &.players-4 {
