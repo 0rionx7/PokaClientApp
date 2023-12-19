@@ -12,15 +12,18 @@ const BoardRow = ({ rowIndexes, row, rows, totalPot }) => {
   const rowClass = data.rowsClasses?.[row] || '';
   let kavesClass = 'kaves';
   if (rows % 2 === 0) kavesClass += ' shift';
+  const showKaves =
+    data.kaves[0] && +Object.keys(data.kaves[0])[0] !== totalPot;
 
   return (
     <div className={'board-row ' + rowClass}>
       {potLine === row && totalPot > 0 && (
         <div className={kavesClass}>
           <div className="pot">ποτ: {totalPot}</div>
-          {data.kaves.map((kavaInfo, i) => (
-            <Kava kavaInfo={kavaInfo} key={i} />
-          ))}
+          {showKaves &&
+            data.kaves.map((kavaInfo, i) => (
+              <Kava kavaInfo={kavaInfo} key={i} />
+            ))}
         </div>
       )}
       {rowIndexes.map(index => (

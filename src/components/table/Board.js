@@ -14,17 +14,18 @@ const Board = () => {
     () => data?.playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
     [data?.playersStateList]
   );
+  const showKaves =
+    data.kaves[0] && +Object.keys(data.kaves[0])[0] !== totalPot;
 
   return (
     <div className={'board ' + data?.boardClass}>
       {!data?.rowsIndexes?.length && totalPot > 0 && (
-        <div className="kaves">
+        <div className="kaves line-0">
           <div className="pot">ποτ: {totalPot}</div>
-          <div className="kaves line-0">
-            {data.kaves.map((kavaInfo, i) => (
+          {showKaves &&
+            data.kaves.map((kavaInfo, i) => (
               <Kava kavaInfo={kavaInfo} key={i} />
             ))}
-          </div>
         </div>
       )}
       {data?.rowsIndexes?.map((rowIndexes, i, { length }) => (
