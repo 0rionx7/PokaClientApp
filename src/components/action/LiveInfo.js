@@ -30,7 +30,7 @@ const LiveInfo = () => {
           gamesCount + 'ο',
           playersStateList.at(-1).playerName,
           currentPlayer?.playerName,
-          pot,
+          pot.toLocaleString(),
         ].map((value, i) => (
           <h5 key={i} style={{ textAlign: 'center' }}>
             {value}

@@ -39,7 +39,7 @@ const PlayerInfo = ({ playerState }) => {
             <div className="tool-tip">πραγμ. αλλαγές</div>
           </>
         )}
-        {playerState.resta - playerState.bet}
+        {(playerState.resta - playerState.bet).toLocaleString()}
         {playerState.deniedCards.length > 0 && (
           <>
             <span id="denies">{playerState.deniedCards.length}</span>

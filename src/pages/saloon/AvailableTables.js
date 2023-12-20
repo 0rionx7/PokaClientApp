@@ -2,11 +2,10 @@ import { useMemo, useState } from 'react';
 
 import { useGetTablesQuery } from 'features/gameState/gameStateApi';
 import AvailableTable from 'pages/saloon/AvailableTable';
-import Button from 'components/ui/Button';
 
 const AvailableTables = () => {
   const [query, setfQuery] = useState('');
-  const { data, refetch } = useGetTablesQuery();
+  const { data } = useGetTablesQuery();
 
   const availableTables = useMemo(
     () =>
@@ -29,7 +28,7 @@ const AvailableTables = () => {
         />
       </div>
       <h3>Ανοικτά τραπέζια</h3>
-      <Button className="green" prompt="ανανέωση λίστας" onClick={refetch} />
+      {/* <Button className="green" prompt="ανανέωση λίστας" onClick={refetch} /> */}
       <div className="tables-container">
         <div className="available-tables">
           {!availableTables?.length ? (

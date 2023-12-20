@@ -21,7 +21,7 @@ const Board = () => {
     <div className={'board ' + data?.boardClass}>
       {!data?.rowsIndexes?.length && totalPot > 0 && (
         <div className="kaves line-0">
-          <div className="pot">ποτ: {totalPot}</div>
+          <div className="pot">ποτ: {totalPot.toLocaleString()}</div>
           {showKaves &&
             data.kaves.map((kavaInfo, i) => (
               <Kava kavaInfo={kavaInfo} key={i} />

@@ -70,7 +70,7 @@ export function betPrompt(value, minBet, resta, error) {
         <>
           {minBet === resta ? 'Ρέστα' : 'ΜΕΣΑ στα'}
           <br />
-          <span> {minBet}</span>
+          <span> {minBet.toLocaleString()}</span>
         </>
       );
     default:
@@ -78,7 +78,7 @@ export function betPrompt(value, minBet, resta, error) {
         <>
           ΑΝΕΒΑΣΜΑ
           <br />
-          <span> {value - minBet}</span>
+          <span> {(value - minBet).toLocaleString()}</span>
         </>
       );
   }

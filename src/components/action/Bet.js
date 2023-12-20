@@ -71,7 +71,7 @@ const Bet = ({ bet, resta }) => {
           {betAmounts.map(amount => (
             <Button
               key={amount}
-              prompt={'+ ' + amount}
+              prompt={'+ ' + amount.toLocaleString()}
               onClick={() => setFieldValue('amount', values.amount + amount)}
               disabled={isSubmitting || isSuccess}
               style={{ gridArea: 'b-' + amount / chip }}
@@ -82,7 +82,11 @@ const Bet = ({ bet, resta }) => {
             {maxBet <= resta && (
               <Button
                 onClick={() => setFieldValue('amount', minBet)}
-                prompt={minBet === 0 ? 'Ντούκου' : `Μέσα στα\n ${minBet}`}
+                prompt={
+                  minBet === 0
+                    ? 'Ντούκου'
+                    : `Μέσα στα\n ${minBet.toLocaleString()}`
+                }
                 disabled={isSubmitting || isSuccess}
                 className="call-btn green"
               />

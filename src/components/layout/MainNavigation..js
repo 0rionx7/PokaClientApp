@@ -24,9 +24,6 @@ const MainNavigation = () => {
             <Link to="/account" className="nav-link">
               Λογαριασμός
             </Link>
-            <Link to="/account/subscription" className="nav-link">
-              Συνδρομή
-            </Link>
           </>
         )}
         {username ? (

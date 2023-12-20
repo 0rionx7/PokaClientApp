@@ -10,7 +10,7 @@ const HandCards = ({ cards, canBeSelected, bet }) => {
         {cards?.map((card, i) => (
           <Card key={i} card={card} canBeSelected={canBeSelected} />
         ))}
-        {bet > 0 && <div className="bet-amount">{bet}</div>}
+        {bet > 0 && <div className="bet-amount">{bet.toLocaleString()}</div>}
         {bet < 0 && <div className="bet-amount">πάσο</div>}
       </div>
     </>

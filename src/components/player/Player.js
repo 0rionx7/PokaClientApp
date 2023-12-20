@@ -47,7 +47,7 @@ const Player = ({ playerState, index }) => {
         <div className="avatar">{playerState.playerName.slice(0, 1)}</div>
         {playerState.bet > 0 && (
           <div className="total-bet">
-            {playerState.bet}
+            {playerState.bet.toLocaleString()}
             <div className="tool-tip ">συν.ποντάρισμα</div>
           </div>
         )}
