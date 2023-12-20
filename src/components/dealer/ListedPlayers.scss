@@ -26,10 +26,6 @@
   border-radius: 1rem;
   padding: 0.2rem 0.6rem;
   margin-bottom: 0.2rem;
-  .tool-tip {
-    bottom: 100%;
-    left: 0;
-  }
   .cancel {
     display: grid;
     place-items: center;
@@ -45,14 +41,12 @@
 }
 .cancel:hover .tool-tip {
   visibility: visible;
-  left: 100%;
   &:hover {
     visibility: hidden;
   }
 }
 .approve:hover .tool-tip {
   visibility: visible;
-  left: 50%;
   &:hover {
     visibility: hidden;
   }

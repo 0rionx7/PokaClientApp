@@ -40,8 +40,6 @@
 }
 .form-control:hover .tool-tip {
   visibility: visible;
-  bottom: 100%;
-  left: 50%;
   &:hover {
     visibility: hidden;
   }

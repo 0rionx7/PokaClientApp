@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
 import { useCancelRequestMutation } from 'features/account/requestsApi';
+import ToolTip from 'components/ui/ToolTip';
 import './Requests.scss';
 
 const Request = ({ tableInfo }) => {
@@ -25,7 +26,7 @@ const Request = ({ tableInfo }) => {
 
   return (
     <div className={'request-tableName ' + (tableInfo.joined ? 'joined' : '')}>
-      {!cancelHoveredPropagation && <div className="tool-tip">Καθήστε</div>}
+      {!cancelHoveredPropagation && <ToolTip info="Καθήστε" />}
       <div
         onClick={joinTableHandler.bind(
           null,
@@ -39,7 +40,7 @@ const Request = ({ tableInfo }) => {
         onMouseOver={() => setCancelHoveredPropagation(true)}
         onMouseLeave={() => setCancelHoveredPropagation(false)}
         onClick={cancelHandler}>
-        X<div className="tool-tip">Ακύρωση</div>
+        X <ToolTip info="Ακύρωση" />
       </div>
     </div>
   );

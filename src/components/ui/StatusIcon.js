@@ -1,3 +1,4 @@
+import ToolTip from 'components/ui/ToolTip';
 import './StatusIcon.scss';
 
 const StatusIcon = ({ playerState }) => {
@@ -15,13 +16,11 @@ const StatusIcon = ({ playerState }) => {
     status = 'άνευ συνδρομής';
   }
   return (
-    <>
-      <div
-        className="status"
-        style={{ backgroundColor: color, justifySelf: 'center' }}
-      />
-      <div className="tool-tip ">{status}</div>
-    </>
+    <div
+      className="status"
+      style={{ backgroundColor: color, justifySelf: 'center' }}>
+      <ToolTip info={status} />
+    </div>
   );
 };
 

@@ -107,7 +107,6 @@
         background-color: rgb(42, 192, 0);
         left: calc(0.09 * var(--card-height));
         &:hover + .tool-tip {
-          bottom: 100%;
           left: 0%;
         }
       }

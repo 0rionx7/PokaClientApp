@@ -71,13 +71,13 @@ a {
 .tool-tip {
   position: absolute;
   visibility: hidden;
+  bottom: 100%;
   width: 7rem;
   background-color: bisque;
   color: black;
   text-align: center;
   border-radius: 0.3rem;
   padding: 0.3rem;
-  margin-left: -3.5rem;
   font-size: 0.6rem;
   z-index: 11;
 }

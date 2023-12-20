@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { useRequestJoinMutation } from 'features/account/requestsApi';
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
 import { createTableTitle } from 'common/text-functions';
+import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 import './AvailableTables.scss';
 
@@ -40,11 +41,9 @@ const AvailableTable = ({ tableInfo }) => {
     <div
       onClick={clickHandler}
       className={'available-table ' + (tableInfo.joined ? 'joined' : '')}>
-      <div className="tool-tip">
-        {tableInfo.joined ? 'Καθήστε' : 'Αιτηθείτε θέση'}
-      </div>
-      {snackElement}
+      <ToolTip info={tableInfo.joined ? 'Καθήστε' : 'Αιτηθείτε θέση'} />
       {tableTitle}
+      {snackElement}
     </div>
   );
 };

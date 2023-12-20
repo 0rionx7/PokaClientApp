@@ -1,4 +1,6 @@
 import { Field } from 'formik';
+
+import ToolTip from 'components/ui/ToolTip';
 import './Radio.scss';
 
 const Radio = ({ name, className, label, value, checked, info }) => {
@@ -12,7 +14,7 @@ const Radio = ({ name, className, label, value, checked, info }) => {
         value={value}
         checked={checked}
       />
-      {info && <span className="tool-tip">{info}</span>}
+      {info && <ToolTip info={info} />}
     </label>
   );
 };

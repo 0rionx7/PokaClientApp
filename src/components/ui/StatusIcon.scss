@@ -1,13 +1,18 @@
 .status {
+  position: relative;
   width: 0.7rem;
   height: 0.7rem;
   border-radius: 50%;
   display: inline-block;
   cursor: help;
-}
-.status:hover + .tool-tip {
-  visibility: visible;
-  &:hover {
-    visibility: hidden;
+  .tool-tip {
+    left: 50%;
+    transform: translate(-50%);
+  }
+  &:hover .tool-tip {
+    visibility: visible;
+    &:hover {
+      visibility: hidden;
+    }
   }
 }
