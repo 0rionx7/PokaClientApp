@@ -39,12 +39,10 @@
     color: white;
     cursor: pointer;
   }
-  &:hover {
-    .tool-tip {
-      visibility: visible;
-    }
-    svg {
-      fill: red;
-    }
+  &:hover .tool-tip {
+    visibility: visible;
+  }
+  svg {
+    fill: red;
   }
 }
