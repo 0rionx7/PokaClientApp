@@ -7,8 +7,7 @@ const Kaves = ({ totalPot, rows }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
 
-  const showKaves =
-    data.kaves[0] && +Object.keys(data.kaves[0])[0] !== totalPot;
+  const showKaves = data.kaves[0]?.amount < totalPot;
   const kavesClass = 'kaves ' + (rows && rows % 2 === 0 && 'shift');
 
   return (
