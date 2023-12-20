@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import Button from 'components/ui/Button';
 import { exitSvg } from 'assets/svgs/various';
+import Button from 'components/ui/Button';
 import Overlay from 'components/ui/Overlay';
+import ToolTip from 'components/ui/ToolTip';
 
 const SitOut = () => {
   const [showDiag, setShowDiag] = useState(false);
@@ -12,9 +13,7 @@ const SitOut = () => {
   return (
     <>
       <div className="sitout" onClick={() => setShowDiag(true)}>
-        <div className="tool-tip" style={{ display: showDiag && 'none' }}>
-          Έξοδος
-        </div>
+        {!showDiag && <ToolTip info="Έξοδος" />}
         {exitSvg}
       </div>
       {showDiag && (

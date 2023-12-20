@@ -14,12 +14,12 @@ const Player = ({ playerState, index }) => {
   const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
+  // useSitOutTimer(playerState);
 
   const hostPlayerState = useMemo(
     () => data?.playersStateList.find(playerEntry(hostPlayerName)),
     [data?.playersStateList, hostPlayerName]
   );
-  // useSitOutTimer(playerState);
 
   const isHostPlayer = playerState.playerName === hostPlayerName;
   const playerSubmitted = playerState.submittedHand.length;
@@ -31,12 +31,12 @@ const Player = ({ playerState, index }) => {
     ? hostPlayerHandCards
     : playerState.handCards;
 
-  const style = { gridArea: 'player-' + (index + 1) };
+  const gridArea = 'player-' + (index + 1);
   const className =
     'player p-' + (index + 1) + (playerSubmitted ? ' submitted' : '');
 
   return (
-    <div className={className} style={style}>
+    <div className={className} style={{ gridArea }}>
       <HandCards
         cards={handCards}
         canBeSelected={!playerSubmitted && isHostPlayer && canSelect}

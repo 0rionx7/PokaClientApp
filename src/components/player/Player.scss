@@ -79,7 +79,6 @@
       align-items: center;
       width: fit-content;
       padding: 0.1rem 0.3rem;
-      font-weight: 600;
       .card {
         scale: 0.8;
       }
@@ -104,6 +103,7 @@
         }
       }
       &#swapped {
+        color: white;
         background-color: rgb(42, 192, 0);
         left: calc(0.09 * var(--card-height));
         &:hover + .tool-tip {

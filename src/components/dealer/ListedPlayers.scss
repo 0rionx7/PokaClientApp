@@ -39,12 +39,7 @@
     color: white;
   }
 }
-.cancel:hover .tool-tip {
-  visibility: visible;
-  &:hover {
-    visibility: hidden;
-  }
-}
+.cancel:hover .tool-tip,
 .approve:hover .tool-tip {
   visibility: visible;
   &:hover {
