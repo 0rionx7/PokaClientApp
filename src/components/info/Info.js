@@ -5,7 +5,7 @@ import { useEmoji } from 'components/info/chat/EmojiProvider';
 import { collapseVertical } from 'assets/svgs/various';
 import { infoButtons } from 'common/text-constants';
 import Standings from 'components/info/Standings';
-import Results from 'components/action/Results';
+import Results from 'components/info/Results';
 import GameInfo from 'components/info/GameInfo';
 import ChatBox from 'components/info/chat/ChatBox';
 import Buttons from 'components/info/Buttons';

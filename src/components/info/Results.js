@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { inGameFistList } from 'common/utilities-functions';
-import PlayerResult from 'components/action/PlayerResult';
+import PlayerResult from 'components/info/PlayerResult';
 import './Results.scss';
 
 const Results = () => {
