@@ -7,6 +7,7 @@ import {
 } from 'features/gameState/gameStateApi';
 import { useRejectRequestMutation } from 'features/account/requestsApi';
 import StatusIcon from 'components/ui/StatusIcon';
+import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 
 const ListedPlayer = ({ playerState, clickable }) => {
@@ -46,11 +47,11 @@ const ListedPlayer = ({ playerState, clickable }) => {
       <StatusIcon playerState={playerState} />
       <div className="approve">
         {playerState?.playerName}
-        {clickable && <div className="tool-tip ">Έγκριση</div>}
+        {clickable && <ToolTip info="Έγκριση" />}
       </div>
       {clickable && (
         <div className="cancel" onClick={cancelHandler}>
-          X<div className="tool-tip ">Απόρριψη</div>
+          X <ToolTip info="Απόρριψη" />
         </div>
       )}
       {snackElement}

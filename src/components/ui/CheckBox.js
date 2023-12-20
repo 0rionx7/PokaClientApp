@@ -1,5 +1,6 @@
 import { Field } from 'formik';
 
+import ToolTip from 'components/ui/ToolTip';
 import './CheckBox.scss';
 
 const CheckBox = ({ value, name, label, style, checked, className, info }) => {
@@ -15,7 +16,7 @@ const CheckBox = ({ value, name, label, style, checked, className, info }) => {
         value={value}
         checked={checked}
       />
-      {info && <div className="tool-tip">{info}</div>}
+      {info && <ToolTip info={info} />}
     </label>
   );
 };

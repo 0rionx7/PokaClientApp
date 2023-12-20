@@ -45,7 +45,6 @@
     left: 10px;
     top: 1px;
     background-color: black;
-    padding: 0.1rem;
     border-radius: 0.3rem;
   }
   .player-info {
@@ -137,7 +136,7 @@
   }
   .total-bet {
     position: absolute;
-    bottom: -0.7rem;
+    top: 100%;
     right: variables.$avatar-size;
     width: fit-content;
     padding: 0.1rem 0.5rem;
