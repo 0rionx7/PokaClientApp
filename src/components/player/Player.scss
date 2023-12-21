@@ -14,110 +14,6 @@
     width: 100%;
     grid-area: line;
   }
-  .playername {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    width: 100%;
-    text-align: center;
-  }
-  .dealer {
-    position: absolute;
-    left: 10px;
-    top: 1px;
-    background-color: yellow;
-    color: black;
-    font-weight: 600;
-    border-radius: 50%;
-    width: calc(0.24 * var(--card-height));
-    height: calc(0.24 * var(--card-height));
-    cursor: help;
-    &:hover + .tool-tip {
-      visibility: visible;
-      top: 100%;
-      left: 0;
-      font-weight: 600;
-    }
-  }
-  .fold {
-    position: absolute;
-    left: 10px;
-    top: 1px;
-    background-color: black;
-    border-radius: 0.3rem;
-  }
-  .player-info {
-    grid-area: playerInfo;
-    justify-self: center;
-    display: flex;
-    align-items: center;
-    position: relative;
-  }
-  .info-container {
-    display: flex;
-    font-size: calc(0.2 * var(--card-height));
-    flex-direction: column;
-    height: calc(0.6 * var(--card-height));
-    width: calc(3.5 * var(--card-width) + variables.$avatar-size);
-    justify-content: space-evenly;
-    border-radius: 2rem;
-    color: bisque;
-    align-items: center;
-    border: 2px solid #ffe4c436;
-    padding-right: variables.$avatar-size;
-  }
-  .gameplay-info {
-    align-items: center;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    position: relative;
-    .tool-tip {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: fit-content;
-      padding: 0.1rem 0.3rem;
-      .card {
-        scale: 0.8;
-      }
-    }
-    span {
-      position: absolute;
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: calc(0.18 * var(--card-height));
-      height: calc(0.18 * var(--card-height));
-      border-radius: 50%;
-      font-weight: 600;
-      cursor: help;
-      &#denies {
-        background-color: red;
-        right: 0;
-        &:hover + .tool-tip {
-          background-image: linear-gradient(to bottom right, red, yellow);
-          top: 100%;
-          left: 90%;
-        }
-      }
-      &#swapped {
-        color: white;
-        background-color: rgb(42, 192, 0);
-        left: calc(0.09 * var(--card-height));
-        &:hover + .tool-tip {
-          left: 0%;
-        }
-      }
-      &:hover + .tool-tip {
-        visibility: visible;
-        &:hover {
-          visibility: hidden;
-        }
-      }
-    }
-  }
   .timer-bar {
     position: relative;
     height: 0.4rem;
@@ -133,6 +29,107 @@
     border-radius: 2px;
     width: 100%;
   }
+  .dealer {
+    position: absolute;
+    left: 10px;
+    top: 1px;
+    background-color: yellow;
+    color: black;
+    font-weight: 600;
+    border-radius: 50%;
+    width: calc(0.24 * var(--card-height));
+    height: calc(0.24 * var(--card-height));
+    cursor: help;
+    &:hover + .tool-tip {
+      visibility: visible;
+      left: 0;
+      translate: -50%;
+    }
+  }
+  .fold {
+    position: absolute;
+    left: 10px;
+    top: 1px;
+    background-color: black;
+    border-radius: 0.3rem;
+  }
+  .player-info {
+    position: relative;
+    grid-area: playerInfo;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+  }
+  .info-container {
+    display: flex;
+    font-size: calc(0.2 * var(--card-height));
+    flex-direction: column;
+    height: calc(0.6 * var(--card-height));
+    width: calc(3.5 * var(--card-width) + variables.$avatar-size);
+    justify-content: space-evenly;
+    border-radius: 2rem;
+    color: bisque;
+    align-items: center;
+    border: 2px solid #ffe4c436;
+    padding-right: variables.$avatar-size;
+  }
+  .playername {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    text-align: center;
+  }
+  .gameplay-info {
+    align-items: center;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    position: relative;
+    span {
+      position: absolute;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: calc(0.18 * var(--card-height));
+      height: calc(0.18 * var(--card-height));
+      border-radius: 50%;
+      font-weight: 600;
+      cursor: help;
+      &#denies {
+        background-color: red;
+        right: 0;
+        & + .tool-tip {
+          display: flex;
+          flex-direction: column;
+          width: fit-content;
+          bottom: initial;
+          top: 100%;
+          left: 100%;
+          padding: 4px 0 0 0;
+          background-image: linear-gradient(to bottom right, red, yellow);
+          .denied-cards {
+            display: flex;
+            .card {
+              scale: 0.8;
+            }
+          }
+        }
+      }
+      &#swapped {
+        color: white;
+        background-color: rgb(42, 192, 0);
+        left: calc(0.09 * var(--card-height));
+        & + .tool-tip {
+          left: 0%;
+        }
+      }
+      &:hover + .tool-tip {
+        visibility: visible;
+      }
+    }
+  }
   .total-bet {
     position: absolute;
     top: 100%;
@@ -143,12 +140,10 @@
     color: rgba(255, 228, 196, 0.588);
     background-color: #9d97944e;
     font-size: 0.6rem;
-    &:hover {
-      .tool-tip {
-        visibility: visible;
-      }
-      svg {
-        fill: red;
+    &:hover .tool-tip {
+      visibility: visible;
+      &:hover {
+        visibility: hidden;
       }
     }
   }
@@ -164,6 +159,5 @@
     color: black;
     font-size: 2rem;
     font-family: Yellowtail;
-    /* text-align: center; */
   }
 }

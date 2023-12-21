@@ -7,7 +7,7 @@
   cursor: help;
   .tool-tip {
     left: 50%;
-    transform: translate(-50%);
+    translate: -50%;
   }
   &:hover .tool-tip {
     visibility: visible;

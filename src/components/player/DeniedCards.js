@@ -13,7 +13,7 @@ const DeniedCards = ({ playerState }) => {
     <>
       <span id="denies">{playerState.deniedCards.length}</span>
       <ToolTip info="ΑΡΝΗΣΕΙΣ">
-        <div style={{ display: 'flex' }}>
+        <div className="denied-cards">
           {playerState.deniedCards.map((card, i) => {
             if (isHostPlayer) card = { ...card, faceUp: true };
             return <Card card={card} key={i} />;
