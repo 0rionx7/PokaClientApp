@@ -60,7 +60,8 @@
     align-items: center;
     justify-self: center;
   }
-  .info-container {
+  .player-info-container {
+    position: relative;
     display: flex;
     font-size: calc(0.2 * var(--card-height));
     flex-direction: column;
@@ -140,6 +141,9 @@
     color: rgba(255, 228, 196, 0.588);
     background-color: #9d97944e;
     font-size: 0.6rem;
+    .tool-tip {
+      right: 0;
+    }
     &:hover .tool-tip {
       visibility: visible;
       &:hover {

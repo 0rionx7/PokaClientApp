@@ -8,12 +8,6 @@
   height: var(--card-height);
   grid-area: handCards;
   justify-self: center;
-  .card {
-    position: relative;
-    .bet-amount {
-      right: calc(100% + 4px);
-    }
-  }
   &.cards-2 {
     // .card {
     //   &:first-child {
@@ -156,12 +150,14 @@
       }
     }
   }
-  .bet-amount {
+  .bet-grid {
     position: absolute;
+    display: grid;
     right: calc(100% + 4px);
-    top: 50%;
-    translate: 0 -85%;
-    width: fit-content;
+    bottom: 40%;
+  }
+  .bet-amount {
+    place-self: center;
     padding: 0.1rem 0.5rem;
     border-radius: 7px;
     color: rgba(255, 228, 196, 0.588);

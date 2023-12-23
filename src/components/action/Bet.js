@@ -6,6 +6,7 @@ import {
   useBetMutation,
   useGetGameStateQuery,
 } from 'features/gameState/gameStateApi';
+import BetOptions from 'components/action/BetOptions';
 import { betPrompt } from 'common/text-functions';
 import Button from 'components/ui/Button';
 import './Bet.scss';
@@ -18,7 +19,6 @@ const Bet = ({ bet, resta }) => {
   } = useGetGameStateQuery(gameId);
 
   const minBet = Math.min(maxBet, resta) - bet;
-  const betAmounts = [chip, 5 * chip, 25 * chip, 100 * chip];
 
   useEffect(() => {
     return () => reset();
@@ -28,6 +28,8 @@ const Bet = ({ bet, resta }) => {
     let errors = {};
     if (values.amount < minBet && values.amount >= 0)
       errors.amount = `ελάχ. ποντάρισμα ${minBet}`;
+    else if (values.amount >= 0 && values.amount < chip)
+      errors.amount = `ελάχ. ποντάρισμα ${chip}`;
     if (values.amount + bet > resta) errors.amount = 'ΑΝΕΠΑΡΚΕΣ ΥΠΟΛΟΙΠΟ';
     return errors;
   };
@@ -35,7 +37,10 @@ const Bet = ({ bet, resta }) => {
   return (
     <Formik
       initialValues={{ amount: minBet }}
-      onSubmit={async ({ amount }) => await placeBet({ gameId, amount })}
+      onSubmit={async ({ amount }) => {
+        const chipedAmount = Math.floor(amount / chip) * chip;
+        await placeBet({ gameId, amount: chipedAmount });
+      }}
       validate={validate}
       enableReinitialize // for Reinitialize  initial values!!!
     >
@@ -53,9 +58,14 @@ const Bet = ({ bet, resta }) => {
           <div className="place-bet">
             <div>ΠΟΝΤΑΡΕΤΕ</div>
             <Button
-              prompt={betPrompt(values.amount, minBet, resta, errors.amount)}
+              prompt={betPrompt(
+                Math.floor(values.amount / chip) * chip,
+                minBet,
+                resta,
+                errors.amount
+              )}
               type="submit"
-              disabled={isSubmitting || errors.amount || isSuccess}
+              disabled={isSubmitting || isSuccess || errors.amount}
               className="green"
             />
           </div>
@@ -68,16 +78,7 @@ const Bet = ({ bet, resta }) => {
               className="fold red"
             />
           </div>
-          {betAmounts.map(amount => (
-            <Button
-              key={amount}
-              prompt={'+ ' + amount.toLocaleString()}
-              onClick={() => setFieldValue('amount', values.amount + amount)}
-              disabled={isSubmitting || isSuccess}
-              style={{ gridArea: 'b-' + amount / chip }}
-              className="bet-amount orange"
-            />
-          ))}
+          <BetOptions />
           <div className="call">
             {maxBet <= resta && (
               <Button

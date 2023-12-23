@@ -15,22 +15,23 @@ const ListedPlayer = ({ playerState, clickable }) => {
   const { data } = useGetGameStateQuery(gameId);
   const [joinTable, { isLoading, error }] = useJoinTableMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
-  const [rejectRequest] = useRejectRequestMutation();
+  const [rejectRequest, { isSuccess, isLoading: rejecting }] =
+    useRejectRequestMutation();
 
   useEffect(() => {
     if (error) setSnackInfo(error.message);
   }, [error, setSnackInfo]);
 
   const clickHandler = () => {
+    if (!clickable || isLoading || rejecting) return;
     if (data?.playersStateList.length === 8)
       return setSnackInfo('έχει συμπληρωθεί το καρέ');
-    if (clickable && !isLoading) {
-      const { playerName } = playerState;
-      joinTable({ playerName, gameId });
-    }
+    const { playerName } = playerState;
+    joinTable({ playerName, gameId });
   };
 
   const cancelHandler = e => {
+    if (rejecting || isSuccess || isLoading) return;
     e.stopPropagation();
     rejectRequest({
       tableName: data?.tableName,

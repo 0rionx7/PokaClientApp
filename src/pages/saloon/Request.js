@@ -7,19 +7,21 @@ import ToolTip from 'components/ui/ToolTip';
 import './Requests.scss';
 
 const Request = ({ tableInfo }) => {
-  const [sitDown] = useSitDownMutation();
+  const [sitDown, { isSuccess, isLoading }] = useSitDownMutation();
   const [cancelHoveredPropagation, setCancelHoveredPropagation] =
     useState(false);
-  const [cancelRequest] = useCancelRequestMutation();
+  const [cancelRequest, { isSuccess: canceled, isLoading: canceling }] =
+    useCancelRequestMutation();
   const navigate = useNavigate();
 
   const cancelHandler = async event => {
+    if (canceling || canceled) return;
     event.stopPropagation();
     cancelRequest(tableInfo);
   };
 
   const joinTableHandler = async (gameId, tableName) => {
-    if (!gameId) return;
+    if (!gameId || isLoading || isSuccess) return;
     const { data } = await sitDown({ gameId, tableName });
     if (data?.gameId) navigate(`/table/${data.gameId}`);
   };

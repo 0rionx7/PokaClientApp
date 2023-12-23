@@ -28,7 +28,7 @@ const RenewOptions = () => {
         {snackElement}
         {options.map(option => (
           <Button
-            prompt={option}
+            prompt={option.toLocaleString()}
             onClick={() => renew({ gameId, amount: option })}
             disabled={isLoading || isSuccess}
             className="green"

@@ -7,7 +7,8 @@ import useSnackBar from 'hooks/useSnackBar';
 import classes from './Account.module.scss';
 
 const LastGame = ({ savedGame }) => {
-  const [restartGame, { error }] = useRestartGameMutation();
+  const [restartGame, { isLoading, isSuccess, error }] =
+    useRestartGameMutation();
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
   const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ const LastGame = ({ savedGame }) => {
   }, [error, setSnackInfo]);
 
   const clickHandler = async () => {
+    if (isLoading || isSuccess) return;
     const { data } = await restartGame(savedGame);
     if (data?.gameId) navigate(`/table/${data.gameId}`);
   };

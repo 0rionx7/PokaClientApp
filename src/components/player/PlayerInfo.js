@@ -9,7 +9,7 @@ const PlayerInfo = ({ playerState }) => {
   const backgroundColor = playerState.isInGame ? '#221f1b' : '#a00000';
 
   return (
-    <div className="info-container" style={{ backgroundColor }}>
+    <div className="player-info-container" style={{ backgroundColor }}>
       <div className="playername">
         <StatusInfo playerState={playerState} />
         {playerState.playerName}

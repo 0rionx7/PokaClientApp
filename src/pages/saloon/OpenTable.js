@@ -17,8 +17,8 @@ const OpenTable = () => {
   const initialValues = {
     tableName: 'Table' + nanoid(3),
     startingCard: 7,
-    cava: 1000,
-    chip: 1,
+    cava: 1000000,
+    chip: 100,
     reaction: 30,
   };
   const validate = values => {

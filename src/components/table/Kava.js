@@ -5,7 +5,7 @@ const Kava = ({ kavaInfo }) => {
 
   return (
     <div className="pot">
-      {amount} {kavaPlayers}
+      {amount.toLocaleString()} {kavaPlayers}
     </div>
   );
 };

@@ -10,7 +10,7 @@ const PlayerResult = ({ playerState }) => {
       <span style={{ overflow: 'hidden' }}>{playerState.playerName}</span>
       <span>{description}</span>
       <span style={{ color: playerState.amountWon >= 0 ? '#04fa04' : 'red' }}>
-        {playerState.amountWon}
+        {playerState.amountWon.toLocaleString()}
       </span>
     </div>
   );
