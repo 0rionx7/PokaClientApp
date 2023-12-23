@@ -1,6 +1,7 @@
 .kaves {
   position: absolute;
   display: grid;
+  z-index: 300;
   &:not([class*='0']) {
     // 0 for no bordrow
     right: calc(100% + 4px);
@@ -15,6 +16,7 @@
   padding: 0.1rem 0.5rem;
   border-radius: 7px;
   margin-bottom: 0.2rem;
+  place-self: center;
   color: rgba(255, 228, 196, 0.588);
   font-size: 0.7rem;
   background-color: #9d97944e;
@@ -31,13 +33,22 @@
 }
 .chips {
   position: relative;
+  display: grid;
+  grid-template: 'green yellow red blue purple';
+  grid-template-columns: repeat(4, max-content);
+  justify-content: end;
   img {
-    position: absolute;
-    bottom: 100%;
-    width: 100%;
+    display: block;
   }
   span {
     position: absolute;
+    left: 0.6rem;
     color: white;
+    font-size: 0.3rem;
+    translate: -50% 100%;
   }
+}
+.chip {
+  position: relative;
+  width: 1.2rem;
 }

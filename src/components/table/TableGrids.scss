@@ -1,8 +1,12 @@
 $handCards-shift: calc(-0.35 * var(--card-height));
-@mixin top-player-submitted-shift {
+@mixin top-player-shifts {
   top: $handCards-shift;
   &.submitted {
     top: calc($handCards-shift - 1 * variables.$selected-shift);
+  }
+  .bet-grid {
+    right: calc(100% + 2.5rem);
+    bottom: -80%;
   }
 }
 
@@ -14,7 +18,7 @@ $handCards-shift: calc(-0.35 * var(--card-height));
       '. player-1 .' variables.$player-height;
     grid-template-columns: 1fr variables.$board-width 1fr;
     .p-2 {
-      @include top-player-submitted-shift;
+      @include top-player-shifts;
     }
   }
   &.players-3 {
@@ -37,7 +41,7 @@ $handCards-shift: calc(-0.35 * var(--card-height));
       '.        player-1        .' variables.$player-height;
     grid-template-columns: 1fr variables.$board-width 1fr;
     .p-3 {
-      @include top-player-submitted-shift;
+      @include top-player-shifts;
     }
   }
   &.players-5 {
@@ -52,10 +56,13 @@ $handCards-shift: calc(-0.35 * var(--card-height));
     }
     .p-3,
     .p-4 {
-      @include top-player-submitted-shift;
+      @include top-player-shifts;
     }
     .p-3 {
       left: 35%;
+      .bet-grid {
+        left: calc(100% + 2.5rem);
+      }
     }
     .p-4 {
       left: -35%;
@@ -72,7 +79,7 @@ $handCards-shift: calc(-0.35 * var(--card-height));
       top: -75%;
     }
     .p-4 {
-      @include top-player-submitted-shift;
+      @include top-player-shifts;
     }
     .p-3,
     .p-5 {
@@ -94,11 +101,14 @@ $handCards-shift: calc(-0.35 * var(--card-height));
     }
     .p-4 {
       left: 35%;
-      @include top-player-submitted-shift;
+      @include top-player-shifts;
+      .bet-grid {
+        left: calc(100% + 2.5rem);
+      }
     }
     .p-5 {
       left: -35%;
-      @include top-player-submitted-shift;
+      @include top-player-shifts;
     }
     .p-6 {
       justify-self: flex-end;
@@ -125,7 +135,7 @@ $handCards-shift: calc(-0.35 * var(--card-height));
       top: 15%;
     }
     .p-5 {
-      @include top-player-submitted-shift;
+      @include top-player-shifts;
     }
     .p-6 {
       top: 15%;

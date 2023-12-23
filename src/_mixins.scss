@@ -1,43 +1,44 @@
 @mixin bet_amount_right {
-  .bet-amount {
+  .bet-grid {
     left: calc(100% + 4px);
   }
   // .cards-1 {
-  //   .bet-amount {
+  //   .bet-grid {
   //     left: calc(100% + 4px);
   //   }
   // }
   // .cards-2 {
-  //   .bet-amount {
+  //   .bet-grid {
   //     left: calc(100% + 4px - variables.$even-core);
   //   }
   // }
   // .cards-3 {
-  //   .bet-amount {
+  //   .bet-grid {
   //     left: calc(100% + 4px - variables.$odd-core);
   //   }
   // }
   // .cards-4 {
-  //   .bet-amount {
+  //   .bet-grid {
   //     left: calc(100% + 4px - variables.$even-mid);
   //   }
   // }
   // .cards-5 {
-  //   .bet-amount {
+  //   .bet-grid {
   //     left: calc(100% + 4px - variables.$odd-mid);
   //   }
   // }
   .cards-6 {
-    .bet-amount {
+    .bet-grid {
       left: calc(100% + 4px - variables.$even-outer);
     }
   }
   .cards-7 {
-    .bet-amount {
+    .bet-grid {
       left: calc(100% + 4px - variables.$odd-outer);
     }
   }
 }
+
 @mixin decoration-content-layout {
   &.v-2 {
     grid-template:
