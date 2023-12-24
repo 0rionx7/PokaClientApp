@@ -1,0 +1,154 @@
+@mixin decoration-content-layout {
+  &.v-2 {
+    grid-template:
+      ' .  s-0   .  '
+      ' .   .    .  '
+      ' .  s-1   .  ';
+    grid-template-columns: repeat(3, 1fr);
+    #s-1 {
+      align-self: flex-end;
+      transform: rotateZ(180deg);
+    }
+  }
+  &.v-3 {
+    grid-template:
+      ' .  s-0   .  '
+      ' .  s-1   .  '
+      ' .  s-2   .  ';
+    grid-template-columns: repeat(3, 1fr);
+    #s-1 {
+      align-self: center;
+    }
+    #s-2,
+    #s-3 {
+      align-self: flex-end;
+      transform: rotateZ(180deg);
+    }
+  }
+  &.v-4 {
+    grid-template:
+      's-0   .   s-1'
+      '.     .    . '
+      's-2   .   s-3';
+    grid-template-columns: repeat(3, 1fr);
+    #s-2,
+    #s-3 {
+      align-self: flex-end;
+      transform: rotateZ(180deg);
+    }
+  }
+  &.v-5 {
+    grid-template:
+      's-0   .   s-1'
+      '.    s-2   . '
+      's-3   .   s-4';
+    grid-template-columns: repeat(3, 1fr);
+    #s-4,
+    #s-3 {
+      align-self: flex-end;
+      transform: rotateZ(180deg);
+    }
+  }
+  &.v-6 {
+    grid-template:
+      's-0   .   s-1'
+      '.     .    . '
+      's-2   .   s-3'
+      ' .    .    . '
+      's-4   .   s-5';
+    grid-template-columns: repeat(3, 1fr);
+    #s-4 {
+      transform: rotateZ(180deg);
+      align-self: flex-end;
+    }
+    #s-5 {
+      align-self: flex-end;
+    }
+  }
+  &.v-7 {
+    grid-template:
+      's-0   .   s-1'
+      '.    s-2   . '
+      's-3   .   s-4'
+      ' .    .    . '
+      's-5   .   s-6';
+    grid-template-columns: repeat(3, 1fr);
+    #s-5,
+    #s-6 {
+      align-self: flex-end;
+    }
+  }
+  &.v-8 {
+    grid-template:
+      's-0   .   s-1'
+      '.    s-2   . '
+      's-3   .   s-4'
+      ' .   s-5   . '
+      's-6   .   s-7';
+    grid-template-columns: repeat(3, 1fr);
+  }
+  &.v-9 {
+    grid-template:
+      's-0   .   s-1'
+      '.     .    . '
+      '.     .    . '
+      's-2   .   s-3'
+      ' .   s-4   . '
+      's-5   .   s-6'
+      '.     .   .  '
+      '.     .   .  '
+      's-7   .   s-8';
+    grid-template-columns: repeat(3, 1fr);
+  }
+  &.v-10 {
+    grid-template:
+      's-0   .   s-1'
+      '.    s-2    .'
+      's-3   .   s-4'
+      's-5   .   s-7'
+      '.    s-6  .  '
+      's-8   .   s-9';
+    grid-template-columns: repeat(3, 1fr);
+  }
+  &.v-11,
+  &.v-12,
+  &.v-13,
+  &.v-14 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+    #s-0 {
+      align-self: center;
+    }
+  }
+  &.v-14 {
+    svg {
+      height: 1.3rem;
+    }
+  }
+  .ace-of-spades {
+    font-family: Yellowtail;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    svg {
+      height: 100% !important;
+    }
+  }
+  #s-5,
+  #s-6,
+  #s-7,
+  #s-8,
+  #s-9 {
+    transform: rotateZ(180deg);
+  }
+  #s-1,
+  #s-0 {
+    align-self: flex-start;
+  }
+}

@@ -1,5 +1,5 @@
 @use '../../_variables.scss';
-@import '../../mixins.scss';
+@import './DecorationLayouts.scss';
 
 .card-decoration {
   @include decoration-content-layout;
