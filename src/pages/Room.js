@@ -28,7 +28,7 @@ const Room = () => {
             toggleHideInfo={() => toggleHideInfo(curr => !curr)}
           />
         </EmojiProvider>
-        <Action hideInfo={hideInfo} />{' '}
+        <Action hideInfo={hideInfo} />
       </div>
     </div>
   );

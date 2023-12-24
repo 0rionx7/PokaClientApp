@@ -11,12 +11,12 @@ import { setHasNexted } from 'features/gameState/gameStateSlice';
 
 const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const { gameId } = useParams();
+  const { data } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(state => state.account.username);
   const hasNexted = useSelector(state => state.gameState.hasNexted);
+  const [nextRound] = useNextRoundMutation();
   const [sitOut] = useSitOutMutation();
   const dispatch = useDispatch();
-  const [nextRound] = useNextRoundMutation();
-  const { data } = useGetGameStateQuery(gameId);
 
   const { kind } = handInfo;
   const hasTurn = data?.currentPlayerStateList?.at(0);

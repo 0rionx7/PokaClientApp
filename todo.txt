@@ -4,4 +4,3 @@ choose deck color
 order tables chronologicaly
 try catch or error handling on joinHandlers etc
 adjust chips responsive
-split evaluation / submit component

@@ -3,7 +3,7 @@ import LoadingSpinner from 'components/ui/LoadingSpinner';
 
 import Overlay from 'components/ui/Overlay';
 
-const useSnackBar = ({ secs = 2, height } = {}) => {
+const useSnackBar = ({ secs = 2, height, top } = {}) => {
   const [info, setSnackInfo] = useState(null);
 
   useEffect(() => {
@@ -18,7 +18,9 @@ const useSnackBar = ({ secs = 2, height } = {}) => {
   };
 
   const snackElement = info && (
-    <Overlay onClick={backDropClickHandler} style={{ height }}>
+    <Overlay
+      onClick={backDropClickHandler}
+      style={{ height, zIndex: top && 501 }}>
       <div className="snack-message">
         {info} {!secs && <LoadingSpinner color="red" />}
       </div>
