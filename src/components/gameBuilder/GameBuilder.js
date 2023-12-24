@@ -42,7 +42,7 @@ const GameBuilder = () => {
   const { snackElement, setSnackInfo } = useSnackBar();
   const [domReady, setDomReady] = useState(false);
 
-  const playersCount = data.playersStateList.length;
+  const playersCount = data.playersStateList.filter(isHere).length;
   const noOthersInPlay = data.playersStateList.filter(isHere).length === 1;
   const allOthersTapi =
     data.playersStateList.filter(state => state.resta > 0 && !state.sittingOut)

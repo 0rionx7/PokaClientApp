@@ -8,147 +8,8 @@
   height: var(--card-height);
   grid-area: handCards;
   justify-self: center;
-  &.cards-2 {
-    // .card {
-    //   &:first-child {
-    //     left: variables.$even-core;
-    //   }
-    //   &:nth-child(2) {
-    //     right: variables.$even-core;
-    //   }
-    // }
-    // .bet-amount {
-    //   right: calc(100% + 4px - variables.$even-core);
-    // }
-  }
-  &.cards-3 {
-    // .card {
-    //   &:first-child {
-    //     left: variables.$odd-core;
-    //   }
-    //   &:nth-child(3) {
-    //     right: variables.$odd-core;
-    //   }
-    // }
-    // .bet-amount {
-    //   right: calc(100% + 4px - variables.$odd-core);
-    // }
-  }
-  &.cards-4 {
-    // .card {
-    //   &:first-child {
-    //     left: variables.$even-mid;
-    //   }
-    //   &:nth-child(2) {
-    //     left: variables.$even-core;
-    //   }
-    //   &:nth-child(3) {
-    //     right: variables.$even-core;
-    //   }
-    //   &:nth-child(4) {
-    //     right: variables.$even-mid;
-    //   }
-    // }
-    // .bet-amount {
-    //   right: calc(100% + 4px - variables.$even-mid);
-    // }
-  }
-  &.cards-5 {
-    // .card {
-    //   &:first-child {
-    //     left: variables.$odd-mid;
-    //   }
-    //   &:nth-child(2) {
-    //     left: variables.$odd-core;
-    //   }
-    //   &:nth-child(4) {
-    //     right: variables.$odd-core;
-    //   }
-    //   &:nth-child(5) {
-    //     right: variables.$odd-mid;
-    //   }
-    // }
-    // .bet-amount {
-    //   right: calc(100% + 4px - variables.$odd-mid);
-    // }
-  }
-  &.cards-6 {
-    .card {
-      &:first-child {
-        left: variables.$even-outer;
-      }
-      &:nth-child(2) {
-        left: variables.$even-mid;
-      }
-      &:nth-child(3) {
-        left: variables.$even-core;
-      }
-      &:nth-child(4) {
-        right: variables.$even-core;
-      }
-      &:nth-child(5) {
-        right: variables.$even-mid;
-      }
-      &:nth-child(6) {
-        right: variables.$even-outer;
-      }
-    }
-    .bet-amount {
-      right: calc(100% + 4px - variables.$even-outer);
-    }
-  }
-  &.cards-7 {
-    .card {
-      &:first-child {
-        left: variables.$odd-outer;
-      }
-      &:nth-child(2) {
-        left: variables.$odd-mid;
-      }
-      &:nth-child(3) {
-        left: variables.$odd-core;
-      }
-      &:nth-child(5) {
-        right: variables.$odd-core;
-      }
-      &:nth-child(6) {
-        right: variables.$odd-mid;
-      }
-      &:nth-child(7) {
-        right: variables.$odd-outer;
-      }
-    }
-    .bet-amount {
-      right: calc(100% + 4px - variables.$odd-outer);
-    }
-  }
-  &.cards-8 {
-    .card {
-      &:first-child {
-        left: var(--card-width);
-      }
-      &:nth-child(2) {
-        left: variables.$even-outer;
-      }
-      &:nth-child(3) {
-        left: variables.$even-mid;
-      }
-      &:nth-child(4) {
-        left: variables.$even-core;
-      }
-      &:nth-child(5) {
-        right: variables.$even-core;
-      }
-      &:nth-child(6) {
-        right: variables.$even-mid;
-      }
-      &:nth-child(7) {
-        right: variables.$even-outer;
-      }
-      &:nth-child(8) {
-        right: var(--card-width);
-      }
-    }
+  .card {
+    position: relative;
   }
   .bet-grid {
     position: absolute;
@@ -164,18 +25,19 @@
     background-color: #9d97944e;
     font-size: 0.7rem;
   }
+  @include compact-cards;
 }
 .players-3,
 .players-4 {
   .p-2 {
-    @include bet_amount_right;
+    @include bet-grid-right;
   }
 }
 .players-5,
 .players-6 {
   .p-2,
   .p-3 {
-    @include bet_amount_right;
+    @include bet-grid-right;
   }
 }
 .players-7,
@@ -183,6 +45,6 @@
   .p-2,
   .p-3,
   .p-4 {
-    @include bet_amount_right;
+    @include bet-grid-right;
   }
 }
