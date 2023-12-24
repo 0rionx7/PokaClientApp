@@ -28,7 +28,7 @@ const Bet = ({ bet, resta }) => {
     let errors = {};
     if (values.amount < minBet && values.amount >= 0)
       errors.amount = `ελάχ. ποντάρισμα ${minBet}`;
-    else if (values.amount >= 0 && values.amount < chip)
+    else if (values.amount > 0 && values.amount < chip)
       errors.amount = `ελάχ. ποντάρισμα ${chip}`;
     if (values.amount + bet > resta) errors.amount = 'ΑΝΕΠΑΡΚΕΣ ΥΠΟΛΟΙΠΟ';
     return errors;

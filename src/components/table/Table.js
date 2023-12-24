@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -11,28 +11,44 @@ import { playerEntry } from 'common/utilities-functions';
 import DealerScreen from 'components/dealer/DealerScreen';
 import StayLeave from 'components/action/StayLeave';
 import Players from 'components/player/Players';
+import GameInfo from 'components/info/GameInfo';
 import Waiting from 'components/table/Waiting';
 import SitOut from 'components/action/SitOut';
+import useSnackBar from 'hooks/useSnackBar';
 import Board from 'components/table/Board';
 import './Table.scss';
 
 const Table = () => {
   const { gameId } = useParams();
-  const [sitOut] = useSitOutMutation();
-  const hostPlayerName = useSelector(state => state.account.username);
   const { data, refetch } = useGetGameStateQuery(gameId);
+  const hostPlayerName = useSelector(state => state.account.username);
+  const { snackElement, setSnackInfo } = useSnackBar({ secs: 5, top: true });
+  const [sitOut] = useSitOutMutation();
+  const initial = useRef(true);
+
   const hostPlayerState = data.playersStateList.find(
     playerEntry(hostPlayerName)
   );
+  const lastAtList = data.playersStateList.at(-1).playerName;
 
   useEffect(() => {
     return () => sitOut({ gameId });
   }, [gameId, sitOut]);
 
   useEffect(() => {
-    socket.on('connect', () => refetch());
+    socket.on('connect', _ => refetch());
     return () => socket.removeAllListeners('connect');
   }, [refetch]);
+
+  useEffect(() => {
+    if (
+      !data.dealer &&
+      !initial.current &&
+      hostPlayerState.playerName !== lastAtList
+    )
+      setSnackInfo(<GameInfo />);
+    initial.current = false;
+  }, [data.dealer, lastAtList, setSnackInfo, hostPlayerState.playerName]);
 
   return (
     <div className={'table players-' + data.playersStateList.length}>
@@ -44,6 +60,7 @@ const Table = () => {
       {data.dealer &&
         (data.dealer === hostPlayerName ? <DealerScreen /> : <Waiting />)}
       {hostPlayerState.sittingOut ? <StayLeave /> : <SitOut />}
+      {snackElement}
     </div>
   );
 };

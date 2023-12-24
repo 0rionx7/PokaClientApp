@@ -45,8 +45,14 @@
     background: colors.$main-color;
   }
 }
-.save-btn {
-  justify-self: center;
-  padding: 1rem;
-  margin-top: 1rem;
+.snack-message {
+  .game-info,
+  .info-container {
+    background: transparent;
+    width: 40vw;
+  }
+  .table-name,
+  .games-count {
+    display: none;
+  }
 }

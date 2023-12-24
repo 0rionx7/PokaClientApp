@@ -4,7 +4,7 @@
   z-index: 300;
   &:not([class*='0']) {
     // 0 for no bordrow
-    right: calc(100% + 4px);
+    right: calc(100% + 0.2rem);
     top: 50%;
     translate: 0 -50%;
   }
@@ -36,7 +36,7 @@
   display: grid;
   grid-template: 'green yellow red blue purple';
   grid-template-columns: repeat(4, max-content);
-  justify-content: end;
+  justify-content: center;
   img {
     display: block;
   }

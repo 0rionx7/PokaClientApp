@@ -1,5 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import GameDescription from 'components/info/GameDescription';
 import { useEmoji } from 'components/info/chat/EmojiProvider';
 import { collapseVertical } from 'assets/svgs/various';
@@ -12,8 +15,16 @@ import Buttons from 'components/info/Buttons';
 import './Info.scss';
 
 const Info = ({ hideInfo, toggleHideInfo }) => {
-  const [selected, setSelected] = useState(infoButtons.GAME_DESCRIPTION);
+  const { gameId } = useParams();
+  const { data } = useGetGameStateQuery(gameId);
+  const hostPlayerName = useSelector(state => state.account.username);
+  const [selected, setSelected] = useState(infoButtons.GAME_INFO);
   const { setShowPicker } = useEmoji();
+
+  useEffect(() => {
+    if (data.dealer === hostPlayerName)
+      setSelected(infoButtons.GAME_DESCRIPTION);
+  }, [data.dealer, hostPlayerName]);
 
   const toggleHandler = () => {
     toggleHideInfo();

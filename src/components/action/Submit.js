@@ -36,7 +36,7 @@ const Submit = () => {
       error: evaluationError,
     },
   ] = useEvaluateHandMutation();
-  const { snackElement, setSnackInfo } = useSnackBar();
+  const { snackElement, setSnackInfo } = useSnackBar({ top: true });
 
   const submittedHandCardsIndexes = selectedCardsIndexes(handCards);
   const submittedTableCardsIndexes = selectedCardsIndexes(tableCards);
