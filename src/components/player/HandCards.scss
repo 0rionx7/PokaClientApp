@@ -11,21 +11,20 @@
   .card {
     position: relative;
   }
-  .bet-grid {
-    position: absolute;
-    display: grid;
-    right: calc(100% + 0.2rem);
-    bottom: 40%;
-  }
-  .bet-amount {
-    place-self: center;
-    padding: 0.1rem 0.5rem;
-    border-radius: 7px;
-    color: rgba(255, 228, 196, 0.588);
-    background-color: #9d97944e;
-    font-size: 0.7rem;
-  }
   @include compact-cards;
+}
+.bet-grid {
+  position: absolute;
+  display: grid;
+  bottom: 40%;
+}
+.bet-amount {
+  place-self: center;
+  padding: 0.1rem 0.5rem;
+  border-radius: 7px;
+  color: rgba(255, 228, 196, 0.588);
+  background-color: #9d97944e;
+  font-size: 0.7rem;
 }
 .players-3,
 .players-4 {

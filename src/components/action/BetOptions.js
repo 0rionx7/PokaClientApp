@@ -42,7 +42,7 @@ const BetOptions = () => {
             }
             disabled={isSubmitting || isSuccess || errors.amount}
             style={{ gridArea: 'b-' + amount / chip }}
-            className="bet-amount orange"
+            className="bet-option orange"
           />
         );
       })}
