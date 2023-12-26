@@ -11,7 +11,7 @@ const Button = ({
 }) => {
   return (
     <button
-      className={'btn-base ' + (className ? className : '')}
+      className={'btn-base ' + (className ?? '')}
       style={{ ...style, backgroundColor: color }}
       type={type || 'button'}
       disabled={disabled}
