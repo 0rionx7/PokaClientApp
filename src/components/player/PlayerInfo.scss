@@ -1,0 +1,124 @@
+@use '../../variables';
+
+.player-info-container {
+  position: relative;
+  display: flex;
+  font-size: calc(0.2 * var(--card-height));
+  flex-direction: column;
+  height: calc(0.6 * var(--card-height));
+  width: calc(3.5 * var(--card-width) + variables.$avatar-size);
+  justify-content: space-evenly;
+  border-radius: 2rem;
+  color: bisque;
+  align-items: center;
+  border: 2px solid #ffe4c436;
+  padding-right: variables.$avatar-size;
+}
+.player-info {
+  position: relative;
+  grid-area: playerInfo;
+  display: flex;
+  align-items: center;
+  justify-self: center;
+}
+.playername {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  .fold {
+    position: absolute;
+    left: 10px;
+    top: 1px;
+    background-color: black;
+    border-radius: 0.3rem;
+  }
+}
+.gameplay-info {
+  align-items: center;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: relative;
+  span {
+    position: absolute;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(0.18 * var(--card-height));
+    height: calc(0.18 * var(--card-height));
+    border-radius: 50%;
+    font-weight: 600;
+    cursor: help;
+    &:hover + .tool-tip {
+      visibility: visible;
+    }
+  }
+}
+#denies {
+  background-color: red;
+  right: 0;
+  & + .tool-tip {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    bottom: initial;
+    top: 100%;
+    left: 100%;
+    padding: 4px 0 0 0;
+    background-image: linear-gradient(to bottom right, red, yellow);
+    .denied-cards {
+      display: flex;
+      .card {
+        scale: 0.8;
+      }
+    }
+  }
+}
+#swapped {
+  color: white;
+  background-color: rgb(42, 192, 0);
+  left: 7%;
+  & + .tool-tip {
+    left: 0%;
+  }
+}
+.total-bet {
+  position: absolute;
+  top: 100%;
+  right: variables.$avatar-size;
+  width: fit-content;
+  padding: 0.1rem 0.5rem;
+  border-radius: 7px;
+  color: rgba(255, 228, 196, 0.588);
+  background-color: #9d97944e;
+  font-size: 0.6rem;
+  .tool-tip {
+    right: 0;
+  }
+  &:hover .tool-tip {
+    visibility: visible;
+    &:hover {
+      visibility: hidden;
+    }
+  }
+}
+.dealer {
+  position: absolute;
+  right: 7%;
+  top: 1px;
+  background-color: yellow;
+  color: black;
+  font-weight: 600;
+  border-radius: 50%;
+  width: calc(0.24 * var(--card-height));
+  height: calc(0.24 * var(--card-height));
+  cursor: help;
+  &:hover + .tool-tip {
+    visibility: visible;
+    right: 0;
+    translate: 50%;
+  }
+}

@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 
-const Chip = ({ multiplier, index }) => {
+const Chip = ({ multiplier, index, startIndex }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
 
@@ -22,8 +22,8 @@ const Chip = ({ multiplier, index }) => {
       ? 'blue'
       : 'purple';
   const style = {
-    bottom: 3 * index + 'px',
-    gridArea: color === 'black' ? 'green' : color,
+    bottom: 3 * (index + (startIndex ?? 0)) + 'px',
+    gridArea: startIndex === undefined ? color : 'green',
   };
 
   return (

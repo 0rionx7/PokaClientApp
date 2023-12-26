@@ -1,25 +1,12 @@
-$handCards-shift: calc(-0.35 * var(--card-height));
-@mixin top-player-shifts {
-  top: $handCards-shift;
-  &.submitted {
-    top: calc($handCards-shift - 1 * variables.$selected-shift);
-  }
-  .bet-grid {
-    right: 100% !important;
-    top: 100%;
-  }
-}
-
 @mixin table-grids {
+  $handCards-shift: calc(-0.35 * var(--card-height));
+
   &.players-2 {
     grid-template:
       '. player-2 .' variables.$player-height
       '.  board   .' 1fr
       '. player-1 .' variables.$player-height;
     grid-template-columns: 1fr variables.$board-width 1fr;
-    .p-2 {
-      @include top-player-shifts;
-    }
   }
   &.players-3 {
     grid-template:
@@ -40,9 +27,6 @@ $handCards-shift: calc(-0.35 * var(--card-height));
       'player-2  board   player-4' 1fr
       '.        player-1        .' variables.$player-height;
     grid-template-columns: 1fr variables.$board-width 1fr;
-    .p-3 {
-      @include top-player-shifts;
-    }
   }
   &.players-5 {
     grid-template:
@@ -54,15 +38,8 @@ $handCards-shift: calc(-0.35 * var(--card-height));
     .p-5 {
       top: -150%;
     }
-    .p-3,
-    .p-4 {
-      @include top-player-shifts;
-    }
     .p-3 {
       left: 35%;
-      .bet-grid {
-        left: calc(100% + 2.5rem);
-      }
     }
     .p-4 {
       left: -35%;
@@ -77,9 +54,6 @@ $handCards-shift: calc(-0.35 * var(--card-height));
     .p-2,
     .p-6 {
       top: -75%;
-    }
-    .p-4 {
-      @include top-player-shifts;
     }
     .p-3,
     .p-5 {
@@ -101,14 +75,9 @@ $handCards-shift: calc(-0.35 * var(--card-height));
     }
     .p-4 {
       left: 35%;
-      @include top-player-shifts;
-      .bet-grid {
-        left: calc(100% + 2.5rem);
-      }
     }
     .p-5 {
       left: -35%;
-      @include top-player-shifts;
     }
     .p-6 {
       justify-self: flex-end;
@@ -133,9 +102,6 @@ $handCards-shift: calc(-0.35 * var(--card-height));
     }
     .p-4 {
       top: 15%;
-    }
-    .p-5 {
-      @include top-player-shifts;
     }
     .p-6 {
       top: 15%;

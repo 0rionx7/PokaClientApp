@@ -11,7 +11,7 @@ const Kaves = ({ totalPot, rows }) => {
   const chips = useChips(totalPot, data.chip);
 
   const showKaves = data.kaves[0]?.amount < totalPot;
-  const kavesClass = 'kaves' + (rows % 2 === 0 ? ' shift' : '');
+  const kavesClass = 'kaves ' + (rows && rows % 2 === 0 && 'shift');
 
   return (
     <div className={kavesClass}>

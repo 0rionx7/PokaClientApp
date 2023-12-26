@@ -20,11 +20,12 @@ const Players = () => {
 
   return (
     <>
-      {playersStateList.map((playerState, i) => (
+      {playersStateList.map((playerState, i, arr) => (
         <Player
           playerState={playerState}
           index={i}
           key={playerState.playerName}
+          playersCount={arr.length}
         />
       ))}
     </>

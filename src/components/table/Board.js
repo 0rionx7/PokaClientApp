@@ -16,7 +16,7 @@ const Board = () => {
   );
 
   return (
-    <div className={'board ' + data?.boardClass}>
+    <div className={'board ' + (data?.boardClass ?? '')}>
       {!data?.rowsIndexes?.length && totalPot > 0 && (
         <Kaves totalPot={totalPot} rows={0} />
       )}

@@ -2,6 +2,7 @@ import DeniedCards from 'components/player/DeniedCards';
 import StatusInfo from 'components/player/StatusInfo';
 import ToolTip from 'components/ui/ToolTip';
 import useTimerBar from 'hooks/useTimerBar';
+import './PlayerInfo.scss'
 
 const PlayerInfo = ({ playerState }) => {
   const timerBar = useTimerBar(playerState);

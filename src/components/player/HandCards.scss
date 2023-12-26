@@ -1,4 +1,3 @@
-@use '../../variables';
 @import './HandCardsCompact.scss';
 
 .hand-cards {
@@ -16,6 +15,7 @@
 .bet-grid {
   position: absolute;
   display: grid;
+  right: calc(100% + 4px);
   bottom: 40%;
 }
 .bet-amount {
@@ -25,25 +25,4 @@
   color: rgba(255, 228, 196, 0.588);
   background-color: #9d97944e;
   font-size: 0.7rem;
-}
-.players-3,
-.players-4 {
-  .p-2 {
-    @include bet-grid-right;
-  }
-}
-.players-5,
-.players-6 {
-  .p-2,
-  .p-3 {
-    @include bet-grid-right;
-  }
-}
-.players-7,
-.players-8 {
-  .p-2,
-  .p-3,
-  .p-4 {
-    @include bet-grid-right;
-  }
 }

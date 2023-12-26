@@ -1,3 +1,5 @@
+@use '../../variables';
+
 @mixin compact-cards {
   &.cards-2 {
     // .card {
@@ -85,7 +87,7 @@
       }
     }
     .bet-grid {
-      right: calc(100% + 4px - variables.$even-outer) !important;
+      right: calc(100% + 4px - variables.$even-outer);
     }
   }
   &.cards-7 {
@@ -110,47 +112,7 @@
       }
     }
     .bet-grid {
-      right: calc(100% + 4px - variables.$odd-outer) !important;
-    }
-  }
-}
-@mixin bet-grid-right {
-  .bet-grid {
-    left: calc(100% + 4px);
-  }
-  // .cards-1 {
-  //   .bet-grid {
-  //     left: calc(100% + 4px);
-  //   }
-  // }
-  // .cards-2 {
-  //   .bet-grid {
-  //     left: calc(100% + 4px - variables.$even-core);
-  //   }
-  // }
-  // .cards-3 {
-  //   .bet-grid {
-  //     left: calc(100% + 4px - variables.$odd-core);
-  //   }
-  // }
-  // .cards-4 {
-  //   .bet-grid {
-  //     left: calc(100% + 4px - variables.$even-mid);
-  //   }
-  // }
-  // .cards-5 {
-  //   .bet-grid {
-  //     left: calc(100% + 4px - variables.$odd-mid);
-  //   }
-  // }
-  .cards-6 {
-    .bet-grid {
-      left: calc(100% + 4px - variables.$even-outer);
-    }
-  }
-  .cards-7 {
-    .bet-grid {
-      left: calc(100% + 4px - variables.$odd-outer);
+      right: calc(100% + 4px - variables.$odd-outer);
     }
   }
 }
