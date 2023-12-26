@@ -1,4 +1,4 @@
-const useChipsStyle = ({ cardsCount, top }) => {
+export function createChipsStyle(cardsCount, top) {
   if (!top) return {};
   switch (cardsCount) {
     case 1:
@@ -18,6 +18,4 @@ const useChipsStyle = ({ cardsCount, top }) => {
     default:
       return {};
   }
-};
-
-export default useChipsStyle;
+}

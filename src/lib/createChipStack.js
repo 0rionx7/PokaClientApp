@@ -13,7 +13,7 @@ function createChipJsx(count, multiplier, startIndex) {
     ));
 }
 
-const useChips = (amount, chip) => {
+export function createChipStack(amount, chip) {
   if (amount < 0) return [];
   const reds = Math.floor(amount / (100 * chip));
   const yellows = Math.floor((amount - reds * 100 * chip) / (25 * chip));
@@ -64,6 +64,4 @@ const useChips = (amount, chip) => {
     ...blackChips,
     ...yellowChips,
   ];
-};
-
-export default useChips;
+}

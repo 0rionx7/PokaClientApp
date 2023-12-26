@@ -14,11 +14,8 @@ import {
   useGetGameStateQuery,
   useSetGameVariantMutation,
 } from 'features/gameState/gameStateApi';
-import {
-  createGameVariant,
-  isHere,
-  notEnoughCards,
-} from 'common/utilities-functions';
+import { isHere, notEnoughCards } from 'common/utilities-functions';
+import { createGameVariant } from 'lib/createGameVariant';
 import BuilderItem from 'components/gameBuilder/BuilderItem';
 import GameChooser from 'components/gameBuilder/GameChooser';
 import DealingOptions from 'components/gameBuilder/DealingOptions';

@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { createPalyerClass } from 'lib/createPlayerClass';
+import { createChipsStyle } from 'lib/createChipsStyle';
 import { playerEntry } from 'common/utilities-functions';
 import PlayerInfo from 'components/player/PlayerInfo';
 import HandCards from 'components/player/HandCards';
-import usePalyerClass from 'hooks/usePlayerClass';
-import useChipsStyle from 'hooks/useChipsStyle';
 import useSitOutTimer from 'hooks/useSitOutTimer';
 import './Player.scss';
 
@@ -16,14 +16,13 @@ const Player = ({ playerState, index, playersCount }) => {
   const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-
-  const playerClass = usePalyerClass({ playersCount, index });
-  const style = useChipsStyle({
-    cardsCount: playerState.handCards.length,
-    top: playerClass.includes('top'),
-  });
-
   // useSitOutTimer(playerState);
+
+  const playerClass = createPalyerClass(playersCount, index);
+  const style = createChipsStyle(
+    playerState.handCards.length,
+    playerClass.includes('top')
+  );
 
   const hostPlayerState = useMemo(
     () => data?.playersStateList.find(playerEntry(hostPlayerName)),

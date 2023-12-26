@@ -2,14 +2,15 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { createChipStack } from 'lib/createChipStack';
 import Card from 'components/card/Card';
-import useChips from 'hooks/useChips';
 import './HandCards.scss';
 
 const HandCards = ({ cards, canBeSelected, bet, style }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const chips = useChips(bet, data.chip);
+
+  const chips = createChipStack(bet, data.chip);
 
   return (
     <div className={'hand-cards cards-' + cards?.length}>

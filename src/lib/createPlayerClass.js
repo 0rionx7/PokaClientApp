@@ -1,4 +1,4 @@
-const usePalyerClass = ({ playersCount, index }) => {
+export function createPalyerClass(playersCount, index) {
   switch (playersCount) {
     case 2:
       if (index === 1) return ' top';
@@ -38,6 +38,4 @@ const usePalyerClass = ({ playersCount, index }) => {
       break;
   }
   return '';
-};
-
-export default usePalyerClass;
+}
