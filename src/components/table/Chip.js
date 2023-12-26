@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import './Chip.scss';
 
 const Chip = ({ multiplier, index, startIndex }) => {
   const { gameId } = useParams();

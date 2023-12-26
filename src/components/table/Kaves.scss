@@ -31,24 +31,3 @@
     }
   }
 }
-.chips {
-  position: relative;
-  display: grid;
-  grid-template: 'green yellow red blue purple';
-  grid-template-columns: repeat(4, max-content);
-  justify-content: center;
-  img {
-    display: block;
-  }
-  span {
-    position: absolute;
-    left: 0.6rem;
-    color: white;
-    font-size: 0.3rem;
-    translate: -50% 100%;
-  }
-}
-.chip {
-  position: relative;
-  width: 1.2rem;
-}
