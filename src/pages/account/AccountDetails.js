@@ -6,6 +6,7 @@ import LastGame from 'pages/account/LastGame';
 import UserName from 'pages/account/UserName';
 import Frame from 'components/ui/Frame';
 import classes from './Account.module.scss';
+import Config from 'pages/account/Config';
 
 const AccountDetails = () => {
   const { data } = useGetUserQuery(undefined, {
@@ -32,6 +33,7 @@ const AccountDetails = () => {
             title="ΕΠΑΝΕΚΚΙΝΗΣΗ τελ. ΠΑΙΧΝΙΔΙΟΥ"
           />
         )}
+        <AccountItem element={<Config />} title="ΡΥΘΜΙΣΕΙΣ" />
       </Frame>
     </div>
   );

@@ -3,13 +3,21 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { gameStateApi } from 'features/gameState/gameStateApi';
 import { accountApi } from 'features/account/accountApi';
 
-export const accountSlice = createSlice({
-  name: 'account',
-  initialState: {
+const initialValuesFn = () => {
+  const initialState = {
     username: '',
     token: '',
     joinRequests: [],
-  },
+    hideInfo: false,
+  };
+  try {
+    initialState.hideInfo = JSON.parse(window.localStorage.getItem('hideInfo'));
+  } catch (error) {}
+  return initialState;
+};
+export const accountSlice = createSlice({
+  name: 'account',
+  initialState: initialValuesFn,
   reducers: {
     requestRejected: (state, action) => {
       state.joinRequests = state.joinRequests.filter(
@@ -22,6 +30,7 @@ export const accountSlice = createSlice({
       );
       if (approvedRequest) approvedRequest.joined = action.payload.gameId;
     },
+    setHideInfo: (state, action) => ({ ...state, hideInfo: action.payload }),
   },
   extraReducers: builder => {
     builder
@@ -66,4 +75,5 @@ export const accountSlice = createSlice({
 });
 
 export const accountReducer = accountSlice.reducer;
-export const { requestRejected, setRequestGameId } = accountSlice.actions;
+export const { requestRejected, setRequestGameId, setHideInfo } =
+  accountSlice.actions;

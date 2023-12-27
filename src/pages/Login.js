@@ -13,16 +13,18 @@ const Login = () => {
   const [login] = useLoginMutation();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!username) return;
-    try {
-      username === 'remove'
-        ? window.localStorage.removeItem('username')
-        : window.localStorage.setItem('username', username);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [username]);
+  useEffect(
+    () => () => {
+      try {
+        username
+          ? window.localStorage.setItem('username', username)
+          : window.localStorage.removeItem('username');
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [username]
+  );
 
   const initialValues = useMemo(() => {
     let values = { username: '', password: '', rememberMe: false };
@@ -41,7 +43,7 @@ const Login = () => {
   const submitHandler = async (values, { setErrors }) => {
     values.username = values.username.trim();
     if (values.username && values.rememberMe) setUsername(values.username);
-    else if (!values.rememberMe) setUsername('remove');
+    else if (!values.rememberMe) setUsername('');
 
     const result = await login(values);
     if (result?.error?.data) setErrors({ login: result.error.data });
