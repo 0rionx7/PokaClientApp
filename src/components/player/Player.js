@@ -21,7 +21,8 @@ const Player = ({ playerState, index, playersCount }) => {
   const playerClass = createPalyerClass(playersCount, index);
   const style = createChipsStyle(
     playerState.handCards.length,
-    playerClass.includes('top')
+    playerClass.includes('top'),
+    playerClass.includes('left')
   );
 
   const hostPlayerState = useMemo(

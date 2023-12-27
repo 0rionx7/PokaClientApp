@@ -1,20 +1,20 @@
-export function createChipsStyle(cardsCount, top) {
+export function createChipsStyle(cardsCount, top, left) {
   if (!top) return {};
   switch (cardsCount) {
     case 1:
-      return { right: `calc( 2.9 * var(--card-width))` };
+      return { [left ? 'left' : 'right']: `calc( 2.9 * var(--card-width))` };
     case 2:
-      return { right: `calc( 3.3 * var(--card-width))` };
+      return { [left ? 'left' : 'right']: `calc( 3.3 * var(--card-width))` };
     case 3:
-      return { right: `calc( 3.9 * var(--card-width))` };
+      return { [left ? 'left' : 'right']: `calc( 3.9 * var(--card-width))` };
     case 4:
-      return { right: `calc( 4.3 * var(--card-width))` };
+      return { [left ? 'left' : 'right']: `calc( 4.3 * var(--card-width))` };
     case 5:
-      return { right: `calc( 5.1 * var(--card-width))` };
+      return { [left ? 'left' : 'right']: `calc( 5.1 * var(--card-width))` };
     case 6:
-      return { right: `calc( 5.5 * var(--card-width))` };
+      return { [left ? 'left' : 'right']: `calc( 5.5 * var(--card-width))` };
     case 7:
-      return { right: `calc( 6.3 * var(--card-width))` };
+      return { [left ? 'left' : 'right']: `calc( 6.3 * var(--card-width))` };
     default:
       return {};
   }
