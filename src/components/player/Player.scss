@@ -63,6 +63,12 @@
   .avatar {
     left: 0;
   }
+  .dealer {
+    right: 7%;
+  }
+  .fold {
+    left: 0;
+  }
 }
 .left {
   .bet-grid {
@@ -82,5 +88,12 @@
     .bet-grid {
       left: calc(100% + 4px - variables.$odd-outer);
     }
+  }
+  .fold {
+    left: initial;
+    right: 0;
+  }
+  .dealer {
+    left: 7%;
   }
 }

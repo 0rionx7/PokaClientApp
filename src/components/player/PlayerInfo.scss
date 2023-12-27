@@ -30,10 +30,13 @@
   text-align: center;
   .fold {
     position: absolute;
-    left: 10px;
-    top: 1px;
+    left: 7%;
+    top: 50%;
+    translate: 0 -50%;
+    font-size: 0.7rem;
     background-color: black;
     border-radius: 0.3rem;
+    padding: 0 4px;
   }
 }
 .gameplay-info {
@@ -107,7 +110,7 @@
 }
 .dealer {
   position: absolute;
-  right: 7%;
+  right: 0;
   top: 1px;
   background-color: yellow;
   color: black;

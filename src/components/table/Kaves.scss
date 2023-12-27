@@ -2,13 +2,12 @@
   position: absolute;
   display: grid;
   z-index: 300;
-  &:not([class*='0']) {
-    // 0 for no bordrow
+  // 0 for no bordrow
+  &:not([class*='center']) {
     right: calc(100% + 0.2rem);
-    top: 50%;
-    translate: 0 -50%;
+    top: 80%;
   }
-  &.shift {
+  &.even {
     top: 0;
   }
 }

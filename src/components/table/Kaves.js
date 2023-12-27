@@ -11,10 +11,10 @@ const Kaves = ({ totalPot, rows }) => {
 
   const chips = createChipStack(totalPot, data.chip);
   const showKaves = data.kaves[0]?.amount < totalPot;
-  const kavesClass = 'kaves ' + (rows && rows % 2 === 0 && 'shift');
+  const kavesClass = !rows ? 'center' : rows % 2 === 0 ? 'even' : '';
 
   return (
-    <div className={kavesClass}>
+    <div className={'kaves ' + kavesClass}>
       <div className="chips">{chips}</div>
       <div className="pot">ποτ: {totalPot.toLocaleString()}</div>
       {showKaves &&
