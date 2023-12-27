@@ -5,7 +5,7 @@ export function createChipsStyle(cardsCount, top, left) {
     case 1:
       return { [side]: `calc( 2.9 * var(--card-width))` };
     case 2:
-      return { [side]: `calc( 3.3 * var(--card-width))` };
+      return { [side]: `calc( 3.35 * var(--card-width))` };
     case 3:
       return { [side]: `calc( 3.9 * var(--card-width))` };
     case 4:
