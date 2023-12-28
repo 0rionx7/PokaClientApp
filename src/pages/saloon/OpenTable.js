@@ -27,8 +27,7 @@ const OpenTable = () => {
       errors.openTable = 'Το "τσίπ" είναι μεγαλύτερο από την κάβα.\n';
     if (values.cava <= 0 || values.chip <= 0)
       errors.openTable = 'Δεν επιτρέπονται αρνητικές τιμές\n';
-    if (values.cava > 1000000)
-      errors.openTable = 'Είναι πολλά τα λεφτά Άρη!\nΜέγιστη κάβα 1Μ';
+    if (values.cava > 1000000) errors.openTable = 'Μέγιστη κάβα 1Μ';
     return errors;
   };
   const submitHandler = async (values, { setErrors }) => {
@@ -45,7 +44,6 @@ const OpenTable = () => {
       <div className="title">
         <h3>Δημιουργία Τραπεζιού</h3>
       </div>
-
       <Formik
         key="openTable"
         initialValues={initialValues}

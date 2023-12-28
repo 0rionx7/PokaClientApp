@@ -4,9 +4,9 @@ import AccountItem from 'pages/account/AccountItem';
 import EditPassword from 'pages/account/EditPassword';
 import LastGame from 'pages/account/LastGame';
 import UserName from 'pages/account/UserName';
+import Config from 'pages/account/Config';
 import Frame from 'components/ui/Frame';
 import classes from './Account.module.scss';
-import Config from 'pages/account/Config';
 
 const AccountDetails = () => {
   const { data } = useGetUserQuery(undefined, {

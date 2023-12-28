@@ -3,7 +3,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { gameStateApi } from 'features/gameState/gameStateApi';
 import { accountApi } from 'features/account/accountApi';
 
-const initialValuesFn = () => {
+const initialStateFn = () => {
   const initialState = {
     username: '',
     token: '',
@@ -17,7 +17,7 @@ const initialValuesFn = () => {
 };
 export const accountSlice = createSlice({
   name: 'account',
-  initialState: initialValuesFn,
+  initialState: initialStateFn,
   reducers: {
     requestRejected: (state, action) => {
       state.joinRequests = state.joinRequests.filter(

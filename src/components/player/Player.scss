@@ -95,5 +95,9 @@
   }
   .dealer {
     left: 7%;
+    & + .tool-tip {
+      left: 0;
+      translate: 0;
+    }
   }
 }

@@ -35,7 +35,7 @@ import './GameBuilder.scss';
 const GameBuilder = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const [setGameVariant] = useSetGameVariantMutation();
+  const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [domReady, setDomReady] = useState(false);
 
@@ -148,7 +148,11 @@ const GameBuilder = () => {
                     btnPrompt || (isValid ? 'ΜΟΙΡΑΣΤΕ' : errors.buildGame)
                   }
                   disabled={
-                    isSubmitting || !isValid || allOthersTapi || noOthersInPlay
+                    isSubmitting ||
+                    isSuccess ||
+                    !isValid ||
+                    allOthersTapi ||
+                    noOthersInPlay
                   }
                   onClick={submitForm}
                   className="deal-btn"
