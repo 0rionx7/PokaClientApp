@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 
 import { useOpenTableMutation } from 'features/gameState/gameStateApi';
-import StartingCard from 'pages/saloon/StartingCard';
 import Button from 'components/ui/Button';
 import Reaction from 'pages/saloon/Reaction';
 import './OpenTable.scss';
@@ -16,7 +15,6 @@ const OpenTable = () => {
 
   const initialValues = {
     tableName: 'Table' + nanoid(3),
-    startingCard: 7,
     cava: 1000000,
     chip: 10,
     reaction: 30,
@@ -61,11 +59,6 @@ const OpenTable = () => {
               <div className="form-control">
                 <label htmlFor="tableName">Όνομα τραπεζιού</label>
                 <Field id="tableName" name="tableName" type="text" />
-              </div>
-              <div className="form-control">
-                <Field name="startingCard">
-                  {({ field }) => <StartingCard field={field} />}
-                </Field>
               </div>
               <div className="form-control">
                 <label htmlFor="cava">&quot;Κάβα&quot;</label>
