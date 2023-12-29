@@ -20,6 +20,7 @@ const gameNames = {
   GRAVEYARD: 'ΝΕΚΡΟΤΑΦΕΙΟ',
   CROSS: 'ΣΤΑΥΡΟΣ',
   CORNER: 'ΓΩΝΙΑ',
+  QUEEN: 'FOLLOW THE QUEEN',
 };
 
 export const builderDefaults = {
@@ -44,6 +45,13 @@ export const builderDefaults = {
 export const games = [
   {
     gameName: gameNames.POKER,
+    builderDefaults: {
+      cardsInHand: 5,
+      handCardsInPlay: ['5'],
+    },
+  },
+  {
+    gameName: gameNames.QUEEN,
     builderDefaults: {
       cardsInHand: 5,
       handCardsInPlay: ['5'],

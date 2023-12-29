@@ -9,16 +9,18 @@ const RenderedCard = ({ index }) => {
   const tableCards = useSelector(state => state.gameState.tableCards);
   const playerName = useSelector(state => state.account.username);
   const { gameId } = useParams();
-  const { currentPlayerStateList, playerSubmitted, thorns } =
-    useGetGameStateQuery(gameId, {
+  const { currentPlayerList, playerSubmitted, thorns } = useGetGameStateQuery(
+    gameId,
+    {
       selectFromResult: ({ data }) => ({
-        currentPlayerStateList: data?.currentPlayerStateList,
+        currentPlayerList: data?.currentPlayerList,
         thorns: data?.thorns,
         playerSubmitted: data?.playersStateList.find(playerEntry(playerName))
           ?.submittedHand.length,
       }),
-    });
-  const [currentPlayerState] = currentPlayerStateList;
+    }
+  );
+  const [currentPlayerState] = currentPlayerList;
   const isSubmitting = currentPlayerState?.selecting?.submit;
   const card = tableCards[index];
 

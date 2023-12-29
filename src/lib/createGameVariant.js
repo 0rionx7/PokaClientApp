@@ -45,5 +45,5 @@ export function createGameVariant({ showTitles, hiddenTitles, ...gameInfo }) {
     ];
 
   if (!rowsIndexes.length) rowsIndexes = gameInfo.rowsIndexes;
-  return { ...gameInfo, rowsIndexes };
+  return { ...gameInfo, rowsIndexes, startingCard: +gameInfo.startingCard };
 }

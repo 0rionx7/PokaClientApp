@@ -19,7 +19,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const dispatch = useDispatch();
 
   const { kind } = handInfo;
-  const hasTurn = data?.currentPlayerStateList?.at(0);
+  const hasTurn = data?.currentPlayerList?.at(0);
   const submitting = hasTurn?.selecting?.submit;
   const isHostPlayer = playerName === hostPlayerName;
   const isPlaying = playerName === hasTurn?.playerName;

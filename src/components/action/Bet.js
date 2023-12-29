@@ -15,14 +15,14 @@ const Bet = ({ bet, resta }) => {
   const { gameId } = useParams();
   const [placeBet, { reset, isSuccess }] = useBetMutation();
   const {
-    data: { maxBet, chip, currentPlayerStateList },
+    data: { maxBet, chip, currentPlayerList },
   } = useGetGameStateQuery(gameId);
 
   const minBet = Math.min(maxBet, resta) - bet;
 
   useEffect(() => {
     return () => reset();
-  }, [reset, currentPlayerStateList]);
+  }, [reset, currentPlayerList]);
 
   const validate = values => {
     let errors = {};

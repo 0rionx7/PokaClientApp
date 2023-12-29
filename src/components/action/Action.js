@@ -15,7 +15,7 @@ const Action = ({ hideInfo }) => {
   const { gameId } = useParams();
   const hostPlayerName = useSelector(state => state.account.username);
   const {
-    data: { playersStateList, currentPlayerStateList, dealer },
+    data: { playersStateList, currentPlayerList, dealer },
   } = useGetGameStateQuery(gameId);
 
   const hostPlayerState = useMemo(
@@ -23,7 +23,7 @@ const Action = ({ hideInfo }) => {
     [playersStateList, hostPlayerName]
   );
 
-  const [currentPlayer] = currentPlayerStateList;
+  const [currentPlayer] = currentPlayerList;
   const hostTurn = currentPlayer?.playerName === hostPlayerName;
 
   if (!gameId) return null;

@@ -9,7 +9,7 @@ const useTimerBar = playerState => {
   const [width, setWidth] = useState(100);
 
   const { playerName, handInfo } = playerState;
-  const [currentPlayerState] = data?.currentPlayerStateList;
+  const [currentPlayerState] = data?.currentPlayerList;
   const isActive = currentPlayerState?.playerName === playerName;
   const submitting = currentPlayerState?.selecting?.submit;
 

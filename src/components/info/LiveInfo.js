@@ -7,9 +7,9 @@ import './LiveInfo.scss';
 const LiveInfo = () => {
   const { gameId } = useParams();
   const {
-    data: { currentPlayerStateList, playersStateList, gamesCount },
+    data: { currentPlayerList, playersStateList, gamesCount },
   } = useGetGameStateQuery(gameId);
-  const [currentPlayer] = currentPlayerStateList;
+  const [currentPlayer] = currentPlayerList;
 
   const pot = useMemo(
     () => playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
