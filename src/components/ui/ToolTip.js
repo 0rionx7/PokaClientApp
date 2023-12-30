@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 const ToolTip = ({ info, children }) => {
   const hideInfo = useSelector(state => state.account.hideInfo);
 
-  if (hideInfo) return null;
+  if (hideInfo && info !== 'ΑΡΝΗΣΕΙΣ' && !info.includes('αλλαγές')) return null;
   return (
     <div className="tool-tip">
       {info}
