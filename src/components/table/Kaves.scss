@@ -1,7 +1,6 @@
 .kaves {
   position: absolute;
   display: grid;
-  z-index: 7;
   // 0 for no bordrow
   &:not([class*='center']) {
     right: calc(100% + 0.2rem);
