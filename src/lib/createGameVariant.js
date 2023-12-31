@@ -1,4 +1,5 @@
-import { gameNames, tabloCount } from 'common/text-constants';
+import { tabloCount } from 'common/text-constants';
+import { gameNames } from 'common/games';
 
 export function createGameVariant({ showTitles, hiddenTitles, ...gameInfo }) {
   let rowsIndexes = [];
@@ -38,11 +39,7 @@ export function createGameVariant({ showTitles, hiddenTitles, ...gameInfo }) {
         break;
     }
   else if (gameInfo.railroadLength)
-    rowsIndexes = [
-      Array(+gameInfo.railroadLength)
-        .fill('')
-        .map((_, i) => i),
-    ];
+    rowsIndexes = [[...Array(+gameInfo.railroadLength).keys()]];
 
   if (!rowsIndexes.length) rowsIndexes = gameInfo.rowsIndexes;
   return { ...gameInfo, rowsIndexes, startingCard: +gameInfo.startingCard };

@@ -1,0 +1,49 @@
+.card-container {
+  display: grid;
+  place-items: center;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+  max-width: 900px;
+  height: 100%;
+  .card {
+    scale: 1.3;
+  }
+  button {
+    padding: 1.5rem;
+  }
+}
+.selections {
+  display: grid;
+  color: bisque;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+select {
+  height: 1.5rem;
+  text-align: center;
+  border-radius: 4px;
+  background-color: bisque;
+  font-weight: 600;
+  font-size: 0.9rem;
+  option {
+    font-weight: 600;
+  }
+  &:first-child {
+    margin-top: 0.5rem;
+  }
+}
+.replace {
+  color: bisque;
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+}
+.jokers {
+  display: flex;
+  gap: 4px;
+  .card {
+    color: initial;
+    scale: 1;
+  }
+}

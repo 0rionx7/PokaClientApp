@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -7,7 +7,6 @@ import {
   useNextRoundMutation,
   useSitOutMutation,
 } from 'features/gameState/gameStateApi';
-import { setHasNexted } from 'features/gameState/gameStateSlice';
 
 const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const { gameId } = useParams();
@@ -16,7 +15,6 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const hasNexted = useSelector(state => state.gameState.hasNexted);
   const [nextRound] = useNextRoundMutation();
   const [sitOut] = useSitOutMutation();
-  const dispatch = useDispatch();
 
   const { kind } = handInfo;
   const hasTurn = data?.currentPlayerList?.at(0);
@@ -64,11 +62,6 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
     hasNexted,
     gameId,
   ]);
-
-  useEffect(() => {
-    if (!isHostPlayer || data?.reaction === 101) return;
-    if (!kind) dispatch(setHasNexted(false));
-  }, [kind, isHostPlayer, dispatch, data?.reaction]);
 };
 
 export default useSitOutTimer;

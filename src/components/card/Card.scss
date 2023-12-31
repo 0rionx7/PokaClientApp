@@ -18,6 +18,9 @@
     box-shadow: 0 calc(-0.1 * var(--card-height)) #3fa603,
       0 calc(-0.1 * var(--card-height) - 1px) black;
   }
+  &.joker {
+    background-color: #c1fe8f;
+  }
   &[class*='v-'] {
     padding: 0.3rem 0.1rem 0.3rem 0.3rem;
   }

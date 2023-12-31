@@ -9,10 +9,10 @@ import {
 } from 'features/gameState/gameStateApi';
 import { isMirror, selectedCardsIndexes } from 'common/utilities-functions';
 import { describeHand } from 'common/text-functions';
-import { gameNames } from 'common/text-constants';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';
+import { gameNames } from 'common/games';
 
 const Submit = () => {
   const { gameId } = useParams();

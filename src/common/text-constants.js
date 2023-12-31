@@ -115,6 +115,7 @@ export const errorMessages = {
   HAND: 'επιλογή τουλάχιστον ενός χαρτιού από το ΧΕΡΙ\n',
   NO_CARDS: 'δεν επαρκούν τα χαρτιά\n',
 };
+export const suitName = { C: 'ΣΠΑΘΙ', H: 'ΚΟΥΠΑ', S: 'ΜΠΑΣΤΟΥΝΙ', D: 'ΚΑΡΟ' };
 export const orderName = [
   'ΠΡΩΤΟ',
   'ΔΕΥΤΕΡΟ',
@@ -124,6 +125,7 @@ export const orderName = [
   'ΕΚΤΟ',
   'ΕΒΔΟΜΟ',
 ];
+export const orderNumber = ['1ο', '2ο', '3ο', '4ο', '5ο'];
 export const count = ['', 'ΜΟΝΟ', 'ΔΙΠΛΟ', 'ΤΡΙΠΛΟ'];
 export const countFem = [
   '',

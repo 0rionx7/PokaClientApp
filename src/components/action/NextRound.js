@@ -10,7 +10,7 @@ const NextRound = () => {
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
 
   return (
-    <Overlay style={{ zIndex: 50 }}>
+    <Overlay style={{ zIndex: 50, backgroundColor: 'rgb(0 0 0 / 4%)' }}>
       <Button
         prompt={
           isSuccess ? <h2>αναμονή υπολοίπων...</h2> : <h2>Επόμενος γύρος</h2>

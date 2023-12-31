@@ -7,6 +7,7 @@ import { playerEntry } from 'common/utilities-functions';
 import NextRound from 'components/action/NextRound';
 import Results from 'components/info/Results';
 import LiveInfo from 'components/info/LiveInfo';
+import Overlay from 'components/ui/Overlay';
 import Play from 'components/action/Play';
 import Renew from 'components/action/Renew';
 import './Action.scss';
@@ -29,17 +30,23 @@ const Action = ({ hideInfo }) => {
   if (!gameId) return null;
   return (
     <div className={'action-container ' + (hideInfo ? 'full-width' : '')}>
-      {hostTurn ? (
+      {currentPlayer?.handInfo?.kind ? (
+        <Results />
+      ) : hostTurn || hostPlayerState.jokering ? (
         <Play />
       ) : (
-        !dealer && !currentPlayer?.handInfo?.kind && <LiveInfo />
+        !dealer && <LiveInfo />
       )}
-      {currentPlayer?.handInfo?.kind && <Results />}
-      {hostPlayerState.resta === 0 &&
-        !hostPlayerState.sittingOut &&
-        (currentPlayer?.handInfo?.kind || dealer) && <Renew />}
+      {hostPlayerState.resta === 0 && !hostPlayerState.sittingOut && <Renew />}
       {hostPlayerState.resta > 0 && currentPlayer?.handInfo?.kind && (
         <NextRound />
+      )}
+      {currentPlayer?.jokering && (
+        <Overlay style={{ backgroundColor: 'rgb(0 0 0 / 4%)' }}>
+          <div className="waiting-content">
+            Αναμονή να ορίσουν οι παίκτες τα μπαλαντέρ
+          </div>
+        </Overlay>
       )}
     </div>
   );

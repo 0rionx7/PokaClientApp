@@ -9,6 +9,7 @@ import Bet from 'components/action/Bet';
 import Swap from 'components/action/Swap';
 import Submit from 'components/action/Submit';
 import Discard from 'components/action/Discard';
+import JokerSelect from 'components/action/JokerSelect';
 import './Action.scss';
 
 const Play = () => {
@@ -24,6 +25,7 @@ const Play = () => {
   const swapping = hostPlayerState.selecting?.swaps;
   const submitting = hostPlayerState.selecting?.submit;
   const discarding = hostPlayerState.selecting?.discard;
+  const jokering = hostPlayerState.jokering;
   const denies = hostPlayerState.denying > 0;
   const deny =
     denies && ![betting, swapping, submitting, discarding].some(Boolean);
@@ -37,6 +39,7 @@ const Play = () => {
       {discarding && <Discard selecting={hostPlayerState.selecting} />}
       {submitting && <Submit />}
       {deny && <DenyAccept />}
+      {jokering && <JokerSelect />}
     </>
   );
 };

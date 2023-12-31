@@ -8,7 +8,7 @@ import { createChipsStyle } from 'lib/createChipsStyle';
 import { playerEntry } from 'common/utilities-functions';
 import PlayerInfo from 'components/player/PlayerInfo';
 import HandCards from 'components/player/HandCards';
-import useSitOutTimer from 'hooks/useSitOutTimer';
+// import useSitOutTimer from 'hooks/useSitOutTimer';
 import './Player.scss';
 
 const Player = ({ playerState, index, playersCount }) => {

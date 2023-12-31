@@ -1,15 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { createAction } from '@reduxjs/toolkit';
 import io from 'socket.io-client';
 
 import { playerEntry, updateAll } from 'common/utilities-functions';
+import {
+  resetJoker,
+  setHandCards,
+  setHasNexted,
+  setTableCards,
+} from 'features/gameState/gameStateSlice';
 
 export const baseUrl = process.env.REACT_APP_POKA_API;
 export const socket = io(baseUrl, { transports: ['websocket'] });
-
-// for avoiding circular dependency (can't access gameApi before initialization bug)
-const setHandCards = createAction('gameState/setHandCards');
-const setTableCards = createAction('gameState/setTableCards');
 
 export const gameStateApi = createApi({
   reducerPath: 'gameStateApi',
@@ -57,6 +58,10 @@ export const gameStateApi = createApi({
                   }
                   if (stateUpdate.tableCards)
                     dispatch(setTableCards(stateUpdate.tableCards));
+                  if (stateUpdate.gameName) {
+                    dispatch(setHasNexted(false));
+                    dispatch(resetJoker());
+                  }
                 }
 
                 return { ...draft, ...stateUpdate };
@@ -158,6 +163,13 @@ export const gameStateApi = createApi({
         body: selectInfo,
       }),
     }),
+    assignJoker: build.mutation({
+      query: jokers => ({
+        url: '/gameState/joker',
+        method: 'PATCH',
+        body: jokers,
+      }),
+    }),
     evaluateHand: build.mutation({
       query: handInfo => ({
         url: '/gameState/evaluate',
@@ -222,6 +234,7 @@ export const {
   useBetMutation,
   useDenyCardMutation,
   useSelectCardsMutation,
+  useAssignJokerMutation,
   useEvaluateHandMutation,
   useSubmitCardsMutation,
   useRenewCavaMutation,
