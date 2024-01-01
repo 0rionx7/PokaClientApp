@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -11,23 +10,23 @@ const Players = () => {
   const hostPlayerName = useSelector(state => state.account.username);
   const { data } = useGetGameStateQuery(gameId);
 
-  const playersStateList = useMemo(() => {
-    const playersStateList = data?.playersStateList.slice();
-    const hostIndex = playersStateList.findIndex(playerEntry(hostPlayerName));
-    const hostLeadingList = playersStateList.splice(hostIndex);
-    return hostLeadingList.concat(playersStateList);
-  }, [data?.playersStateList, hostPlayerName]);
+  const playersStateList = data?.playersStateList;
+  const hostIndex = playersStateList.findIndex(playerEntry(hostPlayerName));
 
   return (
     <>
-      {playersStateList.map((playerState, i, arr) => (
-        <Player
-          playerState={playerState}
-          index={i}
-          key={playerState.playerName}
-          playersCount={arr.length}
-        />
-      ))}
+      {playersStateList.map((playerState, i, arr) => {
+        const seat =
+          i >= hostIndex ? i - hostIndex : arr.length + i - hostIndex;
+        return (
+          <Player
+            playerState={playerState}
+            seat={seat}
+            key={playerState.playerName}
+            playersCount={arr.length}
+          />
+        );
+      })}
     </>
   );
 };

@@ -8,8 +8,8 @@ const UserSubscription = () => {
   const navigate = useNavigate();
   const { data } = useGetUserQuery(undefined);
 
-  if (!data?.subExpiration || new Date(data?.subExpiration) <= Date.now())
-    return <div>Δέν έχετε ενεργή συνδρομή.</div>;
+  const isExpired =
+    !data?.subExpiration || new Date(data?.subExpiration) <= Date.now();
 
   const expiresAt = new Date(data?.subExpiration).toLocaleDateString('el-GR', {
     weekday: 'long',
@@ -21,7 +21,11 @@ const UserSubscription = () => {
   return (
     <div
       className={classes['flex-center'] + ' ' + classes['user-subscription']}>
-      Λήξη: {expiresAt}
+      {isExpired ? (
+        <div>Δέν έχετε ενεργή συνδρομή.</div>
+      ) : (
+        <div>Λήξη: {expiresAt}</div>
+      )}
       <Button
         className="orange"
         prompt="Ανανέωση"

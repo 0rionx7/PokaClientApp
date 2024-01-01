@@ -11,14 +11,14 @@ import HandCards from 'components/player/HandCards';
 // import useSitOutTimer from 'hooks/useSitOutTimer';
 import './Player.scss';
 
-const Player = ({ playerState, index, playersCount }) => {
+const Player = ({ playerState, seat, playersCount }) => {
   const hostPlayerName = useSelector(state => state.account.username);
   const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   // useSitOutTimer(playerState);
 
-  const playerClass = createPalyerClass(playersCount, index);
+  const playerClass = createPalyerClass(playersCount, seat);
   const style = createChipsStyle(
     playerState.handCards.length,
     playerClass.includes('top'),
@@ -40,10 +40,10 @@ const Player = ({ playerState, index, playersCount }) => {
     ? hostPlayerHandCards
     : playerState.handCards;
 
-  const gridArea = 'player-' + (index + 1);
+  const gridArea = 'player-' + (seat + 1);
   const className =
     'player p-' +
-    (index + 1) +
+    (seat + 1) +
     (playerSubmitted ? ' submitted' : '') +
     playerClass;
 
