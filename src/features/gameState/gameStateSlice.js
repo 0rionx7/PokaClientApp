@@ -13,6 +13,7 @@ export const gameStateSlice = createSlice({
     messages: [],
     currentChoosenGame: '',
     hasNexted: false,
+    jokers: [],
   },
   reducers: {
     setTableCards: (state, action) => {
@@ -29,6 +30,12 @@ export const gameStateSlice = createSlice({
     },
     setHasNexted: (state, action) => {
       state.hasNexted = action.payload;
+    },
+    addJoker: (state, action) => {
+      state.jokers.push(action.payload);
+    },
+    resetJoker: (state, _action) => {
+      state.jokers = [];
     },
     toggleSelectedCard: (state, action) => {
       const selectedCard = card =>
@@ -77,5 +84,7 @@ export const {
   toggleSelectedCard,
   postMessage,
   setHasNexted,
+  addJoker,
+  resetJoker,
 } = gameStateSlice.actions;
 export const gameStateReducer = gameStateSlice.reducer;

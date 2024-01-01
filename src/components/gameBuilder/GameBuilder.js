@@ -7,7 +7,6 @@ import {
   builderTitles,
   dealingOrders,
   errorMessages,
-  gameNames,
   tabloCount,
 } from 'common/text-constants';
 import {
@@ -26,7 +25,7 @@ import FaceDown from 'components/gameBuilder/FaceDown';
 import CardsCount from 'components/gameBuilder/CardsCount';
 import Extra from 'components/gameBuilder/Extra';
 import Options from 'components/gameBuilder/Options';
-import { builderDefaults } from 'common/games';
+import { builderDefaults, gameNames } from 'common/games';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';

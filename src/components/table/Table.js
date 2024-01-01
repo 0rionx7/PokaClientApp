@@ -22,7 +22,7 @@ const Table = () => {
   const { gameId } = useParams();
   const { data, refetch } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(state => state.account.username);
-  const { snackElement, setSnackInfo } = useSnackBar({ secs: 5, top: true });
+  const { snackElement, setSnackInfo } = useSnackBar({ secs: 4, top: true });
   const [sitOut] = useSitOutMutation();
   const initial = useRef(true);
 

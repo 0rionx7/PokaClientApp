@@ -5,7 +5,7 @@ import {
   winningOrders,
 } from './text-constants.js';
 
-const gameNames = {
+export const gameNames = {
   RAILROAD: 'ΣΙΔΗΡΟΔΡΟΜΟΣ',
   MAMUT: 'ΜΑΜΟΥΘ',
   TRIANGLE: 'ΤΡΙΓΩΝΟ',
@@ -53,9 +53,13 @@ export const games = [
   {
     gameName: gameNames.QUEEN,
     builderDefaults: {
+      winningOrder: winningOrders.TRIA_FOUL,
       cardsInHand: 5,
       handCardsInPlay: ['5'],
+      faceDownIndexes: ['4'],
+      dealing: dealingOrders.ENA_ENA,
     },
+    showTitles: [builderTitles.GAME, builderTitles.WINNING_ORDER],
   },
   {
     gameName: gameNames.TEXAS_HOLDEM,
