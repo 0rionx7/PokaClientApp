@@ -18,6 +18,7 @@ const BuilderItem = ({ title, element }) => {
       title === builderTitles.RAILROAD_LENGTH &&
         gameName !== gameNames.RAILROAD,
       title === builderTitles.FACE_DOWN && gameName !== gameNames.POKER,
+      title === builderTitles.SPEAKS && gameName !== gameNames.POKER,
       title === builderTitles.CARDS_PER_LEG && gameName !== gameNames.CORNER,
       title === builderTitles.EXTRA &&
         gameName !== gameNames.MAMUT &&

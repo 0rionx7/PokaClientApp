@@ -1,6 +1,7 @@
 import {
   builderTitles,
   dealingOrders,
+  speaking,
   tabloCount,
   winningOrders,
 } from './text-constants.js';
@@ -37,6 +38,7 @@ export const builderDefaults = {
   swap: false,
   swaps: 0,
   dealing: dealingOrders.OLA_MAZI,
+  speaks: speaking.BY_SEAT,
   mirrorWins: false,
   allDiscardedWins: false,
   bomba: false,
