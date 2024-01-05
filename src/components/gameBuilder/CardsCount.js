@@ -11,7 +11,6 @@ const CardsCount = ({ name }) => {
   if (name === 'cornerLength') countOptions = [2, 3, 4];
   if (name === 'railroadLength') countOptions = [2, 3, 4, 5, 6, 7];
   if (values.gameName === gameNames.POKER) countOptions = [5, 6, 7];
-  if (values.gameName === gameNames.QUEEN) countOptions = [5, 6];
 
   return (
     <>

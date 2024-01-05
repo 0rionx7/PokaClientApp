@@ -42,6 +42,7 @@ export const builderDefaults = {
   mirrorWins: false,
   allDiscardedWins: false,
   bomba: false,
+  queens: false,
 };
 
 export const games = [
@@ -49,7 +50,10 @@ export const games = [
     gameName: gameNames.POKER,
     builderDefaults: {
       cardsInHand: 5,
+      faceDownIndexes: ['4'],
       handCardsInPlay: ['5'],
+      dealing: dealingOrders.ENA_ENA,
+      speaks: speaking.BY_VALUE,
     },
   },
   {
@@ -60,8 +64,15 @@ export const games = [
       handCardsInPlay: ['5'],
       faceDownIndexes: ['4'],
       dealing: dealingOrders.ENA_ENA,
+      speaks: speaking.BY_VALUE,
     },
-    showTitles: [builderTitles.GAME, builderTitles.WINNING_ORDER],
+    showTitles: [
+      builderTitles.GAME,
+      builderTitles.WINNING_ORDER,
+      builderTitles.FACE_DOWN,
+      builderTitles.SPEAKS,
+      builderTitles.EXTRA,
+    ],
   },
   {
     gameName: gameNames.TEXAS_HOLDEM,
