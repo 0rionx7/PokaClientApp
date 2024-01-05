@@ -27,7 +27,7 @@ const Card = ({ card, canBeSelected }) => {
   const classes =
     `card v-${card.value} ` +
     (card.selected ? 'selected ' : '') +
-    (data.joker === card.value ? 'joker' : '');
+    (data.joker.some(value => value === card.value) ? 'joker' : '');
 
   return (
     <div className={classes} onClick={toggleCardSelected}>

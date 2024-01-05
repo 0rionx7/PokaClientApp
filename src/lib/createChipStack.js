@@ -14,7 +14,7 @@ function createChipJsx(count, multiplier, startIndex) {
 }
 
 export function createChipStack(amount, chip) {
-  if (amount < 0) return [];
+  if (amount < 0 || amount > 1200000 * chip) return [];
   const reds = Math.floor(amount / (100 * chip));
   const yellows = Math.floor((amount - reds * 100 * chip) / (25 * chip));
   const blacks = Math.floor(

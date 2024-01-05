@@ -17,8 +17,12 @@ const BuilderItem = ({ title, element }) => {
         gameName !== gameNames.RAILROAD,
       title === builderTitles.RAILROAD_LENGTH &&
         gameName !== gameNames.RAILROAD,
-      title === builderTitles.FACE_DOWN && gameName !== gameNames.POKER,
-      title === builderTitles.SPEAKS && gameName !== gameNames.POKER,
+      title === builderTitles.FACE_DOWN &&
+        gameName !== gameNames.POKER &&
+        gameName !== gameNames.QUEEN,
+      title === builderTitles.SPEAKS &&
+        gameName !== gameNames.POKER &&
+        gameName !== gameNames.QUEEN,
       title === builderTitles.CARDS_PER_LEG && gameName !== gameNames.CORNER,
       title === builderTitles.EXTRA &&
         gameName !== gameNames.MAMUT &&
