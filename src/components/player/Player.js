@@ -16,7 +16,8 @@ const Player = ({ playerState, index }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   // useSitOutTimer(playerState);
-  const { className, gridArea, playingIndex } = usePlayerClass(index);
+  const { className, gridArea, chipStyle, playingIndex } =
+    usePlayerClass(index);
   const hostPlayerState = useMemo(
     () => data?.playersStateList.find(playerEntry(hostPlayerName)),
     [data?.playersStateList, hostPlayerName]
@@ -39,7 +40,7 @@ const Player = ({ playerState, index }) => {
         canBeSelected={!playerSubmitted && isHostPlayer && canSelect}
         bet={playerState.currentBet}
         playingIndex={playingIndex}
-        playerClass={className}
+        chipStyle={chipStyle}
       />
       <div className="player-info">
         <PlayerInfo playerState={playerState} />

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { getPossitionClass } from 'lib/createPlayerClass';
+import { createChipsStyle } from 'lib/createChipsStyle';
 import { playerEntry } from 'common/utilities-functions';
 
 const usePlayerClass = index => {
@@ -10,7 +11,8 @@ const usePlayerClass = index => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
 
-  const { playerName, submittedHand } = data?.playersStateList.at(index);
+  const { playerName, submittedHand, handCards } =
+    data?.playersStateList.at(index);
   const playersCount = data?.playersStateList.length;
   const hostIndex = data?.playersStateList.findIndex(
     playerEntry(hostPlayerName)
@@ -27,7 +29,9 @@ const usePlayerClass = index => {
   const className =
     'player p-' + seat + (playerSubmitted ? ' submitted' : '') + position;
 
-  return { className, gridArea, playingIndex };
+  const chipStyle = createChipsStyle(handCards.length, position);
+
+  return { className, gridArea, chipStyle, playingIndex };
 };
 
 export default usePlayerClass;

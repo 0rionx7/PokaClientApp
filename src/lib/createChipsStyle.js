@@ -1,6 +1,6 @@
-export function createChipsStyle(cardsCount, top, left) {
-  if (!top) return {};
-  const side = left ? 'left' : 'right';
+export function createChipsStyle(cardsCount, position) {
+  if (!position.includes('top')) return {};
+  const side = position.includes('left') ? 'left' : 'right';
   switch (cardsCount) {
     case 1:
       return { [side]: `calc( 2.9 * var(--card-width))` };
