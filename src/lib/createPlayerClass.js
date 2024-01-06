@@ -1,4 +1,4 @@
-export function createPalyerClass(playersCount, index) {
+export function getPossitionClass(playersCount, index) {
   switch (playersCount) {
     case 2:
       if (index === 1) return ' top';
