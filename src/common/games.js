@@ -53,7 +53,6 @@ export const games = [
       faceDownIndexes: ['4'],
       handCardsInPlay: ['5'],
       dealing: dealingOrders.ENA_ENA,
-      speaks: speaking.BY_VALUE,
     },
   },
   {

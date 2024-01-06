@@ -21,7 +21,6 @@ const usePlayerClass = index => {
     data?.currentPlayerList.some(playerEntry(ps.playerName))
   );
   const playerSubmitted = submittedHand.length;
-  console.log(data?.playersStateList);
   const playingIndex = playingList.findIndex(playerEntry(playerName));
   const seat = index - hostIndex + 1 + (index < hostIndex ? playersCount : 0);
   const position = getPossitionClass(playersCount, seat - 1);
