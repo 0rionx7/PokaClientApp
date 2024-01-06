@@ -15,14 +15,14 @@ const Player = ({ playerState, index }) => {
   const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  // useSitOutTimer(playerState);
   const { className, gridArea, chipStyle, playingIndex } =
     usePlayerClass(index);
+  // useSitOutTimer(playerState);
+
   const hostPlayerState = useMemo(
     () => data?.playersStateList.find(playerEntry(hostPlayerName)),
     [data?.playersStateList, hostPlayerName]
   );
-
   const isHostPlayer = playerState.playerName === hostPlayerName;
   const playerSubmitted = playerState.submittedHand.length;
   const canSelect = hostPlayerState.selecting;

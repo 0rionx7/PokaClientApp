@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -9,16 +10,14 @@ const RenderedCard = ({ index }) => {
   const tableCards = useSelector(state => state.gameState.tableCards);
   const playerName = useSelector(state => state.account.username);
   const { gameId } = useParams();
-  const { currentPlayerList, playerSubmitted, thorns } = useGetGameStateQuery(
-    gameId,
-    {
-      selectFromResult: ({ data }) => ({
-        currentPlayerList: data?.currentPlayerList,
-        thorns: data?.thorns,
-        playerSubmitted: data?.playersStateList.find(playerEntry(playerName))
-          ?.submittedHand.length,
-      }),
-    }
+  const { data } = useGetGameStateQuery(gameId);
+  const { currentPlayerList, thorns } = data;
+
+  const playerSubmitted = useMemo(
+    () =>
+      data?.playersStateList.find(playerEntry(playerName))?.submittedHand
+        .length,
+    [data?.playersStateList, playerName]
   );
   const [currentPlayerState] = currentPlayerList;
   const isSubmitting = currentPlayerState?.selecting?.submit;
