@@ -14,6 +14,10 @@ const Extra = () => {
     name = 'mirrorWins';
     label = 'ΚΑΘΡΕΦΤΗΣ ΑΝΩΤΑΤΟ ΦΥΛΛΟ';
   }
+  if (values.gameName === gameNames.QUEEN) {
+    name = 'queens';
+    label = 'ΜΠΑΛΑΝΤΕΡ ΚΑΙ ΟΙ ΝΤΑΜΕΣ';
+  }
 
   return (
     <CheckBox

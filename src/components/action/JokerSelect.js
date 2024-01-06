@@ -20,7 +20,9 @@ const JokerSelect = () => {
   const [cardValue, setCardValue] = useState(14);
   const [suit, setSuit] = useState('S');
 
-  const jokerCount = handCards.filter(card => card.value === data.joker).length;
+  const jokerCount = handCards.filter(card =>
+    data.joker.some(value => card.value === value)
+  ).length;
   const card = { value: cardValue, suit, faceUp: true };
 
   const prompt = jokerCount > 1 && orderNumber[jokers.length];

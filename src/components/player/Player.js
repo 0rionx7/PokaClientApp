@@ -3,28 +3,21 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { createPalyerClass } from 'lib/createPlayerClass';
-import { createChipsStyle } from 'lib/createChipsStyle';
 import { playerEntry } from 'common/utilities-functions';
 import PlayerInfo from 'components/player/PlayerInfo';
 import HandCards from 'components/player/HandCards';
 // import useSitOutTimer from 'hooks/useSitOutTimer';
+import usePlayerClass from 'hooks/usePlayerClass';
 import './Player.scss';
 
-const Player = ({ playerState, index, playersCount }) => {
+const Player = ({ playerState, index }) => {
   const hostPlayerName = useSelector(state => state.account.username);
   const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   // useSitOutTimer(playerState);
-
-  const playerClass = createPalyerClass(playersCount, index);
-  const style = createChipsStyle(
-    playerState.handCards.length,
-    playerClass.includes('top'),
-    playerClass.includes('left')
-  );
-
+  const { className, gridArea, chipStyle, playingIndex } =
+    usePlayerClass(index);
   const hostPlayerState = useMemo(
     () => data?.playersStateList.find(playerEntry(hostPlayerName)),
     [data?.playersStateList, hostPlayerName]
@@ -40,20 +33,14 @@ const Player = ({ playerState, index, playersCount }) => {
     ? hostPlayerHandCards
     : playerState.handCards;
 
-  const gridArea = 'player-' + (index + 1);
-  const className =
-    'player p-' +
-    (index + 1) +
-    (playerSubmitted ? ' submitted' : '') +
-    playerClass;
-
   return (
     <div className={className} style={{ gridArea }}>
       <HandCards
         cards={handCards}
         canBeSelected={!playerSubmitted && isHostPlayer && canSelect}
         bet={playerState.currentBet}
-        style={style}
+        playingIndex={playingIndex}
+        chipStyle={chipStyle}
       />
       <div className="player-info">
         <PlayerInfo playerState={playerState} />

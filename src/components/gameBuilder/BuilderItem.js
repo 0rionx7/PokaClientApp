@@ -11,38 +11,34 @@ const BuilderItem = ({ title, element }) => {
   const hiddenWhenAny = useMemo(
     () => [
       title === builderTitles.TABLO &&
-        gameName !== gameNames.KOYKOS_MONOS &&
-        gameName !== gameNames.KOYKOS_DIPLOS &&
         gameName !== gameNames.MAMUT &&
         gameName !== gameNames.RAILROAD,
       title === builderTitles.RAILROAD_LENGTH &&
         gameName !== gameNames.RAILROAD,
-      title === builderTitles.FACE_DOWN && gameName !== gameNames.POKER,
       title === builderTitles.CARDS_PER_LEG && gameName !== gameNames.CORNER,
-      title === builderTitles.EXTRA &&
-        gameName !== gameNames.MAMUT &&
-        gameName !== gameNames.GRAVEYARD,
+      title === builderTitles.EXTRA && gameName !== gameNames.MAMUT,
+      gameName !== gameNames.POKER &&
+        (title === builderTitles.FACE_DOWN || title === builderTitles.SPEAKS),
       (title === builderTitles.OPTIONS ||
         title === builderTitles.HAND_CARDS_IN_PLAY) &&
-        [gameNames.GRAVEYARD, gameNames.KOUKOS, gameNames.POKER].some(
-          game => game === gameName
-        ),
+        gameName === gameNames.POKER,
     ],
     [title, gameName]
   );
 
-  if (
-    values.showTitles?.every(showTitle => showTitle !== title) ||
-    hiddenWhenAny.some(Boolean)
-  )
-    return null;
-  else
-    return (
-      <div className="frame-item builder-item">
-        <div className="title"> {title}</div>
-        <div className="controls"> {element}</div>
-      </div>
-    );
+  const item = (
+    <div className="frame-item builder-item">
+      <div className="title"> {title}</div>
+      <div className="controls"> {element}</div>
+    </div>
+  );
+
+  if (values.showTitles)
+    return values.showTitles.some(showTitle => showTitle === title)
+      ? item
+      : null;
+
+  return hiddenWhenAny.some(Boolean) ? null : item;
 };
 
 export default BuilderItem;

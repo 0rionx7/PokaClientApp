@@ -7,6 +7,7 @@ import {
   builderTitles,
   dealingOrders,
   errorMessages,
+  speaking,
   tabloCount,
 } from 'common/text-constants';
 import {
@@ -122,6 +123,15 @@ const GameBuilder = () => {
             <BuilderItem
               title={builderTitles.FACE_DOWN}
               element={<FaceDown />}
+            />
+            <BuilderItem
+              title={builderTitles.SPEAKS}
+              element={
+                <Dilemma
+                  name="speaks"
+                  options={[speaking.BY_VALUE, speaking.BY_SEAT]}
+                />
+              }
             />
             <BuilderItem
               title={builderTitles.HAND_CARDS_IN_PLAY}

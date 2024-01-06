@@ -29,6 +29,7 @@ export const builderTitles = {
   FACE_DOWN: 'ΚΛΕΙΣΤΑ ΧΑΡΤΙΑ',
   CARDS_PER_LEG: 'ΧΑΡΤΙΑ ΑΝΑ ΣΚΕΛΟΣ',
   TABLO: 'ΤΑΜΠΛΟ',
+  SPEAKS: 'ΜΙΛΑΕΙ',
 };
 export const winningOrders = {
   KENTA_CHROMA: 'ΚΕΝΤΑ ΧΡΩΜΑ',
@@ -39,6 +40,10 @@ export const winningOrders = {
 export const dealingOrders = {
   ENA_ENA: 'ΕΝΑ ΕΝΑ',
   OLA_MAZI: 'ΟΛΑ ΜΑΖΙ',
+};
+export const speaking = {
+  BY_VALUE: 'ΤΟ ΚΑΛΥΤΕΡΟ ΑΝΟΙΚΤΟ ΦΥΛΟ',
+  BY_SEAT: 'ΜΕ ΤΗΝ ΣΕΙΡΑ',
 };
 export const tabloCount = {
   MONO: 'ΜΟΝΟ',
