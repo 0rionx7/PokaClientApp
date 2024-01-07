@@ -25,14 +25,14 @@ const useTimerBar = playerState => {
 
   useEffect(() => setWidth(100), [isActive]);
 
-  const timerColor = width > 50 ? 'green' : width > 20 ? 'orange' : 'red';
+  const backgroundColor = width > 50 ? 'green' : width > 20 ? 'orange' : 'red';
 
   return (
     <div className="timer-bar">
       {isActive && (
         <div
           className="timer-fragment"
-          style={{ width: width + '%', backgroundColor: timerColor }}
+          style={{ width: width + '%', backgroundColor }}
         />
       )}
       <div className="line" />

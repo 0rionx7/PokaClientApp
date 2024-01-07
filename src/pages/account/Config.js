@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setHideInfo } from 'features/account/accountSlice';
@@ -34,4 +34,4 @@ const Config = () => {
   );
 };
 
-export default Config;
+export default memo(Config);
