@@ -4,4 +4,3 @@ choose deck color
 order tables chronologicaly
 try catch or error handling on joinHandlers etc
 fix overflow many open tables
-clean rendercard

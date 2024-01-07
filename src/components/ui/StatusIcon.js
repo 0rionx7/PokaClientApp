@@ -16,9 +16,7 @@ const StatusIcon = ({ playerState }) => {
     status = 'άνευ συνδρομής';
   }
   return (
-    <div
-      className="status"
-      style={{ backgroundColor: color, justifySelf: 'center' }}>
+    <div className="status" style={{ backgroundColor: color }}>
       <ToolTip info={status} />
     </div>
   );

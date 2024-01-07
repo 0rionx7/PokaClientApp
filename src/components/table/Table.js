@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -24,12 +24,10 @@ const Table = () => {
   const hostPlayerName = useSelector(state => state.account.username);
   const { snackElement, setSnackInfo } = useSnackBar({ secs: 4, top: true });
   const [sitOut] = useSitOutMutation();
-  const initial = useRef(true);
 
   const hostPlayerState = data.playersStateList.find(
     playerEntry(hostPlayerName)
   );
-  const lastAtList = data.playersStateList.at(-1).playerName;
 
   useEffect(() => {
     return () => sitOut({ gameId });
@@ -41,14 +39,10 @@ const Table = () => {
   }, [refetch]);
 
   useEffect(() => {
-    if (
-      !data.dealer &&
-      !initial.current &&
-      hostPlayerState.playerName !== lastAtList
-    )
+    const lastAtList = data.playersStateList.at(-1).playerName;
+    if (!data.dealer && hostPlayerName !== lastAtList)
       setSnackInfo(<GameInfo />);
-    initial.current = false;
-  }, [data.dealer, lastAtList, setSnackInfo, hostPlayerState.playerName]);
+  }, [data.dealer, data.playersStateList, setSnackInfo, hostPlayerName]);
 
   return (
     <div className={'table players-' + data.playersStateList.length}>
