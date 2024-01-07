@@ -6,8 +6,6 @@ import { createTableTitle } from 'common/text-functions';
 import { gamesInfo } from 'common/text-constants';
 import './Info.scss';
 
-const descriptionTitles = ['ΔΙΑΤΑΞΗ:', 'ΟΜΑΔΕΣ:', 'ΑΝΟΙΓΜΑ:', 'ΕΠΙΛΟΓΕΣ:'];
-
 const GameDescription = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
@@ -31,11 +29,14 @@ const GameDescription = () => {
   return (
     <div className="game-info">
       <div className="info-container description">
-        {gamesInfo[game]?.split('_').map((infoText, i) => (
-          <div key={i}>
-            <span>{descriptionTitles[i]}</span> {infoText}
-          </div>
-        ))}
+        {gamesInfo[game]?.split('&').map((infoText, i) => {
+          const [title, text] = infoText.split('_');
+          return (
+            <div key={i}>
+              <span>{title}</span> {text}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
