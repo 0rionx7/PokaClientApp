@@ -22,12 +22,13 @@ const Table = () => {
   const { gameId } = useParams();
   const { data, refetch } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(state => state.account.username);
-  const { snackElement, setSnackInfo } = useSnackBar({ secs: 4, top: true });
+  const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
   const [sitOut] = useSitOutMutation();
 
   const hostPlayerState = data.playersStateList.find(
     playerEntry(hostPlayerName)
   );
+  const lastAtList = data.playersStateList.at(-1).playerName;
 
   useEffect(() => {
     return () => sitOut({ gameId });
@@ -39,10 +40,9 @@ const Table = () => {
   }, [refetch]);
 
   useEffect(() => {
-    const lastAtList = data.playersStateList.at(-1).playerName;
     if (!data.dealer && hostPlayerName !== lastAtList)
       setSnackInfo(<GameInfo />);
-  }, [data.dealer, data.playersStateList, setSnackInfo, hostPlayerName]);
+  }, [data.dealer, lastAtList, setSnackInfo, hostPlayerName]);
 
   return (
     <div className={'table players-' + data.playersStateList.length}>
