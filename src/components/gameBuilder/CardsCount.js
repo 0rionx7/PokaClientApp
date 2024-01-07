@@ -16,12 +16,7 @@ const CardsCount = ({ name }) => {
     <>
       {countOptions.map(count => (
         <Fragment key={count}>
-          <Radio
-            name={name}
-            value={count}
-            checked={+values[name] === count}
-            className="checkbox"
-          />
+          <Radio name={name} value={count} checked={+values[name] === count} />
         </Fragment>
       ))}
     </>

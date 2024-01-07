@@ -13,7 +13,6 @@ const Dilemma = ({ name, options }) => {
         <Fragment key={option}>
           <Radio
             name={name}
-            className="checkbox"
             label={option}
             value={option}
             checked={values[name] === option}

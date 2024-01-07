@@ -17,7 +17,6 @@ const WinningOrder = () => {
             label={order}
             value={order}
             checked={values.winningOrder === order}
-            className="checkbox"
           />
         </Fragment>
       ))}

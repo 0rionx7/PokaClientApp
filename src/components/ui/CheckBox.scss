@@ -11,9 +11,9 @@
   border: 2px solid black;
   border-radius: 5px;
   &:after {
-    content: '';
-    position: absolute;
     display: none;
+    position: absolute;
+    content: '';
     left: 50%;
     top: 50%;
     translate: -50% -60%;

@@ -30,7 +30,6 @@ const Options = () => {
               label={label}
               value={i + 1}
               checked={+values.hats === i + 1}
-              className="checkbox"
               info={infoText.HAT}
             />
           ))}
