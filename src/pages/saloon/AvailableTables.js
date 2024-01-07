@@ -27,7 +27,7 @@ const AvailableTables = () => {
           onChange={e => setfQuery(e.target.value)}
         />
       </div>
-      <h3>Ανοικτά τραπέζια</h3>
+      <h3>Διαθέσιμα τραπέζια</h3>
       {/* <Button className="green" prompt="ανανέωση λίστας" onClick={refetch} /> */}
       <div className="tables-container">
         <div className="available-tables">
