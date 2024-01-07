@@ -21,6 +21,7 @@ const GameInfo = () => {
       allDiscardedWins,
       bomba,
       mirrorWins,
+      queens,
       winningOrder,
       tablo,
       gamesCount,
@@ -67,6 +68,11 @@ const GameInfo = () => {
           <div>
             <span>{mirrorWins ? 'ΚΑΘΡΕΦΤΗΣ' : 'ΑΦΥΛΛΙΑ'}</span>
             {' ανώτατο φύλλο'}
+          </div>
+        )}
+        {queens && (
+          <div>
+            μπαλαντέρ και οι <span>ΝΤΑΜΕΣ</span>
           </div>
         )}
       </div>

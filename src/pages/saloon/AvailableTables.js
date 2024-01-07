@@ -30,17 +30,15 @@ const AvailableTables = () => {
       <h3>Διαθέσιμα τραπέζια</h3>
       {/* <Button className="green" prompt="ανανέωση λίστας" onClick={refetch} /> */}
       <div className="tables-container">
-        <div className="available-tables">
-          {!availableTables?.length ? (
-            <div className="available-table" style={{ cursor: 'auto' }}>
-              Δεν υπάρχει διαθέσιμο τραπέζι.
-            </div>
-          ) : (
-            availableTables?.map((tableInfo, i) => (
-              <AvailableTable tableInfo={tableInfo} key={i} />
-            ))
-          )}
-        </div>
+        {!availableTables?.length ? (
+          <div className="available-table" style={{ cursor: 'auto' }}>
+            Δεν υπάρχει διαθέσιμο τραπέζι.
+          </div>
+        ) : (
+          availableTables?.map((tableInfo, i) => (
+            <AvailableTable tableInfo={tableInfo} key={i} />
+          ))
+        )}
       </div>
     </div>
   );
