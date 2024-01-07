@@ -4,13 +4,12 @@ import { useParams } from 'react-router-dom';
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import PlayHandCards from 'components/info/PlayHandCards';
 import FaceDownCards from 'components/info/FaceDownCards';
+import { createTableTitle } from 'common/text-functions';
 import { tabloCount } from 'common/text-constants';
 import Denies from 'components/info/Denies';
 import Swaps from 'components/info/Swaps';
 import Hats from 'components/info/Hats';
 import './GameInfo.scss';
-import { createTableTitle } from 'common/text-functions';
-import { useMemo } from 'react';
 
 const GameInfo = () => {
   const { gameId } = useParams();
@@ -28,7 +27,7 @@ const GameInfo = () => {
     },
   } = useGetGameStateQuery(gameId);
 
-  const tableTitle = useMemo(() => createTableTitle(tableName), [tableName]);
+  const tableTitle = createTableTitle(tableName);
 
   if (!gameName)
     return (

@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -19,10 +18,7 @@ const GameDescription = () => {
 
   const game =
     hostPlayerName === data.dealer ? currentChoosenGame : data.gameName;
-  const tableTitle = useMemo(
-    () => createTableTitle(data.tableName),
-    [data.tableName]
-  );
+  const tableTitle = createTableTitle(data.tableName);
 
   if (!game)
     return (
