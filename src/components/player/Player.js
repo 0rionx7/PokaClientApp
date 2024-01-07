@@ -15,7 +15,7 @@ const Player = ({ playerState, index }) => {
   const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const { className, gridArea, chipStyle, playingIndex } =
+  const { className, gridArea, chipsPosition, playingIndex } =
     usePlayerClass(index);
   // useSitOutTimer(playerState);
 
@@ -40,7 +40,7 @@ const Player = ({ playerState, index }) => {
         canBeSelected={!playerSubmitted && isHostPlayer && canSelect}
         bet={playerState.currentBet}
         playingIndex={playingIndex}
-        chipStyle={chipStyle}
+        chipsPosition={chipsPosition}
       />
       <div className="player-info">
         <PlayerInfo playerState={playerState} />

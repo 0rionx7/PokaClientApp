@@ -6,7 +6,13 @@ import { createChipStack } from 'lib/createChipStack';
 import Card from 'components/card/Card';
 import './HandCards.scss';
 
-const HandCards = ({ cards, canBeSelected, bet, playingIndex, chipStyle }) => {
+const HandCards = ({
+  cards,
+  canBeSelected,
+  bet,
+  playingIndex,
+  chipsPosition,
+}) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const [renderCards, setRenderCards] = useState(cards);
@@ -32,13 +38,13 @@ const HandCards = ({ cards, canBeSelected, bet, playingIndex, chipStyle }) => {
         <Card key={i} card={card} canBeSelected={canBeSelected} />
       ))}
       {bet > 0 && (
-        <div className="bet-grid" style={chipStyle}>
+        <div className="bet-grid" style={chipsPosition}>
           <div className="chips">{chips}</div>
           <div className="bet-amount">{bet.toLocaleString()}</div>
         </div>
       )}
       {bet < 0 && (
-        <div className="bet-grid" style={chipStyle}>
+        <div className="bet-grid" style={chipsPosition}>
           <div className="bet-amount">πάσο</div>
         </div>
       )}
