@@ -26,7 +26,6 @@
   .form-control {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-gap: 0.4rem;
     margin-bottom: 0.3rem;
     input {
@@ -50,6 +49,9 @@
       option {
         font-weight: 600;
       }
+    }
+    @media only screen and (min-width: 900px) {
+      grid-template-columns: 1fr 1fr;
     }
   }
   span {

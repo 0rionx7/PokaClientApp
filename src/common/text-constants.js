@@ -144,9 +144,9 @@ export const countFem = [
   'ΕΦΤΑ',
 ];
 export const infoButtons = {
-  GAME_DESCRIPTION: 'ΠΕΡΙΓΡΑΦΗ ΠΑΙΧ.',
-  GAME_INFO: 'ΠΑΡΑΛΛΑΓΗ ΠΑΙΧ.',
-  LAST_GAME_RESULTS: 'ΑΠΟΤΕΛΕΣΜΑ ΠΑΙΧ.',
+  GAME_DESCRIPTION: 'ΠΕΡΙΓΡΑΦΗ',
+  GAME_INFO: 'ΠΑΡΑΛΛΑΓΗ',
+  LAST_GAME_RESULTS: 'ΑΠΟΤΕΛΕΣΜΑ',
   STANDINGS: 'ΚΑΤΑΤΑΞΗ',
   CHAT: 'ΚΟΥΒΕΝΤΑ',
 };

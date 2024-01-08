@@ -1,13 +1,11 @@
 .info {
   display: flex;
-  overflow: hidden;
   font-size: 0.7rem;
 }
 .info-content {
   display: flex;
   flex-direction: column;
   width: 44vw;
-  overflow: hidden;
   font-size: 0.7rem;
   &.hidden {
     width: 0;
