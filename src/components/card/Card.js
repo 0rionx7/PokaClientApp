@@ -5,7 +5,6 @@ import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { toggleSelectedCard } from 'features/gameState/gameStateSlice';
 import { suits, symbols } from 'assets/svgs/suits';
 import Content from 'components/card/Content';
-import { cardBack } from 'assets/svgs/various';
 import './Card.scss';
 
 const Card = ({ card, canBeSelected }) => {
@@ -16,7 +15,7 @@ const Card = ({ card, canBeSelected }) => {
   if (!card?.faceUp)
     return (
       <div className="card">
-        <div className="back-side">{cardBack}</div>
+        <div className="back-side" />
       </div>
     );
 
