@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 2px;
   height: calc(var(--ribbon-height) - var(--info-buttons));
+  overflow: hidden;
   background-color: rgb(112 108 101);
   padding: 0.2rem;
   button {

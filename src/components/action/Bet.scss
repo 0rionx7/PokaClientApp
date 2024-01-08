@@ -1,68 +1,80 @@
 .bet {
   display: grid;
+  grid-template:
+    'bet b-1 amount b-25 fold' 1fr
+    'bet b-5    .   b-100 fold' 1fr;
   grid-template-columns: repeat(5, 1fr);
-  grid-template-areas:
-    'bet b-1 amount b-25 fold'
-    'bet b-5 all b-100 fold';
   align-items: center;
   justify-items: center;
   height: 100%;
+  width: 100%;
   max-width: 70vw;
   * {
     font-weight: 600;
-    font-size: 0.8rem !important;
+    font-size: 0.6rem;
   }
   input {
-    height: 2rem;
-    font-size: 1.2rem;
-  }
-  label {
-    font-size: 0.7rem;
+    height: 1rem;
+    font-weight: 600;
   }
   .bet-option {
-    width: 6vw;
-    height: 1.5rem;
-  }
-  .amount-error {
-    position: absolute;
-    bottom: -0.8rem;
-    font-size: 0.8rem;
-    color: red;
-  }
-  .form-control span {
-    font-size: 0.6rem !important;
-    color: rgb(172, 172, 165);
+    width: 65%;
+    height: 45%;
   }
   button {
     padding: 0;
+  }
+  img {
+    position: absolute;
+    width: 0.8rem;
+  }
+  .form-control span {
+    display: none;
+    font-size: 0.5rem;
+    color: rgb(172, 172, 165);
+  }
+
+  @media only screen and (min-width: 900px) {
+    img {
+      position: relative;
+    }
+    @media only screen and (min-height: 500px) {
+      * {
+        font-size: 0.7rem;
+      }
+      input {
+        height: 1.5rem;
+        font-size: 1rem;
+      }
+      img {
+        width: 1.2rem;
+      }
+      .form-control span {
+        font-size: 0.6rem;
+      }
+      .form-control span {
+        display: block;
+      }
+    }
   }
 }
 .bet-options {
   display: grid;
   grid-template-columns: 1fr max-content;
+  align-items: center;
   padding: 0 4px;
-  img {
-    width: 1.2rem;
-  }
 }
 .call {
   display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100%;
   width: 100%;
 }
 .call-btn {
   white-space: pre-line;
-  width: 5rem;
-  flex: 1 0;
-}
-.all-in {
-  grid-area: all;
-  margin-left: 0.3rem;
-  flex: 1 0;
-  height: 2.5rem;
-  background-color: #9e25df;
-  &:hover {
-    background-color: #7a1cac;
-  }
+  height: 55%;
+  width: 45%;
 }
 .place-bet {
   grid-area: bet;
@@ -70,7 +82,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 11vw;
+  width: 100%;
   height: 100%;
   button {
     width: 100%;

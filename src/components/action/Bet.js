@@ -27,9 +27,9 @@ const Bet = ({ bet, resta }) => {
   const validate = values => {
     let errors = {};
     if (values.amount < minBet && values.amount >= 0)
-      errors.amount = `ελάχ. ποντάρισμα ${minBet}`;
+      errors.amount = `ελάχ. : ${minBet}`;
     else if (values.amount > 0 && values.amount < chip)
-      errors.amount = `ελάχ. ποντάρισμα ${chip}`;
+      errors.amount = `ελάχ. : ${chip}`;
     if (values.amount + bet > resta) errors.amount = 'ΑΝΕΠΑΡΚΕΣ ΥΠΟΛΟΙΠΟ';
     return errors;
   };
@@ -52,7 +52,7 @@ const Bet = ({ bet, resta }) => {
             {errors.amount ? (
               <span style={{ color: 'red' }}>{errors.amount}</span>
             ) : (
-              <span>ή πληκτρολογήστε</span>
+              <span>ή πληκ/στε</span>
             )}
           </div>
           <div className="place-bet">
@@ -96,7 +96,7 @@ const Bet = ({ bet, resta }) => {
               onClick={() => setFieldValue('amount', resta - bet)}
               prompt="ΡΕΣΤΑ"
               disabled={isSubmitting || isSuccess}
-              className="all-in"
+              className="call-btn purple"
             />
           </div>
         </Form>

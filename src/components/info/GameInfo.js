@@ -28,7 +28,7 @@ const GameInfo = () => {
     },
   } = useGetGameStateQuery(gameId);
 
-  const tableTitle = createTableTitle(tableName);
+  const tableTitle = tableName.split('_')?.[0];
 
   if (!gameName)
     return (
@@ -42,7 +42,7 @@ const GameInfo = () => {
     <div className="game-info">
       <div className="info-container">
         <div className="table-name">{tableTitle}</div>
-        <div className="games-count">{gamesCount}ο παιχνίδι</div>
+        <div className="games-count">{gamesCount}ο παιχ.</div>
         <div className="gameName">
           <span>
             {gameName}

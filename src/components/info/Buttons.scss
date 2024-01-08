@@ -3,6 +3,7 @@
 .btns {
   display: flex;
   height: var(--info-buttons);
+  overflow: hidden;
   .selected,
   :hover {
     background-color: colors.$accent-color;
@@ -10,6 +11,7 @@
 }
 .info-button {
   flex: 1 0;
+  overflow: hidden;
   padding: 0;
   background-color: #394646;
   border-radius: 0 0.5rem 0 0;

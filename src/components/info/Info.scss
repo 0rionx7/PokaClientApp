@@ -1,14 +1,18 @@
 .info {
   display: flex;
-  font-size: 0.7rem;
 }
 .info-content {
   display: flex;
   flex-direction: column;
   width: 44vw;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   &.hidden {
     width: 0;
+  }
+  @media only screen and (min-height: 500px) {
+    @media only screen and (min-width: 900px) {
+      font-size: 0.7rem;
+    }
   }
 }
 .toggle-btn {
