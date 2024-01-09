@@ -21,10 +21,10 @@ const Footer = () => {
         <Button onClick={() => loginHandler('Machine')} prompt="Machine" />
         <Button onClick={() => loginHandler('Thanos')} prompt="Thanos" />
         <Button onClick={() => loginHandler('Koulis')} prompt="Koulis" />
-        <Button onClick={() => loginHandler('alela')} prompt="alela" />
+        {/* <Button onClick={() => loginHandler('alela')} prompt="alela" />
         <Button onClick={() => loginHandler('Doc')} prompt="Doc" />
         <Button onClick={() => loginHandler('q')} prompt="q" />
-        <Button onClick={() => loginHandler('a')} prompt="a" />
+        <Button onClick={() => loginHandler('a')} prompt="a" /> */}
         <Button onClick={() => logOutAll()} prompt="z" />
       </>
     );

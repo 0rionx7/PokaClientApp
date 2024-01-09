@@ -35,15 +35,16 @@
   display: grid;
   place-items: center;
   right: 0;
-  height: variables.$avatar-size;
-  width: variables.$avatar-size;
+  height: calc(0.6 * var(--card-height));
+  width: calc(0.8 * var(--card-height));
   border-radius: 50%;
   background-color: rgb(90 135 44);
   color: black;
   font-size: 1rem;
   font-family: Yellowtail;
-  @media only screen and (min-width: 900px) {
+  @media only screen and (min-width: 750px) {
     @media only screen and (min-height: 500px) {
+      height: calc(0.8 * var(--card-height));
       font-size: 2rem;
     }
   }
@@ -60,10 +61,10 @@
 }
 .right {
   .player-info-container {
-    padding: 0 0 0 variables.$avatar-size;
+    padding: 0 0 0 calc(0.8 * var(--card-height));
   }
   .total-bet {
-    left: variables.$avatar-size;
+    left: calc(0.8 * var(--card-height));
   }
   .avatar {
     left: 0;

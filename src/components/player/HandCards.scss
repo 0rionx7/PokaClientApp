@@ -1,16 +1,27 @@
 @import './HandCardsCompact.scss';
 
 .hand-cards {
+  @include compact-cards;
   display: flex;
   position: relative;
-  top: 35%;
+  top: 25%;
   height: var(--card-height);
   grid-area: handCards;
   justify-self: center;
   .card {
     position: relative;
+    .value {
+      line-height: calc(0.6 * var(--card-width));
+    }
   }
-  @include compact-cards;
+  @media only screen and (min-height: 500px) {
+    @media only screen and (min-width: 750px) {
+      top: 35%;
+      .card .value {
+        line-height: calc(0.4 * var(--card-width));
+      }
+    }
+  }
 }
 .bet-grid {
   position: absolute;
