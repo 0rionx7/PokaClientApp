@@ -10,10 +10,8 @@
   align-self: flex-end;
   flex: 1 0;
   border-radius: 0.3rem;
-  @media only screen and (min-height: 500px) {
-    @media only screen and (min-width: 750px) {
-      display: grid;
-    }
+  @media only screen and (min-height: 500px) and (min-width: 750px) {
+    display: grid;
   }
   svg {
     width: calc(0.13 * var(--card-width));

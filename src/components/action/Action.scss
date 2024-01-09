@@ -25,21 +25,20 @@
     min-width: 40%;
     font-weight: 600;
     font-size: 0.6rem;
-    @media only screen and (min-height: 500px) {
-      @media only screen and (min-width: 900px) {
-        font-size: 0.8rem;
-      }
+    @media only screen and (min-height: 500px) and (min-width: 900px) {
+      font-size: 0.8rem;
     }
   }
 }
 .next-round {
   place-self: end;
   width: calc(6 * var(--card-width));
-  height: calc(1.5 * var(--card-height));
+  height: calc(1.2 * var(--card-height));
   font-size: 0.6rem;
-  @media only screen and (min-height: 500px) {
-    @media only screen and (min-width: 900px) {
-      font-size: 0.8rem;
-    }
+  &:hover {
+    background-color: #f5670094;
+  }
+  @media only screen and (min-height: 500px) and (min-width: 900px) {
+    font-size: 0.8rem;
   }
 }

@@ -14,12 +14,10 @@
       line-height: calc(0.6 * var(--card-width));
     }
   }
-  @media only screen and (min-height: 500px) {
-    @media only screen and (min-width: 750px) {
-      top: 35%;
-      .card .value {
-        line-height: calc(0.4 * var(--card-width));
-      }
+  @media only screen and (min-height: 500px) and (min-width: 750px) {
+    top: 35%;
+    .card .value {
+      line-height: calc(0.4 * var(--card-width));
     }
   }
 }

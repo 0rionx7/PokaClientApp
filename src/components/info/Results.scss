@@ -31,9 +31,7 @@
   span {
     white-space: nowrap;
   }
-  @media only screen and (min-height: 500px) {
-    @media only screen and (min-width: 900px) {
-      font-size: 0.7rem;
-    }
+  @media only screen and (min-height: 500px) and (min-width: 900px) {
+    font-size: 0.7rem;
   }
 }

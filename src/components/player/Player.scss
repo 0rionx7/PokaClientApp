@@ -42,11 +42,9 @@
   color: black;
   font-size: 1rem;
   font-family: Yellowtail;
-  @media only screen and (min-width: 750px) {
-    @media only screen and (min-height: 500px) {
-      height: calc(0.8 * var(--card-height));
-      font-size: 2rem;
-    }
+  @media only screen and (min-width: 750px) and (min-height: 500px) {
+    height: calc(0.8 * var(--card-height));
+    font-size: 2rem;
   }
 }
 .top {
