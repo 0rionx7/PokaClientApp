@@ -10,7 +10,6 @@ import Bet from 'components/action/Bet';
 import Swap from 'components/action/Swap';
 import Submit from 'components/action/Submit';
 import Discard from 'components/action/Discard';
-import './Action.scss';
 
 const Play = () => {
   const { gameId } = useParams();

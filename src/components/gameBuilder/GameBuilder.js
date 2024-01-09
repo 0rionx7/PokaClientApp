@@ -78,17 +78,18 @@ const GameBuilder = () => {
   };
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validate={validate}
-      onSubmit={submitHandler}
-      validateOnChange={false}
-      validateOnBlur={false}
-      enableReinitialize>
-      {({ isSubmitting, isValid, errors, submitForm, setErrors }) => (
-        <Form onFocus={() => setErrors({})}>
-          {snackElement}
-          <Frame>
+    <Frame className="game-builder">
+      <Formik
+        initialValues={initialValues}
+        validate={validate}
+        onSubmit={submitHandler}
+        validateOnChange={false}
+        validateOnBlur={false}
+        enableReinitialize>
+        {({ isSubmitting, isValid, errors, submitForm, setErrors }) => (
+          <Form onFocus={() => setErrors({})}>
+            {snackElement}
+
             <BuilderItem
               title={builderTitles.GAME}
               element={<GameChooser startingCard={data.startingCard} />}
@@ -156,22 +157,22 @@ const GameBuilder = () => {
                   prompt={
                     btnPrompt || (isValid ? 'ΜΟΙΡΑΣΤΕ' : errors.buildGame)
                   }
-                  disabled={
-                    isSubmitting ||
-                    isSuccess ||
-                    !isValid ||
-                    allOthersTapi ||
-                    noOthersInPlay
-                  }
+                  // disabled={
+                  //   isSubmitting ||
+                  //   isSuccess ||
+                  //   !isValid ||
+                  //   allOthersTapi ||
+                  //   noOthersInPlay
+                  // }
                   onClick={submitForm}
                   className="deal-btn"
                 />,
                 document.getElementsByClassName('action-container')[0]
               )}
-          </Frame>
-        </Form>
-      )}
-    </Formik>
+          </Form>
+        )}
+      </Formik>
+    </Frame>
   );
 };
 

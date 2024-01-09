@@ -5,7 +5,6 @@ import { useAssignJokerMutation } from 'features/gameState/gameStateApi';
 import { resetJoker } from 'features/gameState/gameStateSlice';
 import Button from 'components/ui/Button';
 import Card from 'components/card/Card';
-import './JokerSelect.scss';
 
 const JokerSubmit = () => {
   const jokers = useSelector(state => state.gameState.jokers);

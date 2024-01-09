@@ -89,14 +89,12 @@ const Submit = () => {
             }
             disabled={submitting || submissionSuccess}
             className="green"
-            style={{ fontSize: '.7rem' }}
           />
           <Button
             prompt={<h3>ΑΚΥΡΩΣΗ</h3>}
             onClick={reset}
             disabled={submitting || submissionSuccess}
             className="red"
-            style={{ fontSize: '.7rem' }}
           />
         </>
       ) : (

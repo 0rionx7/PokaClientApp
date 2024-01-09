@@ -17,7 +17,7 @@ const DealingOptions = () => {
   }, [values.dealing, setFieldValue]);
 
   return (
-    <div className="options">
+    <>
       <CheckBox
         name="skarto"
         label="ΜΕ ΣΚΑΡΤΟ"
@@ -52,7 +52,7 @@ const DealingOptions = () => {
           className={values.swap && 'active-counter'}
         />
       )}
-    </div>
+    </>
   );
 };
 

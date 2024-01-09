@@ -21,7 +21,25 @@
   max-width: 75vw;
   padding: 1rem;
   button {
-    width: 20vw;
+    max-width: 60%;
+    min-width: 40%;
     font-weight: 600;
+    font-size: 0.6rem;
+    @media only screen and (min-height: 500px) {
+      @media only screen and (min-width: 900px) {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+.next-round {
+  place-self: end;
+  width: calc(6 * var(--card-width));
+  height: calc(1.5 * var(--card-height));
+  font-size: 0.6rem;
+  @media only screen and (min-height: 500px) {
+    @media only screen and (min-width: 900px) {
+      font-size: 0.8rem;
+    }
   }
 }
