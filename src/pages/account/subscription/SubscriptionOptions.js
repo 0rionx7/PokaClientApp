@@ -16,7 +16,7 @@ const SubscriptionOptions = () => {
 
   useEffect(() => {
     if (data?.orderCode)
-      window.location.href = `https://demo.vivapayments.com/web/checkout?ref=${data.orderCode}&color=224f1c`;
+      window.location.href = `https://demo.vivapayments.com/web/checkout?ref=${data.orderCode}&color=#00b0b7`;
   }, [data?.orderCode]);
 
   if (isLoading || isSuccess)
