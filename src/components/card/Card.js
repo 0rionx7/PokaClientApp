@@ -32,7 +32,7 @@ const Card = ({ card, canBeSelected }) => {
     <div className={classes} onClick={toggleCardSelected}>
       <div className={`value-suit_${card.suit}`}>
         <div className="value">{symbols[card.value] || card.value}</div>
-        <div>{suits[card.suit]}</div>
+        <div className='suit'>{suits[card.suit]}</div>
       </div>
       <div className={'card-decoration v-' + card.value}>
         <Content card={card} />
