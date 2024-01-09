@@ -5,7 +5,7 @@ import ToolTip from 'components/ui/ToolTip';
 const Radio = ({ name, label, value, checked, info }) => {
   return (
     <label className="form-control">
-      {label || value}
+      <div>{label || value}</div>
       <Field
         type="radio"
         className="checkbox"

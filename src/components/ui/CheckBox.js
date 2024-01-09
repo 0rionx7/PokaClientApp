@@ -8,7 +8,7 @@ const CheckBox = ({ value, name, label, style, checked, className, info }) => {
     <label
       className={'form-control ' + (className ? className : '')}
       style={style}>
-      {label || value}
+      <div>{label || value}</div>
       <Field
         type="checkbox"
         className="checkbox"

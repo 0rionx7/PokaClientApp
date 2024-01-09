@@ -43,14 +43,13 @@ const SubscriptionOptions = () => {
 
   return (
     <div className="subscription">
-      <div className="sub-status">
-        Κατάσταση συνδρομής:
-        {noSubscription ? (
-          ' Δέν έχετε ενεργή συνδρομή'
-        ) : (
-          <span> ενεργή έως {expiresAt}</span>
-        )}
-      </div>
+      <div className="sub-status">Κατάσταση συνδρομής: </div>
+      {noSubscription ? (
+        ' Δέν έχετε ενεργή συνδρομή'
+      ) : (
+        <span> ενεργή έως {expiresAt}</span>
+      )}
+
       <span>ΕΠΙΛΟΓΕΣ ΑΝΑΝΕΩΣΗΣ</span>
       <Frame>
         <div className="subscription-options">
