@@ -89,7 +89,6 @@ const GameBuilder = () => {
         {({ isSubmitting, isValid, errors, submitForm, setErrors }) => (
           <Form onFocus={() => setErrors({})}>
             {snackElement}
-
             <BuilderItem
               title={builderTitles.GAME}
               element={<GameChooser startingCard={data.startingCard} />}

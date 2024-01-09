@@ -41,8 +41,8 @@ const GameChooser = ({ startingCard }) => {
       </Field>
       <Field name="startingCard">
         {({ field }) => (
-          <label>
-            ΜΙΚΡΟΤΕΡΟ ΧΑΡΤΙ{' '}
+          <label className="starting-card">
+            <div>ΜΙΚ. ΧΑΡΤΙ</div>
             <select {...field}>
               {startCard.map(value => (
                 <option key={value} value={value}>

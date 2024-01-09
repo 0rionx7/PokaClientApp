@@ -24,34 +24,38 @@ const DealingOptions = () => {
         checked={values.skarto}
         info={infoText.SKARTO}
       />
-      <CheckBox
-        name="deny"
-        label="ΜΕ ΑΡΝΗΣΗ"
-        checked={values.deny}
-        className={values.deny && 'active-title'}
-        info={infoText.ARNISI}
-      />
-      {values.deny && (
-        <NumericInput
-          name="denies"
-          startingNumber={1}
-          className={values.deny && 'active-counter'}
+      <div className="with-counter">
+        <CheckBox
+          name="deny"
+          label="ΜΕ ΑΡΝΗΣΗ"
+          checked={values.deny}
+          className={values.deny && 'active-title'}
+          info={infoText.ARNISI}
         />
-      )}
-      <CheckBox
-        name="swap"
-        label="ΜΕ ΑΛΛΑΓΗ"
-        checked={values.swap}
-        className={values.swap && 'active-title'}
-        info={infoText.ALAGI}
-      />
-      {values.swap && (
-        <NumericInput
-          name="swaps"
-          startingNumber={1}
-          className={values.swap && 'active-counter'}
+        {values.deny && (
+          <NumericInput
+            name="denies"
+            startingNumber={1}
+            className={values.deny && 'active-counter'}
+          />
+        )}
+      </div>
+      <div className="with-counter">
+        <CheckBox
+          name="swap"
+          label="ΜΕ ΑΛΛΑΓΗ"
+          checked={values.swap}
+          className={values.swap && 'active-title'}
+          info={infoText.ALAGI}
         />
-      )}
+        {values.swap && (
+          <NumericInput
+            name="swaps"
+            startingNumber={1}
+            className={values.swap && 'active-counter'}
+          />
+        )}
+      </div>
     </>
   );
 };
