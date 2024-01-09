@@ -16,7 +16,7 @@ const GameDescription = () => {
 
   const game =
     hostPlayerName === data.dealer ? currentChoosenGame : data.gameName;
-  const tableTitle = createTableTitle(data.tableName);
+  const tableTitle = data.tableName.split('_')?.[0];
 
   if (!game)
     return (
