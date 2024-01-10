@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useFormikContext } from 'formik';
 
-import { dealingOrders, infoText } from 'common/text-constants';
+import { dealingOrders, infoText } from 'lib/text-constants';
 import CheckBox from 'components/ui/CheckBox';
 import NumericInput from 'components/ui/NumericInput';
 

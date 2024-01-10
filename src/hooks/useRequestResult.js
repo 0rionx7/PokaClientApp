@@ -6,7 +6,7 @@ import {
   requestRejected,
   setRequestGameId,
 } from 'features/account/accountSlice';
-import { createTableTitle } from 'common/text-functions';
+import { createTableTitle } from 'lib/text-functions';
 import { socket } from 'features/gameState/gameStateApi';
 import ApprovedRequest from 'pages/ApprovedRequest';
 import useSnackBar from 'hooks/useSnackBar';

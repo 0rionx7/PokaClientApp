@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { faceUp } from 'common/utilities-functions';
+import { faceUp } from 'lib/utilities-functions';
 import { gameStateApi } from 'features/gameState/gameStateApi';
 
 export const gameStateSlice = createSlice({

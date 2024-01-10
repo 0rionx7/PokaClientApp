@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { createChipStack } from 'lib/createChipStack';
-import { kavesInfo } from 'common/text-constants';
+import { kavesInfo } from 'lib/text-constants';
 import Kava from 'components/table/Kava';
 import './Kaves.scss';
 import ToolTip from 'components/ui/ToolTip';

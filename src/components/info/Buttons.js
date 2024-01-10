@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { infoButtons } from 'common/text-constants';
+import { infoButtons } from 'lib/text-constants';
 import Button from 'components/ui/Button';
 import './Buttons.scss';
 

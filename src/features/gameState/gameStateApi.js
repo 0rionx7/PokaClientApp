@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import io from 'socket.io-client';
 
-import { playerEntry, updateAll } from 'common/utilities-functions';
+import { playerEntry, updateAll } from 'lib/utilities-functions';
 import {
   resetJoker,
   setHandCards,

@@ -1,4 +1,4 @@
-import { cardsName, cardsNameOf, handKind } from 'common/text-constants';
+import { cardsName, cardsNameOf, handKind } from 'lib/text-constants';
 
 export function createTableTitle(tableName) {
   const names = tableName?.split('_');

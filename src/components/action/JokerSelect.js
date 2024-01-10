@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { orderNumber, suitName } from 'common/text-constants';
+import { orderNumber, suitName } from 'lib/text-constants';
 import { addJoker } from 'features/gameState/gameStateSlice';
 import JokerSubmit from 'components/action/JokerSubmit';
 import { symbols } from 'assets/svgs/suits';

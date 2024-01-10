@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 
-import { builderTitles } from 'common/text-constants';
-import { gameNames } from 'common/games';
+import { builderTitles } from 'lib/text-constants';
+import { gameNames } from 'lib/games';
 import { useMemo } from 'react';
 
 const BuilderItem = ({ title, element }) => {

@@ -3,7 +3,7 @@ import {
   UNAUTHORISED_REQUEST_ERROR,
   paymentsDescription,
   subscriptionOptions,
-} from 'common/text-constants';
+} from 'lib/text-constants';
 import { baseUrl, gameStateApi } from 'features/gameState/gameStateApi';
 
 export const { usePayMutation } = gameStateApi.injectEndpoints({

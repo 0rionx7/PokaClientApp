@@ -9,12 +9,12 @@ import {
   errorMessages,
   speaking,
   tabloCount,
-} from 'common/text-constants';
+} from 'lib/text-constants';
 import {
   useGetGameStateQuery,
   useSetGameVariantMutation,
 } from 'features/gameState/gameStateApi';
-import { isHere, notEnoughCards } from 'common/utilities-functions';
+import { isHere, notEnoughCards } from 'lib/utilities-functions';
 import { createGameVariant } from 'lib/createGameVariant';
 import BuilderItem from 'components/gameBuilder/BuilderItem';
 import GameChooser from 'components/gameBuilder/GameChooser';
@@ -26,7 +26,7 @@ import FaceDown from 'components/gameBuilder/FaceDown';
 import CardsCount from 'components/gameBuilder/CardsCount';
 import Extra from 'components/gameBuilder/Extra';
 import Options from 'components/gameBuilder/Options';
-import { builderDefaults, gameNames } from 'common/games';
+import { builderDefaults, gameNames } from 'lib/games';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';

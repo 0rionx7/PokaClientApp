@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { getPossitionClass } from 'lib/createPlayerClass';
-import { playerEntry } from 'common/utilities-functions';
+import { playerEntry } from 'lib/utilities-functions';
 import { getChipsPosition } from 'lib/getChipsPosition';
 
 const usePlayerClass = index => {

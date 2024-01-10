@@ -7,7 +7,7 @@ import {
   useGetGameStateQuery,
 } from 'features/gameState/gameStateApi';
 import BetOptions from 'components/action/BetOptions';
-import { betPrompt } from 'common/text-functions';
+import { betPrompt } from 'lib/text-functions';
 import Button from 'components/ui/Button';
 import './Bet.scss';
 

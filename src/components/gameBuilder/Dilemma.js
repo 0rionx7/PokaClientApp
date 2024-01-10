@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useFormikContext } from 'formik';
 
-import { infoText } from 'common/text-constants';
+import { infoText } from 'lib/text-constants';
 import Radio from 'components/ui/Radio';
 
 const Dilemma = ({ name, options }) => {

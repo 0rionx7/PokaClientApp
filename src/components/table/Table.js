@@ -7,7 +7,7 @@ import {
   useGetGameStateQuery,
   useSitOutMutation,
 } from 'features/gameState/gameStateApi';
-import { playerEntry } from 'common/utilities-functions';
+import { playerEntry } from 'lib/utilities-functions';
 import DealerScreen from 'components/dealer/DealerScreen';
 import StayLeave from 'components/action/StayLeave';
 import Players from 'components/player/Players';

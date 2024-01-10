@@ -2,8 +2,8 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { createTableTitle } from 'common/text-functions';
-import { gamesInfo } from 'common/text-constants';
+import { createTableTitle } from 'lib/text-functions';
+import { gamesInfo } from 'lib/text-constants';
 import './Info.scss';
 
 const GameDescription = () => {

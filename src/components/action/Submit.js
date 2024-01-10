@@ -7,12 +7,12 @@ import {
   useGetGameStateQuery,
   useSubmitCardsMutation,
 } from 'features/gameState/gameStateApi';
-import { isMirror, selectedCardsIndexes } from 'common/utilities-functions';
-import { describeHand } from 'common/text-functions';
+import { isMirror, selectedCardsIndexes } from 'lib/utilities-functions';
+import { describeHand } from 'lib/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';
-import { gameNames } from 'common/games';
+import { gameNames } from 'lib/games';
 
 const Submit = () => {
   const { gameId } = useParams();
