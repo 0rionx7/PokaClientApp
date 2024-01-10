@@ -1,53 +1,53 @@
 import { memo, useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { createChipStack } from 'lib/createChipStack';
+import { playerEntry } from 'common/utilities-functions';
+import ChipStack from 'components/player/ChipStack';
 import Card from 'components/card/Card';
 import './HandCards.scss';
 
-const HandCards = ({
-  cards,
-  canBeSelected,
-  bet,
-  playingIndex,
-  chipsPosition,
-}) => {
+const HandCards = ({ playerState, playingIndex, chipsPosition }) => {
+  const hostPlayerName = useSelector(state => state.account.username);
+  const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const [renderCards, setRenderCards] = useState(cards);
+  const [renderCards, setRenderCards] = useState([]);
 
-  const chips = useMemo(
-    () => createChipStack(bet, data.chip),
-    [bet, data.chip]
+  const hostPlayerState = useMemo(
+    () => data?.playersStateList.find(playerEntry(hostPlayerName)),
+    [data?.playersStateList, hostPlayerName]
   );
+  const isHostPlayer = playerState.playerName === hostPlayerName;
+  const playerSubmitted = playerState.submittedHand.length;
+  const canSelect = hostPlayerState.selecting;
+  const handCards = playerSubmitted
+    ? playerState.submittedHand
+    : isHostPlayer
+    ? hostPlayerHandCards
+    : playerState.handCards;
 
   useEffect(() => {
     let timer;
     const timeout = playingIndex * 60;
     timer = setTimeout(() => {
-      setRenderCards(cards);
+      setRenderCards(handCards);
     }, timeout);
 
     return () => clearTimeout(timer);
-  }, [playingIndex, cards]);
+  }, [playingIndex, handCards]);
 
   return (
-    <div className={'hand-cards cards-' + cards?.length}>
+    <div className={'hand-cards cards-' + handCards?.length}>
       {renderCards?.map((card, i) => (
-        <Card key={i} card={card} canBeSelected={canBeSelected} />
+        <Card
+          key={i}
+          card={card}
+          canBeSelected={!playerSubmitted && isHostPlayer && canSelect}
+        />
       ))}
-      {bet > 0 && (
-        <div className="bet-grid" style={chipsPosition}>
-          <div className="chips">{chips}</div>
-          <div className="bet-amount">{bet.toLocaleString()}</div>
-        </div>
-      )}
-      {bet < 0 && (
-        <div className="bet-grid" style={chipsPosition}>
-          <div className="bet-amount">πάσο</div>
-        </div>
-      )}
+      <ChipStack playerState={playerState} chipsPosition={chipsPosition} />
     </div>
   );
 };
