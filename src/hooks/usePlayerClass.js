@@ -28,7 +28,10 @@ const usePlayerClass = index => {
   const className =
     'player p-' + seat + (playerSubmitted ? ' submitted' : '') + position;
 
-  const chipsPosition = getChipsPosition(handCards.length, position);
+  const chipsPosition = getChipsPosition(
+    submittedHand.length || handCards.length,
+    position
+  );
 
   return { className, gridArea, chipsPosition, playingIndex };
 };
