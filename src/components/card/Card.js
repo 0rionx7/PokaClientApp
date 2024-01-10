@@ -14,7 +14,7 @@ const Card = ({ card, canBeSelected }) => {
 
   if (!card?.faceUp)
     return (
-      <div className="card">
+      <div className="card" style={{ padding: '.17rem' }}>
         <div className="back-side" />
       </div>
     );
@@ -32,7 +32,7 @@ const Card = ({ card, canBeSelected }) => {
     <div className={classes} onClick={toggleCardSelected}>
       <div className={`value-suit_${card.suit}`}>
         <div className="value">{symbols[card.value] || card.value}</div>
-        <div className='suit'>{suits[card.suit]}</div>
+        <div className="suit">{suits[card.suit]}</div>
       </div>
       <div className={'card-decoration v-' + card.value}>
         <Content card={card} />
