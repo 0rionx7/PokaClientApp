@@ -1,6 +1,7 @@
 .kaves {
   position: absolute;
   display: grid;
+  cursor: help;
   // 0 for no bordrow
   &:not([class*='center']) {
     right: calc(100% + 0.2rem);
@@ -8,6 +9,13 @@
   }
   &.even {
     top: 0;
+  }
+  &:hover {
+    .tool-tip {
+      visibility: visible;
+      right: 100%;
+      bottom: 40%;
+    }
   }
 }
 .pot {
