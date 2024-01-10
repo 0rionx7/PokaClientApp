@@ -29,7 +29,7 @@ const useTimerBar = playerState => {
 
   return (
     <div className="timer-bar">
-      {isActive && (
+      {isActive && !playerState.handInfo.kind && (
         <div
           className="timer-fragment"
           style={{ width: width + '%', backgroundColor }}
