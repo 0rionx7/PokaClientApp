@@ -22,7 +22,18 @@ const usePlayerClass = index => {
   );
   const playerSubmitted = submittedHand.length;
   const playingIndex = playingList.findIndex(playerEntry(playerName));
-  const seat = index - hostIndex + 1 + (index < hostIndex ? playersCount : 0);
+  let seat;
+  if (hostIndex <= index) {
+    seat =
+      data.rotation === 'cockwise'
+        ? index - hostIndex + 1
+        : hostIndex - index + 1 + playersCount;
+  } else {
+    seat =
+      data.rotation === 'cockwise'
+        ? index - hostIndex + 1 + playersCount
+        : hostIndex - index + 1;
+  }
   const position = getPossitionClass(playersCount, seat - 1);
   const gridArea = 'player-' + seat;
   const className =
