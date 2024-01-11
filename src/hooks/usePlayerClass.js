@@ -23,15 +23,15 @@ const usePlayerClass = index => {
   const playerSubmitted = submittedHand.length;
   const playingIndex = playingList.findIndex(playerEntry(playerName));
   let seat;
-  if (hostIndex <= index) {
+  if (data.rotation === 'clockwise') {
     seat =
-      data.rotation === 'clockwise'
+      hostIndex <= index
         ? index - hostIndex + 1
-        : hostIndex - index + 1 + playersCount;
+        : playersCount + 1 - (hostIndex - index);
   } else {
     seat =
-      data.rotation === 'clockwise'
-        ? index - hostIndex + 1 + playersCount
+      hostIndex < index
+        ? playersCount + 1 - (index - hostIndex)
         : hostIndex - index + 1;
   }
   const position = getPossitionClass(playersCount, seat - 1);
