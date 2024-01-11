@@ -1,4 +1,4 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
@@ -8,14 +8,15 @@ import Content from 'components/card/Content';
 import './Card.scss';
 
 const Card = ({ card, canBeSelected }) => {
+  const deckColor = useSelector(state => state.account.deckColor);
+  const dispatch = useDispatch();
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const dispatch = useDispatch();
 
   if (!card?.faceUp)
     return (
       <div className="card" style={{ padding: '.17rem' }}>
-        <div className="back-side" />
+        <div className="back-side" style={{ backgroundColor: deckColor }} />
       </div>
     );
 
