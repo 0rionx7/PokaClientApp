@@ -9,9 +9,12 @@ const initialStateFn = () => {
     token: '',
     joinRequests: [],
     hideInfo: false,
+    deckColor: 'red',
   };
   try {
     initialState.hideInfo = JSON.parse(window.localStorage.getItem('hideInfo'));
+    initialState.deckColor =
+      JSON.parse(window.localStorage.getItem('deckColor')) || 'red';
   } catch (error) {}
   return initialState;
 };
@@ -31,6 +34,7 @@ export const accountSlice = createSlice({
       if (approvedRequest) approvedRequest.joined = action.payload.gameId;
     },
     setHideInfo: (state, action) => ({ ...state, hideInfo: action.payload }),
+    setDeckColor: (state, action) => ({ ...state, deckColor: action.payload }),
   },
   extraReducers: builder => {
     builder
