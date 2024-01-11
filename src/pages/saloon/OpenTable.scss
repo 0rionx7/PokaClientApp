@@ -34,12 +34,12 @@
     margin-bottom: 0.3rem;
     input {
       font: inherit;
-      &:hover {
+      &:not([class='checkbox']):hover {
         background-color: #e1c8ab;
       }
     }
     label {
-      justify-self: right;
+      justify-self: flex-end;
       font-size: 0.75rem;
       cursor: pointer;
     }
@@ -66,8 +66,12 @@
   .form-inputs {
     display: flex;
     flex-direction: column;
+    gap: 0.3rem;
     width: 100%;
     padding: 1rem;
+    .form-control {
+      margin: 0;
+    }
   }
   .title {
     width: 100%;
@@ -82,4 +86,23 @@
       }
     }
   }
+}
+.rotation {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 0.5fr;
+  align-items: center;
+  color: bisque;
+  font-size: 0.75rem;
+  font-weight: 600;
+  & > div {
+    justify-self: flex-end;
+  }
+  label {
+    display: flex !important;
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+}
+svg[id='counterclock'] {
+  transform: rotateY(180deg);
 }

@@ -4,8 +4,10 @@ import { useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 
 import { useOpenTableMutation } from 'features/gameState/gameStateApi';
-import Button from 'components/ui/Button';
+import { clockwise, counterclockwise } from 'assets/svgs/various';
+import Dilemma from 'components/gameBuilder/Dilemma';
 import Reaction from 'pages/saloon/Reaction';
+import Button from 'components/ui/Button';
 import './OpenTable.scss';
 
 const OpenTable = () => {
@@ -15,6 +17,7 @@ const OpenTable = () => {
 
   const initialValues = {
     tableName: 'Table' + nanoid(3),
+    rotation: 'clockwise',
     cava: 1000000,
     chip: 10,
     reaction: 30,
@@ -57,6 +60,16 @@ const OpenTable = () => {
               <div className="form-control">
                 <label htmlFor="tableName">Όνομα τραπεζιού</label>
                 <Field id="tableName" name="tableName" type="text" />
+              </div>
+              <div className="rotation">
+                <div>Φορά μοιράσματος</div>
+                <Dilemma
+                  name="rotation"
+                  options={[
+                    { name: 'clockwise', img: clockwise },
+                    { name: 'counterclockwise', img: counterclockwise },
+                  ]}
+                />
               </div>
               <div className="form-control">
                 <label htmlFor="cava">&quot;Κάβα&quot;</label>
