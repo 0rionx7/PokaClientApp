@@ -1,15 +1,11 @@
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import { useAssignJokerMutation } from 'features/gameState/gameStateApi';
-import { resetJoker } from 'features/gameState/gameStateSlice';
 import Button from 'components/ui/Button';
 import Card from 'components/card/Card';
 
-const JokerSubmit = () => {
-  const jokers = useSelector(state => state.gameState.jokers);
+const JokerSubmit = ({ jokers, resetJokers }) => {
   const [assignJoker, { isLoading, isSuccess }] = useAssignJokerMutation();
-  const dispatch = useDispatch();
   const { gameId } = useParams();
 
   return (
@@ -22,11 +18,7 @@ const JokerSubmit = () => {
           ))}
         </div>
       </div>
-      <Button
-        className="red"
-        prompt="ΑΚΥΡΩΣΗ"
-        onClick={() => dispatch(resetJoker())}
-      />
+      <Button className="red" prompt="ΑΚΥΡΩΣΗ" onClick={resetJokers} />
       <Button
         className="green"
         prompt="ΥΠΟΒΟΛΗ"

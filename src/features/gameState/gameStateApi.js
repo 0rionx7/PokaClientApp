@@ -3,7 +3,6 @@ import io from 'socket.io-client';
 
 import { playerEntry, updateAll } from 'lib/utilities-functions';
 import {
-  resetJoker,
   setHandCards,
   setHasNexted,
   setTableCards,
@@ -60,7 +59,6 @@ export const gameStateApi = createApi({
                     dispatch(setTableCards(stateUpdate.tableCards));
                   if (stateUpdate.gameName) {
                     dispatch(setHasNexted(false));
-                    dispatch(resetJoker());
                   }
                 }
 
