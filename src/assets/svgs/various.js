@@ -1,9 +1,7 @@
 export const exitSvg = (
   <svg
     fill="#000000"
-    version="1.1"
     id="Capa_1"
-    xmlns="http://www.w3.org/2000/svg"
     width="800px"
     height="800px"
     viewBox="0 0 552.4 552.4">
@@ -27,7 +25,6 @@ export const exitSvg = (
 );
 export const editSvg = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
     fill="currentColor"
@@ -42,7 +39,6 @@ export const editSvg = (
 );
 export const accountSvg = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
     fill="currentColor"
@@ -57,7 +53,6 @@ export const accountSvg = (
 );
 export const settingsSvg = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
     fill="black"
@@ -68,7 +63,6 @@ export const settingsSvg = (
 );
 export const logOutSvg = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
     fill="red"
@@ -86,7 +80,6 @@ export const logOutSvg = (
 );
 export const logInSvg = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
     fill="currentColor"
@@ -98,7 +91,6 @@ export const logInSvg = (
 );
 export const sendSvg = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
     fill="currentColor"
@@ -117,12 +109,26 @@ export const sendSvg = (
 );
 export const collapseVertical = (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
     width="16"
     height="16"
     fill="currentColor"
     className="bi bi-arrows-collapse-vertical"
     viewBox="0 0 16 16">
     <path d="M8 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5ZM0 8a.5.5 0 0 1 .5-.5h3.793L3.146 6.354a.5.5 0 1 1 .708-.708l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L4.293 8.5H.5A.5.5 0 0 1 0 8Zm11.707.5 1.147 1.146a.5.5 0 0 1-.708.708l-2-2a.5.5 0 0 1 0-.708l2-2a.5.5 0 0 1 .708.708L11.707 7.5H15.5a.5.5 0 0 1 0 1h-3.793Z" />
+  </svg>
+);
+export const clockwise = (
+  <svg height="24" width="24" fill="currentColor" viewBox="0 -960 960 960">
+    <path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
+  </svg>
+);
+export const counterclockwise = (
+  <svg
+    height="24"
+    width="24"
+    fill="currentColor"
+    viewBox="0 -960 960 960"
+    id="counterclock">
+    <path d="M480-160q-134 0-227-93t-93-227q0-134 93-227t227-93q69 0 132 28.5T720-690v-110h80v280H520v-80h168q-32-56-87.5-88T480-720q-100 0-170 70t-70 170q0 100 70 170t170 70q77 0 139-44t87-116h84q-28 106-114 173t-196 67Z" />
   </svg>
 );
