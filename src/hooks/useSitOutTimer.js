@@ -38,7 +38,6 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
     kind,
     isHostPlayer,
     isPlaying,
-    nextRound,
     sittingOut,
     sitOut,
     data?.reaction,

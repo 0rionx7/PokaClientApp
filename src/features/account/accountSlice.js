@@ -9,13 +9,15 @@ const initialStateFn = () => {
     token: '',
     joinRequests: [],
     hideInfo: false,
-    deckColor: 'red',
+    deckColor: 'rgb(255 0 0 / 90%)',
   };
   try {
     initialState.hideInfo = JSON.parse(window.localStorage.getItem('hideInfo'));
     initialState.deckColor =
-      JSON.parse(window.localStorage.getItem('deckColor')) || 'red';
-  } catch (error) {}
+      window.localStorage.getItem('deckColor') || 'rgb(255 0 0 / 90%)';
+  } catch (error) {
+    console.log(error);
+  }
   return initialState;
 };
 export const accountSlice = createSlice({
@@ -79,5 +81,5 @@ export const accountSlice = createSlice({
 });
 
 export const accountReducer = accountSlice.reducer;
-export const { requestRejected, setRequestGameId, setHideInfo } =
+export const { requestRejected, setRequestGameId, setHideInfo, setDeckColor } =
   accountSlice.actions;

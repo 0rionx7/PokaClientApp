@@ -57,3 +57,34 @@
     background-color: #d77a00;
   }
 }
+.config {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.deck-color {
+  display: grid;
+  grid-template-columns: 1fr repeat(4, 0.25fr);
+  place-items: center;
+  color: bisque;
+  font-size: 0.75rem;
+  font-weight: 600;
+  input[name='deckColor'] {
+    &:nth-child(2) {
+      background-color: rgb(255 0 0 / 80%);
+    }
+    &:nth-child(3) {
+      background-color: rgb(168 0 234 / 81%);
+    }
+    &:nth-child(4) {
+      background-color: rgb(0 116 234 / 81%);
+    }
+    &:nth-child(5) {
+      background-color: rgb(255 143 0 / 92%);
+    }
+  }
+}
+.hideInfo {
+  display: flex;
+  align-items: center;
+}
