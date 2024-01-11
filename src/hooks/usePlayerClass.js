@@ -25,12 +25,12 @@ const usePlayerClass = index => {
   let seat;
   if (hostIndex <= index) {
     seat =
-      data.rotation === 'cockwise'
+      data.rotation === 'clockwise'
         ? index - hostIndex + 1
         : hostIndex - index + 1 + playersCount;
   } else {
     seat =
-      data.rotation === 'cockwise'
+      data.rotation === 'clockwise'
         ? index - hostIndex + 1 + playersCount
         : hostIndex - index + 1;
   }
