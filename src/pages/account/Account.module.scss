@@ -60,7 +60,9 @@
 .config {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  @media only screen and (min-height: 500px) {
+    gap: 1rem;
+  }
 }
 .deck-color {
   display: grid;

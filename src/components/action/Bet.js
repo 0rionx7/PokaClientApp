@@ -83,11 +83,7 @@ const Bet = ({ bet, resta }) => {
             {maxBet <= resta && (
               <Button
                 onClick={() => setFieldValue('amount', minBet)}
-                prompt={
-                  minBet === 0
-                    ? 'Ντούκου'
-                    : `Μέσα στα\n ${minBet.toLocaleString()}`
-                }
+                prompt={minBet.toLocaleString()}
                 disabled={isSubmitting || isSuccess}
                 className="call-btn green"
               />
