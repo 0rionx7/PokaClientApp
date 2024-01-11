@@ -156,13 +156,13 @@ const GameBuilder = () => {
                   prompt={
                     btnPrompt || (isValid ? 'ΜΟΙΡΑΣΤΕ' : errors.buildGame)
                   }
-                  // disabled={
-                  //   isSubmitting ||
-                  //   isSuccess ||
-                  //   !isValid ||
-                  //   allOthersTapi ||
-                  //   noOthersInPlay
-                  // }
+                  disabled={
+                    isSubmitting ||
+                    isSuccess ||
+                    !isValid ||
+                    allOthersTapi ||
+                    noOthersInPlay
+                  }
                   onClick={submitForm}
                   className="deal-btn"
                 />,
