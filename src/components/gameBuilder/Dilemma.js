@@ -9,17 +9,21 @@ const Dilemma = ({ name, options }) => {
 
   return (
     <>
-      {options.map(option => (
-        <Fragment key={option}>
-          <Radio
-            name={name}
-            label={option}
-            value={option}
-            checked={values[name] === option}
-            info={infoText[option]}
-          />
-        </Fragment>
-      ))}
+      {options.map(option => {
+        const optionName = option.name ?? option;
+        const label = option.img ?? option;
+        return (
+          <Fragment key={optionName}>
+            <Radio
+              name={name}
+              label={label}
+              value={optionName}
+              checked={values[name] === optionName}
+              info={infoText[optionName]}
+            />
+          </Fragment>
+        );
+      })}
     </>
   );
 };
