@@ -22,6 +22,7 @@ import Room from 'pages/Room';
 import Layout from 'components/layout/Layout';
 import RouteGuard from 'lib/route-guard';
 import { store } from 'store/store';
+import Instructions from 'pages/Instructions';
 import App from 'App';
 
 const container = document.getElementById('root');
@@ -33,6 +34,8 @@ const router = createBrowserRouter(
       <Route errorElement={<div>Error - Router error element</div>}>
         <Route element={<Layout />}>
           <Route index element={<Welcome />} />
+          <Route path="instructions" element={<Instructions />} />
+          <Route path="saloon" element={<RouteGuard element={<Saloon />} />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="account" element={<RouteGuard element={<Account />} />}>
@@ -41,7 +44,6 @@ const router = createBrowserRouter(
           </Route>
           <Route path="successfulPayment" element={<SuccessfulPayment />} />
           <Route path="failedPayment" element={<FailedPayment />} />
-          <Route path="saloon" element={<RouteGuard element={<Saloon />} />} />
           <Route path="*" element={<h1>420 Not Found</h1>} />
         </Route>
         <Route

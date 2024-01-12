@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router';
 
+import { useLogOutAllMutation } from 'features/gameState/gameStateApi';
 import { useLoginMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
-import { useLogOutAllMutation } from 'features/gameState/gameStateApi';
 
 const Footer = () => {
   const [login] = useLoginMutation();
@@ -33,7 +33,7 @@ const Footer = () => {
   return (
     <div className="footer">
       {loginButtons}
-      <p>Όροι χρήσης</p>|<p>Πολιτική απορρήτου</p>|<p>Cookies</p>
+      <p>Όροι χρήσης</p>|<p>Πολιτική απορρήτου</p>|<p>Οδηγίες</p>
     </div>
   );
 };

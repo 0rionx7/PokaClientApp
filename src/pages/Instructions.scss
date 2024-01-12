@@ -1,0 +1,15 @@
+.instructions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  white-space: pre-line;
+  background-color: #c89666;
+  border-radius: 70px 0 70px 0;
+  font-size: 0.8rem;
+  padding: 3rem;
+  height: 100%;
+  width: 100%;
+  span {
+    font-weight: 600;
+  }
+}

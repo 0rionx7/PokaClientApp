@@ -90,7 +90,7 @@ const OpenTable = () => {
               type="submit"
               prompt="Δημιουργία"
               disabled={isSubmitting || errors.openTable}
-              className="green"
+              className="orange"
             />
           </Form>
         )}
