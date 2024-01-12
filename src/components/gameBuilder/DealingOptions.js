@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useFormikContext } from 'formik';
 
-import { dealingOrders, infoText } from 'common/text-constants';
+import { dealingOrders, infoText } from 'lib/text-constants';
 import CheckBox from 'components/ui/CheckBox';
 import NumericInput from 'components/ui/NumericInput';
 
@@ -17,42 +17,46 @@ const DealingOptions = () => {
   }, [values.dealing, setFieldValue]);
 
   return (
-    <div className="options">
+    <>
       <CheckBox
         name="skarto"
         label="ΜΕ ΣΚΑΡΤΟ"
         checked={values.skarto}
         info={infoText.SKARTO}
       />
-      <CheckBox
-        name="deny"
-        label="ΜΕ ΑΡΝΗΣΗ"
-        checked={values.deny}
-        className={values.deny && 'active-title'}
-        info={infoText.ARNISI}
-      />
-      {values.deny && (
-        <NumericInput
-          name="denies"
-          startingNumber={1}
-          className={values.deny && 'active-counter'}
+      <div className="with-counter">
+        <CheckBox
+          name="deny"
+          label="ΜΕ ΑΡΝΗΣΗ"
+          checked={values.deny}
+          className={values.deny && 'active-title'}
+          info={infoText.ARNISI}
         />
-      )}
-      <CheckBox
-        name="swap"
-        label="ΜΕ ΑΛΛΑΓΗ"
-        checked={values.swap}
-        className={values.swap && 'active-title'}
-        info={infoText.ALAGI}
-      />
-      {values.swap && (
-        <NumericInput
-          name="swaps"
-          startingNumber={1}
-          className={values.swap && 'active-counter'}
+        {values.deny && (
+          <NumericInput
+            name="denies"
+            startingNumber={1}
+            className={values.deny && 'active-counter'}
+          />
+        )}
+      </div>
+      <div className="with-counter">
+        <CheckBox
+          name="swap"
+          label="ΜΕ ΑΛΛΑΓΗ"
+          checked={values.swap}
+          className={values.swap && 'active-title'}
+          info={infoText.ALAGI}
         />
-      )}
-    </div>
+        {values.swap && (
+          <NumericInput
+            name="swaps"
+            startingNumber={1}
+            className={values.swap && 'active-counter'}
+          />
+        )}
+      </div>
+    </>
   );
 };
 

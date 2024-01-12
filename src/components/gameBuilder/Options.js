@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useFormikContext } from 'formik';
 
-import { infoText } from 'common/text-constants';
+import { infoText } from 'lib/text-constants';
 import CheckBox from 'components/ui/CheckBox';
 import Radio from 'components/ui/Radio';
 
@@ -30,7 +30,6 @@ const Options = () => {
               label={label}
               value={i + 1}
               checked={+values.hats === i + 1}
-              className="checkbox"
               info={infoText.HAT}
             />
           ))}

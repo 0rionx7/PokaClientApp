@@ -23,7 +23,7 @@
   padding: 0.1rem 1rem;
   border-radius: 1rem;
   background-color: #a29280;
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   font-weight: 600;
   &:first-child {
     background-color: #f58505;
@@ -31,9 +31,7 @@
   span {
     white-space: nowrap;
   }
-}
-.next-round {
-  place-self: end;
-  width: 15rem;
-  height: 5rem;
+  @media only screen and (min-height: 500px) and (min-width: 900px) {
+    font-size: 0.7rem;
+  }
 }

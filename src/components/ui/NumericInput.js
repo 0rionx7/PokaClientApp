@@ -20,7 +20,7 @@ const NumericInput = ({ name, className, startingNumber }) => {
           setFieldTouched(name, true);
           setFieldValue(name, values[name] + 1);
         }}>
-        +
+        {'+'}
       </button>
       <div
         className="form-control"
@@ -39,7 +39,7 @@ const NumericInput = ({ name, className, startingNumber }) => {
           setFieldTouched(name, true);
           setFieldValue(name, values[name] - 1);
         }}>
-        -
+        {'-'}
       </button>
     </div>
   );

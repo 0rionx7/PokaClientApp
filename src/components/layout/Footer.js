@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router';
 
+import { useLogOutAllMutation } from 'features/gameState/gameStateApi';
 import { useLoginMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
-import { useLogOutAllMutation } from 'features/gameState/gameStateApi';
+import { NavLink } from 'react-router-dom';
 
 const Footer = () => {
   const [login] = useLoginMutation();
@@ -21,10 +22,10 @@ const Footer = () => {
         <Button onClick={() => loginHandler('Machine')} prompt="Machine" />
         <Button onClick={() => loginHandler('Thanos')} prompt="Thanos" />
         <Button onClick={() => loginHandler('Koulis')} prompt="Koulis" />
-        <Button onClick={() => loginHandler('alela')} prompt="alela" />
+        {/* <Button onClick={() => loginHandler('alela')} prompt="alela" />
         <Button onClick={() => loginHandler('Doc')} prompt="Doc" />
         <Button onClick={() => loginHandler('q')} prompt="q" />
-        <Button onClick={() => loginHandler('a')} prompt="a" />
+        <Button onClick={() => loginHandler('a')} prompt="a" /> */}
         <Button onClick={() => logOutAll()} prompt="z" />
       </>
     );
@@ -33,7 +34,8 @@ const Footer = () => {
   return (
     <div className="footer">
       {loginButtons}
-      <p>Όροι χρήσης</p>|<p>Πολιτική απορρήτου</p>|<p>Cookies</p>
+      <p>Όροι χρήσης</p>|<p>Πολιτική απορρήτου</p>|
+      <NavLink to="instructions">Οδηγίες</NavLink>
     </div>
   );
 };

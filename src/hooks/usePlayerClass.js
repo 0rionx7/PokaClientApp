@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { getPossitionClass } from 'lib/createPlayerClass';
-import { createChipsStyle } from 'lib/createChipsStyle';
-import { playerEntry } from 'common/utilities-functions';
+import { playerEntry } from 'lib/utilities-functions';
+import { getChipsPosition } from 'lib/getChipsPosition';
 
 const usePlayerClass = index => {
   const hostPlayerName = useSelector(state => state.account.username);
@@ -22,15 +22,29 @@ const usePlayerClass = index => {
   );
   const playerSubmitted = submittedHand.length;
   const playingIndex = playingList.findIndex(playerEntry(playerName));
-  const seat = index - hostIndex + 1 + (index < hostIndex ? playersCount : 0);
+  let seat;
+  if (data.rotation === 'clockwise') {
+    seat =
+      hostIndex <= index
+        ? index - hostIndex + 1
+        : playersCount + 1 - (hostIndex - index);
+  } else {
+    seat =
+      hostIndex < index
+        ? playersCount + 1 - (index - hostIndex)
+        : hostIndex - index + 1;
+  }
   const position = getPossitionClass(playersCount, seat - 1);
   const gridArea = 'player-' + seat;
   const className =
     'player p-' + seat + (playerSubmitted ? ' submitted' : '') + position;
 
-  const chipStyle = createChipsStyle(handCards.length, position);
+  const chipsPosition = getChipsPosition(
+    submittedHand.length || handCards.length,
+    position
+  );
 
-  return { className, gridArea, chipStyle, playingIndex };
+  return { className, gridArea, chipsPosition, playingIndex };
 };
 
 export default usePlayerClass;

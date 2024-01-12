@@ -1,4 +1,4 @@
-export function createChipsStyle(cardsCount, position) {
+export function getChipsPosition(cardsCount, position) {
   if (!position.includes('top')) return {};
   const side = position.includes('left') ? 'left' : 'right';
   switch (cardsCount) {

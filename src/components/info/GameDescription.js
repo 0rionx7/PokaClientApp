@@ -1,13 +1,9 @@
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { createTableTitle } from 'common/text-functions';
-import { gamesInfo } from 'common/text-constants';
+import { gamesInfo } from 'lib/text-constants';
 import './Info.scss';
-
-const descriptionTitles = ['ΔΙΑΤΑΞΗ:', 'ΟΜΑΔΕΣ:', 'ΑΝΟΙΓΜΑ:', 'ΕΠΙΛΟΓΕΣ:'];
 
 const GameDescription = () => {
   const { gameId } = useParams();
@@ -19,10 +15,7 @@ const GameDescription = () => {
 
   const game =
     hostPlayerName === data.dealer ? currentChoosenGame : data.gameName;
-  const tableTitle = useMemo(
-    () => createTableTitle(data.tableName),
-    [data.tableName]
-  );
+  const tableTitle = data.tableName.split('_')?.[0];
 
   if (!game)
     return (
@@ -35,11 +28,14 @@ const GameDescription = () => {
   return (
     <div className="game-info">
       <div className="info-container description">
-        {gamesInfo[game]?.split('_').map((infoText, i) => (
-          <div key={i}>
-            <span>{descriptionTitles[i]}</span> {infoText}
-          </div>
-        ))}
+        {gamesInfo[game]?.split('&').map((infoText, i) => {
+          const [title, text] = infoText.split('_');
+          return (
+            <div key={i}>
+              <span>{title}</span> {text}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

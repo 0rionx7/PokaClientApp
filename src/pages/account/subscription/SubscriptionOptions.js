@@ -6,7 +6,7 @@ import { useGetUserQuery } from 'features/account/accountApi';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import Overlay from 'components/ui/Overlay';
 import Frame from 'components/ui/Frame';
-import { subscriptionOptions } from 'common/text-constants';
+import { subscriptionOptions } from 'lib/text-constants';
 import { paymentsIcons } from 'assets/svgs/payments';
 
 const SubscriptionOptions = () => {
@@ -16,7 +16,7 @@ const SubscriptionOptions = () => {
 
   useEffect(() => {
     if (data?.orderCode)
-      window.location.href = `https://demo.vivapayments.com/web/checkout?ref=${data.orderCode}&color=224f1c`;
+      window.location.href = `https://demo.vivapayments.com/web/checkout?ref=${data.orderCode}&color=#00b0b7`;
   }, [data?.orderCode]);
 
   if (isLoading || isSuccess)
@@ -43,14 +43,13 @@ const SubscriptionOptions = () => {
 
   return (
     <div className="subscription">
-      <div className="sub-status">
-        Κατάσταση συνδρομής:
-        {noSubscription ? (
-          ' Δέν έχετε ενεργή συνδρομή'
-        ) : (
-          <span> ενεργή έως {expiresAt}</span>
-        )}
-      </div>
+      <div className="sub-status">Κατάσταση συνδρομής: </div>
+      {noSubscription ? (
+        ' Δέν έχετε ενεργή συνδρομή'
+      ) : (
+        <span> ενεργή έως {expiresAt}</span>
+      )}
+
       <span>ΕΠΙΛΟΓΕΣ ΑΝΑΝΕΩΣΗΣ</span>
       <Frame>
         <div className="subscription-options">

@@ -19,6 +19,8 @@
 .waiting-content {
   display: grid;
   place-self: center;
+  position: relative;
+  top: 10%;
 }
 .poker-table {
   position: absolute;
@@ -50,6 +52,10 @@
   .info-container {
     background: transparent;
     width: 40vw;
+    font-size: 0.65rem;
+    @media only screen and (min-height: 500px) {
+      font-size: 0.85rem;
+    }
   }
   .table-name,
   .games-count {

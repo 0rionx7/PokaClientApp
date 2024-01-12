@@ -9,8 +9,8 @@ import { socket } from 'features/gameState/gameStateApi';
 import { sendSvg } from 'assets/svgs/various';
 
 const ChatInput = () => {
-  const { gameId } = useParams();
   const playerName = useSelector(state => state.account.username);
+  const { gameId } = useParams();
   const { showPicker, setShowPicker } = useEmoji();
   const [message, setMessage] = useState('');
   const inputRef = useRef();

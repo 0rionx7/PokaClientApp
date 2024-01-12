@@ -114,10 +114,14 @@
   &.v-12,
   &.v-13,
   &.v-14 {
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    @media only screen and (min-height: 500px) and (min-width: 750px) {
+      display: flex;
+    }
+
     svg {
       height: 100%;
       width: 100%;
@@ -128,14 +132,18 @@
   }
   &.v-14 {
     svg {
-      height: 1.3rem;
+      height: 1.5rem;
     }
   }
   .ace-of-spades {
-    font-family: Yellowtail;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
+    font-family: Yellowtail;
+    @media only screen and (min-height: 500px) and (min-width: 750px) {
+      display: flex;
+    }
+
     svg {
       height: 100% !important;
     }

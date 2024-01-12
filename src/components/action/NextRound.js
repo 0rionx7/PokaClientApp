@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useNextRoundMutation } from 'features/gameState/gameStateApi';
 import Button from 'components/ui/Button';
 import Overlay from 'components/ui/Overlay';
-import './Renew.scss';
 
 const NextRound = () => {
   const { gameId } = useParams();

@@ -1,18 +1,10 @@
 import './Button.scss';
 
-const Button = ({
-  color,
-  disabled,
-  type,
-  prompt,
-  onClick,
-  style,
-  className,
-}) => {
+const Button = ({ disabled, type, prompt, onClick, style, className }) => {
   return (
     <button
       className={'btn-base ' + (className ?? '')}
-      style={{ ...style, backgroundColor: color }}
+      style={{ ...style }}
       type={type || 'button'}
       disabled={disabled}
       onClick={onClick}>

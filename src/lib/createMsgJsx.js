@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import { describeTime } from 'common/text-functions';
+import { describeTime } from 'lib/text-functions';
 
 export function createMessageJsx({ event, ...data }, index) {
   switch (event) {

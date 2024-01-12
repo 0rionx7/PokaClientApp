@@ -1,5 +1,5 @@
-import { tabloCount } from 'common/text-constants';
-import { gameNames } from 'common/games';
+import { tabloCount } from 'lib/text-constants';
+import { gameNames } from 'lib/games';
 
 export function createGameVariant({ showTitles, hiddenTitles, ...gameInfo }) {
   let rowsIndexes = [];

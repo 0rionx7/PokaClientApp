@@ -1,5 +1,5 @@
-@use '../../../_variables.scss';
-@use '../../../_colors.scss';
+@use '../../../variables.scss';
+@use '../../../colors.scss';
 
 .subscription {
   display: grid;
@@ -17,7 +17,7 @@
 .sub-status {
   font-size: 1.2rem;
   font-weight: 600;
-  span {
+  + span {
     color: chartreuse;
   }
 }
@@ -35,7 +35,6 @@
   place-items: center;
   height: 50vh;
   width: 45%;
-  padding: 0.4rem 2rem;
   font-size: 0.8rem;
   font-weight: bold;
   background-color: #33423d;
@@ -61,6 +60,11 @@
   }
   &:hover {
     background-color: #435650;
+  }
+  @media only screen and (min-width: 600px) {
+    @media only screen and (min-height: 500px) {
+      padding: 0.4rem 2rem;
+    }
   }
 }
 .payments-icons {

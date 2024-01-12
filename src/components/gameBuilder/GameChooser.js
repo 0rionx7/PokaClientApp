@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Field, useFormikContext } from 'formik';
 
-import { games, builderDefaults } from 'common/games';
+import { games, builderDefaults } from 'lib/games';
 import { setCurrentChoosenGame } from 'features/gameState/gameStateSlice';
 
 const startCard = [2, 3, 4, 5, 6, 7];
@@ -41,8 +41,8 @@ const GameChooser = ({ startingCard }) => {
       </Field>
       <Field name="startingCard">
         {({ field }) => (
-          <label>
-            ΜΙΚΡΟΤΕΡΟ ΧΑΡΤΙ{' '}
+          <label className="starting-card">
+            <div>ΜΙΚ. ΧΑΡΤΙ</div>
             <select {...field}>
               {startCard.map(value => (
                 <option key={value} value={value}>

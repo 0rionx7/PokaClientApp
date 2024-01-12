@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 
 import CheckBox from 'components/ui/CheckBox';
-import { gameNames } from 'common/games';
+import { gameNames } from 'lib/games';
 
 const Extra = () => {
   const { values } = useFormikContext();

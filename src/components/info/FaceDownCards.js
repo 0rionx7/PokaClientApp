@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { orderName } from 'common/text-constants';
+import { orderName } from 'lib/text-constants';
 
 const FaceDownCards = () => {
   const { gameId } = useParams();

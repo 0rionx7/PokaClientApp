@@ -1,4 +1,4 @@
-@use '../_variables.scss';
+@use '../variables';
 
 .corner {
   $total-width: calc(var(--card-width) + 0.4rem);
@@ -185,7 +185,7 @@
       z-index: 6;
     }
     .card {
-      margin: 0 0.5rem;
+      margin: 0 1.5rem;
       &.selected {
         translate: calc(-0.1 * var(--card-height)) 0;
         box-shadow: calc(-0.1 * var(--card-height)) 0 #3fa603,
@@ -199,52 +199,7 @@
     }
   }
 }
-// .koukos-monos-2-tablo {
-//   .card.selected {
-//     translate: calc(0.1 * var(--card-height));
-//     box-shadow: calc(-0.1 * var(--card-height)) 0 #3fa603,
-//       calc(-0.1 * var(--card-height) - 2px) 0 #090909;
-//   }
-//   height: calc(4.3 * var(--card-height)) !important;
-//   .board-row {
-//     margin: 0;
-//     width: calc(2.5 * var(--card-width));
-//     &.hat {
-//       width: calc(3 * var(--card-width));
-//       position: absolute;
-//       right: 0;
-//       display: flex;
-//       justify-content: flex-end;
-//       &.triple {
-//         right: -15%;
-//       }
-//       .card.selected {
-//         translate: 0 calc(-0.1 * var(--card-height));
-//         box-shadow: 0px calc(0.1 * var(--card-height)) 0px 0px #3fa603,
-//           0 calc(0.1 * var(--card-height) + 2px) #040404;
-//       }
-//     }
-//     &:nth-last-child(5) {
-//       z-index: 2;
-//       translate: 0 40%;
-//     }
-//     &:nth-last-child(4) {
-//       z-index: 3;
-//       translate: 0 20%;
-//     }
-//     &:nth-last-child(3) {
-//       z-index: 4;
-//     }
-//     &:nth-last-child(2) {
-//       z-index: 5;
-//       translate: 0 -20%;
-//     }
-//     &:nth-last-child(1) {
-//       translate: 0 -40%;
-//       z-index: 6;
-//     }
-//   }
-// }
+
 ///////////////////////////////////////
 .pyramid-four {
   .board-row {

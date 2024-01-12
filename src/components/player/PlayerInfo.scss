@@ -6,13 +6,13 @@
   font-size: calc(0.2 * var(--card-height));
   flex-direction: column;
   height: calc(0.6 * var(--card-height));
-  width: calc(3.5 * var(--card-width) + variables.$avatar-size);
+  width: calc(3.5 * var(--card-width) + 0.8 * var(--card-height));
   justify-content: space-evenly;
   border-radius: 2rem;
   color: bisque;
   align-items: center;
   border: 2px solid #ffe4c436;
-  padding-right: variables.$avatar-size;
+  padding-right: calc(0.8 * var(--card-height));
 }
 .player-info {
   position: relative;
@@ -91,7 +91,7 @@
 .total-bet {
   position: absolute;
   top: 100%;
-  right: variables.$avatar-size;
+  right: calc(0.8 * var(--card-height));
   width: fit-content;
   padding: 0.1rem 0.5rem;
   border-radius: 7px;

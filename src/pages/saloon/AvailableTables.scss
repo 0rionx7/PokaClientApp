@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 100%;
+  height: 70vh;
   .form-control,
   .form-control label,
   h3 {
@@ -26,15 +26,11 @@
   width: 35vw;
   border-radius: 1rem;
   overflow: hidden;
+  overflow-y: auto;
   margin-top: 0.5rem;
   @media only screen and (min-width: 900px) {
     height: 100%;
   }
-}
-.available-tables {
-  border-radius: 1rem;
-  overflow-y: auto;
-  height: 100%;
 }
 .available-table {
   display: flex;

@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useFormikContext } from 'formik';
 
-import { infoText } from 'common/text-constants';
+import { infoText } from 'lib/text-constants';
 import Radio from 'components/ui/Radio';
 
 const Dilemma = ({ name, options }) => {
@@ -9,18 +9,21 @@ const Dilemma = ({ name, options }) => {
 
   return (
     <>
-      {options.map(option => (
-        <Fragment key={option}>
-          <Radio
-            name={name}
-            className="checkbox"
-            label={option}
-            value={option}
-            checked={values[name] === option}
-            info={infoText[option]}
-          />
-        </Fragment>
-      ))}
+      {options.map(option => {
+        const optionName = option.name ?? option;
+        const label = option.img ?? option;
+        return (
+          <Fragment key={optionName}>
+            <Radio
+              name={name}
+              label={label}
+              value={optionName}
+              checked={values[name] === optionName}
+              info={infoText[optionName]}
+            />
+          </Fragment>
+        );
+      })}
     </>
   );
 };

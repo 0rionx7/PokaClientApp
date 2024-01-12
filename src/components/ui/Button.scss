@@ -1,4 +1,4 @@
-@use '../../_colors.scss';
+@use '../../colors.scss';
 
 .btn-base {
   cursor: pointer;
@@ -37,5 +37,11 @@
   background-color: #f56700;
   &:hover {
     background-color: #c25200;
+  }
+}
+.purple {
+  background-color: #9e25df;
+  &:hover {
+    background-color: #7a1cac;
   }
 }

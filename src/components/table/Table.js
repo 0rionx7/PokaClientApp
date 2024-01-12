@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -7,7 +7,7 @@ import {
   useGetGameStateQuery,
   useSitOutMutation,
 } from 'features/gameState/gameStateApi';
-import { playerEntry } from 'common/utilities-functions';
+import { playerEntry } from 'lib/utilities-functions';
 import DealerScreen from 'components/dealer/DealerScreen';
 import StayLeave from 'components/action/StayLeave';
 import Players from 'components/player/Players';
@@ -22,9 +22,8 @@ const Table = () => {
   const { gameId } = useParams();
   const { data, refetch } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(state => state.account.username);
-  const { snackElement, setSnackInfo } = useSnackBar({ secs: 4, top: true });
+  const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
   const [sitOut] = useSitOutMutation();
-  const initial = useRef(true);
 
   const hostPlayerState = data.playersStateList.find(
     playerEntry(hostPlayerName)
@@ -41,14 +40,9 @@ const Table = () => {
   }, [refetch]);
 
   useEffect(() => {
-    if (
-      !data.dealer &&
-      !initial.current &&
-      hostPlayerState.playerName !== lastAtList
-    )
+    if (!data.dealer && hostPlayerName !== lastAtList)
       setSnackInfo(<GameInfo />);
-    initial.current = false;
-  }, [data.dealer, lastAtList, setSnackInfo, hostPlayerState.playerName]);
+  }, [data.dealer, lastAtList, setSnackInfo, hostPlayerName]);
 
   return (
     <div className={'table players-' + data.playersStateList.length}>

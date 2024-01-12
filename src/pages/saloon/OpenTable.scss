@@ -7,9 +7,11 @@
   justify-content: center;
   border: 2px solid black;
   border-radius: 27px;
-  margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 0 1rem;
   box-shadow: inset 0 0 35px black;
+  @media only screen and (min-width: 900px) {
+    padding: 1rem;
+  }
   form {
     width: 100%;
     display: flex;
@@ -18,26 +20,26 @@
     align-items: center;
     background-color: rgb(37, 42, 45);
     button {
-      width: 25%;
-      margin: 0.8rem 0;
       padding: 0.75rem 1.5rem;
       font-weight: 600;
+      @media only screen and (min-height: 500px) {
+        margin: 0.8rem 0;
+      }
     }
   }
   .form-control {
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-gap: 0.4rem;
     margin-bottom: 0.3rem;
     input {
       font: inherit;
-      &:hover {
+      &:not([class='checkbox']):hover {
         background-color: #e1c8ab;
       }
     }
     label {
-      justify-self: right;
+      justify-self: flex-end;
       font-size: 0.75rem;
       cursor: pointer;
     }
@@ -52,6 +54,9 @@
         font-weight: 600;
       }
     }
+    @media only screen and (min-width: 900px) {
+      grid-template-columns: 1fr 1fr;
+    }
   }
   span {
     color: red;
@@ -61,8 +66,12 @@
   .form-inputs {
     display: flex;
     flex-direction: column;
+    gap: 0.3rem;
     width: 100%;
     padding: 1rem;
+    .form-control {
+      margin: 0;
+    }
   }
   .title {
     width: 100%;
@@ -70,9 +79,30 @@
     background-color: rgb(37 42 45);
     border-radius: 1rem 1rem 0 0;
     h3 {
-      padding: 1rem;
       border-radius: 1rem 1rem 0 0;
       background-color: rgb(141 125 106);
+      @media only screen and (min-height: 500px) {
+        padding: 1rem;
+      }
     }
   }
+}
+.rotation {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr 0.5fr;
+  align-items: center;
+  color: bisque;
+  font-size: 0.75rem;
+  font-weight: 600;
+  & > div {
+    justify-self: flex-end;
+  }
+  label {
+    display: flex !important;
+    flex-direction: row-reverse;
+    justify-content: center;
+  }
+}
+svg[id='counterclock'] {
+  transform: rotateY(180deg);
 }

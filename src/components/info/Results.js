@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { inGameFistList } from 'common/utilities-functions';
+import { inGameFistList } from 'lib/utilities-functions';
 import PlayerResult from 'components/info/PlayerResult';
 import './Results.scss';
 

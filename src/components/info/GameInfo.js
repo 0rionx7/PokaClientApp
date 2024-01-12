@@ -4,13 +4,11 @@ import { useParams } from 'react-router-dom';
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import PlayHandCards from 'components/info/PlayHandCards';
 import FaceDownCards from 'components/info/FaceDownCards';
-import { tabloCount } from 'common/text-constants';
+import { tabloCount } from 'lib/text-constants';
 import Denies from 'components/info/Denies';
 import Swaps from 'components/info/Swaps';
 import Hats from 'components/info/Hats';
 import './GameInfo.scss';
-import { createTableTitle } from 'common/text-functions';
-import { useMemo } from 'react';
 
 const GameInfo = () => {
   const { gameId } = useParams();
@@ -22,13 +20,14 @@ const GameInfo = () => {
       allDiscardedWins,
       bomba,
       mirrorWins,
+      queens,
       winningOrder,
       tablo,
       gamesCount,
     },
   } = useGetGameStateQuery(gameId);
 
-  const tableTitle = useMemo(() => createTableTitle(tableName), [tableName]);
+  const tableTitle = tableName.split('_')?.[0];
 
   if (!gameName)
     return (
@@ -42,7 +41,7 @@ const GameInfo = () => {
     <div className="game-info">
       <div className="info-container">
         <div className="table-name">{tableTitle}</div>
-        <div className="games-count">{gamesCount}ο παιχνίδι</div>
+        <div className="games-count">{gamesCount}ο παιχ.</div>
         <div className="gameName">
           <span>
             {gameName}
@@ -68,6 +67,11 @@ const GameInfo = () => {
           <div>
             <span>{mirrorWins ? 'ΚΑΘΡΕΦΤΗΣ' : 'ΑΦΥΛΛΙΑ'}</span>
             {' ανώτατο φύλλο'}
+          </div>
+        )}
+        {queens && (
+          <div>
+            μπαλαντέρ και οι <span>ΝΤΑΜΕΣ</span>
           </div>
         )}
       </div>

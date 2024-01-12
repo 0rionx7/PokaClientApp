@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { playerEntry } from 'common/utilities-functions';
+import { playerEntry } from 'lib/utilities-functions';
 import NextRound from 'components/action/NextRound';
 import Results from 'components/info/Results';
 import LiveInfo from 'components/info/LiveInfo';

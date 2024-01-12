@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { orderNumber, suitName } from 'common/text-constants';
-import { addJoker } from 'features/gameState/gameStateSlice';
+import { orderNumber, suitName } from 'lib/text-constants';
 import JokerSubmit from 'components/action/JokerSubmit';
 import { symbols } from 'assets/svgs/suits';
 import Button from 'components/ui/Button';
@@ -12,13 +11,13 @@ import Card from 'components/card/Card';
 import './JokerSelect.scss';
 
 const JokerSelect = () => {
-  const dispatch = useDispatch();
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const handCards = useSelector(state => state.gameState.handCards);
-  const jokers = useSelector(state => state.gameState.jokers);
-  const [cardValue, setCardValue] = useState(14);
+
+  const [jokers, setJokers] = useState([]);
   const [suit, setSuit] = useState('S');
+  const [cardValue, setCardValue] = useState(14);
 
   const jokerCount = handCards.filter(card =>
     data.joker.some(value => card.value === value)
@@ -27,7 +26,8 @@ const JokerSelect = () => {
 
   const prompt = jokerCount > 1 && orderNumber[jokers.length];
 
-  if (jokerCount === jokers.length) return <JokerSubmit />;
+  if (jokerCount === jokers.length)
+    return <JokerSubmit jokers={jokers} resetJokers={() => setJokers([])} />;
 
   return (
     <div className="card-container">
@@ -49,7 +49,10 @@ const JokerSelect = () => {
         </select>
       </div>
       <Card card={card} />
-      <Button prompt="ΕΠΙΛΟΓΗ" onClick={() => dispatch(addJoker(card))} />
+      <Button
+        prompt="ΕΠΙΛΟΓΗ"
+        onClick={() => setJokers(curr => [...curr, card])}
+      />
     </div>
   );
 };

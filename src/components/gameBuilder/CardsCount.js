@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { useFormikContext } from 'formik';
 
 import Radio from 'components/ui/Radio';
-import { gameNames } from 'common/games';
+import { gameNames } from 'lib/games';
 
 const CardsCount = ({ name }) => {
   const { values } = useFormikContext();
@@ -16,12 +16,7 @@ const CardsCount = ({ name }) => {
     <>
       {countOptions.map(count => (
         <Fragment key={count}>
-          <Radio
-            name={name}
-            value={count}
-            checked={+values[name] === count}
-            className="checkbox"
-          />
+          <Radio name={name} value={count} checked={+values[name] === count} />
         </Fragment>
       ))}
     </>

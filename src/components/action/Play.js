@@ -3,14 +3,13 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { playerEntry } from 'common/utilities-functions';
+import { playerEntry } from 'lib/utilities-functions';
 import JokerSelect from 'components/action/JokerSelect';
 import DenyAccept from 'components/action/DenyAccept';
 import Bet from 'components/action/Bet';
 import Swap from 'components/action/Swap';
 import Submit from 'components/action/Submit';
 import Discard from 'components/action/Discard';
-import './Action.scss';
 
 const Play = () => {
   const { gameId } = useParams();

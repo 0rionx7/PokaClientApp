@@ -2,8 +2,10 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { createChipStack } from 'lib/createChipStack';
+import { kavesInfo } from 'lib/text-constants';
 import Kava from 'components/table/Kava';
 import './Kaves.scss';
+import ToolTip from 'components/ui/ToolTip';
 
 const Kaves = ({ totalPot, rows }) => {
   const { gameId } = useParams();
@@ -17,8 +19,14 @@ const Kaves = ({ totalPot, rows }) => {
     <div className={'kaves ' + kavesClass}>
       <div className="chips">{chips}</div>
       <div className="pot">ποτ: {totalPot.toLocaleString()}</div>
-      {showKaves &&
-        data.kaves.map((kavaInfo, i) => <Kava kavaInfo={kavaInfo} key={i} />)}
+      {showKaves && (
+        <>
+          {data.kaves.map((kavaInfo, i) => (
+            <Kava kavaInfo={kavaInfo} key={i} />
+          ))}
+          <ToolTip info={kavesInfo} />
+        </>
+      )}
     </div>
   );
 };

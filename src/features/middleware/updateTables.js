@@ -11,7 +11,12 @@ export const updateTables =
     )
       dispatch(
         gameStateApi.util.updateQueryData('getTables', undefined, draft => {
-          draft.push(action.payload);
+          if (
+            draft.every(
+              ({ tableName }) => tableName !== action.payload.tableName
+            )
+          )
+            draft.push(action.payload);
         })
       );
     if (gameStateApi.endpoints.requestJoin.matchFulfilled(action))
@@ -26,8 +31,8 @@ export const updateTables =
       dispatch(
         gameStateApi.util.updateQueryData('getTables', undefined, draft => {
           if (
-            !draft.some(
-              ({ tableName }) => tableName === action.payload.tableName
+            draft.every(
+              ({ tableName }) => tableName !== action.payload.tableName
             )
           )
             draft.push({

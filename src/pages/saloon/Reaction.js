@@ -1,4 +1,4 @@
-import { describeTime } from 'common/text-functions';
+import { describeTime } from 'lib/text-functions';
 
 const Reaction = ({ field }) => {
   const reactionTimes = [30, 45, 60, 90, 101];

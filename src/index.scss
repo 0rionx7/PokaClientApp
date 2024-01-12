@@ -19,6 +19,8 @@ html {
 :root {
   --card-height: 9.3vh;
   --card-width: 6.6vh;
+  --ribbon-height: 18vh;
+  --info-buttons: 2.3vh;
 }
 @media only screen and (max-aspect-ratio: 1.31) {
   :root {
@@ -76,18 +78,23 @@ a {
   background-color: bisque;
   color: black;
   font-weight: 600;
-  font-size: 0.6rem;
+  font-size: 0.4rem;
   text-align: center;
   border-radius: 0.3rem;
   padding: 0.3rem;
   z-index: 11;
+  @media only screen and (min-height: 500px) {
+    @media only screen and (min-width: 650px) {
+      font-size: 0.6rem;
+    }
+  }
 }
 .overlay {
   display: grid;
   position: fixed;
   top: 0;
   left: 0;
-  height: 82vh;
+  height: calc(100vh - var(--ribbon-height));
   width: 100%;
   padding: 3rem;
   z-index: 101;

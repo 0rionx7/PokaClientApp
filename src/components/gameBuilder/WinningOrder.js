@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 import { Fragment } from 'react';
 import Radio from 'components/ui/Radio';
-import { winningOrders } from 'common/text-constants';
+import { winningOrders } from 'lib/text-constants';
 
 const WinningOrder = () => {
   const { values } = useFormikContext();
@@ -17,7 +17,6 @@ const WinningOrder = () => {
             label={order}
             value={order}
             checked={values.winningOrder === order}
-            className="checkbox"
           />
         </Fragment>
       ))}
