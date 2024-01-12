@@ -8,7 +8,7 @@ const Instructions = () => {
       {paragraphs.map(paragraph => {
         const text = paragraph.split('_');
         return (
-          <p>
+          <p key={text[0]}>
             <span>{text[0]}</span>
             {text[1]}
           </p>
