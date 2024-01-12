@@ -17,11 +17,16 @@ const Kaves = ({ totalPot, rows }) => {
 
   return (
     <div className={'kaves ' + kavesClass}>
-      <ToolTip info={kavesInfo} />
       <div className="chips">{chips}</div>
       <div className="pot">ποτ: {totalPot.toLocaleString()}</div>
-      {showKaves &&
-        data.kaves.map((kavaInfo, i) => <Kava kavaInfo={kavaInfo} key={i} />)}
+      {showKaves && (
+        <>
+          {data.kaves.map((kavaInfo, i) => (
+            <Kava kavaInfo={kavaInfo} key={i} />
+          ))}
+          <ToolTip info={kavesInfo} />
+        </>
+      )}
     </div>
   );
 };
