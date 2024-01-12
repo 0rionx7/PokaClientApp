@@ -6,6 +6,7 @@ import { toggleSelectedCard } from 'features/gameState/gameStateSlice';
 import { suits, symbols } from 'assets/svgs/suits';
 import Content from 'components/card/Content';
 import './Card.scss';
+import ToolTip from 'components/ui/ToolTip';
 
 const Card = ({ card, canBeSelected }) => {
   const deckColor = useSelector(state => state.account.deckColor);
@@ -24,10 +25,11 @@ const Card = ({ card, canBeSelected }) => {
     if (canBeSelected) dispatch(toggleSelectedCard(card));
   };
 
+  const isJoker = data.joker.some(value => value === card.value);
   const classes =
     `card v-${card.value} ` +
     (card.selected ? 'selected ' : '') +
-    (data.joker.some(value => value === card.value) ? 'joker' : '');
+    (isJoker ? 'joker' : '');
 
   return (
     <div className={classes} onClick={toggleCardSelected}>
@@ -38,6 +40,7 @@ const Card = ({ card, canBeSelected }) => {
       <div className={'card-decoration v-' + card.value}>
         <Content card={card} />
       </div>
+      {isJoker && <ToolTip info="Joker" />}
     </div>
   );
 };

@@ -12,6 +12,15 @@
   background-color: white;
   border: 1px solid black;
   font-family: Montserrat;
+  &:hover {
+    .tool-tip {
+      visibility: visible;
+      bottom: 50%;
+      width: auto;
+      background-color: red;
+      color: yellow;
+    }
+  }
   .value {
     font-weight: 700;
     font-size: calc(0.7 * var(--card-width));
@@ -39,6 +48,9 @@
   }
   &.joker {
     background-color: #c1fe8f;
+    &:hover {
+      cursor: help;
+    }
   }
   &[class*='10'] {
     [class='value'] {
