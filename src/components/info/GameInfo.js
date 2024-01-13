@@ -44,8 +44,7 @@ const GameInfo = () => {
         <div className="games-count">{gamesCount}ο παιχ.</div>
         <div className="gameName">
           <span>
-            {gameName}
-            {bomba && ' ΜΠΟΜΠΑ '}
+            {gameName} {bomba && 'ΜΠΟΜΠΑ '}
             {tablo === tabloCount.DIPLO && (
               <>
                 <span>σε</span> ΔΙΠΛΟ ΤΑΜΠΛΟ
