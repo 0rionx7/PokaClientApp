@@ -22,6 +22,7 @@ export const gameNames = {
   CROSS: 'ΣΤΑΥΡΟΣ',
   CORNER: 'ΓΩΝΙΑ',
   QUEEN: 'FOLLOW THE QUEEN',
+  PYRAMID: 'ΠΥΡΑΜΙΔΑ',
 };
 
 export const builderDefaults = {
@@ -75,31 +76,31 @@ export const games = [
   },
   {
     gameName: gameNames.TEXAS_HOLDEM,
+    rowsIndexes: [[0, 1, 2, 3, 4]],
     builderDefaults: {
       winningOrder: winningOrders.KENTA_FOUL,
       cardsInHand: 2,
       handCardsInPlay: ['2'],
     },
-    rowsIndexes: [[0, 1, 2, 3, 4]],
     boardClass: 'texas-holdem',
     showTitles: [builderTitles.GAME, builderTitles.WINNING_ORDER],
   },
   {
     gameName: gameNames.MAMUT,
-    builderDefaults: { tablo: tabloCount.MONO },
     rowsIndexes: [[0, 1, 2]],
+    builderDefaults: { tablo: tabloCount.MONO },
     boardClass: 'mamut',
   },
   {
     gameName: gameNames.RAILROAD,
-    boardClass: 'railroad',
     builderDefaults: { railroadLength: 4, tablo: tabloCount.MONO },
+    boardClass: 'railroad',
   },
   {
     gameName: gameNames.CORNER,
     rowsIndexes: [[4, 0, 2], [1], [3]],
-    boardClass: 'corner 3',
     builderDefaults: { cornerLength: '3' },
+    boardClass: 'corner 3',
   },
   {
     gameName: gameNames.CROSS,
@@ -118,6 +119,12 @@ export const games = [
       [3, 1],
     ],
     boardClass: 'square',
+  },
+  {
+    gameName: gameNames.PYRAMID,
+    rowsIndexes: [[9], [7, 8], [4, 5, 6], [0, 1, 2, 3]],
+    builderDefaults: { winningOrder: winningOrders.TRIA_FOUL },
+    boardClass: 'pyramid',
   },
   {
     gameName: gameNames.CLOCK,
@@ -165,6 +172,7 @@ export const games = [
   },
   {
     gameName: gameNames.KOYKOS_MONOS,
+    rowsIndexes: [[0], [1], [2], [3], [4]],
     builderDefaults: {
       winningOrder: winningOrders.TRIA_FOUL,
       cardsInHand: 2,
@@ -172,7 +180,6 @@ export const games = [
       tablo: tabloCount.MONO,
     },
     boardClass: 'koukos',
-    rowsIndexes: [[0], [1], [2], [3], [4]],
     showTitles: [
       builderTitles.GAME,
       builderTitles.WINNING_ORDER,
@@ -181,6 +188,7 @@ export const games = [
   },
   {
     gameName: gameNames.KOYKOS_DIPLOS,
+    rowsIndexes: [[0], [1], [2], [3], [4]],
     builderDefaults: {
       winningOrder: winningOrders.TRIA_FOUL,
       cardsInHand: 3,
@@ -188,7 +196,6 @@ export const games = [
       tablo: tabloCount.MONO,
     },
     boardClass: 'koukos',
-    rowsIndexes: [[0], [1], [2], [3], [4]],
     showTitles: [
       builderTitles.GAME,
       builderTitles.WINNING_ORDER,
