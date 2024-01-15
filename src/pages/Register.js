@@ -22,13 +22,9 @@ const Register = () => {
       errors.register = 'Το όνομα χρήστη είναι απαραίτητο.';
     if (values.password !== values.confirmPassword)
       errors.register = 'Λάθος επαλήθευση κωδικού.\n';
-    if (!values.email.trim()) {
-      errors.register = 'Το email είναι απαραίτητο.\n';
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
-    ) {
+    if (!values.email.trim()) errors.register = 'Το email είναι απαραίτητο.\n';
+    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
       errors.register = 'Λάθος διαμόρφοση email.\n';
-    }
     return errors;
   };
 
