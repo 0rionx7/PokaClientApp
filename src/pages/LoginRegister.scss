@@ -5,8 +5,9 @@
   form {
     display: grid;
     grid-template-areas:
-      'username check'
-      'pass error';
+      'username remember'
+      'pass     forgot  '
+      'submit   error  ';
     grid-template-columns: 60% 1fr;
   }
 }
@@ -36,23 +37,6 @@
   }
   form {
     gap: 0.5rem;
-  }
-  .username {
-    grid-area: username;
-    display: flex;
-    align-items: center;
-  }
-  .e-mail {
-    grid-area: email;
-  }
-  .password {
-    grid-area: pass;
-  }
-  .confirm {
-    grid-area: confirm;
-  }
-  .checkbox {
-    grid-area: check;
   }
   input {
     height: 2rem;
@@ -87,5 +71,21 @@
   }
   .checkbox {
     height: 1rem;
+  }
+}
+.forgot {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .frame {
+    background-color: #424539;
+  }
+  label {
+    font-size: 0.8rem;
+  }
+  h3 {
+    color: rgb(255, 247, 0);
   }
 }

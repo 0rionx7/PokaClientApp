@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useMemo } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
 import { useLoginMutation } from 'features/account/accountApi';
@@ -9,22 +9,9 @@ import Frame from 'components/ui/Frame';
 import './LoginRegister.scss';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
   const [login] = useLoginMutation();
   const navigate = useNavigate();
-
-  useEffect(
-    () => () => {
-      try {
-        username
-          ? window.localStorage.setItem('username', username)
-          : window.localStorage.removeItem('username');
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [username]
-  );
+  const location = useLocation();
 
   const initialValues = useMemo(() => {
     let values = { username: '', password: '', rememberMe: false };
@@ -42,12 +29,17 @@ const Login = () => {
 
   const submitHandler = async (values, { setErrors }) => {
     values.username = values.username.trim();
-    if (values.username && values.rememberMe) setUsername(values.username);
-    else if (!values.rememberMe) setUsername('');
-
+    try {
+      window.localStorage.setItem(
+        'username',
+        values.rememberMe ? values.username : ''
+      );
+    } catch (error) {
+      console.log(error);
+    }
     const result = await login(values);
     if (result?.error?.data) setErrors({ login: result.error.data });
-    else navigate('/saloon', { replace: true });
+    else navigate(location.state?.to || '/saloon', { replace: true });
   };
 
   return (
@@ -76,6 +68,9 @@ const Login = () => {
                 <label htmlFor="password">Κωδικός</label>
                 <Field id="password" name="password" type="text" />
               </div>
+              <Link to="/forgot">
+                <p>Ξέχασα τον κωδικό.</p>
+              </Link>
               <span>{errors.login}</span>
               <Button
                 type="submit"
