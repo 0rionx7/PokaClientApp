@@ -78,7 +78,7 @@ const Register = () => {
                 type="submit"
                 prompt="Εγγραφή"
                 disabled={isSubmitting}
-                className="green"
+                className="orange"
               />
               <Link to="/login">
                 <p>&lt; Σύνδεση</p>

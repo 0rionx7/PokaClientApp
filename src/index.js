@@ -13,6 +13,7 @@ import SubscriptionOptions from 'pages/account/subscription/SubscriptionOptions'
 import SuccessfulPayment from 'pages/account/subscription/SuccessfulPayment';
 import FailedPayment from 'pages/account/subscription/FailedPayment';
 import AccountDetails from 'pages/account/AccountDetails';
+import ResetPassword from 'pages/ChangePasssword';
 import Instructions from 'pages/Instructions';
 import Account from 'pages/account/Account';
 import Saloon from 'pages/saloon/Saloon';
@@ -42,6 +43,7 @@ const router = createBrowserRouter(
           <Route path="forgot" element={<Forgot />} />
           <Route path="account" element={<RouteGuard element={<Account />} />}>
             <Route index element={<AccountDetails />} />
+            <Route path="resetPassword" element={<ResetPassword />} />
             <Route path="subscription" element={<SubscriptionOptions />} />
           </Route>
           <Route path="successfulPayment" element={<SuccessfulPayment />} />

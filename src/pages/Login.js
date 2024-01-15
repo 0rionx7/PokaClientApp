@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
@@ -7,11 +7,24 @@ import CheckBox from 'components/ui/CheckBox';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
 import './LoginRegister.scss';
+import useSnackBar from 'hooks/useSnackBar';
 
 const Login = () => {
   const [login] = useLoginMutation();
   const navigate = useNavigate();
   const location = useLocation();
+  const { snackElement, setSnackInfo } = useSnackBar({
+    height: '100%',
+    secs: 5,
+  });
+
+  useEffect(() => {
+    if (location.state?.to) {
+      setSnackInfo(
+        'Σας έχει αποσταλλεί στο email που δηλώσατε προσωρινός κωδικός εισόδου.'
+      );
+    }
+  }, [location.state?.to, setSnackInfo]);
 
   const initialValues = useMemo(() => {
     let values = { username: '', password: '', rememberMe: false };
@@ -76,7 +89,7 @@ const Login = () => {
                 type="submit"
                 prompt="Είσοδος"
                 disabled={isSubmitting}
-                className="green"
+                className="orange"
               />
             </Form>
           )}
@@ -85,6 +98,7 @@ const Login = () => {
           <p>Δεν έχετε λογαρασμό; δημιουργήστε έναν δωρεάν.</p>
         </Link>
       </Frame>
+      {snackElement}
     </div>
   );
 };

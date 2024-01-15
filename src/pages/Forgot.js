@@ -4,7 +4,7 @@ import { Formik, Field, Form } from 'formik';
 import { useForgotPasswordMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
-import './LoginRegister.scss';
+import './Forgot.scss';
 
 const Forgot = () => {
   const [reset] = useForgotPasswordMutation();
@@ -23,13 +23,13 @@ const Forgot = () => {
     if (result?.error?.data) setErrors({ email: result.error.data });
     else
       navigate('/login', {
-        state: { to: '/account/passChange' },
+        state: { to: '/account/resetPassword' },
         replace: true,
       });
   };
 
   return (
-    <div className="login forgot">
+    <div className="forgot">
       <Frame style={{ alignItems: 'center' }}>
         <h3>Επαναφορά κωδικού εισόδου</h3>
         <Formik
@@ -51,7 +51,7 @@ const Forgot = () => {
                 type="submit"
                 prompt="Επαναφορά"
                 disabled={isSubmitting}
-                className="green"
+                className="orange"
               />
             </Form>
           )}
