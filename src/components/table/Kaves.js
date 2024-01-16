@@ -2,10 +2,10 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { createChipStack } from 'lib/createChipStack';
-import { kavesInfo } from 'lib/text-constants';
+import { infoText } from 'lib/text-constants';
+import ToolTip from 'components/ui/ToolTip';
 import Kava from 'components/table/Kava';
 import './Kaves.scss';
-import ToolTip from 'components/ui/ToolTip';
 
 const Kaves = ({ totalPot, rows }) => {
   const { gameId } = useParams();
@@ -24,7 +24,7 @@ const Kaves = ({ totalPot, rows }) => {
           {data.kaves.map((kavaInfo, i) => (
             <Kava kavaInfo={kavaInfo} key={i} />
           ))}
-          <ToolTip info={kavesInfo} />
+          <ToolTip info={infoText.KAVES} />
         </>
       )}
     </div>

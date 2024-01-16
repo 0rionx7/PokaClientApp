@@ -1,4 +1,4 @@
-import { instructions } from 'instructions';
+import { instructions } from 'lib/text-constants';
 import './Instructions.scss';
 
 const Instructions = () => {
