@@ -50,11 +50,8 @@
     height: 1rem;
     border-radius: 7px;
     background-color: bisque;
-    font-weight: 600;
     text-align: center;
-    > option {
-      font-weight: 600;
-    }
+
     &[name='startingCard'] {
       width: 3rem;
     }

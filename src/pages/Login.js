@@ -74,7 +74,7 @@ const Login = () => {
               <CheckBox
                 checked={values.rememberMe}
                 name="rememberMe"
-                label="να με θυμάσε"
+                label="να με θυμάσαι"
                 style={{ alignSelf: 'flex-end', fontSize: '.8rem' }}
               />
               <div className="form-control password">
