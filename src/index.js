@@ -13,16 +13,18 @@ import SubscriptionOptions from 'pages/account/subscription/SubscriptionOptions'
 import SuccessfulPayment from 'pages/account/subscription/SuccessfulPayment';
 import FailedPayment from 'pages/account/subscription/FailedPayment';
 import AccountDetails from 'pages/account/AccountDetails';
+import ResetPassword from 'pages/ChangePasssword';
+import Instructions from 'pages/Instructions';
 import Account from 'pages/account/Account';
 import Saloon from 'pages/saloon/Saloon';
 import Register from 'pages/Register';
 import Welcome from 'pages/Welcome';
+import Forgot from 'pages/Forgot';
 import Login from 'pages/Login';
 import Room from 'pages/Room';
 import Layout from 'components/layout/Layout';
 import RouteGuard from 'lib/route-guard';
 import { store } from 'store/store';
-import Instructions from 'pages/Instructions';
 import App from 'App';
 
 const container = document.getElementById('root');
@@ -38,8 +40,10 @@ const router = createBrowserRouter(
           <Route path="saloon" element={<RouteGuard element={<Saloon />} />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="forgot" element={<Forgot />} />
           <Route path="account" element={<RouteGuard element={<Account />} />}>
             <Route index element={<AccountDetails />} />
+            <Route path="resetPassword" element={<ResetPassword />} />
             <Route path="subscription" element={<SubscriptionOptions />} />
           </Route>
           <Route path="successfulPayment" element={<SuccessfulPayment />} />

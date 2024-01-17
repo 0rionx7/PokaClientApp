@@ -1,30 +1,29 @@
-import { useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useMemo } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
 import { useLoginMutation } from 'features/account/accountApi';
 import CheckBox from 'components/ui/CheckBox';
+import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
 import './LoginRegister.scss';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
   const [login] = useLoginMutation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const { snackElement, setSnackInfo } = useSnackBar({
+    height: '100%',
+    secs: 5,
+  });
 
-  useEffect(
-    () => () => {
-      try {
-        username
-          ? window.localStorage.setItem('username', username)
-          : window.localStorage.removeItem('username');
-      } catch (error) {
-        console.log(error);
-      }
-    },
-    [username]
-  );
+  useEffect(() => {
+    if (location.state?.to)
+      setSnackInfo(
+        'Σας έχει αποσταλλεί στο email που δηλώσατε προσωρινός κωδικός εισόδου.'
+      );
+  }, [location.state?.to, setSnackInfo]);
 
   const initialValues = useMemo(() => {
     let values = { username: '', password: '', rememberMe: false };
@@ -42,12 +41,17 @@ const Login = () => {
 
   const submitHandler = async (values, { setErrors }) => {
     values.username = values.username.trim();
-    if (values.username && values.rememberMe) setUsername(values.username);
-    else if (!values.rememberMe) setUsername('');
-
+    try {
+      window.localStorage.setItem(
+        'username',
+        values.rememberMe ? values.username : ''
+      );
+    } catch (error) {
+      console.log(error);
+    }
     const result = await login(values);
     if (result?.error?.data) setErrors({ login: result.error.data });
-    else navigate('/saloon', { replace: true });
+    else navigate(location.state?.to || '/saloon', { replace: true });
   };
 
   return (
@@ -69,19 +73,22 @@ const Login = () => {
               <CheckBox
                 checked={values.rememberMe}
                 name="rememberMe"
-                label="να με θυμάσε"
+                label="να με θυμάσαι"
                 style={{ alignSelf: 'flex-end', fontSize: '.8rem' }}
               />
               <div className="form-control password">
                 <label htmlFor="password">Κωδικός</label>
                 <Field id="password" name="password" type="text" />
               </div>
+              <Link to="/forgot">
+                <p>Ξέχασα τον κωδικό.</p>
+              </Link>
               <span>{errors.login}</span>
               <Button
                 type="submit"
                 prompt="Είσοδος"
                 disabled={isSubmitting}
-                className="green"
+                className="orange"
               />
             </Form>
           )}
@@ -90,6 +97,7 @@ const Login = () => {
           <p>Δεν έχετε λογαρασμό; δημιουργήστε έναν δωρεάν.</p>
         </Link>
       </Frame>
+      {snackElement}
     </div>
   );
 };

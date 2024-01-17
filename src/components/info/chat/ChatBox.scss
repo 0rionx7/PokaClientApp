@@ -32,7 +32,6 @@
   overflow-y: auto;
   height: 100%;
   padding: 0 0.8rem;
-  font-weight: 600;
   p {
     font-size: 0.7rem;
     font-weight: 600;
@@ -72,7 +71,6 @@
 }
 .emoji-picker {
   position: fixed;
-  height: 150px;
   bottom: var(--ribbon-height);
   z-index: 110;
 }

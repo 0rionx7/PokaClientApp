@@ -27,7 +27,6 @@ export const gameStateApi = createApi({
       query: gameId => {
         return { url: `/gameState/${gameId}`, params: { socketId: socket.id } };
       },
-      keepUnusedDataFor: 0,
       async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
         arg,
         {
@@ -82,6 +81,7 @@ export const gameStateApi = createApi({
           console.log(error);
         }
       },
+      keepUnusedDataFor: 0,
     }),
     getTables: build.query({
       query: () => 'tables',

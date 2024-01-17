@@ -18,6 +18,7 @@
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
+    border-radius: 0 0 1rem 1rem;
     background-color: rgb(37, 42, 45);
     button {
       padding: 0.75rem 1.5rem;
@@ -48,11 +49,7 @@
       text-align: center;
       border-radius: 4px;
       background-color: bisque;
-      font-weight: 600;
       font-size: 0.9rem;
-      option {
-        font-weight: 600;
-      }
     }
     @media only screen and (min-width: 900px) {
       grid-template-columns: 1fr 1fr;
@@ -93,7 +90,6 @@
   align-items: center;
   color: bisque;
   font-size: 0.75rem;
-  font-weight: 600;
   & > div {
     justify-self: flex-end;
   }

@@ -56,6 +56,13 @@ export const accountApi = gameStateApi.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
+    forgotPassword: build.mutation({
+      query: email => ({
+        url: 'user/forgot',
+        method: 'PATCH',
+        body: email,
+      }),
+    }),
   }),
 });
 
@@ -68,4 +75,5 @@ export const {
   useLogOutMutation,
   useChangePasswordMutation,
   useUsernameChangeMutation,
+  useForgotPasswordMutation,
 } = accountApi;

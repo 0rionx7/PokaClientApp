@@ -199,11 +199,10 @@
     }
   }
 }
-
-///////////////////////////////////////
-.pyramid-four {
+.pyramid {
   .board-row {
     margin: 0;
+    gap: 0.3rem;
     &.hat {
       translate: 0 -11%;
     }
@@ -217,7 +216,21 @@
       translate: 0 -60%;
     }
   }
+  .card {
+    &.selected {
+      box-shadow: calc(-0.1 * var(--card-height)) 0 #3fa603,
+        calc(-0.1 * var(--card-height) - 2px) 0 #090909;
+      &:nth-last-child(1) {
+        box-shadow: calc(0.1 * var(--card-height)) 0 #3fa603,
+          calc(0.1 * var(--card-height) + 2px) 0 #090909;
+      }
+    }
+  }
+  .kaves {
+    right: calc(100% + 1.5rem);
+  }
 }
+///////////////////////////////////////
 .bombs-three {
   display: grid !important;
   grid-template-areas:
