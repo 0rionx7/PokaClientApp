@@ -31,7 +31,7 @@ const Forgot = () => {
   return (
     <div className="forgot">
       <Frame style={{ alignItems: 'center' }}>
-        <h3>Επαναφορά κωδικού εισόδου</h3>
+        <h3>Αποστολή προσωρινού κωδικού εισόδου</h3>
         <Formik
           key="forgot"
           initialValues={{ email: '' }}

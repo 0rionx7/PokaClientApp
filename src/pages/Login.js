@@ -4,10 +4,10 @@ import { Formik, Field, Form } from 'formik';
 
 import { useLoginMutation } from 'features/account/accountApi';
 import CheckBox from 'components/ui/CheckBox';
+import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
 import './LoginRegister.scss';
-import useSnackBar from 'hooks/useSnackBar';
 
 const Login = () => {
   const [login] = useLoginMutation();
@@ -19,11 +19,10 @@ const Login = () => {
   });
 
   useEffect(() => {
-    if (location.state?.to) {
+    if (location.state?.to)
       setSnackInfo(
         'Σας έχει αποσταλλεί στο email που δηλώσατε προσωρινός κωδικός εισόδου.'
       );
-    }
   }, [location.state?.to, setSnackInfo]);
 
   const initialValues = useMemo(() => {

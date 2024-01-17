@@ -49,11 +49,7 @@
       text-align: center;
       border-radius: 4px;
       background-color: bisque;
-      font-weight: 600;
       font-size: 0.9rem;
-      option {
-        font-weight: 600;
-      }
     }
     @media only screen and (min-width: 900px) {
       grid-template-columns: 1fr 1fr;
@@ -94,7 +90,6 @@
   align-items: center;
   color: bisque;
   font-size: 0.75rem;
-  font-weight: 600;
   & > div {
     justify-self: flex-end;
   }
