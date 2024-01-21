@@ -45,6 +45,7 @@ const HandCards = ({ playerState, playingIndex, chipsPosition }) => {
           key={i}
           card={card}
           canBeSelected={!playerSubmitted && isHostPlayer && canSelect}
+          noColor={playerSubmitted}
         />
       ))}
       <ChipStack playerState={playerState} chipsPosition={chipsPosition} />

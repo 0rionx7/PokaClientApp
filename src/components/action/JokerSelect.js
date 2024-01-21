@@ -48,7 +48,7 @@ const JokerSelect = () => {
           ))}
         </select>
       </div>
-      <Card card={card} />
+      <Card card={card} noColor />
       <Button
         prompt="ΕΠΙΛΟΓΗ"
         onClick={() => setJokers(curr => [...curr, card])}

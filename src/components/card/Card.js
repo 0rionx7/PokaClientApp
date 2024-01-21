@@ -8,7 +8,7 @@ import Content from 'components/card/Content';
 import './Card.scss';
 import ToolTip from 'components/ui/ToolTip';
 
-const Card = ({ card, canBeSelected }) => {
+const Card = ({ card, canBeSelected, noColor }) => {
   const deckColor = useSelector(state => state.account.deckColor);
   const dispatch = useDispatch();
   const { gameId } = useParams();
@@ -29,7 +29,7 @@ const Card = ({ card, canBeSelected }) => {
   const classes =
     `card v-${card.value} ` +
     (card.selected ? 'selected ' : '') +
-    (isJoker ? 'joker' : '');
+    (isJoker && !noColor ? 'joker' : '');
 
   return (
     <div className={classes} onClick={toggleCardSelected}>

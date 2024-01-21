@@ -14,7 +14,7 @@ const JokerSubmit = ({ jokers, resetJokers }) => {
         ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΜΠΑΛΑΝΤΕΡ ΜΕ:
         <div className="jokers">
           {jokers.map((card, i) => (
-            <Card card={card} key={i} />
+            <Card card={card} key={i} noColor />
           ))}
         </div>
       </div>
