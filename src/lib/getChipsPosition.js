@@ -2,6 +2,8 @@ export function getChipsPosition(cardsCount, position) {
   if (!position.includes('top')) return {};
   const side = position.includes('left') ? 'left' : 'right';
   switch (cardsCount) {
+    case 0:
+      return { [side]: `calc( 2.4 * var(--card-width))` };
     case 1:
       return { [side]: `calc( 2.9 * var(--card-width))` };
     case 2:
