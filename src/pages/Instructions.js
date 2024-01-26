@@ -3,6 +3,7 @@ import './Instructions.scss';
 
 const Instructions = () => {
   const paragraphs = instructions.split('@');
+
   return (
     <div className="instructions">
       {paragraphs.map(paragraph => {
