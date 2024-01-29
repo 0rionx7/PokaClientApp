@@ -10,12 +10,11 @@ const Request = ({ tableInfo }) => {
   const [sitDown, { isSuccess, isLoading }] = useSitDownMutation();
   const [cancelHoveredPropagation, setCancelHoveredPropagation] =
     useState(false);
-  const [cancelRequest, { isSuccess: canceled, isLoading: canceling }] =
-    useCancelRequestMutation();
+  const [cancelRequest, { isLoading: canceling }] = useCancelRequestMutation();
   const navigate = useNavigate();
 
   const cancelHandler = async event => {
-    if (canceling || canceled) return;
+    if (canceling) return;
     event.stopPropagation();
     cancelRequest(tableInfo);
   };

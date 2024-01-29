@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  white-space: pre-line;
+  // white-space: pre-line;
   background-color: #c89666;
   border-radius: 70px 0 70px 0;
   font-size: 0.8rem;
@@ -11,5 +11,13 @@
   width: 100%;
   span {
     font-weight: 600;
+  }
+  h2,
+  h3 {
+    align-self: center;
+    margin-bottom: 0.5rem;
+  }
+  p:last-child {
+    white-space: pre-line;
   }
 }
