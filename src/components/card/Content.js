@@ -1,5 +1,5 @@
 import ContentItem from 'components/card/ContentItem';
-import Figure from 'components/card/FaceContent';
+import Figure from 'components/card/Figure';
 import './Content.scss';
 
 const Content = ({ card }) => {
