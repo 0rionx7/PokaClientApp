@@ -2,9 +2,8 @@
   position: absolute;
   display: grid;
   cursor: help;
-  // 0 for no bordrow
   &:not([class*='center']) {
-    right: calc(100% + 0.2rem);
+    right: calc(100% + 0.7rem);
     top: 55%;
   }
   &.even {

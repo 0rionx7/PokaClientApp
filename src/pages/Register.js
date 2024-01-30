@@ -53,19 +53,19 @@ const Register = () => {
           enableReinitialize>
           {({ isSubmitting, errors, setErrors }) => (
             <Form onFocus={() => setErrors({})}>
-              <div className="form-control username">
+              <div className="form-control">
                 <label htmlFor="username">Όνομα χρήστη</label>
                 <Field id="username" name="username" type="text" />
               </div>
-              <div className="form-control e-mail">
-                <label htmlFor="email">Διεύθυνση e-mail</label>
-                <Field id="email" name="email" type="text" />
-              </div>
-              <div className="form-control pass">
+              <div className="form-control">
                 <label htmlFor="password">Κωδικός ασφαλείας</label>
                 <Field id="password" name="password" type="text" />
               </div>
-              <div className="form-control confirm">
+              <div className="form-control">
+                <label htmlFor="email">Διεύθυνση e-mail</label>
+                <Field id="email" name="email" type="text" />
+              </div>
+              <div className="form-control">
                 <label htmlFor="confirmPassword">Επαλήθευση κωδικού</label>
                 <Field
                   id="confirmPassword"
