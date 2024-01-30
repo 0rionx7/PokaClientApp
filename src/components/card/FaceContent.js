@@ -2,7 +2,7 @@ import { jack, king, queen } from 'assets/svgs/figures';
 import { suits } from 'assets/svgs/suits';
 import './Card.scss';
 
-const FaceContent = ({ card }) => {
+const Figure = ({ card }) => {
   const figure = card.value === 11 ? jack : card.value === 12 ? queen : king;
 
   return (
@@ -14,4 +14,4 @@ const FaceContent = ({ card }) => {
   );
 };
 
-export default FaceContent;
+export default Figure;
