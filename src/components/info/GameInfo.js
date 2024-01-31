@@ -72,7 +72,7 @@ const GameInfo = () => {
         )}
         {queens && (
           <div>
-            μπαλαντέρ και οι <span>ΝΤΑΜΕΣ</span>
+            <span>ΜΠΑΛΑΝΤΕΡ</span> και οι <span>ΝΤΑΜΕΣ</span>
           </div>
         )}
         {(crossObligation || targetObligation) && (

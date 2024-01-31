@@ -40,10 +40,7 @@ export const builderDefaults = {
   swaps: 0,
   dealing: dealingOrders.OLA_MAZI,
   speaks: speaking.BY_SEAT,
-  mirrorWins: false,
-  allDiscardedWins: false,
   bomba: false,
-  queens: false,
 };
 
 export const games = [
