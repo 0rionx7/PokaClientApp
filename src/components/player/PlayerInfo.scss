@@ -71,6 +71,7 @@
     bottom: initial;
     top: 100%;
     padding: 4px 0 0 0;
+    z-index: 101;
     background-image: linear-gradient(to bottom right, red, yellow);
     .denied-cards {
       display: flex;
