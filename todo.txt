@@ -1,4 +1,3 @@
 υποχρεοση το κεντρο στον στοχο
-οπτιονσ 2 3 4 για stayro maybe
 order tables chronologicaly
 try catch or error handling on joinHandlers etc
