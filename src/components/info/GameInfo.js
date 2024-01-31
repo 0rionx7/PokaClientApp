@@ -23,6 +23,8 @@ const GameInfo = () => {
       queens,
       winningOrder,
       tablo,
+      crossObligation,
+      targetObligation,
       gamesCount,
     },
   } = useGetGameStateQuery(gameId);
@@ -71,6 +73,11 @@ const GameInfo = () => {
         {queens && (
           <div>
             μπαλαντέρ και οι <span>ΝΤΑΜΕΣ</span>
+          </div>
+        )}
+        {(crossObligation || targetObligation) && (
+          <div>
+            <span>ΥΠΟΧΡΕΩΣΗ </span> το <span>ΚΕΝΤΡΟ</span>
           </div>
         )}
       </div>

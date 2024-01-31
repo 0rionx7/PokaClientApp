@@ -1,4 +1,9 @@
-import { cardsName, cardsNameOf, handKind } from 'lib/text-constants';
+import {
+  cardsName,
+  cardsNameOf,
+  gameNames,
+  handKind,
+} from 'lib/text-constants';
 
 export function createTableTitle(tableName) {
   const names = tableName?.split('_');
@@ -82,4 +87,32 @@ export function betPrompt(value, minBet, resta, error) {
         </>
       );
   }
+}
+export function extraBuilderValues(gameName) {
+  let name, label;
+  switch (gameName) {
+    case gameNames.GRAVEYARD:
+      name = 'allDiscardedWins';
+      label = 'ΞΕΣΚΑΡΤΑΡΙΣΜΑ ΑΝΩΤΑΤΟ ΦΥΛΛΟ';
+      break;
+    case gameNames.MAMUT:
+      name = 'mirrorWins';
+      label = 'ΚΑΘΡΕΦΤΗΣ ΑΝΩΤΑΤΟ ΦΥΛΛΟ';
+      break;
+    case gameNames.QUEEN:
+      name = 'queens';
+      label = 'ΜΠΑΛΑΝΤΕΡ ΚΑΙ ΟΙ ΝΤΑΜΕΣ';
+      break;
+    case gameNames.TARGET:
+      name = 'targetObligation';
+      label = 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ';
+      break;
+    case gameNames.CROSS:
+      name = 'crossObligation';
+      label = 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ';
+      break;
+    default:
+      break;
+  }
+  return { name, label };
 }

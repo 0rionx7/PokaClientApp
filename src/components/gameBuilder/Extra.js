@@ -1,23 +1,11 @@
 import { useFormikContext } from 'formik';
 
+import { extraBuilderValues } from 'lib/text-functions';
 import CheckBox from 'components/ui/CheckBox';
-import { gameNames } from 'lib/games';
 
 const Extra = () => {
   const { values } = useFormikContext();
-  let name, label;
-  if (values.gameName === gameNames.GRAVEYARD) {
-    name = 'allDiscardedWins';
-    label = 'ΞΕΣΚΑΡΤΑΡΙΣΜΑ ΑΝΩΤΑΤΟ ΦΥΛΛΟ';
-  }
-  if (values.gameName === gameNames.MAMUT) {
-    name = 'mirrorWins';
-    label = 'ΚΑΘΡΕΦΤΗΣ ΑΝΩΤΑΤΟ ΦΥΛΛΟ';
-  }
-  if (values.gameName === gameNames.QUEEN) {
-    name = 'queens';
-    label = 'ΜΠΑΛΑΝΤΕΡ ΚΑΙ ΟΙ ΝΤΑΜΕΣ';
-  }
+  const { name, label } = extraBuilderValues(values.gameName);
 
   return (
     <CheckBox

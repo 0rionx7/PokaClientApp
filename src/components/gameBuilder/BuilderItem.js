@@ -4,6 +4,14 @@ import { builderTitles } from 'lib/text-constants';
 import { gameNames } from 'lib/games';
 import { useMemo } from 'react';
 
+const showExtra = [
+  gameNames.CROSS,
+  gameNames.QUEEN,
+  gameNames.TARGET,
+  gameNames.GRAVEYARD,
+  gameNames.MAMUT,
+];
+
 const BuilderItem = ({ title, element }) => {
   const { values } = useFormikContext();
   const { gameName } = values;
@@ -16,12 +24,13 @@ const BuilderItem = ({ title, element }) => {
       title === builderTitles.RAILROAD_LENGTH &&
         gameName !== gameNames.RAILROAD,
       title === builderTitles.CARDS_PER_LEG && gameName !== gameNames.CORNER,
-      title === builderTitles.EXTRA && gameName !== gameNames.MAMUT,
       gameName !== gameNames.POKER &&
         (title === builderTitles.FACE_DOWN || title === builderTitles.SPEAKS),
       (title === builderTitles.OPTIONS ||
         title === builderTitles.HAND_CARDS_IN_PLAY) &&
         gameName === gameNames.POKER,
+      title === builderTitles.EXTRA &&
+        showExtra.every(title => title !== gameName),
     ],
     [title, gameName]
   );
