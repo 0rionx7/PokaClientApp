@@ -39,7 +39,7 @@ export const builderDefaults = {
   swap: false,
   swaps: 0,
   dealing: dealingOrders.OLA_MAZI,
-  speaks: speaking.BY_SEAT,
+  speaks: speaking.BY_VALUE,
   bomba: false,
 };
 
@@ -61,7 +61,6 @@ export const games = [
       handCardsInPlay: ['5'],
       faceDownIndexes: ['4'],
       dealing: dealingOrders.ENA_ENA,
-      speaks: speaking.BY_VALUE,
     },
     showTitles: [
       builderTitles.GAME,
