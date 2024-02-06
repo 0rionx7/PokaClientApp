@@ -10,6 +10,7 @@ const deckColors = [
   'rgb(0 116 234 / 81%)',
   'rgb(255 143 0 / 92%)',
 ];
+
 const Config = () => {
   const hideInfo = useSelector(state => state.account.hideInfo);
   const deckColor = useSelector(state => state.account.deckColor);
