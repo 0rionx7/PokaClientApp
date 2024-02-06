@@ -1,6 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { gameStateApi } from 'features/gameState/gameStateApi';
 import { accountApi } from 'features/account/accountApi';
 import { requestsApi } from 'features/account/requestsApi';
 

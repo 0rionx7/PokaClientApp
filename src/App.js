@@ -23,7 +23,6 @@ function App() {
 
   return (
     <>
-      <div>Hello</div>
       {offLineElement}
       {approvedElement}
       {rejectedElement}
