@@ -18,8 +18,8 @@ const OpenTable = () => {
   const initialValues = {
     tableName: 'Table' + nanoid(3),
     rotation: 'clockwise',
-    cava: 1000000,
-    chip: 10,
+    cava: 1000,
+    chip: 1,
     reaction: 30,
   };
   const validate = values => {
