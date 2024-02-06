@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-import { createMessageJsx } from 'lib/createMsgJsx';
+import { createMessageJsx } from 'utils/createMsgJsx';
 import './ChatBox.scss';
 
 const Messages = () => {

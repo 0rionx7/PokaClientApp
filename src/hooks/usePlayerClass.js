@@ -2,9 +2,9 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { getPossitionClass } from 'lib/createPlayerClass';
-import { playerEntry } from 'lib/utilities-functions';
-import { getChipsPosition } from 'lib/getChipsPosition';
+import { getPossitionClass } from 'utils/createPlayerClass';
+import { playerEntry } from 'utils/utilities-functions';
+import { getChipsPosition } from 'utils/getChipsPosition';
 
 const usePlayerClass = index => {
   const hostPlayerName = useSelector(state => state.account.username);

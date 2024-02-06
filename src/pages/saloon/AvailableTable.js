@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { useRequestJoinMutation } from 'features/account/requestsApi';
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
-import { createTableTitle } from 'lib/text-functions';
+import { createTableTitle } from 'utils/text-functions';
 import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 import './AvailableTables.scss';

@@ -1,7 +1,7 @@
 import { useFormikContext } from 'formik';
 
-import { builderTitles } from 'lib/text-constants';
-import { gameNames } from 'lib/games';
+import { builderTitles } from 'utils/text-constants';
+import { gameNames } from 'utils/games';
 import { useMemo } from 'react';
 
 const showExtra = [

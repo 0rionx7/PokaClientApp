@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { useRestartGameMutation } from 'features/gameState/gameStateApi';
-import { createTableTitle } from 'lib/text-functions';
+import { createTableTitle } from 'utils/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import classes from './Account.module.scss';
 

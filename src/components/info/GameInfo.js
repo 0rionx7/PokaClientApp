@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import PlayHandCards from 'components/info/PlayHandCards';
 import FaceDownCards from 'components/info/FaceDownCards';
-import { tabloCount } from 'lib/text-constants';
+import { tabloCount } from 'utils/text-constants';
 import Denies from 'components/info/Denies';
 import Swaps from 'components/info/Swaps';
 import Hats from 'components/info/Hats';

@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { useFormikContext } from 'formik';
 
 import Radio from 'components/ui/Radio';
-import { gameNames } from 'lib/games';
+import { gameNames } from 'utils/games';
 
 const CardsCount = ({ name }) => {
   const { values } = useFormikContext();

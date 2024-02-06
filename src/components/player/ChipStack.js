@@ -2,7 +2,7 @@ import { memo, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { createChipStack } from 'lib/createChipStack';
+import { createChipStack } from 'utils/createChipStack';
 
 const ChipStack = ({ playerState, chipsPosition }) => {
   const { gameId } = useParams();

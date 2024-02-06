@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useFormikContext } from 'formik';
 
-import { infoText } from 'lib/text-constants';
+import { infoText } from 'utils/text-constants';
 import CheckBox from 'components/ui/CheckBox';
 import Radio from 'components/ui/Radio';
 

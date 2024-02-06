@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import PlayerStanding from 'components/info/PlayerStanding';
-import { inGameFistList } from 'lib/utilities-functions';
+import { inGameFistList } from 'utils/utilities-functions';
 import './Standings.scss';
 
 const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.'];

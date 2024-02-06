@@ -1,4 +1,4 @@
-import { describeHand } from 'lib/text-functions';
+import { describeHand } from 'utils/text-functions';
 import StatusIcon from 'components/ui/StatusIcon';
 
 const PlayerResult = ({ playerState }) => {

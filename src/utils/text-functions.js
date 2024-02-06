@@ -3,7 +3,7 @@ import {
   cardsNameOf,
   gameNames,
   handKind,
-} from 'lib/text-constants';
+} from 'utils/text-constants';
 
 export function createTableTitle(tableName) {
   const names = tableName?.split('_');

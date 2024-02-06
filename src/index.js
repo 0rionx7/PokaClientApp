@@ -24,7 +24,7 @@ import Forgot from 'pages/Forgot';
 import Login from 'pages/Login';
 import Room from 'pages/Room';
 import Layout from 'components/layout/Layout';
-import RouteGuard from 'lib/route-guard';
+import RouteGuard from 'utils/route-guard';
 import { store } from 'store/store';
 import App from 'App';
 

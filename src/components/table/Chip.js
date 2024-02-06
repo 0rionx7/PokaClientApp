@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { createChipStyle } from 'lib/createChipStyle';
+import { createChipStyle } from 'utils/createChipStyle';
 import './Chip.scss';
 
 const Chip = ({ multiplier, index, startIndex }) => {

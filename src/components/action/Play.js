@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { playerEntry } from 'lib/utilities-functions';
+import { playerEntry } from 'utils/utilities-functions';
 import JokerSelect from 'components/action/JokerSelect';
 import DenyAccept from 'components/action/DenyAccept';
 import Bet from 'components/action/Bet';

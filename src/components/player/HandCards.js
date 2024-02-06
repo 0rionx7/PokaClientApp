@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { playerEntry } from 'lib/utilities-functions';
+import { playerEntry } from 'utils/utilities-functions';
 import ChipStack from 'components/player/ChipStack';
 import Card from 'components/card/Card';
 import './HandCards.scss';

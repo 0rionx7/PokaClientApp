@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { countFem } from 'lib/text-constants';
+import { countFem } from 'utils/text-constants';
 
 const Swaps = () => {
   const { gameId } = useParams();

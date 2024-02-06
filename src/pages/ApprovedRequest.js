@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
-import { createTableTitle } from 'lib/text-functions';
+import { createTableTitle } from 'utils/text-functions';
 import Button from 'components/ui/Button';
 import './ApprovedRequest.scss';
 

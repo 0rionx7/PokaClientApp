@@ -6,7 +6,7 @@ import { useGetUserQuery } from 'features/account/accountApi';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import Overlay from 'components/ui/Overlay';
 import Frame from 'components/ui/Frame';
-import { subscriptionOptions } from 'lib/text-constants';
+import { subscriptionOptions } from 'utils/text-constants';
 import { paymentsIcons } from 'assets/svgs/payments';
 
 const SubscriptionOptions = () => {

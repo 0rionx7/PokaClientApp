@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { playerEntry } from 'lib/utilities-functions';
+import { playerEntry } from 'utils/utilities-functions';
 import Card from 'components/card/Card';
 
 const RenderedCard = ({ index }) => {

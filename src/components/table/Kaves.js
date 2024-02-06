@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { createChipStack } from 'lib/createChipStack';
-import { infoText } from 'lib/text-constants';
+import { createChipStack } from 'utils/createChipStack';
+import { infoText } from 'utils/text-constants';
 import ToolTip from 'components/ui/ToolTip';
 import Kava from 'components/table/Kava';
 import './Kaves.scss';

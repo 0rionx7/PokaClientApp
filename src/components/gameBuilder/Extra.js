@@ -1,6 +1,6 @@
 import { useFormikContext } from 'formik';
 
-import { extraBuilderValues } from 'lib/text-functions';
+import { extraBuilderValues } from 'utils/text-functions';
 import CheckBox from 'components/ui/CheckBox';
 
 const Extra = () => {

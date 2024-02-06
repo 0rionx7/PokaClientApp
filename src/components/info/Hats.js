@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { count } from 'lib/text-constants';
+import { count } from 'utils/text-constants';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 

@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import io from 'socket.io-client';
 
-import { playerEntry, updateAll } from 'lib/utilities-functions';
+import { playerEntry, updateAll } from 'utils/utilities-functions';
 import {
   setHandCards,
   setHasNexted,

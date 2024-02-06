@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { gamesInfo } from 'lib/text-constants';
+import { gamesInfo } from 'utils/text-constants';
 import './Info.scss';
 
 const GameDescription = () => {

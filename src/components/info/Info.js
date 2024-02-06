@@ -6,7 +6,7 @@ import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import GameDescription from 'components/info/GameDescription';
 import { useEmoji } from 'components/info/chat/EmojiProvider';
 import { collapseVertical } from 'assets/svgs/various';
-import { infoButtons } from 'lib/text-constants';
+import { infoButtons } from 'utils/text-constants';
 import Standings from 'components/info/Standings';
 import Results from 'components/info/Results';
 import GameInfo from 'components/info/GameInfo';
