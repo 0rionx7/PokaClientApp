@@ -15,9 +15,9 @@ import { updateRequests } from 'features/middleware/updateRequests';
 
 export const store = configureStore({
   reducer: {
-    [accountSlice.name]: accountReducer,
-    [gameStateSlice.name]: gameStateReducer,
     [gameStateApi.reducerPath]: gameApiReducer,
+    [gameStateSlice.name]: gameStateReducer,
+    [accountSlice.name]: accountReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(

@@ -2,6 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { gameStateApi } from 'features/gameState/gameStateApi';
 import { accountApi } from 'features/account/accountApi';
+import { requestsApi } from 'features/account/requestsApi';
 
 const initialStateFn = () => {
   const initialState = {
@@ -55,22 +56,22 @@ export const accountSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          gameStateApi.endpoints.openTable.matchFulfilled,
-          gameStateApi.endpoints.restartGame.matchFulfilled,
-          gameStateApi.endpoints.sitDown.matchFulfilled
+          accountApi.endpoints.openTable.matchFulfilled,
+          accountApi.endpoints.restartGame.matchFulfilled,
+          accountApi.endpoints.sitDown.matchFulfilled
         ),
         (state, _action) => {
           state.joinRequests = [];
         }
       )
       .addMatcher(
-        gameStateApi.endpoints.requestJoin.matchFulfilled,
+        requestsApi.endpoints.requestJoin.matchFulfilled,
         (state, action) => {
           state.joinRequests.push({ tableName: action.payload });
         }
       )
       .addMatcher(
-        gameStateApi.endpoints.cancelRequest.matchFulfilled,
+        requestsApi.endpoints.cancelRequest.matchFulfilled,
         (state, action) => {
           state.joinRequests = state.joinRequests.filter(
             requestInfo => requestInfo.tableName !== action.payload.tableName
