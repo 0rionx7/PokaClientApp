@@ -9,7 +9,11 @@ const PlayerResult = ({ playerState }) => {
       <StatusIcon playerState={playerState} />
       <span style={{ overflow: 'hidden' }}>{playerState.playerName}</span>
       <span>{description}</span>
-      <span style={{ color: playerState.amountWon >= 0 ? '#04fa04' : 'red' }}>
+      <span
+        style={{
+          color: playerState.amountWon >= 0 ? 'rgb(2 165 2)' : 'red',
+          fontWeight: 600,
+        }}>
         {playerState.amountWon.toLocaleString()}
       </span>
     </div>

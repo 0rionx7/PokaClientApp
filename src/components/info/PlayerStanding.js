@@ -5,7 +5,8 @@ import './Standings.scss';
 
 const PlayerStanding = ({ playerState }) => {
   const sum = playerState.resta - playerState.buyIn;
-  const color = value => (value >= 0 ? { color: '#04fa04' } : { color: 'red' });
+  const color = value =>
+    value >= 0 ? { color: 'rgb(2 165 2)' } : { color: 'red' };
 
   return (
     <div className="player-result">
