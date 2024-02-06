@@ -24,7 +24,11 @@
   gap: 1rem;
 }
 .nav-link {
-  color: bisque;
+  color: rgb(191, 173, 138);
+  &.active,
+  &:hover {
+    color: bisque;
+  }
 }
 .log-btns {
   display: grid;

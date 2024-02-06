@@ -18,12 +18,12 @@ const MainNavigation = () => {
       <div className="nav-items">
         {username && !showMenu && (
           <>
-            <Link to="/saloon" className="nav-link">
+            <NavLink to="/saloon" className="nav-link">
               Σαλούν
-            </Link>
-            <Link to="/account" className="nav-link">
+            </NavLink>
+            <NavLink to="/account" className="nav-link">
               Λογαριασμός
-            </Link>
+            </NavLink>
           </>
         )}
         {username ? (
