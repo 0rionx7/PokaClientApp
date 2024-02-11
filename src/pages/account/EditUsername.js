@@ -19,7 +19,7 @@ const EditUsername = ({ stopEditing }) => {
     const result = await changeUsername({
       username: values.username.trim(),
     });
-    if (result?.error?.data === 'duplicate')
+    if (result?.error?.data === 'duplicate username')
       setErrors({ username: 'Το όνομα χρήστη είναι ήδη καταχωρημένο.' });
     else if (result?.error?.data) setErrors({ username: result.error.data });
     else stopEditing();
