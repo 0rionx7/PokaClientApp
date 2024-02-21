@@ -16,6 +16,7 @@ export const gameStateApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl,
     prepareHeaders: (headers, { getState }) => {
+      headers.set('Content-type', 'application/json');
       const token = getState().account.token;
       if (token) headers.set('authorization', `Bearer ${token}`);
       return headers;
