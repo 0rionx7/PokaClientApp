@@ -18,8 +18,10 @@ const Register = () => {
 
   const validate = values => {
     let errors = {};
-    if (!values.username.trim().length)
-      errors.register = 'Το όνομα χρήστη είναι απαραίτητο.';
+    if (values.username.trim().length < 3 || values.username.trim().length > 17)
+      return {
+        username: `Το όνομα χρήστη πρέπει να αποτελείται\n από 2 εώς 17 χαρακτήρες.`,
+      };
     if (values.password !== values.confirmPassword)
       errors.register = 'Λάθος επαλήθευση κωδικού.\n';
     if (!values.email.trim()) errors.register = 'Το email είναι απαραίτητο.\n';

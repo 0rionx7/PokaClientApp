@@ -10,9 +10,9 @@ const EditUsername = ({ stopEditing }) => {
   const [changeUsername] = useUsernameChangeMutation();
 
   const validate = values => {
-    if (values.username.trim().length < 2)
+    if (values.username.trim().length < 3 || values.username.trim().length > 17)
       return {
-        username: 'Εισάγετε τουλάχιστων 2 χαρακτήρες.',
+        username: `Το όνομα χρήστη πρέπει να αποτελείται\n από 2 εώς 17 χαρακτήρες.`,
       };
   };
   const submitHandler = async (values, { setErrors }) => {

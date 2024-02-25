@@ -24,8 +24,11 @@ const OpenTable = () => {
   };
   const validate = values => {
     let errors = {};
-    if (!values.tableName.trim().length)
-      errors.openTable = 'Πρέπει να δώσετε ένα όνομα στο τραπέζι.\n';
+    if (
+      values.tableName.trim().length < 3 ||
+      values.tableName.trim().length > 17
+    )
+      errors.openTable = `Το όνομα τραπεζιού πρέπει να αποτελείται\n από 3 εώς 17 χαρακτήρες.`;
     if (values.chip > values.cava)
       errors.openTable = 'Το "τσίπ" είναι μεγαλύτερο από την κάβα.\n';
     if (values.cava <= 0 || values.chip <= 0)
