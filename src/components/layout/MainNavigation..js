@@ -12,7 +12,7 @@ const MainNavigation = () => {
 
   return (
     <header className="header-container">
-      <Link to="/" className="logo">
+      <Link to="/" className="header-logo">
         {username}
       </Link>
       <div className="nav-items">
