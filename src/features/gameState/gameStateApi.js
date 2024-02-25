@@ -8,7 +8,7 @@ import {
   setTableCards,
 } from 'features/gameState/gameStateSlice';
 
-export const baseUrl = process.env.REACT_APP_POKA_API;
+export const baseUrl = process.env.REACT_APP_FRONTEND_URL;
 export const socket = io(baseUrl, { transports: ['websocket'] });
 
 export const gameStateApi = createApi({

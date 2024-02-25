@@ -34,7 +34,11 @@
   font-weight: 600;
 }
 .error {
-  color: red;
+  color: white;
   margin-left: 1rem;
   font-size: 0.6rem;
+  background-color: red;
+  border-radius: 0.3rem;
+  text-align: center;
+  padding: 0 0.3rem;
 }

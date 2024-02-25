@@ -67,7 +67,9 @@ const EditPassword = () => {
               <label htmlFor="confirmPassword">Επαλήθευση κωδικού</label>
               <Field id="confirmPassword" name="confirmPassword" type="text" />
             </div>
-            <span style={{ color: 'red' }}>{errors?.password}</span>
+            <div className={classes.error} style={{ margin: 0 }}>
+              {errors?.password}
+            </div>
             <span style={{ color: '#1cf31c' }}>{status?.success}</span>
           </Form>
           <Button
