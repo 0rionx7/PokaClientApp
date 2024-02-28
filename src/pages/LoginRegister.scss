@@ -17,7 +17,8 @@
     grid-template-areas:
       'username pass'
       'email confirm'
-      'error submit';
+      'submit agree'
+      'error error';
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -55,7 +56,6 @@
   }
   button {
     padding: 0.75rem 1.5rem;
-    margin-top: 1rem;
   }
   p {
     font-size: 0.8rem;
@@ -71,5 +71,9 @@
   }
   .checkbox {
     height: 1rem;
+    margin: 0 0.3rem;
+  }
+  .agree-terms {
+    font-size: 0.8rem;
   }
 }

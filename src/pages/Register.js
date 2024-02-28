@@ -4,6 +4,7 @@ import { Formik, Field, Form } from 'formik';
 import { useRegisterMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
+import CheckBox from 'components/ui/CheckBox';
 
 const Register = () => {
   const [register] = useRegisterMutation();
@@ -14,13 +15,16 @@ const Register = () => {
     username: '',
     password: '',
     confirmPassword: '',
+    agree: false,
   };
 
   const validate = values => {
     let errors = {};
+    if (!values.agree)
+      errors.register = 'Πρέπει να συμφωνήσετε με τους όρους χρήσης.';
     if (values.username.trim().length < 3 || values.username.trim().length > 17)
       return {
-        username: `Το όνομα χρήστη πρέπει να αποτελείται\n από 2 εώς 17 χαρακτήρες.`,
+        register: `Το όνομα χρήστη πρέπει να αποτελείται\n από 2 εώς 17 χαρακτήρες.`,
       };
     if (values.password !== values.confirmPassword)
       errors.register = 'Λάθος επαλήθευση κωδικού.\n';
@@ -53,7 +57,7 @@ const Register = () => {
           validateOnChange={false}
           validateOnBlur={false}
           enableReinitialize>
-          {({ isSubmitting, errors, setErrors }) => (
+          {({ values, isSubmitting, errors, setErrors }) => (
             <Form onFocus={() => setErrors({})}>
               <div className="form-control">
                 <label htmlFor="username">Όνομα χρήστη</label>
@@ -82,9 +86,12 @@ const Register = () => {
                 disabled={isSubmitting}
                 className="orange"
               />
-              <Link to="/login">
-                <p>&lt; Σύνδεση</p>
-              </Link>
+              <CheckBox
+                className="agree-terms"
+                name="agree"
+                checked={values.agree}
+                label="Συμφωνώ με τους όρους χρήσης"
+              />
             </Form>
           )}
         </Formik>
