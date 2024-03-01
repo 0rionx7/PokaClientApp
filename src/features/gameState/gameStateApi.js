@@ -10,6 +10,7 @@ import {
 
 export const baseUrl = process.env.REACT_APP_FRONTEND_URL;
 export const socket = io(baseUrl, { transports: ['websocket'] });
+const socketId = socket.id;
 
 export const gameStateApi = createApi({
   reducerPath: 'gameStateApi',
@@ -26,7 +27,7 @@ export const gameStateApi = createApi({
   endpoints: build => ({
     getGameState: build.query({
       query: gameId => {
-        return { url: `/gameState/${gameId}`, params: { socketId: socket.id } };
+        return { url: `/gameState/${gameId}`, params: { socketId } };
       },
       async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
         arg,
@@ -118,14 +119,14 @@ export const gameStateApi = createApi({
       query: openTableData => ({
         url: '/gameState',
         method: 'POST',
-        body: { openTableData, socketId: socket.id },
+        body: { openTableData, socketId },
       }),
     }),
     restartGame: build.mutation({
       query: gameInfo => ({
         url: '/gameState/restart',
         method: 'POST',
-        body: { ...gameInfo, socketId: socket.id },
+        body: { ...gameInfo, socketId },
       }),
     }),
     logOutAll: build.mutation({
@@ -210,7 +211,7 @@ export const gameStateApi = createApi({
         method: 'PATCH',
         body: {
           gameId,
-          socketId: socket.id,
+          socketId,
         },
       }),
     }),
@@ -218,7 +219,7 @@ export const gameStateApi = createApi({
       query: sitOutInfo => ({
         url: '/gameState/sitOut',
         method: 'PATCH',
-        body: { ...sitOutInfo, socketId: socket.id },
+        body: { ...sitOutInfo, socketId },
       }),
     }),
   }),

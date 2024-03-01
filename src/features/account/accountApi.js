@@ -1,5 +1,7 @@
 import { gameStateApi, socket } from 'features/gameState/gameStateApi';
 
+const socketId = socket.id;
+
 export const accountApi = gameStateApi.injectEndpoints({
   endpoints: build => ({
     getUser: build.query({
@@ -10,35 +12,35 @@ export const accountApi = gameStateApi.injectEndpoints({
       query: userData => ({
         url: 'user/register',
         method: 'PUT',
-        body: { ...userData, socketId: socket.id },
+        body: { ...userData, socketId },
       }),
     }),
     login: build.mutation({
       query: userData => ({
         url: 'user/login',
         method: 'POST',
-        body: { ...userData, socketId: socket.id },
+        body: { ...userData, socketId },
       }),
     }),
     reconnectedLogin: build.mutation({
       query: _ => ({
         url: '/user/reconnectedlogin',
         method: 'POST',
-        body: { socketId: socket.id },
+        body: { socketId },
       }),
     }),
     redirectedLogin: build.mutation({
       query: orderCode => ({
         url: '/user/redirectedlogin',
         method: 'POST',
-        body: { orderCode, socketId: socket.id },
+        body: { orderCode, socketId },
       }),
     }),
     logOut: build.mutation({
       query: _ => ({
         url: 'user/logout',
         method: 'POST',
-        body: { socketId: socket.id },
+        body: { socketId },
       }),
     }),
     changePassword: build.mutation({
