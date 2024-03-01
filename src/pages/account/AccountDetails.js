@@ -33,12 +33,10 @@ const AccountDetails = () => {
           title="ΔΙΑΧΕΙΡΗΣΗ ΣΥΝΔΡΟΜΗΣ"
           style={{ height: '5rem' }}
         />
-        {data?.lastGame && (
-          <AccountItem
-            element={<LastGame savedGame={data?.lastGame} />}
-            title="ΕΠΑΝΕΚΚΙΝΗΣΗ τελ. ΠΑΙΧΝΙΔΙΟΥ"
-          />
-        )}
+        <AccountItem
+          element={<LastGame savedGame={data?.lastGame} />}
+          title="ΕΠΑΝΕΚΚΙΝΗΣΗ τελ. ΠΑΙΧΝΙΔΙΟΥ"
+        />
         <AccountItem element={<Config />} title="ΡΥΘΜΙΣΕΙΣ" />
         <AccountItem
           element={

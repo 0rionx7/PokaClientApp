@@ -86,12 +86,15 @@ const Register = () => {
                 disabled={isSubmitting}
                 className="orange"
               />
-              <CheckBox
-                className="agree-terms"
-                name="agree"
-                checked={values.agree}
-                label="Συμφωνώ με τους όρους χρήσης"
-              />
+              <div className="form-control agree-terms">
+                <label>Συμφωνώ με τους όρους χρήσης</label>
+                <Field
+                  type="checkbox"
+                  className="checkbox"
+                  name="agree"
+                  checked={values.agree}
+                />
+              </div>
             </Form>
           )}
         </Formik>

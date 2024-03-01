@@ -16,6 +16,8 @@ const LastGame = ({ savedGame }) => {
     if (error) setSnackInfo(error.data);
   }, [error, setSnackInfo]);
 
+  if (!savedGame) return <p>Δεν υπάρχει αποθηκευμένο παιχνίδι</p>;
+
   const clickHandler = async () => {
     if (isLoading || isSuccess) return;
     const { data } = await restartGame(savedGame);
