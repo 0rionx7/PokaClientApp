@@ -21,7 +21,9 @@ const StayLeave = () => {
     <Overlay style={{ zIndex: 200 }}>
       {snackElement}
       <div className="sitback">
-        <div>{'Έχετε σηκωθεί απο το τραπέζι.\nΘέλετε να ξανακαθήσετε;'}</div>
+        <div style={{ textAlign: 'center' }}>
+          {'Έχετε σηκωθεί απο το τραπέζι.\nΘέλετε να ξανακαθήσετε;'}
+        </div>
         <div>
           <Button
             prompt="Ξανακάθομαι"

@@ -7,13 +7,12 @@ import {
 } from 'features/gameState/gameStateApi';
 import Button from 'components/ui/Button';
 
-const BetOptions = () => {
+const BetOptions = ({ disabled }) => {
   const { gameId } = useParams();
   const {
     data: { chip },
   } = useGetGameStateQuery(gameId);
   const { values, setFieldValue, isSubmitting, errors } = useFormikContext();
-  const [, { isSuccess }] = useBetMutation();
 
   const betAmounts = [chip, 5 * chip, 25 * chip, 100 * chip];
 
@@ -40,7 +39,7 @@ const BetOptions = () => {
                 values.amount ? values.amount + amount : amount
               )
             }
-            disabled={isSubmitting || isSuccess || errors.amount}
+            disabled={isSubmitting || disabled || errors.amount}
             style={{ gridArea: 'b-' + amount / chip }}
             className="bet-option orange"
           />

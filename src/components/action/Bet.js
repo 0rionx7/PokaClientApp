@@ -48,7 +48,12 @@ const Bet = ({ bet, resta }) => {
         <Form className="bet">
           <div className="form-control">
             <label htmlFor="amount">ΠΟΝΤΑΡΙΣΜΑ</label>
-            <Field id="amount" name="amount" type="number" />
+            <Field
+              id="amount"
+              name="amount"
+              type="number"
+              disabled={isSubmitting || isSuccess}
+            />
             {errors.amount ? (
               <span style={{ color: 'red' }}>{errors.amount}</span>
             ) : (
@@ -78,7 +83,7 @@ const Bet = ({ bet, resta }) => {
               className="fold red"
             />
           </div>
-          <BetOptions />
+          <BetOptions disabled={isSuccess} />
           <div className="call">
             {maxBet <= resta && (
               <Button
