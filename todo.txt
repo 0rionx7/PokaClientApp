@@ -1,3 +1,4 @@
 order tables chronologicaly
 try catch or error handling on joinHandlers etc
 strong passwords and enforce password complexity rules.
+check emoji functionality
