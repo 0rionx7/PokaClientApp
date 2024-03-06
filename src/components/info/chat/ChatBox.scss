@@ -6,19 +6,6 @@
   overflow: hidden;
   background-color: rgb(112 108 101);
   padding: 0.2rem;
-  button {
-    position: absolute;
-    height: 100%;
-    top: 0;
-    right: 0;
-    border-radius: 0 5px 5px 0;
-    z-index: 2;
-    border: none;
-    cursor: pointer;
-    color: white;
-    background-color: #1e90ff;
-    width: 9%;
-  }
 }
 // for having scrollbar with rounded corners
 .messages-container {
@@ -68,6 +55,19 @@
   border: none;
   outline: none;
   width: 100%;
+}
+.send-btn {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  border-radius: 0 5px 5px 0;
+  z-index: 2;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: #1e90ff;
+  width: 9%;
 }
 .emoji-picker {
   position: fixed;

@@ -38,7 +38,7 @@ const ChatInput = () => {
             className="text-input"
             placeholder="εισάγετε το μήνυμα σας"
           />
-          <button>{sendSvg}</button>
+          <button className="send-btn">{sendSvg}</button>
         </div>
         <p onClick={() => setShowPicker(pr => !pr)}> &#128522;</p>
       </form>
