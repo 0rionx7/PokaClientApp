@@ -20,7 +20,7 @@ const ResetPassword = () => {
   const token = searchParams.get('t');
 
   useEffect(() => {
-    socket.on('connect', () => redirectedLogin(token));
+    socket.on('connect', () => redirectedLogin({ token }));
     return () => {
       socket.removeAllListeners('connect');
     };

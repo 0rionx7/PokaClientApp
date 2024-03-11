@@ -7,18 +7,18 @@ import Button from 'components/ui/Button';
 import './SuccessfulPayment.scss';
 
 const SuccessfulPayment = () => {
-  const [redirectionalLogin] = useRedirectedLoginMutation();
+  const [redirectedLogin] = useRedirectedLoginMutation();
   let [searchParams] = useSearchParams();
   const transactionId = searchParams.get('t');
   const orderCode = searchParams.get('s');
   const navigate = useNavigate();
 
   useEffect(() => {
-    socket.on('connect', () => redirectionalLogin(orderCode));
+    socket.on('connect', () => redirectedLogin({ orderCode }));
     return () => {
       socket.removeAllListeners('connect');
     };
-  }, [redirectionalLogin, orderCode]);
+  }, [redirectedLogin, orderCode]);
 
   return (
     <div className="payment-result">
