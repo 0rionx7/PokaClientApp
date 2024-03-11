@@ -1,14 +1,17 @@
-import { useNavigate } from 'react-router-dom';
 import { Formik, Field, Form } from 'formik';
 
 import { useForgotPasswordMutation } from 'features/account/accountApi';
+import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
 import './Forgot.scss';
 
 const Forgot = () => {
   const [reset] = useForgotPasswordMutation();
-  const navigate = useNavigate();
+  const { snackElement, setSnackInfo } = useSnackBar({
+    height: '100%',
+    secs: 5,
+  });
 
   const validate = values => {
     let errors = {};
@@ -22,10 +25,9 @@ const Forgot = () => {
     const result = await reset({ email: values.email.trim() });
     if (result?.error?.data) setErrors({ email: result.error.data });
     else
-      navigate('/login', {
-        state: { to: '/account/resetPassword' },
-        replace: true,
-      });
+      setSnackInfo(
+        'Σας έχει αποσταλλεί στο email που δηλώσατε σύνδεσμος για την επαναφορά του κωδικού σας.'
+      );
   };
 
   return (
@@ -57,6 +59,7 @@ const Forgot = () => {
           )}
         </Formik>
       </Frame>
+      {snackElement}
     </div>
   );
 };

@@ -28,10 +28,10 @@ export const accountApi = gameStateApi.injectEndpoints({
       }),
     }),
     redirectedLogin: build.mutation({
-      query: orderCode => ({
+      query: token => ({
         url: '/user/redirectedlogin',
         method: 'POST',
-        body: { orderCode, socketId: socket.id },
+        body: { token, socketId: socket.id },
       }),
     }),
     logOut: build.mutation({

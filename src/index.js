@@ -42,9 +42,9 @@ const router = createBrowserRouter(
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot" element={<Forgot />} />
+          <Route path="resetPassword" element={<ResetPassword />} />
           <Route path="account" element={<RouteGuard element={<Account />} />}>
             <Route index element={<AccountDetails />} />
-            <Route path="resetPassword" element={<ResetPassword />} />
             <Route path="subscription" element={<SubscriptionOptions />} />
           </Route>
           <Route path="successfulPayment" element={<SuccessfulPayment />} />
