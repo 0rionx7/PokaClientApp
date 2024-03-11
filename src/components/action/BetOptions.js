@@ -1,10 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useFormikContext } from 'formik';
 
-import {
-  useBetMutation,
-  useGetGameStateQuery,
-} from 'features/gameState/gameStateApi';
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import Button from 'components/ui/Button';
 
 const BetOptions = ({ disabled }) => {
