@@ -21,6 +21,7 @@ export const appInsights = new ApplicationInsights({
       // *** Add the Click Analytics plug-in. ***
       // [clickPluginInstance.identifier]: clickPluginConfig
     },
+    disableExceptionTracking: false,
   },
 });
 

@@ -14,7 +14,7 @@ import SubscriptionOptions from 'pages/account/subscription/SubscriptionOptions'
 import SuccessfulPayment from 'pages/account/subscription/SuccessfulPayment';
 import FailedPayment from 'pages/account/subscription/FailedPayment';
 import AccountDetails from 'pages/account/AccountDetails';
-import ResetPassword from 'pages/ChangePasssword';
+import ResetPassword from 'pages/ResetPassword';
 import Instructions from 'pages/Instructions';
 import Account from 'pages/account/Account';
 import Saloon from 'pages/saloon/Saloon';

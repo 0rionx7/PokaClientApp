@@ -1,14 +1,26 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
 
-import { useChangePasswordMutation } from 'features/account/accountApi';
+import {
+  useChangePasswordMutation,
+  useRedirectedLoginMutation,
+} from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
+import { useEffect } from 'react';
 
 const ResetPassword = () => {
+  let [searchParams] = useSearchParams();
+  const navigate = useNavigate();
   const [changePassword, { isLoading, isSuccess }] =
     useChangePasswordMutation();
-  const navigate = useNavigate();
+  const [redirectedLogin] = useRedirectedLoginMutation();
+
+  const token = searchParams.get('t');
+
+  useEffect(() => {
+    redirectedLogin({ token });
+  }, [token, redirectedLogin]);
 
   const initialValues = {
     newPassword: '',
