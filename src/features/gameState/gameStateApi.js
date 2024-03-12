@@ -132,6 +132,7 @@ export const gameStateApi = createApi({
       query: _ => ({
         url: '/user/logOutAll',
         method: 'PATCH',
+        body: {},
       }),
     }),
     setGameVariant: build.mutation({
