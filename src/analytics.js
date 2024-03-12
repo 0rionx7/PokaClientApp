@@ -22,6 +22,7 @@ export const appInsights = new ApplicationInsights({
       // [clickPluginInstance.identifier]: clickPluginConfig
     },
     disableExceptionTracking: false,
+    disablePageUnloadEvents: ['unload'],
   },
 });
 

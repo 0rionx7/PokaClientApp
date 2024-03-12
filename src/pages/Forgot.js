@@ -23,7 +23,9 @@ const Forgot = () => {
 
   const submitHandler = async (values, { setErrors }) => {
     const result = await reset({ email: values.email.trim() });
-    if (result?.error?.data) setErrors({ email: result.error.data });
+    console.log(result);
+    if (result?.error)
+      setErrors({ email: result.error.data || 'server error' });
     else
       setSnackInfo(
         'Σας έχει αποσταλλεί στο email που δηλώσατε σύνδεσμος για την επαναφορά του κωδικού σας.'
@@ -46,7 +48,7 @@ const Forgot = () => {
             <Form onFocus={() => setErrors({})}>
               <div className="form-control username">
                 <label htmlFor="email">Συμπληρώστε το email σας</label>
-                <Field id="email" name="email" type="text" />
+                <Field id="email" name="email" type="text" autoComplete="on" />
               </div>
               <span>{errors.email}</span>
               <Button

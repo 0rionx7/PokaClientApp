@@ -55,7 +55,12 @@ const Login = () => {
             <Form onFocus={() => setErrors({})}>
               <div className="form-control username">
                 <label htmlFor="username">Όνομα χρήστη</label>
-                <Field id="username" name="username" type="text" />
+                <Field
+                  id="username"
+                  name="username"
+                  type="text"
+                  autoComplete="on"
+                />
               </div>
               <CheckBox
                 checked={values.rememberMe}

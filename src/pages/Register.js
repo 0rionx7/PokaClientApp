@@ -60,7 +60,12 @@ const Register = () => {
             <Form onFocus={() => setErrors({})}>
               <div className="form-control">
                 <label htmlFor="username">Όνομα χρήστη</label>
-                <Field id="username" name="username" type="text" />
+                <Field
+                  id="username"
+                  name="username"
+                  type="text"
+                  autoComplete="on"
+                />
               </div>
               <div className="form-control">
                 <label htmlFor="password">Κωδικός ασφαλείας</label>
@@ -68,7 +73,7 @@ const Register = () => {
               </div>
               <div className="form-control">
                 <label htmlFor="email">Διεύθυνση e-mail</label>
-                <Field id="email" name="email" type="text" />
+                <Field id="email" name="email" type="text" autoComplete="on" />
               </div>
               <div className="form-control">
                 <label htmlFor="confirmPassword">Επαλήθευση κωδικού</label>
@@ -86,10 +91,11 @@ const Register = () => {
                 className="orange"
               />
               <div className="form-control agree-terms">
-                <label>Συμφωνώ με τους όρους χρήσης</label>
+                <label htmlFor="agree">Συμφωνώ με τους όρους χρήσης</label>
                 <Field
                   type="checkbox"
                   className="checkbox"
+                  id="agree"
                   name="agree"
                   checked={values.agree}
                 />
