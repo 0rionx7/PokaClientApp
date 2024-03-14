@@ -32,6 +32,7 @@ const AvailableTable = ({ tableInfo }) => {
     }
     if (joinRequests.length >= 3)
       return setSnackInfo('Έχετε συμπληρώσει των μέγιστο αριθμό αιτήσεων.');
+
     requestJoin({ tableName: tableInfo.tableName });
   };
 
