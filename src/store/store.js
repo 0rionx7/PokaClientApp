@@ -10,7 +10,6 @@ import {
 } from '../features/gameState/gameStateSlice';
 import { errorHandling } from '../features/middleware/errorHandling';
 import { accountReducer, accountSlice } from '../features/account/accountSlice';
-import { updateTables } from 'features/middleware/updateTables';
 import { updateRequests } from 'features/middleware/updateRequests';
 
 export const store = configureStore({
@@ -22,7 +21,6 @@ export const store = configureStore({
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(
       gameStateApi.middleware,
-      updateTables,
       updateRequests,
       errorHandling
     ),

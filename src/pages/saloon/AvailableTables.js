@@ -1,18 +1,27 @@
 import { useMemo, useState } from 'react';
 
 import { useGetTablesQuery } from 'features/gameState/gameStateApi';
+import { useGetUserQuery } from 'features/account/accountApi';
 import AvailableTable from 'pages/saloon/AvailableTable';
 
 const AvailableTables = () => {
   const [query, setfQuery] = useState('');
   const { data } = useGetTablesQuery();
+  const { data: userData } = useGetUserQuery();
 
+  const joinRequests = userData?.joinRequests;
   const availableTables = useMemo(
     () =>
-      data?.filter(tableInfo =>
-        tableInfo.tableName.toLowerCase().startsWith(query.trim().toLowerCase())
+      data?.filter(
+        tableInfo =>
+          joinRequests?.every(
+            request => request.tableName !== tableInfo.tableName
+          ) &&
+          tableInfo.tableName
+            .toLowerCase()
+            .startsWith(query.trim().toLowerCase())
       ),
-    [data, query]
+    [data, query, joinRequests]
   );
 
   return (
