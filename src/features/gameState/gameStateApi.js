@@ -120,6 +120,7 @@ export const gameStateApi = createApi({
         method: 'POST',
         body: { openTableData, socketId: socket.id },
       }),
+      invalidatesTags: ['Tables'],
     }),
     restartGame: build.mutation({
       query: gameInfo => ({
@@ -127,6 +128,7 @@ export const gameStateApi = createApi({
         method: 'POST',
         body: { ...gameInfo, socketId: socket.id },
       }),
+      invalidatesTags: ['Tables'],
     }),
     logOutAll: build.mutation({
       query: _ => ({
@@ -211,6 +213,7 @@ export const gameStateApi = createApi({
         method: 'PATCH',
         body: { gameId, socketId: socket.id },
       }),
+      invalidatesTags: ['Tables'],
     }),
     sitOut: build.mutation({
       query: sitOutInfo => ({
