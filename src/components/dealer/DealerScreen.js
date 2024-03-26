@@ -13,16 +13,23 @@ import './DealerScreen.scss';
 const DealerScreen = () => {
   const { gameId } = useParams();
   const { data: gameData } = useGetGameStateQuery(gameId);
-  const { data } = useGetRequestsQuery(gameData.tableName);
-
+  const { data } = useGetRequestsQuery(gameData?.tableName);
   const requestedStates = useMemo(
     () =>
-      data?.map(request => ({
-        playerName: request.username,
-        isSubscribed: new Date(request.subExpiration) - Date.now() > 0,
-      })),
-    [data]
+      data
+        ?.filter(request =>
+          gameData?.playersStateList.every(
+            ps => ps.playerName !== request.username
+          )
+        )
+        .map(request => ({
+          playerName: request.username,
+          isSubscribed: new Date(request.subExpiration) - Date.now() > 0,
+        })),
+    [data, gameData?.playersStateList]
   );
+
+  if (!gameData) return null;
 
   return (
     <Overlay className="builder-overlay">

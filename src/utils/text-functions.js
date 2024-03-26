@@ -3,6 +3,8 @@ import {
   cardsNameOf,
   gameNames,
   handKind,
+  paymentsDescription,
+  subscriptionOptions,
 } from 'utils/text-constants';
 
 export function createTableTitle(tableName) {
@@ -115,4 +117,26 @@ export function extraBuilderValues(gameName) {
       break;
   }
   return { name, label };
+}
+export function creataPaymentTags(title, email) {
+  let amount, customerTrns, merchantTrns;
+  const tags = [];
+
+  switch (title) {
+    case subscriptionOptions.yearly.split('_')[0]:
+      amount = 5000;
+      customerTrns = paymentsDescription.yearly;
+      merchantTrns = paymentsDescription.yearly + ` του χρήστη ${email}`;
+      tags.push(paymentsDescription.yearly);
+      break;
+    case subscriptionOptions.monthly.split('_')[0]:
+      amount = 500;
+      customerTrns = paymentsDescription.monthly;
+      merchantTrns = paymentsDescription.monthly + ` του χρήστη ${email}`;
+      tags.push(paymentsDescription.monthly);
+      break;
+    default:
+      break;
+  }
+  return { amount, tags, customerTrns, merchantTrns };
 }
