@@ -41,6 +41,7 @@ export const requestsApi = gameStateApi.injectEndpoints({
           socketId: socket.id,
         },
       }),
+      invalidatesTags: ['User'],
     }),
     cancelRequest: build.mutation({
       query: cancelInfo => ({
@@ -48,6 +49,7 @@ export const requestsApi = gameStateApi.injectEndpoints({
         method: 'PATCH',
         body: cancelInfo,
       }),
+      invalidatesTags: ['User'],
     }),
     rejectRequest: build.mutation({
       query: rejectlInfo => ({
