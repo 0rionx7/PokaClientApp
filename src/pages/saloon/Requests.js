@@ -3,7 +3,9 @@ import Request from 'pages/saloon/Request';
 import './Requests.scss';
 
 const Requests = () => {
-  const { data } = useGetUserQuery();
+  const { data } = useGetUserQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   const joinRequests = data?.joinRequests;
 
   return (

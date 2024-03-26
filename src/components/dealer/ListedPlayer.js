@@ -4,8 +4,8 @@ import { useParams } from 'react-router-dom';
 import {
   useGetGameStateQuery,
   useJoinTableMutation,
+  useRejectRequestMutation,
 } from 'features/gameState/gameStateApi';
-import { useRejectRequestMutation } from 'features/account/requestsApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';

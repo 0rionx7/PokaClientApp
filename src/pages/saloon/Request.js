@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useCancelRequestMutation } from 'features/account/accountApi';
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
-import { useCancelRequestMutation } from 'features/account/requestsApi';
 import ToolTip from 'components/ui/ToolTip';
 import './Requests.scss';
 

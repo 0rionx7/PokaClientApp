@@ -63,6 +63,25 @@ export const accountApi = gameStateApi.injectEndpoints({
         body: email,
       }),
     }),
+    requestJoin: build.mutation({
+      query: requestInfo => ({
+        url: 'user/join',
+        method: 'PATCH',
+        body: {
+          ...requestInfo,
+          socketId: socket.id,
+        },
+      }),
+      invalidatesTags: ['User'],
+    }),
+    cancelRequest: build.mutation({
+      query: cancelInfo => ({
+        url: 'user/cancelJoin',
+        method: 'PATCH',
+        body: cancelInfo,
+      }),
+      invalidatesTags: ['User'],
+    }),
   }),
 });
 
@@ -76,4 +95,6 @@ export const {
   useChangePasswordMutation,
   useUsernameChangeMutation,
   useForgotPasswordMutation,
+  useRequestJoinMutation,
+  useCancelRequestMutation,
 } = accountApi;

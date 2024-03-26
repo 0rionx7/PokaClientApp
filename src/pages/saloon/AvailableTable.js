@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useRequestJoinMutation } from 'features/account/requestsApi';
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
-import { useGetUserQuery } from 'features/account/accountApi';
+import {
+  useGetUserQuery,
+  useRequestJoinMutation,
+} from 'features/account/accountApi';
 import { createTableTitle } from 'utils/text-functions';
 import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';

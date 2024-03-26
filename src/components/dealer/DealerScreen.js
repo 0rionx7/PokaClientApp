@@ -1,8 +1,10 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { useGetRequestsQuery } from 'features/account/requestsApi';
+import {
+  useGetGameStateQuery,
+  useGetRequestsQuery,
+} from 'features/gameState/gameStateApi';
 import GameBuilder from 'components/gameBuilder/GameBuilder';
 import ListedPlayers from 'components/dealer/ListedPlayers';
 import Overlay from 'components/ui/Overlay';
