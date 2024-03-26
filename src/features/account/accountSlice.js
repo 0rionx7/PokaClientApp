@@ -1,13 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { accountApi } from 'features/account/accountApi';
-import { requestsApi } from 'features/account/requestsApi';
 
 const initialStateFn = () => {
   const initialState = {
     username: '',
     token: '',
-    joinRequests: [],
     hideInfo: false,
     deckColor: 'rgb(255 0 0 / 90%)',
   };
@@ -24,17 +22,6 @@ export const accountSlice = createSlice({
   name: 'account',
   initialState: initialStateFn,
   reducers: {
-    requestRejected: (state, action) => {
-      state.joinRequests = state.joinRequests.filter(
-        tableInfo => tableInfo.tableName !== action.payload.tableName
-      );
-    },
-    setRequestGameId: (state, action) => {
-      const approvedRequest = state.joinRequests.find(
-        ({ tableName }) => tableName === action.payload.tableName
-      );
-      if (approvedRequest) approvedRequest.joined = action.payload.gameId;
-    },
     setHideInfo: (state, action) => ({ ...state, hideInfo: action.payload }),
     setDeckColor: (state, action) => ({ ...state, deckColor: action.payload }),
   },
@@ -52,34 +39,9 @@ export const accountSlice = createSlice({
       .addMatcher(
         accountApi.endpoints.logOut.matchFulfilled,
         (_state, _action) => accountSlice.getInitialState()
-      )
-      .addMatcher(
-        isAnyOf(
-          accountApi.endpoints.openTable.matchFulfilled,
-          accountApi.endpoints.restartGame.matchFulfilled,
-          accountApi.endpoints.sitDown.matchFulfilled
-        ),
-        (state, _action) => {
-          state.joinRequests = [];
-        }
-      )
-      .addMatcher(
-        requestsApi.endpoints.requestJoin.matchFulfilled,
-        (state, action) => {
-          state.joinRequests.push({ tableName: action.payload });
-        }
-      )
-      .addMatcher(
-        requestsApi.endpoints.cancelRequest.matchFulfilled,
-        (state, action) => {
-          state.joinRequests = state.joinRequests.filter(
-            requestInfo => requestInfo.tableName !== action.payload.tableName
-          );
-        }
       );
   },
 });
 
 export const accountReducer = accountSlice.reducer;
-export const { requestRejected, setRequestGameId, setHideInfo, setDeckColor } =
-  accountSlice.actions;
+export const { setHideInfo, setDeckColor } = accountSlice.actions;

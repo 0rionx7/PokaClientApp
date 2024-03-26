@@ -12,7 +12,6 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(state => state.account.username);
-  const hasNexted = useSelector(state => state.gameState.hasNexted);
   const [nextRound] = useNextRoundMutation();
   const [sitOut] = useSitOutMutation();
 
@@ -51,19 +50,11 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   useEffect(() => {
     if (!isHostPlayer || data?.reaction === 101) return;
     let timer;
-    if (kind && !sittingOut && !hasNexted)
+    if (kind && !sittingOut)
       timer = setTimeout(() => nextRound(gameId), data?.reaction * 1200);
 
     return () => clearTimeout(timer);
-  }, [
-    kind,
-    isHostPlayer,
-    nextRound,
-    sittingOut,
-    data?.reaction,
-    hasNexted,
-    gameId,
-  ]);
+  }, [kind, isHostPlayer, nextRound, sittingOut, data?.reaction, gameId]);
 };
 
 export default useSitOutTimer;

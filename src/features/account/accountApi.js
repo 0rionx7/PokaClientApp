@@ -63,6 +63,33 @@ export const accountApi = gameStateApi.injectEndpoints({
         body: email,
       }),
     }),
+    requestJoin: build.mutation({
+      query: requestInfo => ({
+        url: 'user/requestJoin',
+        method: 'PATCH',
+        body: {
+          ...requestInfo,
+          socketId: socket.id,
+        },
+      }),
+      invalidatesTags: ['User'],
+    }),
+    cancelRequest: build.mutation({
+      query: cancelInfo => ({
+        url: 'user/cancelRequest',
+        method: 'PATCH',
+        body: cancelInfo,
+      }),
+      invalidatesTags: ['User'],
+    }),
+    pay: build.mutation({
+      query: paymentInfo => ({
+        url: '/payments',
+        method: 'POST',
+        body: paymentInfo,
+      }),
+      invalidatesTags: ['User'],
+    }),
   }),
 });
 
@@ -76,4 +103,7 @@ export const {
   useChangePasswordMutation,
   useUsernameChangeMutation,
   useForgotPasswordMutation,
+  useRequestJoinMutation,
+  useCancelRequestMutation,
+  usePayMutation,
 } = accountApi;

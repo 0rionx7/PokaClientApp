@@ -2,11 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import io from 'socket.io-client';
 
 import { playerEntry, updateAll } from 'utils/utilities-functions';
-import {
-  setHandCards,
-  setHasNexted,
-  setTableCards,
-} from 'features/gameState/gameStateSlice';
+import { setHandCards, setTableCards } from 'features/gameState/gameStateSlice';
 
 export const baseUrl = process.env.REACT_APP_FRONTEND_URL;
 export const socket = io(baseUrl, { transports: ['websocket'] });
@@ -22,7 +18,7 @@ export const gameStateApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User', 'Tables'],
+  tagTypes: ['User', 'Tables', 'Requests'],
   endpoints: build => ({
     getGameState: build.query({
       query: gameId => {
@@ -57,9 +53,6 @@ export const gameStateApi = createApi({
                   }
                   if (stateUpdate.tableCards)
                     dispatch(setTableCards(stateUpdate.tableCards));
-                  if (stateUpdate.gameName) {
-                    dispatch(setHasNexted(false));
-                  }
                 }
 
                 return { ...draft, ...stateUpdate };
@@ -82,6 +75,37 @@ export const gameStateApi = createApi({
           console.log(error);
         }
       },
+      keepUnusedDataFor: 0,
+    }),
+    getRequests: build.query({
+      query: tableName => `/requests/${tableName}`,
+      async onCacheEntryAdded(
+        _arg,
+        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
+      ) {
+        try {
+          await cacheDataLoaded;
+          // dealers screen requests handlers=======================
+          const requestAddedListener = reqInfo => {
+            updateCachedData(draft => {
+              draft.push(reqInfo);
+            });
+          };
+          const requestRemovedListener = ({ username }) => {
+            updateCachedData(draft =>
+              draft.filter(reqInfo => reqInfo.username !== username)
+            );
+          };
+          socket.on('requestAdded', requestAddedListener);
+          socket.on('requestCanceled', requestRemovedListener);
+          await cacheEntryRemoved;
+          socket.off('requestAdded', requestAddedListener);
+          socket.off('requestCanceled', requestRemovedListener);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      providesTags: ['Requests'],
       keepUnusedDataFor: 0,
     }),
     getTables: build.query({
@@ -120,6 +144,7 @@ export const gameStateApi = createApi({
         method: 'POST',
         body: { openTableData, socketId: socket.id },
       }),
+      invalidatesTags: ['Tables'],
     }),
     restartGame: build.mutation({
       query: gameInfo => ({
@@ -127,6 +152,7 @@ export const gameStateApi = createApi({
         method: 'POST',
         body: { ...gameInfo, socketId: socket.id },
       }),
+      invalidatesTags: ['Tables'],
     }),
     logOutAll: build.mutation({
       query: _ => ({
@@ -198,19 +224,13 @@ export const gameStateApi = createApi({
         body: { gameId },
       }),
     }),
-    joinTable: build.mutation({
-      query: joinInfo => ({
-        url: '/gameState/join',
-        method: 'PATCH',
-        body: joinInfo,
-      }),
-    }),
     sitDown: build.mutation({
       query: ({ gameId }) => ({
         url: '/gameState/sitDown',
         method: 'PATCH',
         body: { gameId, socketId: socket.id },
       }),
+      invalidatesTags: ['Tables'],
     }),
     sitOut: build.mutation({
       query: sitOutInfo => ({
@@ -219,11 +239,28 @@ export const gameStateApi = createApi({
         body: { ...sitOutInfo, socketId: socket.id },
       }),
     }),
+    joinTable: build.mutation({
+      query: joinInfo => ({
+        url: '/gameState/join',
+        method: 'PATCH',
+        body: joinInfo,
+      }),
+      invalidatesTags: ['Requests'],
+    }),
+    rejectRequest: build.mutation({
+      query: rejectlInfo => ({
+        url: '/requests/reject',
+        method: 'PATCH',
+        body: rejectlInfo,
+      }),
+      invalidatesTags: ['Requests'],
+    }),
   }),
 });
 
 export const {
   useGetGameStateQuery,
+  useGetRequestsQuery,
   useGetTablesQuery,
   useOpenTableMutation,
   useRestartGameMutation,
@@ -240,6 +277,7 @@ export const {
   useSitDownMutation,
   useSitOutMutation,
   useLogOutAllMutation,
+  useRejectRequestMutation,
 } = gameStateApi;
 
 export const gameApiReducer = gameStateApi.reducer;

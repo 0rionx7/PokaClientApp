@@ -1,20 +1,18 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import {
-  requestRejected,
-  setRequestGameId,
-} from 'features/account/accountSlice';
+import { socket, useGetTablesQuery } from 'features/gameState/gameStateApi';
 import { createTableTitle } from 'utils/text-functions';
-import { socket } from 'features/gameState/gameStateApi';
 import ApprovedRequest from 'pages/ApprovedRequest';
 import useSnackBar from 'hooks/useSnackBar';
+import { useGetUserQuery } from 'features/account/accountApi';
 
 const useRequestResult = () => {
   const username = useSelector(state => state.account.username);
+  const { refetch } = useGetUserQuery();
+  const { refetch: refetchTables } = useGetTablesQuery();
   const { gameId } = useParams();
-  const dispatch = useDispatch();
   const { snackElement: rejectedElement, setSnackInfo: setRejectPopUp } =
     useSnackBar({
       height: '100%',
@@ -27,15 +25,16 @@ const useRequestResult = () => {
 
   useEffect(() => {
     socket.on('joinApproved', requestInfo => {
-      dispatch(setRequestGameId(requestInfo));
       setApprovedPopUp(<ApprovedRequest requestInfo={requestInfo} />);
+      refetch();
+      refetchTables();
     });
     return () => socket.removeAllListeners('joinApproved');
-  }, [dispatch, setApprovedPopUp, username]);
+  }, [setApprovedPopUp, username, refetch, refetchTables]);
 
   useEffect(() => {
     socket.on('requestRejected', ({ tableName, showPopUp }) => {
-      dispatch(requestRejected({ tableName }));
+      refetch();
       if (!gameId && showPopUp)
         setRejectPopUp(
           <>
@@ -45,7 +44,7 @@ const useRequestResult = () => {
         );
     });
     return () => socket.removeAllListeners('requestRejected');
-  }, [dispatch, setRejectPopUp, gameId]);
+  }, [setRejectPopUp, gameId, refetch]);
 
   return { approvedElement, rejectedElement };
 };

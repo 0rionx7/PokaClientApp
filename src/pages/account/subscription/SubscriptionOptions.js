@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 
-import { usePayMutation } from 'features/paymentsMutations/usePayMutation';
 import SubscriptionItem from 'pages/account/subscription/SubscriptionItem';
-import { useGetUserQuery } from 'features/account/accountApi';
+import { useGetUserQuery, usePayMutation } from 'features/account/accountApi';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import Overlay from 'components/ui/Overlay';
 import Frame from 'components/ui/Frame';
@@ -12,7 +11,7 @@ import { paymentsIcons } from 'assets/svgs/payments';
 const SubscriptionOptions = () => {
   const [commitPayment, { data, isLoading, isSuccess }] = usePayMutation();
   useGetUserQuery();
-  const { data: userData } = useGetUserQuery(undefined);
+  const { data: userData } = useGetUserQuery();
 
   useEffect(() => {
     if (data?.orderCode)
