@@ -1,9 +1,32 @@
-import { gameStateApi, socket } from 'features/gameState/gameStateApi';
+import { baseUrl, gameStateApi, socket } from 'features/gameState/gameStateApi';
 
 export const accountApi = gameStateApi.injectEndpoints({
   endpoints: build => ({
     getUser: build.query({
-      query: () => 'user',
+      queryFn: async (_args, { getState }) => {
+        try {
+          const token = getState().account.token;
+          if (!token) return { data: null };
+
+          const httpHeaders = {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${token}`,
+          };
+          const headers = new Headers(httpHeaders);
+          let response;
+          response = await fetch(baseUrl + '/user', {
+            method: 'GET',
+            headers,
+          });
+
+          const responseData = await response.json();
+          if (!response.ok) throw Error(responseData);
+
+          return { data: responseData };
+        } catch (error) {
+          return { error };
+        }
+      },
       providesTags: ['User'],
     }),
     register: build.mutation({

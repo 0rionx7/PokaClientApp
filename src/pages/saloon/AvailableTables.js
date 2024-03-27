@@ -6,7 +6,9 @@ import AvailableTable from 'pages/saloon/AvailableTable';
 
 const AvailableTables = () => {
   const [query, setfQuery] = useState('');
-  const { data } = useGetTablesQuery();
+  const { data } = useGetTablesQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
   const { data: userData } = useGetUserQuery();
 
   const joinRequests = userData?.joinRequests;
