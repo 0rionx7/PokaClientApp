@@ -1,0 +1,46 @@
+.score-details {
+  display: flex;
+  padding-left: 24px;
+}
+.row-royalties,
+.row-score {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 40px;
+  color: bisque;
+  border-radius: 5px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+.row-royalties {
+  background-color: rgb(225, 197, 14);
+  color: black;
+  margin-left: 7px;
+}
+.neutral {
+  background-color: rgb(225, 197, 14);
+}
+.possitive {
+  background-color: rgb(5, 214, 43);
+  color: black;
+}
+.negative {
+  background-color: rgb(226, 43, 6);
+}
+.round-score {
+  grid-area: score;
+  width: 3rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+  align-self: center;
+  color: rgb(255, 228, 196);
+  font-weight: 700;
+}

@@ -1,0 +1,41 @@
+.playerRibbon {
+  display: flex;
+  grid-area: ribbon;
+  justify-self: center;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 2rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  padding: 10px;
+  cursor: pointer;
+  box-shadow: inset 1px 1px 8px 0px black;
+  background-color: rgb(192 32 11);
+  color: bisque;
+  &.active {
+    background-color: rgb(49, 141, 81);
+    color: black;
+  }
+}
+.score {
+  width: 40px;
+  text-align: center;
+  background-color: rgb(49, 48, 48);
+  border-radius: 4px;
+  color: bisque;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+.dealer {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: yellow;
+  font-size: 14px;
+  font-weight: 800;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

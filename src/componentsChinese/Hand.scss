@@ -1,0 +1,15 @@
+.hand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  grid-area: hand;
+  button {
+    font-size: 0.8rem;
+    padding: 0.8rem 2.5rem;
+  }
+}
+.hand-cards {
+  display: flex;
+  gap: 0.3rem;
+}

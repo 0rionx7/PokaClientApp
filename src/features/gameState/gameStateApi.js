@@ -18,7 +18,7 @@ export const gameStateApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['User', 'Tables', 'Requests'],
+  tagTypes: ['User', 'Tables', 'Requests', 'ChineseRequests', 'ChineseTables'],
   endpoints: build => ({
     getGameState: build.query({
       query: gameId => {

@@ -1,3 +1,11 @@
+export function colorClass(reference) {
+  let className = 'neutral';
+  if (reference) className = reference > 0 ? 'possitive' : 'negative';
+  return className;
+}
+export function isSeated(playerState) {
+  return !playerState.sittingOut;
+}
 export function selectedCardsIndexes(cards) {
   return cards.reduce((acc, curr, i) => {
     if (curr.selected) acc.push(i);
