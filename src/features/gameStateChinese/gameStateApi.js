@@ -27,7 +27,9 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
           const stateUpdateListener = (stateUpdate, updateBoard) => {
             updateCachedData(_draft => {
               const { username } = getState().account;
-              if (['all', username].includes(updateBoard)) {
+              if (
+                ['all', username].some(el => updateBoard?.some(br => br === el))
+              ) {
                 const updatedHostState = stateUpdate.playersStateList.find(
                   playerEntry(username)
                 );
@@ -56,13 +58,11 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
           await cacheDataLoaded;
           // dealers screen requests handlers=======================
           const requestAddedListener = reqInfo => {
-            console.log(reqInfo);
             updateCachedData(draft => {
               draft.push(reqInfo);
             });
           };
           const requestRemovedListener = ({ username }) => {
-            console.log({ username });
             updateCachedData(draft =>
               draft.filter(reqInfo => reqInfo.username !== username)
             );

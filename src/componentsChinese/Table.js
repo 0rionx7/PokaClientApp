@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
+import {
+  useGetGameStateChineseQuery,
+  useSitOutChineseMutation,
+} from 'features/gameStateChinese/gameStateApi';
 import { playerEntry } from 'utils/utilities-functions';
 import DealerScreen from 'componentsChinese/dealer/DealerScreen';
 import SitOut from 'componentsChinese/SitOut';
@@ -14,11 +18,16 @@ const Table = () => {
   const { gameId } = useParams();
   const { username } = useSelector(state => state.account);
   const { data } = useGetGameStateChineseQuery(gameId);
+  const [sitOut] = useSitOutChineseMutation();
   const hostPlayerState = data.playersStateList.find(playerEntry(username));
+
+  useEffect(() => {
+    return () => sitOut({ gameId });
+  }, [gameId, sitOut]);
 
   if (!data) return <h3>waiting for others to join...</h3>;
 
-  const isDealer = !data.playersStateList.findIndex(playerEntry(username));
+  const isDealer = data.playersStateList.findIndex(playerEntry(username)) === 0;
   const playerCount = data.playersStateList.length;
 
   return (

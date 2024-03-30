@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { gameStateChineseApi } from 'features/gameStateChinese/gameStateApi';
 
 export const initialGameState = {
   playerName: '',
@@ -56,6 +57,11 @@ export const gameStateChineseSlice = createSlice({
       state.hand = orderHandBySuit(state.hand);
     },
   },
+  extraReducers: builder =>
+    builder.addMatcher(
+      gameStateChineseApi.endpoints.sitOutChinese.matchFulfilled,
+      (_state, _action) => gameStateChineseSlice.getInitialState()
+    ),
 });
 
 export const { setLocalPlayerState, moveCard, orderBySuit, orderByValue } =

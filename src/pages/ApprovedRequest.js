@@ -1,17 +1,26 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
+import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
 import { createTableTitle } from 'utils/text-functions';
 import Button from 'components/ui/Button';
 import './ApprovedRequest.scss';
 
 const ApprovedRequest = ({ requestInfo: { tableName, gameId } }) => {
-  const [sitDown] = useSitDownMutation();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [sitDownChinese] = useSitDownChineseMutation();
+  const [sitDown] = useSitDownMutation();
 
   const joinHandler = async _ => {
-    const { data } = await sitDown({ gameId, tableName });
-    if (data?.gameId) navigate(`/table/${gameId}`);
+    const isChinese = location?.pathname.includes('chinese');
+    if (isChinese) {
+      const { data } = await sitDownChinese({ gameId, tableName });
+      if (data?.gameId) navigate(`chinese/table/${gameId}`);
+    } else {
+      const { data } = await sitDown({ gameId, tableName });
+      if (data?.gameId) navigate(`table/${gameId}`);
+    }
   };
 
   return (
