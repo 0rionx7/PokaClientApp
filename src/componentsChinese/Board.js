@@ -11,6 +11,7 @@ import RoundScore from 'componentsChinese/RoundScore';
 import LinesScore from 'componentsChinese/LinesScore';
 import BoardRow from 'componentsChinese/BoardRow';
 import Hand from 'componentsChinese/Hand';
+import classes from './Table.module.scss';
 import './Board.scss';
 
 const Board = ({ index, playerState }) => {
@@ -27,7 +28,7 @@ const Board = ({ index, playerState }) => {
 
   return (
     <>
-      <div className="board-layout" style={{ gridArea }}>
+      <div className={'board-layout ' + classes[gridArea]} style={{ gridArea }}>
         <PlayerRibbon playerState={playerState} />
         <div className="board-grid">
           {timerJsx}

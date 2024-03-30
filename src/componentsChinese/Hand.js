@@ -11,6 +11,7 @@ import { isSeated } from 'utils/utilities-functions';
 import FantasyButtons from 'componentsChinese/FantasyButtons';
 import HandCards from 'componentsChinese/HandCards';
 import Button from 'components/ui/Button';
+import classes from './Table.module.scss';
 
 const Hand = () => {
   const { gameId } = useParams();
@@ -60,7 +61,7 @@ const Hand = () => {
   }, [submitCards]);
 
   return (
-    <div className="hand">
+    <div className={classes.hand}>
       <Button
         onClick={submitCards}
         disabled={!canSubmit && !canNext}
