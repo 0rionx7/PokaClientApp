@@ -12,23 +12,17 @@ const useRequestChineseResult = () => {
   const { gameId } = useParams();
   const { refetch } = useGetUserQuery();
   const { refetch: refetchTablesChinese } = useGetTablesChineseQuery();
-  const { snackElement: rejectedElement, setSnackInfo: setRejectPopUp } =
+  const { snackElement: rejectedChElement, setSnackInfo: setRejectPopUp } =
     useSnackBar({
       height: '100%',
     });
-  const { snackElement: approvedElement, setSnackInfo: setApprovedPopUp } =
+  const { snackElement: approvedChElement, setSnackInfo: setApprovedPopUp } =
     useSnackBar({
       height: '100%',
       secs: 7,
     });
   useEffect(() => {
-    console.log('eeeeeeeeeeeeeeeeeee');
-    setApprovedPopUp(
-      <ApprovedRequest requestInfo={{ tableName: 1, gameId: 2 }} />
-    );
-    console.log('---------------------------------');
     socket.on('joinChineseApproved', requestInfo => {
-      console.log(requestInfo);
       setApprovedPopUp(<ApprovedRequest requestInfo={requestInfo} />);
       refetch();
       refetchTablesChinese();
@@ -50,7 +44,7 @@ const useRequestChineseResult = () => {
     return () => socket.removeAllListeners('requestChineseRejected');
   }, [setRejectPopUp, gameId, refetch]);
 
-  return { approvedElement, rejectedElement };
+  return { approvedChElement, rejectedChElement };
 };
 
 export default useRequestChineseResult;

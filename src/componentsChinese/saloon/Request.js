@@ -20,7 +20,7 @@ const Request = ({ tableInfo }) => {
     cancelRequest(tableInfo);
   };
 
-  const joinTableHandler = async (gameId, tableName) => {
+  const sitDownTableHandler = async (gameId, tableName) => {
     if (!gameId || isLoading || isSuccess) return;
     const { data } = await sitDown({ gameId, tableName });
     if (data?.gameId) navigate(`/chinese/table/${data.gameId}`);
@@ -30,7 +30,7 @@ const Request = ({ tableInfo }) => {
     <div className={'request-tableName ' + (tableInfo.joined ? 'joined' : '')}>
       {!cancelHoveredPropagation && <ToolTip info="Καθήστε" />}
       <div
-        onClick={joinTableHandler.bind(
+        onClick={sitDownTableHandler.bind(
           null,
           tableInfo.joined,
           tableInfo.tableName
