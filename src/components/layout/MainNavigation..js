@@ -21,6 +21,9 @@ const MainNavigation = () => {
             <NavLink to="/saloon" className="nav-link">
               Σαλούν
             </NavLink>
+            <NavLink to="/saloon-chinese" className="nav-link">
+             Chinese Saloon
+            </NavLink>
             <NavLink to="/account" className="nav-link">
               Λογαριασμός
             </NavLink>
