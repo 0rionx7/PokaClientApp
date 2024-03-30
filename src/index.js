@@ -1,5 +1,5 @@
 import './analytics';
-import { StrictMode } from 'react';
+// import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import reportWebVitals from 'reportWebVitals';
 import { Provider } from 'react-redux';
@@ -28,6 +28,8 @@ import Layout from 'components/layout/Layout';
 import RouteGuard from 'utils/route-guard';
 import { store } from 'store/store';
 import App from 'App';
+import ChineseRoom from 'componentsChinese/ChineseRoom';
+import ChineseSaloon from 'componentsChinese/saloon/ChineseSaloon';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -40,6 +42,10 @@ const router = createBrowserRouter(
           <Route index element={<Welcome />} />
           <Route path="instructions" element={<Instructions />} />
           <Route path="saloon" element={<RouteGuard element={<Saloon />} />} />
+          <Route
+            path="saloon-chinese"
+            element={<RouteGuard element={<ChineseSaloon />} />}
+          />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot" element={<Forgot />} />
@@ -56,16 +62,20 @@ const router = createBrowserRouter(
           path="table/:gameId"
           element={<RouteGuard element={<Room />} />}
         />
+        <Route
+          path="chinese/table/:gameId"
+          element={<RouteGuard element={<ChineseRoom />} />}
+        />
       </Route>
     </Route>
   )
 );
 root.render(
-  <StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </StrictMode>
+  // <StrictMode>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+  // </StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

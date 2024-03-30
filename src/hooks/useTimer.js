@@ -3,15 +3,15 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateQuery,
+  useGetGameStateChineseQuery,
   useTimedOutMutation,
-} from 'features/gameState/gameStateApi';
+} from 'features/gameStateChinese/gameStateApi';
 import Timer from 'componentsChinese/Timer';
 import { isSeated } from 'utils/utilities-functions';
 
 const useTimer = playerName => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetGameStateChineseQuery(gameId);
   const { currentPlayerList, round, playersStateList, initialPlayTime } = data;
   const [remainingTime, setRemainingTime] = useState(initialPlayTime);
   const username = useSelector(state => state.account.username);

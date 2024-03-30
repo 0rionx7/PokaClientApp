@@ -2,21 +2,21 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateQuery,
-  useJoinTableMutation,
-} from 'features/chineseGameState/gameStateApi';
-import { useRejectRequestMutation } from 'features/account/requestsApi';
-import StatusIcon from 'componentsChinese/ui/StatusIcon';
-import ToolTip from 'componentsChinese/ui/ToolTip';
+  useGetGameStateChineseQuery,
+  useJoinTableChineseMutation,
+  useRejectRequestChineseMutation,
+} from 'features/gameStateChinese/gameStateApi';
+import StatusIcon from 'components/ui/StatusIcon';
+import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
-  const [joinTable, { isLoading, error }] = useJoinTableMutation();
+  const { data } = useGetGameStateChineseQuery(gameId);
+  const [joinTable, { isLoading, error }] = useJoinTableChineseMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [rejectRequest, { isSuccess, isLoading: rejecting }] =
-    useRejectRequestMutation();
+    useRejectRequestChineseMutation();
 
   useEffect(() => {
     if (error) setSnackInfo(error.message);

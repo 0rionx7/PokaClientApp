@@ -15,7 +15,7 @@ export const initialGameState = {
   isSubscribed: false,
 };
 
-export const chineseGameStateSlice = createSlice({
+export const gameStateChineseSlice = createSlice({
   name: 'chineseGameState',
   initialState: initialGameState,
   reducers: {
@@ -59,5 +59,5 @@ export const chineseGameStateSlice = createSlice({
 });
 
 export const { setLocalPlayerState, moveCard, orderBySuit, orderByValue } =
-  chineseGameStateSlice.actions;
-export const gameStateReducer = chineseGameStateSlice.reducer;
+  gameStateChineseSlice.actions;
+export const gameStateChineseReducer = gameStateChineseSlice.reducer;

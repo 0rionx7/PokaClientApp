@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useSitDownMutation } from 'features/chineseGameState/gameStateApi';
-import Overlay from 'componentsChinese/ui/Overlay';
-import Button from 'componentsChinese/ui/Button';
+import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
 import useSnackBar from 'hooks/useSnackBar';
+import Overlay from 'components/ui/Overlay';
+import Button from 'components/ui/Button';
 import './StayLeave.scss';
 
 const StayLeave = () => {
   const { gameId } = useParams();
-  const [sitDownn, { isLoading, error }] = useSitDownMutation();
+  const [sitDownn, { isLoading, error }] = useSitDownChineseMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const StayLeave = () => {
           />{' '}
           <Button
             prompt="Αποχωρώ"
-            onClick={() => navigate('/saloon')}
+            onClick={() => navigate('/saloon-chinese')}
             disabled={isLoading}
             className="red"
           />

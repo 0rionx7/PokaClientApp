@@ -1,11 +1,14 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import Button from 'componentsChinese/ui/Button';
-import { orderBySuit, orderByValue } from 'features/gameState/gameStateSlice';
+import Button from 'components/ui/Button';
+import {
+  orderBySuit,
+  orderByValue,
+} from 'features/gameStateChinese/gameStateSlice';
 
 const FantasyButtons = () => {
-  const isFantasy = useSelector(state => state.gameState.isFantasy);
-  const hand = useSelector(state => state.gameState.hand);
+  const isFantasy = useSelector(state => state.chineseGameState.isFantasy);
+  const hand = useSelector(state => state.chineseGameState.hand);
   const dispatch = useDispatch();
 
   const sortByValue = () => {

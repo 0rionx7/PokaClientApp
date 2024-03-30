@@ -1,4 +1,4 @@
-import LineScore from './LineScore';
+import LineScore from 'componentsChinese/LineScore';
 import './LinesScore.scss';
 
 const LinesScore = ({ playerState }) => {

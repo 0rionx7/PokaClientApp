@@ -10,11 +10,16 @@ import {
 } from '../features/gameState/gameStateSlice';
 import { errorHandling } from '../features/middleware/errorHandling';
 import { accountReducer, accountSlice } from '../features/account/accountSlice';
+import {
+  gameStateChineseReducer,
+  gameStateChineseSlice,
+} from 'features/gameStateChinese/gameStateSlice';
 
 export const store = configureStore({
   reducer: {
     [gameStateApi.reducerPath]: gameApiReducer,
     [gameStateSlice.name]: gameStateReducer,
+    [gameStateChineseSlice.name]: gameStateChineseReducer,
     [accountSlice.name]: accountReducer,
   },
   middleware: getDefaultMiddleware =>

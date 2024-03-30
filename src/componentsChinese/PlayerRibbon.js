@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
 import { isSeated } from 'utils/utilities-functions';
 import './PlayerRibbon.scss';
 
 const PlayerRibbon = ({ playerState }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetGameStateChineseQuery(gameId);
 
   const { currentPlayerList, round, playersStateList } = data;
   // const isHostBoard = playerState.playerName === username;
@@ -23,7 +23,7 @@ const PlayerRibbon = ({ playerState }) => {
   return (
     <div className={'playerRibbon ' + (isActive ? 'active' : '')}>
       <h3>{playerState.playerName}</h3>
-      {isDealing && <div className="dealer">D</div>}
+      {isDealing && <div className="dealer-icon">D</div>}
       <div className="score">{playerState.gameScore}</div>
       {/* {isHostBoard && soundJsx} */}
     </div>

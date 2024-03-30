@@ -2,28 +2,34 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateQuery,
-  useStartGameMutation,
-} from 'features/chineseGameState/gameStateApi';
-import { useGetRequestsQuery } from 'features/account/requestsApi';
+  useGetGameStateChineseQuery,
+  useGetRequestsChineseQuery,
+  useStartGameChineseMutation,
+} from 'features/gameStateChinese/gameStateApi';
 import ListedPlayers from 'componentsChinese/dealer/ListedPlayers';
-import Overlay from 'componentsChinese/ui/Overlay';
-import Button from 'componentsChinese/ui/Button';
+import Overlay from 'components/ui/Overlay';
+import Button from 'components/ui/Button';
 import './DealerScreen.scss';
 
 const DealerScreen = () => {
   const { gameId } = useParams();
-  const { data: gameData } = useGetGameStateQuery(gameId);
-  const { data } = useGetRequestsQuery(gameData.tableName);
-  const [start] = useStartGameMutation();
+  const { data: gameData } = useGetGameStateChineseQuery(gameId);
+  const { data } = useGetRequestsChineseQuery(gameData.tableName);
+  const [start] = useStartGameChineseMutation();
 
   const requestedStates = useMemo(
     () =>
-      data?.map(request => ({
-        playerName: request.username,
-        isSubscribed: new Date(request.subExpiration) - Date.now() > 0,
-      })),
-    [data]
+      data
+        ?.filter(request =>
+          gameData?.playersStateList.every(
+            ps => ps.playerName !== request.username
+          )
+        )
+        .map(request => ({
+          playerName: request.username,
+          isSubscribed: new Date(request.subExpiration) - Date.now() > 0,
+        })),
+    [data, gameData?.playersStateList]
   );
 
   return (

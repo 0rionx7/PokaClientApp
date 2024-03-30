@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 
-import RenderItem from './RenderItem';
+import RenderItem from 'componentsChinese/RenderItem';
 import './Hand.scss';
 
 const HandCards = () => {
   const username = useSelector(state => state.account.username);
-  const cards = useSelector(state => state.gameState.hand);
+  const cards = useSelector(state => state.chineseGameState.hand);
 
   return (
     <div className="hand-cards">

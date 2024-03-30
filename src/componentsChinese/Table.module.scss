@@ -1,3 +1,7 @@
+.room {
+  place-items: center;
+  grid-template: none;
+}
 .table {
   display: grid;
   justify-content: space-evenly;
@@ -20,6 +24,9 @@
   & + button {
     margin: 7px 0;
   }
+}
+.poker-table {
+  z-index: -1;
 }
 .round {
   position: fixed;

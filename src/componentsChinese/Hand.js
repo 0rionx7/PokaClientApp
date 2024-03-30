@@ -2,24 +2,24 @@ import { memo, useEffect, useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import HandCards from 'componentsChinese/HandCards';
-import Button from 'componentsChinese/ui/Button';
 import {
-  useGetGameStateQuery,
-  useNextRoundMutation,
-  useSubmitCardsMutation,
-} from 'features/gameState/gameStateApi';
-import FantasyButtons from 'componentsChinese/FantasyButtons';
+  useGetGameStateChineseQuery,
+  useNextRoundChineseMutation,
+  useSubmitCardsChineseMutation,
+} from 'features/gameStateChinese/gameStateApi';
 import { isSeated } from 'utils/utilities-functions';
+import FantasyButtons from 'componentsChinese/FantasyButtons';
+import HandCards from 'componentsChinese/HandCards';
+import Button from 'components/ui/Button';
 
 const Hand = () => {
   const { gameId } = useParams();
-  const hand = useSelector(state => state.gameState.hand);
-  const boardCards = useSelector(state => state.gameState.boardCards);
+  const hand = useSelector(state => state.chineseGameState.hand);
+  const boardCards = useSelector(state => state.chineseGameState.boardCards);
   const username = useSelector(state => state.account.username);
-  const { data } = useGetGameStateQuery(gameId);
-  const [submit] = useSubmitCardsMutation();
-  const [nextRound] = useNextRoundMutation();
+  const { data } = useGetGameStateChineseQuery(gameId);
+  const [submit] = useSubmitCardsChineseMutation();
+  const [nextRound] = useNextRoundChineseMutation();
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [hasNexted, setHasNexted] = useState(false);
 

@@ -1,22 +1,22 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'features/chineseGameState/gameStateApi';
+import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
 import { fantasySvg, foulSvg } from 'assets/svgs/various';
 import { isSeated } from 'utils/utilities-functions';
-import RoundScore from 'componentsChinese/RoundScore';
 import usePlayerStyle from 'hooks/usePlayerStyle';
-import PlayerRibbon from './PlayerRibbon';
-import LinesScore from './LinesScore';
-import BoardRow from './BoardRow';
-import Hand from './Hand';
-import './Board.scss';
 import useTimer from 'hooks/useTimer';
+import PlayerRibbon from 'componentsChinese/PlayerRibbon';
+import RoundScore from 'componentsChinese/RoundScore';
+import LinesScore from 'componentsChinese/LinesScore';
+import BoardRow from 'componentsChinese/BoardRow';
+import Hand from 'componentsChinese/Hand';
+import './Board.scss';
 
 const Board = ({ index, playerState }) => {
   const { username } = useSelector(state => state.account);
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetGameStateChineseQuery(gameId);
   const gridArea = usePlayerStyle(index);
   const timerJsx = useTimer(playerState.playerName);
 

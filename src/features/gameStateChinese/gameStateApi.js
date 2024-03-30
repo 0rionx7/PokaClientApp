@@ -1,13 +1,13 @@
-import { setLocalPlayerState } from 'features/chineseGameState/gameStateSlice';
+import { setLocalPlayerState } from 'features/gameStateChinese/gameStateSlice';
 import { baseUrl, gameStateApi, socket } from 'features/gameState/gameStateApi';
 import { playerEntry } from 'utils/utilities-functions';
 
-export const chineseGameStateApi = gameStateApi.injectEndpoints({
+export const gameStateChineseApi = gameStateApi.injectEndpoints({
   endpoints: build => ({
-    getGameState: build.query({
+    getGameStateChinese: build.query({
       query: gameId => {
         return {
-          url: `/chiinese/gameState/${gameId}`,
+          url: `/chinese/gameState/${gameId}`,
           params: { socketId: socket.id },
         };
       },
@@ -46,8 +46,8 @@ export const chineseGameStateApi = gameStateApi.injectEndpoints({
       },
       keepUnusedDataFor: 0,
     }),
-    getRequests: build.query({
-      query: tableName => `/chiinese/requests/${tableName}`,
+    getRequestsChinese: build.query({
+      query: tableName => `/chinese/requests/${tableName}`,
       async onCacheEntryAdded(
         _arg,
         { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
@@ -56,20 +56,22 @@ export const chineseGameStateApi = gameStateApi.injectEndpoints({
           await cacheDataLoaded;
           // dealers screen requests handlers=======================
           const requestAddedListener = reqInfo => {
+            console.log(reqInfo);
             updateCachedData(draft => {
               draft.push(reqInfo);
             });
           };
           const requestRemovedListener = ({ username }) => {
+            console.log({ username });
             updateCachedData(draft =>
               draft.filter(reqInfo => reqInfo.username !== username)
             );
           };
-          socket.on('requestAdded', requestAddedListener);
-          socket.on('requestCanceled', requestRemovedListener);
+          socket.on('requestChineseAdded', requestAddedListener);
+          socket.on('requestChineseCanceled', requestRemovedListener);
           await cacheEntryRemoved;
-          socket.off('requestAdded', requestAddedListener);
-          socket.off('requestCanceled', requestRemovedListener);
+          socket.off('requestChineseAdded', requestAddedListener);
+          socket.off('requestChineseCanceled', requestRemovedListener);
         } catch (error) {
           console.log(error);
         }
@@ -77,7 +79,7 @@ export const chineseGameStateApi = gameStateApi.injectEndpoints({
       providesTags: ['ChineseRequests'],
       keepUnusedDataFor: 0,
     }),
-    getTables: build.query({
+    getTablesChinese: build.query({
       queryFn: async (_args, { getState }) => {
         try {
           const token = getState().account.token;
@@ -89,7 +91,7 @@ export const chineseGameStateApi = gameStateApi.injectEndpoints({
           };
           const headers = new Headers(httpHeaders);
           let response;
-          response = await fetch(baseUrl + 'chiinese/tables  ', {
+          response = await fetch(baseUrl + '/chinese/tables  ', {
             method: 'GET',
             headers,
           });
@@ -102,7 +104,6 @@ export const chineseGameStateApi = gameStateApi.injectEndpoints({
           return { error };
         }
       },
-      providesTags: ['ChineseTables'],
       async onCacheEntryAdded(
         _arg,
         { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
@@ -120,76 +121,87 @@ export const chineseGameStateApi = gameStateApi.injectEndpoints({
             );
           };
 
-          socket.on('tableCreated', tableCreatedListener);
-          socket.on('tableDeleted', tableDeletedListerner);
+          socket.on('tableChineseCreated', tableCreatedListener);
+          socket.on('tableChineseDeleted', tableDeletedListerner);
           await cacheEntryRemoved;
-          socket.off('tableCreated', tableCreatedListener);
-          socket.off('tableDeleted', tableDeletedListerner);
+          socket.off('tableChineseCreated', tableCreatedListener);
+          socket.off('tableChineseDeleted', tableDeletedListerner);
         } catch (error) {
           console.log(error);
         }
       },
+      providesTags: ['ChineseTables'],
     }),
-    openTable: build.mutation({
+    openTableChinese: build.mutation({
       query: openTableData => ({
-        url: 'chiinese/gameState',
+        url: 'chinese/gameState',
         method: 'POST',
         body: { ...openTableData, socketId: socket.id },
       }),
+      invalidatesTags: ['ChineseTables'],
     }),
-    joinTable: build.mutation({
+    joinTableChinese: build.mutation({
       query: joinInfo => ({
-        url: 'chiinese/gameState/join',
+        url: 'chinese/gameState/join',
         method: 'PATCH',
         body: joinInfo,
       }),
+      invalidatesTags: ['ChineseRequests'],
     }),
-    sitDown: build.mutation({
+    rejectRequestChinese: build.mutation({
+      query: rejectlInfo => ({
+        url: '/requests/chinese/reject',
+        method: 'PATCH',
+        body: rejectlInfo,
+      }),
+      invalidatesTags: ['ChineseRequests'],
+    }),
+    sitDownChinese: build.mutation({
       query: ({ gameId }) => ({
-        url: 'chiinese/gameState/sitDown',
+        url: 'chinese/gameState/sitDown',
         method: 'PATCH',
         body: { gameId, socketId: socket.id },
       }),
+      invalidatesTags: ['ChineseTables'],
     }),
-    startGame: build.mutation({
+    startGameChinese: build.mutation({
       query: gameId => ({
-        url: 'chiinese/gameState/start',
+        url: 'chinese/gameState/start',
         method: 'PATCH',
         body: { gameId },
       }),
     }),
-    submitCards: build.mutation({
+    submitCardsChinese: build.mutation({
       query: ({ boardCards, gameId }) => ({
-        url: 'chiinese/gameState/submitCards',
+        url: 'chinese/gameState/submitCards',
         method: 'PATCH',
         body: { boardCards, gameId },
       }),
     }),
-    nextRound: build.mutation({
+    nextRoundChinese: build.mutation({
       query: gameId => ({
-        url: 'chiinese/gameState/nextRound',
+        url: 'chinese/gameState/nextRound',
         method: 'PATCH',
         body: { gameId },
       }),
     }),
     timedOut: build.mutation({
       query: gameId => ({
-        url: 'chiinese/gameState/timedOut',
+        url: 'chinese/gameState/timedOut',
         method: 'PATCH',
         body: { gameId },
       }),
     }),
-
-    restartGame: build.mutation({
+    restartGameChinese: build.mutation({
       query: gameInfo => ({
-        url: 'chiinese/gameState/restart',
+        url: 'chinese/gameState/restart',
         method: 'POST',
         body: { ...gameInfo, socketId: socket.id },
       }),
     }),
-    sitOut: build.mutation({
+    sitOutChinese: build.mutation({
       query: sitOutInfo => ({
-        url: 'chiinese/gameState/sitOut',
+        url: 'chinese/gameState/sitOut',
         method: 'PATCH',
         body: { ...sitOutInfo, socketId: socket.id },
       }),
@@ -198,15 +210,17 @@ export const chineseGameStateApi = gameStateApi.injectEndpoints({
 });
 
 export const {
-  useGetGameStateQuery,
-  useGetTablesQuery,
-  useOpenTableMutation,
-  useStartGameMutation,
-  useSubmitCardsMutation,
-  useNextRoundMutation,
-  useJoinTableMutation,
-  useSitDownMutation,
+  useGetGameStateChineseQuery,
+  useGetRequestsChineseQuery,
+  useGetTablesChineseQuery,
+  useOpenTableChineseMutation,
+  useJoinTableChineseMutation,
+  useRejectRequestChineseMutation,
+  useSitDownChineseMutation,
+  useStartGameChineseMutation,
+  useSubmitCardsChineseMutation,
+  useNextRoundChineseMutation,
   useTimedOutMutation,
-  useRestartGameMutation,
-  useSitOutMutation,
-} = chineseGameStateApi;
+  useRestartGameChineseMutation,
+  useSitOutChineseMutation,
+} = gameStateChineseApi;

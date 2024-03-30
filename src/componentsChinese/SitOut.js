@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import ToolTip from 'componentsChinese/ui/ToolTip';
-import Overlay from 'componentsChinese/ui/Overlay';
-import Button from 'componentsChinese/ui/Button';
 import { exitSvg } from 'assets/svgs/various';
+import ToolTip from 'components/ui/ToolTip';
+import Overlay from 'components/ui/Overlay';
+import Button from 'components/ui/Button';
 
 const SitOut = () => {
   const [showDiag, setShowDiag] = useState(false);
@@ -28,7 +28,7 @@ const SitOut = () => {
               />
               <Button
                 prompt="Έξοδος"
-                onClick={() => navigate('/chinese/saloon')}
+                onClick={() => navigate('/saloon-chinese')}
                 className="red"
               />
             </div>

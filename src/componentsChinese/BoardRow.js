@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
 import { isSeated } from 'utils/utilities-functions';
 import './Board.scss';
 
@@ -12,8 +12,8 @@ import './Board.scss';
 
 const BoardRow = ({ rowIndex, playerState }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
-  const boardCards = useSelector(state => state.gameState.boardCards);
+  const { data } = useGetGameStateChineseQuery(gameId);
+  const boardCards = useSelector(state => state.chineseGameState.boardCards);
   const { username } = useSelector(state => state.account);
 
   const isHostBoard = playerState.playerName === username;
@@ -24,19 +24,19 @@ const BoardRow = ({ rowIndex, playerState }) => {
   let pastIndexes = 0;
   let cards = isHostBoard ? boardCards : playerState.boardCards;
   const hidden = playerState.isFantasy && !isHostBoard && !showScore;
-  cards = cards.map(card => (card ? { ...card, hidden } : null));
-  if (rowIndex === 0) cards = cards.slice(0, 3);
+  cards = cards?.map(card => (card ? { ...card, hidden } : null));
+  if (rowIndex === 0) cards = cards?.slice(0, 3);
   else if (rowIndex === 1) {
-    cards = cards.slice(3, 8);
+    cards = cards?.slice(3, 8);
     pastIndexes = 3;
   } else {
-    cards = cards.slice(8);
+    cards = cards?.slice(8);
     pastIndexes = 8;
   }
 
   return (
     <>
-      {cards.map((card, index) => (
+      {cards?.map((card, index) => (
         <RenderItem
           key={index}
           card={card}
