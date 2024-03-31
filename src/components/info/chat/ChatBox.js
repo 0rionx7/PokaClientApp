@@ -3,7 +3,7 @@ import ChatInput from 'components/info/chat/ChatInput';
 import Messages from 'components/info/chat/Messages';
 import './ChatBox.scss';
 
-const ChatBox = () => {
+const ChatBox = ({ className }) => {
   return (
     <AppErrorBoundary
       fallback={
@@ -11,7 +11,7 @@ const ChatBox = () => {
           Ζητούμε συγγνώμη, η συνομιλία δεν είναι δυνατή αυτήν την στιγμή.
         </div>
       }>
-      <div className="chat-box">
+      <div className={'chat-box ' + (className || '')}>
         <Messages />
         <ChatInput />
       </div>
