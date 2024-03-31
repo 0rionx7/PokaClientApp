@@ -10,6 +10,7 @@ import ListedPlayers from 'componentsChinese/dealer/ListedPlayers';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';
 import './DealerScreen.scss';
+import { isHere } from 'utils/utilities-functions';
 
 const DealerScreen = () => {
   const { gameId } = useParams();
@@ -31,6 +32,7 @@ const DealerScreen = () => {
         })),
     [data, gameData?.playersStateList]
   );
+  const canDeal = gameData.playersStateList.filter(isHere).length > 1;
 
   return (
     <Overlay className="dealer-overlay">
@@ -48,8 +50,9 @@ const DealerScreen = () => {
       </div>
       <Button
         prompt="ΜΟΙΡΑΣΤΕ"
-        disabled={false}
+        disabled={!canDeal}
         onClick={() => start(gameId)}
+        className="orange"
       />
     </Overlay>
   );
