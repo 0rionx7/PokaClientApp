@@ -16,12 +16,11 @@
   position: relative;
   display: grid;
   grid-area: board;
+  align-items: center;
   grid-template-areas:
     'timer . . . score '
     '.     . . . .     '
     '.     . . . .     ';
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(3, 1fr);
   grid-gap: 0.3rem;
   & + button {
     margin: 7px 0;
@@ -42,13 +41,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: var(--card-width);
   font-size: large;
-  font-weight: 700;
+  font-weight: 400;
   color: bisque;
   background-color: black;
-  border-radius: 50%;
-  width: 62px;
-  height: 50px;
   align-self: center;
-  justify-self: center;
+  border-radius: 0.3rem;
+  padding: 0.3rem;
 }

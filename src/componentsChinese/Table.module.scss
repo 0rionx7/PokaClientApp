@@ -26,14 +26,14 @@
     .player-2,
     .player-1 {
       position: relative;
-      top: -5rem;
+      // top: -4rem;
     }
     .player-0 {
       position: relative;
-      top: 5rem;
+      top: 9rem;
       & + .hand {
         position: relative;
-        top: 5rem;
+        top: 9rem;
       }
     }
   }
@@ -68,6 +68,7 @@
 }
 .poker-table {
   z-index: -1;
+  width: 90%;
 }
 .round {
   position: fixed;

@@ -15,7 +15,7 @@ import { isHere } from 'utils/utilities-functions';
 const DealerScreen = () => {
   const { gameId } = useParams();
   const { data: gameData } = useGetGameStateChineseQuery(gameId);
-  const { data } = useGetRequestsChineseQuery(gameData.tableName);
+  const { data } = useGetRequestsChineseQuery(gameData?.tableName);
   const [start] = useStartGameChineseMutation();
 
   const requestedStates = useMemo(
