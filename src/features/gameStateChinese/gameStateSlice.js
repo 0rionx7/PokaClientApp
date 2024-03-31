@@ -59,7 +59,7 @@ export const gameStateChineseSlice = createSlice({
   },
   extraReducers: builder =>
     builder.addMatcher(
-      gameStateChineseApi.endpoints.sitOutChinese.matchFulfilled,
+      gameStateChineseApi.endpoints.sitOutChinese.matchPending,
       (_state, _action) => gameStateChineseSlice.getInitialState()
     ),
 });

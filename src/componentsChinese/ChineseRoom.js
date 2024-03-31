@@ -1,14 +1,18 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
 import useMessageService from 'hooks/useMessageService';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import Table from 'componentsChinese/Table';
+import EmojiProvider from 'components/info/chat/EmojiProvider';
+import ChatBox from 'components/info/chat/ChatBox';
 import classes from './Table.module.scss';
 
 const ChineseRoom = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateChineseQuery(gameId);
+
   useMessageService();
 
   if (!data) return <LoadingSpinner centered color="red" />;
@@ -19,6 +23,11 @@ const ChineseRoom = () => {
         <div className="tsoxa"></div>
       </div>
       <Table />
+      <div className={'ribbon ' + classes.ribbon}>
+        <EmojiProvider>
+          <ChatBox className={classes['chat-chinese']} />
+        </EmojiProvider>
+      </div>
     </div>
   );
 };

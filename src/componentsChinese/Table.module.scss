@@ -1,8 +1,11 @@
 .room {
+  grid-template:
+    'table table' 1fr
+    'ribbon ribbon' var(--ribbon-height);
   place-items: center;
-  grid-template: none;
 }
 .table {
+  grid-area: table;
   display: grid;
   justify-content: space-evenly;
   grid-row-gap: 0.5rem;
@@ -23,14 +26,14 @@
     .player-2,
     .player-1 {
       position: relative;
-      top: -8rem;
+      top: -5rem;
     }
     .player-0 {
       position: relative;
-      top: 3rem;
+      top: 5rem;
       & + .hand {
         position: relative;
-        top: 3rem;
+        top: 5rem;
       }
     }
   }
@@ -52,6 +55,16 @@
 .hand-cards-chinese {
   display: flex;
   gap: 0.3rem;
+}
+.ribbon {
+  background: none !important;
+  height: 100%;
+  width: 100%;
+}
+.chat-chinese {
+  height: 100%;
+  width: 30%;
+  font-size: 0.7rem;
 }
 .poker-table {
   z-index: -1;
