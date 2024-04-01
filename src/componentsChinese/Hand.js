@@ -24,6 +24,11 @@ const Hand = () => {
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const [hasNexted, setHasNexted] = useState(false);
 
+  useEffect(() => {
+    setHasNexted(false);
+    setHasSubmitted(false);
+  }, [hand]);
+
   const { currentPlayerList } = data;
   const [currentPlayer] = currentPlayerList;
 
@@ -36,6 +41,8 @@ const Hand = () => {
     currentPlayerList.length <= data.playersStateList.filter(isSeated).length &&
     currentPlayerList.includes(username) &&
     !hasNexted;
+  const shift = data.playersStateList.length === 2 ? '-50%' : '50%';
+  const left = `calc(-.5 * (var(--card-width) + .3rem) * ${hand?.length} + ${shift})`;
 
   const submitCards = useCallback(async () => {
     if (canSubmit) {
@@ -48,24 +55,13 @@ const Hand = () => {
     }
   }, [canSubmit, canNext, boardCards, nextRound, submit, gameId]);
 
-  useEffect(() => {
-    setHasNexted(false);
-    setHasSubmitted(false);
-  }, [hand]);
-
-  useEffect(() => {
-    // window.addEventListener('keyup', submitCards);
-    // return () => {
-    //   window.removeEventListener('keyup', submitCards);
-    // };
-  }, [submitCards]);
-
   return (
-    <div className={classes.hand}>
+    <div className={classes.hand} style={{ left }}>
       <Button
         onClick={submitCards}
         disabled={!canSubmit && !canNext}
         prompt={canNext ? 'next round' : 'Submit'}
+        style={{ padding: '.8rem 2rem' }}
       />
       <FantasyButtons />
       <HandCards />

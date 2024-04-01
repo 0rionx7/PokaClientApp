@@ -28,7 +28,9 @@ const Board = ({ index, playerState }) => {
 
   return (
     <>
-      <div className={'board-layout ' + classes[gridArea]} style={{ gridArea }}>
+      <div
+        className={'board-layout ' + (classes[gridArea] || '')}
+        style={{ gridArea }}>
         <PlayerRibbon playerState={playerState} />
         <div className="board-grid">
           {timerJsx}
@@ -45,8 +47,8 @@ const Board = ({ index, playerState }) => {
           )}
         </div>
         {showScore && <LinesScore playerState={playerState} />}
+        {isHostBoard && <Hand />}
       </div>
-      {isHostBoard && <Hand />}
     </>
   );
 };
