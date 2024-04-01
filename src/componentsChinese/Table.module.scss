@@ -9,13 +9,16 @@
   display: grid;
   justify-content: space-evenly;
   grid-row-gap: 0.5rem;
-  width: 100%;
-  max-width: 1100px;
   &.players-2 {
     grid-template:
       'other host' max-content
       'hand hand' 1fr;
-    grid-template-columns: 1fr 1fr;
+    gap: 15rem;
+    .host,
+    .other {
+      position: relative;
+      top: 5rem;
+    }
   }
   &.players-3 {
     grid-template:
@@ -26,31 +29,30 @@
     .player-2,
     .player-1 {
       position: relative;
-      // top: -4rem;
+      top: -7rem;
     }
     .player-0 {
       position: relative;
-      top: 9rem;
+      top: 4rem;
       & + .hand {
         position: relative;
-        top: 9rem;
+        top: 4rem;
       }
     }
   }
   & + button {
     margin: 7px 0;
+    padding: 0.3rem 1.5rem;
   }
 }
 .hand {
+  position: absolute;
+  left: -100%;
   display: flex;
+  gap: 0.3rem;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
   grid-area: hand;
-  button {
-    font-size: 0.8rem;
-    padding: 0.8rem 2.5rem;
-  }
 }
 .hand-cards-chinese {
   display: flex;
@@ -87,7 +89,7 @@
   background: rgb(65, 64, 64);
   font-weight: bold;
   font-variant: small-caps;
-  padding: 2px 4px;
+  padding: 0.3rem;
   color: rgb(248, 96, 26);
   margin: 7px;
   cursor: pointer;

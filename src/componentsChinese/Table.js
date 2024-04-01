@@ -32,12 +32,12 @@ const Table = () => {
 
   return (
     <div className={classes['table'] + ' ' + classes[`players-${playerCount}`]}>
+      <RoundInfo round={data.round} />
       {isDealer && data.round === 1 && !data.currentPlayerList.length && (
         <DealerScreen />
       )}
       {data.playersStateList.length > 1 && (
         <>
-          <RoundInfo round={data.round} />
           {data.playersStateList.map((playerState, i) => (
             <Board
               key={playerState.playerName}

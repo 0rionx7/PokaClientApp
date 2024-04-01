@@ -5,6 +5,7 @@ import {
   orderBySuit,
   orderByValue,
 } from 'features/gameStateChinese/gameStateSlice';
+import classes from './Table.module.scss';
 
 const FantasyButtons = () => {
   const isFantasy = useSelector(state => state.chineseGameState.isFantasy);
@@ -22,8 +23,8 @@ const FantasyButtons = () => {
     <>
       {isFantasy && !!hand.filter(Boolean).length && (
         <div>
-          <Button className="sort" onClick={sortByValue} prompt="V" />
-          <Button className="sort" onClick={sortBySuit} prompt="S" />
+          <Button className={classes.sort} onClick={sortByValue} prompt="V" />
+          <Button className={classes.sort} onClick={sortBySuit} prompt="S" />
         </div>
       )}
     </>
