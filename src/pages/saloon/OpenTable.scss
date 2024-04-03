@@ -100,9 +100,9 @@
     flex-direction: row-reverse;
     justify-content: center;
   }
-}
-svg {
-  cursor: pointer;
+  svg {
+    cursor: pointer;
+  }
 }
 svg[id='counterclock'] {
   transform: rotateY(180deg);

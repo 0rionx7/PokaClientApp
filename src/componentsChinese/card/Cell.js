@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 
 import { moveCard } from 'features/gameStateChinese/gameStateSlice';
-import './Card.scss';
 
 const Cell = ({ index, place, owner }) => {
   const dispatch = useDispatch();

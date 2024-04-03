@@ -5,7 +5,6 @@ import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateAp
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';
-import './StayLeave.scss';
 
 const StayLeave = () => {
   const { gameId } = useParams();

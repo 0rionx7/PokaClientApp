@@ -1,5 +1,4 @@
 import ListedPlayer from 'componentsChinese/dealer/ListedPlayer';
-import './ListedPlayers.scss';
 
 const ListedPlayers = ({ playersStateList, title }) => {
   return (

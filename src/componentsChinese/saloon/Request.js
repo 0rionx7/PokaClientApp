@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
 import { useCancelRequestChineseMutation } from 'features/account/accountApi';
 import ToolTip from 'components/ui/ToolTip';
-import './Requests.scss';
 
 const Request = ({ tableInfo }) => {
   const [sitDown, { isSuccess, isLoading }] = useSitDownChineseMutation();

@@ -2,7 +2,6 @@ import { useDrag } from 'react-dnd';
 
 import { suits, symbols } from 'assets/svgs/suits';
 import Content from 'components/card/Content';
-import './Card.scss';
 
 const Card = ({ card, owner }) => {
   const [{ isDragging }, drag] = useDrag(

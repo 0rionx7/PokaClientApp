@@ -5,7 +5,6 @@ import { Formik, Field, Form } from 'formik';
 
 import { useOpenTableChineseMutation } from 'features/gameStateChinese/gameStateApi';
 import Button from 'components/ui/Button';
-import './OpenTable.scss';
 
 const OpenTable = () => {
   const playerName = useSelector(state => state.account.username);

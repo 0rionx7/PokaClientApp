@@ -1,7 +1,5 @@
 import { useGetUserQuery } from 'features/account/accountApi';
-
 import Request from './Request';
-import './Requests.scss';
 
 const Requests = () => {
   const { data } = useGetUserQuery(undefined, {

@@ -9,7 +9,6 @@ import {
 import { createTableTitle } from 'utils/text-functions';
 import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
-import './AvailableTables.scss';
 
 const AvailableTable = ({ tableInfo }) => {
   const [requestJoin, { isLoading, error }] = useRequestJoinChineseMutation();

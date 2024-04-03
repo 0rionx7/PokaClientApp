@@ -1,7 +1,6 @@
 import AvailableTables from './AvailableTables';
 import OpenTable from './OpenTable';
 import Requests from './Requests';
-import './ChineseSaloon.scss';
 
 const ChineseSaloon = () => {
   return (
