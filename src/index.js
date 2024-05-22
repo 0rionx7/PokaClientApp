@@ -56,7 +56,7 @@ const router = createBrowserRouter(
           </Route>
           <Route path="successfulPayment" element={<SuccessfulPayment />} />
           <Route path="failedPayment" element={<FailedPayment />} />
-          <Route path="*" element={<h1>420 Not Found</h1>} />
+          <Route path="*" element={<h1>404 Not Found</h1>} />
         </Route>
         <Route
           path="table/:gameId"
