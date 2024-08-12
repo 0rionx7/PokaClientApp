@@ -21,9 +21,10 @@ export const gameStateApi = createApi({
   tagTypes: ['User', 'Tables', 'Requests', 'ChineseRequests', 'ChineseTables'],
   endpoints: build => ({
     getGameState: build.query({
-      query: gameId => {
-        return { url: `/gameState/${gameId}`, params: { socketId: socket.id } };
-      },
+      query: gameId => ({
+        url: `/gameState/${gameId}`,
+        params: { socketId: socket.id },
+      }),
       async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
         arg,
         {
@@ -119,8 +120,7 @@ export const gameStateApi = createApi({
             authorization: `Bearer ${token}`,
           };
           const headers = new Headers(httpHeaders);
-          let response;
-          response = await fetch(baseUrl + '/tables  ', {
+          const response = await fetch(baseUrl + '/tables  ', {
             method: 'GET',
             headers,
           });

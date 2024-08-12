@@ -13,8 +13,7 @@ export const accountApi = gameStateApi.injectEndpoints({
             authorization: `Bearer ${token}`,
           };
           const headers = new Headers(httpHeaders);
-          let response;
-          response = await fetch(baseUrl + '/user', {
+          const response = await fetch(baseUrl + '/user', {
             method: 'GET',
             headers,
           });
