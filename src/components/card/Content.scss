@@ -1,8 +1,8 @@
 @use '../../variables.scss';
-@import './DecorationLayouts.scss';
+@use './DecorationLayouts.scss';
 
 .card-decoration {
-  @include decoration-content-layout;
+  @extend %decoration-content-layout;
   position: relative;
   display: none;
   place-items: center;

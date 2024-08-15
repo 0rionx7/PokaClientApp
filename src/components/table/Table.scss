@@ -1,8 +1,8 @@
-@use '../../variables';
 @use '../../colors';
-@import './TableGrids';
+@use './TableGrids';
 
 .table {
+  @extend %table-grids;
   display: grid;
   grid-area: table;
   position: relative;
@@ -14,7 +14,6 @@
   grid-gap: 1px;
   padding: 0.5rem;
   background-color: #112423;
-  @include table-grids;
 }
 .waiting-content {
   display: grid;

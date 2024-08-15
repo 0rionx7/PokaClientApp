@@ -1,7 +1,7 @@
-@import './HandCardsCompact.scss';
+@use './HandCardsCompact.scss';
 
 .hand-cards {
-  @include compact-cards;
+  @extend %compact-cards;
   display: flex;
   position: relative;
   top: 25%;

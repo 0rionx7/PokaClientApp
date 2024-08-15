@@ -1,6 +1,6 @@
 @use '../../variables';
 
-@mixin compact-cards {
+%compact-cards {
   &.cards-2 {
     // .card {
     //   &:first-child {
