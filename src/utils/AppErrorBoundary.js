@@ -19,9 +19,6 @@ export class AppErrorBoundary extends Component {
   }
 
   render() {
-    if (this.state.hasError) {
-      return this.props.fallback;
-    }
-    return this.props.children;
+    return this.state.hasError ? this.props.fallback : this.props.children;
   }
 }

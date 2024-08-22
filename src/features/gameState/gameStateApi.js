@@ -302,5 +302,3 @@ export const {
   useLogOutAllMutation,
   useRejectRequestMutation,
 } = gameStateApi;
-
-export const gameApiReducer = gameStateApi.reducer;

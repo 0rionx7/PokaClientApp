@@ -43,5 +43,4 @@ export const accountSlice = createSlice({
   },
 });
 
-export const accountReducer = accountSlice.reducer;
 export const { setHideInfo, setDeckColor } = accountSlice.actions;

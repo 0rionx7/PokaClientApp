@@ -66,4 +66,3 @@ export const gameStateChineseSlice = createSlice({
 
 export const { setLocalPlayerState, moveCard, orderBySuit, orderByValue } =
   gameStateChineseSlice.actions;
-export const gameStateChineseReducer = gameStateChineseSlice.reducer;

@@ -1,27 +1,36 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineSlices, configureStore } from '@reduxjs/toolkit';
 
-import {
-  gameApiReducer,
-  gameStateApi,
-} from '../features/gameState/gameStateApi';
-import {
-  gameStateReducer,
-  gameStateSlice,
-} from '../features/gameState/gameStateSlice';
+import { gameStateApi } from '../features/gameState/gameStateApi';
+import { gameStateSlice } from '../features/gameState/gameStateSlice';
 import { errorHandling } from '../features/middleware/errorHandling';
-import { accountReducer, accountSlice } from '../features/account/accountSlice';
-import {
-  gameStateChineseReducer,
-  gameStateChineseSlice,
-} from 'features/gameStateChinese/gameStateSlice';
+import { accountSlice } from '../features/account/accountSlice';
+import { gameStateChineseSlice } from 'features/gameStateChinese/gameStateSlice';
+import { setupListeners } from '@reduxjs/toolkit/query';
 
-export const store = configureStore({
-  reducer: {
-    [gameStateApi.reducerPath]: gameApiReducer,
-    [gameStateSlice.name]: gameStateReducer,
-    [gameStateChineseSlice.name]: gameStateChineseReducer,
-    [accountSlice.name]: accountReducer,
-  },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware().concat(gameStateApi.middleware, errorHandling),
-});
+const rootReducer = combineSlices(
+  gameStateApi,
+  gameStateSlice,
+  gameStateChineseSlice,
+  accountSlice
+);
+
+export const makeStore = preloadedState => {
+  const store = configureStore({
+    reducer: rootReducer,
+    // Adding the api middleware enables caching, invalidation, polling,
+    // and other useful features of `rtk-query`.
+    middleware: getDefaultMiddleware => {
+      return getDefaultMiddleware().concat(
+        gameStateApi.middleware,
+        errorHandling
+      );
+    },
+    preloadedState,
+  });
+  // configure listeners using the provided defaults
+  // optional, but required for `refetchOnFocus`/`refetchOnReconnect` behaviors
+  setupListeners(store.dispatch);
+  return store;
+};
+
+export const store = makeStore();

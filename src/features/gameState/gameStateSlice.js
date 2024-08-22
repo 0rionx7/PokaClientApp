@@ -67,4 +67,3 @@ export const {
   toggleSelectedCard,
   postMessage,
 } = gameStateSlice.actions;
-export const gameStateReducer = gameStateSlice.reducer;
