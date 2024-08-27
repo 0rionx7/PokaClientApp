@@ -7,7 +7,7 @@ const useSnackBar = ({ secs = 2, height, top } = {}) => {
   const [info, setSnackInfo] = useState(null);
 
   useEffect(() => {
-    if (!secs) return;
+    if (!secs || info === null) return;
     const timer = setTimeout(() => setSnackInfo(null), secs * 1000);
     return () => clearTimeout(timer);
   }, [setSnackInfo, secs, info]);
