@@ -47,7 +47,7 @@ const Table = () => {
   return (
     <div className={'table players-' + data.playersStateList.length}>
       <div className="poker-table">
-        <div className="tsoxa"></div>
+        <div className="tsoxa" />
       </div>
       <Board />
       <Players />

@@ -5,7 +5,6 @@ import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameState
 import { fantasySvg, foulSvg } from 'assets/svgs/various';
 import { isSeated } from 'utils/utilities-functions';
 import usePlayerStyle from 'hooks/usePlayerStyle';
-import useTimer from 'hooks/useTimer';
 import PlayerRibbon from 'componentsChinese/PlayerRibbon';
 import RoundScore from 'componentsChinese/RoundScore';
 import LinesScore from 'componentsChinese/LinesScore';
@@ -13,13 +12,14 @@ import BoardRow from 'componentsChinese/BoardRow';
 import Hand from 'componentsChinese/Hand';
 import classes from './Table.module.scss';
 import './Board.scss';
+import { useRef } from 'react';
 
 const Board = ({ index, playerState }) => {
   const { username } = useSelector(state => state.account);
   const { gameId } = useParams();
   const { data } = useGetGameStateChineseQuery(gameId);
   const gridArea = usePlayerStyle(index);
-  const timerJsx = useTimer(playerState.playerName);
+  const timerRef = useRef(null);
 
   const isHostBoard = playerState.playerName === username;
   const { currentPlayerList, playersStateList } = data;
@@ -31,9 +31,9 @@ const Board = ({ index, playerState }) => {
       <div
         className={'board-layout ' + (classes[gridArea] || '')}
         style={{ gridArea }}>
-        <PlayerRibbon playerState={playerState} />
+        <PlayerRibbon playerState={playerState} timerRef={timerRef} />
         <div className="board-grid">
-          {timerJsx}
+          <div id={'timer' + playerState.playerName} ref={timerRef} />
           <RoundScore
             roundScore={playerState.roundScore}
             showScore={showScore}
