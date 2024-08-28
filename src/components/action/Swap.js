@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -6,29 +5,36 @@ import { selectedCard, selectedCardsIndexes } from 'utils/utilities-functions';
 import { useSelectCardsMutation } from 'features/gameState/gameStateApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
+import { useState } from 'react';
 
 const Swap = ({ selecting }) => {
   const { gameId } = useParams();
   const handCards = useSelector(state => state.gameState.handCards);
-  const [selectCards, { isLoading, isSuccess, error: swapError }] =
+  const [selectCards, { isLoading, isSuccess, error, reset }] =
     useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
+  const [selected, setSelected] = useState(0);
 
   const selectedHandCardsIndexes = selectedCardsIndexes(handCards);
   const selectedHandCardsCount = handCards.filter(selectedCard).length;
-  let error;
-  if (selectedHandCardsCount > selecting.swaps)
-    error = `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για ${selecting.swaps}`;
 
-  useEffect(() => setSnackInfo(error), [setSnackInfo, error]);
+  if (error) {
+    setSnackInfo(error.data);
+    reset();
+  }
 
-  useEffect(() => {
-    if (swapError) setSnackInfo(swapError.data);
-  }, [swapError, setSnackInfo]);
+  const wrongSelection = selectedHandCardsCount > selecting.swaps;
+  if (selectedHandCardsCount !== selected) {
+    setSelected(selectedHandCardsCount);
+    if (wrongSelection)
+      setSnackInfo(
+        `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για ${selecting.swaps}`
+      );
+  }
 
   const prompt = (
     <>
-      {error ? (
+      {wrongSelection ? (
         'Λάθος επιλογή'
       ) : selectedHandCardsCount === 0 ? (
         'Χωρίς αλλαγή'
@@ -54,7 +60,7 @@ const Swap = ({ selecting }) => {
             selectedHandCardsIndexes,
           })
         }
-        disabled={isLoading || isSuccess || error}
+        disabled={isLoading || isSuccess || wrongSelection}
         className="orange"
       />
     </div>

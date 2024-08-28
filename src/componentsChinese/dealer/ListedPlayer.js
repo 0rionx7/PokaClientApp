@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -13,14 +12,16 @@ import useSnackBar from 'hooks/useSnackBar';
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateChineseQuery(gameId);
-  const [joinTable, { isLoading, error }] = useJoinTableChineseMutation();
+  const [joinTable, { isLoading, error, reset }] =
+    useJoinTableChineseMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [rejectRequest, { isSuccess, isLoading: rejecting }] =
     useRejectRequestChineseMutation();
 
-  useEffect(() => {
-    if (error) setSnackInfo(error.message);
-  }, [error, setSnackInfo]);
+  if (error) {
+    setSnackInfo(error.data);
+    reset();
+  }
 
   const clickHandler = () => {
     if (!clickable || isLoading || rejecting) return;

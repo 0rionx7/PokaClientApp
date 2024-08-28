@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useParams } from 'react-router-dom';
 import { Form, Formik } from 'formik';
@@ -37,7 +36,6 @@ const GameBuilder = () => {
   const { data } = useGetGameStateQuery(gameId);
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
-  const [domReady, setDomReady] = useState(false);
 
   const playersCount = data.playersStateList.filter(isHere).length;
   const noOthersInPlay = data.playersStateList.filter(isHere).length === 1;
@@ -45,11 +43,13 @@ const GameBuilder = () => {
     data.playersStateList.filter(state => state.resta > 0 && !state.sittingOut)
       .length === 1;
 
-  useEffect(() => setDomReady(true), []);
-
   let btnPrompt;
   if (noOthersInPlay) btnPrompt = 'Δεν κάθετε άλλος παίκτης στο τραπέζι';
   else if (allOthersTapi) btnPrompt = 'Μόνο ένας παίκτης έχει χρήματα';
+
+  const actionContainer =
+    document.getElementsByClassName('action-container')[0];
+  console.log(actionContainer);
 
   const initialValues = {
     gameName: gameNames.MAMUT,
@@ -150,7 +150,7 @@ const GameBuilder = () => {
               title={builderTitles.DEALING_OPTIONS}
               element={<DealingOptions />}
             />
-            {domReady &&
+            {actionContainer &&
               createPortal(
                 <Button
                   prompt={
@@ -166,7 +166,7 @@ const GameBuilder = () => {
                   onClick={submitForm}
                   className="deal-btn"
                 />,
-                document.getElementsByClassName('action-container')[0]
+                actionContainer
               )}
           </Form>
         )}

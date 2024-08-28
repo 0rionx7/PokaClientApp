@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -13,14 +12,15 @@ import useSnackBar from 'hooks/useSnackBar';
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const [joinTable, { isLoading, error }] = useJoinTableMutation();
+  const [joinTable, { isLoading, error, reset }] = useJoinTableMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [rejectRequest, { isSuccess, isLoading: rejecting }] =
     useRejectRequestMutation();
 
-  useEffect(() => {
-    if (error) setSnackInfo(error.message);
-  }, [error, setSnackInfo]);
+  if (error) {
+    setSnackInfo(error.data);
+    reset();
+  }
 
   const clickHandler = () => {
     if (!clickable || isLoading || rejecting) return;

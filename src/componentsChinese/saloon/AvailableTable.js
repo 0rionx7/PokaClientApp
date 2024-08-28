@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
@@ -11,8 +10,9 @@ import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 
 const AvailableTable = ({ tableInfo }) => {
-  const [requestJoin, { isLoading, error }] = useRequestJoinChineseMutation();
-  const [sitDown, { isLoading: sittingDown, error: sitdownError }] =
+  const [requestJoin, { isLoading, error, reset: resetJoin }] =
+    useRequestJoinChineseMutation();
+  const [sitDown, { isLoading: sittingDown, error: sitdownError, reset }] =
     useSitDownChineseMutation();
   const { data } = useGetUserQuery();
   const navigate = useNavigate();
@@ -20,9 +20,11 @@ const AvailableTable = ({ tableInfo }) => {
 
   const joinRequests = data?.joinRequests;
 
-  useEffect(() => {
-    if (error || sitdownError) setSnackInfo(error?.data || sitdownError.data);
-  }, [error, sitdownError, setSnackInfo]);
+  if (error || sitdownError) {
+    setSnackInfo(error?.data || sitdownError.data);
+    resetJoin();
+    reset();
+  }
 
   const clickHandler = async () => {
     if (isLoading || sittingDown) return;

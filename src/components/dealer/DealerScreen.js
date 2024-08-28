@@ -29,8 +29,6 @@ const DealerScreen = () => {
     [data, gameData?.playersStateList]
   );
 
-  if (!gameData) return null;
-
   return (
     <Overlay className="builder-overlay">
       <GameBuilder />

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
@@ -9,13 +8,14 @@ import './StayLeave.scss';
 
 const StayLeave = () => {
   const { gameId } = useParams();
-  const [sitDownn, { isLoading, error }] = useSitDownMutation();
+  const [sitDownn, { isLoading, error, reset }] = useSitDownMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (error) setSnackInfo(error.data);
-  }, [error, setSnackInfo]);
+  if (error) {
+    setSnackInfo(error.data);
+    reset();
+  }
 
   return (
     <Overlay style={{ zIndex: 200 }}>

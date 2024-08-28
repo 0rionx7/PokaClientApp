@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -24,6 +23,7 @@ const Submit = () => {
       isLoading: submitting,
       isSuccess: submissionSuccess,
       error: submitionError,
+      reset: resetSubmition,
     },
   ] = useSubmitCardsMutation();
   const [
@@ -44,10 +44,11 @@ const Submit = () => {
   const selectedHandCardsCount =
     submittedHandCardsIndexes.length + submittedTableCardsIndexes.length;
 
-  useEffect(() => {
-    if (evaluationError || submitionError)
-      setSnackInfo(evaluationError?.data || submitionError?.data);
-  }, [evaluationError, submitionError, setSnackInfo]);
+  if (evaluationError || submitionError) {
+    setSnackInfo(evaluationError?.data || submitionError?.data);
+    resetSubmition();
+    reset();
+  }
 
   let description = describeHand(data?.evaluatedHand, true);
 
