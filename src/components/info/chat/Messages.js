@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
+import { selectMessagess } from 'features/gameState/gameStateSlice';
 import { createMessageJsx } from 'utils/createMsgJsx';
 import './ChatBox.scss';
 
 const Messages = () => {
-  const messages = useSelector(state => state.gameState.messages);
+  const messages = useSelector(selectMessagess);
   const container = useRef();
 
   const messagesJsx = messages.map(createMessageJsx);

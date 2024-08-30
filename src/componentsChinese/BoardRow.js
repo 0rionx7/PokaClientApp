@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import { isSeated } from 'utils/utilities-functions';
 import './Board.scss';
 
@@ -14,7 +15,7 @@ const BoardRow = ({ rowIndex, playerState }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateChineseQuery(gameId);
   const boardCards = useSelector(state => state.chineseGameState.boardCards);
-  const { username } = useSelector(state => state.account);
+  const username = useSelector(selectPlayername);
 
   const isHostBoard = playerState.playerName === username;
   const { currentPlayerList, playersStateList } = data;

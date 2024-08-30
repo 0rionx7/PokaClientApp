@@ -7,6 +7,10 @@ import {
   useSubmitCardsMutation,
 } from 'features/gameState/gameStateApi';
 import { isMirror, selectedCardsIndexes } from 'utils/utilities-functions';
+import {
+  selectHandcards,
+  selectTablecards,
+} from 'features/gameState/gameStateSlice';
 import { describeHand } from 'utils/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
@@ -15,7 +19,8 @@ import { gameNames } from 'utils/games';
 
 const Submit = () => {
   const { gameId } = useParams();
-  const { handCards, tableCards } = useSelector(state => state.gameState);
+  const handCards = useSelector(selectHandcards);
+  const tableCards = useSelector(selectTablecards);
   const { data: gameData } = useGetGameStateQuery(gameId);
   const [
     submitHand,

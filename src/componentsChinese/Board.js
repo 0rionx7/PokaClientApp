@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import { fantasySvg, foulSvg } from 'assets/svgs/various';
 import { isSeated } from 'utils/utilities-functions';
 import usePlayerStyle from 'hooks/usePlayerStyle';
@@ -15,7 +16,7 @@ import './Board.scss';
 import { useRef } from 'react';
 
 const Board = ({ index, playerState }) => {
-  const { username } = useSelector(state => state.account);
+  const username = useSelector(selectPlayername);
   const { gameId } = useParams();
   const { data } = useGetGameStateChineseQuery(gameId);
   const gridArea = usePlayerStyle(index);

@@ -3,12 +3,13 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { selectTablecards } from 'features/gameState/gameStateSlice';
 import { selectPlayername } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import Card from 'components/card/Card';
 
 const RenderedCard = ({ index }) => {
-  const tableCards = useSelector(state => state.gameState.tableCards);
+  const tableCards = useSelector(selectTablecards);
   const playerName = useSelector(selectPlayername);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);

@@ -6,6 +6,7 @@ import {
   useGetGameStateChineseQuery,
   useSitOutChineseMutation,
 } from 'features/gameStateChinese/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import DealerScreen from 'componentsChinese/dealer/DealerScreen';
 import SitOut from 'componentsChinese/SitOut';
@@ -16,7 +17,7 @@ import classes from './Table.module.scss';
 
 const Table = () => {
   const { gameId } = useParams();
-  const { username } = useSelector(state => state.account);
+  const username = useSelector(selectPlayername);
   const { data } = useGetGameStateChineseQuery(gameId);
   const [sitOut] = useSitOutChineseMutation();
   const hostPlayerState = data.playersStateList.find(playerEntry(username));
