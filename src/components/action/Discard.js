@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 
 import { selectedCard, selectedCardsIndexes } from 'utils/utilities-functions';
 import { useSelectCardsMutation } from 'features/gameState/gameStateApi';
+import { selectHandcards } from 'features/gameState/gameStateSlice';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 
 const Discard = ({ selecting }) => {
   const { gameId } = useParams();
-  const handCards = useSelector(state => state.gameState.handCards);
+  const handCards = useSelector(selectHandcards);
   const [selectCards, { isLoading, isSuccess, error, reset }] =
     useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();

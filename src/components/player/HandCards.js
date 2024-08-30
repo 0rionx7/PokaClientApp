@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { selectHandcards } from 'features/gameState/gameStateSlice';
 import { selectPlayername } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import ChipStack from 'components/player/ChipStack';
@@ -11,7 +12,7 @@ import './HandCards.scss';
 
 const HandCards = ({ playerState, playingIndex, chipsPosition }) => {
   const hostPlayerName = useSelector(selectPlayername);
-  const hostPlayerHandCards = useSelector(state => state.gameState.handCards);
+  const hostPlayerHandCards = useSelector(selectHandcards);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const [renderCards, setRenderCards] = useState([]);

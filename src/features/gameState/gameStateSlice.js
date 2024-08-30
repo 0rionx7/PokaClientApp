@@ -58,6 +58,7 @@ export const gameStateSlice = createSlice({
         gameStateApi.endpoints.sitOut.matchFulfilled,
         (_state, _action) => gameStateSlice.getInitialState()
       ),
+  selectors: { selectHandcards: gameState => gameState.handCards },
 });
 
 export const {
@@ -67,3 +68,4 @@ export const {
   toggleSelectedCard,
   postMessage,
 } = gameStateSlice.actions;
+export const { selectHandcards } = gameStateSlice.selectors;

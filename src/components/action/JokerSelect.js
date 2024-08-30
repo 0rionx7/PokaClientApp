@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { selectHandcards } from 'features/gameState/gameStateSlice';
 import { orderNumber, suitName } from 'utils/text-constants';
 import JokerSubmit from 'components/action/JokerSubmit';
 import { symbols } from 'assets/svgs/suits';
@@ -13,7 +14,7 @@ import './JokerSelect.scss';
 const JokerSelect = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const handCards = useSelector(state => state.gameState.handCards);
+  const handCards = useSelector(selectHandcards);
 
   const [jokers, setJokers] = useState([]);
   const [suit, setSuit] = useState('S');
