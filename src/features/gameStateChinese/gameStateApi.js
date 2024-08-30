@@ -27,9 +27,7 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
           const stateUpdateListener = (stateUpdate, updateBoard) => {
             updateCachedData(_draft => {
               const { username } = getState().account;
-              if (
-                ['all', username].some(el => updateBoard?.some(br => br === el))
-              ) {
+              if (updateBoard?.some(br => (br === username) | (br === 'all'))) {
                 const updatedHostState = stateUpdate.playersStateList.find(
                   playerEntry(username)
                 );
