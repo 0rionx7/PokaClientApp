@@ -4,12 +4,14 @@ import Button from 'components/ui/Button';
 import {
   orderBySuit,
   orderByValue,
+  selectHandcards,
+  selectIsFantasy,
 } from 'features/gameStateChinese/gameStateSlice';
 import classes from './Table.module.scss';
 
 const FantasyButtons = () => {
-  const isFantasy = useSelector(state => state.chineseGameState.isFantasy);
-  const hand = useSelector(state => state.chineseGameState.hand);
+  const isFantasy = useSelector(selectIsFantasy);
+  const hand = useSelector(selectHandcards);
   const dispatch = useDispatch();
 
   const sortByValue = () => {

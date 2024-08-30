@@ -7,6 +7,10 @@ import {
   useNextRoundChineseMutation,
   useSubmitCardsChineseMutation,
 } from 'features/gameStateChinese/gameStateApi';
+import {
+  selectBoardCards,
+  selectHandcards,
+} from 'features/gameStateChinese/gameStateSlice';
 import { selectPlayername } from 'features/account/accountSlice';
 import { isSeated } from 'utils/utilities-functions';
 import FantasyButtons from 'componentsChinese/FantasyButtons';
@@ -16,8 +20,8 @@ import classes from './Table.module.scss';
 
 const Hand = () => {
   const { gameId } = useParams();
-  const hand = useSelector(state => state.chineseGameState.hand);
-  const boardCards = useSelector(state => state.chineseGameState.boardCards);
+  const hand = useSelector(selectHandcards);
+  const boardCards = useSelector(selectBoardCards);
   const username = useSelector(selectPlayername);
   const { data } = useGetGameStateChineseQuery(gameId);
   const [submit] = useSubmitCardsChineseMutation();
@@ -47,12 +51,12 @@ const Hand = () => {
 
   const submitCards = useCallback(async () => {
     if (canSubmit) {
-      await submit({ boardCards: boardCards, gameId });
       setHasSubmitted(true);
+      await submit({ boardCards: boardCards, gameId });
     }
     if (canNext) {
-      await nextRound(gameId);
       setHasNexted(true);
+      await nextRound(gameId);
     }
   }, [canSubmit, canNext, boardCards, nextRound, submit, gameId]);
 

@@ -62,7 +62,15 @@ export const gameStateChineseSlice = createSlice({
       gameStateChineseApi.endpoints.sitOutChinese.matchPending,
       (_state, _action) => gameStateChineseSlice.getInitialState()
     ),
+  selectors: {
+    selectBoardCards: gameState => gameState.boardCards,
+    selectHandcards: gameState => gameState.hand,
+    selectIsFantasy: gameState => gameState.isFantasy,
+  },
 });
 
 export const { setLocalPlayerState, moveCard, orderBySuit, orderByValue } =
   gameStateChineseSlice.actions;
+
+export const { selectBoardCards, selectHandcards, selectIsFantasy } =
+  gameStateChineseSlice.selectors;
