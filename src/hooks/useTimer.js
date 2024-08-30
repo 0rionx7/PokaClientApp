@@ -20,19 +20,19 @@ const useTimer = playerName => {
 
   const isHostBoard = playerName === username;
   const [currentPlayer] = currentPlayerList;
-  const roundEnd =
-    currentPlayerList.length === playersStateList.filter(isSeated).length;
+  const isRoundEnd =
+    currentPlayerList.length <= playersStateList.filter(isSeated).length;
   const isActive = playerName === currentPlayer;
 
   useEffect(() => {
-    if (isActive && !roundEnd) {
+    if (isActive && !isRoundEnd) {
       const timer = setInterval(() => {
         setRemainingTime(prev => prev - 1);
       }, 1000);
 
       return () => clearInterval(timer);
     }
-  }, [isActive, roundEnd]);
+  }, [isActive, isRoundEnd]);
 
   useEffect(() => {
     if (remainingTime === 0 && isHostBoard) {
