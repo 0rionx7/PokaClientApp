@@ -20,12 +20,12 @@ const BoardRow = ({ rowIndex, playerState }) => {
 
   const isHostBoard = playerState.playerName === username;
   const { currentPlayerList, playersStateList } = data;
-  const showScore =
-    currentPlayerList.length === playersStateList.filter(isSeated).length;
+  const isRoundEnd =
+    currentPlayerList.length <= playersStateList.filter(isSeated).length;
 
   let pastIndexes = 0;
   let cards = isHostBoard ? boardCards : playerState.boardCards;
-  const hidden = playerState.isFantasy && !isHostBoard && !showScore;
+  const hidden = playerState.isFantasy && !isHostBoard && !isRoundEnd;
   cards = cards?.map(card => (card ? { ...card, hidden } : null));
   if (rowIndex === 0) cards = cards?.slice(0, 3);
   else if (rowIndex === 1) {

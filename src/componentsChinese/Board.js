@@ -24,8 +24,8 @@ const Board = ({ index, playerState }) => {
 
   const isHostBoard = playerState.playerName === username;
   const { currentPlayerList, playersStateList } = data;
-  const showScore =
-    currentPlayerList.length === playersStateList.filter(isSeated).length;
+  const isRoundEnd =
+    currentPlayerList.length <= playersStateList.filter(isSeated).length;
 
   return (
     <>
@@ -37,17 +37,17 @@ const Board = ({ index, playerState }) => {
           <div id={'timer' + playerState.playerName} ref={timerRef} />
           <RoundScore
             roundScore={playerState.roundScore}
-            showScore={showScore}
+            showScore={isRoundEnd}
           />
           <BoardRow rowIndex={0} playerState={playerState} />
           <BoardRow rowIndex={1} playerState={playerState} />
           <BoardRow rowIndex={2} playerState={playerState} />
           {playerState.isFoul && <div className="image-overlay">{foulSvg}</div>}
-          {playerState.isFantasy && showScore && (
+          {playerState.isFantasy && isRoundEnd && (
             <div className="image-overlay">{fantasySvg}</div>
           )}
         </div>
-        {showScore && <LinesScore playerState={playerState} />}
+        {isRoundEnd && <LinesScore playerState={playerState} />}
         {isHostBoard && <Hand />}
       </div>
     </>
