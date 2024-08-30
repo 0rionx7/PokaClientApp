@@ -2,11 +2,12 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 
 const usePlayerStyle = index => {
   const { gameId } = useParams();
-  const username = useSelector(state => state.account.username);
+  const username = useSelector(selectPlayername);
   const { data } = useGetGameStateChineseQuery(gameId);
   const { playersStateList } = data;
   const hostIndex = playersStateList.findIndex(playerEntry(username));

@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { accountSvg } from 'assets/svgs/various';
+import { selectPlayername } from 'features/account/accountSlice';
 import AccountloggedInMenu from 'components/layout/AccountLogedIn';
+import { accountSvg } from 'assets/svgs/various';
 import './MainNavigation.scss';
 
 const MainNavigation = () => {
-  const username = useSelector(state => state.account.username);
+  const username = useSelector(selectPlayername);
   const [showMenu, setShowMenu] = useState(false);
 
   return (
@@ -22,7 +23,7 @@ const MainNavigation = () => {
               Σαλούν
             </NavLink>
             <NavLink to="/saloon-chinese" className="nav-link">
-             Chinese Saloon
+              Chinese Saloon
             </NavLink>
             <NavLink to="/account" className="nav-link">
               Λογαριασμός

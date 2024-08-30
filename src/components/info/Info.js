@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import GameDescription from 'components/info/GameDescription';
 import { useEmoji } from 'components/info/chat/EmojiProvider';
 import { collapseVertical } from 'assets/svgs/various';
@@ -17,7 +18,7 @@ import './Info.scss';
 const Info = ({ hideInfo, toggleHideInfo }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const hostPlayerName = useSelector(state => state.account.username);
+  const hostPlayerName = useSelector(selectPlayername);
   const [selected, setSelected] = useState(infoButtons.GAME_INFO);
   const { setShowPicker } = useEmoji();
 

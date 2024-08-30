@@ -7,6 +7,7 @@ import {
   useNextRoundChineseMutation,
   useSubmitCardsChineseMutation,
 } from 'features/gameStateChinese/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import { isSeated } from 'utils/utilities-functions';
 import FantasyButtons from 'componentsChinese/FantasyButtons';
 import HandCards from 'componentsChinese/HandCards';
@@ -17,7 +18,7 @@ const Hand = () => {
   const { gameId } = useParams();
   const hand = useSelector(state => state.chineseGameState.hand);
   const boardCards = useSelector(state => state.chineseGameState.boardCards);
-  const username = useSelector(state => state.account.username);
+  const username = useSelector(selectPlayername);
   const { data } = useGetGameStateChineseQuery(gameId);
   const [submit] = useSubmitCardsChineseMutation();
   const [nextRound] = useNextRoundChineseMutation();

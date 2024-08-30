@@ -1,8 +1,10 @@
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router';
 
+import { selectPlayername } from 'features/account/accountSlice';
+
 const RouteGuard = ({ element }) => {
-  const username = useSelector(state => state.account.username);
+  const username = useSelector(selectPlayername);
   const location = useLocation();
 
   return !username ? (

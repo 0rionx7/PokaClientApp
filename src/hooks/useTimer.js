@@ -6,6 +6,7 @@ import {
   useGetGameStateChineseQuery,
   useTimedOutMutation,
 } from 'features/gameStateChinese/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import Timer from 'componentsChinese/Timer';
 import { isSeated } from 'utils/utilities-functions';
 
@@ -14,7 +15,7 @@ const useTimer = playerName => {
   const { data } = useGetGameStateChineseQuery(gameId);
   const { currentPlayerList, round, playersStateList, initialPlayTime } = data;
   const [remainingTime, setRemainingTime] = useState(initialPlayTime);
-  const username = useSelector(state => state.account.username);
+  const username = useSelector(selectPlayername);
   const [timedOut] = useTimedOutMutation();
 
   const isHostBoard = playerName === username;

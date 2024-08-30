@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 
 import { useOpenTableMutation } from 'features/gameState/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import { clockwise, counterclockwise } from 'assets/svgs/various';
 import Dilemma from 'components/gameBuilder/Dilemma';
 import Reaction from 'pages/saloon/Reaction';
@@ -11,7 +12,7 @@ import Button from 'components/ui/Button';
 import './OpenTable.scss';
 
 const OpenTable = () => {
-  const playerName = useSelector(state => state.account.username);
+  const playerName = useSelector(selectPlayername);
   const [openTable] = useOpenTableMutation();
   const navigate = useNavigate();
 

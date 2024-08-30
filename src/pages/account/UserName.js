@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import { selectPlayername } from 'features/account/accountSlice';
 import EditUsername from 'pages/account/EditUsername';
 import { editSvg } from 'assets/svgs/various';
 import classes from './UserName.module.scss';
 
 const UserName = () => {
-  const playerName = useSelector(state => state.account.username);
+  const playerName = useSelector(selectPlayername);
   const [edit, setEdit] = useState(false);
 
   if (edit) return <EditUsername stopEditing={() => setEdit(false)} />;

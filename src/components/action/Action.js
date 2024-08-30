@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import NextRound from 'components/action/NextRound';
 import Results from 'components/info/Results';
@@ -14,7 +15,7 @@ import './Action.scss';
 
 const Action = ({ hideInfo }) => {
   const { gameId } = useParams();
-  const hostPlayerName = useSelector(state => state.account.username);
+  const hostPlayerName = useSelector(selectPlayername);
   const {
     data: { playersStateList, currentPlayerList, dealer },
   } = useGetGameStateQuery(gameId);

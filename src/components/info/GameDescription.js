@@ -2,13 +2,14 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import { gamesInfo } from 'utils/text-constants';
 import './Info.scss';
 
 const GameDescription = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const hostPlayerName = useSelector(state => state.account.username);
+  const hostPlayerName = useSelector(selectPlayername);
   const currentChoosenGame = useSelector(
     state => state.gameState.currentChoosenGame
   );

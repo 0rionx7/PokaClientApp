@@ -4,10 +4,11 @@ import { useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 
 import { useOpenTableChineseMutation } from 'features/gameStateChinese/gameStateApi';
+import { selectPlayername } from 'features/account/accountSlice';
 import Button from 'components/ui/Button';
 
 const OpenTable = () => {
-  const playerName = useSelector(state => state.account.username);
+  const playerName = useSelector(selectPlayername);
   const [openTable] = useOpenTableChineseMutation();
   const navigate = useNavigate();
 

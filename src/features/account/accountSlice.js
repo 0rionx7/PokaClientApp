@@ -41,6 +41,8 @@ export const accountSlice = createSlice({
         (_state, _action) => accountSlice.getInitialState()
       );
   },
+  selectors: { selectPlayername: account => account.username },
 });
 
 export const { setHideInfo, setDeckColor } = accountSlice.actions;
+export const { selectPlayername } = accountSlice.selectors;
