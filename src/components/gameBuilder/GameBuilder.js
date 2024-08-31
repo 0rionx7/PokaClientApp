@@ -49,7 +49,6 @@ const GameBuilder = () => {
 
   const actionContainer =
     document.getElementsByClassName('action-container')[0];
-  console.log(actionContainer);
 
   const initialValues = {
     gameName: gameNames.MAMUT,

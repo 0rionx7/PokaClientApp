@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -21,11 +21,13 @@ const Info = ({ hideInfo, toggleHideInfo }) => {
   const hostPlayerName = useSelector(selectPlayername);
   const [selected, setSelected] = useState(infoButtons.GAME_INFO);
   const { setShowPicker } = useEmoji();
+  const [prevDealer, setPrevDealer] = useState(data.dealer);
 
-  useEffect(() => {
+  if (data.dealer !== prevDealer) {
+    setPrevDealer(data.dealer);
     if (data.dealer === hostPlayerName)
       setSelected(infoButtons.GAME_DESCRIPTION);
-  }, [data.dealer, hostPlayerName]);
+  }
 
   const toggleHandler = () => {
     toggleHideInfo();
