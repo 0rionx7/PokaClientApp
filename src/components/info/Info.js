@@ -19,7 +19,7 @@ const Info = ({ hideInfo, toggleHideInfo }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(selectPlayername);
-  const [selected, setSelected] = useState(infoButtons.GAME_INFO);
+  const [selected, setSelected] = useState(infoButtons.GAME_DESCRIPTION);
   const { setShowPicker } = useEmoji();
   const [prevDealer, setPrevDealer] = useState(data.dealer);
 
