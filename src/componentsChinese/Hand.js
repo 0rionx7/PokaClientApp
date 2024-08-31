@@ -42,8 +42,10 @@ const Hand = () => {
   const legitSubmit =
     hand?.length === 5 ? cardsLeftInHand === 0 : cardsLeftInHand === 1;
   const canSubmit = !hasSubmitted && hasTurn && legitSubmit;
+  const sittedCount = data.playersStateList.filter(isSeated).length;
   const canNext =
-    currentPlayerList.length <= data.playersStateList.filter(isSeated).length &&
+    sittedCount > 1 &&
+    currentPlayerList.length <= sittedCount &&
     currentPlayerList.includes(username) &&
     !hasNexted;
   const shift = data.playersStateList.length === 2 ? '-50%' : '50%';

@@ -44,7 +44,6 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
           console.log(error);
         }
       },
-      keepUnusedDataFor: 0,
     }),
     getRequestsChinese: build.query({
       query: tableName => `/chinese/requests/${tableName}`,
@@ -75,7 +74,6 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
         }
       },
       providesTags: ['ChineseRequests'],
-      keepUnusedDataFor: 0,
     }),
     getTablesChinese: build.query({
       queryFn: async (_args, { getState }) => {
