@@ -26,6 +26,9 @@ export const gameStateSlice = createSlice({
     postMessage: (state, action) => {
       state.messages.push(action.payload);
     },
+    resetMessages: (state, action) => {
+      state.messages = [];
+    },
     toggleSelectedCard: (state, action) => {
       const selectedCard = card =>
         card.value + card.suit === action.payload.value + action.payload.suit;
@@ -71,6 +74,7 @@ export const {
   setHandCards,
   toggleSelectedCard,
   postMessage,
+  resetMessages,
 } = gameStateSlice.actions;
 
 export const { selectHandcards, selectTablecards, selectMessagess } =
