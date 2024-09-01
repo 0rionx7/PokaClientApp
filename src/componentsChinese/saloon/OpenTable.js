@@ -13,7 +13,7 @@ const OpenTable = () => {
   const navigate = useNavigate();
 
   const initialValues = {
-    tableName: 'Table' + nanoid(3),
+    tableName: '',
     initialPlayTime: 120,
   };
   const validate = values => {
@@ -51,7 +51,12 @@ const OpenTable = () => {
             <div className="form-inputs">
               <div className="form-control">
                 <label htmlFor="tableName">Όνομα τραπεζιού</label>
-                <Field id="tableName" name="tableName" type="text" />
+                <Field
+                  id="tableName"
+                  name="tableName"
+                  type="text"
+                  placeholder="εισάγετε ένα όνομα"
+                />
               </div>
               <div className="form-control">
                 <label htmlFor="initialPlayTime">Play Time (sec)</label>

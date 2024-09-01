@@ -3,8 +3,7 @@ import './Welcome.scss';
 const Welcome = () => {
   return (
     <div className="welcome">
-      Welcome. <br />
-      This is only for demo purposes
+      <h3>Η παρούσα εφαρμογή είναι μόνο για παρουσίαση.</h3>
     </div>
   );
 };

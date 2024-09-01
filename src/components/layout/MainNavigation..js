@@ -20,10 +20,10 @@ const MainNavigation = () => {
         {username && !showMenu && (
           <>
             <NavLink to="/saloon" className="nav-link">
-              Σαλούν
+              Σαλόνι Πόκας
             </NavLink>
             <NavLink to="/saloon-chinese" className="nav-link">
-              Chinese Saloon
+              Σαλόνι Κινέζικου Πόκερ
             </NavLink>
             <NavLink to="/account" className="nav-link">
               Λογαριασμός

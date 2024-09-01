@@ -37,6 +37,9 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px colors.$secondary-color inset !important;
   box-shadow: 0 0 0 1000px rgb(231, 150, 84) inset;
 }
+input::placeholder {
+  font-size: 0.9rem;
+}
 // custom scroll bar
 ::-webkit-scrollbar {
   width: 10px;

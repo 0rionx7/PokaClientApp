@@ -17,7 +17,7 @@ const OpenTable = () => {
   const navigate = useNavigate();
 
   const initialValues = {
-    tableName: 'Table' + nanoid(3),
+    tableName: '',
     rotation: 'clockwise',
     cava: 1000,
     chip: 1,
@@ -63,7 +63,12 @@ const OpenTable = () => {
             <div className="form-inputs">
               <div className="form-control">
                 <label htmlFor="tableName">Όνομα τραπεζιού</label>
-                <Field id="tableName" name="tableName" type="text" />
+                <Field
+                  id="tableName"
+                  name="tableName"
+                  type="text"
+                  placeholder="εισάγετε ένα όνομα"
+                />
               </div>
               <div className="rotation">
                 <div>Φορά μοιράσματος</div>
