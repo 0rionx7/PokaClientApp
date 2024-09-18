@@ -1,11 +1,8 @@
-import { useFormikContext } from 'formik';
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import Radio from 'components/ui/Radio';
 import { winningOrders } from 'utils/text-constants';
 
-const WinningOrder = () => {
-  const { values } = useFormikContext();
-
+const WinningOrder = memo(({ winningOrder }) => {
   const orders = Object.values(winningOrders);
 
   return (
@@ -16,12 +13,12 @@ const WinningOrder = () => {
             name="winningOrder"
             label={order}
             value={order}
-            checked={values.winningOrder === order}
+            checked={winningOrder === order}
           />
         </Fragment>
       ))}
     </>
   );
-};
+});
 
 export default WinningOrder;

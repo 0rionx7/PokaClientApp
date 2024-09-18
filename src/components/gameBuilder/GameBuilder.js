@@ -85,18 +85,36 @@ const GameBuilder = () => {
         validateOnChange={false}
         validateOnBlur={false}
         enableReinitialize>
-        {({ isSubmitting, isValid, errors, submitForm, setErrors }) => (
+        {({
+          isSubmitting,
+          isValid,
+          errors,
+          submitForm,
+          setErrors,
+          values,
+          setFieldValue,
+          setValues,
+        }) => (
           <Form onFocus={() => setErrors({})}>
             {snackElement}
             <BuilderItem
               title={builderTitles.GAME}
-              element={<GameChooser startingCard={data.startingCard} />}
+              element={
+                <GameChooser
+                  gameName={values.gameName}
+                  startingCard={data.startingCard}
+                  setValues={setValues}
+                />
+              }
             />
             <BuilderItem
               title={builderTitles.WINNING_ORDER}
-              element={<WinningOrder />}
+              element={<WinningOrder winningOrder={values.winningOrder} />}
             />
-            <BuilderItem title={builderTitles.EXTRA} element={<Extra />} />
+            <BuilderItem
+              title={builderTitles.EXTRA}
+              element={<Extra gameName={values.gameName} />}
+            />
             <BuilderItem
               title={builderTitles.TABLO}
               element={
@@ -114,14 +132,29 @@ const GameBuilder = () => {
               title={builderTitles.RAILROAD_LENGTH}
               element={<CardsCount name="railroadLength" />}
             />
-            <BuilderItem title={builderTitles.OPTIONS} element={<Options />} />
+            <BuilderItem
+              title={builderTitles.OPTIONS}
+              element={
+                <Options
+                  hat={values.hat}
+                  hats={values.hats}
+                  gameName={values.gameName}
+                  setFieldValue={setFieldValue}
+                />
+              }
+            />
             <BuilderItem
               title={builderTitles.CARDS_IN_HAND}
               element={<CardsCount name="cardsInHand" />}
             />
             <BuilderItem
               title={builderTitles.FACE_DOWN}
-              element={<FaceDown />}
+              element={
+                <FaceDown
+                  cardsInHand={values.cardsInHand}
+                  faceDownIndexes={values.faceDownIndexes}
+                />
+              }
             />
             <BuilderItem
               title={builderTitles.SPEAKS}
@@ -134,7 +167,12 @@ const GameBuilder = () => {
             />
             <BuilderItem
               title={builderTitles.HAND_CARDS_IN_PLAY}
-              element={<HandCardsInPlay />}
+              element={
+                <HandCardsInPlay
+                  handCardsInPlay={values.handCardsInPlay}
+                  cardsInHand={values.cardsInHand}
+                />
+              }
             />
             <BuilderItem
               title={builderTitles.DEALING}

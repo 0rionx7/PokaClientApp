@@ -1,17 +1,15 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Field, useFormikContext } from 'formik';
+import { Field } from 'formik';
 
 import { games, builderDefaults } from 'utils/games';
 import { setCurrentChoosenGame } from 'features/gameState/gameStateSlice';
 
 const startCard = [2, 3, 4, 5, 6, 7];
 
-const GameChooser = ({ startingCard }) => {
-  const { values, setValues } = useFormikContext();
+const GameChooser = memo(({ gameName, startingCard, setValues }) => {
   const dispatch = useDispatch();
-
-  const game = games?.find(game => game.gameName === values.gameName);
+  const game = games?.find(game => game.gameName === gameName);
 
   useEffect(() => {
     if (game) {
@@ -19,7 +17,7 @@ const GameChooser = ({ startingCard }) => {
       setValues({
         ...builderDefaults,
         ...defaults,
-        ...gameInfo, // for rowsIndexes, boardClass
+        ...gameInfo, // for rowsIndexes, boardClass, showtitles
         startingCard,
       });
       dispatch(setCurrentChoosenGame(game.gameName));
@@ -55,6 +53,6 @@ const GameChooser = ({ startingCard }) => {
       </Field>
     </div>
   );
-};
+});
 
 export default GameChooser;

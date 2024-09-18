@@ -1,11 +1,9 @@
-import { useFormikContext } from 'formik';
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
+
 import CheckBox from 'components/ui/CheckBox';
 
-const HandCardsInPlay = () => {
-  const { values } = useFormikContext();
-
-  const inPlay = [1, 2, 3, 4, 5, 6, 7].slice(0, +values.cardsInHand);
+const HandCardsInPlay = memo(({ cardsInHand, handCardsInPlay }) => {
+  const inPlay = [1, 2, 3, 4, 5, 6, 7].slice(0, +cardsInHand);
 
   return (
     <>
@@ -14,12 +12,12 @@ const HandCardsInPlay = () => {
           <CheckBox
             name="handCardsInPlay"
             value={count}
-            checked={values.handCardsInPlay.includes(count.toString())}
+            checked={handCardsInPlay.includes(count.toString())}
           />
         </Fragment>
       ))}
     </>
   );
-};
+});
 
 export default HandCardsInPlay;
