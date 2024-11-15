@@ -1,5 +1,5 @@
 import './analytics';
-import { StrictMode } from 'react';
+// import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import reportWebVitals from 'reportWebVitals';
 import { Provider } from 'react-redux';
@@ -71,11 +71,11 @@ const router = createBrowserRouter(
   )
 );
 root.render(
-  <StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-  </StrictMode>
+  // <StrictMode>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
+  // </StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

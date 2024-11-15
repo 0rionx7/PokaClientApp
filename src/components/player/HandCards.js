@@ -32,7 +32,7 @@ const HandCards = ({ playerState, playingIndex, chipsPosition }) => {
 
   useEffect(() => {
     let timer;
-    const timeout = playingIndex * 60;
+    const timeout = playingIndex * 120;
     timer = setTimeout(() => {
       setRenderCards(handCards);
     }, timeout);

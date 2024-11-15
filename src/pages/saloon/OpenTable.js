@@ -21,7 +21,7 @@ const OpenTable = () => {
     rotation: 'clockwise',
     cava: 1000,
     chip: 1,
-    reaction: 30,
+    reaction: 101,
   };
   const validate = values => {
     let errors = {};
