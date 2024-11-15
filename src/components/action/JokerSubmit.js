@@ -21,7 +21,7 @@ const JokerSubmit = ({ jokers, resetJokers }) => {
       <Button className="red" prompt="ΑΚΥΡΩΣΗ" onClick={resetJokers} />
       <Button
         className="green"
-        prompt="ΥΠΟΒΟΛΗ"
+        prompt="ΑΝΤΙΚΑΤΑΣΤΑΣΗ"
         onClick={() => assignJoker({ gameId, jokers })}
         disabled={isLoading || isSuccess}
       />

@@ -33,7 +33,7 @@ const JokerSelect = () => {
   return (
     <div className="card-container">
       <div className="selections">
-        ΟΡΙΣΤΕ ΧΑΡΤΙ ΓΙΑ ΤΟ {prompt} ΜΠΑΛΑΝΤΕΡ
+        ΑΝΤΙΚΑΤΑΣΗ ΤΟΥ {prompt} ΜΠΑΛΑΝΤΕΡ ΜΕ
         <select value={cardValue} onChange={e => setCardValue(+e.target.value)}>
           {[...Array(15).keys()].slice(data.startingCard).map(value => (
             <option key={value} value={value}>
