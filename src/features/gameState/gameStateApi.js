@@ -233,6 +233,13 @@ export const gameStateApi = createApi({
         body: handInfo,
       }),
     }),
+    revealCards: build.mutation({
+      query: gameId => ({
+        url: '/gameState/reveal',
+        method: 'PATCH',
+        body: { gameId },
+      }),
+    }),
     renewCava: build.mutation({
       query: renewInfo => ({
         url: '/gameState/renew',
@@ -296,6 +303,7 @@ export const {
   useSubmitCardsMutation,
   useRenewCavaMutation,
   useNextRoundMutation,
+  useRevealCardsMutation,
   useJoinTableMutation,
   useSitDownMutation,
   useSitOutMutation,

@@ -30,14 +30,12 @@
     }
   }
 }
-.next-round {
+.next-round,
+.reveal {
   place-self: end;
   width: calc(6 * var(--card-width));
   height: calc(1.2 * var(--card-height));
   font-size: 0.6rem;
-  &:hover {
-    background-color: #f5670094;
-  }
   @media only screen and (min-height: 500px) and (min-width: 900px) {
     font-size: 0.8rem;
   }
