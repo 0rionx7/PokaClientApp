@@ -27,6 +27,9 @@ export function isHere(playerState) {
 export function faceUp(card) {
   return { ...card, faceUp: true };
 }
+export function unselectAll(card) {
+  return { ...card, selected: false };
+}
 function descValue(cardA, cardB) {
   return cardB.value - cardA.value;
 }
