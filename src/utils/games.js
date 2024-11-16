@@ -48,7 +48,6 @@ export const games = [
     gameName: gameNames.POKER,
     builderDefaults: {
       cardsInHand: 5,
-      faceDownIndexes: ['4'],
       handCardsInPlay: ['5'],
       dealing: dealingOrders.ENA_ENA,
     },
