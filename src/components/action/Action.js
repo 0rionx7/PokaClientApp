@@ -39,9 +39,7 @@ const Action = ({ hideInfo }) => {
         !dealer && <LiveInfo />
       )}
       {hostPlayerState.resta === 0 && !hostPlayerState.sittingOut && <Renew />}
-      {hostPlayerState.resta > 0 && currentPlayer?.handInfo?.kind && (
-        <NextRound />
-      )}
+      {currentPlayer?.handInfo?.kind && <NextRound />}
       {currentPlayer?.jokering && (
         <Overlay style={{ backgroundColor: 'rgb(0 0 0 / 4%)' }}>
           <div className="waiting-content">
