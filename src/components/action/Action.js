@@ -1,9 +1,10 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { selectPlayername } from 'features/account/accountSlice';
+import { useActionConRef } from 'utils/ActionContainerContext';
 import { playerEntry } from 'utils/utilities-functions';
 import NextRound from 'components/action/NextRound';
 import Results from 'components/info/Results';
@@ -19,18 +20,26 @@ const Action = ({ hideInfo }) => {
   const {
     data: { playersStateList, currentPlayerList, dealer },
   } = useGetGameStateQuery(gameId);
+  const { setContainerRef } = useActionConRef();
+  const actionContainerRef = useRef();
 
   const hostPlayerState = useMemo(
     () => playersStateList.find(playerEntry(hostPlayerName)),
     [playersStateList, hostPlayerName]
   );
-
+  
   const [currentPlayer] = currentPlayerList;
   const hostTurn = currentPlayer?.playerName === hostPlayerName;
 
+  useEffect(() => {
+    setContainerRef(actionContainerRef);
+  }, [setContainerRef]);
+
   if (!gameId) return null;
   return (
-    <div className={'action-container ' + (hideInfo ? 'full-width' : '')}>
+    <div
+      className={'action-container ' + (hideInfo ? 'full-width' : '')}
+      ref={actionContainerRef}>
       {currentPlayer?.handInfo?.kind ? (
         <Results />
       ) : hostTurn || hostPlayerState.jokering ? (

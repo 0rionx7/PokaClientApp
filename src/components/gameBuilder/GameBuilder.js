@@ -30,12 +30,14 @@ import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
 import './GameBuilder.scss';
+import { useActionConRef } from 'utils/ActionContainerContext';
 
 const GameBuilder = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
+  const { actionContainerRef } = useActionConRef();
 
   const playersCount = data.playersStateList.filter(isHere).length;
   const noOthersInPlay = data.playersStateList.filter(isHere).length === 1;
@@ -46,9 +48,6 @@ const GameBuilder = () => {
   let btnPrompt;
   if (noOthersInPlay) btnPrompt = 'Δεν κάθετε άλλος παίκτης στο τραπέζι';
   else if (allOthersTapi) btnPrompt = 'Μόνο ένας παίκτης έχει χρήματα';
-
-  const actionContainer =
-    document.getElementsByClassName('action-container')[0];
 
   const initialValues = {
     gameName: gameNames.MAMUT,
@@ -187,7 +186,7 @@ const GameBuilder = () => {
               title={builderTitles.DEALING_OPTIONS}
               element={<DealingOptions />}
             />
-            {actionContainer &&
+            {actionContainerRef &&
               createPortal(
                 <Button
                   prompt={
@@ -203,7 +202,7 @@ const GameBuilder = () => {
                   onClick={submitForm}
                   className="deal-btn"
                 />,
-                actionContainer
+                actionContainerRef.current
               )}
           </Form>
         )}

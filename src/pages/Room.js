@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import EmojiProvider from 'components/info/chat/EmojiProvider';
+import ActionContaineProvider from 'utils/ActionContainerContext';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import useMessageService from 'hooks/useMessageService';
 import Action from 'components/action/Action';
@@ -20,16 +21,18 @@ const Room = () => {
 
   return (
     <div className="room">
-      <Table />
-      <div className="ribbon">
-        <EmojiProvider>
-          <Info
-            hideInfo={hideInfo}
-            toggleHideInfo={() => toggleHideInfo(curr => !curr)}
-          />
-        </EmojiProvider>
-        <Action hideInfo={hideInfo} />
-      </div>
+      <ActionContaineProvider>
+        <Table />
+        <div className="ribbon">
+          <EmojiProvider>
+            <Info
+              hideInfo={hideInfo}
+              toggleHideInfo={() => toggleHideInfo(curr => !curr)}
+            />
+          </EmojiProvider>
+          <Action hideInfo={hideInfo} />
+        </div>
+      </ActionContaineProvider>
     </div>
   );
 };
