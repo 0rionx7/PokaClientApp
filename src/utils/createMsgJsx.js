@@ -4,13 +4,12 @@ import { describeTime } from 'utils/text-functions';
 export function createMessageJsx({ event, ...data }, index) {
   switch (event) {
     case 'neeext': {
-      const timeOut = data.reaction * (data.submitting ? 2 : 1);
       return (
         <Fragment key={index}>
           <span>@{data.playerName}</span> είναι σειρά σου να παίξεις.
-          {timeOut < 100 && (
+          {data.reaction && (
             <>
-              Έχεις<span> {describeTime(timeOut)}</span>
+              Έχεις<span> {describeTime(data.reaction)}</span>
             </>
           )}
           <br />
