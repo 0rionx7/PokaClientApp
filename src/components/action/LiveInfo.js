@@ -19,7 +19,7 @@ const LiveInfo = () => {
   return (
     <div className="live-info">
       <div className="info-row">
-        {['Παιχνίδι', 'Ντίλερ', 'Παίζει', 'Πότ'].map(title => (
+        {['Παιχνίδι', 'Παίζει', 'Πότ'].map(title => (
           <h6 key={title} style={{ textAlign: 'center' }}>
             {title}
           </h6>
@@ -28,7 +28,6 @@ const LiveInfo = () => {
       <div className="info-row">
         {[
           gamesCount + 'ο',
-          playersStateList.at(-1).playerName,
           currentPlayer?.playerName,
           pot.toLocaleString(),
         ].map((value, i) => (

@@ -8,7 +8,7 @@ import { useActionConRef } from 'utils/ActionContainerContext';
 import { playerEntry } from 'utils/utilities-functions';
 import NextRound from 'components/action/NextRound';
 import Results from 'components/info/Results';
-import LiveInfo from 'components/info/LiveInfo';
+import LiveInfo from 'components/action/LiveInfo';
 import Overlay from 'components/ui/Overlay';
 import Play from 'components/action/Play';
 import Renew from 'components/action/Renew';
