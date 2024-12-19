@@ -6,6 +6,7 @@ import {
   useGetGameStateChineseQuery,
   useSitOutChineseMutation,
 } from 'features/gameStateChinese/gameStateApi';
+import { resetMessages } from 'features/gameState/gameStateSlice';
 import { selectPlayername } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import DealerScreen from 'componentsChinese/dealer/DealerScreen';
@@ -14,7 +15,6 @@ import StayLeave from 'componentsChinese/StayLeave';
 import RoundInfo from 'componentsChinese/RoundInfo';
 import Board from 'componentsChinese/Board';
 import classes from './Table.module.scss';
-import { resetMessages } from 'features/gameState/gameStateSlice';
 
 const Table = () => {
   const { gameId } = useParams();

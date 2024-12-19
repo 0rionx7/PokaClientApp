@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -13,7 +14,6 @@ import BoardRow from 'componentsChinese/BoardRow';
 import Hand from 'componentsChinese/Hand';
 import classes from './Table.module.scss';
 import './Board.scss';
-import { useRef } from 'react';
 
 const Board = ({ index, playerState }) => {
   const username = useSelector(selectPlayername);

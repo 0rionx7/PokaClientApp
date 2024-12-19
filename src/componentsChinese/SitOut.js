@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import { exitSvg } from 'assets/svgs/various';
 import ToolTip from 'components/ui/ToolTip';
@@ -17,8 +18,12 @@ const SitOut = () => {
         {exitSvg}
       </div>
       {showDiag && (
-        <Overlay>
-          <div className="sitback">
+        <Overlay style={{ zIndex: 200 }}>
+          <motion.div
+            className="sitback"
+            initial={{ opacity: 0, top: 30 }}
+            animate={{ opacity: 1, top: 0 }}
+            transition={{ duration: 0.5 }}>
             <h3>Τι επιθυμείτε;</h3>
             <div>
               <Button
@@ -32,7 +37,7 @@ const SitOut = () => {
                 className="red"
               />
             </div>
-          </div>
+          </motion.div>
         </Overlay>
       )}
     </>
