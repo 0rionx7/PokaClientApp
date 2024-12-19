@@ -6,6 +6,7 @@ import LoadingSpinner from 'components/ui/LoadingSpinner';
 import Table from 'componentsChinese/Table';
 import EmojiProvider from 'components/info/chat/EmojiProvider';
 import ChatBox from 'components/info/chat/ChatBox';
+import Deck from 'componentsChinese/Deck';
 import classes from './Table.module.scss';
 
 const ChineseRoom = () => {
@@ -26,6 +27,7 @@ const ChineseRoom = () => {
         <EmojiProvider>
           <ChatBox className={classes['chat-chinese']} />
         </EmojiProvider>
+        <Deck />
       </div>
     </div>
   );

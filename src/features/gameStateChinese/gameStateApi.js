@@ -174,6 +174,13 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
         body: { boardCards, gameId },
       }),
     }),
+    reorderDeckChinese: build.mutation({
+      query: ({ dragIndex, dropIndex, gameId }) => ({
+        url: 'chinese/gameState/reorderDeck',
+        method: 'PATCH',
+        body: { dragIndex, dropIndex, gameId },
+      }),
+    }),
     nextRoundChinese: build.mutation({
       query: gameId => ({
         url: 'chinese/gameState/nextRound',
@@ -215,6 +222,7 @@ export const {
   useSitDownChineseMutation,
   useStartGameChineseMutation,
   useSubmitCardsChineseMutation,
+  useReorderDeckChineseMutation,
   useNextRoundChineseMutation,
   useTimedOutMutation,
   useRestartGameChineseMutation,
