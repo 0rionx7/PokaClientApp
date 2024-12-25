@@ -14,17 +14,22 @@ const FaceDownCards = () => {
   data.faceDownIndexes
     ?.slice()
     .sort()
-    .forEach((index, i, { length }) => {
-      if (index + 1 <= data?.cardsInHand)
+    .forEach((index, i) => {
+      const cardPosition = parseInt(index);
+      if (cardPosition < data?.cardsInHand)
         closed.push(
-          <Fragment key={orderName[index]}>
-            {i === 0 ? '' : ', '}
-            <span>{orderName[index]}</span>
-            {i + 1 === length ? <> κλειστό</> : <></>}
-          </Fragment>
+          i === 0 ? orderName[cardPosition] : `, ${orderName[cardPosition]}`
         );
     });
-  return <div>{closed}</div>;
+
+  return (
+    <div>
+      {closed.map(cl => (
+        <span key={cl}>{cl}</span>
+      ))}{' '}
+      κλειστό
+    </div>
+  );
 };
 
 export default FaceDownCards;
