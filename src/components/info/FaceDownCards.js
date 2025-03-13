@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
@@ -17,17 +16,15 @@ const FaceDownCards = () => {
     .forEach((index, i) => {
       const cardPosition = parseInt(index);
       if (cardPosition < data?.cardsInHand)
-        closed.push(
-          i === 0 ? orderName[cardPosition] : `, ${orderName[cardPosition]}`
-        );
+        closed.push((i === 0 ? '' : ', ') + orderName[cardPosition]);
     });
 
   return (
     <div>
       {closed.map(cl => (
         <span key={cl}>{cl}</span>
-      ))}{' '}
-      κλειστό
+      ))}
+      {' κλειστό'}
     </div>
   );
 };
