@@ -22,7 +22,12 @@ const BetOptions = ({ disabled }) => {
         const prompt = (
           <div className="bet-options">
             {'+ ' + displayValue.toLocaleString()}
-            <img src={require(`assets/chips/${color}.png`)} alt="chip" />
+            <img
+              src={`${
+                import.meta.env.VITE_IMAGE_URL
+              }/assets/chips/${color}.png`}
+              alt="chip"
+            />
           </div>
         );
 

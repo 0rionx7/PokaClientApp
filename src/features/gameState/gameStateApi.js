@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import { playerEntry, updateAll } from 'utils/utilities-functions';
 import { setHandCards, setTableCards } from 'features/gameState/gameStateSlice';
 
-export const baseUrl = process.env.REACT_APP_FRONTEND_URL;
+export const baseUrl = import.meta.env.VITE_FRONTEND_URL;
 export const socket = io(baseUrl, { transports: ['websocket'] });
 
 export const gameStateApi = createApi({

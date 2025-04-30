@@ -18,7 +18,10 @@ const Chip = ({ multiplier, index, startIndex }) => {
 
   return (
     <div className="chip" style={style}>
-      <img src={require(`assets/chips/${color}.png`)} alt="chip" />
+      <img
+        src={`${import.meta.env.VITE_IMAGE_URL}/assets/chips/${color}.png`}
+        alt="chip"
+      />
       <span style={{ bottom: '.6rem' }}>{displayValue}</span>
     </div>
   );

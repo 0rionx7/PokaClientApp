@@ -1,7 +1,6 @@
-import './analytics';
+// import './analytics';
 // import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import reportWebVitals from 'reportWebVitals';
 import { Provider } from 'react-redux';
 import {
   createBrowserRouter,
@@ -9,27 +8,28 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import './index.scss';
 
-import SubscriptionOptions from 'pages/account/subscription/SubscriptionOptions';
-import SuccessfulPayment from 'pages/account/subscription/SuccessfulPayment';
-import FailedPayment from 'pages/account/subscription/FailedPayment';
-import AccountDetails from 'pages/account/AccountDetails';
-import ResetPassword from 'pages/ResetPassword';
-import Instructions from 'pages/Instructions';
-import Account from 'pages/account/Account';
-import Saloon from 'pages/saloon/Saloon';
-import Register from 'pages/Register';
-import Welcome from 'pages/Welcome';
-import Forgot from 'pages/Forgot';
-import Login from 'pages/Login';
-import Room from 'pages/Room';
-import Layout from 'components/layout/Layout';
-import RouteGuard from 'utils/route-guard';
-import { store } from 'store/store';
-import App from 'App';
-import ChineseRoom from 'componentsChinese/ChineseRoom';
-import ChineseSaloon from 'componentsChinese/saloon/ChineseSaloon';
+import './index.scss';
+import reportWebVitals from './reportWebVitals';
+import SubscriptionOptions from './pages/account/subscription/SubscriptionOptions';
+import SuccessfulPayment from './pages/account/subscription/SuccessfulPayment';
+import FailedPayment from './pages/account/subscription/FailedPayment';
+import AccountDetails from './pages/account/AccountDetails';
+import ResetPassword from './pages/ResetPassword';
+import Instructions from './pages/Instructions';
+import Account from './pages/account/Account';
+import Saloon from './pages/saloon/Saloon';
+import Register from './pages/Register';
+import Welcome from './pages/Welcome';
+import Forgot from './pages/Forgot';
+import Login from './pages/Login';
+import Room from './pages/Room';
+import Layout from './components/layout/Layout';
+import RouteGuard from './utils/route-guard';
+import { store } from './store/store';
+import App from './App';
+import ChineseRoom from './componentsChinese/ChineseRoom';
+import ChineseSaloon from './componentsChinese/saloon/ChineseSaloon';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

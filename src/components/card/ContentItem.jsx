@@ -10,7 +10,7 @@ const ContentItem = ({ card, i }) => {
       ) : (
         <div className="ace-of-spades">
           {aceOfSpades}
-          <div className="card-logo">{process.env.REACT_APP_DOMAIN_NAME}</div>
+          <div className="card-logo">{import.meta.env.VITE_DOMAIN_NAME}</div>
         </div>
       )}
     </div>
