@@ -1,9 +1,9 @@
+import { useActionState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useRegisterMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
-import { useActionState } from 'react';
 
 const Register = () => {
   const [formState, formAction, isPending] = useActionState(registerAction, {
@@ -49,8 +49,8 @@ const Register = () => {
     <div className="register">
       <Frame>
         <form action={formAction}>
-          <div className="form-control">
-            <label htmlFor="username">Όνομα χρήστη</label>
+          <label className="form-control">
+            Όνομα χρήστη
             <input
               id="username"
               name="username"
@@ -58,18 +58,18 @@ const Register = () => {
               autoComplete="on"
               defaultValue={formState.enteredValues?.username}
             />
-          </div>
-          <div className="form-control">
-            <label htmlFor="password">Κωδικός ασφαλείας</label>
+          </label>
+          <label className="form-control">
+            Κωδικός ασφαλείας
             <input
               id="password"
               name="password"
               type="text"
               defaultValue={formState.enteredValues?.password}
             />
-          </div>
-          <div className="form-control">
-            <label htmlFor="email">Διεύθυνση e-mail</label>
+          </label>
+          <label className="form-control">
+            Διεύθυνση e-mail
             <input
               id="email"
               name="email"
@@ -77,16 +77,16 @@ const Register = () => {
               autoComplete="on"
               defaultValue={formState.enteredValues?.email}
             />
-          </div>
-          <div className="form-control">
-            <label htmlFor="confirmPassword">Επαλήθευση κωδικού</label>
+          </label>
+          <label className="form-control">
+            Επαλήθευση κωδικού
             <input
               id="confirmPassword"
               name="confirmPassword"
               type="text"
               defaultValue={formState.enteredValues?.confirmPassword}
             />
-          </div>
+          </label>
           <span>{formState.error}</span>
           <Button
             type="submit"
@@ -94,8 +94,8 @@ const Register = () => {
             disabled={isPending}
             className="orange"
           />
-          <div className="form-control agree-terms">
-            <label htmlFor="agree">Συμφωνώ με τους όρους χρήσης</label>
+          <label className="form-control agree-terms">
+            Συμφωνώ με τους όρους χρήσης
             <input
               type="checkbox"
               className="checkbox"
@@ -103,7 +103,7 @@ const Register = () => {
               name="agree"
               defaultChecked={!!formState.enteredValues?.agree}
             />
-          </div>
+          </label>
         </form>
       </Frame>
     </div>

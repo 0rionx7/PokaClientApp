@@ -2,7 +2,6 @@ import { useActionState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useLoginMutation } from 'features/account/accountApi';
-import CheckBox from 'components/ui/CheckBox';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
 import './LoginRegister.scss';
@@ -45,12 +44,13 @@ const Login = () => {
       return { error: result.error.data, enteredValues: loginData };
     else navigate('/saloon', { replace: true });
   }
+
   return (
     <div className="login">
       <Frame>
         <form action={formAction}>
-          <div className="form-control username">
-            <label htmlFor="username">Όνομα χρήστη</label>
+          <label className="form-control">
+            Όνομα χρήστη
             <input
               id="username"
               name="username"
@@ -58,22 +58,27 @@ const Login = () => {
               autoComplete="on"
               defaultValue={formState.enteredValues?.username}
             />
-          </div>
-          <CheckBox
-            checked={!!formState.enteredValues?.rememberMe}
-            name="rememberMe"
-            label="να με θυμάσαι"
-            style={{ alignSelf: 'flex-end', fontSize: '.8rem' }}
-          />
-          <div className="form-control password">
-            <label htmlFor="password">Κωδικός</label>
+          </label>
+          <label
+            className="form-control"
+            style={{ alignSelf: 'flex-end', fontSize: '.8rem' }}>
+            να με θυμάσαι
+            <input
+              type="checkbox"
+              className="checkbox"
+              name="rememberMe"
+              defaultChecked={!!formState.enteredValues?.rememberMe}
+            />
+          </label>
+          <label className="form-control">
+            Κωδικός
             <input
               id="password"
               name="password"
               type="text"
               defaultValue={formState.enteredValues?.password}
             />
-          </div>
+          </label>
           <Link to="/forgot">
             <p>Ξέχασα τον κωδικό.</p>
           </Link>
