@@ -1,7 +1,6 @@
 @use '../variables';
-
+$total-width: calc(var(--card-width) + 0.4rem);
 .corner {
-  $total-width: calc(var(--card-width) + 0.4rem);
   .card {
     margin-right: 0.4rem;
   }
@@ -32,7 +31,6 @@
   }
 }
 .cross {
-  $total-width: calc(var(--card-width) + 0.4rem);
   .card {
     margin-right: 0.4rem;
   }
@@ -57,7 +55,6 @@
   }
 }
 .triangle {
-  $total-width: calc(var(--card-width) + 0.4rem);
   .hat {
     transform: rotateZ(30deg);
     translate: calc(1 * $total-width);
@@ -79,7 +76,6 @@
   }
 }
 .square {
-  $total-width: calc(var(--card-width) + 0.4rem);
   .hat {
     transform: rotateZ(30deg);
     translate: calc(1.5 * $total-width);
@@ -89,7 +85,6 @@
   }
 }
 .clock {
-  $total-width: calc(var(--card-width) + 0.4rem);
   .hat {
     transform: rotateZ(30deg);
     translate: calc(1.5 * $total-width);
@@ -105,7 +100,6 @@
   }
 }
 .tit {
-  $total-width: calc(var(--card-width) + 0.4rem);
   .hat {
     transform: rotateZ(30deg);
     translate: calc(1.5 * $total-width);
@@ -121,7 +115,6 @@
   }
 }
 .elevator {
-  $total-width: calc(var(--card-width) + 0.4rem);
   .hat {
     transform: rotateZ(30deg);
     translate: calc(2 * $total-width);
