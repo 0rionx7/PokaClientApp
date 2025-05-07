@@ -1,27 +1,25 @@
-import { Fragment } from 'react';
-import { useFormikContext } from 'formik';
-
+import { useGameBuilderContext } from 'hooks/gameBuilderContext';
 import { infoText } from 'utils/text-constants';
 import Radio from 'components/ui/Radio';
 
 const Dilemma = ({ name, options }) => {
-  const { values } = useFormikContext();
+  const { values } = useGameBuilderContext();
 
   return (
     <>
       {options.map(option => {
         const optionName = option.name ?? option;
         const label = option.img ?? option;
+
         return (
-          <Fragment key={optionName}>
-            <Radio
-              name={name}
-              label={label}
-              value={optionName}
-              checked={values[name] === optionName}
-              info={infoText[optionName]}
-            />
-          </Fragment>
+          <Radio
+            key={values[name] + optionName}
+            name={name}
+            label={label}
+            value={optionName}
+            defaultChecked={values[name] === optionName}
+            info={infoText[optionName]}
+          />
         );
       })}
     </>
