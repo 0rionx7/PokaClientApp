@@ -1,30 +1,29 @@
-import { memo } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { games, builderDefaults, gameNames } from 'utils/games';
+import { games, builderDefaults } from 'utils/games';
 import { setCurrentChoosenGame } from 'features/gameState/gameStateSlice';
 import { useGameBuilderContext } from 'hooks/gameBuilderContext';
-import { useState } from 'react';
 
-const startCard = [2, 3, 4, 5, 6, 7];
+const startingCards = [2, 3, 4, 5, 6, 7];
 
-const GameChooser = memo(() => {
-  const [prevGame, setPrevGame] = useState(gameNames.MAMUT);
+const GameChooser = () => {
   const { values, setValues } = useGameBuilderContext();
   const dispatch = useDispatch();
   const game = games?.find(game => game.gameName === values.gameName);
 
-  if (values.gameName !== prevGame) {
-    setPrevGame(values.gameName);
-    const { builderDefaults: defaults, ...gameInfo } = game;
-    setValues({
-      ...builderDefaults,
-      ...defaults,
-      ...gameInfo, // for rowsIndexes, boardClass, showtitles
-      startingCard: values.startingCard,
-    });
-    dispatch(setCurrentChoosenGame(game.gameName));
-  }
+  useEffect(() => {
+    if (game) {
+      const { builderDefaults: defaults, ...gameInfo } = game;
+      setValues({
+        ...builderDefaults,
+        ...defaults,
+        ...gameInfo, // for rowsIndexes, boardClass, showtitles
+        startingCard: values.startingCard,
+      });
+      dispatch(setCurrentChoosenGame(game.gameName));
+    }
+  }, [setValues, game, values.startingCard, dispatch]);
 
   return (
     <div className="game-chooser">
@@ -41,7 +40,7 @@ const GameChooser = memo(() => {
       <label className="starting-card">
         <div>ΜΙΚ. ΧΑΡΤΙ</div>
         <select name="startingCard" defaultValue={values.startingCard}>
-          {startCard.map(value => (
+          {startingCards.map(value => (
             <option key={value} value={value}>
               {value}
             </option>
@@ -50,6 +49,6 @@ const GameChooser = memo(() => {
       </label>
     </div>
   );
-});
+};
 
 export default GameChooser;

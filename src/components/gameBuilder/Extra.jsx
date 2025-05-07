@@ -1,10 +1,12 @@
 import { memo } from 'react';
 
+import { useGameBuilderContext } from 'hooks/gameBuilderContext';
 import { extraBuilderValues } from 'utils/text-functions';
 import CheckBox from 'components/ui/CheckBox';
 
-const Extra = memo(({ gameName }) => {
-  const { name, label } = extraBuilderValues(gameName);
+const Extra = memo(() => {
+  const { values } = useGameBuilderContext();
+  const { name, label } = extraBuilderValues(values.gameName);
 
   return (
     <CheckBox
