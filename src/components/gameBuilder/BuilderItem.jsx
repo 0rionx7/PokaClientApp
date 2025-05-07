@@ -35,7 +35,7 @@ const BuilderItem = ({ title, element }) => {
   );
 
   const item = (
-    <div className="frame-item builder-item">
+    <div className="frame-item builder-item" key={values.gameName}>
       <div className="title"> {title}</div>
       <div className="controls"> {element}</div>
     </div>
