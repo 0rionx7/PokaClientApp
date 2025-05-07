@@ -1,21 +1,24 @@
-import { Fragment, memo } from 'react';
-import Radio from 'components/ui/Radio';
-import { winningOrders } from 'utils/text-constants';
+import { memo } from 'react';
 
-const WinningOrder = memo(({ winningOrder }) => {
-  const orders = Object.values(winningOrders);
+import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { winningOrders } from 'utils/text-constants';
+import Radio from 'components/ui/Radio';
+
+const orders = Object.values(winningOrders);
+
+const WinningOrder = memo(() => {
+  const { values } = useGameBuilderContext();
 
   return (
     <>
       {orders.map(order => (
-        <Fragment key={order}>
-          <Radio
-            name="winningOrder"
-            label={order}
-            value={order}
-            checked={winningOrder === order}
-          />
-        </Fragment>
+        <Radio
+          key={values.winningOrder + order}
+          name="winningOrder"
+          label={order}
+          value={order}
+          defaultChecked={values.winningOrder === order}
+        />
       ))}
     </>
   );
