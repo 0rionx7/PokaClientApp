@@ -1,18 +1,10 @@
-import { Field } from 'formik';
-
 import ToolTip from 'components/ui/ToolTip';
 
-const Radio = ({ name, label, value, checked, info }) => {
+const Radio = ({ label, value, info, ...rest }) => {
   return (
     <label className="form-control">
       <div>{label || value}</div>
-      <Field
-        type="radio"
-        className="checkbox"
-        name={name}
-        value={value}
-        checked={checked}
-      />
+      <input type="radio" className="checkbox" value={value} {...rest} />
       {info && <ToolTip info={info} />}
     </label>
   );
