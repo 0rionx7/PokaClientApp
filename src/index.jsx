@@ -68,12 +68,22 @@ const router = createBrowserRouter(
         />
       </Route>
     </Route>
-  )
+  ),
+  {
+    future: {
+      v7_relativeSplatPath: true,
+    },
+  }
 );
 root.render(
   // <StrictMode>
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <RouterProvider
+      router={router}
+      future={{
+        v7_startTransition: true,
+      }}
+    />
   </Provider>
   // </StrictMode>
 );

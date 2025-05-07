@@ -1,8 +1,7 @@
-import { useFormikContext } from 'formik';
-
 import { builderTitles } from 'utils/text-constants';
 import { gameNames } from 'utils/games';
 import { useMemo } from 'react';
+import { useGameBuilderContext } from 'hooks/gameBuilderContext';
 
 const showExtra = [
   gameNames.CROSS,
@@ -13,7 +12,7 @@ const showExtra = [
 ];
 
 const BuilderItem = ({ title, element }) => {
-  const { values } = useFormikContext();
+  const { values } = useGameBuilderContext();
   const { gameName } = values;
 
   const hiddenWhenAny = useMemo(

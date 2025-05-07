@@ -8,6 +8,7 @@ import GameBuilder from 'components/gameBuilder/GameBuilder';
 import ListedPlayers from 'components/dealer/ListedPlayers';
 import Overlay from 'components/ui/Overlay';
 import './DealerScreen.scss';
+import GameBuilderContextProvider from 'hooks/gameBuilderContext';
 
 const DealerScreen = () => {
   const { gameId } = useParams();
@@ -25,7 +26,9 @@ const DealerScreen = () => {
 
   return (
     <Overlay className="builder-overlay">
-      <GameBuilder />
+      <GameBuilderContextProvider>
+        <GameBuilder />
+      </GameBuilderContextProvider>
       <div className="players-info">
         <ListedPlayers
           title="Συμμετέχοντες"
