@@ -1,20 +1,23 @@
-import { Fragment, memo } from 'react';
+import { memo } from 'react';
 
 import CheckBox from 'components/ui/CheckBox';
+import { useGameBuilderContext } from 'hooks/gameBuilderContext';
 
-const HandCardsInPlay = memo(({ cardsInHand, handCardsInPlay }) => {
-  const inPlay = [1, 2, 3, 4, 5, 6, 7].slice(0, +cardsInHand);
+const HandCardsInPlay = memo(() => {
+  const { values } = useGameBuilderContext();
+  const inPlay = [1, 2, 3, 4, 5, 6, 7].slice(0, +values.cardsInHand);
+  const style = { alignSelf: 'flex-end', fontSize: '.8rem' };
 
   return (
     <>
       {inPlay.map(count => (
-        <Fragment key={count}>
-          <CheckBox
-            name="handCardsInPlay"
-            value={count}
-            checked={handCardsInPlay.includes(count.toString())}
-          />
-        </Fragment>
+        <CheckBox
+          key={count}
+          style={style}
+          name="handCardsInPlay"
+          value={count}
+          defaultChecked={values.handCardsInPlay.includes(count.toString())}
+        />
       ))}
     </>
   );
