@@ -9,14 +9,14 @@ import { useReconnectedLoginMutation } from 'features/account/accountApi';
 import { socket } from 'features/gameState/gameStateApi';
 import useRequestChineseResult from 'hooks/useRequestChineseResult';
 import useRequestResult from 'hooks/useRequestResult';
-import useOnlineStatus from 'hooks/useOnlineStatus';
+import useOfflineSnack from 'hooks/useOfflineSnack';
 
 function App() {
   const { token } = useSelector(state => state.account);
   const [reconnectedLogin] = useReconnectedLoginMutation();
   const { approvedElement, rejectedElement } = useRequestResult();
   const { approvedChElement, rejectedChElement } = useRequestChineseResult();
-  const offLineElement = useOnlineStatus();
+  const offLineElement = useOfflineSnack();
 
   useEffect(() => {
     socket.on('connect', () => {

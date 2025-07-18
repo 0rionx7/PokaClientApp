@@ -1,30 +1,22 @@
-import { useEffect } from 'react';
-
-import useSnackBar from 'hooks/useSnackBar';
+import { useSyncExternalStore } from 'react';
 
 const useOnlineStatus = () => {
-  const { snackElement, setSnackInfo } = useSnackBar({
-    height: '100%',
-    secs: 0,
-  });
+  const isOnline = useSyncExternalStore(subscribe, getSnapshot);
 
-  useEffect(() => {
-    const onLineHandler = _ => setSnackInfo('');
-    const offLineHandler = _ =>
-      setSnackInfo(
-        'Απώλεια σύνδεσης...\nΠροσπάθεια επανασύνδεσης σε εξέλιξη...'
-      );
-
-    window.addEventListener('online', onLineHandler);
-    window.addEventListener('offline', offLineHandler);
-
-    return () => {
-      window.removeEventListener('online', onLineHandler);
-      window.removeEventListener('offline', offLineHandler);
-    };
-  }, [setSnackInfo]);
-
-  return snackElement;
+  return isOnline;
 };
+
+function getSnapshot() {
+  return navigator.onLine;
+}
+
+function subscribe(callback) {
+  window.addEventListener('online', callback);
+  window.addEventListener('offline', callback);
+  return () => {
+    window.removeEventListener('online', callback);
+    window.removeEventListener('offline', callback);
+  };
+}
 
 export default useOnlineStatus;
