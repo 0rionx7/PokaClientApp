@@ -1,51 +1,45 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { selectedCard, selectedCardsIndexes } from 'utils/utilities-functions';
 import { useSelectCardsMutation } from 'features/gameState/gameStateApi';
-import { selectHandcards } from 'features/gameState/gameStateSlice';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
-import { useState } from 'react';
+
+const getCardLabel = count => `ΧΑΡΤΙ${count !== 1 ? 'Α' : ''}`;
 
 const Swap = ({ selecting }) => {
   const { gameId } = useParams();
-  const handCards = useSelector(selectHandcards);
-  const [selectCards, { isLoading, isSuccess, error, reset }] =
+  const handCards = useSelector(state => state.gameState.handCards);
+  const [selectCards, { isLoading, isSuccess, error }] =
     useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
-  const [selected, setSelected] = useState(0);
 
   const selectedHandCardsIndexes = selectedCardsIndexes(handCards);
   const selectedHandCardsCount = handCards.filter(selectedCard).length;
+  const swapError = selectedHandCardsCount > selecting.swaps;
 
-  if (error) {
-    setSnackInfo(error.data);
-    reset();
-  }
-
-  const wrongSelection = selectedHandCardsCount > selecting.swaps;
-  if (selectedHandCardsCount !== selected) {
-    setSelected(selectedHandCardsCount);
-    if (wrongSelection)
+  useEffect(() => {
+    if (swapError)
       setSnackInfo(
         `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για ${selecting.swaps}`
       );
-  }
+  }, [setSnackInfo, swapError, selectedHandCardsCount, selecting.swaps]);
 
-  const prompt = (
+  useEffect(() => {
+    if (error) setSnackInfo(error.data);
+  }, [error, setSnackInfo]);
+
+  const prompt = swapError ? (
+    'Λάθος επιλογή'
+  ) : selectedHandCardsCount === 0 ? (
+    'Χωρίς αλλαγή'
+  ) : (
     <>
-      {wrongSelection ? (
-        'Λάθος επιλογή'
-      ) : selectedHandCardsCount === 0 ? (
-        'Χωρίς αλλαγή'
-      ) : (
-        <>
-          ΑΛΛΑΓΗ <br />
-          <span> {selectedHandCardsCount}</span> <br />
-          {'ΧΑΡΤΙ' + (selectedHandCardsCount !== 1 ? 'Α' : '')}
-        </>
-      )}
+      ΑΛΛΑΓΗ <br />
+      <span>{selectedHandCardsCount}</span> <br />
+      {getCardLabel(selectedHandCardsCount)}
     </>
   );
 
@@ -61,7 +55,7 @@ const Swap = ({ selecting }) => {
             selectedHandCardsIndexes,
           })
         }
-        disabled={isLoading || isSuccess || wrongSelection}
+        disabled={isLoading || isSuccess || swapError}
         className="orange"
       />
     </div>

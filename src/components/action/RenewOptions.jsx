@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -9,17 +10,16 @@ import Button from 'components/ui/Button';
 
 const RenewOptions = () => {
   const { gameId } = useParams();
-  const [renew, { isSuccess, isLoading, error, reset }] =
-    useRenewCavaMutation();
+  const [renew, { isSuccess, isLoading, error }] = useRenewCavaMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const {
     data: { cava },
   } = useGetGameStateQuery(gameId);
 
-  if (error) {
-    setSnackInfo(error.data);
-    reset();
-  }
+  useEffect(() => {
+    if (error) setSnackInfo(error.data);
+  }, [error, setSnackInfo]);
+
   const options = [0.2 * cava, 0.5 * cava, 0.8 * cava, cava];
 
   return (

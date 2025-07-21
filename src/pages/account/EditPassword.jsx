@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Field, Form, Formik } from 'formik';
 
 import { useChangePasswordMutation } from 'features/account/accountApi';
@@ -11,8 +11,11 @@ const EditPassword = () => {
   const [changePassword, { isLoading, isSuccess, reset }] =
     useChangePasswordMutation();
 
-  if (!edit) {
-    reset();
+  useEffect(() => {
+    if (!edit) reset();
+  }, [edit, reset]);
+
+  if (!edit)
     return (
       <div className={classes['flex-center']} style={{ height: '2.2rem' }}>
         *********
@@ -21,7 +24,6 @@ const EditPassword = () => {
         </div>
       </div>
     );
-  }
 
   const initialValues = {
     currentPassword: '',

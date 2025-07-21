@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -7,10 +8,6 @@ import {
   useSubmitCardsMutation,
 } from 'features/gameState/gameStateApi';
 import { isMirror, selectedCardsIndexes } from 'utils/utilities-functions';
-import {
-  selectHandcards,
-  selectTablecards,
-} from 'features/gameState/gameStateSlice';
 import { describeHand } from 'utils/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
@@ -19,8 +16,7 @@ import { gameNames } from 'utils/games';
 
 const Submit = () => {
   const { gameId } = useParams();
-  const handCards = useSelector(selectHandcards);
-  const tableCards = useSelector(selectTablecards);
+  const { handCards, tableCards } = useSelector(state => state.gameState);
   const { data: gameData } = useGetGameStateQuery(gameId);
   const [
     submitHand,
@@ -28,7 +24,6 @@ const Submit = () => {
       isLoading: submitting,
       isSuccess: submissionSuccess,
       error: submitionError,
-      reset: resetSubmition,
     },
   ] = useSubmitCardsMutation();
   const [
@@ -49,11 +44,10 @@ const Submit = () => {
   const selectedHandCardsCount =
     submittedHandCardsIndexes.length + submittedTableCardsIndexes.length;
 
-  if (evaluationError || submitionError) {
-    setSnackInfo(evaluationError?.data || submitionError?.data);
-    resetSubmition();
-    reset();
-  }
+  useEffect(() => {
+    if (evaluationError || submitionError)
+      setSnackInfo(evaluationError?.data || submitionError?.data);
+  }, [evaluationError, submitionError, setSnackInfo]);
 
   let description = describeHand(data?.evaluatedHand, true);
 

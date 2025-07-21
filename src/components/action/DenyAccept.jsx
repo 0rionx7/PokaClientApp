@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useDenyCardMutation } from 'features/gameState/gameStateApi';
@@ -5,14 +6,13 @@ import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 
 const DenyAccept = () => {
-  const [denyCard, { isLoading, error, reset }] = useDenyCardMutation();
+  const [denyCard, { isLoading, error }] = useDenyCardMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const { gameId } = useParams();
 
-  if (error) {
-    setSnackInfo(error.data);
-    reset();
-  }
+  useEffect(() => {
+    if (error) setSnackInfo(error.data);
+  }, [error, setSnackInfo]);
 
   return (
     <div className="buttons-container">

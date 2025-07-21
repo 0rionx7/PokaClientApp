@@ -1,37 +1,34 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { selectedCard, selectedCardsIndexes } from 'utils/utilities-functions';
 import { useSelectCardsMutation } from 'features/gameState/gameStateApi';
-import { selectHandcards } from 'features/gameState/gameStateSlice';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 
 const Discard = ({ selecting }) => {
   const { gameId } = useParams();
-  const handCards = useSelector(selectHandcards);
-  const [selectCards, { isLoading, isSuccess, error, reset }] =
+  const handCards = useSelector(state => state.gameState.handCards);
+  const [selectCards, { isLoading, isSuccess, error }] =
     useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
 
   const selectedHandCardsIndexes = selectedCardsIndexes(handCards);
   const selectedHandCardsCount = handCards.filter(selectedCard).length;
-  const [selected, setSelected] = useState(0);
+  const discardError = selectedHandCardsCount > 1;
 
-  if (error) {
-    setSnackInfo(error.data);
-    reset();
-  }
-
-  const wrongSelection = selectedHandCardsCount > 1;
-  if (selectedHandCardsCount !== selected) {
-    setSelected(selectedHandCardsCount);
-    if (wrongSelection)
+  useEffect(() => {
+    if (discardError) {
       setSnackInfo(
         `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για 1`
       );
-  }
+    }
+  }, [selectedHandCardsCount, discardError, setSnackInfo]);
+
+  useEffect(() => {
+    if (error) setSnackInfo(error.data);
+  }, [error, setSnackInfo]);
 
   const noSelection = selectedHandCardsCount === 0;
   const prompt = noSelection ? 'Επιλέξτε σκάρτο' : 'Απόρριψη';
@@ -48,7 +45,7 @@ const Discard = ({ selecting }) => {
             selectedHandCardsIndexes,
           })
         }
-        disabled={isLoading || isSuccess || noSelection || wrongSelection}
+        disabled={isLoading || isSuccess || discardError || noSelection}
         className="red"
       />
     </div>
