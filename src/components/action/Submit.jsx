@@ -7,7 +7,7 @@ import {
   useGetGameStateQuery,
   useSubmitCardsMutation,
 } from 'features/gameState/gameStateApi';
-import { isMirror, selectedCardsIndexes } from 'utils/utilities-functions';
+import { isMirror, selectedCardIndexes } from 'utils/utilities-functions';
 import { describeHand } from 'utils/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
@@ -38,11 +38,11 @@ const Submit = () => {
   ] = useEvaluateHandMutation();
   const { snackElement, setSnackInfo } = useSnackBar({ top: true });
 
-  const submittedHandCardsIndexes = selectedCardsIndexes(handCards);
-  const submittedTableCardsIndexes = selectedCardsIndexes(tableCards);
+  const submittedHandCardIndexes = selectedCardIndexes(handCards);
+  const submittedTableCardIndexes = selectedCardIndexes(tableCards);
 
   const selectedHandCardsCount =
-    submittedHandCardsIndexes.length + submittedTableCardsIndexes.length;
+    submittedHandCardIndexes.length + submittedTableCardIndexes.length;
 
   useEffect(() => {
     if (evaluationError || submitionError)
@@ -57,8 +57,7 @@ const Submit = () => {
         `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για 5`
       );
     if (
-      submittedHandCardsIndexes.concat(submittedTableCardsIndexes).length !==
-        5 &&
+      submittedHandCardIndexes.concat(submittedTableCardIndexes).length !== 5 &&
       gameData.gameName !== gameNames.GRAVEYARD &&
       !(
         gameData.gameName === gameNames.MAMUT && isMirror(tableCards, handCards)
@@ -67,8 +66,8 @@ const Submit = () => {
       return setSnackInfo(` Επιλέξτε συνολικά 5 χαρτιά`);
     evaluateHand({
       gameId,
-      submittedHandCardsIndexes,
-      submittedTableCardsIndexes,
+      submittedHandCardIndexes,
+      submittedTableCardIndexes,
     });
   };
 
@@ -83,8 +82,8 @@ const Submit = () => {
             onClick={() =>
               submitHand({
                 gameId,
-                submittedHandCardsIndexes,
-                submittedTableCardsIndexes,
+                submittedHandCardIndexes: submittedHandCardIndexes,
+                submittedTableCardIndexes: submittedTableCardIndexes,
               })
             }
             disabled={submitting || submissionSuccess}

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectedCard, selectedCardsIndexes } from 'utils/utilities-functions';
+import { cardSelected, selectedCardIndexes } from 'utils/utilities-functions';
 import { useSelectCardsMutation } from 'features/gameState/gameStateApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
@@ -14,23 +14,21 @@ const Discard = ({ selecting }) => {
     useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
 
-  const selectedHandCardsIndexes = selectedCardsIndexes(handCards);
-  const selectedHandCardsCount = handCards.filter(selectedCard).length;
-  const discardError = selectedHandCardsCount > 1;
+  const selectedHandCardIndexes = selectedCardIndexes(handCards);
+  const selectedHandCardCount = handCards.filter(cardSelected).length;
+  const discardError = selectedHandCardCount > 1;
 
   useEffect(() => {
     if (discardError) {
-      setSnackInfo(
-        `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για 1`
-      );
+      setSnackInfo(`Έχετε επιλέξει ${selectedHandCardCount} χαρτιά αντί για 1`);
     }
-  }, [selectedHandCardsCount, discardError, setSnackInfo]);
+  }, [selectedHandCardCount, discardError, setSnackInfo]);
 
   useEffect(() => {
     if (error) setSnackInfo(error.data);
   }, [error, setSnackInfo]);
 
-  const noSelection = selectedHandCardsCount === 0;
+  const noSelection = selectedHandCardCount === 0;
   const prompt = noSelection ? 'Επιλέξτε σκάρτο' : 'Απόρριψη';
 
   return (
@@ -42,7 +40,7 @@ const Discard = ({ selecting }) => {
           selectCards({
             gameId,
             selectionInfo: selecting,
-            selectedHandCardsIndexes,
+            selectedHandCardIndexes,
           })
         }
         disabled={isLoading || isSuccess || discardError || noSelection}

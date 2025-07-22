@@ -1,18 +1,18 @@
-export function colorClass(reference) {
+export function colorClass(value) {
   let className = 'neutral';
-  if (reference) className = reference > 0 ? 'possitive' : 'negative';
+  if (value) className = value > 0 ? 'possitive' : 'negative';
   return className;
 }
 export function isSeated(playerState) {
   return !playerState.sittingOut;
 }
-export function selectedCardsIndexes(cards) {
+export function selectedCardIndexes(cards) {
   return cards.reduce((acc, curr, i) => {
     if (curr.selected) acc.push(i);
     return acc;
   }, []);
 }
-export function selectedCard(card) {
+export function cardSelected(card) {
   return card.selected;
 }
 export function playerEntry(playerName) {
@@ -21,10 +21,7 @@ export function playerEntry(playerName) {
 export function updateAll(playersStateList, update) {
   return playersStateList.map(playerState => ({ ...playerState, ...update }));
 }
-export function isHere(playerState) {
-  return !playerState.sittingOut;
-}
-export function faceUp(card) {
+export function revealCard(card) {
   return { ...card, faceUp: true };
 }
 export function unselectAll(card) {
@@ -38,23 +35,23 @@ export function isMirror(tableCards, handCards) {
   handCards = handCards.slice().sort(descValue);
   return tableCards.every((card, i) => card.value === handCards[i].value);
 }
-export function inGameFistList(playersStateList) {
+export function sortPlayers(playersStateList) {
   const inGameList = playersStateList.filter(ps => !ps.sittingOut);
   const outOfGameList = playersStateList.filter(ps => ps.sittingOut);
   return inGameList.concat(outOfGameList);
 }
-export function notEnoughCards(game, playersCount) {
+export function notEnoughCards(values, playersCount) {
   let tableCardsCount = 0;
-  let handCardsCount = +game.cardsInHand;
+  let handCardsCount = +values.cardsInHand;
 
-  if (game.rowsIndexes) tableCardsCount = game.rowsIndexes.flat(1).length;
-  else if (game.railroadLength) tableCardsCount = +game.railroadLength;
+  if (values.rowsIndexes) tableCardsCount = values.rowsIndexes.flat(1).length;
+  else if (values.railroadLength) tableCardsCount = +values.railroadLength;
 
-  if (game.hats) tableCardsCount += +game.hats;
+  if (values.hats) tableCardsCount += +values.hats;
 
-  handCardsCount += game.skarto ? 1 : 0;
-  handCardsCount += game.swap ? +game.swaps : 0;
-  handCardsCount += game.deny ? +game.denies : 0;
+  handCardsCount += values.skarto ? 1 : 0;
+  handCardsCount += values.swap ? +values.swaps : 0;
+  handCardsCount += values.deny ? +values.denies : 0;
   handCardsCount *= playersCount;
-  return tableCardsCount + handCardsCount > 4 * (15 - +game.startingCard);
+  return tableCardsCount + handCardsCount > 4 * (15 - +values.startingCard);
 }

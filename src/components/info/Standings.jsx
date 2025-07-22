@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import PlayerStanding from 'components/info/PlayerStanding';
-import { inGameFistList } from 'utils/utilities-functions';
+import { sortPlayers } from 'utils/utilities-functions';
 import './Standings.scss';
 
 const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.'];
@@ -14,7 +14,7 @@ const Standings = () => {
   const playersStateList = data.playersStateList
     .slice()
     .sort((a, b) => b.resta - a.resta);
-  const renderList = inGameFistList(playersStateList);
+  const renderList = sortPlayers(playersStateList);
 
   return (
     <div className="standings">

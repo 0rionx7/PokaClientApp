@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { faceUp, unselectAll } from 'utils/utilities-functions';
+import { revealCard, unselectAll } from 'utils/utilities-functions';
 import { gameStateApi } from 'features/gameState/gameStateApi';
 import { gameNames } from 'utils/text-constants';
 
@@ -22,7 +22,7 @@ export const gameStateSlice = createSlice({
       state.currentChoosenGame = action.payload;
     },
     setHandCards: (state, action) => {
-      state.handCards = action.payload.map(faceUp);
+      state.handCards = action.payload.map(revealCard);
     },
     postMessage: (state, action) => {
       state.messages.push(action.payload);

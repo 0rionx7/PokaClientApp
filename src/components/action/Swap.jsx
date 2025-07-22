@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectedCard, selectedCardsIndexes } from 'utils/utilities-functions';
+import { cardSelected, selectedCardIndexes } from 'utils/utilities-functions';
 import { useSelectCardsMutation } from 'features/gameState/gameStateApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
@@ -16,8 +16,8 @@ const Swap = ({ selecting }) => {
     useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
 
-  const selectedHandCardsIndexes = selectedCardsIndexes(handCards);
-  const selectedHandCardsCount = handCards.filter(selectedCard).length;
+  const selectedHandCardIndexes = selectedCardIndexes(handCards);
+  const selectedHandCardsCount = handCards.filter(cardSelected).length;
   const swapError = selectedHandCardsCount > selecting.swaps;
 
   useEffect(() => {
@@ -52,7 +52,7 @@ const Swap = ({ selecting }) => {
           selectCards({
             gameId,
             selectionInfo: selecting,
-            selectedHandCardsIndexes,
+            selectedHandCardIndexes,
           })
         }
         disabled={isLoading || isSuccess || swapError}
