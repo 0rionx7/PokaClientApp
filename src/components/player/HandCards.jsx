@@ -18,8 +18,8 @@ const HandCards = ({ playerState, playingIndex, chipsPosition }) => {
   const [renderCards, setRenderCards] = useState([]);
 
   const hostPlayerState = useMemo(
-    () => data?.playersStateList.find(playerEntry(hostPlayerName)),
-    [data?.playersStateList, hostPlayerName]
+    () => data?.playerStates.find(playerEntry(hostPlayerName)),
+    [data?.playerStates, hostPlayerName]
   );
   const isHostPlayer = playerState.playerName === hostPlayerName;
   const playerSubmitted = playerState.submittedHand.length;

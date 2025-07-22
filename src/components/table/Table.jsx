@@ -27,10 +27,8 @@ const Table = () => {
   const [sitOut] = useSitOutMutation();
   const [prevDealer, setPrevDealer] = useState(data.dealer);
 
-  const hostPlayerState = data.playersStateList.find(
-    playerEntry(hostPlayerName)
-  );
-  const lastAtList = data.playersStateList.at(-1).playerName;
+  const hostPlayerState = data.playerStates.find(playerEntry(hostPlayerName));
+  const lastAtList = data.playerStates.at(-1).playerName;
   if (data.dealer !== prevDealer) {
     setPrevDealer(data.dealer);
     if (!data.dealer && hostPlayerName !== lastAtList)
@@ -47,7 +45,7 @@ const Table = () => {
   }, [refetch]);
 
   return (
-    <div className={'table players-' + data.playersStateList.length}>
+    <div className={'table players-' + data.playerStates.length}>
       <div className="poker-table">
         <div className="tsoxa" />
       </div>

@@ -1,11 +1,11 @@
 import ListedPlayer from 'components/dealer/ListedPlayer';
 import './ListedPlayers.scss';
 
-const ListedPlayers = ({ playersStateList, title }) => {
+const ListedPlayers = ({ playerStates, title }) => {
   return (
     <div className="listed-players">
       <h4>{title}</h4>
-      {playersStateList.map(playerState => (
+      {playerStates.map(playerState => (
         <ListedPlayer
           key={playerState?.playerName}
           playerState={playerState}

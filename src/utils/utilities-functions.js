@@ -18,8 +18,8 @@ export function cardSelected(card) {
 export function playerEntry(playerName) {
   return entry => entry.playerName === playerName;
 }
-export function updateAll(playersStateList, update) {
-  return playersStateList.map(playerState => ({ ...playerState, ...update }));
+export function updateAll(playerStates, update) {
+  return playerStates.map(playerState => ({ ...playerState, ...update }));
 }
 export function revealCard(card) {
   return { ...card, faceUp: true };
@@ -35,9 +35,9 @@ export function isMirror(tableCards, handCards) {
   handCards = handCards.slice().sort(descValue);
   return tableCards.every((card, i) => card.value === handCards[i].value);
 }
-export function sortPlayers(playersStateList) {
-  const inGameList = playersStateList.filter(ps => !ps.sittingOut);
-  const outOfGameList = playersStateList.filter(ps => ps.sittingOut);
+export function sortPlayers(playerStates) {
+  const inGameList = playerStates.filter(ps => !ps.sittingOut);
+  const outOfGameList = playerStates.filter(ps => ps.sittingOut);
   return inGameList.concat(outOfGameList);
 }
 export function notEnoughCards(values, playersCount) {

@@ -22,7 +22,7 @@ const Table = () => {
   const { data } = useGetGameStateChineseQuery(gameId);
   const [sitOut] = useSitOutChineseMutation();
   const dispatch = useDispatch();
-  const hostPlayerState = data.playersStateList.find(playerEntry(username));
+  const hostPlayerState = data.playerStates.find(playerEntry(username));
 
   useEffect(() => {
     return () => {
@@ -33,8 +33,8 @@ const Table = () => {
 
   if (!data) return <h3>waiting for others to join...</h3>;
 
-  const isDealer = data.playersStateList.findIndex(playerEntry(username)) === 0;
-  const playerCount = data.playersStateList.length;
+  const isDealer = data.playerStates.findIndex(playerEntry(username)) === 0;
+  const playerCount = data.playerStates.length;
 
   return (
     <div className={classes['table'] + ' ' + classes[`players-${playerCount}`]}>
@@ -42,9 +42,9 @@ const Table = () => {
       {isDealer && data.round === 1 && !data.currentPlayerList.length && (
         <DealerScreen />
       )}
-      {data.playersStateList.length > 1 && (
+      {data.playerStates.length > 1 && (
         <>
-          {data.playersStateList.map((playerState, i) => (
+          {data.playerStates.map((playerState, i) => (
             <Board
               key={playerState.playerName}
               playerState={playerState}

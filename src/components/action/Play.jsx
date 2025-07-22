@@ -18,8 +18,8 @@ const Play = () => {
   const { data } = useGetGameStateQuery(gameId);
 
   const hostPlayerState = useMemo(
-    () => data?.playersStateList.find(playerEntry(hostPlayerName)),
-    [data?.playersStateList, hostPlayerName]
+    () => data?.playerStates.find(playerEntry(hostPlayerName)),
+    [data?.playerStates, hostPlayerName]
   );
   const betting = hostPlayerState.betting;
   const swapping = hostPlayerState.selecting?.swaps;

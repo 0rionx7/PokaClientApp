@@ -17,14 +17,14 @@ const NextRound = () => {
   const { data } = useGetGameStateQuery(gameId);
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
   const [reveal, { revealing, revealed }] = useRevealCardsMutation();
-  const { handCards, submittedHand } = data.playersStateList.find(
+  const { handCards, submittedHand } = data.playerStates.find(
     playerEntry(hostPlayerName)
   );
 
   const showReveal =
     !submittedHand.length &&
     handCards.some(card => card.faceUp === false) &&
-    data.playersStateList.filter(isSeated).length > 1;
+    data.playerStates.filter(isSeated).length > 1;
 
   return (
     <Overlay style={{ zIndex: 50, backgroundColor: 'rgb(0 0 0 / 4%)' }}>

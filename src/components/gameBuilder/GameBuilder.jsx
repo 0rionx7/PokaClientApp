@@ -39,10 +39,10 @@ const GameBuilder = () => {
   const { snackElement, setSnackInfo } = useSnackBar();
   const { actionContainerRef } = useActionConRef();
 
-  const playersCount = data.playersStateList.filter(isHere).length;
-  const noOthersInPlay = data.playersStateList.filter(isHere).length === 1;
+  const playersCount = data.playerStates.filter(isHere).length;
+  const noOthersInPlay = data.playerStates.filter(isHere).length === 1;
   const allOthersTapi =
-    data.playersStateList.filter(state => state.resta > 0 && !state.sittingOut)
+    data.playerStates.filter(state => state.resta > 0 && !state.sittingOut)
       .length === 1;
 
   let btnPrompt;

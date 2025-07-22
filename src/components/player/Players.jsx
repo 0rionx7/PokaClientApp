@@ -6,11 +6,11 @@ import Player from 'components/player/Player';
 const Players = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const playersStateList = data?.playersStateList;
+  const playerStates = data?.playerStates;
 
   return (
     <>
-      {playersStateList.map((playerState, i) => (
+      {playerStates.map((playerState, i) => (
         <Player
           playerState={playerState}
           index={i}

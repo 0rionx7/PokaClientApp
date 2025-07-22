@@ -18,14 +18,14 @@ const Action = ({ hideInfo }) => {
   const { gameId } = useParams();
   const hostPlayerName = useSelector(selectPlayername);
   const {
-    data: { playersStateList, currentPlayerList, dealer },
+    data: { playerStates, currentPlayerList, dealer },
   } = useGetGameStateQuery(gameId);
   const { setContainerRef } = useActionConRef();
   const actionContainerRef = useRef();
 
   const hostPlayerState = useMemo(
-    () => playersStateList.find(playerEntry(hostPlayerName)),
-    [playersStateList, hostPlayerName]
+    () => playerStates.find(playerEntry(hostPlayerName)),
+    [playerStates, hostPlayerName]
   );
 
   const [currentPlayer] = currentPlayerList;

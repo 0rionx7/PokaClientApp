@@ -12,13 +12,10 @@ const usePlayerClass = index => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
 
-  const { playerName, submittedHand, handCards } =
-    data?.playersStateList.at(index);
-  const playersCount = data?.playersStateList.length;
-  const hostIndex = data?.playersStateList.findIndex(
-    playerEntry(hostPlayerName)
-  );
-  const playingList = data?.playersStateList.filter(ps =>
+  const { playerName, submittedHand, handCards } = data?.playerStates.at(index);
+  const playersCount = data?.playerStates.length;
+  const hostIndex = data?.playerStates.findIndex(playerEntry(hostPlayerName));
+  const playingList = data?.playerStates.filter(ps =>
     data?.currentPlayerList.some(playerEntry(ps.playerName))
   );
   const playerSubmitted = submittedHand.length;

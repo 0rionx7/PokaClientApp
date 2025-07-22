@@ -22,29 +22,27 @@ const DealerScreen = () => {
     () =>
       data
         ?.filter(request =>
-          gameData?.playersStateList.every(
-            ps => ps.playerName !== request.username
-          )
+          gameData?.playerStates.every(ps => ps.playerName !== request.username)
         )
         .map(request => ({
           playerName: request.username,
           isSubscribed: new Date(request.subExpiration) - Date.now() > 0,
         })),
-    [data, gameData?.playersStateList]
+    [data, gameData?.playerStates]
   );
-  const canDeal = gameData.playersStateList.filter(isSeated).length > 1;
+  const canDeal = gameData.playerStates.filter(isSeated).length > 1;
 
   return (
     <Overlay className="dealer-overlay">
       <div className="players-info">
         <ListedPlayers
           title="Συμμετέχοντες"
-          playersStateList={gameData.playersStateList}
+          playerStates={gameData.playerStates}
         />
         {requestedStates?.length > 0 && (
           <ListedPlayers
             title="Αιτούντες συμμετοχής"
-            playersStateList={requestedStates}
+            playerStates={requestedStates}
           />
         )}
       </div>

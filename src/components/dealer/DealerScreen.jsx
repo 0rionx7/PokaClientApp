@@ -17,7 +17,7 @@ const DealerScreen = () => {
 
   const requestedStates = data
     ?.filter(request =>
-      gameData?.playersStateList.every(ps => ps.playerName !== request.username)
+      gameData?.playerStates.every(ps => ps.playerName !== request.username)
     )
     .map(request => ({
       playerName: request.username,
@@ -32,12 +32,12 @@ const DealerScreen = () => {
       <div className="players-info">
         <ListedPlayers
           title="Συμμετέχοντες"
-          playersStateList={gameData.playersStateList}
+          playerStates={gameData.playerStates}
         />
         {requestedStates?.length > 0 && (
           <ListedPlayers
             title="Αιτούντες συμμετοχής"
-            playersStateList={requestedStates}
+            playerStates={requestedStates}
           />
         )}
       </div>

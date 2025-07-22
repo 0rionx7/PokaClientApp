@@ -9,17 +9,17 @@ const usePlayerStyle = index => {
   const { gameId } = useParams();
   const username = useSelector(selectPlayername);
   const { data } = useGetGameStateChineseQuery(gameId);
-  const { playersStateList } = data;
-  const hostIndex = playersStateList.findIndex(playerEntry(username));
+  const { playerStates } = data;
+  const hostIndex = playerStates.findIndex(playerEntry(username));
 
   let gridArea;
-  if (playersStateList.length === 2)
+  if (playerStates.length === 2)
     gridArea = hostIndex === index ? 'host' : 'other';
   else {
     let count =
       index >= hostIndex
         ? index - hostIndex
-        : playersStateList.length - (hostIndex - index);
+        : playerStates.length - (hostIndex - index);
     gridArea = `player-${count}`;
   }
   return gridArea;

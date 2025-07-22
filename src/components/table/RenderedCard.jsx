@@ -17,9 +17,8 @@ const RenderedCard = ({ index }) => {
 
   const playerSubmitted = useMemo(
     () =>
-      data?.playersStateList.find(playerEntry(playerName))?.submittedHand
-        .length,
-    [data?.playersStateList, playerName]
+      data?.playerStates.find(playerEntry(playerName))?.submittedHand.length,
+    [data?.playerStates, playerName]
   );
   const [currentPlayerState] = currentPlayerList;
   const isSubmitting = currentPlayerState?.selecting?.submit;

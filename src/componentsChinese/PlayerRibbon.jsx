@@ -11,13 +11,13 @@ const PlayerRibbon = ({ playerState, timerRef }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateChineseQuery(gameId);
   const timerJsx = useTimer(playerState.playerName);
-  const { currentPlayerList, round, playersStateList } = data;
+  const { currentPlayerList, round, playerStates } = data;
   const [currentPlayer] = currentPlayerList;
   const showScore =
-    currentPlayerList.length === playersStateList.filter(isSeated).length;
+    currentPlayerList.length === playerStates.filter(isSeated).length;
   const isActive = playerState.playerName === currentPlayer || showScore;
   const isDealing =
-    playersStateList[(round - 1) % playersStateList.length].playerName ===
+    playerStates[(round - 1) % playerStates.length].playerName ===
     playerState.playerName;
   // const isHostBoard = playerState.playerName === username;
   // const soundJsx = useSound({ ownBoard, isActive });

@@ -3,7 +3,7 @@
     "$oid": "66097124d8e41472829decbd"
   },
   "tableName": "Table_-u_Machine_iqyMP",
-  "playersStateList": [
+  "playerStates": [
     {
       "playerName": "Machine",
       "boardCards": [

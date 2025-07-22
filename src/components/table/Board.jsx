@@ -11,8 +11,8 @@ const Board = () => {
   const { data } = useGetGameStateQuery(gameId);
 
   const totalPot = useMemo(
-    () => data?.playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
-    [data?.playersStateList]
+    () => data?.playerStates.reduce((acc, curr) => acc + curr.bet, 0),
+    [data?.playerStates]
   );
 
   return (

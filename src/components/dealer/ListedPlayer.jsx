@@ -24,7 +24,7 @@ const ListedPlayer = ({ playerState, clickable }) => {
 
   const clickHandler = () => {
     if (!clickable || isLoading || rejecting) return;
-    if (data?.playersStateList.length === 8)
+    if (data?.playerStates.length === 8)
       return setSnackInfo('έχει συμπληρωθεί το καρέ');
     const { playerName } = playerState;
     joinTable({ playerName, gameId });

@@ -39,9 +39,7 @@ export const gameStateApi = createApi({
         const hostPlayerName = getState().account.username;
 
         function updateLocalHandCards(data) {
-          const hostState = data.playersStateList.find(
-            playerEntry(hostPlayerName)
-          );
+          const hostState = data.playerStates.find(playerEntry(hostPlayerName));
           dispatch(setHandCards(hostState.handCards));
         }
 
@@ -56,7 +54,7 @@ export const gameStateApi = createApi({
               updateCachedData(draft => {
                 //for not to reset preselected cards ( players selected before their turn )
                 if (!draft.currentPlayerList?.[0]?.selecting?.submit) {
-                  if (stateUpdate.playersStateList)
+                  if (stateUpdate.playerStates)
                     updateLocalHandCards(stateUpdate);
                   if (stateUpdate.tableCards)
                     dispatch(setTableCards(stateUpdate.tableCards));
@@ -66,10 +64,10 @@ export const gameStateApi = createApi({
               });
           };
 
-          const closingBetListener = ({ _id, playersStateList }) => {
+          const closingBetListener = ({ _id, playerStates }) => {
             if (arg === _id) {
-              playersStateList = updateAll(playersStateList, { denying: 0 });
-              updateCachedData(draft => ({ ...draft, playersStateList }));
+              playerStates = updateAll(playerStates, { denying: 0 });
+              updateCachedData(draft => ({ ...draft, playerStates }));
             }
           };
 

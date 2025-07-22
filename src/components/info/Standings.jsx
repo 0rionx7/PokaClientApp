@@ -11,10 +11,10 @@ const Standings = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
 
-  const playersStateList = data.playersStateList
+  const playerStates = data.playerStates
     .slice()
     .sort((a, b) => b.resta - a.resta);
-  const renderList = sortPlayers(playersStateList);
+  const renderList = sortPlayers(playerStates);
 
   return (
     <div className="standings">

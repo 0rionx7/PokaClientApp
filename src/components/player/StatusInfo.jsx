@@ -7,7 +7,7 @@ const StatusInfo = ({ playerState }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
 
-  const lastAtList = data.playersStateList.at(-1).playerName;
+  const lastAtList = data.playerStates.at(-1).playerName;
   const playerDeals = playerState.playerName === (data.dealer || lastAtList);
 
   return (

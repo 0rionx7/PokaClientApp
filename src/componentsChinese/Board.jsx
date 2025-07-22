@@ -23,9 +23,9 @@ const Board = ({ index, playerState }) => {
   const timerRef = useRef(null);
 
   const isHostBoard = playerState.playerName === username;
-  const { currentPlayerList, playersStateList } = data;
+  const { currentPlayerList, playerStates } = data;
   const isRoundEnd =
-    currentPlayerList.length <= playersStateList.filter(isSeated).length;
+    currentPlayerList.length <= playerStates.filter(isSeated).length;
 
   return (
     <>

@@ -10,19 +10,19 @@ const Results = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
 
-  const playersStateList = useMemo(
+  const playerStates = useMemo(
     () =>
-      data?.playersStateList
+      data?.playerStates
         .slice()
         .sort((a, b) =>
           b.amountWon - a.amountWon !== 0
             ? b.amountWon - a.amountWon
             : b.handInfo.handValue - a.handInfo.handValue
         ),
-    [data?.playersStateList]
+    [data?.playerStates]
   );
 
-  const renderList = sortPlayers(playersStateList);
+  const renderList = sortPlayers(playerStates);
 
   return (
     <div className="results-board">

@@ -7,13 +7,13 @@ import './LiveInfo.scss';
 const LiveInfo = () => {
   const { gameId } = useParams();
   const {
-    data: { currentPlayerList, playersStateList, gamesCount },
+    data: { currentPlayerList, playerStates, gamesCount },
   } = useGetGameStateQuery(gameId);
   const [currentPlayer] = currentPlayerList;
 
   const pot = useMemo(
-    () => playersStateList.reduce((acc, curr) => acc + curr.bet, 0),
-    [playersStateList]
+    () => playerStates.reduce((acc, curr) => acc + curr.bet, 0),
+    [playerStates]
   );
 
   return (

@@ -42,13 +42,13 @@ const Hand = () => {
   const legitSubmit =
     hand?.length === 5 ? cardsLeftInHand === 0 : cardsLeftInHand === 1;
   const canSubmit = !hasSubmitted && hasTurn && legitSubmit;
-  const sittedCount = data.playersStateList.filter(isSeated).length;
+  const sittedCount = data.playerStates.filter(isSeated).length;
   const canNext =
     sittedCount > 1 &&
     currentPlayerList.length <= sittedCount &&
     currentPlayerList.includes(username) &&
     !hasNexted;
-  const shift = data.playersStateList.length === 2 ? '-50%' : '50%';
+  const shift = data.playerStates.length === 2 ? '-50%' : '50%';
   const left = `calc(-.5 * (var(--card-width) + .3rem) * ${hand?.length} + ${shift})`;
 
   const submitCards = useCallback(async () => {
