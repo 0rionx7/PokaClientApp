@@ -1,7 +1,7 @@
 import { tabloCount } from 'utils/text-constants';
 import { gameNames } from 'utils/games';
 
-export function createGameVariant({ showTitles, hiddenTitles, ...gameInfo }) {
+export function createGameInfo({ showTitles, hiddenTitles, ...gameInfo }) {
   let rowsIndexes = [];
 
   if (gameInfo.cornerLength === '2') {
