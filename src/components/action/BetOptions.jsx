@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useFormikContext } from 'formik';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import Button from 'components/ui/Button';
+import BetOptionButton from 'components/action/BetOptionButton';
 
 const BetOptions = ({ disabled }) => {
   const { gameId } = useParams();
@@ -12,41 +12,26 @@ const BetOptions = ({ disabled }) => {
   const { values, setFieldValue, isSubmitting, errors } = useFormikContext();
 
   const betAmounts = [chip, 5 * chip, 25 * chip, 100 * chip];
+  const colors = ['green', 'black', 'yellow', 'red'];
 
   return (
     <>
-      {betAmounts.map((amount, i) => {
-        const color =
-          i === 0 ? 'green' : i === 1 ? 'black' : i === 2 ? 'yellow' : 'red';
-        const displayValue = amount >= 1000 ? amount / 1000 + 'K' : amount;
-        const prompt = (
-          <div className="bet-options">
-            {'+ ' + displayValue.toLocaleString()}
-            <img
-              src={`${
-                import.meta.env.VITE_IMAGE_URL
-              }/assets/chips/${color}.png`}
-              alt="chip"
-            />
-          </div>
-        );
-
-        return (
-          <Button
-            key={amount}
-            prompt={prompt}
-            onClick={() =>
-              setFieldValue(
-                'amount',
-                values.amount ? values.amount + amount : amount
-              )
-            }
-            disabled={isSubmitting || disabled || errors.amount}
-            style={{ gridArea: 'b-' + amount / chip }}
-            className="bet-option orange"
-          />
-        );
-      })}
+      {betAmounts.map((amount, i) => (
+        <BetOptionButton
+          key={amount}
+          amount={amount}
+          color={colors[i]}
+          onClick={() =>
+            setFieldValue(
+              'amount',
+              values.amount ? values.amount + amount : amount
+            )
+          }
+          disabled={isSubmitting || disabled || errors.amount}
+          style={{ gridArea: 'b-' + amount / chip }}
+          className="bet-option orange"
+        />
+      ))}
     </>
   );
 };

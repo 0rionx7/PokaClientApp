@@ -27,7 +27,7 @@ const Action = ({ hideInfo }) => {
     () => playersStateList.find(playerEntry(hostPlayerName)),
     [playersStateList, hostPlayerName]
   );
-  
+
   const [currentPlayer] = currentPlayerList;
   const hostTurn = currentPlayer?.playerName === hostPlayerName;
 
@@ -36,9 +36,10 @@ const Action = ({ hideInfo }) => {
   }, [setContainerRef]);
 
   if (!gameId) return null;
+
   return (
     <div
-      className={'action-container ' + (hideInfo ? 'full-width' : '')}
+      className={`action-container ${hideInfo ? 'full-width' : ''}`}
       ref={actionContainerRef}>
       {currentPlayer?.handInfo?.kind ? (
         <Results />
