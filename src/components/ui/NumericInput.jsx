@@ -1,33 +1,33 @@
-import { useEffect } from 'react';
-import { Field, useFormikContext } from 'formik';
-
+import { useGameBuilderContext } from 'hooks/gameBuilderContext';
 import './NumericInput.scss';
 
-const NumericInput = ({ name, className, startingNumber }) => {
-  const { values, setFieldValue, setFieldTouched } = useFormikContext();
+const NumericInput = ({ name, className }) => {
+  const { values, setValues } = useGameBuilderContext();
 
-  useEffect(() => {
-    setFieldValue(name, startingNumber || 0);
-    return () => setFieldValue(name, 0);
-  }, [name, setFieldValue, setFieldTouched, startingNumber]);
+  const handleIncrement = () => {
+    setValues(prev => ({ ...prev, [name]: values[name] + 1 }));
+  };
+
+  const handleDecrement = () => {
+    if (values[name] - 1 < 1) return;
+    setValues(prev => ({ ...prev, [name]: values[name] - 1 }));
+  };
 
   return (
     <div className={'container ' + className}>
       <button
         type="button"
         style={{ backgroundColor: 'green' }}
-        onClick={() => {
-          setFieldTouched(name, true);
-          setFieldValue(name, values[name] + 1);
-        }}>
+        onClick={handleIncrement}>
         {'+'}
       </button>
       <div
         className="form-control"
         style={{ justifyContent: 'center', fontSize: '0.6rem' }}>
-        <Field
-          name={name}
+        <input
           type="number"
+          readOnly
+          value={values[name]}
           style={{ height: '100%', width: ' 2rem' }}
         />
         ΧΑΡΤΙ{values[name] !== 1 && 'Α'}
@@ -35,10 +35,7 @@ const NumericInput = ({ name, className, startingNumber }) => {
       <button
         type="button"
         style={{ backgroundColor: '#d10000' }}
-        onClick={() => {
-          setFieldTouched(name, true);
-          setFieldValue(name, values[name] - 1);
-        }}>
+        onClick={handleDecrement}>
         {'-'}
       </button>
     </div>

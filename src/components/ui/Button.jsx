@@ -1,13 +1,8 @@
 import './Button.scss';
 
-const Button = ({ disabled, type, prompt, onClick, style, className }) => {
+const Button = ({ type = 'button', prompt, className, ...rest }) => {
   return (
-    <button
-      className={'btn-base ' + (className ?? '')}
-      style={{ ...style }}
-      type={type || 'button'}
-      disabled={disabled}
-      onClick={onClick}>
+    <button className={`btn-base ${className ?? ''}`} type={type} {...rest}>
       {prompt}
     </button>
   );
