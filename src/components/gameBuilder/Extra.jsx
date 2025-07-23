@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import { getNameAndLabel } from 'utils/text-functions';
 import CheckBox from 'components/ui/CheckBox';
 

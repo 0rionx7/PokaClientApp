@@ -1,4 +1,4 @@
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import { dealingType, infoText } from 'utils/text-constants';
 import NumericInput from 'components/ui/NumericInput';
 import CheckBox from 'components/ui/CheckBox';

@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 import CheckBox from 'components/ui/CheckBox';
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 
 const HandCardsInPlay = memo(() => {
   const { values } = useGameBuilderContext();

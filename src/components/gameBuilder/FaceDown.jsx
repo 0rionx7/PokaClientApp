@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import CheckBox from 'components/ui/CheckBox';
 
 const label = ['1o', '2o', '3o', '4o', '5o', '6ο', '7ο'];

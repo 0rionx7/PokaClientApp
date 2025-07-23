@@ -8,7 +8,7 @@ import GameBuilder from 'components/gameBuilder/GameBuilder';
 import ListedPlayers from 'components/dealer/ListedPlayers';
 import Overlay from 'components/ui/Overlay';
 import './DealerScreen.scss';
-import GameBuilderContextProvider from 'hooks/gameBuilderContext';
+import GameBuilderContextProvider from 'hooks/useGameBuilderContext';
 
 const DealerScreen = () => {
   const { gameId } = useParams();

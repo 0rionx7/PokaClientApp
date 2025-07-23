@@ -1,4 +1,4 @@
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import { infoText } from 'utils/text-constants';
 import CheckBox from 'components/ui/CheckBox';
 import Radio from 'components/ui/Radio';

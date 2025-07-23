@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 
 import { setCurrentChoosenGame } from 'features/gameState/gameStateSlice';
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import { builderDefaults, gameDefaults } from 'utils/games';
 
 const startingCards = [2, 3, 4, 5, 6, 7];

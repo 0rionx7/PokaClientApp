@@ -1,4 +1,4 @@
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import { dealingType, infoText } from 'utils/text-constants';
 import Radio from 'components/ui/Radio';
 
@@ -23,7 +23,7 @@ const Dilemma = ({ name, options }) => {
             name={name}
             label={label}
             value={optionName}
-            defaultChecked={values[name] === optionName}
+            checked={values[name] === optionName}
             onChange={handleChange}
             info={infoText[optionName]}
           />

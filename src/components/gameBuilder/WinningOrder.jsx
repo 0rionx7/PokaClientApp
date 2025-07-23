@@ -1,6 +1,6 @@
 import { memo } from 'react';
 
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import { winningOrder } from 'utils/text-constants';
 import Radio from 'components/ui/Radio';
 

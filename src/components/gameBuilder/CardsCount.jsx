@@ -1,4 +1,4 @@
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import Radio from 'components/ui/Radio';
 import { gameNames } from 'utils/games';
 

@@ -15,7 +15,7 @@ import {
 } from 'features/gameState/gameStateApi';
 import { isSeated, notEnoughCards } from 'utils/utilities-functions';
 import { useActionConRef } from 'utils/ActionContainerContext';
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import { createGameInfo } from 'utils/createGameInfo';
 import BuilderItem from 'components/gameBuilder/BuilderItem';
 import GameChooser from 'components/gameBuilder/GameChooser';

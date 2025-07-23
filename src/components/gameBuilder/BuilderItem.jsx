@@ -1,7 +1,7 @@
 import { builderTitle } from 'utils/text-constants';
 import { gameNames } from 'utils/games';
 import { useMemo } from 'react';
-import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 
 const showExtra = [
   gameNames.CROSS,
