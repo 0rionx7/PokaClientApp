@@ -1,9 +1,15 @@
 import { useGameBuilderContext } from 'hooks/gameBuilderContext';
-import { infoText } from 'utils/text-constants';
+import { dealingOrders, infoText } from 'utils/text-constants';
 import Radio from 'components/ui/Radio';
 
 const Dilemma = ({ name, options }) => {
-  const { values } = useGameBuilderContext();
+  const { values, setValues } = useGameBuilderContext();
+
+  function handleChange(e) {
+    if (name === 'dealing' && values.dealing === dealingOrders.ENA_ENA)
+      setValues(prev => ({ ...prev, deny: false }));
+    setValues(prev => ({ ...prev, [name]: e.target.value }));
+  }
 
   return (
     <>
@@ -18,6 +24,7 @@ const Dilemma = ({ name, options }) => {
             label={label}
             value={optionName}
             defaultChecked={values[name] === optionName}
+            onChange={handleChange}
             info={infoText[optionName]}
           />
         );

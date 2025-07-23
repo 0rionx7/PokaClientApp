@@ -11,7 +11,7 @@ const showExtra = [
   gameNames.MAMUT,
 ];
 
-const BuilderItem = ({ title, element }) => {
+const BuilderItem = ({ title, element, ref }) => {
   const { values } = useGameBuilderContext();
   const { gameName } = values;
 
@@ -35,7 +35,7 @@ const BuilderItem = ({ title, element }) => {
   );
 
   const item = (
-    <div className="frame-item builder-item" key={values.gameName}>
+    <div ref={ref} className="frame-item builder-item" key={values.gameName}>
       <div className="title"> {title}</div>
       <div className="controls"> {element}</div>
     </div>

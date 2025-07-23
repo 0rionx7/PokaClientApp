@@ -1,11 +1,9 @@
-import { memo } from 'react';
-
 import { useGameBuilderContext } from 'hooks/gameBuilderContext';
 import { infoText } from 'utils/text-constants';
 import CheckBox from 'components/ui/CheckBox';
 import Radio from 'components/ui/Radio';
 
-const Options = memo(() => {
+const Options = () => {
   const { values, setValues } = useGameBuilderContext();
 
   return (
@@ -14,12 +12,15 @@ const Options = memo(() => {
         label='ΑΝΟΙΓΜΑ "ΜΠΟΜΠΑ"'
         info={infoText.BOMBA}
         name="bomba"
-        defaultChecked={false}
+        checked={values.bomba}
+        onChange={e =>
+          setValues(values => ({ ...values, bomba: e.target.checked }))
+        }
       />
       <CheckBox
         label="ΜΕ ΚΑΠΕΛΟ"
         name="hat"
-        defaultChecked={false}
+        checked={values.hat}
         onChange={e =>
           setValues(values => ({ ...values, hat: e.target.checked }))
         }
@@ -33,14 +34,22 @@ const Options = memo(() => {
               label={label}
               value={i + 1}
               info={infoText.HAT}
-              defaultChecked={i === 0}
+              checked={+values.hats === i + 1}
+              onChange={e => setValues(values => ({ ...values, hats: i + 1 }))}
             />
           ))}
-          <CheckBox name="obligation" label="ΥΠΟΧΡΕΩΣΗ" />
+          <CheckBox
+            name="obligation"
+            label="ΥΠΟΧΡΕΩΣΗ"
+            checked={values.obligation}
+            onChange={e =>
+              setValues(values => ({ ...values, obligation: e.target.checked }))
+            }
+          />
         </>
       )}
     </>
   );
-});
+};
 
 export default Options;

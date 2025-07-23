@@ -1,6 +1,6 @@
-import { createPortal } from 'react-dom';
+import { memo, useActionState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Form, Formik } from 'formik';
+import { createPortal } from 'react-dom';
 
 import {
   builderTitles,
@@ -13,8 +13,10 @@ import {
   useGetGameStateQuery,
   useSetGameVariantMutation,
 } from 'features/gameState/gameStateApi';
-import { isHere, notEnoughCards } from 'utils/utilities-functions';
-import { createGameVariant } from 'utils/createGameVariant';
+import { isSeated, notEnoughCards } from 'utils/utilities-functions';
+import { useActionConRef } from 'utils/ActionContainerContext';
+import { useGameBuilderContext } from 'hooks/gameBuilderContext';
+import { createGameInfo } from 'utils/createGameInfo';
 import BuilderItem from 'components/gameBuilder/BuilderItem';
 import GameChooser from 'components/gameBuilder/GameChooser';
 import DealingOptions from 'components/gameBuilder/DealingOptions';
@@ -25,22 +27,47 @@ import FaceDown from 'components/gameBuilder/FaceDown';
 import CardsCount from 'components/gameBuilder/CardsCount';
 import Extra from 'components/gameBuilder/Extra';
 import Options from 'components/gameBuilder/Options';
-import { builderDefaults, gameNames } from 'utils/games';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
 import './GameBuilder.scss';
-import { useActionConRef } from 'utils/ActionContainerContext';
 
-const GameBuilder = () => {
+const GameBuilder = memo(() => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const { actionContainerRef } = useActionConRef();
+  const { values, setValues } = useGameBuilderContext();
+  const [formState, formAction, isPending] = useActionState(builderAction, {
+    errors: {},
+  });
+  const inPLayRef = useRef();
 
-  const playersCount = data.playerStates.filter(isHere).length;
-  const noOthersInPlay = data.playerStates.filter(isHere).length === 1;
+  async function builderAction(_prevFormState, formData) {
+    const builderData = Object.fromEntries(formData.entries());
+    const handCardsInPlay = inPLayRef.current
+      ? formData.getAll('handCardsInPlay')
+      : values.handCardsInPlay;
+    const faceDownIndexes = formData.getAll('faceDownIndexes');
+    const data = {
+      ...values,
+      ...builderData,
+      handCardsInPlay,
+      faceDownIndexes,
+    };
+    const validation = validate(data);
+    if (validation.error) {
+      setSnackInfo(validation.error);
+      return validation;
+    }
+
+    const gameInfo = createGameInfo(data);
+    const result = await setGameVariant({ gameId, gameInfo });
+  }
+
+  const playersCount = data.playerStates.filter(isSeated).length;
+  const noOthersInPlay = data.playerStates.filter(isSeated).length === 1;
   const allOthersTapi =
     data.playerStates.filter(state => state.resta > 0 && !state.sittingOut)
       .length === 1;
@@ -49,25 +76,18 @@ const GameBuilder = () => {
   if (noOthersInPlay) btnPrompt = 'Δεν κάθετε άλλος παίκτης στο τραπέζι';
   else if (allOthersTapi) btnPrompt = 'Μόνο ένας παίκτης έχει χρήματα';
 
-  const initialValues = {
-    gameName: gameNames.MAMUT,
-    ...builderDefaults,
-    startingCard: data.startingCard,
-  };
-  const validate = values => {
-    const errors = {};
+  const isValid = !formState?.buildGame;
+
+  function validate(values) {
+    const error = {};
     if (notEnoughCards(values, playersCount))
-      errors.buildGame = errorMessages.NO_CARDS;
-    if (values.deny && values.denies < 1)
-      errors.buildGame = errorMessages.ARNISI;
-    if (values.swap && values.swaps < 1) errors.buildGame = errorMessages.ALAGI;
-    if (!values.handCardsInPlay.length) errors.buildGame = errorMessages.HAND;
-    setSnackInfo(errors.buildGame);
-    return errors;
-  };
+      error.error = errorMessages.NO_CARDS;
+    if (!values.handCardsInPlay.length) error.error = errorMessages.HAND;
+    return error;
+  }
 
   const submitHandler = async (values, { setErrors }) => {
-    const gameVariant = createGameVariant(values);
+    const gameVariant = createGameInfo(values);
     const result = await setGameVariant({ gameId, gameInfo: gameVariant });
     if (result?.error?.data) {
       setErrors({ buildGame: result.error.data });
@@ -77,138 +97,97 @@ const GameBuilder = () => {
 
   return (
     <Frame className="game-builder">
-      <Formik
-        initialValues={initialValues}
-        validate={validate}
-        onSubmit={submitHandler}
-        validateOnChange={false}
-        validateOnBlur={false}
-        enableReinitialize>
-        {({
-          isSubmitting,
-          isValid,
-          errors,
-          submitForm,
-          setErrors,
-          values,
-          setFieldValue,
-          setValues,
-        }) => (
-          <Form onFocus={() => setErrors({})}>
-            {snackElement}
-            <BuilderItem
-              title={builderTitles.GAME}
-              element={
-                <GameChooser
-                  gameName={values.gameName}
-                  startingCard={data.startingCard}
-                  setValues={setValues}
-                />
+      <form action={formAction}>
+        {snackElement}
+        <BuilderItem title={builderTitles.GAME} element={<GameChooser />} />
+        <BuilderItem
+          title={builderTitles.WINNING_ORDER}
+          element={<WinningOrder />}
+        />
+        <BuilderItem title={builderTitles.EXTRA} element={<Extra />} />
+        <BuilderItem
+          title={builderTitles.TABLO}
+          element={
+            <Dilemma
+              name="tablo"
+              options={[tabloCount.MONO, tabloCount.DIPLO]}
+            />
+          }
+        />
+        <BuilderItem
+          title={builderTitles.CARDS_PER_LEG}
+          element={<CardsCount name="cornerLength" />}
+        />
+        <BuilderItem
+          title={builderTitles.RAILROAD_LENGTH}
+          element={<CardsCount name="railroadLength" />}
+        />
+        <BuilderItem title={builderTitles.OPTIONS} element={<Options />} />
+        <BuilderItem
+          title={builderTitles.CARDS_IN_HAND}
+          element={<CardsCount name="cardsInHand" />}
+        />
+        <BuilderItem title={builderTitles.FACE_DOWN} element={<FaceDown />} />
+        <BuilderItem
+          title={builderTitles.SPEAKS}
+          element={
+            <Dilemma
+              name="speaks"
+              options={[speaking.BY_VALUE, speaking.BY_SEAT]}
+            />
+          }
+        />
+        <BuilderItem
+          ref={inPLayRef}
+          title={builderTitles.HAND_CARDS_IN_PLAY}
+          element={<HandCardsInPlay />}
+        />
+        <BuilderItem
+          title={builderTitles.DEALING}
+          element={
+            <Dilemma
+              key={values.deny}
+              name="dealing"
+              options={[dealingOrders.ENA_ENA, dealingOrders.OLA_MAZI]}
+            />
+          }
+        />
+        <BuilderItem
+          title={builderTitles.DEALING_OPTIONS}
+          element={<DealingOptions />}
+        />
+        {/* {actionContainerRef &&
+          createPortal(
+            <Button
+              prompt={
+                btnPrompt || (isValid ? 'ΜΟΙΡΑΣΤΕ' : formState.errors.buildGame)
               }
-            />
-            <BuilderItem
-              title={builderTitles.WINNING_ORDER}
-              element={<WinningOrder winningOrder={values.winningOrder} />}
-            />
-            <BuilderItem
-              title={builderTitles.EXTRA}
-              element={<Extra gameName={values.gameName} />}
-            />
-            <BuilderItem
-              title={builderTitles.TABLO}
-              element={
-                <Dilemma
-                  name="tablo"
-                  options={[tabloCount.MONO, tabloCount.DIPLO]}
-                />
+              disabled={
+                isPending ||
+                isSuccess ||
+                !isValid ||
+                allOthersTapi ||
+                noOthersInPlay
               }
-            />
-            <BuilderItem
-              title={builderTitles.CARDS_PER_LEG}
-              element={<CardsCount name="cornerLength" />}
-            />
-            <BuilderItem
-              title={builderTitles.RAILROAD_LENGTH}
-              element={<CardsCount name="railroadLength" />}
-            />
-            <BuilderItem
-              title={builderTitles.OPTIONS}
-              element={
-                <Options
-                  hat={values.hat}
-                  hats={values.hats}
-                  gameName={values.gameName}
-                  setFieldValue={setFieldValue}
-                />
-              }
-            />
-            <BuilderItem
-              title={builderTitles.CARDS_IN_HAND}
-              element={<CardsCount name="cardsInHand" />}
-            />
-            <BuilderItem
-              title={builderTitles.FACE_DOWN}
-              element={
-                <FaceDown
-                  cardsInHand={values.cardsInHand}
-                  faceDownIndexes={values.faceDownIndexes}
-                />
-              }
-            />
-            <BuilderItem
-              title={builderTitles.SPEAKS}
-              element={
-                <Dilemma
-                  name="speaks"
-                  options={[speaking.BY_VALUE, speaking.BY_SEAT]}
-                />
-              }
-            />
-            <BuilderItem
-              title={builderTitles.HAND_CARDS_IN_PLAY}
-              element={
-                <HandCardsInPlay
-                  handCardsInPlay={values.handCardsInPlay}
-                  cardsInHand={values.cardsInHand}
-                />
-              }
-            />
-            <BuilderItem
-              title={builderTitles.DEALING}
-              element={
-                <Dilemma
-                  name="dealing"
-                  options={[dealingOrders.ENA_ENA, dealingOrders.OLA_MAZI]}
-                />
-              }
-            />
-            <BuilderItem
-              title={builderTitles.DEALING_OPTIONS}
-              element={<DealingOptions />}
-            />
-            {actionContainerRef &&
-              createPortal(
-                <Button
-                  prompt={
-                    btnPrompt || (isValid ? 'ΜΟΙΡΑΣΤΕ' : errors.buildGame)
-                  }
-                  disabled={
-                    isSubmitting ||
-                    isSuccess ||
-                    !isValid ||
-                    allOthersTapi ||
-                    noOthersInPlay
-                  }
-                  onClick={submitForm}
-                  className="deal-btn"
-                />,
-                actionContainerRef.current
-              )}
-          </Form>
-        )}
-      </Formik>
+              className="deal-btn"
+            />,
+            actionContainerRef.current
+          )} */}
+        <Button
+          prompt={btnPrompt || (isValid ? 'ΜΟΙΡΑΣΤΕ' : formState.buildGame)}
+          // disabled={
+          //   isPending ||
+          //   isSuccess ||
+          //   !isValid ||
+          //   allOthersTapi ||
+          //   noOthersInPlay
+          // }
+          type="submit"
+          className="deal-btn"
+        />
+      </form>
     </Frame>
   );
-};
+});
 
 export default GameBuilder;
