@@ -11,7 +11,7 @@ const BetOptions = ({ disabled }) => {
   } = useGetGameStateQuery(gameId);
   const { values, setFieldValue, isSubmitting, errors } = useFormikContext();
 
-  const betAmounts = [chip, 5 * chip, 25 * chip, 100 * chip];
+  const betAmounts = [+chip, 5 * chip, 25 * chip, 100 * chip];
   const colors = ['green', 'black', 'yellow', 'red'];
 
   return (

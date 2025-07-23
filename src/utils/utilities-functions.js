@@ -55,3 +55,16 @@ export function notEnoughCards(values, playersCount) {
   handCardsCount *= playersCount;
   return tableCardsCount + handCardsCount > 4 * (15 - +values.startingCard);
 }
+export function createCode(length) {
+  let password = '';
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let counter = 0;
+  while (counter < length) {
+    password += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+    counter += 1;
+  }
+  return password;
+}

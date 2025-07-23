@@ -120,7 +120,7 @@ export const errorMessage = Object.freeze({
   ARNISI: 'επιλογή τουλάχιστον ενός χαρτιού για ΑΡΝΗΣΗ\n',
   ALAGI: 'επιλογή τουλάχιστον ενός χαρτιού για ΑΛΛΑΓΗ\n',
   HAND: 'επιλογή τουλάχιστον ενός χαρτιού από το ΧΕΡΙ\n',
-  NO_CARDS: 'δεν επαρκούν τα χαρτιά\n',
+  STARTINGCARD: 'δεν επαρκούν τα χαρτιά\n',
 });
 export const suitName = Object.freeze({
   C: 'ΣΠΑΘΙ',

@@ -1,49 +1,66 @@
 import { useNavigate } from 'react-router-dom';
-import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
-import { Formik, Field, Form } from 'formik';
 
 import { useOpenTableMutation } from 'features/gameState/gameStateApi';
 import { selectPlayername } from 'features/account/accountSlice';
 import { clockwise, counterclockwise } from 'assets/svgs/various';
-import Dilemma from 'components/gameBuilder/Dilemma';
+import { createCode } from 'utils/utilities-functions';
 import Reaction from 'pages/saloon/Reaction';
 import Button from 'components/ui/Button';
+import Radio from 'components/ui/Radio';
+import { useActionState, useState } from 'react';
 import './OpenTable.scss';
+
+const initialValues = {
+  tableName: '',
+  rotation: 'clockwise',
+  cava: 1000,
+  chip: 1,
+  reaction: 101,
+};
 
 const OpenTable = () => {
   const playerName = useSelector(selectPlayername);
+  const [formState, formAction, isPending] = useActionState(
+    openTableAction,
+    initialValues
+  );
+  const [error, setError] = useState(null);
   const [openTable] = useOpenTableMutation();
   const navigate = useNavigate();
 
-  const initialValues = {
-    tableName: '',
-    rotation: 'clockwise',
-    cava: 1000,
-    chip: 1,
-    reaction: 101,
-  };
+  async function openTableAction(_prevFormState, formData) {
+    const tableData = Object.fromEntries(formData.entries());
+    const error = validate(tableData);
+    if (error) {
+      setError(error);
+      return tableData;
+    }
+    const tableName =
+      tableData.tableName + '_' + playerName + '_' + createCode(6);
+    const result = await openTable({ ...tableData, tableName });
+    if (result?.error?.data?.includes('duplicate')) {
+      setError('Το όνομα αυτό χρησιμοποιείται');
+      return tableData;
+    }
+    if (result?.error?.data) {
+      setError(result.error.data);
+      return tableData;
+    }
+    navigate(`/table/${result.data.gameId}`);
+  }
   const validate = values => {
-    let errors = {};
+    console.log(values);
     if (
       values.tableName.trim().length < 3 ||
       values.tableName.trim().length > 17
     )
-      errors.openTable = `Το όνομα τραπεζιού πρέπει να αποτελείται\n από 3 εώς 17 χαρακτήρες.`;
-    if (values.chip > values.cava)
-      errors.openTable = 'Το "τσίπ" είναι μεγαλύτερο από την κάβα.\n';
+      return `Το όνομα τραπεζιού πρέπει να αποτελείται\n από 3 εώς 17 χαρακτήρες.`;
+    if (+values.chip > +values.cava)
+      return 'Το "τσίπ" είναι μεγαλύτερο από την κάβα.\n';
     if (values.cava <= 0 || values.chip <= 0)
-      errors.openTable = 'Δεν επιτρέπονται αρνητικές τιμές\n';
-    if (values.cava > 1000000) errors.openTable = 'Μέγιστη κάβα 1Μ';
-    return errors;
-  };
-  const submitHandler = async (values, { setErrors }) => {
-    const tableName = values.tableName + '_' + playerName + '_' + nanoid(5);
-    const result = await openTable({ ...values, tableName });
-    if (result?.error?.data?.includes('duplicate'))
-      setErrors({ openTable: 'Το όνομα αυτό χρησιμοποιείται' });
-    else if (result?.error?.data) setErrors({ openTable: result.error.data });
-    else navigate(`/table/${result.data.gameId}`);
+      return 'Δεν επιτρέπονται αρνητικές τιμές\n';
+    if (values.cava > 1000000) return 'Μέγιστη κάβα 1Μ';
   };
 
   return (
@@ -51,59 +68,63 @@ const OpenTable = () => {
       <div className="title">
         <h3>Δημιουργία Τραπεζιού</h3>
       </div>
-      <Formik
-        key="openTable"
-        initialValues={initialValues}
-        onSubmit={submitHandler}
-        validate={validate}
-        validateOnChange={false}
-        validateOnBlur={false}>
-        {({ isSubmitting, errors, setErrors }) => (
-          <Form onFocus={() => setErrors({})}>
-            <div className="form-inputs">
-              <div className="form-control">
-                <label htmlFor="tableName">Όνομα τραπεζιού</label>
-                <Field
-                  id="tableName"
-                  name="tableName"
-                  type="text"
-                  placeholder="εισάγετε ένα όνομα"
-                />
-              </div>
-              <div className="rotation">
-                <div>Φορά μοιράσματος</div>
-                <Dilemma
-                  name="rotation"
-                  options={[
-                    { name: 'clockwise', img: clockwise },
-                    { name: 'counterclockwise', img: counterclockwise },
-                  ]}
-                />
-              </div>
-              <div className="form-control">
-                <label htmlFor="cava">&quot;Κάβα&quot;</label>
-                <Field id="cava" name="cava" type="number" />
-              </div>
-              <div className="form-control">
-                <label htmlFor="chip">&quot;Τσίπ&quot;</label>
-                <Field id="chip" name="chip" type="number" />
-              </div>
-              <div className="form-control">
-                <Field name="reaction">
-                  {({ field }) => <Reaction field={field} />}
-                </Field>
-              </div>
-            </div>
-            <span>{errors.openTable}</span>
-            <Button
-              type="submit"
-              prompt="Δημιουργία"
-              disabled={isSubmitting || errors.openTable}
-              className="orange"
+
+      <form action={formAction} onFocus={() => setError(null)}>
+        <div className="form-inputs">
+          <div className="form-control">
+            <label htmlFor="tableName">Όνομα τραπεζιού</label>
+            <input
+              id="tableName"
+              name="tableName"
+              type="text"
+              placeholder="εισάγετε ένα όνομα"
+              defaultValue={formState.tableName}
             />
-          </Form>
-        )}
-      </Formik>
+          </div>
+          <div className="rotation">
+            <div>Φορά μοιράσματος</div>
+            <Radio
+              name="rotation"
+              label={clockwise}
+              value="clockwise"
+              defaultChecked={true}
+            />
+            <Radio
+              name="rotation"
+              label={counterclockwise}
+              value="counterclockwise"
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="cava">&quot;Κάβα&quot;</label>
+            <input
+              id="cava"
+              name="cava"
+              type="number"
+              defaultValue={formState.cava}
+            />
+          </div>
+          <div className="form-control">
+            <label htmlFor="chip">&quot;Τσίπ&quot;</label>
+            <input
+              id="chip"
+              name="chip"
+              type="number"
+              defaultValue={formState.chip}
+            />
+          </div>
+          <div className="form-control">
+            <Reaction />
+          </div>
+        </div>
+        <span>{error}</span>
+        <Button
+          type="submit"
+          prompt="Δημιουργία"
+          className="orange"
+          disabled={isPending || error}
+        />
+      </form>
     </div>
   );
 };
