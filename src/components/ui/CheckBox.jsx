@@ -1,13 +1,11 @@
 import ToolTip from 'components/ui/ToolTip';
 import './CheckBox.scss';
 
-const CheckBox = ({ value, label, style, className, info, ...rest }) => {
+const CheckBox = ({ label, style, className, info, ...rest }) => {
   return (
-    <label
-      className={'form-control ' + (className ? className : '')}
-      style={style}>
-      <div>{label || value}</div>
-      <input type="checkbox" className="checkbox" value={value} {...rest} />
+    <label className={`form-control ${className ?? ''}`} style={style}>
+      <div>{label || rest.value}</div>
+      <input type="checkbox" className="checkbox" {...rest} />
       {info && <ToolTip info={info} />}
     </label>
   );

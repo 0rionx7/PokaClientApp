@@ -1,9 +1,11 @@
+import { selectHideInfo } from 'features/account/accountSlice';
 import { useSelector } from 'react-redux';
 
 const ToolTip = ({ info, children }) => {
-  const hideInfo = useSelector(state => state.account.hideInfo);
+  const hideInfo = useSelector(selectHideInfo);
 
   if (hideInfo && info !== 'ΑΡΝΗΣΕΙΣ' && !info.includes('αλλαγές')) return null;
+
   return (
     <div className="tool-tip">
       {info}
