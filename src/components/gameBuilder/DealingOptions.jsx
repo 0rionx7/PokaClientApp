@@ -1,5 +1,5 @@
 import { useGameBuilderContext } from 'hooks/gameBuilderContext';
-import { dealingOrders, infoText } from 'utils/text-constants';
+import { dealingType, infoText } from 'utils/text-constants';
 import NumericInput from 'components/ui/NumericInput';
 import CheckBox from 'components/ui/CheckBox';
 
@@ -8,7 +8,7 @@ const DealingOptions = () => {
 
   const handleDenyChange = e => {
     if (e.target.checked)
-      setValues(prev => ({ ...prev, dealing: dealingOrders.ENA_ENA }));
+      setValues(prev => ({ ...prev, dealing: dealingType.ENA_ENA }));
     setValues(prev => ({ ...prev, deny: e.target.checked }));
   };
   return (

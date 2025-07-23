@@ -1,4 +1,4 @@
-import { tabloCount } from 'utils/text-constants';
+import { tablo } from 'utils/text-constants';
 import { gameNames } from 'utils/games';
 
 export function createGameInfo({ showTitles, hiddenTitles, ...gameInfo }) {
@@ -11,7 +11,7 @@ export function createGameInfo({ showTitles, hiddenTitles, ...gameInfo }) {
     rowsIndexes = [[6, 0, 2, 4], [1], [3], [5]];
     gameInfo.boardClass = 'corner 4';
   }
-  if (gameInfo.tablo === tabloCount.DIPLO)
+  if (gameInfo.tablo === tablo.DIPLO)
     switch (gameInfo.gameName) {
       case gameNames.KOYKOS_MONOS:
       case gameNames.KOYKOS_DIPLOS:

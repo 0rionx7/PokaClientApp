@@ -1,12 +1,12 @@
 import { useGameBuilderContext } from 'hooks/gameBuilderContext';
-import { dealingOrders, infoText } from 'utils/text-constants';
+import { dealingType, infoText } from 'utils/text-constants';
 import Radio from 'components/ui/Radio';
 
 const Dilemma = ({ name, options }) => {
   const { values, setValues } = useGameBuilderContext();
 
   function handleChange(e) {
-    if (name === 'dealing' && values.dealing === dealingOrders.ENA_ENA)
+    if (name === 'dealing' && values.dealing === dealingType.ENA_ENA)
       setValues(prev => ({ ...prev, deny: false }));
     setValues(prev => ({ ...prev, [name]: e.target.value }));
   }

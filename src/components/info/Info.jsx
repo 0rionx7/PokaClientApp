@@ -7,7 +7,7 @@ import { selectPlayername } from 'features/account/accountSlice';
 import GameDescription from 'components/info/GameDescription';
 import { useEmoji } from 'components/info/chat/EmojiProvider';
 import { collapseVertical } from 'assets/svgs/various';
-import { infoButtons } from 'utils/text-constants';
+import { infoButton } from 'utils/text-constants';
 import Standings from 'components/info/Standings';
 import Results from 'components/info/Results';
 import GameInfo from 'components/info/GameInfo';
@@ -19,14 +19,14 @@ const Info = ({ hideInfo, toggleHideInfo }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(selectPlayername);
-  const [selected, setSelected] = useState(infoButtons.GAME_DESCRIPTION);
+  const [selected, setSelected] = useState(infoButton.GAME_DESCRIPTION);
   const { setShowPicker } = useEmoji();
   const [prevDealer, setPrevDealer] = useState(data.dealer);
 
   if (data.dealer !== prevDealer) {
     setPrevDealer(data.dealer);
     if (data.dealer === hostPlayerName)
-      setSelected(infoButtons.GAME_DESCRIPTION);
+      setSelected(infoButton.GAME_DESCRIPTION);
   }
 
   const toggleHandler = () => {
@@ -38,11 +38,11 @@ const Info = ({ hideInfo, toggleHideInfo }) => {
     <div className="info">
       <div className={'info-content ' + (hideInfo ? 'hidden' : '')}>
         <Buttons setSelected={setSelected} selected={selected} />
-        {selected === infoButtons.GAME_DESCRIPTION && <GameDescription />}
-        {selected === infoButtons.GAME_INFO && <GameInfo />}
-        {selected === infoButtons.CHAT && <ChatBox />}
-        {selected === infoButtons.STANDINGS && <Standings />}
-        {selected === infoButtons.LAST_GAME_RESULTS && <Results />}
+        {selected === infoButton.GAME_DESCRIPTION && <GameDescription />}
+        {selected === infoButton.GAME_INFO && <GameInfo />}
+        {selected === infoButton.CHAT && <ChatBox />}
+        {selected === infoButton.STANDINGS && <Standings />}
+        {selected === infoButton.LAST_GAME_RESULTS && <Results />}
       </div>
       <div className="toggle-btn" onClick={toggleHandler}>
         {collapseVertical}

@@ -1,10 +1,10 @@
 import { memo } from 'react';
 
 import { useGameBuilderContext } from 'hooks/gameBuilderContext';
-import { winningOrders } from 'utils/text-constants';
+import { winningOrder } from 'utils/text-constants';
 import Radio from 'components/ui/Radio';
 
-const orders = Object.values(winningOrders);
+const orders = Object.values(winningOrder);
 
 const WinningOrder = memo(() => {
   const { values } = useGameBuilderContext();

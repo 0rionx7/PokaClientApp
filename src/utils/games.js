@@ -1,9 +1,9 @@
 import {
-  builderTitles,
-  dealingOrders,
-  speaking,
-  tabloCount,
-  winningOrders,
+  builderTitle,
+  dealingType,
+  speakingOrder,
+  tablo,
+  winningOrder,
 } from './text-constants.js';
 
 export const gameNames = {
@@ -26,75 +26,78 @@ export const gameNames = {
 };
 
 export const builderDefaults = {
-  winningOrder: winningOrders.KENTA_CHROMA,
+  winningOrder: winningOrder.KENTA_CHROMA,
   cardsInHand: 3,
   handCardsInPlay: ['2', '3'],
   faceDownIndexes: ['0', '1', '2', '3', '4', '5', '6'],
   hat: false,
-  hats: 0,
+  hats: 1,
   obligation: false,
   skarto: false,
   deny: false,
-  denies: 0,
+  denies: 1,
   swap: false,
-  swaps: 0,
-  dealing: dealingOrders.OLA_MAZI,
-  speaks: speaking.BY_VALUE,
+  swaps: 1,
+  dealing: dealingType.OLA_MAZI,
+  speaks: speakingOrder.BY_SEAT,
   bomba: false,
 };
 
-export const games = [
+export const initialGameValues = {
+  ...builderDefaults,
+  gameName: gameNames.MAMUT,
+  tablo: tablo.MONO,
+  rowsIndexes: [[0, 1, 2]],
+  boardClass: 'mamut',
+};
+
+export const gameDefaults = [
   {
     gameName: gameNames.POKER,
-    builderDefaults: {
-      cardsInHand: 5,
-      handCardsInPlay: ['5'],
-      dealing: dealingOrders.ENA_ENA,
-    },
+    cardsInHand: 5,
+    handCardsInPlay: ['5'],
+    dealing: dealingType.ENA_ENA,
   },
   {
     gameName: gameNames.QUEEN,
-    builderDefaults: {
-      winningOrder: winningOrders.TRIA_FOUL,
-      cardsInHand: 5,
-      handCardsInPlay: ['5'],
-      faceDownIndexes: ['4'],
-      dealing: dealingOrders.ENA_ENA,
-    },
+    winningOrder: winningOrder.TRIA_FOUL,
+    cardsInHand: 5,
+    handCardsInPlay: ['5'],
+    faceDownIndexes: ['4'],
+    dealing: dealingType.ENA_ENA,
     showTitles: [
-      builderTitles.GAME,
-      builderTitles.WINNING_ORDER,
-      builderTitles.FACE_DOWN,
-      builderTitles.SPEAKS,
-      builderTitles.EXTRA,
+      builderTitle.GAME,
+      builderTitle.WINNING_ORDER,
+      builderTitle.FACE_DOWN,
+      builderTitle.SPEAKS,
+      builderTitle.EXTRA,
     ],
   },
   {
     gameName: gameNames.TEXAS_HOLDEM,
     rowsIndexes: [[0, 1, 2, 3, 4]],
-    builderDefaults: {
-      winningOrder: winningOrders.KENTA_FOUL,
-      cardsInHand: 2,
-      handCardsInPlay: ['2'],
-    },
+    winningOrder: winningOrder.KENTA_FOUL,
+    cardsInHand: 2,
+    handCardsInPlay: ['2'],
     boardClass: 'texas-holdem',
-    showTitles: [builderTitles.GAME, builderTitles.WINNING_ORDER],
+    showTitles: [builderTitle.GAME, builderTitle.WINNING_ORDER],
   },
   {
     gameName: gameNames.MAMUT,
     rowsIndexes: [[0, 1, 2]],
-    builderDefaults: { tablo: tabloCount.MONO },
+    tablo: tablo.MONO,
     boardClass: 'mamut',
   },
   {
     gameName: gameNames.RAILROAD,
-    builderDefaults: { railroadLength: 4, tablo: tabloCount.MONO },
+    railroadLength: 4,
+    tablo: tablo.MONO,
     boardClass: 'railroad',
   },
   {
     gameName: gameNames.CORNER,
     rowsIndexes: [[4, 0, 2], [1], [3]],
-    builderDefaults: { cornerLength: '3' },
+    cornerLength: '3',
     boardClass: 'corner 3',
   },
   {
@@ -118,7 +121,7 @@ export const games = [
   {
     gameName: gameNames.PYRAMID,
     rowsIndexes: [[9], [7, 8], [4, 5, 6], [0, 1, 2, 3]],
-    builderDefaults: { winningOrder: winningOrders.TRIA_FOUL },
+    winningOrder: winningOrder.TRIA_FOUL,
     boardClass: 'pyramid',
   },
   {
@@ -154,47 +157,41 @@ export const games = [
       [0, 2, 4, 6, 8],
       [1, 3, 5, 7, 9],
     ],
-    builderDefaults: {
-      cardsInHand: 5,
-      handCardsInPlay: [2, 3],
-    },
+    cardsInHand: 5,
+    handCardsInPlay: [2, 3],
     boardClass: 'graveyard',
     showTitles: [
-      builderTitles.GAME,
-      builderTitles.WINNING_ORDER,
-      builderTitles.EXTRA,
+      builderTitle.GAME,
+      builderTitle.WINNING_ORDER,
+      builderTitle.EXTRA,
     ],
   },
   {
     gameName: gameNames.KOYKOS_MONOS,
     rowsIndexes: [[0], [1], [2], [3], [4]],
-    builderDefaults: {
-      winningOrder: winningOrders.TRIA_FOUL,
-      cardsInHand: 2,
-      handCardsInPlay: ['2'],
-      tablo: tabloCount.MONO,
-    },
+    winningOrder: winningOrder.TRIA_FOUL,
+    cardsInHand: 2,
+    handCardsInPlay: ['2'],
+    tablo: tablo.MONO,
     boardClass: 'koukos',
     showTitles: [
-      builderTitles.GAME,
-      builderTitles.WINNING_ORDER,
-      builderTitles.TABLO,
+      builderTitle.GAME,
+      builderTitle.WINNING_ORDER,
+      builderTitle.TABLO,
     ],
   },
   {
     gameName: gameNames.KOYKOS_DIPLOS,
     rowsIndexes: [[0], [1], [2], [3], [4]],
-    builderDefaults: {
-      winningOrder: winningOrders.TRIA_FOUL,
-      cardsInHand: 3,
-      handCardsInPlay: ['2', '3'],
-      tablo: tabloCount.MONO,
-    },
+    winningOrder: winningOrder.TRIA_FOUL,
+    cardsInHand: 3,
+    handCardsInPlay: ['2', '3'],
+    tablo: tablo.MONO,
     boardClass: 'koukos',
     showTitles: [
-      builderTitles.GAME,
-      builderTitles.WINNING_ORDER,
-      builderTitles.TABLO,
+      builderTitle.GAME,
+      builderTitle.WINNING_ORDER,
+      builderTitle.TABLO,
     ],
   },
 ];

@@ -17,7 +17,7 @@ function App() {
   const { approvedElement, rejectedElement } = useRequestResult();
   const { approvedChElement, rejectedChElement } = useRequestChineseResult();
   const offLineElement = useOfflineSnack();
-
+  console.log('ale');
   useEffect(() => {
     socket.on('connect', () => {
       if (token) reconnectedLogin();
@@ -30,7 +30,7 @@ function App() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      {offLineElement}
+      {/* {offLineElement} */}
       {approvedElement}
       {approvedChElement}
       {rejectedElement}

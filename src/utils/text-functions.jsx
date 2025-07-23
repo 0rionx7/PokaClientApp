@@ -1,10 +1,10 @@
 import {
-  cardsName,
-  cardsNameOf,
-  gameNames,
+  primaryCardNames,
+  secondaryCardNames,
+  gameName,
   handKind,
-  paymentsDescription,
-  subscriptionOptions,
+  paymentDescription,
+  subscriptionOption,
 } from 'utils/text-constants';
 
 export function createTableTitle(tableName) {
@@ -46,11 +46,11 @@ export function describeHand(submissionInfo, submitBtn) {
     submissionInfo.kind === handKind.PAIR ||
     submissionInfo.kind === handKind.THREE_OF_A_KIND
   )
-    firstPart = ' ' + cardsNameOf[submissionInfo.desc[0]];
+    firstPart = ' ' + secondaryCardNames[submissionInfo.desc[0]];
   else
     firstPart =
       (submissionInfo.desc[0] === 12 ? ' της ' : ' του ') +
-      cardsName[submissionInfo.desc[0]];
+      primaryCardNames[submissionInfo.desc[0]];
 
   return (
     <>
@@ -62,7 +62,7 @@ export function describeHand(submissionInfo, submitBtn) {
       {submissionInfo.kind} {firstPart}
       {submitBtn && <br />}
       {submissionInfo.desc[1]
-        ? ` με ${cardsNameOf[submissionInfo.desc[1]]}`
+        ? ` με ${secondaryCardNames[submissionInfo.desc[1]]}`
         : ''}
     </>
   );
@@ -90,50 +90,38 @@ export function betPrompt(value, minBet, resta, error) {
       );
   }
 }
-export function extraBuilderValues(gameName) {
-  let name, label;
-  switch (gameName) {
-    case gameNames.GRAVEYARD:
-      name = 'allDiscardedWins';
-      label = 'ΞΕΣΚΑΡΤΑΡΙΣΜΑ ΑΝΩΤΑΤΟ ΦΥΛΛΟ';
-      break;
-    case gameNames.MAMUT:
-      name = 'mirrorWins';
-      label = 'ΚΑΘΡΕΦΤΗΣ ΑΝΩΤΑΤΟ ΦΥΛΛΟ';
-      break;
-    case gameNames.QUEEN:
-      name = 'queens';
-      label = 'ΜΠΑΛΑΝΤΕΡ ΚΑΙ ΟΙ ΝΤΑΜΕΣ';
-      break;
-    case gameNames.TARGET:
-      name = 'targetObligation';
-      label = 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ';
-      break;
-    case gameNames.CROSS:
-      name = 'crossObligation';
-      label = 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ';
-      break;
+export function getNameAndLabel(name) {
+  switch (name) {
+    case gameName.GRAVEYARD:
+      return { name: 'allDiscardedWins', label: 'ΞΕΣΚΑΡΤΑΡΙΣΜΑ ΑΝΩΤΑΤΟ ΦΥΛΛΟ' };
+    case gameName.MAMUT:
+      return { name: 'mirrorWins', label: 'ΚΑΘΡΕΦΤΗΣ ΑΝΩΤΑΤΟ ΦΥΛΛΟ' };
+    case gameName.QUEEN:
+      return { name: 'queens', label: 'ΜΠΑΛΑΝΤΕΡ ΚΑΙ ΟΙ ΝΤΑΜΕΣ' };
+    case gameName.TARGET:
+      return { name: 'targetObligation', label: 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ' };
+    case gameName.CROSS:
+      return { name: 'crossObligation', label: 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ' };
     default:
-      break;
+      return { name: '', label: '' };
   }
-  return { name, label };
 }
 export function creataPaymentTags(title, email) {
   let amount, customerTrns, merchantTrns;
   const tags = [];
 
   switch (title) {
-    case subscriptionOptions.yearly.split('_')[0]:
+    case subscriptionOption.yearly.split('_')[0]:
       amount = 5000;
-      customerTrns = paymentsDescription.yearly;
-      merchantTrns = paymentsDescription.yearly + ` του χρήστη ${email}`;
-      tags.push(paymentsDescription.yearly);
+      customerTrns = paymentDescription.yearly;
+      merchantTrns = paymentDescription.yearly + ` του χρήστη ${email}`;
+      tags.push(paymentDescription.yearly);
       break;
-    case subscriptionOptions.monthly.split('_')[0]:
+    case subscriptionOption.monthly.split('_')[0]:
       amount = 500;
-      customerTrns = paymentsDescription.monthly;
-      merchantTrns = paymentsDescription.monthly + ` του χρήστη ${email}`;
-      tags.push(paymentsDescription.monthly);
+      customerTrns = paymentDescription.monthly;
+      merchantTrns = paymentDescription.monthly + ` του χρήστη ${email}`;
+      tags.push(paymentDescription.monthly);
       break;
     default:
       break;

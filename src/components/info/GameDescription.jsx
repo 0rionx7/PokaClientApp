@@ -1,24 +1,23 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
+import { selectCurrentChoosenGame } from 'features/gameState/gameStateSlice';
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import { selectPlayername } from 'features/account/accountSlice';
-import { gamesInfo } from 'utils/text-constants';
+import { gameInfo } from 'utils/text-constants';
 import './Info.scss';
 
 const GameDescription = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(selectPlayername);
-  const currentChoosenGame = useSelector(
-    state => state.gameState.currentChoosenGame
-  );
+  const currentChoosenGame = useSelector(selectCurrentChoosenGame);
 
-  const game =
+  const gameName =
     hostPlayerName === data.dealer ? currentChoosenGame : data.gameName;
   const tableTitle = data.tableName.split('_')?.[0];
 
-  if (!game)
+  if (!gameName)
     return (
       <div className="game-info">
         <h2>{tableTitle}</h2>
@@ -29,7 +28,7 @@ const GameDescription = () => {
   return (
     <div className="game-info">
       <div className="info-container description">
-        {gamesInfo[game]?.split('&').map((infoText, i) => {
+        {gameInfo[gameName]?.split('&').map((infoText, i) => {
           const [title, text] = infoText.split('_');
           return (
             <div key={i}>

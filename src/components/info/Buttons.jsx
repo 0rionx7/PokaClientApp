@@ -1,11 +1,11 @@
 import { memo } from 'react';
 
-import { infoButtons } from 'utils/text-constants';
+import { infoButton } from 'utils/text-constants';
 import Button from 'components/ui/Button';
 import './Buttons.scss';
 
 const Buttons = ({ setSelected, selected }) => {
-  const buttons = Object.values(infoButtons);
+  const buttons = Object.values(infoButton);
 
   return (
     <div className="btns">

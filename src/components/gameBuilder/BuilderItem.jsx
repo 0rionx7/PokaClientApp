@@ -1,4 +1,4 @@
-import { builderTitles } from 'utils/text-constants';
+import { builderTitle } from 'utils/text-constants';
 import { gameNames } from 'utils/games';
 import { useMemo } from 'react';
 import { useGameBuilderContext } from 'hooks/gameBuilderContext';
@@ -17,18 +17,17 @@ const BuilderItem = ({ title, element, ref }) => {
 
   const hiddenWhenAny = useMemo(
     () => [
-      title === builderTitles.TABLO &&
+      title === builderTitle.TABLO &&
         gameName !== gameNames.MAMUT &&
         gameName !== gameNames.RAILROAD,
-      title === builderTitles.RAILROAD_LENGTH &&
-        gameName !== gameNames.RAILROAD,
-      title === builderTitles.CARDS_PER_LEG && gameName !== gameNames.CORNER,
+      title === builderTitle.RAILROAD_LENGTH && gameName !== gameNames.RAILROAD,
+      title === builderTitle.CARDS_PER_LEG && gameName !== gameNames.CORNER,
       gameName !== gameNames.POKER &&
-        (title === builderTitles.FACE_DOWN || title === builderTitles.SPEAKS),
-      (title === builderTitles.OPTIONS ||
-        title === builderTitles.HAND_CARDS_IN_PLAY) &&
+        (title === builderTitle.FACE_DOWN || title === builderTitle.SPEAKS),
+      (title === builderTitle.OPTIONS ||
+        title === builderTitle.HAND_CARDS_IN_PLAY) &&
         gameName === gameNames.POKER,
-      title === builderTitles.EXTRA &&
+      title === builderTitle.EXTRA &&
         showExtra.every(title => title !== gameName),
     ],
     [title, gameName]

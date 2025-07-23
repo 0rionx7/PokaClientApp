@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 
 import {
-  builderTitles,
-  dealingOrders,
-  errorMessages,
-  speaking,
-  tabloCount,
+  builderTitle,
+  dealingType,
+  errorMessage,
+  speakingOrder,
+  tablo,
 } from 'utils/text-constants';
 import {
   useGetGameStateQuery,
@@ -81,8 +81,8 @@ const GameBuilder = memo(() => {
   function validate(values) {
     const error = {};
     if (notEnoughCards(values, playersCount))
-      error.error = errorMessages.NO_CARDS;
-    if (!values.handCardsInPlay.length) error.error = errorMessages.HAND;
+      error.error = errorMessage.NO_CARDS;
+    if (!values.handCardsInPlay.length) error.error = errorMessage.HAND;
     return error;
   }
 
@@ -99,61 +99,56 @@ const GameBuilder = memo(() => {
     <Frame className="game-builder">
       <form action={formAction}>
         {snackElement}
-        <BuilderItem title={builderTitles.GAME} element={<GameChooser />} />
+        <BuilderItem title={builderTitle.GAME} element={<GameChooser />} />
         <BuilderItem
-          title={builderTitles.WINNING_ORDER}
+          title={builderTitle.WINNING_ORDER}
           element={<WinningOrder />}
         />
-        <BuilderItem title={builderTitles.EXTRA} element={<Extra />} />
+        <BuilderItem title={builderTitle.EXTRA} element={<Extra />} />
         <BuilderItem
-          title={builderTitles.TABLO}
-          element={
-            <Dilemma
-              name="tablo"
-              options={[tabloCount.MONO, tabloCount.DIPLO]}
-            />
-          }
+          title={builderTitle.TABLO}
+          element={<Dilemma name="tablo" options={[tablo.MONO, tablo.DIPLO]} />}
         />
         <BuilderItem
-          title={builderTitles.CARDS_PER_LEG}
+          title={builderTitle.CARDS_PER_LEG}
           element={<CardsCount name="cornerLength" />}
         />
         <BuilderItem
-          title={builderTitles.RAILROAD_LENGTH}
+          title={builderTitle.RAILROAD_LENGTH}
           element={<CardsCount name="railroadLength" />}
         />
-        <BuilderItem title={builderTitles.OPTIONS} element={<Options />} />
+        <BuilderItem title={builderTitle.OPTIONS} element={<Options />} />
         <BuilderItem
-          title={builderTitles.CARDS_IN_HAND}
+          title={builderTitle.CARDS_IN_HAND}
           element={<CardsCount name="cardsInHand" />}
         />
-        <BuilderItem title={builderTitles.FACE_DOWN} element={<FaceDown />} />
+        <BuilderItem title={builderTitle.FACE_DOWN} element={<FaceDown />} />
         <BuilderItem
-          title={builderTitles.SPEAKS}
+          title={builderTitle.SPEAKS}
           element={
             <Dilemma
               name="speaks"
-              options={[speaking.BY_VALUE, speaking.BY_SEAT]}
+              options={[speakingOrder.BY_VALUE, speakingOrder.BY_SEAT]}
             />
           }
         />
         <BuilderItem
           ref={inPLayRef}
-          title={builderTitles.HAND_CARDS_IN_PLAY}
+          title={builderTitle.HAND_CARDS_IN_PLAY}
           element={<HandCardsInPlay />}
         />
         <BuilderItem
-          title={builderTitles.DEALING}
+          title={builderTitle.DEALING}
           element={
             <Dilemma
               key={values.deny}
               name="dealing"
-              options={[dealingOrders.ENA_ENA, dealingOrders.OLA_MAZI]}
+              options={[dealingType.ENA_ENA, dealingType.OLA_MAZI]}
             />
           }
         />
         <BuilderItem
-          title={builderTitles.DEALING_OPTIONS}
+          title={builderTitle.DEALING_OPTIONS}
           element={<DealingOptions />}
         />
         {/* {actionContainerRef &&
