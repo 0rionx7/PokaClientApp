@@ -6,11 +6,11 @@ import classes from './UserName.module.scss';
 
 const EditUsername = ({ stopEditing }) => {
   const [changeUsername] = useUsernameChangeMutation();
+  const [error, setError] = useState(null);
   const [formState, formAction, isPending] = useActionState(
     editUserNameAction,
     ''
   );
-  const [error, setError] = useState(null);
 
   const validate = userName => {
     if (userName.length < 3 || userName.length > 17)

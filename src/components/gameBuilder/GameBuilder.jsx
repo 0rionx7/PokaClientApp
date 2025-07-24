@@ -56,14 +56,16 @@ const GameBuilder = memo(() => {
       handCardsInPlay,
       faceDownIndexes,
     };
-    const validation = validate(data);
-    if (validation.error) {
-      setSnackInfo(validation.error);
-      return validation;
-    }
+    const error = validate(data);
+    if (error) return setSnackInfo(error);
 
     const gameInfo = createGameInfo(data);
     const result = await setGameVariant({ gameId, gameInfo });
+    if (result?.error?.data) setSnackInfo(result.error.data);
+  }
+  function validate(values) {
+    if (notEnoughCards(values, playersCount)) return errorMessage.STARTINGCARD;
+    if (!values.handCardsInPlay.length) return errorMessage.HAND;
   }
 
   const playersCount = data.playerStates.filter(isSeated).length;
@@ -77,23 +79,6 @@ const GameBuilder = memo(() => {
   else if (allOthersTapi) btnPrompt = 'Μόνο ένας παίκτης έχει χρήματα';
 
   const isValid = !formState?.buildGame;
-
-  function validate(values) {
-    const error = {};
-    if (notEnoughCards(values, playersCount))
-      error.error = errorMessage.NO_CARDS;
-    if (!values.handCardsInPlay.length) error.error = errorMessage.HAND;
-    return error;
-  }
-
-  const submitHandler = async (values, { setErrors }) => {
-    const gameVariant = createGameInfo(values);
-    const result = await setGameVariant({ gameId, gameInfo: gameVariant });
-    if (result?.error?.data) {
-      setErrors({ buildGame: result.error.data });
-      setSnackInfo(result.error.data);
-    }
-  };
 
   return (
     <Frame className="game-builder">
