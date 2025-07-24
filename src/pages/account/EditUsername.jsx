@@ -29,7 +29,8 @@ const EditUsername = ({ stopEditing }) => {
     if (result?.error?.data) {
       setError(result.error.data);
       return newUserName;
-    } else stopEditing();
+    }
+    stopEditing();
   }
 
   return (
@@ -48,7 +49,6 @@ const EditUsername = ({ stopEditing }) => {
       </div>
       <div className={classes.error}>{error}</div>
       <Button
-        type="submit"
         prompt="Aποθήκευση"
         disabled={isPending}
         className={classes['confirm-btn'] + ' green'}
