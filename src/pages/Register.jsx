@@ -35,12 +35,7 @@ const Register = () => {
       return { error: error.register, enteredValues: registerData };
 
     const result = await register(registerData);
-    if (result?.error?.data?.includes('duplicate')) {
-      const error = result?.error?.data?.includes('email')
-        ? 'Το email είναι ήδη καταχωρημένο.\n'
-        : 'Το όνομα χρήστη είναι ήδη καταχωρημένο.\n';
-      return { error, enteredValues: registerData };
-    } else if (result?.error?.data)
+    if (result?.error?.data)
       return { error: result.error.data, enteredValues: registerData };
     else navigate('/saloon');
   }
