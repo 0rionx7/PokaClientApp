@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { nanoid } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import { Formik, Field, Form } from 'formik';
 
 import { useOpenTableChineseMutation } from 'features/gameStateChinese/gameStateApi';
 import { selectPlayername } from 'features/account/accountSlice';
 import Button from 'components/ui/Button';
+import { createCode } from 'utils/utilities-functions';
 
 const OpenTable = () => {
   const playerName = useSelector(selectPlayername);
@@ -26,11 +26,9 @@ const OpenTable = () => {
     return errors;
   };
   const submitHandler = async (values, { setErrors }) => {
-    const tableName = values.tableName + '_' + playerName + '_' + nanoid(5);
+    const tableName = values.tableName + '_' + playerName + '_' + createCode(6);
     const result = await openTable({ ...values, tableName });
-    if (result?.error?.data?.includes('duplicate'))
-      setErrors({ openTable: 'Το όνομα αυτό χρησιμοποιείται' });
-    else if (result?.error?.data) setErrors({ openTable: result.error.data });
+    if (result?.error?.data) setErrors({ openTable: result.error.data });
     else navigate(`/chinese/table/${result.data.gameId}`);
   };
 
