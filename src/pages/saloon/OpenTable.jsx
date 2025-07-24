@@ -39,10 +39,6 @@ const OpenTable = () => {
     const tableName =
       tableData.tableName + '_' + playerName + '_' + createCode(6);
     const result = await openTable({ ...tableData, tableName });
-    if (result?.error?.data?.includes('duplicate')) {
-      setError('Το όνομα αυτό χρησιμοποιείται');
-      return tableData;
-    }
     if (result?.error?.data) {
       setError(result.error.data);
       return tableData;
@@ -50,7 +46,6 @@ const OpenTable = () => {
     navigate(`/table/${result.data.gameId}`);
   }
   const validate = values => {
-    console.log(values);
     if (
       values.tableName.trim().length < 3 ||
       values.tableName.trim().length > 17
@@ -68,7 +63,6 @@ const OpenTable = () => {
       <div className="title">
         <h3>Δημιουργία Τραπεζιού</h3>
       </div>
-
       <form action={formAction} onFocus={() => setError(null)}>
         <div className="form-inputs">
           <div className="form-control">
