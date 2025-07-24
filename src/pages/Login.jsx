@@ -1,4 +1,4 @@
-import { useActionState } from 'react';
+import { useActionState, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useLoginMutation } from 'features/account/accountApi';
@@ -21,10 +21,11 @@ const initialValues = () => {
 };
 
 const Login = () => {
-  const [formState, formAction, isPending] = useActionState(loginAction, {
-    error: null,
-    enteredValues: initialValues(),
-  });
+  const [formState, formAction, isPending] = useActionState(
+    loginAction,
+    initialValues()
+  );
+  const [error, setError] = useState(null);
   const [login] = useLoginMutation();
   const navigate = useNavigate();
 
@@ -40,15 +41,16 @@ const Login = () => {
       console.log(error);
     }
     const result = await login(loginData);
-    if (result?.error?.data)
-      return { error: result.error.data, enteredValues: loginData };
-    else navigate('/saloon', { replace: true });
+    if (result?.error?.data) {
+      setError(result.error.data);
+      return loginData;
+    } else navigate('/saloon', { replace: true });
   }
 
   return (
     <div className="login">
       <Frame>
-        <form action={formAction}>
+        <form action={formAction} onFocus={() => setError(null)}>
           <label className="form-control">
             Όνομα χρήστη
             <input
@@ -56,7 +58,7 @@ const Login = () => {
               name="username"
               type="text"
               autoComplete="on"
-              defaultValue={formState.enteredValues?.username}
+              defaultValue={formState.username}
             />
           </label>
           <label
@@ -67,7 +69,7 @@ const Login = () => {
               type="checkbox"
               className="checkbox"
               name="rememberMe"
-              defaultChecked={!!formState.enteredValues?.rememberMe}
+              defaultChecked={!!formState.rememberMe}
             />
           </label>
           <label className="form-control">
@@ -76,13 +78,13 @@ const Login = () => {
               id="password"
               name="password"
               type="text"
-              defaultValue={formState.enteredValues?.password}
+              defaultValue={formState.password}
             />
           </label>
           <Link to="/forgot">
             <p>Ξέχασα τον κωδικό.</p>
           </Link>
-          <span>{formState.error}</span>
+          <span>{error}</span>
           <Button
             type="submit"
             prompt="Είσοδος"
