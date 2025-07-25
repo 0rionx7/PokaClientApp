@@ -12,8 +12,10 @@ const ApprovedRequest = ({ requestInfo: { tableName, gameId } }) => {
   const [sitDownChinese] = useSitDownChineseMutation();
   const [sitDown] = useSitDownMutation();
 
+  const isChinese = location?.pathname.includes('chinese');
+  const table = isChinese ? ' κινέζικου πόκερ' : ' πόκας';
+
   const joinHandler = async _ => {
-    const isChinese = location?.pathname.includes('chinese');
     if (isChinese) {
       const { data } = await sitDownChinese({ gameId, tableName });
       if (data?.gameId) navigate(`chinese/table/${gameId}`);
@@ -25,7 +27,7 @@ const ApprovedRequest = ({ requestInfo: { tableName, gameId } }) => {
 
   return (
     <>
-      Η αίτηση συμμετοχής σας για το τραπέζι <br />
+      Η αίτηση συμμετοχής σας για το τραπέζι {table} <br />
       {createTableTitle(tableName)} εγκρίθηκε.
       <span style={{ fontSize: '.7rem' }}>
         (μπορείτε να καθήσετε οποιαδήποτε στιγμή επιθυμείτε, μέσω της λίστας

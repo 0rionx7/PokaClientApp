@@ -10,18 +10,13 @@ import { useGetTablesChineseQuery } from 'features/gameStateChinese/gameStateApi
 
 const useRequestResult = chinese => {
   const { refetch } = useGetUserQuery();
+  const { gameId } = useParams();
   const { refetch: refetchPokaTables } = useGetTablesQuery();
   const { refetch: refetchChineseTables } = useGetTablesChineseQuery();
-  const { gameId } = useParams();
   const { snackElement: rejectedElement, setSnackInfo: setRejectPopUp } =
-    useSnackBar({
-      height: '100%',
-    });
+    useSnackBar({ height: '100%' });
   const { snackElement: approvedElement, setSnackInfo: setApprovedPopUp } =
-    useSnackBar({
-      height: '100%',
-      secs: 7,
-    });
+    useSnackBar({ height: '100%', secs: 7 });
 
   useEffect(() => {
     let event = 'pokaRequestApproved',
@@ -48,13 +43,15 @@ const useRequestResult = chinese => {
     let event = chinese ? 'chineseRequestRejected' : 'pokaRequestRejected';
     socket.on(event, ({ tableName, showPopUp }) => {
       refetch();
-      if (!gameId && showPopUp)
+      if (!gameId && showPopUp) {
+        const table = chinese ? ' κινέζικου πόκερ' : ' πόκας';
         setRejectPopUp(
           <>
-            Η αίτηση συμμετοχής σας για το τραπέζι {createTableTitle(tableName)}{' '}
-            απορρίφθηκε.
+            Η αίτηση συμμετοχής σας για το τραπέζι{table}{' '}
+            {createTableTitle(tableName)} απορρίφθηκε.
           </>
         );
+      }
     });
     return () => socket.removeAllListeners(event);
   }, [setRejectPopUp, gameId, refetch, chinese]);
