@@ -67,7 +67,6 @@ const OpenTable = () => {
             </div>
             <span>{errors.openTable}</span>
             <Button
-              type="submit"
               prompt="Δημιουργία"
               disabled={isSubmitting || errors.openTable}
               className="orange"

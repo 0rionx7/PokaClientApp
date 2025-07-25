@@ -162,7 +162,6 @@ const GameBuilder = memo(() => {
           //   allOthersTapi ||
           //   noOthersInPlay
           // }
-          type="submit"
           className="deal-btn"
         />
       </form>

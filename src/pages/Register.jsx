@@ -83,12 +83,7 @@ const Register = () => {
             />
           </label>
           <span>{formState.error}</span>
-          <Button
-            type="submit"
-            prompt="Εγγραφή"
-            disabled={isPending}
-            className="orange"
-          />
+          <Button prompt="Εγγραφή" disabled={isPending} className="orange" />
           <label className="form-control agree-terms">
             Συμφωνώ με τους όρους χρήσης
             <input

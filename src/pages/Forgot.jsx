@@ -52,7 +52,6 @@ const Forgot = () => {
               </div>
               <span>{errors.email}</span>
               <Button
-                type="submit"
                 prompt="Αποστολή"
                 disabled={isSubmitting}
                 className="orange"

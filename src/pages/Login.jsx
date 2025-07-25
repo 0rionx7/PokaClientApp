@@ -85,12 +85,7 @@ const Login = () => {
             <p>Ξέχασα τον κωδικό.</p>
           </Link>
           <span>{error}</span>
-          <Button
-            type="submit"
-            prompt="Είσοδος"
-            disabled={isPending}
-            className="orange"
-          />
+          <Button prompt="Είσοδος" disabled={isPending} className="orange" />
         </form>
         <Link to="/register">
           <p>Δεν έχετε λογαρασμό; δημιουργήστε έναν δωρεάν.</p>

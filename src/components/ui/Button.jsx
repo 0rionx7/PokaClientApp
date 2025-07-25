@@ -1,8 +1,8 @@
 import './Button.scss';
 
-const Button = ({ type = 'button', prompt, className, ...rest }) => {
+const Button = ({ prompt, className, ...rest }) => {
   return (
-    <button className={`btn-base ${className ?? ''}`} type={type} {...rest}>
+    <button className={`btn-base ${className ?? ''}`} {...rest}>
       {prompt}
     </button>
   );

@@ -113,7 +113,6 @@ const OpenTable = () => {
         </div>
         <span>{error}</span>
         <Button
-          type="submit"
           prompt="Δημιουργία"
           className="orange"
           disabled={isPending || error}
