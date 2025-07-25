@@ -7,17 +7,16 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { useReconnectedLoginMutation } from 'features/account/accountApi';
 import { socket } from 'features/gameState/gameStateApi';
-import useRequestChineseResult from 'hooks/useRequestChineseResult';
 import useRequestResult from 'hooks/useRequestResult';
 import useOfflineSnack from 'hooks/useOfflineSnack';
 
 function App() {
   const { token } = useSelector(state => state.account);
   const [reconnectedLogin] = useReconnectedLoginMutation();
-  const { approvedElement, rejectedElement } = useRequestResult();
-  const { approvedChElement, rejectedChElement } = useRequestChineseResult();
+  const [approvedElement, rejectedElement] = useRequestResult();
+  const [approvedChElement, rejectedChElement] = useRequestResult('chinese');
   const offLineElement = useOfflineSnack();
-  console.log('ale');
+
   useEffect(() => {
     socket.on('connect', () => {
       if (token) reconnectedLogin();

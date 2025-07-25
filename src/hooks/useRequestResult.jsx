@@ -6,10 +6,12 @@ import { createTableTitle } from 'utils/text-functions';
 import ApprovedRequest from 'pages/ApprovedRequest';
 import useSnackBar from 'hooks/useSnackBar';
 import { useGetUserQuery } from 'features/account/accountApi';
+import { useGetTablesChineseQuery } from 'features/gameStateChinese/gameStateApi';
 
-const useRequestResult = () => {
+const useRequestResult = chinese => {
   const { refetch } = useGetUserQuery();
-  const { refetch: refetchTables } = useGetTablesQuery();
+  const { refetch: refetchPokaTables } = useGetTablesQuery();
+  const { refetch: refetchChineseTables } = useGetTablesChineseQuery();
   const { gameId } = useParams();
   const { snackElement: rejectedElement, setSnackInfo: setRejectPopUp } =
     useSnackBar({
@@ -22,16 +24,29 @@ const useRequestResult = () => {
     });
 
   useEffect(() => {
-    socket.on('joinApproved', requestInfo => {
+    let event = 'pokaRequestApproved',
+      refetchTables = refetchPokaTables;
+    if (chinese) {
+      event = 'chineseRequestApproved';
+      refetchTables = refetchChineseTables;
+    }
+    socket.on(event, requestInfo => {
       setApprovedPopUp(<ApprovedRequest requestInfo={requestInfo} />);
       refetch();
       refetchTables();
     });
-    return () => socket.removeAllListeners('joinApproved');
-  }, [setApprovedPopUp, refetch, refetchTables]);
+    return () => socket.removeAllListeners(event);
+  }, [
+    setApprovedPopUp,
+    refetch,
+    refetchPokaTables,
+    refetchChineseTables,
+    chinese,
+  ]);
 
   useEffect(() => {
-    socket.on('requestRejected', ({ tableName, showPopUp }) => {
+    let event = chinese ? 'chineseRequestRejected' : 'pokaRequestRejected';
+    socket.on(event, ({ tableName, showPopUp }) => {
       refetch();
       if (!gameId && showPopUp)
         setRejectPopUp(
@@ -41,10 +56,10 @@ const useRequestResult = () => {
           </>
         );
     });
-    return () => socket.removeAllListeners('requestRejected');
-  }, [setRejectPopUp, gameId, refetch]);
+    return () => socket.removeAllListeners(event);
+  }, [setRejectPopUp, gameId, refetch, chinese]);
 
-  return { approvedElement, rejectedElement };
+  return [approvedElement, rejectedElement];
 };
 
 export default useRequestResult;
