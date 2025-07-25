@@ -1,10 +1,10 @@
+import { useActionState, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { Field, Form, Formik } from 'formik';
 
 import { useChangePasswordMutation } from 'features/account/accountApi';
+import useLoginOnConnect from 'hooks/useLoginOnConnect';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
-import useLoginOnConnect from 'hooks/useLoginOnConnect';
 
 const ResetPassword = () => {
   const [changePassword, { isLoading, isSuccess }] =
@@ -13,63 +13,65 @@ const ResetPassword = () => {
   let [searchParams] = useSearchParams();
   const token = searchParams.get('t');
   useLoginOnConnect({ token });
+  const [formState, formAction, isPending] = useActionState(
+    resetPasswordAction,
+    ''
+  );
+  const [error, setError] = useState(null);
 
-  const initialValues = {
-    newPassword: '',
-    confirmPassword: '',
-  };
   const validate = values => {
     if (values.newPassword !== values.confirmPassword)
-      return { password: 'Λάθος επαλήθευση κωδικού.' };
+      return 'Λάθος επαλήθευση κωδικού.';
   };
-  const submitHandler = async (values, { setErrors, setStatus }) => {
-    const result = await changePassword(values);
-    if (result.error) setErrors({ password: result.error.data });
-    else {
-      setStatus({ success: 'Επιτυχής αλλαγή κωδικού.' });
-      setTimeout(() => navigate('/account'), 1000);
+  async function resetPasswordAction(_prevState, formData) {
+    const passwordData = Object.fromEntries(formData.entries());
+    const error = validate(passwordData);
+    if (error) {
+      setError(error);
+      return passwordData;
     }
-  };
+    const result = await changePassword(passwordData);
+    if (result.error) {
+      setError(result.error.data);
+      return passwordData;
+    }
+    setTimeout(() => navigate('/account'), 1000);
+    return { success: 'Επιτυχής αλλαγή κωδικού.' };
+  }
 
   return (
     <div className="change-password">
       <Frame>
-        <Formik
-          key="password"
-          initialValues={initialValues}
-          onSubmit={submitHandler}
-          validate={validate}
-          validateOnChange={false}
-          validateOnBlur={false}
-          enableReinitialize>
-          {({ setErrors, submitForm, errors, status }) => (
-            <>
-              <Form onFocus={() => setErrors({})}>
-                <h3>Δημιουργία νέου κωδικού εισόδου</h3>
-                <div className="form-control">
-                  <label htmlFor="newPassword">Νέος κωδικός</label>
-                  <Field id="newPassword" name="newPassword" type="text" />
-                </div>
-                <div className="form-control">
-                  <label htmlFor="confirmPassword">Επαλήθευση κωδικού</label>
-                  <Field
-                    id="confirmPassword"
-                    name="confirmPassword"
-                    type="text"
-                  />
-                </div>
-                <span style={{ color: 'red' }}>{errors?.password}</span>
-                <span style={{ color: '#1cf31c' }}>{status?.success}</span>
-              </Form>
-              <Button
-                prompt="Υποβολή"
-                onClick={submitForm}
-                disabled={isLoading || isSuccess}
-                className=" green"
+        <>
+          <form action={formAction} onFocus={() => setError(null)}>
+            <h3>Δημιουργία νέου κωδικού εισόδου</h3>
+            <div className="form-control">
+              <label htmlFor="newPassword">Νέος κωδικός</label>
+              <input
+                id="newPassword"
+                name="newPassword"
+                type="text"
+                defaultValue={formState.newPassword}
               />
-            </>
-          )}
-        </Formik>
+            </div>
+            <div className="form-control">
+              <label htmlFor="confirmPassword">Επαλήθευση κωδικού</label>
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="text"
+                defaultValue={formState.confirmPassword}
+              />
+            </div>
+            <span style={{ color: 'red' }}>{error}</span>
+            <span style={{ color: '#1cf31c' }}>{formState.success}</span>
+            <Button
+              prompt="Υποβολή"
+              disabled={isLoading || isSuccess || isPending}
+              className=" green"
+            />
+          </form>
+        </>
       </Frame>
     </div>
   );

@@ -43,12 +43,12 @@ const EditPassword = () => {
     const error = validate(passwordData);
     if (error) {
       setError(error);
-      return Object.fromEntries(formData.entries());
+      return passwordData;
     }
     const result = await changePassword(passwordData);
     if (result.error) {
       setError(result.error.data);
-      return Object.fromEntries(formData.entries());
+      return passwordData;
     }
     setTimeout(() => setEdit(false), 1000);
     return { success: 'Επιτυχής αλλαγή κωδικού.' };
