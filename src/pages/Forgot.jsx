@@ -1,4 +1,4 @@
-import { Formik, Field, Form } from 'formik';
+import { useActionState, useState } from 'react';
 
 import { useForgotPasswordMutation } from 'features/account/accountApi';
 import useSnackBar from 'hooks/useSnackBar';
@@ -12,53 +12,52 @@ const Forgot = () => {
     height: '100%',
     secs: 5,
   });
+  const [error, setError] = useState(null);
+  const [formState, formAction, isPending] =
+    useActionState(forgotPasswordAction);
 
-  const validate = values => {
-    let errors = {};
-    if (!values.email.trim()) errors.email = 'Το email είναι απαραίτητο.\n';
-    else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email))
-      errors.email = 'Λάθος διαμόρφοση email.\n';
-    return errors;
+  const validate = email => {
+    if (!email) return 'Το email είναι απαραίτητο.';
+    if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email))
+      return 'Λάθος διαμόρφοση email.';
   };
 
-  const submitHandler = async (values, { setErrors }) => {
-    const result = await reset({ email: values.email.trim() });
-    console.log(result);
-    if (result?.error)
-      setErrors({ email: result.error.data || 'server error' });
-    else
-      setSnackInfo(
-        'Σας έχει αποσταλλεί στο email που δηλώσατε σύνδεσμος για την επαναφορά του κωδικού σας.'
-      );
-  };
+  async function forgotPasswordAction(_prevState, formData) {
+    const email = formData.get('email').trim();
+    const error = validate(email);
+    if (error) {
+      setError(error);
+      return email;
+    }
+    const result = await reset({ email });
+    if (result?.error) {
+      setError(result.error.data || 'server error');
+      return email;
+    }
+    setSnackInfo(
+      'Σας έχει αποσταλλεί στο email που δηλώσατε σύνδεσμος για την επαναφορά του κωδικού σας.'
+    );
+  }
 
   return (
     <div className="forgot">
       <Frame style={{ alignItems: 'center' }}>
         <h3>Αποστολή προσωρινού κωδικού εισόδου</h3>
-        <Formik
-          key="forgot"
-          initialValues={{ email: '' }}
-          validate={validate}
-          onSubmit={submitHandler}
-          validateOnChange={false}
-          validateOnBlur={false}
-          enableReinitialize>
-          {({ isSubmitting, errors, setErrors }) => (
-            <Form onFocus={() => setErrors({})}>
-              <div className="form-control username">
-                <label htmlFor="email">Συμπληρώστε το email σας</label>
-                <Field id="email" name="email" type="text" autoComplete="on" />
-              </div>
-              <span>{errors.email}</span>
-              <Button
-                prompt="Αποστολή"
-                disabled={isSubmitting}
-                className="orange"
-              />
-            </Form>
-          )}
-        </Formik>
+
+        <form action={formAction} onFocus={() => setError(null)}>
+          <div className="form-control username">
+            <label htmlFor="email">Συμπληρώστε το email σας</label>
+            <input
+              id="email"
+              name="email"
+              type="text"
+              autoComplete="on"
+              defaultValue={formState}
+            />
+          </div>
+          <span>{error}</span>
+          <Button prompt="Αποστολή" disabled={isPending} className="orange" />
+        </form>
       </Frame>
       {snackElement}
     </div>
