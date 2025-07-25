@@ -146,7 +146,7 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
     }),
     rejectRequestChinese: build.mutation({
       query: rejectlInfo => ({
-        url: '/requests/chinese/reject',
+        url: 'chinese/requests/reject',
         method: 'PATCH',
         body: rejectlInfo,
       }),
