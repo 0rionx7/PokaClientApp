@@ -1,24 +1,14 @@
-import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useRedirectedLoginMutation } from 'features/account/accountApi';
-import { socket } from 'features/gameState/gameStateApi';
 import Button from 'components/ui/Button';
+import useLoginOnConnect from 'hooks/useLoginOnConnect';
 import './SuccessfulPayment.scss';
 
 const FailedPayment = () => {
-  const [redirectedLogin] = useRedirectedLoginMutation();
   let [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
   const orderCode = searchParams.get('s');
-
-  useEffect(() => {
-    socket.on('connect', () => redirectedLogin({ orderCode }));
-    return () => {
-      socket.removeAllListeners('connect');
-    };
-  }, [redirectedLogin, orderCode]);
+  useLoginOnConnect({ orderCode });
 
   return (
     <div className="payment-result">

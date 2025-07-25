@@ -1,30 +1,18 @@
-import { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { Field, Form, Formik } from 'formik';
 
-import { socket } from 'features/gameState/gameStateApi';
-import {
-  useChangePasswordMutation,
-  useRedirectedLoginMutation,
-} from 'features/account/accountApi';
+import { useChangePasswordMutation } from 'features/account/accountApi';
 import Button from 'components/ui/Button';
 import Frame from 'components/ui/Frame';
+import useLoginOnConnect from 'hooks/useLoginOnConnect';
 
 const ResetPassword = () => {
   const [changePassword, { isLoading, isSuccess }] =
     useChangePasswordMutation();
-  const [redirectedLogin] = useRedirectedLoginMutation();
-  let [searchParams] = useSearchParams();
   const navigate = useNavigate();
-
+  let [searchParams] = useSearchParams();
   const token = searchParams.get('t');
-
-  useEffect(() => {
-    socket.on('connect', () => redirectedLogin({ token }));
-    return () => {
-      socket.removeAllListeners('connect');
-    };
-  }, [redirectedLogin, token]);
+  useLoginOnConnect({ token });
 
   const initialValues = {
     newPassword: '',
