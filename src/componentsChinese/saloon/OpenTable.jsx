@@ -26,7 +26,6 @@ const OpenTable = () => {
 
   async function openTableAction(_prevFormState, formData) {
     const tableData = Object.fromEntries(formData.entries());
-    console.log(tableData);
     const error = validate(tableData.tableName);
     if (error) {
       setError(error);
