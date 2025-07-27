@@ -1,13 +1,6 @@
 import Button from 'components/ui/Button';
 
-const BetOptionButton = ({
-  amount,
-  color,
-  onClick,
-  disabled,
-  style,
-  className,
-}) => {
+const BetOptionButton = ({ amount, color, ...rest }) => {
   const displayValue = amount >= 1000 ? amount / 1000 + 'K' : amount;
   const prompt = (
     <div className="bet-options">
@@ -19,15 +12,7 @@ const BetOptionButton = ({
     </div>
   );
 
-  return (
-    <Button
-      prompt={prompt}
-      onClick={onClick}
-      disabled={disabled}
-      style={style}
-      className={className}
-    />
-  );
+  return <Button prompt={prompt} {...rest} type="button" />;
 };
 
 export default BetOptionButton;

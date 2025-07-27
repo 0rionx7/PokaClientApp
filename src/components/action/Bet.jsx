@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Field, Form, Formik } from 'formik';
 
 import {
   useBetMutation,
@@ -17,92 +16,111 @@ const Bet = ({ bet, resta }) => {
   const {
     data: { maxBet, chip, currentPlayerList },
   } = useGetGameStateQuery(gameId);
-
   const minBet = Math.min(maxBet, resta) - bet;
+  const [betAmount, setBetAmount] = useState(minBet);
+  const [status, setStatus] = useState({});
 
   useEffect(() => {
     return () => reset();
   }, [reset, currentPlayerList]);
 
-  const validate = values => {
-    let errors = {};
-    if (values.amount < minBet && values.amount >= 0)
-      errors.amount = `ελάχ. : ${minBet}`;
-    else if (values.amount > 0 && values.amount < chip)
-      errors.amount = `ελάχ. : ${chip}`;
-    if (values.amount + bet > resta) errors.amount = 'ΑΝΕΠΑΡΚΕΣ ΥΠΟΛΟΙΠΟ';
-    return errors;
+  const validate = amount => {
+    if (amount < minBet && amount >= 0)
+      return setStatus({ error: `ελάχ. : ${minBet}` });
+    if (amount > 0 && amount < chip)
+      return setStatus({ error: `ελάχ. : ${chip}` });
+    if (amount + bet > resta) return setStatus({ error: 'ΑΝΕΠΑΡΚΕΣ ΥΠΟΛΟΙΠΟ' });
+    setStatus({});
   };
 
+  async function betSubmit(e) {
+    e.preventDefault();
+    validate(betAmount);
+    setStatus({ pending: true });
+    const chipedAmount = Math.floor(betAmount / chip) * chip;
+    const result = await placeBet({ gameId, amount: chipedAmount });
+    if (result.error?.data) return setStatus({ error: result.error?.data });
+  }
+
   return (
-    <Formik
-      initialValues={{ amount: minBet }}
-      onSubmit={async ({ amount }) => {
-        const chipedAmount = Math.floor(amount / chip) * chip;
-        await placeBet({ gameId, amount: chipedAmount });
-      }}
-      validate={validate}
-      enableReinitialize // for Reinitialize  initial values!!!
-    >
-      {({ errors, values, setFieldValue, isSubmitting }) => (
-        <Form className="bet">
-          <div className="form-control">
-            <label htmlFor="amount">ΠΟΝΤΑΡΙΣΜΑ</label>
-            <Field
-              id="amount"
-              name="amount"
-              type="number"
-              disabled={isSubmitting || isSuccess}
-            />
-            {errors.amount ? (
-              <span style={{ color: 'red' }}>{errors.amount}</span>
-            ) : (
-              <span>ή πληκ/στε</span>
-            )}
-          </div>
-          <div className="place-bet">
-            <div>ΠΟΝΤΑΡΕΤΕ</div>
-            <Button
-              prompt={betPrompt(
-                Math.floor(values.amount / chip) * chip,
-                minBet,
-                resta,
-                errors.amount
-              )}
-              type="submit"
-              disabled={isSubmitting || isSuccess || errors.amount}
-              className="green"
-            />
-          </div>
-          <div className="place-bet fold">
-            <div>ΑΠΟΣΥΡΘΗΤΕ</div>
-            <Button
-              prompt="ΠΑΣΟ"
-              onClick={() => placeBet({ gameId, amount: -1 })}
-              disabled={isSubmitting || isSuccess}
-              className="fold red"
-            />
-          </div>
-          <BetOptions disabled={isSuccess} />
-          <div className="call">
-            {maxBet <= resta && (
-              <Button
-                onClick={() => setFieldValue('amount', minBet)}
-                prompt={minBet.toLocaleString()}
-                disabled={isSubmitting || isSuccess}
-                className="call-btn green"
-              />
-            )}
-            <Button
-              onClick={() => setFieldValue('amount', resta - bet)}
-              prompt="ΡΕΣΤΑ"
-              disabled={isSubmitting || isSuccess}
-              className="call-btn purple"
-            />
-          </div>
-        </Form>
-      )}
-    </Formik>
+    <form className="bet" onSubmit={betSubmit}>
+      <div className="form-control">
+        <label htmlFor="amount">ΠΟΝΤΑΡΙΣΜΑ</label>
+        <input
+          id="amount"
+          name="amount"
+          type="text"
+          inputMode="numeric"
+          disabled={isSuccess || status.pending}
+          value={+betAmount}
+          onChange={e => {
+            validate(+e.target.value);
+            setBetAmount(+e.target.value);
+          }}
+        />
+        {status.error ? (
+          <span style={{ color: 'red' }}>{status.error}</span>
+        ) : (
+          <span>ή πληκ/στε</span>
+        )}
+      </div>
+      <div className="place-bet">
+        <div>ΠΟΝΤΑΡΕΤΕ</div>
+        <Button
+          prompt={betPrompt(
+            Math.floor(betAmount / chip) * chip,
+            minBet,
+            resta,
+            status.error
+          )}
+          disabled={status.error || status.pending || isSuccess}
+          className="green"
+        />
+      </div>
+      <div className="place-bet fold">
+        <div>ΑΠΟΣΥΡΘΗΤΕ</div>
+        <Button
+          type="button"
+          prompt="ΠΑΣΟ"
+          onClick={() => {
+            setStatus({ pending: true });
+            placeBet({ gameId, amount: -1 });
+          }}
+          disabled={isSuccess || status.pending}
+          className="fold red"
+        />
+      </div>
+      <BetOptions
+        betAmount={betAmount}
+        setBetAmount={setBetAmount}
+        validate={validate}
+        disabled={isSuccess || status.pending}
+      />
+      <div className="call">
+        {maxBet <= resta && (
+          <Button
+            onClick={() => {
+              setStatus({});
+              setBetAmount(minBet);
+            }}
+            prompt={minBet.toLocaleString()}
+            className="call-btn green"
+            type="button"
+            disabled={isSuccess || status.pending}
+          />
+        )}
+        <Button
+          onClick={() => {
+            setStatus({});
+            setBetAmount(resta - bet);
+          }}
+          prompt="ΡΕΣΤΑ"
+          className="call-btn purple"
+          type="button"
+          disabled={isSuccess || status.pending}
+        />
+      </div>
+    </form>
   );
 };
 
