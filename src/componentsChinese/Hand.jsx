@@ -67,7 +67,7 @@ const Hand = () => {
       <Button
         onClick={submitCards}
         disabled={!canSubmit && !canNext}
-        prompt={canNext ? 'next round' : 'Submit'}
+        prompt={canNext ? 'Επόμενος γύρος' : 'Υποβολή'}
         style={{ padding: '.8rem 2rem' }}
       />
       <FantasyButtons />
