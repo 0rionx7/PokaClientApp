@@ -1,79 +1,82 @@
+import { useActionState, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Formik, Field, Form } from 'formik';
 
 import { useOpenTableChineseMutation } from 'features/gameStateChinese/gameStateApi';
 import { selectPlayername } from 'features/account/accountSlice';
-import Button from 'components/ui/Button';
 import { createCode } from 'utils/utilities-functions';
+import { describeTime } from 'utils/text-functions';
+import Button from 'components/ui/Button';
 
 const OpenTable = () => {
   const playerName = useSelector(selectPlayername);
   const [openTable] = useOpenTableChineseMutation();
+  const [formState, formAction, isPending] = useActionState(openTableAction, {
+    tableName: '',
+    playTime: 120,
+  });
+  const [error, setError] = useState(null);
+
   const navigate = useNavigate();
 
-  const initialValues = {
-    tableName: '',
-    initialPlayTime: 120,
+  const validate = name => {
+    if (name.trim().length < 3 || name.trim().length > 17)
+      return `Το όνομα τραπεζιού πρέπει να αποτελείται\n από 3 εώς 17 χαρακτήρες.`;
   };
-  const validate = values => {
-    let errors = {};
-    if (
-      values.tableName.trim().length < 3 ||
-      values.tableName.trim().length > 17
-    )
-      errors.openTable = `Το όνομα τραπεζιού πρέπει να αποτελείται\n από 3 εώς 17 χαρακτήρες.`;
-    return errors;
-  };
-  const submitHandler = async (values, { setErrors }) => {
-    const tableName = values.tableName + '_' + playerName + '_' + createCode(6);
-    const result = await openTable({ ...values, tableName });
-    if (result?.error?.data) setErrors({ openTable: result.error.data });
-    else navigate(`/chinese/table/${result.data.gameId}`);
-  };
+
+  async function openTableAction(_prevFormState, formData) {
+    const tableData = Object.fromEntries(formData.entries());
+    console.log(tableData);
+    const error = validate(tableData.tableName);
+    if (error) {
+      setError(error);
+      return tableData;
+    }
+    const tableName =
+      tableData.tableName + '_' + playerName + '_' + createCode(6);
+    const result = await openTable({ ...tableData, tableName });
+    if (result?.error?.data) {
+      setError(result.error.data);
+      return tableData;
+    }
+    navigate(`/chinese/table/${result.data.gameId}`);
+  }
 
   return (
     <div className="open-table">
       <div className="title">
         <h3>Δημιουργία Τραπεζιού</h3>
       </div>
-      <Formik
-        key="openTable"
-        initialValues={initialValues}
-        onSubmit={submitHandler}
-        validate={validate}
-        validateOnChange={false}
-        validateOnBlur={false}>
-        {({ isSubmitting, errors, setErrors }) => (
-          <Form onFocus={() => setErrors({})}>
-            <div className="form-inputs">
-              <div className="form-control">
-                <label htmlFor="tableName">Όνομα τραπεζιού</label>
-                <Field
-                  id="tableName"
-                  name="tableName"
-                  type="text"
-                  placeholder="εισάγετε ένα όνομα"
-                />
-              </div>
-              <div className="form-control">
-                <label htmlFor="initialPlayTime">Play Time (sec)</label>
-                <Field
-                  id="initialPlayTime"
-                  name="initialPlayTime"
-                  type="number"
-                />
-              </div>
-            </div>
-            <span>{errors.openTable}</span>
-            <Button
-              prompt="Δημιουργία"
-              disabled={isSubmitting || errors.openTable}
-              className="orange"
+      <form action={formAction} onFocus={() => setError(null)}>
+        <div className="form-inputs">
+          <div className="form-control">
+            <label htmlFor="tableName">Όνομα τραπεζιού</label>
+            <input
+              id="tableName"
+              name="tableName"
+              type="text"
+              placeholder="εισάγετε ένα όνομα"
+              defaultValue={formState.tableName}
             />
-          </Form>
-        )}
-      </Formik>
+          </div>
+          <div className="form-control">
+            <label htmlFor="playTime">Χρόνος παιχνιδιού</label>
+            <select id="playTime" name="playTime" defaultValue={120}>
+              {[120, 180, 300].map(secs => (
+                <option key={secs} value={secs}>
+                  {describeTime(secs)}
+                </option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <span>{error}</span>
+        <Button
+          prompt="Δημιουργία"
+          disabled={isPending || error}
+          className="orange"
+        />
+      </form>
     </div>
   );
 };

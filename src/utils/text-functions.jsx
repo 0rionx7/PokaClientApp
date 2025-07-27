@@ -23,6 +23,12 @@ export function describeTime(secs) {
       return '1,5 λεπτό';
     case 101:
       return 'άνευ χρ.ορίου';
+    case 120:
+      return '2 λεπτά';
+    case 180:
+      return '3 λεπτά';
+    case 300:
+      return '5 λεπτά';
     default:
       return secs + '"';
   }
