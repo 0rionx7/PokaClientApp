@@ -14,7 +14,7 @@ import {
   useSetGameVariantMutation,
 } from 'features/gameState/gameStateApi';
 import { isSeated, notEnoughCards } from 'utils/utilities-functions';
-import { useActionConRef } from 'utils/ActionContainerContext';
+import { useActionContainerNode } from 'utils/ActionContainerContext';
 import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
 import { createGameInfo } from 'utils/createGameInfo';
 import BuilderItem from 'components/gameBuilder/BuilderItem';
@@ -37,8 +37,8 @@ const GameBuilder = memo(() => {
   const { data } = useGetGameStateQuery(gameId);
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
-  const { actionContainerRef } = useActionConRef();
-  const { values, setValues } = useGameBuilderContext();
+  const { actionContainerNode } = useActionContainerNode();
+  const { values } = useGameBuilderContext();
   const [formState, formAction, isPending] = useActionState(builderAction, {
     errors: {},
   });
@@ -82,7 +82,7 @@ const GameBuilder = memo(() => {
 
   return (
     <Frame className="game-builder">
-      <form action={formAction}>
+      <form id="builderForm" action={formAction}>
         {snackElement}
         <BuilderItem title={builderTitle.GAME} element={<GameChooser />} />
         <BuilderItem
@@ -136,9 +136,10 @@ const GameBuilder = memo(() => {
           title={builderTitle.DEALING_OPTIONS}
           element={<DealingOptions />}
         />
-        {/* {actionContainerRef &&
+        {actionContainerNode &&
           createPortal(
             <Button
+              form="builderForm"
               prompt={
                 btnPrompt || (isValid ? 'ΜΟΙΡΑΣΤΕ' : formState.errors.buildGame)
               }
@@ -151,19 +152,8 @@ const GameBuilder = memo(() => {
               }
               className="deal-btn"
             />,
-            actionContainerRef.current
-          )} */}
-        <Button
-          prompt={btnPrompt || (isValid ? 'ΜΟΙΡΑΣΤΕ' : formState.buildGame)}
-          // disabled={
-          //   isPending ||
-          //   isSuccess ||
-          //   !isValid ||
-          //   allOthersTapi ||
-          //   noOthersInPlay
-          // }
-          className="deal-btn"
-        />
+            actionContainerNode
+          )}
       </form>
     </Frame>
   );

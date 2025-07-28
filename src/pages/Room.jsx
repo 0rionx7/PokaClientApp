@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import EmojiProvider from 'components/info/chat/EmojiProvider';
-import ActionContaineProvider from 'utils/ActionContainerContext';
+import ActionContaineContextProvider from 'utils/ActionContainerContext';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import useMessageService from 'hooks/useMessageService';
 import Action from 'components/action/Action';
@@ -21,7 +21,7 @@ const Room = () => {
 
   return (
     <div className="room">
-      <ActionContaineProvider>
+      <ActionContaineContextProvider>
         <Table />
         <div className="ribbon">
           <EmojiProvider>
@@ -32,7 +32,7 @@ const Room = () => {
           </EmojiProvider>
           <Action hideInfo={hideInfo} />
         </div>
-      </ActionContaineProvider>
+      </ActionContaineContextProvider>
     </div>
   );
 };

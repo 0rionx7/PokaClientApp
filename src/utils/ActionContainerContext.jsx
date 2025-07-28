@@ -1,19 +1,19 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, use, useState } from 'react';
 
 const ActionContainerContext = createContext({
-  actionContainerRef: null,
-  setContainerRef: () => {},
+  actionContainerNode: null,
+  setActionContainerNode: () => {},
 });
 
-export default function ActionContaineProvider({ children }) {
-  const [actionContainerRef, setContainerRef] = useState(null);
+export default function ActionContaineContextProvider({ children }) {
+  const [actionContainerNode, setActionContainerNode] = useState(null);
 
   return (
-    <ActionContainerContext.Provider
-      value={{ actionContainerRef, setContainerRef }}>
+    <ActionContainerContext
+      value={{ actionContainerNode, setActionContainerNode }}>
       {children}
-    </ActionContainerContext.Provider>
+    </ActionContainerContext>
   );
 }
 
-export const useActionConRef = () => useContext(ActionContainerContext);
+export const useActionContainerNode = () => use(ActionContainerContext);
