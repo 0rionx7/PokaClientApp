@@ -1,4 +1,4 @@
-import { memo, useActionState, useRef } from 'react';
+import { memo, useActionState } from 'react';
 import { useParams } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 
@@ -42,11 +42,10 @@ const GameBuilder = memo(() => {
   const [formState, formAction, isPending] = useActionState(builderAction, {
     errors: {},
   });
-  const inPLayRef = useRef();
 
   async function builderAction(_prevFormState, formData) {
     const builderData = Object.fromEntries(formData.entries());
-    const handCardsInPlay = inPLayRef.current
+    const handCardsInPlay = formData.getAll('handCardsInPlay').length
       ? formData.getAll('handCardsInPlay')
       : values.handCardsInPlay;
     const faceDownIndexes = formData.getAll('faceDownIndexes');
@@ -118,7 +117,6 @@ const GameBuilder = memo(() => {
           }
         />
         <BuilderItem
-          ref={inPLayRef}
           title={builderTitle.HAND_CARDS_IN_PLAY}
           element={<HandCardsInPlay />}
         />
