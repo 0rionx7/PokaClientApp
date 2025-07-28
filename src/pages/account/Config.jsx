@@ -10,7 +10,7 @@ import {
 import classes from './Account.module.scss';
 
 const deckColors = [
-  'rgb(255 0 0 / 80%)',
+  'rgb(255 0 0 / 90%)',
   'rgb(168 0 234 / 81%)',
   'rgb(0 116 234 / 81%)',
   'rgb(255 143 0 / 92%)',
@@ -53,15 +53,15 @@ const Config = () => {
       </div>
       <div className={classes['deck-color']}>
         <div>Χρώμα τράπουλας</div>
-        {deckColors.map((label, i) => (
+        {deckColors.map((color, i) => (
           <input
             type="radio"
             className="checkbox"
             name="deckColor"
-            value={label}
+            value={color}
             onChange={changeColorHandler}
             key={i}
-            checked={deckColor === label}
+            checked={deckColor === color}
           />
         ))}
       </div>
