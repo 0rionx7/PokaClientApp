@@ -33,6 +33,7 @@ const useTimer = playerName => {
       return () => clearInterval(timer);
     }
   }, [isActive, isRoundEnd]);
+
   useEffect(() => {
     if (remainingTime === 0 && isHostBoard) {
       timedOut(gameId);
