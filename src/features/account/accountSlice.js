@@ -10,7 +10,8 @@ const initialStateFn = () => {
     deckColor: 'rgb(255 0 0 / 90%)',
   };
   try {
-    initialState.hideInfo = JSON.parse(window.localStorage.getItem('hideInfo'));
+    initialState.hideInfo =
+      JSON.parse(window.localStorage.getItem('hideInfo')) || false;
     initialState.deckColor =
       window.localStorage.getItem('deckColor') || 'rgb(255 0 0 / 90%)';
   } catch (error) {
@@ -44,8 +45,10 @@ export const accountSlice = createSlice({
   selectors: {
     selectPlayername: account => account.username,
     selectHideInfo: account => account.hideInfo,
+    selectDeckColor: account => account.deckColor,
   },
 });
 
 export const { setHideInfo, setDeckColor } = accountSlice.actions;
-export const { selectPlayername, selectHideInfo } = accountSlice.selectors;
+export const { selectPlayername, selectHideInfo, selectDeckColor } =
+  accountSlice.selectors;

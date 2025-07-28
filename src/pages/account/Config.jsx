@@ -1,7 +1,12 @@
-import { memo, useEffect } from 'react';
+import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setDeckColor, setHideInfo } from 'features/account/accountSlice';
+import {
+  selectDeckColor,
+  selectHideInfo,
+  setDeckColor,
+  setHideInfo,
+} from 'features/account/accountSlice';
 import classes from './Account.module.scss';
 
 const deckColors = [
@@ -12,31 +17,25 @@ const deckColors = [
 ];
 
 const Config = () => {
-  const hideInfo = useSelector(state => state.account.hideInfo);
-  const deckColor = useSelector(state => state.account.deckColor);
+  const hideInfo = useSelector(selectHideInfo);
+  const deckColor = useSelector(selectDeckColor);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    try {
-      window.localStorage.setItem('hideInfo', hideInfo);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [hideInfo]);
-
-  useEffect(() => {
-    try {
-      window.localStorage.setItem('deckColor', deckColor);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [deckColor]);
-
-  const checkHandler = () => {
+  const toggleHideInfo = () => {
     dispatch(setHideInfo(!hideInfo));
+    try {
+      window.localStorage.setItem('hideInfo', !hideInfo);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const colorHandler = e => {
+  const changeColorHandler = e => {
     dispatch(setDeckColor(e.target.value));
+    try {
+      window.localStorage.setItem('deckColor', e.target.value);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -49,7 +48,7 @@ const Config = () => {
           style={{ height: '1rem', marginLeft: '.5rem' }}
           value={hideInfo}
           checked={!hideInfo}
-          onChange={checkHandler}
+          onChange={toggleHideInfo}
         />
       </div>
       <div className={classes['deck-color']}>
@@ -60,7 +59,7 @@ const Config = () => {
             className="checkbox"
             name="deckColor"
             value={label}
-            onChange={colorHandler}
+            onChange={changeColorHandler}
             key={i}
             checked={deckColor === label}
           />
