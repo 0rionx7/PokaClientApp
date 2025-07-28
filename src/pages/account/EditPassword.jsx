@@ -56,7 +56,11 @@ const EditPassword = () => {
 
   return (
     <>
-      <form action={formAction} onFocus={() => setError(null)}>
+      <form
+        id="editForm"
+        action={formAction}
+        onFocus={() => setError(null)}
+        className={classes['edit-form']}>
         <div className="form-control">
           <label htmlFor="currentPassword">Τρέχων κωδικός</label>
           <input
@@ -90,12 +94,13 @@ const EditPassword = () => {
         {isSuccess && (
           <span style={{ color: '#1cf31c' }}>{formState.success}</span>
         )}
-        <Button
-          prompt="Υποβολή"
-          disabled={isPending || isLoading || isSuccess}
-          className={classes['confirm-btn'] + ' green'}
-        />
       </form>
+      <Button
+        form="editForm"
+        prompt="Υποβολή"
+        disabled={isPending || isLoading || isSuccess}
+        className={classes['confirm-btn'] + ' green'}
+      />
       <Button
         prompt="X"
         className={classes['cancel-btn'] + ' red'}
