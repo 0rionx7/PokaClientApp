@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -10,29 +9,30 @@ import Button from 'components/ui/Button';
 
 const RenewOptions = () => {
   const { gameId } = useParams();
-  const [renew, { isSuccess, isLoading, error }] = useRenewCavaMutation();
+  const [renew, { isSuccess, isLoading }] = useRenewCavaMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const {
     data: { cava },
   } = useGetGameStateQuery(gameId);
 
-  useEffect(() => {
-    if (error) setSnackInfo(error.data);
-  }, [error, setSnackInfo]);
+  const handleRenew = async amount => {
+    const result = await renew({ gameId, amount });
+    if (result.error?.data) setSnackInfo(result.error.data);
+  };
 
-  const options = [0.2 * cava, 0.5 * cava, 0.8 * cava, cava];
+  const amounts = [0.2 * cava, 0.5 * cava, 0.8 * cava, cava];
 
   return (
     <>
       <div className="renew-options">
         {snackElement}
-        {options.map(option => (
+        {amounts.map(amoount => (
           <Button
-            prompt={option.toLocaleString()}
-            onClick={() => renew({ gameId, amount: option })}
+            key={amoount}
+            prompt={amoount.toLocaleString()}
+            onClick={() => handleRenew(amoount)}
             disabled={isLoading || isSuccess}
             className="green"
-            key={option}
           />
         ))}
       </div>

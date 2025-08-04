@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -25,15 +25,13 @@ const Table = () => {
   const hostPlayerName = useSelector(selectPlayername);
   const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
   const [sitOut] = useSitOutMutation();
-  const [prevDealer, setPrevDealer] = useState(data.dealer);
 
   const hostPlayerState = data.playerStates.find(playerEntry(hostPlayerName));
-  const lastAtList = data.playerStates.at(-1).playerName;
-  if (data.dealer !== prevDealer) {
-    setPrevDealer(data.dealer);
-    if (!data.dealer && hostPlayerName !== lastAtList)
-      setSnackInfo(<GameInfo />);
-  }
+  const dealer = data.playerStates.at(-1).playerName;
+
+  useEffect(() => {
+    if (!data.dealer && hostPlayerName !== dealer) setSnackInfo(<GameInfo />);
+  }, [data.dealer, hostPlayerName, dealer, setSnackInfo]);
 
   useEffect(() => {
     return () => sitOut({ gameId });

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -13,37 +12,35 @@ import useSnackBar from 'hooks/useSnackBar';
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const [joinTable, { isLoading, error }] = useJoinTableMutation();
+  const [joinTable, { isLoading }] = useJoinTableMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [rejectRequest, { isSuccess, isLoading: rejecting }] =
     useRejectRequestMutation();
 
-  useEffect(() => {
-    if (error) setSnackInfo(error.message);
-  }, [error, setSnackInfo]);
-
-  const clickHandler = () => {
+  const handleJoin = async () => {
     if (!clickable || isLoading || rejecting) return;
     if (data?.playerStates.length === 8)
       return setSnackInfo('έχει συμπληρωθεί το καρέ');
+
     const { playerName } = playerState;
-    joinTable({ playerName, gameId });
+    const result = await joinTable({ playerName, gameId });
+    if (result.error?.data) setSnackInfo(result.error.data);
   };
 
-  const cancelHandler = e => {
+  const handleCancel = async e => {
     if (rejecting || isSuccess || isLoading) return;
     e.stopPropagation();
-    rejectRequest({
+    const result = await rejectRequest({
       tableName: data?.tableName,
       username: playerState.playerName,
-      showPopUp: true,
     });
+    if (result.error?.data) setSnackInfo(result.error.data);
   };
 
   return (
     <div
       className="listed-player"
-      onClick={clickHandler}
+      onClick={handleJoin}
       style={{ cursor: clickable ? 'pointer' : 'inherit' }}>
       <StatusIcon playerState={playerState} />
       <div className="approve">
@@ -51,7 +48,7 @@ const ListedPlayer = ({ playerState, clickable }) => {
         {clickable && <ToolTip info="Έγκριση" />}
       </div>
       {clickable && (
-        <div className="cancel" onClick={cancelHandler}>
+        <div className="cancel" onClick={handleCancel}>
           X <ToolTip info="Απόρριψη" />
         </div>
       )}

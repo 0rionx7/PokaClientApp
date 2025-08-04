@@ -8,7 +8,7 @@ import {
 } from 'features/gameStateChinese/gameStateApi';
 import { selectPlayername } from 'features/account/accountSlice';
 import Timer from 'componentsChinese/Timer';
-import { isSeated } from 'utils/utilities-functions';
+import { isSitting } from 'utils/utilities-functions';
 
 const useTimer = playerName => {
   const { gameId } = useParams();
@@ -21,7 +21,7 @@ const useTimer = playerName => {
   const isHostBoard = playerName === username;
   const [currentPlayer] = currentPlayerList;
   const isRoundEnd =
-    currentPlayerList.length <= playerStates.filter(isSeated).length;
+    currentPlayerList.length <= playerStates.filter(isSitting).length;
   const isActive = playerName === currentPlayer;
 
   useEffect(() => {

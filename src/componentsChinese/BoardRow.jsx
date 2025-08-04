@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
 import { selectBoardCards } from 'features/gameStateChinese/gameStateSlice';
 import { selectPlayername } from 'features/account/accountSlice';
-import { isSeated } from 'utils/utilities-functions';
+import { isSitting } from 'utils/utilities-functions';
 import './Board.scss';
 
 import RenderItem from './RenderItem';
@@ -21,7 +21,7 @@ const BoardRow = ({ rowIndex, playerState }) => {
   const isHostBoard = playerState.playerName === username;
   const { currentPlayerList, playerStates } = data;
   const isRoundEnd =
-    currentPlayerList.length <= playerStates.filter(isSeated).length;
+    currentPlayerList.length <= playerStates.filter(isSitting).length;
 
   let pastIndexes = 0;
   let cards = isHostBoard ? boardCards : playerState.boardCards;

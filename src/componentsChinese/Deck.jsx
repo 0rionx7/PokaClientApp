@@ -15,14 +15,14 @@ export default function Deck() {
   const cards = data.deck;
 
   useEffect(() => {
-    function keyDownHandler(e) {
+    function handleKeyDown(e) {
       if (e.key === 'd') toggleDeck(pr => !pr);
     }
 
-    document.addEventListener('keydown', keyDownHandler);
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener('keydown', keyDownHandler);
+      document.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
 

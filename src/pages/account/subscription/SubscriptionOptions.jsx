@@ -54,7 +54,7 @@ const SubscriptionOptions = () => {
         <div className="subscription-options">
           {Object.values(subscriptionOption).map(option => (
             <SubscriptionItem
-              commitPayment={commitPayment}
+              onClick={commitPayment}
               key={option}
               option={option}
             />

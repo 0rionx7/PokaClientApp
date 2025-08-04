@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import PlayHandCards from 'components/info/PlayHandCards';
 import FaceDownCards from 'components/info/FaceDownCards';
-import { tablo } from 'utils/text-constants';
+import { tablos } from 'utils/text-constants';
 import Denies from 'components/info/Denies';
 import Swaps from 'components/info/Swaps';
 import Hats from 'components/info/Hats';
@@ -47,7 +47,7 @@ const GameInfo = () => {
         <div className="gameName">
           <span>
             {gameName} {bomba && 'ΜΠΟΜΠΑ '}
-            {tablo === tablo.DIPLO && (
+            {tablo === tablos.DIPLO && (
               <>
                 <span>σε</span> ΔΙΠΛΟ ΤΑΜΠΛΟ
               </>

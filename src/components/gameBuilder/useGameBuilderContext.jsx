@@ -1,5 +1,8 @@
 import { createContext, use, useCallback, useState } from 'react';
 
+import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { useParams } from 'react-router-dom';
+
 import { initialGameDefaults } from 'utils/games';
 
 const GameBuilderContext = createContext({
@@ -11,8 +14,11 @@ const GameBuilderContext = createContext({
 });
 
 export default function GameBuilderContextProvider({ children }) {
+  const { gameId } = useParams();
+  const { data } = useGetGameStateQuery(gameId);
   const [values, setValues] = useState({
     ...initialGameDefaults,
+    startingCard: data.startingCard || 7,
   });
   const [status, setStatus] = useState({});
 

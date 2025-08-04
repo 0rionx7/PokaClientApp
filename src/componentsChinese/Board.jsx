@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
 import { selectPlayername } from 'features/account/accountSlice';
 import { fantasySvg, foulSvg } from 'assets/svgs/various';
-import { isSeated } from 'utils/utilities-functions';
+import { isSitting } from 'utils/utilities-functions';
 import usePlayerStyle from 'hooks/usePlayerStyle';
 import PlayerRibbon from 'componentsChinese/PlayerRibbon';
 import RoundScore from 'componentsChinese/RoundScore';
@@ -25,7 +25,7 @@ const Board = ({ index, playerState }) => {
   const isHostBoard = playerState.playerName === username;
   const { currentPlayerList, playerStates } = data;
   const isRoundEnd =
-    currentPlayerList.length <= playerStates.filter(isSeated).length;
+    currentPlayerList.length <= playerStates.filter(isSitting).length;
 
   return (
     <>

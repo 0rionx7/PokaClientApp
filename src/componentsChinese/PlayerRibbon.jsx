@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
-import { isSeated } from 'utils/utilities-functions';
+import { isSitting } from 'utils/utilities-functions';
 import './PlayerRibbon.scss';
 
 const PlayerRibbon = ({ playerState }) => {
@@ -11,7 +11,7 @@ const PlayerRibbon = ({ playerState }) => {
   const { currentPlayerList, round, playerStates } = data;
   const [currentPlayer] = currentPlayerList;
   const showScore =
-    currentPlayerList.length === playerStates.filter(isSeated).length;
+    currentPlayerList.length === playerStates.filter(isSitting).length;
   const isActive = playerState.playerName === currentPlayer || showScore;
   const isDealing =
     playerStates[(round - 1) % playerStates.length].playerName ===

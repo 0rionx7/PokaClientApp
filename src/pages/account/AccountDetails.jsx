@@ -3,7 +3,7 @@ import {
   useLogOutMutation,
 } from 'features/account/accountApi';
 import UserSubscription from 'pages/account/UserSubscription';
-import AccountItem from 'pages/account/AccountItem';
+import AccountRow from 'pages/account/AccountIRow';
 import EditPassword from 'pages/account/EditPassword';
 import { logOutSvg } from 'assets/svgs/various';
 import LastGame from 'pages/account/LastGame';
@@ -22,23 +22,23 @@ const AccountDetails = () => {
   return (
     <div className={classes.account}>
       <Frame>
-        <AccountItem
+        <AccountRow
           element={<UserName />}
           title="ΟΝΟΜΑ ΧΡΗΣΤΗ"
           style={{ height: '3rem' }}
         />
-        <AccountItem element={<EditPassword />} title="ΚΩΔΙΚΟΣ ΕΙΣΟΔΟΥ" />
-        <AccountItem
+        <AccountRow element={<EditPassword />} title="ΚΩΔΙΚΟΣ ΕΙΣΟΔΟΥ" />
+        <AccountRow
           element={<UserSubscription />}
           title="ΔΙΑΧΕΙΡΗΣΗ ΣΥΝΔΡΟΜΗΣ"
           style={{ height: '5rem' }}
         />
-        <AccountItem
+        <AccountRow
           element={<LastGame savedGame={data?.lastGame} />}
           title="ΕΠΑΝΕΚΚΙΝΗΣΗ τελ. ΠΑΙΧΝΙΔΙΟΥ"
         />
-        <AccountItem element={<Config />} title="ΡΥΘΜΙΣΕΙΣ" />
-        <AccountItem
+        <AccountRow element={<Config />} title="ΡΥΘΜΙΣΕΙΣ" />
+        <AccountRow
           element={
             <Button
               className={classes.logout + ' red'}

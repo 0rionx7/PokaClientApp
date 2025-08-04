@@ -2,14 +2,14 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { socket, useGetTablesQuery } from 'features/gameState/gameStateApi';
-import { createTableTitle } from 'utils/text-functions';
+import { createTableTitleJsx } from 'utils/text-functions';
 import ApprovedRequest from 'pages/ApprovedRequest';
 import useSnackBar from 'hooks/useSnackBar';
 import { useGetUserQuery } from 'features/account/accountApi';
 import { useGetTablesChineseQuery } from 'features/gameStateChinese/gameStateApi';
 
 const useRequestResult = chinese => {
-  const { refetch } = useGetUserQuery();
+  const { refetch: refetchUserInfo } = useGetUserQuery();
   const { gameId } = useParams();
   const { refetch: refetchPokaTables } = useGetTablesQuery();
   const { refetch: refetchChineseTables } = useGetTablesChineseQuery();
@@ -27,13 +27,13 @@ const useRequestResult = chinese => {
     }
     socket.on(event, requestInfo => {
       setApprovedPopUp(<ApprovedRequest requestInfo={requestInfo} />);
-      refetch();
+      refetchUserInfo();
       refetchTables();
     });
     return () => socket.removeAllListeners(event);
   }, [
     setApprovedPopUp,
-    refetch,
+    refetchUserInfo,
     refetchPokaTables,
     refetchChineseTables,
     chinese,
@@ -41,20 +41,21 @@ const useRequestResult = chinese => {
 
   useEffect(() => {
     let event = chinese ? 'chineseRequestRejected' : 'pokaRequestRejected';
-    socket.on(event, ({ tableName, showPopUp }) => {
-      refetch();
-      if (!gameId && showPopUp) {
+    socket.on(event, ({ tableName }) => {
+      refetchUserInfo();
+      if (!gameId) {
         const table = chinese ? ' κινέζικου πόκερ' : ' πόκας';
         setRejectPopUp(
           <>
             Η αίτηση συμμετοχής σας για το τραπέζι{table}{' '}
-            {createTableTitle(tableName)} απορρίφθηκε.
+            {createTableTitleJsx(tableName)} απορρίφθηκε.
           </>
         );
       }
     });
+
     return () => socket.removeAllListeners(event);
-  }, [setRejectPopUp, gameId, refetch, chinese]);
+  }, [setRejectPopUp, gameId, refetchUserInfo, chinese]);
 
   return [approvedElement, rejectedElement];
 };

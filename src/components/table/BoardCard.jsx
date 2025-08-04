@@ -8,7 +8,7 @@ import { selectPlayername } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import Card from 'components/card/Card';
 
-const RenderedCard = ({ index }) => {
+const BoardCard = ({ index }) => {
   const tableCards = useSelector(selectTablecards);
   const playerName = useSelector(selectPlayername);
   const { gameId } = useParams();
@@ -39,4 +39,4 @@ const RenderedCard = ({ index }) => {
   );
 };
 
-export default RenderedCard;
+export default BoardCard;

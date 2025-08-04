@@ -29,7 +29,7 @@ const Config = () => {
       console.log(error);
     }
   };
-  const changeColorHandler = e => {
+  const handleChangeColor = e => {
     dispatch(setDeckColor(e.target.value));
     try {
       window.localStorage.setItem('deckColor', e.target.value);
@@ -59,7 +59,7 @@ const Config = () => {
             className="checkbox"
             name="deckColor"
             value={color}
-            onChange={changeColorHandler}
+            onChange={handleChangeColor}
             key={i}
             checked={deckColor === color}
           />

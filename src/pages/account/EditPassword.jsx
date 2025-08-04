@@ -21,7 +21,10 @@ const EditPassword = () => {
     initialValues
   );
   useEffect(() => {
-    if (!edit) reset();
+    if (!edit) {
+      setError(null);
+      reset();
+    }
   }, [edit, reset]);
 
   if (!edit)

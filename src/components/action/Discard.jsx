@@ -4,29 +4,34 @@ import { useSelector } from 'react-redux';
 
 import { cardSelected, selectedCardIndexes } from 'utils/utilities-functions';
 import { useSelectCardsMutation } from 'features/gameState/gameStateApi';
+import { selectHandcards } from 'features/gameState/gameStateSlice';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 
 const Discard = ({ selecting }) => {
   const { gameId } = useParams();
-  const handCards = useSelector(state => state.gameState.handCards);
-  const [selectCards, { isLoading, isSuccess, error }] =
-    useSelectCardsMutation();
+  const handCards = useSelector(selectHandcards);
+  const [selectCards, { isLoading, isSuccess }] = useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
 
   const selectedHandCardIndexes = selectedCardIndexes(handCards);
   const selectedHandCardCount = handCards.filter(cardSelected).length;
   const discardError = selectedHandCardCount > 1;
 
+  const handleDiscard = async () => {
+    const result = await selectCards({
+      gameId,
+      selectionInfo: selecting,
+      selectedHandCardIndexes,
+    });
+    if (result.error?.data) setSnackInfo(result.error.data);
+  };
+
   useEffect(() => {
     if (discardError) {
       setSnackInfo(`Έχετε επιλέξει ${selectedHandCardCount} χαρτιά αντί για 1`);
     }
   }, [selectedHandCardCount, discardError, setSnackInfo]);
-
-  useEffect(() => {
-    if (error) setSnackInfo(error.data);
-  }, [error, setSnackInfo]);
 
   const noSelection = selectedHandCardCount === 0;
   const prompt = noSelection ? 'Επιλέξτε σκάρτο' : 'Απόρριψη';
@@ -36,13 +41,7 @@ const Discard = ({ selecting }) => {
       {snackElement}
       <Button
         prompt={prompt}
-        onClick={() =>
-          selectCards({
-            gameId,
-            selectionInfo: selecting,
-            selectedHandCardIndexes,
-          })
-        }
+        onClick={handleDiscard}
         disabled={isLoading || isSuccess || discardError || noSelection}
         className="red"
       />

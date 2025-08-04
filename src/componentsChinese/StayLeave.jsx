@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
@@ -8,13 +7,14 @@ import Button from 'components/ui/Button';
 
 const StayLeave = () => {
   const { gameId } = useParams();
-  const [sitDownn, { isLoading, error }] = useSitDownChineseMutation();
+  const [sitDownn, { isLoading }] = useSitDownChineseMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (error) setSnackInfo(error.data);
-  }, [error, setSnackInfo]);
+  const handleSitDown = async () => {
+    const result = await sitDownn({ gameId });
+    if (result.error?.data) setSnackInfo(result.error.data);
+  };
 
   return (
     <Overlay style={{ zIndex: 200 }}>
@@ -26,7 +26,7 @@ const StayLeave = () => {
         <div>
           <Button
             prompt="Ξανακάθομαι"
-            onClick={() => sitDownn({ gameId })}
+            onClick={handleSitDown}
             disabled={isLoading}
             className="green"
           />{' '}

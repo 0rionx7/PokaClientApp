@@ -10,7 +10,7 @@ import ListedPlayers from 'componentsChinese/dealer/ListedPlayers';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';
 import './DealerScreen.scss';
-import { isSeated } from 'utils/utilities-functions';
+import { isSitting } from 'utils/utilities-functions';
 
 const DealerScreen = () => {
   const { gameId } = useParams();
@@ -30,7 +30,7 @@ const DealerScreen = () => {
         })),
     [data, gameData?.playerStates]
   );
-  const canDeal = gameData.playerStates.filter(isSeated).length > 1;
+  const canDeal = gameData.playerStates.filter(isSitting).length > 1;
 
   return (
     <Overlay className="dealer-overlay">

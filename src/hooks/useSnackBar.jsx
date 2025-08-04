@@ -9,17 +9,18 @@ const useSnackBar = ({ secs = 2, height, top } = {}) => {
   useEffect(() => {
     if (!secs || info === null) return;
     const timer = setTimeout(() => setSnackInfo(null), secs * 1000);
+
     return () => clearTimeout(timer);
   }, [setSnackInfo, secs, info]);
 
-  const backDropClickHandler = () => {
+  const handleBackDropClick = () => {
     if (!secs) return;
     setSnackInfo(null);
   };
 
   const snackElement = info && (
     <Overlay
-      onClick={backDropClickHandler}
+      onClick={handleBackDropClick}
       style={{ height, zIndex: top && 501 }}>
       <div className="snack-message">
         {info} {!secs && <LoadingSpinner color="red" />}

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
@@ -6,44 +5,41 @@ import {
   useGetUserQuery,
   useRequestJoinChineseMutation,
 } from 'features/account/accountApi';
-import { createTableTitle } from 'utils/text-functions';
+import { createTableTitleJsx } from 'utils/text-functions';
 import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 
 const AvailableTable = ({ tableInfo }) => {
-  const [requestJoin, { isLoading, error }] = useRequestJoinChineseMutation();
-  const [sitDown, { isLoading: sittingDown, error: sitdownError }] =
-    useSitDownChineseMutation();
+  const [requestJoin, { isLoading }] = useRequestJoinChineseMutation();
+  const [sitDown, { isLoading: sittingDown }] = useSitDownChineseMutation();
   const { data } = useGetUserQuery();
   const navigate = useNavigate();
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
 
   const joinRequests = data?.joinRequests;
 
-  useEffect(() => {
-    if (error || sitdownError) setSnackInfo(error?.data || sitdownError.data);
-  }, [error, sitdownError, setSnackInfo]);
-
-  const clickHandler = async () => {
+  const handleJoin = async () => {
     if (isLoading || sittingDown) return;
     if (tableInfo.joined) {
-      const { data } = await sitDown({
+      const result = await sitDown({
         gameId: tableInfo.joined,
         tableName: tableInfo.tableName,
       });
-      if (data?.gameId) return navigate(`/chinese/table/${data.gameId}`);
+      if (result.error?.data) return setSnackInfo(result.error.data);
+      if (result.data?.gameId) return navigate(`/chinese/table/${data.gameId}`);
     }
     if (joinRequests.length >= 3)
       return setSnackInfo('Έχετε συμπληρώσει των μέγιστο αριθμό αιτήσεων.');
 
-    requestJoin({ tableName: tableInfo.tableName });
+    const result = requestJoin({ tableName: tableInfo.tableName });
+    if (result.error?.data) setSnackInfo(result.error.data);
   };
 
-  const tableTitle = createTableTitle(tableInfo.tableName);
+  const tableTitle = createTableTitleJsx(tableInfo.tableName);
 
   return (
     <div
-      onClick={clickHandler}
+      onClick={handleJoin}
       className={'available-table ' + (tableInfo.joined ? 'joined' : '')}>
       <ToolTip info={tableInfo.joined ? 'Καθήστε' : 'Αιτηθείτε θέση'} />
       {tableTitle}

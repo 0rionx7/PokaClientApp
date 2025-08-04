@@ -12,20 +12,16 @@ const Footer = () => {
 
   let loginButtons;
   {
-    const loginHandler = async username => {
+    const handleLogin = async username => {
       await login({ username, password: '' });
       navigate('/saloon');
     };
 
     loginButtons = (
       <>
-        <Button onClick={() => loginHandler('Machine')} prompt="Machine" />
-        <Button onClick={() => loginHandler('Thanos')} prompt="Thanos" />
-        <Button onClick={() => loginHandler('Koulis')} prompt="Koulis" />
-        {/* <Button onClick={() => loginHandler('alela')} prompt="alela" />
-        <Button onClick={() => loginHandler('Doc')} prompt="Doc" />
-        <Button onClick={() => loginHandler('q')} prompt="q" />
-        <Button onClick={() => loginHandler('a')} prompt="a" /> */}
+        <Button onClick={() => handleLogin('Machine')} prompt="Machine" />
+        <Button onClick={() => handleLogin('Thanos')} prompt="Thanos" />
+        <Button onClick={() => handleLogin('Koulis')} prompt="Koulis" />
         <Button onClick={() => logOutAll()} prompt="z" />
       </>
     );

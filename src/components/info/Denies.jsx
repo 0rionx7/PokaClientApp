@@ -7,14 +7,13 @@ const Denies = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
 
-  if (!data?.denies) return null;
+  if (!data.denies) return null;
 
   return (
     <>
       {'με '}
       <span>
-        {countFem[data?.denies]} ΑΡΝΗΣ
-        {data?.denies > 1 ? 'ΕΙΣ ' : 'Η '}
+        {`${countFem[data.denies]}  ΑΡΝΗΣ${data.denies > 1 ? 'ΕΙΣ ' : 'Η '}`}
       </span>
     </>
   );

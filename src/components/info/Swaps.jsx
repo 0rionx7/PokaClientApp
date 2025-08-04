@@ -11,10 +11,9 @@ const Swaps = () => {
 
   return (
     <>
-      {' και '}
+      {data.denies ? ' και ' : 'με '}
       <span>
-        {countFem[data.swaps]} ΑΛΛΑΓ
-        {data.swaps > 1 ? 'ΕΣ' : 'Η'}
+        {`${countFem[data.swaps]}  ΑΛΛΑΓ${data.swaps > 1 ? 'ΕΣ' : 'Η'}`}
       </span>
     </>
   );

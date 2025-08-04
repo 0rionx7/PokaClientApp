@@ -189,10 +189,10 @@ export const gameStateApi = createApi({
       }),
     }),
     setGameVariant: build.mutation({
-      query: gameInfo => ({
+      query: builderConfig => ({
         url: '/gameState/variant',
         method: 'PATCH',
-        body: gameInfo,
+        body: builderConfig,
       }),
     }),
     bet: build.mutation({

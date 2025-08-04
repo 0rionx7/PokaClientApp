@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { revealCard, unselectAll } from 'utils/utilities-functions';
 import { gameStateApi } from 'features/gameState/gameStateApi';
-import { gameName } from 'utils/text-constants';
+import { gameNames } from 'utils/games';
 
 export const gameStateSlice = createSlice({
   name: 'gameState',
@@ -12,7 +12,7 @@ export const gameStateSlice = createSlice({
     tableCards: [],
     handCards: [],
     messages: [],
-    currentChoosenGame: gameName.MAMUT,
+    currentChoosenGame: gameNames.MAMUT,
   },
   reducers: {
     setTableCards: (state, action) => {

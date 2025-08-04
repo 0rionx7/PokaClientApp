@@ -3,7 +3,7 @@ export function colorClass(value) {
   if (value) className = value > 0 ? 'possitive' : 'negative';
   return className;
 }
-export function isSeated(playerState) {
+export function isSitting(playerState) {
   return !playerState.sittingOut;
 }
 export function selectedCardIndexes(cards) {
@@ -39,21 +39,6 @@ export function sortPlayers(playerStates) {
   const inGameList = playerStates.filter(ps => !ps.sittingOut);
   const outOfGameList = playerStates.filter(ps => ps.sittingOut);
   return inGameList.concat(outOfGameList);
-}
-export function notEnoughCards(values, playersCount) {
-  let tableCardsCount = 0;
-  let handCardsCount = +values.cardsInHand;
-
-  if (values.rowsIndexes) tableCardsCount = values.rowsIndexes.flat(1).length;
-  else if (values.railroadLength) tableCardsCount = +values.railroadLength;
-
-  if (values.hats) tableCardsCount += +values.hats;
-
-  handCardsCount += values.skarto ? 1 : 0;
-  handCardsCount += values.swap ? +values.swaps : 0;
-  handCardsCount += values.deny ? +values.denies : 0;
-  handCardsCount *= playersCount;
-  return tableCardsCount + handCardsCount > 4 * (15 - +values.startingCard);
 }
 export function createCode(length) {
   let password = '';

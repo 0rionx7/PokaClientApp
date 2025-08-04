@@ -1,4 +1,4 @@
-import { useActionState, useState } from 'react';
+import { useState } from 'react';
 
 import { useForgotPasswordMutation } from 'features/account/accountApi';
 import useSnackBar from 'hooks/useSnackBar';
@@ -12,9 +12,8 @@ const Forgot = () => {
     height: '100%',
     secs: 5,
   });
-  const [error, setError] = useState(null);
-  const [formState, formAction, isPending] =
-    useActionState(forgotPasswordAction);
+  const [status, setStatus] = useState({});
+  const [enteredEmail, setEnteredEmail] = useState('');
 
   const validate = email => {
     if (!email) return 'Το email είναι απαραίτητο.';
@@ -22,29 +21,25 @@ const Forgot = () => {
       return 'Λάθος διαμόρφοση email.';
   };
 
-  async function forgotPasswordAction(_prevState, formData) {
-    const email = formData.get('email').trim();
-    const error = validate(email);
-    if (error) {
-      setError(error);
-      return email;
-    }
-    const result = await reset({ email });
-    if (result?.error) {
-      setError(result.error.data || 'server error');
-      return email;
-    }
+  async function handleSubmitEmail(e) {
+    e.preventDefault();
+    setStatus({ pending: true });
+    const error = validate(enteredEmail);
+    if (error) return setStatus({ error });
+    const result = await reset({ email: enteredEmail });
+    if (result.error?.data)
+      return setStatus({ error: result.error.data || 'server error' });
     setSnackInfo(
       'Σας έχει αποσταλλεί στο email που δηλώσατε σύνδεσμος για την επαναφορά του κωδικού σας.'
     );
+    setStatus({});
   }
 
   return (
     <div className="forgot">
       <Frame style={{ alignItems: 'center' }}>
         <h3>Αποστολή προσωρινού κωδικού εισόδου</h3>
-
-        <form action={formAction} onFocus={() => setError(null)}>
+        <form onSubmit={handleSubmitEmail} onFocus={() => setStatus({})}>
           <div className="form-control username">
             <label htmlFor="email">Συμπληρώστε το email σας</label>
             <input
@@ -52,11 +47,16 @@ const Forgot = () => {
               name="email"
               type="text"
               autoComplete="on"
-              defaultValue={formState}
+              value={enteredEmail}
+              onChange={e => setEnteredEmail(e.target.value)}
             />
           </div>
-          <span>{error}</span>
-          <Button prompt="Αποστολή" disabled={isPending} className="orange" />
+          <span>{status.error}</span>
+          <Button
+            prompt="Αποστολή"
+            disabled={status.pending}
+            className="orange"
+          />
         </form>
       </Frame>
       {snackElement}

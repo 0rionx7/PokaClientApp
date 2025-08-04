@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -15,36 +15,34 @@ import ChatBox from 'components/info/chat/ChatBox';
 import Buttons from 'components/info/Buttons';
 import './Info.scss';
 
-const Info = ({ hideInfo, toggleHideInfo }) => {
+const Info = ({ hideInfo, onToggleInfoPanel }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const hostPlayerName = useSelector(selectPlayername);
-  const [selected, setSelected] = useState(infoButton.GAME_DESCRIPTION);
+  const [selectedTab, setSelectedTab] = useState(infoButton.GAME_DESCRIPTION);
   const { setShowPicker } = useEmoji();
-  const [prevDealer, setPrevDealer] = useState(data.dealer);
 
-  if (data.dealer !== prevDealer) {
-    setPrevDealer(data.dealer);
+  useEffect(() => {
     if (data.dealer === hostPlayerName)
-      setSelected(infoButton.GAME_DESCRIPTION);
-  }
+      setSelectedTab(infoButton.GAME_DESCRIPTION);
+  }, [setSelectedTab, data.dealer, hostPlayerName]);
 
-  const toggleHandler = () => {
-    toggleHideInfo();
+  const handleToggleInfoPanel = () => {
+    onToggleInfoPanel();
     setShowPicker(false);
   };
 
   return (
     <div className="info">
       <div className={'info-content ' + (hideInfo ? 'hidden' : '')}>
-        <Buttons setSelected={setSelected} selected={selected} />
-        {selected === infoButton.GAME_DESCRIPTION && <GameDescription />}
-        {selected === infoButton.GAME_INFO && <GameInfo />}
-        {selected === infoButton.CHAT && <ChatBox />}
-        {selected === infoButton.STANDINGS && <Standings />}
-        {selected === infoButton.LAST_GAME_RESULTS && <Results />}
+        <Buttons setSelected={setSelectedTab} selected={selectedTab} />
+        {selectedTab === infoButton.GAME_DESCRIPTION && <GameDescription />}
+        {selectedTab === infoButton.GAME_INFO && <GameInfo />}
+        {selectedTab === infoButton.CHAT && <ChatBox />}
+        {selectedTab === infoButton.STANDINGS && <Standings />}
+        {selectedTab === infoButton.LAST_GAME_RESULTS && <Results />}
       </div>
-      <div className="toggle-btn" onClick={toggleHandler}>
+      <div className="toggle-btn" onClick={handleToggleInfoPanel}>
         {collapseVertical}
       </div>
     </div>

@@ -35,10 +35,11 @@ const Bet = ({ bet, resta }) => {
 
   async function betSubmit(e) {
     e.preventDefault();
-    validate(betAmount);
     setStatus({ pending: true });
-    const chipedAmount = Math.floor(betAmount / chip) * chip;
-    const result = await placeBet({ gameId, amount: chipedAmount });
+    const folded = e.nativeEvent.submitter.value === 'ΠΑΣΟ';
+    const roundedAmount = Math.floor(betAmount / chip) * chip;
+    const amount = folded ? -1 : roundedAmount;
+    const result = await placeBet({ gameId, amount });
     if (result.error?.data) return setStatus({ error: result.error?.data });
   }
 
@@ -54,6 +55,7 @@ const Bet = ({ bet, resta }) => {
           disabled={isSuccess || status.pending}
           value={+betAmount}
           onChange={e => {
+            setStatus({});
             validate(+e.target.value);
             setBetAmount(+e.target.value);
           }}
@@ -80,12 +82,8 @@ const Bet = ({ bet, resta }) => {
       <div className="place-bet fold">
         <div>ΑΠΟΣΥΡΘΗΤΕ</div>
         <Button
-          type="button"
           prompt="ΠΑΣΟ"
-          onClick={() => {
-            setStatus({ pending: true });
-            placeBet({ gameId, amount: -1 });
-          }}
+          value="ΠΑΣΟ"
           disabled={isSuccess || status.pending}
           className="fold red"
         />

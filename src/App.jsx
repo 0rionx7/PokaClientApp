@@ -29,7 +29,7 @@ function App() {
 
   return (
     <DndProvider backend={HTML5Backend}>
-      {/* {offLineElement} */}
+      {offLineElement}
       {approvedElement}
       {approvedChElement}
       {rejectedElement}

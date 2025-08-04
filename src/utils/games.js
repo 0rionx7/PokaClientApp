@@ -1,197 +1,200 @@
 import {
-  builderTitle,
+  builderRowTitle,
   dealingType,
   speakingOrder,
-  tablo,
+  tablos,
   winningOrder,
 } from './text-constants.js';
 
-export const gameNames = {
+export const gameNames = Object.freeze({
+  POKER: 'ΠΟΚΕΡ',
+  TEXAS_HOLDEM: 'TEXAS HOLDEM',
+  QUEEN: 'FOLLOW THE QUEEN',
   RAILROAD: 'ΣΙΔΗΡΟΔΡΟΜΟΣ',
   MAMUT: 'ΜΑΜΟΥΘ',
   TRIANGLE: 'ΤΡΙΓΩΝΟ',
   SQUARE: 'ΤΕΤΡΑΓΩΝΟ',
-  KOYKOS_MONOS: `ΚΟΥΚΟΣ ΜΟΝΟΣ / "ΠΑΖ ΑΒΟΛΟΝΤΕ"`,
-  KOYKOS_DIPLOS: `ΚΟΥΚΟΣ ΔΙΠΛΟΣ / "ΑΒΟΛΟΝΤΕ"`,
-  POKER: 'ΠΟΚΕΡ',
-  TEXAS_HOLDEM: 'TEXAS HOLDEM',
+  CORNER: 'ΓΩΝΙΑ',
+  CROSS: 'ΣΤΑΥΡΟΣ',
   TARGET: 'ΣΤΟΧΟΣ',
   CLOCK: 'ΡΟΛΟΙ',
   ELEVATOR: 'ΑΝΣΑΝΣΕΡ',
-  GRAVEYARD: 'ΝΕΚΡΟΤΑΦΕΙΟ',
-  CROSS: 'ΣΤΑΥΡΟΣ',
-  CORNER: 'ΓΩΝΙΑ',
-  QUEEN: 'FOLLOW THE QUEEN',
   PYRAMID: 'ΠΥΡΑΜΙΔΑ',
-};
+  GRAVEYARD: 'ΝΕΚΡΟΤΑΦΕΙΟ',
+  KOYKOS_MONOS: `ΚΟΥΚΟΣ ΜΟΝΟΣ / "ΠΑΖ ΑΒΟΛΟΝΤΕ"`,
+  KOYKOS_DIPLOS: `ΚΟΥΚΟΣ ΔΙΠΛΟΣ / "ΑΒΟΛΟΝΤΕ"`,
+});
 
-export const builderDefaults = {
+export const builderDefaults = Object.freeze({
   winningOrder: winningOrder.KENTA_CHROMA,
   cardsInHand: 3,
   handCardsInPlay: ['2', '3'],
-  faceDownIndexes: ['0', '1', '2', '3', '4', '5', '6'],
-  hat: false,
-  hats: 1,
+  faceDownIndexes: [],
+  hats: 0,
+  denies: 0,
+  swaps: 0,
   obligation: false,
   skarto: false,
-  deny: false,
-  denies: 1,
-  swap: false,
-  swaps: 1,
   dealing: dealingType.OLA_MAZI,
   speaks: speakingOrder.BY_SEAT,
   bomba: false,
-};
+});
+const builderConfigs = Object.freeze([
+  builderRowTitle.GAME,
+  builderRowTitle.CARDS_IN_HAND,
+  builderRowTitle.DEALING,
+  builderRowTitle.DEALING_OPTIONS,
+  builderRowTitle.HAND_CARDS_IN_PLAY,
+  builderRowTitle.OPTIONS,
+  builderRowTitle.WINNING_ORDER,
+]);
 
-export const initialGameValues = {
+export const initialGameDefaults = Object.freeze({
   ...builderDefaults,
   gameName: gameNames.MAMUT,
-  tablo: tablo.MONO,
-  rowsIndexes: [[0, 1, 2]],
-  boardClass: 'mamut',
-};
+  tablo: tablos.MONO,
+});
 
-export const gameDefaults = [
-  {
-    gameName: gameNames.POKER,
-    cardsInHand: 5,
-    handCardsInPlay: ['5'],
-    dealing: dealingType.ENA_ENA,
-  },
-  {
-    gameName: gameNames.QUEEN,
-    winningOrder: winningOrder.TRIA_FOUL,
-    cardsInHand: 5,
-    handCardsInPlay: ['5'],
-    faceDownIndexes: ['4'],
-    dealing: dealingType.ENA_ENA,
-    showTitles: [
-      builderTitle.GAME,
-      builderTitle.WINNING_ORDER,
-      builderTitle.FACE_DOWN,
-      builderTitle.SPEAKS,
-      builderTitle.EXTRA,
+export const gameConfigs = Object.freeze({
+  [gameNames.POKER]: {
+    builderDefaults: {
+      cardsInHand: 5,
+      handCardsInPlay: ['5'],
+      dealing: dealingType.ENA_ENA,
+    },
+    builderOptions: [
+      builderRowTitle.GAME,
+      builderRowTitle.CARDS_IN_HAND,
+      builderRowTitle.DEALING,
+      builderRowTitle.DEALING_OPTIONS,
+      builderRowTitle.WINNING_ORDER,
+      builderRowTitle.FACE_DOWN,
+      builderRowTitle.SPEAKS,
     ],
   },
-  {
-    gameName: gameNames.TEXAS_HOLDEM,
-    rowsIndexes: [[0, 1, 2, 3, 4]],
-    winningOrder: winningOrder.KENTA_FOUL,
-    cardsInHand: 2,
-    handCardsInPlay: ['2'],
-    boardClass: 'texas-holdem',
-    showTitles: [builderTitle.GAME, builderTitle.WINNING_ORDER],
+  [gameNames.QUEEN]: {
+    builderDefaults: {
+      winningOrder: winningOrder.TRIA_FOUL,
+      cardsInHand: 5,
+      handCardsInPlay: ['5'],
+      faceDownIndexes: [4],
+      dealing: dealingType.ENA_ENA,
+    },
+    builderOptions: [
+      builderRowTitle.GAME,
+      builderRowTitle.WINNING_ORDER,
+      builderRowTitle.SPEAKS,
+      builderRowTitle.EXTRA,
+    ],
   },
-  {
-    gameName: gameNames.MAMUT,
-    rowsIndexes: [[0, 1, 2]],
-    tablo: tablo.MONO,
+  [gameNames.TEXAS_HOLDEM]: {
+    builderDefaults: {
+      winningOrder: winningOrder.KENTA_FOUL,
+      cardsInHand: 2,
+      handCardsInPlay: ['2'],
+    },
+    builderOptions: [builderRowTitle.GAME, builderRowTitle.WINNING_ORDER],
+    boardClass: 'texas-holdem',
+  },
+  [gameNames.MAMUT]: {
+    builderDefaults: {
+      tablo: tablos.MONO,
+    },
+    builderOptions: [
+      ...builderConfigs,
+      builderRowTitle.EXTRA,
+      builderRowTitle.TABLO,
+    ],
     boardClass: 'mamut',
   },
-  {
-    gameName: gameNames.RAILROAD,
-    railroadLength: 4,
-    tablo: tablo.MONO,
+  [gameNames.RAILROAD]: {
+    builderDefaults: {
+      railroadLength: 4,
+      tablo: tablos.MONO,
+    },
+    builderOptions: [
+      ...builderConfigs,
+      builderRowTitle.TABLO,
+      builderRowTitle.RAILROAD_LENGTH,
+    ],
     boardClass: 'railroad',
   },
-  {
-    gameName: gameNames.CORNER,
-    rowsIndexes: [[4, 0, 2], [1], [3]],
-    cornerLength: '3',
-    boardClass: 'corner 3',
+  [gameNames.CORNER]: {
+    builderDefaults: {
+      cornerLength: '3',
+    },
+    builderOptions: [...builderConfigs, builderRowTitle.CARDS_PER_LEG],
+    boardClass: 'corner',
   },
-  {
-    gameName: gameNames.CROSS,
-    rowsIndexes: [[0], [1, 4, 2], [3]],
+  [gameNames.CROSS]: {
+    builderOptions: [...builderConfigs, builderRowTitle.EXTRA],
     boardClass: 'cross',
   },
-  {
-    gameName: gameNames.TRIANGLE,
-    rowsIndexes: [[0], [3, 5], [1, 4, 2]],
+  [gameNames.TRIANGLE]: {
+    builderOptions: [...builderConfigs],
     boardClass: 'triangle',
   },
-  {
-    gameName: gameNames.SQUARE,
-    rowsIndexes: [
-      [0, 2],
-      [3, 1],
-    ],
+  [gameNames.SQUARE]: {
+    builderOptions: [...builderConfigs],
     boardClass: 'square',
   },
-  {
-    gameName: gameNames.PYRAMID,
-    rowsIndexes: [[9], [7, 8], [4, 5, 6], [0, 1, 2, 3]],
-    winningOrder: winningOrder.TRIA_FOUL,
+  [gameNames.PYRAMID]: {
+    builderDefaults: {
+      winningOrder: winningOrder.TRIA_FOUL,
+    },
+    builderOptions: [...builderConfigs],
     boardClass: 'pyramid',
   },
-  {
-    gameName: gameNames.CLOCK,
-    rowsIndexes: [
-      [2, 4],
-      [0, 1],
-      [5, 3],
-    ],
+  [gameNames.CLOCK]: {
+    builderOptions: [...builderConfigs],
     boardClass: 'clock',
   },
-  {
-    gameName: gameNames.TARGET,
-    rowsIndexes: [
-      [2, 4],
-      [0, 6, 1],
-      [5, 3],
-    ],
+  [gameNames.TARGET]: {
+    builderOptions: [...builderConfigs, builderRowTitle.EXTRA],
     boardClass: 'tit',
   },
-  {
-    gameName: gameNames.ELEVATOR,
-    rowsIndexes: [
-      [0, 3],
-      [1, 6, 4],
-      [2, 5],
-    ],
+  [gameNames.ELEVATOR]: {
+    builderOptions: [...builderConfigs],
     boardClass: 'elevator',
   },
-  {
-    gameName: gameNames.GRAVEYARD,
-    rowsIndexes: [
-      [0, 2, 4, 6, 8],
-      [1, 3, 5, 7, 9],
-    ],
-    cardsInHand: 5,
-    handCardsInPlay: [2, 3],
+  [gameNames.GRAVEYARD]: {
+    builderDefaults: {
+      cardsInHand: 5,
+      handCardsInPlay: [2, 3],
+    },
     boardClass: 'graveyard',
-    showTitles: [
-      builderTitle.GAME,
-      builderTitle.WINNING_ORDER,
-      builderTitle.EXTRA,
+    builderOptions: [
+      builderRowTitle.GAME,
+      builderRowTitle.WINNING_ORDER,
+      builderRowTitle.EXTRA,
     ],
   },
-  {
-    gameName: gameNames.KOYKOS_MONOS,
-    rowsIndexes: [[0], [1], [2], [3], [4]],
-    winningOrder: winningOrder.TRIA_FOUL,
-    cardsInHand: 2,
-    handCardsInPlay: ['2'],
-    tablo: tablo.MONO,
+  [gameNames.KOYKOS_MONOS]: {
+    builderDefaults: {
+      winningOrder: winningOrder.TRIA_FOUL,
+      cardsInHand: 2,
+      handCardsInPlay: ['2'],
+      tablo: tablos.MONO,
+    },
+    builderOptions: [
+      builderRowTitle.GAME,
+      builderRowTitle.WINNING_ORDER,
+      builderRowTitle.TABLO,
+    ],
     boardClass: 'koukos',
-    showTitles: [
-      builderTitle.GAME,
-      builderTitle.WINNING_ORDER,
-      builderTitle.TABLO,
-    ],
   },
-  {
-    gameName: gameNames.KOYKOS_DIPLOS,
-    rowsIndexes: [[0], [1], [2], [3], [4]],
-    winningOrder: winningOrder.TRIA_FOUL,
-    cardsInHand: 3,
-    handCardsInPlay: ['2', '3'],
-    tablo: tablo.MONO,
+  [gameNames.KOYKOS_DIPLOS]: {
+    builderDefaults: {
+      winningOrder: winningOrder.TRIA_FOUL,
+      cardsInHand: 3,
+      handCardsInPlay: ['2', '3'],
+      tablo: tablos.MONO,
+    },
+    builderOptions: [
+      builderRowTitle.GAME,
+      builderRowTitle.WINNING_ORDER,
+      builderRowTitle.TABLO,
+    ],
     boardClass: 'koukos',
-    showTitles: [
-      builderTitle.GAME,
-      builderTitle.WINNING_ORDER,
-      builderTitle.TABLO,
-    ],
   },
-];
+});

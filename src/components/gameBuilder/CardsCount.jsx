@@ -1,9 +1,9 @@
-import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
+import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
 import Radio from 'components/ui/Radio';
 import { gameNames } from 'utils/games';
 
 const CardsCount = ({ name }) => {
-  const { values, setValues } = useGameBuilderContext();
+  const { values, setFieldValue } = useGameBuilderContext();
 
   let countOptions = [2, 3, 4, 5];
   if (name === 'cornerLength') countOptions = [2, 3, 4];
@@ -11,7 +11,7 @@ const CardsCount = ({ name }) => {
   if (values.gameName === gameNames.POKER) countOptions = [5, 6, 7];
 
   function handleChange(e) {
-    setValues(prev => ({ ...prev, [name]: e.target.value }));
+    setFieldValue([name], e.target.value);
   }
 
   return (

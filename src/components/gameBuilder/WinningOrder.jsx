@@ -1,23 +1,24 @@
 import { memo } from 'react';
 
-import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
+import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
 import { winningOrder } from 'utils/text-constants';
 import Radio from 'components/ui/Radio';
 
-const orders = Object.values(winningOrder);
+const winningOrders = Object.values(winningOrder);
 
 const WinningOrder = memo(() => {
-  const { values } = useGameBuilderContext();
+  const { values, setFieldValue } = useGameBuilderContext();
 
   return (
     <>
-      {orders.map(order => (
+      {winningOrders.map(winningOrder => (
         <Radio
-          key={values.winningOrder + order}
+          key={winningOrder}
           name="winningOrder"
-          label={order}
-          value={order}
-          defaultChecked={values.winningOrder === order}
+          label={winningOrder}
+          value={winningOrder}
+          checked={values.winningOrder === winningOrder}
+          onChange={() => setFieldValue('winningOrder', winningOrder)}
         />
       ))}
     </>

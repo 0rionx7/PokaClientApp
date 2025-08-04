@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import RenderedCard from 'components/table/RenderedCard';
+import BoardCard from 'components/table/BoardCard';
 import Kaves from 'components/table/Kaves';
 
 const BoardRow = ({ rowIndexes, row, rows, totalPot }) => {
@@ -17,7 +17,7 @@ const BoardRow = ({ rowIndexes, row, rows, totalPot }) => {
         <Kaves totalPot={totalPot} rows={rows} />
       )}
       {rowIndexes.map(index => (
-        <RenderedCard index={index} key={index} />
+        <BoardCard index={index} key={index} />
       ))}
     </div>
   );

@@ -12,7 +12,7 @@ import {
   selectHandcards,
 } from 'features/gameStateChinese/gameStateSlice';
 import { selectPlayername } from 'features/account/accountSlice';
-import { isSeated } from 'utils/utilities-functions';
+import { isSitting } from 'utils/utilities-functions';
 import FantasyButtons from 'componentsChinese/FantasyButtons';
 import HandCards from 'componentsChinese/HandCards';
 import Button from 'components/ui/Button';
@@ -42,7 +42,7 @@ const Hand = () => {
   const legitSubmit =
     hand?.length === 5 ? cardsLeftInHand === 0 : cardsLeftInHand === 1;
   const canSubmit = !hasSubmitted && hasTurn && legitSubmit;
-  const sittedCount = data.playerStates.filter(isSeated).length;
+  const sittedCount = data.playerStates.filter(isSitting).length;
   const canNext =
     sittedCount > 1 &&
     currentPlayerList.length <= sittedCount &&

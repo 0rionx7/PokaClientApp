@@ -13,34 +13,32 @@ const Request = ({ tableInfo }) => {
     useCancelRequestChineseMutation();
   const navigate = useNavigate();
 
-  const cancelHandler = async event => {
-    if (canceling) return;
+  const handleCancelRequest = async event => {
     event.stopPropagation();
+    if (canceling) return;
     cancelRequest(tableInfo);
   };
 
-  const sitDownTableHandler = async (gameId, tableName) => {
-    if (!gameId || isLoading || isSuccess) return;
-    const { data } = await sitDown({ gameId, tableName });
+  const handleJoinTable = async () => {
+    if (!tableInfo.joined || isLoading || isSuccess) return;
+    const { data } = await sitDown({
+      gameId: tableInfo.joined,
+      tableName: tableInfo.tableName,
+    });
     if (data?.gameId) navigate(`/chinese/table/${data.gameId}`);
   };
 
   return (
     <div className={'request-tableName ' + (tableInfo.joined ? 'joined' : '')}>
       {!cancelHoveredPropagation && <ToolTip info="Καθήστε" />}
-      <div
-        onClick={sitDownTableHandler.bind(
-          null,
-          tableInfo.joined,
-          tableInfo.tableName
-        )}>
+      <div onClick={handleJoinTable}>
         {tableInfo.tableName?.split('_')?.[0]}
       </div>
       <div
         className="cancel"
         onMouseOver={() => setCancelHoveredPropagation(true)}
         onMouseLeave={() => setCancelHoveredPropagation(false)}
-        onClick={cancelHandler}>
+        onClick={handleCancelRequest}>
         X <ToolTip info="Ακύρωση" />
       </div>
     </div>

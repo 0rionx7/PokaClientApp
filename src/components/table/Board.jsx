@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
 import BoardRow from 'components/table/BoardRow';
 import Kaves from 'components/table/Kaves';
+import { gameConfigs, gameNames } from 'utils/games';
 import './Board.scss';
 
 const Board = () => {
@@ -11,16 +12,19 @@ const Board = () => {
   const { data } = useGetGameStateQuery(gameId);
 
   const totalPot = useMemo(
-    () => data?.playerStates.reduce((acc, curr) => acc + curr.bet, 0),
-    [data?.playerStates]
+    () => data.playerStates.reduce((acc, curr) => acc + curr.bet, 0),
+    [data.playerStates]
   );
+  let className = gameConfigs[data.gameName]?.boardClass;
+  if (data.gameName === gameNames.CORNER)
+    className += ` ${data.rowIndexes.length - (data.hats && 1)}`;
 
   return (
-    <div className={'board ' + (data?.boardClass ?? '')}>
-      {!data?.rowsIndexes?.length && totalPot > 0 && (
+    <div className={`board ${className ?? ''}`}>
+      {!data.rowIndexes?.length && totalPot > 0 && (
         <Kaves totalPot={totalPot} />
       )}
-      {data?.rowsIndexes?.map((rowIndexes, i, { length }) => (
+      {data.rowIndexes?.map((rowIndexes, i, { length }) => (
         <BoardRow
           rowIndexes={rowIndexes}
           row={i}

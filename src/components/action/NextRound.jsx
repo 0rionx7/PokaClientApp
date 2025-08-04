@@ -9,7 +9,7 @@ import Button from 'components/ui/Button';
 import Overlay from 'components/ui/Overlay';
 import { useSelector } from 'react-redux';
 import { selectPlayername } from 'features/account/accountSlice';
-import { isSeated, playerEntry } from 'utils/utilities-functions';
+import { isSitting, playerEntry } from 'utils/utilities-functions';
 
 const NextRound = () => {
   const { gameId } = useParams();
@@ -24,7 +24,7 @@ const NextRound = () => {
   const showReveal =
     !submittedHand.length &&
     handCards.some(card => card.faceUp === false) &&
-    data.playerStates.filter(isSeated).length > 1;
+    data.playerStates.filter(isSitting).length > 1;
 
   return (
     <Overlay style={{ zIndex: 50, backgroundColor: 'rgb(0 0 0 / 4%)' }}>

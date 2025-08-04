@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -18,23 +17,11 @@ const Submit = () => {
   const { gameId } = useParams();
   const { handCards, tableCards } = useSelector(state => state.gameState);
   const { data: gameData } = useGetGameStateQuery(gameId);
-  const [
-    submitHand,
-    {
-      isLoading: submitting,
-      isSuccess: submissionSuccess,
-      error: submitionError,
-    },
-  ] = useSubmitCardsMutation();
+  const [submitHand, { isLoading: submitting, isSuccess: submissionSuccess }] =
+    useSubmitCardsMutation();
   const [
     evaluateHand,
-    {
-      data,
-      reset,
-      isLoading: eveluating,
-      isSuccess: evaluationSuccess,
-      error: evaluationError,
-    },
+    { data, reset, isLoading: eveluating, isSuccess: evaluationSuccess },
   ] = useEvaluateHandMutation();
   const { snackElement, setSnackInfo } = useSnackBar({ top: true });
 
@@ -44,14 +31,9 @@ const Submit = () => {
   const selectedHandCardsCount =
     submittedHandCardIndexes.length + submittedTableCardIndexes.length;
 
-  useEffect(() => {
-    if (evaluationError || submitionError)
-      setSnackInfo(evaluationError?.data || submitionError?.data);
-  }, [evaluationError, submitionError, setSnackInfo]);
-
   let description = describeHand(data?.evaluatedHand, true);
 
-  const evaluateHandHandler = () => {
+  const handleEvaluate = async () => {
     if (selectedHandCardsCount > 5)
       return setSnackInfo(
         `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για 5`
@@ -64,11 +46,22 @@ const Submit = () => {
       )
     )
       return setSnackInfo(` Επιλέξτε συνολικά 5 χαρτιά`);
-    evaluateHand({
+
+    const result = await evaluateHand({
       gameId,
       submittedHandCardIndexes,
       submittedTableCardIndexes,
     });
+    if (result.error?.data) setSnackInfo(result.error.data);
+  };
+
+  const handleSubmit = async () => {
+    const result = await submitHand({
+      gameId,
+      submittedHandCardIndexes: submittedHandCardIndexes,
+      submittedTableCardIndexes: submittedTableCardIndexes,
+    });
+    if (result.error?.data) setSnackInfo(result.error.data);
   };
 
   return (
@@ -79,13 +72,7 @@ const Submit = () => {
           <Overlay />
           <Button
             prompt={<h3>{description}</h3>}
-            onClick={() =>
-              submitHand({
-                gameId,
-                submittedHandCardIndexes: submittedHandCardIndexes,
-                submittedTableCardIndexes: submittedTableCardIndexes,
-              })
-            }
+            onClick={handleSubmit}
             disabled={submitting || submissionSuccess}
             className="green"
           />
@@ -99,7 +86,7 @@ const Submit = () => {
       ) : (
         <Button
           prompt={'ΑΞΙΟΛΟΓΗΣΗ ΕΠΙΛΕΓΜΕΝΩΝ ΧΑΡΤΙΩΝ'}
-          onClick={evaluateHandHandler}
+          onClick={handleEvaluate}
           disabled={eveluating || evaluationSuccess}
           className="orange"
         />

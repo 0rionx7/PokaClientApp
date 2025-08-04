@@ -1,16 +1,16 @@
-import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
+import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
 import './NumericInput.scss';
 
 const NumericInput = ({ name, className }) => {
-  const { values, setValues } = useGameBuilderContext();
+  const { values, setFieldValue } = useGameBuilderContext();
 
   const handleIncrement = () => {
-    setValues(prev => ({ ...prev, [name]: values[name] + 1 }));
+    setFieldValue([name], values[name] + 1);
   };
 
   const handleDecrement = () => {
     if (values[name] - 1 < 1) return;
-    setValues(prev => ({ ...prev, [name]: values[name] - 1 }));
+    setFieldValue([name], values[name] - 1);
   };
 
   return (

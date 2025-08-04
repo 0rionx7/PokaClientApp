@@ -2,7 +2,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 
 import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
-import { createTableTitle } from 'utils/text-functions';
+import { createTableTitleJsx } from 'utils/text-functions';
 import Button from 'components/ui/Button';
 import './ApprovedRequest.scss';
 
@@ -15,7 +15,7 @@ const ApprovedRequest = ({ requestInfo: { tableName, gameId } }) => {
   const isChinese = location?.pathname.includes('chinese');
   const table = isChinese ? ' κινέζικου πόκερ' : ' πόκας';
 
-  const joinHandler = async _ => {
+  const handleJoinTable = async _ => {
     if (isChinese) {
       const { data } = await sitDownChinese({ gameId, tableName });
       if (data?.gameId) navigate(`chinese/table/${gameId}`);
@@ -27,14 +27,14 @@ const ApprovedRequest = ({ requestInfo: { tableName, gameId } }) => {
 
   return (
     <>
-      Η αίτηση συμμετοχής σας για το τραπέζι {table} <br />
-      {createTableTitle(tableName)} εγκρίθηκε.
+      {`Η αίτηση συμμετοχής σας για το τραπέζι ${table}`} <br />
+      {createTableTitleJsx(tableName)} εγκρίθηκε.
       <span style={{ fontSize: '.7rem' }}>
-        (μπορείτε να καθήσετε οποιαδήποτε στιγμή επιθυμείτε, μέσω της λίστας
-        ενεργών αιτήσεων ή αυτής των διαθέσιμων τραπεζιών)
+        μπορείτε να καθήσετε οποιαδήποτε στιγμή επιθυμείτε, μέσω της λίστας
+        ενεργών αιτήσεων ή αυτής των διαθέσιμων τραπεζιών
       </span>
       <div className="action-btns">
-        <Button className="green" prompt="κάθομαι τώρα" onClick={joinHandler} />
+        <Button className="green" prompt="κάθομαι τώρα" onClick={handleJoinTable} />
         <Button className="red" prompt="θα καθήσω αργότερα" />
       </div>
     </>

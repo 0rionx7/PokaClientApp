@@ -3,7 +3,7 @@ import { creataPaymentTags } from 'utils/text-functions';
 import Button from 'components/ui/Button';
 import './Subscription.scss';
 
-const SubscriptionItem = ({ option, commitPayment }) => {
+const SubscriptionItem = ({ option, onClick }) => {
   const { data } = useGetUserQuery();
 
   const infos = option?.split('_');
@@ -15,11 +15,11 @@ const SubscriptionItem = ({ option, commitPayment }) => {
     requestLang: 'el-GR',
   };
 
-  const paymentHandler = () =>
-    commitPayment({ customer, ...creataPaymentTags(title, data?.email) });
+  const handleSubscriptionSelect = () =>
+    onClick({ customer, ...creataPaymentTags(title, data?.email) });
 
   return (
-    <div className="subscription-item" onClick={paymentHandler}>
+    <div className="subscription-item" onClick={handleSubscriptionSelect}>
       <div className="title">{title} </div>
       <p>{infos.at(1)}</p>
       <Button prompt="ΕΠΙΛΟΓΗ" className="orange" />

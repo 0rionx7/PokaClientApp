@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
@@ -6,44 +5,42 @@ import {
   useGetUserQuery,
   useRequestJoinMutation,
 } from 'features/account/accountApi';
-import { createTableTitle } from 'utils/text-functions';
+import { createTableTitleJsx } from 'utils/text-functions';
 import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 import './AvailableTables.scss';
 
 const AvailableTable = ({ tableInfo }) => {
   const navigate = useNavigate();
-  const [requestJoin, { isLoading, error }] = useRequestJoinMutation();
-  const [sitDown, { isLoading: sittingDown, error: sitdownError }] =
-    useSitDownMutation();
+  const [requestJoin, { isLoading }] = useRequestJoinMutation();
+  const [sitDown, { isLoading: sittingDown }] = useSitDownMutation();
   const { data } = useGetUserQuery();
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
   const joinRequests = data?.joinRequests;
 
-  useEffect(() => {
-    if (error || sitdownError) setSnackInfo(error?.data || sitdownError.data);
-  }, [error, sitdownError, setSnackInfo]);
-
-  const clickHandler = async () => {
+  const handleJoinTable = async () => {
     if (isLoading || sittingDown) return;
     if (tableInfo.joined) {
-      const { data } = await sitDown({
+      const result = await sitDown({
         gameId: tableInfo.joined,
         tableName: tableInfo.tableName,
       });
+      if (result.error?.data) setSnackInfo(result.error.data);
       if (data?.gameId) return navigate(`/table/${data.gameId}`);
     }
+
     if (joinRequests?.length >= 3)
       return setSnackInfo('Έχετε συμπληρώσει των μέγιστο αριθμό αιτήσεων.');
 
-    requestJoin({ tableName: tableInfo.tableName });
+    const result = await requestJoin({ tableName: tableInfo.tableName });
+    if (result.error?.data) setSnackInfo(result.error.data);
   };
 
-  const tableTitle = createTableTitle(tableInfo.tableName);
+  const tableTitle = createTableTitleJsx(tableInfo.tableName);
 
   return (
     <div
-      onClick={clickHandler}
+      onClick={handleJoinTable}
       className={'available-table ' + (tableInfo.joined ? 'joined' : '')}>
       <ToolTip info={tableInfo.joined ? 'Καθήστε' : 'Αιτηθείτε θέση'} />
       {tableTitle}

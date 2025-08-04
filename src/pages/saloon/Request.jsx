@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCancelRequestMutation } from 'features/account/accountApi';
 import { useSitDownMutation } from 'features/gameState/gameStateApi';
 import ToolTip from 'components/ui/ToolTip';
+import useSnackBar from 'hooks/useSnackBar';
 import './Requests.scss';
 
 const Request = ({ tableInfo }) => {
@@ -11,25 +12,27 @@ const Request = ({ tableInfo }) => {
   const [cancelHoveredPropagation, setCancelHoveredPropagation] =
     useState(false);
   const [cancelRequest, { isLoading: canceling }] = useCancelRequestMutation();
+  const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
   const navigate = useNavigate();
 
-  const cancelHandler = async event => {
+  const handleCancel = async event => {
     if (canceling) return;
     event.stopPropagation();
     cancelRequest(tableInfo);
   };
 
-  const joinTableHandler = async (gameId, tableName) => {
+  const handleJoinTable = async (gameId, tableName) => {
     if (!gameId || isLoading || isSuccess) return;
-    const { data } = await sitDown({ gameId, tableName });
-    if (data?.gameId) navigate(`/table/${data.gameId}`);
+    const result = await sitDown({ gameId, tableName });
+    if (result.error?.data) setSnackInfo(result.error.data);
+    if (result.data?.gameId) navigate(`/table/${result.data.gameId}`);
   };
 
   return (
     <div className={'request-tableName ' + (tableInfo.joined ? 'joined' : '')}>
       {!cancelHoveredPropagation && <ToolTip info="Καθήστε" />}
       <div
-        onClick={joinTableHandler.bind(
+        onClick={handleJoinTable.bind(
           null,
           tableInfo.joined,
           tableInfo.tableName
@@ -40,9 +43,10 @@ const Request = ({ tableInfo }) => {
         className="cancel"
         onMouseOver={() => setCancelHoveredPropagation(true)}
         onMouseLeave={() => setCancelHoveredPropagation(false)}
-        onClick={cancelHandler}>
+        onClick={handleCancel}>
         X <ToolTip info="Ακύρωση" />
       </div>
+      {snackElement}
     </div>
   );
 };

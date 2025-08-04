@@ -14,7 +14,7 @@ import './Room.scss';
 const Room = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const [hideInfo, toggleHideInfo] = useState(false);
+  const [hideInfoPanel, setHideInfoPanel] = useState(false);
   useMessageService();
 
   if (!data) return <LoadingSpinner centered color="red" />;
@@ -26,11 +26,11 @@ const Room = () => {
         <div className="ribbon">
           <EmojiProvider>
             <Info
-              hideInfo={hideInfo}
-              toggleHideInfo={() => toggleHideInfo(curr => !curr)}
+              hideInfo={hideInfoPanel}
+              onToggleInfoPanel={() => setHideInfoPanel(curr => !curr)}
             />
           </EmojiProvider>
-          <Action hideInfo={hideInfo} />
+          <Action hideInfo={hideInfoPanel} />
         </div>
       </ActionContaineContextProvider>
     </div>

@@ -1,34 +1,31 @@
-import { useGameBuilderContext } from 'hooks/useGameBuilderContext';
+import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
 import { dealingType, infoText } from 'utils/text-constants';
 import Radio from 'components/ui/Radio';
 
-const Dilemma = ({ name, options }) => {
-  const { values, setValues } = useGameBuilderContext();
+const Dilemma = ({ name, options, setDeny }) => {
+  const { values, setFieldValue } = useGameBuilderContext();
 
   function handleChange(e) {
-    if (name === 'dealing' && values.dealing === dealingType.ENA_ENA)
-      setValues(prev => ({ ...prev, deny: false }));
-    setValues(prev => ({ ...prev, [name]: e.target.value }));
+    if (name === 'dealing' && e.target.value === dealingType.OLA_MAZI) {
+      setDeny(false);
+      setFieldValue('denies', 0);
+    }
+    setFieldValue([name], e.target.value);
   }
 
   return (
     <>
-      {options.map(option => {
-        const optionName = option.name ?? option;
-        const label = option.img ?? option;
-
-        return (
-          <Radio
-            key={values[name] + optionName}
-            name={name}
-            label={label}
-            value={optionName}
-            checked={values[name] === optionName}
-            onChange={handleChange}
-            info={infoText[optionName]}
-          />
-        );
-      })}
+      {options.map(option => (
+        <Radio
+          key={option}
+          name={name}
+          label={option}
+          value={option}
+          checked={values[name] === option}
+          onChange={handleChange}
+          info={infoText[option]}
+        />
+      ))}
     </>
   );
 };

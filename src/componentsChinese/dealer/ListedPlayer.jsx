@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -13,37 +12,34 @@ import useSnackBar from 'hooks/useSnackBar';
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateChineseQuery(gameId);
-  const [joinTable, { isLoading, error }] = useJoinTableChineseMutation();
+  const [joinTable, { isLoading }] = useJoinTableChineseMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [rejectRequest, { isSuccess, isLoading: rejecting }] =
     useRejectRequestChineseMutation();
 
-  useEffect(() => {
-    if (error) setSnackInfo(error.message);
-  }, [error, setSnackInfo]);
-
-  const clickHandler = () => {
+  const handleAccept = () => {
     if (!clickable || isLoading || rejecting) return;
     if (data?.playerStates.length === 8)
       return setSnackInfo('έχει συμπληρωθεί το καρέ');
     const { playerName } = playerState;
-    joinTable({ playerName, gameId });
+    const result = joinTable({ playerName, gameId });
+    if (result.error?.data) setSnackInfo(result.error.data);
   };
 
-  const cancelHandler = e => {
+  const handleReject = e => {
     if (rejecting || isSuccess || isLoading) return;
     e.stopPropagation();
-    rejectRequest({
+    const result = rejectRequest({
       tableName: data?.tableName,
       username: playerState.playerName,
-      showPopUp: true,
     });
+    if (result.error?.data) setSnackInfo(result.error.data);
   };
 
   return (
     <div
       className="listed-player"
-      onClick={clickHandler}
+      onClick={handleAccept}
       style={{ cursor: clickable ? 'pointer' : 'inherit' }}>
       <StatusIcon playerState={playerState} />
       <div className="approve">
@@ -51,7 +47,7 @@ const ListedPlayer = ({ playerState, clickable }) => {
         {clickable && <ToolTip info="Έγκριση" />}
       </div>
       {clickable && (
-        <div className="cancel" onClick={cancelHandler}>
+        <div className="cancel" onClick={handleReject}>
           X <ToolTip info="Απόρριψη" />
         </div>
       )}

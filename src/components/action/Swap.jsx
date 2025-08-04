@@ -12,8 +12,7 @@ const getCardLabel = count => `ΧΑΡΤΙ${count !== 1 ? 'Α' : ''}`;
 const Swap = ({ selecting }) => {
   const { gameId } = useParams();
   const handCards = useSelector(state => state.gameState.handCards);
-  const [selectCards, { isLoading, isSuccess, error }] =
-    useSelectCardsMutation();
+  const [selectCards, { isLoading, isSuccess }] = useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
 
   const selectedHandCardIndexes = selectedCardIndexes(handCards);
@@ -27,9 +26,14 @@ const Swap = ({ selecting }) => {
       );
   }, [setSnackInfo, swapError, selectedHandCardsCount, selecting.swaps]);
 
-  useEffect(() => {
-    if (error) setSnackInfo(error.data);
-  }, [error, setSnackInfo]);
+  const handleSelect = async () => {
+    const result = await selectCards({
+      gameId,
+      selectionInfo: selecting,
+      selectedHandCardIndexes,
+    });
+    if (result.error?.data) setSnackInfo(result.error.data);
+  };
 
   const prompt = swapError ? (
     'Λάθος επιλογή'
@@ -48,13 +52,7 @@ const Swap = ({ selecting }) => {
       {snackElement}
       <Button
         prompt={prompt}
-        onClick={() =>
-          selectCards({
-            gameId,
-            selectionInfo: selecting,
-            selectedHandCardIndexes,
-          })
-        }
+        onClick={handleSelect}
         disabled={isLoading || isSuccess || swapError}
         className="orange"
       />

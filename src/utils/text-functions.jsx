@@ -1,13 +1,13 @@
+import { gameNames } from 'utils/games';
 import {
   primaryCardNames,
   secondaryCardNames,
-  gameName,
   handKind,
   paymentDescription,
   subscriptionOption,
 } from 'utils/text-constants';
 
-export function createTableTitle(tableName) {
+export function createTableTitleJsx(tableName) {
   const names = tableName?.split('_');
   return (
     <div>
@@ -98,15 +98,15 @@ export function betPrompt(value, minBet, resta, error) {
 }
 export function getNameAndLabel(name) {
   switch (name) {
-    case gameName.GRAVEYARD:
+    case gameNames.GRAVEYARD:
       return { name: 'allDiscardedWins', label: 'ΞΕΣΚΑΡΤΑΡΙΣΜΑ ΑΝΩΤΑΤΟ ΦΥΛΛΟ' };
-    case gameName.MAMUT:
+    case gameNames.MAMUT:
       return { name: 'mirrorWins', label: 'ΚΑΘΡΕΦΤΗΣ ΑΝΩΤΑΤΟ ΦΥΛΛΟ' };
-    case gameName.QUEEN:
+    case gameNames.QUEEN:
       return { name: 'queens', label: 'ΜΠΑΛΑΝΤΕΡ ΚΑΙ ΟΙ ΝΤΑΜΕΣ' };
-    case gameName.TARGET:
+    case gameNames.TARGET:
       return { name: 'targetObligation', label: 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ' };
-    case gameName.CROSS:
+    case gameNames.CROSS:
       return { name: 'crossObligation', label: 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ' };
     default:
       return { name: '', label: '' };

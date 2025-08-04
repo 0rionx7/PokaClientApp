@@ -6,25 +6,19 @@ import { orderName } from 'utils/text-constants';
 const FaceDownCards = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
+  const faceDownCards = data.faceDownIndexes.length;
 
-  if (data.faceDownIndexes.length === 7) return null;
+  if (!faceDownCards) return null;
 
-  let closed = [];
-  data.faceDownIndexes
-    ?.slice()
-    .sort()
-    .forEach((index, i) => {
-      const cardPosition = parseInt(index);
-      if (cardPosition < data?.cardsInHand)
-        closed.push((i === 0 ? '' : ', ') + orderName[cardPosition]);
-    });
+  let closed = data.faceDownIndexes
+    .toSorted()
+    .map(index => orderName[index])
+    .join(', ');
 
   return (
     <div>
-      {closed.map(cl => (
-        <span key={cl}>{cl}</span>
-      ))}
-      {' κλειστό'}
+      <span>{closed}</span>
+      {` κλειστ${faceDownCards === 1 ? 'ό' : 'ά'}`}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 
 import useOnlineStatus from 'hooks/useOnlineStatus';
 import useSnackBar from 'hooks/useSnackBar';
@@ -9,15 +9,13 @@ const useOfflineSnack = () => {
     height: '100%',
     secs: 0,
   });
-  const [prevStatus, setPrevStatus] = useState(true);
 
-  if (prevStatus !== isOnline) {
-    setPrevStatus(!prevStatus);
+  useEffect(() => {
     const msg = !isOnline
       ? 'Απώλεια σύνδεσης...\nΠροσπάθεια επανασύνδεσης σε εξέλιξη...'
       : '';
     setSnackInfo(msg);
-  }
+  }, [isOnline, setSnackInfo]);
 
   return snackElement;
 };
