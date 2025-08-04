@@ -7,7 +7,7 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
     getGameStateChinese: build.query({
       query: gameId => {
         return {
-          url: `/chinese/gameState/${gameId}`,
+          url: `/chinese/${gameId}`,
           params: { socketId: socket.id },
         };
       },
@@ -117,10 +117,10 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
             );
           };
 
-          socket.on('tableChineseCreated', tableCreatedListener);
+          socket.on('chineseTableCreated', tableCreatedListener);
           socket.on('tableChineseDeleted', tableDeletedListerner);
           await cacheEntryRemoved;
-          socket.off('tableChineseCreated', tableCreatedListener);
+          socket.off('chineseTableCreated', tableCreatedListener);
           socket.off('tableChineseDeleted', tableDeletedListerner);
         } catch (error) {
           console.log(error);
@@ -130,7 +130,7 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
     }),
     openTableChinese: build.mutation({
       query: openTableData => ({
-        url: 'chinese/gameState',
+        url: 'chinese',
         method: 'POST',
         body: { ...openTableData, socketId: socket.id },
       }),
@@ -138,7 +138,7 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
     }),
     joinTableChinese: build.mutation({
       query: joinInfo => ({
-        url: 'chinese/gameState/join',
+        url: 'chinese/join',
         method: 'PATCH',
         body: joinInfo,
       }),
@@ -154,7 +154,7 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
     }),
     sitDownChinese: build.mutation({
       query: ({ gameId }) => ({
-        url: 'chinese/gameState/sitDown',
+        url: 'chinese/sitDown',
         method: 'PATCH',
         body: { gameId, socketId: socket.id },
       }),
@@ -162,49 +162,49 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
     }),
     startGameChinese: build.mutation({
       query: gameId => ({
-        url: 'chinese/gameState/start',
+        url: 'chinese/start',
         method: 'PATCH',
         body: { gameId },
       }),
     }),
     submitCardsChinese: build.mutation({
       query: ({ boardCards, gameId }) => ({
-        url: 'chinese/gameState/submitCards',
+        url: 'chinese/submitCards',
         method: 'PATCH',
         body: { boardCards, gameId },
       }),
     }),
     reorderDeckChinese: build.mutation({
       query: ({ dragIndex, dropIndex, gameId }) => ({
-        url: 'chinese/gameState/reorderDeck',
+        url: 'chinese/reorderDeck',
         method: 'PATCH',
         body: { dragIndex, dropIndex, gameId },
       }),
     }),
     nextRoundChinese: build.mutation({
       query: gameId => ({
-        url: 'chinese/gameState/nextRound',
+        url: 'chinese/nextRound',
         method: 'PATCH',
         body: { gameId },
       }),
     }),
     timedOut: build.mutation({
       query: gameId => ({
-        url: 'chinese/gameState/timedOut',
+        url: 'chinese/timedOut',
         method: 'PATCH',
         body: { gameId },
       }),
     }),
     restartGameChinese: build.mutation({
       query: gameInfo => ({
-        url: 'chinese/gameState/restart',
+        url: 'chinese/restart',
         method: 'POST',
         body: { ...gameInfo, socketId: socket.id },
       }),
     }),
     sitOutChinese: build.mutation({
       query: sitOutInfo => ({
-        url: 'chinese/gameState/sitOut',
+        url: 'chinese/sitOut',
         method: 'PATCH',
         body: { ...sitOutInfo, socketId: socket.id },
       }),

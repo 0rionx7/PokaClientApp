@@ -22,7 +22,7 @@ export const gameStateApi = createApi({
   endpoints: build => ({
     getGameState: build.query({
       query: gameId => ({
-        url: `/gameState/${gameId}`,
+        url: `/poka/${gameId}`,
         params: { socketId: socket.id },
       }),
       async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
@@ -167,7 +167,7 @@ export const gameStateApi = createApi({
     }),
     openTable: build.mutation({
       query: openTableData => ({
-        url: '/gameState',
+        url: '/poka',
         method: 'POST',
         body: { openTableData, socketId: socket.id },
       }),
@@ -175,7 +175,7 @@ export const gameStateApi = createApi({
     }),
     restartGame: build.mutation({
       query: gameInfo => ({
-        url: '/gameState/restart',
+        url: '/poka/restart',
         method: 'POST',
         body: { ...gameInfo, socketId: socket.id },
       }),
@@ -190,77 +190,77 @@ export const gameStateApi = createApi({
     }),
     setGameVariant: build.mutation({
       query: builderConfig => ({
-        url: '/gameState/variant',
+        url: '/poka/variant',
         method: 'PATCH',
         body: builderConfig,
       }),
     }),
     bet: build.mutation({
       query: betInfo => ({
-        url: '/gameState/bet',
+        url: '/poka/bet',
         method: 'PATCH',
         body: betInfo,
       }),
     }),
     denyCard: build.mutation({
       query: denyInfo => ({
-        url: '/gameState/deny',
+        url: '/poka/deny',
         method: 'PATCH',
         body: denyInfo,
       }),
     }),
     selectCards: build.mutation({
       query: selectInfo => ({
-        url: '/gameState/select',
+        url: '/poka/select',
         method: 'PATCH',
         body: selectInfo,
       }),
     }),
     assignJoker: build.mutation({
       query: jokers => ({
-        url: '/gameState/joker',
+        url: '/poka/joker',
         method: 'PATCH',
         body: jokers,
       }),
     }),
     evaluateHand: build.mutation({
       query: handInfo => ({
-        url: '/gameState/evaluate',
+        url: '/poka/evaluate',
         method: 'POST',
         body: handInfo,
       }),
     }),
     submitCards: build.mutation({
       query: handInfo => ({
-        url: '/gameState/submit',
+        url: '/poka/submit',
         method: 'PATCH',
         body: handInfo,
       }),
     }),
     revealCards: build.mutation({
       query: gameId => ({
-        url: '/gameState/reveal',
+        url: '/poka/reveal',
         method: 'PATCH',
         body: { gameId },
       }),
     }),
     renewCava: build.mutation({
       query: renewInfo => ({
-        url: '/gameState/renew',
+        url: '/poka/renew',
         method: 'PATCH',
         body: renewInfo,
       }),
     }),
     nextRound: build.mutation({
       query: gameId => ({
-        url: '/gameState/nextRound',
+        url: '/poka/nextRound',
         method: 'PATCH',
         body: { gameId },
       }),
     }),
     sitDown: build.mutation({
       query: ({ gameId }) => ({
-        url: '/gameState/sitDown',
+        url: '/poka/sitDown',
         method: 'PATCH',
         body: { gameId, socketId: socket.id },
       }),
@@ -268,14 +268,14 @@ export const gameStateApi = createApi({
     }),
     sitOut: build.mutation({
       query: sitOutInfo => ({
-        url: '/gameState/sitOut',
+        url: '/poka/sitOut',
         method: 'PATCH',
         body: { ...sitOutInfo, socketId: socket.id },
       }),
     }),
     joinTable: build.mutation({
       query: joinInfo => ({
-        url: '/gameState/join',
+        url: '/poka/join',
         method: 'PATCH',
         body: joinInfo,
       }),
