@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import ToolTip from 'components/ui/ToolTip';
 
 const StatusInfo = ({ playerState }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   const lastAtList = data.playerStates.at(-1).playerName;
   const playerDeals = playerState.playerName === (data.dealer || lastAtList);

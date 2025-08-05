@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useOpenTableMutation } from 'features/poka/pokaApi';
+import { useOpenPokaTableMutation } from 'features/poka/pokaApi';
 import { selectUserName } from 'features/account/accountSlice';
 import { clockwise, counterclockwise } from 'assets/svgs/various';
 import { createCode } from 'utils/utilities-functions';
@@ -26,7 +26,7 @@ const OpenTable = () => {
     initialValues
   );
   const [error, setError] = useState(null);
-  const [openTable] = useOpenTableMutation();
+  const [openTable] = useOpenPokaTableMutation();
   const navigate = useNavigate();
 
   async function openTableAction(_prevFormState, formData) {

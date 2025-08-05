@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateChineseQuery,
+  useGetChineseStateQuery,
   useTimedOutMutation,
 } from 'features/chinese/chineseApi';
 import { selectUserName } from 'features/account/accountSlice';
@@ -12,7 +12,7 @@ import { isSitting } from 'utils/utilities-functions';
 
 const useTimer = playerName => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateChineseQuery(gameId);
+  const { data } = useGetChineseStateQuery(gameId);
   const { currentPlayerList, round, playerStates, playTime } = data;
   const [remainingTime, setRemainingTime] = useState(playTime);
   const username = useSelector(selectUserName);

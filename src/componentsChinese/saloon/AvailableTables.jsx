@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 
-import { useGetTablesChineseQuery } from 'features/chinese/chineseApi';
+import { useGetChineseTablesQuery } from 'features/chinese/chineseApi';
 import { useGetUserQuery } from 'features/account/accountApi';
 import AvailableTable from './AvailableTable';
 
 const AvailableTables = () => {
   const [query, setfChineseQuery] = useState('');
-  const { data } = useGetTablesChineseQuery(undefined, {
+  const { data } = useGetChineseTablesQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
   const { data: userData } = useGetUserQuery();

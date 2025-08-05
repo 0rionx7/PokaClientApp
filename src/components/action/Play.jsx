@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectUserName } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import JokerSelect from 'components/action/JokerSelect';
@@ -15,7 +15,7 @@ import Discard from 'components/action/Discard';
 const Play = () => {
   const { gameId } = useParams();
   const hostPlayerName = useSelector(selectUserName);
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   const hostPlayerState = useMemo(
     () => data?.playerStates.find(playerEntry(hostPlayerName)),

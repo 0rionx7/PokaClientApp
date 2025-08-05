@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { sortPlayers } from 'utils/utilities-functions';
 import PlayerResult from 'components/info/PlayerResult';
 import './Results.scss';
 
 const Results = () => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   const playerStates = useMemo(
     () =>

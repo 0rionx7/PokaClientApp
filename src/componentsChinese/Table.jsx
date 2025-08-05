@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateChineseQuery,
+  useGetChineseStateQuery,
   useSitOutChineseMutation,
 } from 'features/chinese/chineseApi';
 import { resetMessages } from 'features/poka/pokaStateSlice';
@@ -19,7 +19,7 @@ import classes from './Table.module.scss';
 const Table = () => {
   const { gameId } = useParams();
   const username = useSelector(selectUserName);
-  const { data } = useGetGameStateChineseQuery(gameId);
+  const { data } = useGetChineseStateQuery(gameId);
   const [sitOut] = useSitOutChineseMutation();
   const dispatch = useDispatch();
   const hostPlayerState = data.playerStates.find(playerEntry(username));

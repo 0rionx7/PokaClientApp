@@ -1,13 +1,13 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { createChipStyle } from 'utils/createChipStyle';
 import './Chip.scss';
 
 const Chip = ({ multiplier, index, startIndex }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   const { color, style } = useMemo(
     () => createChipStyle(multiplier, index, startIndex),

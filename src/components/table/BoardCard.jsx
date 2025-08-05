@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectTablecards } from 'features/poka/pokaStateSlice';
 import { selectUserName } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
@@ -12,7 +12,7 @@ const BoardCard = ({ index }) => {
   const tableCards = useSelector(selectTablecards);
   const playerName = useSelector(selectUserName);
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const { currentPlayerList, thorns } = data;
 
   const playerSubmitted = useMemo(

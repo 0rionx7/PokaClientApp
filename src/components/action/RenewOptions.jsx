@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateQuery,
+  useGetPokaStateQuery,
   useRenewCavaMutation,
 } from 'features/poka/pokaApi';
 import useSnackBar from 'hooks/useSnackBar';
@@ -13,7 +13,7 @@ const RenewOptions = () => {
   const { snackElement, setSnackInfo } = useSnackBar();
   const {
     data: { cava },
-  } = useGetGameStateQuery(gameId);
+  } = useGetPokaStateQuery(gameId);
 
   const handleRenew = async amount => {
     const result = await renew({ gameId, amount });

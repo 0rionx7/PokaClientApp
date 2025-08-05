@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import PlayerStanding from 'components/info/PlayerStanding';
 import { sortPlayers } from 'utils/utilities-functions';
 import './Standings.scss';
@@ -9,7 +9,7 @@ const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.
 
 const Standings = () => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   const playerStates = data.playerStates
     .slice()

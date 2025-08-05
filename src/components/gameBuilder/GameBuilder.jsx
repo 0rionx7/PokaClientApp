@@ -4,7 +4,7 @@ import { createPortal } from 'react-dom';
 
 import { builderRowTitle, speakingOrder, tablos } from 'utils/text-constants';
 import {
-  useGetGameStateQuery,
+  useGetPokaStateQuery,
   useSetGameVariantMutation,
 } from 'features/poka/pokaApi';
 import { isSitting } from 'utils/utilities-functions';
@@ -27,7 +27,7 @@ import './GameBuilder.scss';
 
 const GameBuilder = memo(() => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const { actionContainerNode } = useActionContainerNode();

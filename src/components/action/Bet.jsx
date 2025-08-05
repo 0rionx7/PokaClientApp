@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useBetMutation, useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useBetMutation, useGetPokaStateQuery } from 'features/poka/pokaApi';
 import BetOptions from 'components/action/BetOptions';
 import { betPrompt } from 'utils/text-functions';
 import Button from 'components/ui/Button';
@@ -12,7 +12,7 @@ const Bet = ({ bet, resta }) => {
   const [placeBet, { reset, isSuccess }] = useBetMutation();
   const {
     data: { maxBet, chip, currentPlayerList },
-  } = useGetGameStateQuery(gameId);
+  } = useGetPokaStateQuery(gameId);
   const minBet = Math.min(maxBet, resta) - bet;
   const [betAmount, setBetAmount] = useState(minBet);
   const [status, setStatus] = useState({});

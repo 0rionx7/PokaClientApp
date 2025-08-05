@@ -3,7 +3,7 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateChineseQuery } from 'features/chinese/chineseApi';
+import { useGetChineseStateQuery } from 'features/chinese/chineseApi';
 import { selectBoardCards } from 'features/chinese/chineseStateSlice';
 import { selectUserName } from 'features/account/accountSlice';
 import { isSitting } from 'utils/utilities-functions';
@@ -14,7 +14,7 @@ import './Board.scss';
 
 const BoardRow = ({ rowIndex, playerState }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateChineseQuery(gameId);
+  const { data } = useGetChineseStateQuery(gameId);
   const boardCards = useSelector(selectBoardCards);
   const username = useSelector(selectUserName);
 

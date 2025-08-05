@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateQuery,
+  useGetPokaStateQuery,
   useNextRoundMutation,
   useRevealCardsMutation,
 } from 'features/poka/pokaApi';
@@ -14,7 +14,7 @@ import { isSitting, playerEntry } from 'utils/utilities-functions';
 const NextRound = () => {
   const { gameId } = useParams();
   const hostPlayerName = useSelector(selectUserName);
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
   const [reveal, { revealing, revealed }] = useRevealCardsMutation();
   const { handCards, submittedHand } = data.playerStates.find(

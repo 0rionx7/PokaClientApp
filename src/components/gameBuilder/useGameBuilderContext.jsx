@@ -1,6 +1,6 @@
 import { createContext, use, useCallback, useState } from 'react';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { useParams } from 'react-router-dom';
 
 import { initialGameDefaults } from 'utils/games';
@@ -15,7 +15,7 @@ const GameBuilderContext = createContext({
 
 export default function GameBuilderContextProvider({ children }) {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const [values, setValues] = useState({
     ...initialGameDefaults,
     startingCard: data.startingCard || 7,

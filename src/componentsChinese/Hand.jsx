@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import {
-  useGetGameStateChineseQuery,
+  useGetChineseStateQuery,
   useNextRoundChineseMutation,
   useSubmitCardsChineseMutation,
 } from 'features/chinese/chineseApi';
@@ -23,7 +23,7 @@ const Hand = () => {
   const hand = useSelector(selectHandcards);
   const boardCards = useSelector(selectBoardCards);
   const username = useSelector(selectUserName);
-  const { data } = useGetGameStateChineseQuery(gameId);
+  const { data } = useGetChineseStateQuery(gameId);
   const [submit] = useSubmitCardsChineseMutation();
   const [nextRound] = useNextRoundChineseMutation();
   const [hasSubmitted, setHasSubmitted] = useState(false);

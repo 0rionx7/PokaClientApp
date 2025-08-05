@@ -1,13 +1,13 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import BetOptionButton from 'components/action/BetOptionButton';
 
 const BetOptions = ({ betAmount, setBetAmount, disabled, validate }) => {
   const { gameId } = useParams();
   const {
     data: { chip },
-  } = useGetGameStateQuery(gameId);
+  } = useGetPokaStateQuery(gameId);
 
   const betAmounts = [+chip, 5 * chip, 25 * chip, 100 * chip];
   const colors = ['green', 'black', 'yellow', 'red'];

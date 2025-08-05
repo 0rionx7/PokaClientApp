@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import './LiveInfo.scss';
 
 const LiveInfo = () => {
   const { gameId } = useParams();
   const {
     data: { currentPlayerList, playerStates, gamesCount },
-  } = useGetGameStateQuery(gameId);
+  } = useGetPokaStateQuery(gameId);
   const [currentPlayer] = currentPlayerList;
 
   const pot = useMemo(

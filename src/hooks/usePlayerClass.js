@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectUserName } from 'features/account/accountSlice';
 import { getPossitionClass } from 'utils/createPlayerClass';
 import { playerEntry } from 'utils/utilities-functions';
@@ -10,7 +10,7 @@ import { getChipsPosition } from 'utils/getChipsPosition';
 const usePlayerClass = index => {
   const hostPlayerName = useSelector(selectUserName);
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   const { playerName, submittedHand, handCards } = data?.playerStates.at(index);
   const playersCount = data?.playerStates.length;

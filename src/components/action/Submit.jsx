@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import {
   useEvaluateHandMutation,
-  useGetGameStateQuery,
+  useGetPokaStateQuery,
   useSubmitCardsMutation,
 } from 'features/poka/pokaApi';
 import { isMirror, selectedCardIndexes } from 'utils/utilities-functions';
@@ -21,7 +21,7 @@ const Submit = () => {
   const { gameId } = useParams();
   const handCards = useSelector(selectHandcards);
   const tableCards = useSelector(selectTablecards);
-  const { data: gameData } = useGetGameStateQuery(gameId);
+  const { data: gameData } = useGetPokaStateQuery(gameId);
   const [submitHand, { isLoading: submitting, isSuccess: submissionSuccess }] =
     useSubmitCardsMutation();
   const [

@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateQuery,
-  useGetRequestsQuery,
+  useGetPokaStateQuery,
+  useGetPokaRequestsQuery,
 } from 'features/poka/pokaApi';
 import GameBuilder from 'components/gameBuilder/GameBuilder';
 import ListedPlayers from 'components/dealer/ListedPlayers';
@@ -12,8 +12,8 @@ import GameBuilderContextProvider from 'components/gameBuilder/useGameBuilderCon
 
 const DealerScreen = () => {
   const { gameId } = useParams();
-  const { data: gameData } = useGetGameStateQuery(gameId);
-  const { data } = useGetRequestsQuery(gameData?.tableName);
+  const { data: gameData } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaRequestsQuery(gameData?.tableName);
 
   const requestedStates = data
     ?.filter(request =>

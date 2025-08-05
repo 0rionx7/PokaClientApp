@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateChineseQuery,
-  useJoinTableChineseMutation,
-  useRejectRequestChineseMutation,
+  useGetChineseStateQuery,
+  useJoinChineseTableMutation,
+  useRejectChineseRequestMutation,
 } from 'features/chinese/chineseApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import ToolTip from 'components/ui/ToolTip';
@@ -11,11 +11,11 @@ import useSnackBar from 'hooks/useSnackBar';
 
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateChineseQuery(gameId);
-  const [joinTable, { isLoading }] = useJoinTableChineseMutation();
+  const { data } = useGetChineseStateQuery(gameId);
+  const [joinTable, { isLoading }] = useJoinChineseTableMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [rejectRequest, { isSuccess, isLoading: rejecting }] =
-    useRejectRequestChineseMutation();
+    useRejectChineseRequestMutation();
 
   const handleAccept = () => {
     if (!clickable || isLoading || rejecting) return;

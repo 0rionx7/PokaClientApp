@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectUserName } from 'features/account/accountSlice';
 import { useActionContainerNode } from 'utils/ActionContainerContext';
 import { playerEntry } from 'utils/utilities-functions';
@@ -19,7 +19,7 @@ const Action = ({ hideInfo }) => {
   const hostPlayerName = useSelector(selectUserName);
   const {
     data: { playerStates, currentPlayerList, dealer },
-  } = useGetGameStateQuery(gameId);
+  } = useGetPokaStateQuery(gameId);
   const { setActionContainerNode } = useActionContainerNode();
 
   const hostPlayerState = useMemo(

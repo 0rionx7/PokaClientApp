@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateChineseQuery } from 'features/chinese/chineseApi';
+import { useGetChineseStateQuery } from 'features/chinese/chineseApi';
 import useMessageService from 'hooks/useMessageService';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import Table from 'componentsChinese/Table';
@@ -11,7 +11,7 @@ import classes from './Table.module.scss';
 
 const ChineseRoom = () => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateChineseQuery(gameId);
+  const { data } = useGetChineseStateQuery(gameId);
 
   useMessageService();
 

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateQuery,
+  useGetPokaStateQuery,
   useNextRoundMutation,
   useSitOutMutation,
 } from 'features/poka/pokaApi';
@@ -11,7 +11,7 @@ import { selectUserName } from 'features/account/accountSlice';
 
 const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const [nextRound] = useNextRoundMutation();
   const [sitOut] = useSitOutMutation();

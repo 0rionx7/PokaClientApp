@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { createChipStack } from 'utils/createChipStack';
 import { infoText } from 'utils/text-constants';
 import ToolTip from 'components/ui/ToolTip';
@@ -9,7 +9,7 @@ import './Kaves.scss';
 
 const Kaves = ({ totalPot, rows }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   const chips = createChipStack(totalPot, data.chip);
   const showKaves = data.kaves[0]?.amount < totalPot;

@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateChineseQuery } from 'features/chinese/chineseApi';
+import { useGetChineseStateQuery } from 'features/chinese/chineseApi';
 import { isSitting } from 'utils/utilities-functions';
 import './PlayerRibbon.scss';
 
 const PlayerRibbon = ({ playerState }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateChineseQuery(gameId);
+  const { data } = useGetChineseStateQuery(gameId);
   const { currentPlayerList, round, playerStates } = data;
   const [currentPlayer] = currentPlayerList;
   const showScore =

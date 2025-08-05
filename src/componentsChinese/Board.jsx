@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateChineseQuery } from 'features/chinese/chineseApi';
+import { useGetChineseStateQuery } from 'features/chinese/chineseApi';
 import { selectUserName } from 'features/account/accountSlice';
 import { fantasySvg, foulSvg } from 'assets/svgs/various';
 import { isSitting } from 'utils/utilities-functions';
@@ -18,7 +18,7 @@ import './Board.scss';
 const Board = ({ index, playerState }) => {
   const username = useSelector(selectUserName);
   const { gameId } = useParams();
-  const { data } = useGetGameStateChineseQuery(gameId);
+  const { data } = useGetChineseStateQuery(gameId);
   const gridArea = usePlayerStyle(index);
   const timerJsx = useTimer(playerState.playerName);
 

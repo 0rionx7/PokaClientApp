@@ -2,9 +2,9 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
-  useGetGameStateChineseQuery,
-  useGetRequestsChineseQuery,
-  useStartGameChineseMutation,
+  useGetChineseStateQuery,
+  useGetChineseRequestsQuery,
+  useStartChineseGameMutation,
 } from 'features/chinese/chineseApi';
 import ListedPlayers from 'componentsChinese/dealer/ListedPlayers';
 import Overlay from 'components/ui/Overlay';
@@ -14,9 +14,9 @@ import { isSitting } from 'utils/utilities-functions';
 
 const DealerScreen = () => {
   const { gameId } = useParams();
-  const { data: gameData } = useGetGameStateChineseQuery(gameId);
-  const { data } = useGetRequestsChineseQuery(gameData?.tableName);
-  const [start] = useStartGameChineseMutation();
+  const { data: gameData } = useGetChineseStateQuery(gameId);
+  const { data } = useGetChineseRequestsQuery(gameData?.tableName);
+  const [start] = useStartChineseGameMutation();
 
   const requestedStates = useMemo(
     () =>

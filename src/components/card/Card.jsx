@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { toggleSelectedCard } from 'features/poka/pokaStateSlice';
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectDeckColor } from 'features/account/accountSlice';
 import { suits, symbols } from 'assets/svgs/suits';
 import Content from 'components/card/Content';
@@ -12,7 +12,7 @@ import './Card.scss';
 const Card = ({ card, canBeSelected, noColor }) => {
   const deckColor = useSelector(selectDeckColor);
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const dispatch = useDispatch();
 
   if (!card?.faceUp)

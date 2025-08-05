@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectHandcards } from 'features/poka/pokaStateSlice';
 import { orderNumber, suitName } from 'utils/text-constants';
 import JokerSubmit from 'components/action/JokerSubmit';
@@ -13,7 +13,7 @@ import './JokerSelect.scss';
 
 const JokerSelect = () => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const handCards = useSelector(selectHandcards);
 
   const [jokers, setJokers] = useState([]);

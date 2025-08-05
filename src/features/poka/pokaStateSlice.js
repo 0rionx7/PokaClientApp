@@ -45,14 +45,14 @@ export const pokaStateSlice = createSlice({
     builder
       .addMatcher(
         isAnyOf(
-          pokaApi.endpoints.openTable.matchFulfilled,
+          pokaApi.endpoints.openPokaTable.matchFulfilled,
           pokaApi.endpoints.sitDown.matchFulfilled,
           pokaApi.endpoints.restartGame.matchFulfilled
         ),
         (state, action) => ({ ...state, ...action.payload })
       )
       .addMatcher(
-        pokaApi.endpoints.getGameState.matchFulfilled,
+        pokaApi.endpoints.getPokaState.matchFulfilled,
         (state, action) => {
           state.gameId = action.payload._id;
           state.tableName = action.payload.tableName;

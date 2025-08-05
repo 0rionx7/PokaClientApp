@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import BoardRow from 'components/table/BoardRow';
 import Kaves from 'components/table/Kaves';
 import { gameConfigs, gameNames } from 'utils/games';
@@ -9,7 +9,7 @@ import './Board.scss';
 
 const Board = () => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   const totalPot = useMemo(
     () => data.playerStates.reduce((acc, curr) => acc + curr.bet, 0),

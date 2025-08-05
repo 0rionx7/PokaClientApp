@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import {
   socket,
-  useGetGameStateQuery,
+  useGetPokaStateQuery,
   useSitOutMutation,
 } from 'features/poka/pokaApi';
 import { selectUserName } from 'features/account/accountSlice';
@@ -21,7 +21,7 @@ import './Table.scss';
 
 const Table = () => {
   const { gameId } = useParams();
-  const { data, refetch } = useGetGameStateQuery(gameId);
+  const { data, refetch } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
   const [sitOut] = useSitOutMutation();

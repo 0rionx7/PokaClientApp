@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import PlayHandCards from 'components/info/PlayHandCards';
 import FaceDownCards from 'components/info/FaceDownCards';
 import { tablos } from 'utils/text-constants';
@@ -27,7 +27,7 @@ const GameInfo = () => {
       targetObligation,
       gamesCount,
     },
-  } = useGetGameStateQuery(gameId);
+  } = useGetPokaStateQuery(gameId);
 
   const tableTitle = tableName.split('_')?.[0];
 

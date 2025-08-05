@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import BoardCard from 'components/table/BoardCard';
 import Kaves from 'components/table/Kaves';
 
 const BoardRow = ({ rowIndexes, row, rows, totalPot }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   const potLine = Math.floor(rows / 2);
   const rowClass = data.rowsClasses?.[row] || '';

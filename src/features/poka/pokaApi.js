@@ -20,7 +20,7 @@ export const pokaApi = createApi({
   }),
   tagTypes: ['User', 'Tables', 'Requests', 'ChineseRequests', 'ChineseTables'],
   endpoints: build => ({
-    getGameState: build.query({
+    getPokaState: build.query({
       query: gameId => ({
         url: `/poka/${gameId}`,
         params: { socketId: socket.id },
@@ -82,7 +82,7 @@ export const pokaApi = createApi({
       },
       keepUnusedDataFor: 0,
     }),
-    getRequests: build.query({
+    getPokaRequests: build.query({
       query: tableName => `/requests/${tableName}`,
       async onCacheEntryAdded(
         _arg,
@@ -113,7 +113,7 @@ export const pokaApi = createApi({
       providesTags: ['Requests'],
       keepUnusedDataFor: 0,
     }),
-    getTables: build.query({
+    getPokaTables: build.query({
       queryFn: async (_args, { getState }) => {
         try {
           const token = getState().account.token;
@@ -165,7 +165,7 @@ export const pokaApi = createApi({
         }
       },
     }),
-    openTable: build.mutation({
+    openPokaTable: build.mutation({
       query: openTableData => ({
         url: '/poka',
         method: 'POST',
@@ -293,10 +293,10 @@ export const pokaApi = createApi({
 });
 
 export const {
-  useGetGameStateQuery,
-  useGetRequestsQuery,
-  useGetTablesQuery,
-  useOpenTableMutation,
+  useGetPokaStateQuery,
+  useGetPokaRequestsQuery,
+  useGetPokaTablesQuery,
+  useOpenPokaTableMutation,
   useRestartGameMutation,
   useSetGameVariantMutation,
   useBetMutation,

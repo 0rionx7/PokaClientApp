@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectUserName } from 'features/account/accountSlice';
 import GameDescription from 'components/info/GameDescription';
 import { useEmoji } from 'components/info/chat/EmojiProvider';
@@ -17,7 +17,7 @@ import './Info.scss';
 
 const Info = ({ hideInfo, onToggleInfoPanel }) => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const [selectedTab, setSelectedTab] = useState(infoButton.GAME_DESCRIPTION);
   const { setShowPicker } = useEmoji();

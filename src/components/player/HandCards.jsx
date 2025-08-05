@@ -2,7 +2,7 @@ import { memo, useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectHandcards } from 'features/poka/pokaStateSlice';
 import { selectUserName } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
@@ -14,7 +14,7 @@ const HandCards = ({ playerState, playingIndex, chipsPosition }) => {
   const hostPlayerName = useSelector(selectUserName);
   const hostPlayerHandCards = useSelector(selectHandcards);
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const [renderCards, setRenderCards] = useState([]);
 
   const hostPlayerState = useMemo(

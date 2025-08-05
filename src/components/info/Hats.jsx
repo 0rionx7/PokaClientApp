@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 import { count } from 'utils/text-constants';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 
 const Hats = () => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
 
   if (!data.hats) return null;
 

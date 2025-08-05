@@ -1,11 +1,11 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { orderName } from 'utils/text-constants';
 
 const FaceDownCards = () => {
   const { gameId } = useParams();
-  const { data } = useGetGameStateQuery(gameId);
+  const { data } = useGetPokaStateQuery(gameId);
   const faceDownCards = data.faceDownIndexes.length;
 
   if (!faceDownCards) return null;

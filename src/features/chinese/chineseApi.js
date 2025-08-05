@@ -4,7 +4,7 @@ import { playerEntry } from 'utils/utilities-functions';
 
 export const chineseApi = pokaApi.injectEndpoints({
   endpoints: build => ({
-    getGameStateChinese: build.query({
+    getChineseState: build.query({
       query: gameId => {
         return {
           url: `/chinese/${gameId}`,
@@ -46,7 +46,7 @@ export const chineseApi = pokaApi.injectEndpoints({
       },
       keepUnusedDataFor: 0,
     }),
-    getRequestsChinese: build.query({
+    getChineseRequests: build.query({
       query: tableName => `/chinese/requests/${tableName}`,
       async onCacheEntryAdded(
         _arg,
@@ -76,7 +76,7 @@ export const chineseApi = pokaApi.injectEndpoints({
       },
       providesTags: ['ChineseRequests'],
     }),
-    getTablesChinese: build.query({
+    getChineseTables: build.query({
       queryFn: async (_args, { getState }) => {
         try {
           const token = getState().account.token;
@@ -129,7 +129,7 @@ export const chineseApi = pokaApi.injectEndpoints({
       },
       providesTags: ['ChineseTables'],
     }),
-    openTableChinese: build.mutation({
+    openChineseTable: build.mutation({
       query: openTableData => ({
         url: 'chinese',
         method: 'POST',
@@ -137,7 +137,7 @@ export const chineseApi = pokaApi.injectEndpoints({
       }),
       invalidatesTags: ['ChineseTables'],
     }),
-    joinTableChinese: build.mutation({
+    joinChineseTable: build.mutation({
       query: joinInfo => ({
         url: 'chinese/join',
         method: 'PATCH',
@@ -145,7 +145,7 @@ export const chineseApi = pokaApi.injectEndpoints({
       }),
       invalidatesTags: ['ChineseRequests'],
     }),
-    rejectRequestChinese: build.mutation({
+    rejectChineseRequest: build.mutation({
       query: rejectlInfo => ({
         url: 'chinese/requests/reject',
         method: 'PATCH',
@@ -161,7 +161,7 @@ export const chineseApi = pokaApi.injectEndpoints({
       }),
       invalidatesTags: ['ChineseTables'],
     }),
-    startGameChinese: build.mutation({
+    startChineseGame: build.mutation({
       query: gameId => ({
         url: 'chinese/start',
         method: 'PATCH',
@@ -175,7 +175,7 @@ export const chineseApi = pokaApi.injectEndpoints({
         body: { boardCards, gameId },
       }),
     }),
-    reorderDeckChinese: build.mutation({
+    reorderDeck: build.mutation({
       query: ({ dragIndex, dropIndex, gameId }) => ({
         url: 'chinese/reorderDeck',
         method: 'PATCH',
@@ -196,13 +196,6 @@ export const chineseApi = pokaApi.injectEndpoints({
         body: { gameId },
       }),
     }),
-    restartGameChinese: build.mutation({
-      query: gameInfo => ({
-        url: 'chinese/restart',
-        method: 'POST',
-        body: { ...gameInfo, socketId: socket.id },
-      }),
-    }),
     sitOutChinese: build.mutation({
       query: sitOutInfo => ({
         url: 'chinese/sitOut',
@@ -214,18 +207,17 @@ export const chineseApi = pokaApi.injectEndpoints({
 });
 
 export const {
-  useGetGameStateChineseQuery,
-  useGetRequestsChineseQuery,
-  useGetTablesChineseQuery,
-  useOpenTableChineseMutation,
-  useJoinTableChineseMutation,
-  useRejectRequestChineseMutation,
+  useGetChineseStateQuery,
+  useGetChineseRequestsQuery,
+  useGetChineseTablesQuery,
+  useOpenChineseTableMutation,
+  useJoinChineseTableMutation,
+  useRejectChineseRequestMutation,
   useSitDownChineseMutation,
-  useStartGameChineseMutation,
+  useStartChineseGameMutation,
   useSubmitCardsChineseMutation,
-  useReorderDeckChineseMutation,
+  useReorderDeckMutation,
   useNextRoundChineseMutation,
   useTimedOutMutation,
-  useRestartGameChineseMutation,
   useSitOutChineseMutation,
 } = chineseApi;
