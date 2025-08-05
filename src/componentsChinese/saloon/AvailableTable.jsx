@@ -26,7 +26,8 @@ const AvailableTable = ({ tableInfo }) => {
         tableName: tableInfo.tableName,
       });
       if (result.error?.data) return setSnackInfo(result.error.data);
-      if (result.data?.gameId) return navigate(`/chinese/table/${data.gameId}`);
+      if (result.data?.gameId)
+        return navigate(`/chinese/table/${result.data?.gameId}`);
     }
     if (joinRequests.length >= 3)
       return setSnackInfo('Έχετε συμπληρώσει των μέγιστο αριθμό αιτήσεων.');

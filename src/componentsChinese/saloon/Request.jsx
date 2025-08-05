@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
 import { useCancelRequestChineseMutation } from 'features/account/accountApi';
+import useSnackBar from 'hooks/useSnackBar';
 import ToolTip from 'components/ui/ToolTip';
 
 const Request = ({ tableInfo }) => {
@@ -11,6 +12,8 @@ const Request = ({ tableInfo }) => {
     useState(false);
   const [cancelRequest, { isLoading: canceling }] =
     useCancelRequestChineseMutation();
+  const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
+
   const navigate = useNavigate();
 
   const handleCancelRequest = async event => {
@@ -21,11 +24,12 @@ const Request = ({ tableInfo }) => {
 
   const handleJoinTable = async () => {
     if (!tableInfo.joined || isLoading || isSuccess) return;
-    const { data } = await sitDown({
+    const result = await sitDown({
       gameId: tableInfo.joined,
       tableName: tableInfo.tableName,
     });
-    if (data?.gameId) navigate(`/chinese/table/${data.gameId}`);
+    if (result.error?.data) return setSnackInfo(result.error.data);
+    if (result.data?.gameId) navigate(`/chinese/table/${result.data.gameId}`);
   };
 
   return (
@@ -41,6 +45,7 @@ const Request = ({ tableInfo }) => {
         onClick={handleCancelRequest}>
         X <ToolTip info="Ακύρωση" />
       </div>
+      {snackElement}
     </div>
   );
 };

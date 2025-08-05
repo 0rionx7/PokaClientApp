@@ -26,7 +26,7 @@ const AvailableTable = ({ tableInfo }) => {
         tableName: tableInfo.tableName,
       });
       if (result.error?.data) setSnackInfo(result.error.data);
-      if (data?.gameId) return navigate(`/table/${data.gameId}`);
+      if (result.data?.gameId) return navigate(`/table/${result.data.gameId}`);
     }
 
     if (joinRequests?.length >= 3)

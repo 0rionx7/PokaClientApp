@@ -36,14 +36,15 @@ export const gameStateChineseApi = gameStateApi.injectEndpoints({
               return stateUpdate;
             });
           };
-          socket.on('stateUpdated', stateUpdateListener);
+          socket.on('chineseStateUpdated', stateUpdateListener);
 
           await cacheEntryRemoved;
-          socket.off('stateUpdated', stateUpdateListener);
+          socket.off('chineseStateUpdated', stateUpdateListener);
         } catch (error) {
           console.log(error);
         }
       },
+      keepUnusedDataFor: 0,
     }),
     getRequestsChinese: build.query({
       query: tableName => `/chinese/requests/${tableName}`,
