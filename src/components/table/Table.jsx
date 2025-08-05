@@ -6,8 +6,8 @@ import {
   socket,
   useGetGameStateQuery,
   useSitOutMutation,
-} from 'features/gameState/gameStateApi';
-import { selectPlayername } from 'features/account/accountSlice';
+} from 'features/poka/pokaApi';
+import { selectUserName } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import DealerScreen from 'components/dealer/DealerScreen';
 import StayLeave from 'components/action/StayLeave';
@@ -22,7 +22,7 @@ import './Table.scss';
 const Table = () => {
   const { gameId } = useParams();
   const { data, refetch } = useGetGameStateQuery(gameId);
-  const hostPlayerName = useSelector(selectPlayername);
+  const hostPlayerName = useSelector(selectUserName);
   const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
   const [sitOut] = useSitOutMutation();
 

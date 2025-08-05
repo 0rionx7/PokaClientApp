@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
-import { useSitDownMutation } from 'features/gameState/gameStateApi';
+import { useSitDownChineseMutation } from 'features/chinese/chineseApi';
+import { useSitDownMutation } from 'features/poka/pokaApi';
 import { createTableTitleJsx } from 'utils/text-functions';
 import Button from 'components/ui/Button';
 import './ApprovedRequest.scss';
@@ -34,7 +34,11 @@ const ApprovedRequest = ({ requestInfo: { tableName, gameId } }) => {
         ενεργών αιτήσεων ή αυτής των διαθέσιμων τραπεζιών
       </span>
       <div className="action-btns">
-        <Button className="green" prompt="κάθομαι τώρα" onClick={handleJoinTable} />
+        <Button
+          className="green"
+          prompt="κάθομαι τώρα"
+          onClick={handleJoinTable}
+        />
         <Button className="red" prompt="θα καθήσω αργότερα" />
       </div>
     </>

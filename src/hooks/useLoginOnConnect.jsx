@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 import { useRedirectedLoginMutation } from 'features/account/accountApi';
-import { socket } from 'features/gameState/gameStateApi';
+import { socket } from 'features/poka/pokaApi';
 
 export default function useLoginOnConnect(token) {
   const [redirectedLogin] = useRedirectedLoginMutation();

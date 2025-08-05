@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import {
   useGetGameStateQuery,
   useGetRequestsQuery,
-} from 'features/gameState/gameStateApi';
+} from 'features/poka/pokaApi';
 import GameBuilder from 'components/gameBuilder/GameBuilder';
 import ListedPlayers from 'components/dealer/ListedPlayers';
 import Overlay from 'components/ui/Overlay';

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import { useGetTablesQuery } from 'features/gameState/gameStateApi';
+import { useGetTablesQuery } from 'features/poka/pokaApi';
 import { useGetUserQuery } from 'features/account/accountApi';
 import AvailableTable from 'pages/saloon/AvailableTable';
 

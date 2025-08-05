@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectPlayername } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/accountSlice';
 import AccountloggedInMenu from 'components/layout/AccountLogedIn';
 import { accountSvg } from 'assets/svgs/various';
 import './MainNavigation.scss';
 
 const MainNavigation = () => {
-  const username = useSelector(selectPlayername);
+  const username = useSelector(selectUserName);
   const [showMenu, setShowMenu] = useState(false);
 
   return (

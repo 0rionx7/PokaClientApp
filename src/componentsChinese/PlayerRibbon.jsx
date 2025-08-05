@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
+import { useGetGameStateChineseQuery } from 'features/chinese/chineseApi';
 import { isSitting } from 'utils/utilities-functions';
 import './PlayerRibbon.scss';
 

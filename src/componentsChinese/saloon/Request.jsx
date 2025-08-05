@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
+import { useSitDownChineseMutation } from 'features/chinese/chineseApi';
 import { useCancelRequestChineseMutation } from 'features/account/accountApi';
 import useSnackBar from 'hooks/useSnackBar';
 import ToolTip from 'components/ui/ToolTip';

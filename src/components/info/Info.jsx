@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { selectPlayername } from 'features/account/accountSlice';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { selectUserName } from 'features/account/accountSlice';
 import GameDescription from 'components/info/GameDescription';
 import { useEmoji } from 'components/info/chat/EmojiProvider';
 import { collapseVertical } from 'assets/svgs/various';
@@ -18,7 +18,7 @@ import './Info.scss';
 const Info = ({ hideInfo, onToggleInfoPanel }) => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const hostPlayerName = useSelector(selectPlayername);
+  const hostPlayerName = useSelector(selectUserName);
   const [selectedTab, setSelectedTab] = useState(infoButton.GAME_DESCRIPTION);
   const { setShowPicker } = useEmoji();
 

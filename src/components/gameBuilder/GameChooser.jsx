@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setCurrentChoosenGame } from 'features/gameState/gameStateSlice';
+import { setCurrentChoosenGame } from 'features/poka/pokaStateSlice';
 import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
 import { builderDefaults, gameNames, gameConfigs } from 'utils/games';
 

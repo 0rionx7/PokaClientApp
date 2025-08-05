@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
+import { useSitDownChineseMutation } from 'features/chinese/chineseApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';

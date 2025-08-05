@@ -5,7 +5,7 @@ import {
   useGetGameStateChineseQuery,
   useGetRequestsChineseQuery,
   useStartGameChineseMutation,
-} from 'features/gameStateChinese/gameStateApi';
+} from 'features/chinese/chineseApi';
 import ListedPlayers from 'componentsChinese/dealer/ListedPlayers';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';

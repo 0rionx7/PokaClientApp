@@ -1,18 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { toggleSelectedCard } from 'features/gameState/gameStateSlice';
+import { toggleSelectedCard } from 'features/poka/pokaStateSlice';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { selectDeckColor } from 'features/account/accountSlice';
 import { suits, symbols } from 'assets/svgs/suits';
 import Content from 'components/card/Content';
-import './Card.scss';
 import ToolTip from 'components/ui/ToolTip';
+import './Card.scss';
 
 const Card = ({ card, canBeSelected, noColor }) => {
-  const deckColor = useSelector(state => state.account.deckColor);
-  const dispatch = useDispatch();
+  const deckColor = useSelector(selectDeckColor);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
+  const dispatch = useDispatch();
 
   if (!card?.faceUp)
     return (

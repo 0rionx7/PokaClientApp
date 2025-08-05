@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { selectHandcards } from 'features/gameState/gameStateSlice';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { selectHandcards } from 'features/poka/pokaStateSlice';
 import { orderNumber, suitName } from 'utils/text-constants';
 import JokerSubmit from 'components/action/JokerSubmit';
 import { symbols } from 'assets/svgs/suits';

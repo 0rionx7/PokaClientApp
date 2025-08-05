@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
 import Overlay from 'components/ui/Overlay';
 import './Table.scss';
 

@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useAssignJokerMutation } from 'features/gameState/gameStateApi';
+import { useAssignJokerMutation } from 'features/poka/pokaApi';
 import Button from 'components/ui/Button';
 import Card from 'components/card/Card';
 

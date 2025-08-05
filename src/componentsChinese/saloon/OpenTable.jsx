@@ -2,14 +2,14 @@ import { useActionState, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useOpenTableChineseMutation } from 'features/gameStateChinese/gameStateApi';
-import { selectPlayername } from 'features/account/accountSlice';
+import { useOpenTableChineseMutation } from 'features/chinese/chineseApi';
+import { selectUserName } from 'features/account/accountSlice';
 import { createCode } from 'utils/utilities-functions';
 import { describeTime } from 'utils/text-functions';
 import Button from 'components/ui/Button';
 
 const OpenTable = () => {
-  const playerName = useSelector(selectPlayername);
+  const playerName = useSelector(selectUserName);
   const [openTable] = useOpenTableChineseMutation();
   const [formState, formAction, isPending] = useActionState(openTableAction, {
     tableName: '',

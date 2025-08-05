@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useSitDownMutation } from 'features/gameState/gameStateApi';
+import { useSitDownMutation } from 'features/poka/pokaApi';
 import {
   useGetUserQuery,
   useRequestJoinMutation,

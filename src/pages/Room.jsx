@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
 import EmojiProvider from 'components/info/chat/EmojiProvider';
 import ActionContaineContextProvider from 'utils/ActionContainerContext';
 import LoadingSpinner from 'components/ui/LoadingSpinner';

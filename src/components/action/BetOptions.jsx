@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
 import BetOptionButton from 'components/action/BetOptionButton';
 
 const BetOptions = ({ betAmount, setBetAmount, disabled, validate }) => {

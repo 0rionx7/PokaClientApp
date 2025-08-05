@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import {
   useGetGameStateChineseQuery,
   useTimedOutMutation,
-} from 'features/gameStateChinese/gameStateApi';
-import { selectPlayername } from 'features/account/accountSlice';
+} from 'features/chinese/chineseApi';
+import { selectUserName } from 'features/account/accountSlice';
 import Timer from 'componentsChinese/Timer';
 import { isSitting } from 'utils/utilities-functions';
 
@@ -15,7 +15,7 @@ const useTimer = playerName => {
   const { data } = useGetGameStateChineseQuery(gameId);
   const { currentPlayerList, round, playerStates, playTime } = data;
   const [remainingTime, setRemainingTime] = useState(playTime);
-  const username = useSelector(selectPlayername);
+  const username = useSelector(selectUserName);
   const [timedOut] = useTimedOutMutation();
 
   const isHostBoard = playerName === username;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
 
 const useTimerBar = playerState => {
   const { gameId } = useParams();

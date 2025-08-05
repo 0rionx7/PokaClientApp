@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 import {
   useGetGameStateChineseQuery,
   useSitOutChineseMutation,
-} from 'features/gameStateChinese/gameStateApi';
-import { resetMessages } from 'features/gameState/gameStateSlice';
-import { selectPlayername } from 'features/account/accountSlice';
+} from 'features/chinese/chineseApi';
+import { resetMessages } from 'features/poka/pokaStateSlice';
+import { selectUserName } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import DealerScreen from 'componentsChinese/dealer/DealerScreen';
 import SitOut from 'componentsChinese/SitOut';
@@ -18,7 +18,7 @@ import classes from './Table.module.scss';
 
 const Table = () => {
   const { gameId } = useParams();
-  const username = useSelector(selectPlayername);
+  const username = useSelector(selectUserName);
   const { data } = useGetGameStateChineseQuery(gameId);
   const [sitOut] = useSitOutChineseMutation();
   const dispatch = useDispatch();

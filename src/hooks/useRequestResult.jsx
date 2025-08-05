@@ -1,12 +1,12 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { socket, useGetTablesQuery } from 'features/gameState/gameStateApi';
+import { socket, useGetTablesQuery } from 'features/poka/pokaApi';
 import { createTableTitleJsx } from 'utils/text-functions';
 import ApprovedRequest from 'pages/ApprovedRequest';
 import useSnackBar from 'hooks/useSnackBar';
 import { useGetUserQuery } from 'features/account/accountApi';
-import { useGetTablesChineseQuery } from 'features/gameStateChinese/gameStateApi';
+import { useGetTablesChineseQuery } from 'features/chinese/chineseApi';
 
 const useRequestResult = chinese => {
   const { refetch: refetchUserInfo } = useGetUserQuery();

@@ -1,6 +1,6 @@
-import { baseUrl, gameStateApi, socket } from 'features/gameState/gameStateApi';
+import { baseUrl, pokaApi, socket } from 'features/poka/pokaApi';
 
-export const accountApi = gameStateApi.injectEndpoints({
+export const accountApi = pokaApi.injectEndpoints({
   endpoints: build => ({
     getUser: build.query({
       queryFn: async (_args, { getState }) => {

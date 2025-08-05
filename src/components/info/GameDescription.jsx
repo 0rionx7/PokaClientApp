@@ -1,16 +1,16 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectCurrentChoosenGame } from 'features/gameState/gameStateSlice';
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { selectPlayername } from 'features/account/accountSlice';
+import { selectCurrentChoosenGame } from 'features/poka/pokaStateSlice';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { selectUserName } from 'features/account/accountSlice';
 import { gameInfo } from 'utils/text-constants';
 import './Info.scss';
 
 const GameDescription = () => {
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
-  const hostPlayerName = useSelector(selectPlayername);
+  const hostPlayerName = useSelector(selectUserName);
   const currentChoosenGame = useSelector(selectCurrentChoosenGame);
 
   const gameName =

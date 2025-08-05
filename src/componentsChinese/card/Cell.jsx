@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 
-import { moveCard } from 'features/gameStateChinese/gameStateSlice';
+import { moveCard } from 'features/chinese/chineseStateSlice';
 
 const Cell = ({ index, place, owner }) => {
   const dispatch = useDispatch();

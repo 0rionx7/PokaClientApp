@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 
-import { selectPlayername } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/accountSlice';
 import ToolTip from 'components/ui/ToolTip';
 import Card from 'components/card/Card';
 
 const DeniedCards = ({ playerState }) => {
-  const hostPlayerName = useSelector(selectPlayername);
+  const hostPlayerName = useSelector(selectUserName);
   const isHostPlayer = playerState.playerName === hostPlayerName;
 
   if (!playerState.deniedCards.length) return null;

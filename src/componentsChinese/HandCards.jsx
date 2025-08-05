@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 
-import { selectHandcards } from 'features/gameStateChinese/gameStateSlice';
-import { selectPlayername } from 'features/account/accountSlice';
+import { selectHandcards } from 'features/chinese/chineseStateSlice';
+import { selectUserName } from 'features/account/accountSlice';
 import RenderItem from 'componentsChinese/RenderItem';
 import classes from './Table.module.scss';
 
 const HandCards = () => {
-  const username = useSelector(selectPlayername);
+  const username = useSelector(selectUserName);
   const hand = useSelector(selectHandcards);
 
   return (

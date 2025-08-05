@@ -6,7 +6,7 @@ import {
   orderByValue,
   selectHandcards,
   selectIsFantasy,
-} from 'features/gameStateChinese/gameStateSlice';
+} from 'features/chinese/chineseStateSlice';
 import classes from './Table.module.scss';
 
 const FantasyButtons = () => {

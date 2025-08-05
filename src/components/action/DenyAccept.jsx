@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useDenyCardMutation } from 'features/gameState/gameStateApi';
+import { useDenyCardMutation } from 'features/poka/pokaApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 

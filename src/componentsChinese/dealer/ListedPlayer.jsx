@@ -4,7 +4,7 @@ import {
   useGetGameStateChineseQuery,
   useJoinTableChineseMutation,
   useRejectRequestChineseMutation,
-} from 'features/gameStateChinese/gameStateApi';
+} from 'features/chinese/chineseApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';

@@ -5,17 +5,22 @@ import {
   useEvaluateHandMutation,
   useGetGameStateQuery,
   useSubmitCardsMutation,
-} from 'features/gameState/gameStateApi';
+} from 'features/poka/pokaApi';
 import { isMirror, selectedCardIndexes } from 'utils/utilities-functions';
 import { describeHand } from 'utils/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';
 import { gameNames } from 'utils/games';
+import {
+  selectHandcards,
+  selectTablecards,
+} from 'features/poka/pokaStateSlice';
 
 const Submit = () => {
   const { gameId } = useParams();
-  const { handCards, tableCards } = useSelector(state => state.gameState);
+  const handCards = useSelector(selectHandcards);
+  const tableCards = useSelector(selectTablecards);
   const { data: gameData } = useGetGameStateQuery(gameId);
   const [submitHand, { isLoading: submitting, isSuccess: submissionSuccess }] =
     useSubmitCardsMutation();

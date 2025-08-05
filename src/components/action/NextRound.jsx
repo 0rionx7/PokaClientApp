@@ -4,16 +4,16 @@ import {
   useGetGameStateQuery,
   useNextRoundMutation,
   useRevealCardsMutation,
-} from 'features/gameState/gameStateApi';
+} from 'features/poka/pokaApi';
 import Button from 'components/ui/Button';
 import Overlay from 'components/ui/Overlay';
 import { useSelector } from 'react-redux';
-import { selectPlayername } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/accountSlice';
 import { isSitting, playerEntry } from 'utils/utilities-functions';
 
 const NextRound = () => {
   const { gameId } = useParams();
-  const hostPlayerName = useSelector(selectPlayername);
+  const hostPlayerName = useSelector(selectUserName);
   const { data } = useGetGameStateQuery(gameId);
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
   const [reveal, { revealing, revealed }] = useRevealCardsMutation();

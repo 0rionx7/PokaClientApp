@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useCancelRequestMutation } from 'features/account/accountApi';
-import { useSitDownMutation } from 'features/gameState/gameStateApi';
+import { useSitDownMutation } from 'features/poka/pokaApi';
 import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 import './Requests.scss';

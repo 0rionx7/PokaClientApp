@@ -1,6 +1,6 @@
 import { createContext, use, useCallback, useState } from 'react';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
 import { useParams } from 'react-router-dom';
 
 import { initialGameDefaults } from 'utils/games';

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectMessagess } from 'features/gameState/gameStateSlice';
+import { selectMessagess } from 'features/poka/pokaStateSlice';
 import { createMessageJsx } from 'utils/createMsgJsx';
 import './ChatBox.scss';
 

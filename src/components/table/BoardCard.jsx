@@ -2,15 +2,15 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateQuery } from 'features/gameState/gameStateApi';
-import { selectTablecards } from 'features/gameState/gameStateSlice';
-import { selectPlayername } from 'features/account/accountSlice';
+import { useGetGameStateQuery } from 'features/poka/pokaApi';
+import { selectTablecards } from 'features/poka/pokaStateSlice';
+import { selectUserName } from 'features/account/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import Card from 'components/card/Card';
 
 const BoardCard = ({ index }) => {
   const tableCards = useSelector(selectTablecards);
-  const playerName = useSelector(selectPlayername);
+  const playerName = useSelector(selectUserName);
   const { gameId } = useParams();
   const { data } = useGetGameStateQuery(gameId);
   const { currentPlayerList, thorns } = data;

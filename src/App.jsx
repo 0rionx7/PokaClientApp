@@ -6,12 +6,13 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
 import { useReconnectedLoginMutation } from 'features/account/accountApi';
-import { socket } from 'features/gameState/gameStateApi';
+import { selectToken } from 'features/account/accountSlice';
+import { socket } from 'features/poka/pokaApi';
 import useRequestResult from 'hooks/useRequestResult';
 import useOfflineSnack from 'hooks/useOfflineSnack';
 
 function App() {
-  const { token } = useSelector(state => state.account);
+  const token = useSelector(selectToken);
   const [reconnectedLogin] = useReconnectedLoginMutation();
   const [approvedElement, rejectedElement] = useRequestResult();
   const [approvedChElement, rejectedChElement] = useRequestResult('chinese');

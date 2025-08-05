@@ -1,8 +1,8 @@
-import { setLocalPlayerState } from 'features/gameStateChinese/gameStateSlice';
-import { baseUrl, gameStateApi, socket } from 'features/gameState/gameStateApi';
+import { setLocalPlayerState } from 'features/chinese/chineseStateSlice';
+import { baseUrl, pokaApi, socket } from 'features/poka/pokaApi';
 import { playerEntry } from 'utils/utilities-functions';
 
-export const gameStateChineseApi = gameStateApi.injectEndpoints({
+export const chineseApi = pokaApi.injectEndpoints({
   endpoints: build => ({
     getGameStateChinese: build.query({
       query: gameId => {
@@ -228,4 +228,4 @@ export const {
   useTimedOutMutation,
   useRestartGameChineseMutation,
   useSitOutChineseMutation,
-} = gameStateChineseApi;
+} = chineseApi;

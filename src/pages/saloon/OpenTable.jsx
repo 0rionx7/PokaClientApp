@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useOpenTableMutation } from 'features/gameState/gameStateApi';
-import { selectPlayername } from 'features/account/accountSlice';
+import { useOpenTableMutation } from 'features/poka/pokaApi';
+import { selectUserName } from 'features/account/accountSlice';
 import { clockwise, counterclockwise } from 'assets/svgs/various';
 import { createCode } from 'utils/utilities-functions';
 import Reaction from 'pages/saloon/Reaction';
@@ -20,7 +20,7 @@ const initialValues = {
 };
 
 const OpenTable = () => {
-  const playerName = useSelector(selectPlayername);
+  const playerName = useSelector(selectUserName);
   const [formState, formAction, isPending] = useActionState(
     openTableAction,
     initialValues

@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 
-import { useGetTablesChineseQuery } from 'features/gameStateChinese/gameStateApi';
+import { useGetTablesChineseQuery } from 'features/chinese/chineseApi';
 import { useGetUserQuery } from 'features/account/accountApi';
 import AvailableTable from './AvailableTable';
 

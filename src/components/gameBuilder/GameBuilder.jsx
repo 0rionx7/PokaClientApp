@@ -6,7 +6,7 @@ import { builderRowTitle, speakingOrder, tablos } from 'utils/text-constants';
 import {
   useGetGameStateQuery,
   useSetGameVariantMutation,
-} from 'features/gameState/gameStateApi';
+} from 'features/poka/pokaApi';
 import { isSitting } from 'utils/utilities-functions';
 import { useActionContainerNode } from 'utils/ActionContainerContext';
 import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';

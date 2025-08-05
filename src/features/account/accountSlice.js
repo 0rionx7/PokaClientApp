@@ -43,12 +43,13 @@ export const accountSlice = createSlice({
       );
   },
   selectors: {
-    selectPlayername: account => account.username,
+    selectUserName: account => account.username,
     selectHideInfo: account => account.hideInfo,
     selectDeckColor: account => account.deckColor,
+    selectToken: account => account.token,
   },
 });
 
 export const { setHideInfo, setDeckColor } = accountSlice.actions;
-export const { selectPlayername, selectHideInfo, selectDeckColor } =
+export const { selectUserName, selectHideInfo, selectDeckColor, selectToken } =
   accountSlice.selectors;

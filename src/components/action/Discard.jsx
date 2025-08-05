@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { cardSelected, selectedCardIndexes } from 'utils/utilities-functions';
-import { useSelectCardsMutation } from 'features/gameState/gameStateApi';
-import { selectHandcards } from 'features/gameState/gameStateSlice';
+import { useSelectCardsMutation } from 'features/poka/pokaApi';
+import { selectHandcards } from 'features/poka/pokaStateSlice';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 

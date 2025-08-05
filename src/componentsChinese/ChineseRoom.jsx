@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
+import { useGetGameStateChineseQuery } from 'features/chinese/chineseApi';
 import useMessageService from 'hooks/useMessageService';
 import LoadingSpinner from 'components/ui/LoadingSpinner';
 import Table from 'componentsChinese/Table';

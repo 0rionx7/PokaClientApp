@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useSitDownMutation } from 'features/gameState/gameStateApi';
+import { useSitDownMutation } from 'features/poka/pokaApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';

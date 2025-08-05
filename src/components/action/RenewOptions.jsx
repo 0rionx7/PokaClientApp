@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import {
   useGetGameStateQuery,
   useRenewCavaMutation,
-} from 'features/gameState/gameStateApi';
+} from 'features/poka/pokaApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 

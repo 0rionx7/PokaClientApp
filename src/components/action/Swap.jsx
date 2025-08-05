@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { cardSelected, selectedCardIndexes } from 'utils/utilities-functions';
-import { useSelectCardsMutation } from 'features/gameState/gameStateApi';
+import { selectHandcards } from 'features/poka/pokaStateSlice';
+import { useSelectCardsMutation } from 'features/poka/pokaApi';
 import useSnackBar from 'hooks/useSnackBar';
 import Button from 'components/ui/Button';
 
@@ -11,7 +12,7 @@ const getCardLabel = count => `ΧΑΡΤΙ${count !== 1 ? 'Α' : ''}`;
 
 const Swap = ({ selecting }) => {
   const { gameId } = useParams();
-  const handCards = useSelector(state => state.gameState.handCards);
+  const handCards = useSelector(selectHandcards);
   const [selectCards, { isLoading, isSuccess }] = useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
 

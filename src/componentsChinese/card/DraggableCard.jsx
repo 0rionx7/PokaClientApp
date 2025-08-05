@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { useParams } from 'react-router-dom';
 
-import { useReorderDeckChineseMutation } from 'features/gameStateChinese/gameStateApi';
+import { useReorderDeckChineseMutation } from 'features/chinese/chineseApi';
 import { suits, symbols } from 'assets/svgs/suits';
 import Content from 'components/card/Content';
 

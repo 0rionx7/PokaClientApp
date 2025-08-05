@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { selectPlayername } from 'features/account/accountSlice';
-import { useGetGameStateChineseQuery } from 'features/gameStateChinese/gameStateApi';
+import { selectUserName } from 'features/account/accountSlice';
+import { useGetGameStateChineseQuery } from 'features/chinese/chineseApi';
 import classes from './Table.module.scss';
 import DraggableCard from 'componentsChinese/card/DraggableCard';
 
 export default function Deck() {
-  const username = useSelector(selectPlayername);
+  const username = useSelector(selectUserName);
   const { gameId } = useParams();
   const { data } = useGetGameStateChineseQuery(gameId);
   const [showDeck, toggleDeck] = useState(false);

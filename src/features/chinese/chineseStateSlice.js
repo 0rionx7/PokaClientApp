@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { gameStateChineseApi } from 'features/gameStateChinese/gameStateApi';
+import { chineseApi } from 'features/chinese/chineseApi';
 
 export const initialGameState = {
   playerName: '',
@@ -16,8 +16,8 @@ export const initialGameState = {
   isSubscribed: false,
 };
 
-export const gameStateChineseSlice = createSlice({
-  name: 'chineseGameState',
+export const chineseStateSlice = createSlice({
+  name: 'chineseState',
   initialState: initialGameState,
   reducers: {
     setLocalPlayerState: (_state, action) => action.payload,
@@ -59,18 +59,18 @@ export const gameStateChineseSlice = createSlice({
   },
   extraReducers: builder =>
     builder.addMatcher(
-      gameStateChineseApi.endpoints.sitOutChinese.matchPending,
-      (_state, _action) => gameStateChineseSlice.getInitialState()
+      chineseApi.endpoints.sitOutChinese.matchPending,
+      (_state, _action) => chineseStateSlice.getInitialState()
     ),
   selectors: {
-    selectBoardCards: gameState => gameState.boardCards,
-    selectHandcards: gameState => gameState.hand,
-    selectIsFantasy: gameState => gameState.isFantasy,
+    selectBoardCards: chineseState => chineseState.boardCards,
+    selectHandcards: chineseState => chineseState.hand,
+    selectIsFantasy: chineseState => chineseState.isFantasy,
   },
 });
 
 export const { setLocalPlayerState, moveCard, orderBySuit, orderByValue } =
-  gameStateChineseSlice.actions;
+  chineseStateSlice.actions;
 
 export const { selectBoardCards, selectHandcards, selectIsFantasy } =
-  gameStateChineseSlice.selectors;
+  chineseStateSlice.selectors;

@@ -1,11 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { revealCard, unselectAll } from 'utils/utilities-functions';
-import { gameStateApi } from 'features/gameState/gameStateApi';
+import { pokaApi } from 'features/poka/pokaApi';
 import { gameNames } from 'utils/games';
 
-export const gameStateSlice = createSlice({
-  name: 'gameState',
+export const pokaStateSlice = createSlice({
+  name: 'pokaState',
   initialState: {
     gameId: '',
     tableName: '',
@@ -45,35 +45,34 @@ export const gameStateSlice = createSlice({
     builder
       .addMatcher(
         isAnyOf(
-          gameStateApi.endpoints.openTable.matchFulfilled,
-          gameStateApi.endpoints.sitDown.matchFulfilled,
-          gameStateApi.endpoints.restartGame.matchFulfilled
+          pokaApi.endpoints.openTable.matchFulfilled,
+          pokaApi.endpoints.sitDown.matchFulfilled,
+          pokaApi.endpoints.restartGame.matchFulfilled
         ),
         (state, action) => ({ ...state, ...action.payload })
       )
       .addMatcher(
-        gameStateApi.endpoints.getGameState.matchFulfilled,
+        pokaApi.endpoints.getGameState.matchFulfilled,
         (state, action) => {
           state.gameId = action.payload._id;
           state.tableName = action.payload.tableName;
         }
       )
-      .addMatcher(
-        gameStateApi.endpoints.sitOut.matchFulfilled,
-        (_state, _action) => gameStateSlice.getInitialState()
+      .addMatcher(pokaApi.endpoints.sitOut.matchFulfilled, (_state, _action) =>
+        pokaStateSlice.getInitialState()
       )
       .addMatcher(
-        gameStateApi.endpoints.submitCards.matchFulfilled,
+        pokaApi.endpoints.submitCards.matchFulfilled,
         (state, _action) => ({
           ...state,
           tableCards: state.tableCards.map(unselectAll),
         })
       ),
   selectors: {
-    selectHandcards: gameState => gameState.handCards,
-    selectTablecards: gameState => gameState.tableCards,
-    selectMessagess: gameState => gameState.messages,
-    selectCurrentChoosenGame: gameState => gameState.currentChoosenGame,
+    selectHandcards: pokaState => pokaState.handCards,
+    selectTablecards: pokaState => pokaState.tableCards,
+    selectMessagess: pokaState => pokaState.messages,
+    selectCurrentChoosenGame: pokaState => pokaState.currentChoosenGame,
   },
 });
 
@@ -84,11 +83,11 @@ export const {
   toggleSelectedCard,
   postMessage,
   resetMessages,
-} = gameStateSlice.actions;
+} = pokaStateSlice.actions;
 
 export const {
   selectHandcards,
   selectTablecards,
   selectMessagess,
   selectCurrentChoosenGame,
-} = gameStateSlice.selectors;
+} = pokaStateSlice.selectors;

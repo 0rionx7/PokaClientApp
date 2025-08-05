@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useSitDownChineseMutation } from 'features/gameStateChinese/gameStateApi';
+import { useSitDownChineseMutation } from 'features/chinese/chineseApi';
 import {
   useGetUserQuery,
   useRequestJoinChineseMutation,

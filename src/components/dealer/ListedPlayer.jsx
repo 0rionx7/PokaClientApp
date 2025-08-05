@@ -4,7 +4,7 @@ import {
   useGetGameStateQuery,
   useJoinTableMutation,
   useRejectRequestMutation,
-} from 'features/gameState/gameStateApi';
+} from 'features/poka/pokaApi';
 import StatusIcon from 'components/ui/StatusIcon';
 import ToolTip from 'components/ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';

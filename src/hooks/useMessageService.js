@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { socket } from 'features/gameState/gameStateApi';
-import { postMessage } from 'features/gameState/gameStateSlice';
+import { socket } from 'features/poka/pokaApi';
+import { postMessage } from 'features/poka/pokaStateSlice';
 
 const socketEvents = [
   'neeext',
