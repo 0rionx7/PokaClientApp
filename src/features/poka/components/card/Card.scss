@@ -1,5 +1,5 @@
-@use '../../variables';
-@use '../../colors';
+@use '../../../../styles/variables';
+@use '../../../../styles/colors';
 
 .card {
   width: var(--card-width);

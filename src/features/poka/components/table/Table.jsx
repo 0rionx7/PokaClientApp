@@ -6,17 +6,17 @@ import {
   socket,
   useGetPokaStateQuery,
   useSitOutMutation,
-} from 'features/poka/pokaApi';
-import { selectUserName } from 'features/account/slice/accountSlice';
+} from 'poka/api/pokaApi';
+import { selectUserName } from 'account/slice/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
-import DealerScreen from 'components/dealer/DealerScreen';
-import StayLeave from 'components/action/StayLeave';
-import Players from 'components/player/Players';
-import GameInfo from 'components/info/GameInfo';
-import Waiting from 'components/table/Waiting';
-import SitOut from 'components/action/SitOut';
+import DealerScreen from 'poka/components/dealer/DealerScreen';
+import StayLeave from 'poka/components/action/StayLeave';
+import Players from 'poka/components/player/Players';
+import GameInfo from 'poka/components/info/GameInfo';
+import Waiting from 'poka/components/table/Waiting';
+import SitOut from 'poka/components/action/SitOut';
 import useSnackBar from 'hooks/useSnackBar';
-import Board from 'components/table/Board';
+import Board from 'poka/components/table/Board';
 import './Table.scss';
 
 const Table = () => {

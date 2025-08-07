@@ -1,0 +1,153 @@
+%decoration-content-layout {
+  &.v-2 {
+    grid-template:
+      ' .  s-0   .  '
+      ' .   .    .  '
+      ' .  s-1   .  ';
+    #s-1 {
+      align-self: flex-end;
+      transform: rotateZ(180deg);
+    }
+  }
+  &.v-3 {
+    grid-template:
+      ' .  s-0   .  '
+      ' .  s-1   .  '
+      ' .  s-2   .  ';
+    #s-1 {
+      align-self: center;
+    }
+    #s-2,
+    #s-3 {
+      align-self: flex-end;
+      transform: rotateZ(180deg);
+    }
+  }
+  &.v-4 {
+    grid-template:
+      's-0   .   s-1'
+      '.     .    . '
+      's-2   .   s-3';
+    #s-2,
+    #s-3 {
+      align-self: flex-end;
+      transform: rotateZ(180deg);
+    }
+  }
+  &.v-5 {
+    grid-template:
+      's-0   .   s-1'
+      '.    s-2   . '
+      's-3   .   s-4';
+    #s-4,
+    #s-3 {
+      align-self: flex-end;
+      transform: rotateZ(180deg);
+    }
+  }
+  &.v-6 {
+    grid-template:
+      's-0   .   s-1'
+      '.     .    . '
+      's-2   .   s-3'
+      ' .    .    . '
+      's-4   .   s-5';
+    #s-4 {
+      transform: rotateZ(180deg);
+      align-self: flex-end;
+    }
+    #s-5 {
+      align-self: flex-end;
+    }
+  }
+  &.v-7 {
+    grid-template:
+      's-0   .   s-1'
+      '.    s-2   . '
+      's-3   .   s-4'
+      ' .    .    . '
+      's-5   .   s-6';
+    #s-5,
+    #s-6 {
+      align-self: flex-end;
+    }
+  }
+  &.v-8 {
+    grid-template:
+      's-0   .   s-1'
+      '.    s-2   . '
+      's-3   .   s-4'
+      ' .   s-5   . '
+      's-6   .   s-7';
+  }
+  &.v-9 {
+    grid-template:
+      's-0   .   s-1'
+      '.     .    . '
+      '.     .    . '
+      's-2   .   s-3'
+      ' .   s-4   . '
+      's-5   .   s-6'
+      '.     .   .  '
+      '.     .   .  '
+      's-7   .   s-8';
+  }
+  &.v-10 {
+    grid-template:
+      's-0   .   s-1'
+      '.    s-2    .'
+      's-3   .   s-4'
+      's-5   .   s-7'
+      '.    s-6  .  '
+      's-8   .   s-9';
+  }
+  &.v-11,
+  &.v-12,
+  &.v-13,
+  &.v-14 {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    @media only screen and (min-height: 500px) and (min-width: 750px) {
+      display: flex;
+    }
+
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+    #s-0 {
+      align-self: center;
+    }
+  }
+  &.v-14 {
+    svg {
+      height: 1.5rem;
+    }
+  }
+  .ace-of-spades {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    font-family: Yellowtail;
+    @media only screen and (min-height: 500px) and (min-width: 750px) {
+      display: flex;
+    }
+
+    svg {
+      height: 100% !important;
+    }
+  }
+  #s-5,
+  #s-6,
+  #s-7,
+  #s-8,
+  #s-9 {
+    transform: rotateZ(180deg);
+  }
+  #s-1,
+  #s-0 {
+    align-self: flex-start;
+  }
+}

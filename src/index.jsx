@@ -9,27 +9,27 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import './index.scss';
+import 'styles/index.scss';
 import reportWebVitals from './reportWebVitals';
-import SubscriptionOptions from './features/account/components/subscription/SubscriptionOptions';
-import SuccessfulPayment from './features/account/components/subscription/SuccessfulPayment';
-import FailedPayment from './features/account/components/subscription/FailedPayment';
-import AccountDetails from './features/account/components/AccountDetails';
-import ResetPassword from './features/account/components/ResetPassword';
+import SubscriptionOptions from 'account/components/subscription/SubscriptionOptions';
+import SuccessfulPayment from 'account/components/subscription/SuccessfulPayment';
+import FailedPayment from 'account/components/subscription/FailedPayment';
+import AccountDetails from 'account/components/AccountDetails';
+import ResetPassword from 'account/components/ResetPassword';
 import Instructions from './pages/Instructions';
-import Account from './features/account/components/Account';
-import Saloon from './features/poka/Saloon';
-import Register from './features/account/components/Register';
+import Account from 'account/components/Account';
+import Saloon from 'poka/Saloon';
+import Register from 'account/components/Register';
 import Welcome from './pages/Welcome';
-import Forgot from './features/account/components/Forgot';
-import Login from './features/account/components/Login';
-import Room from './features/poka/Room';
-import Layout from './components/layout/Layout';
+import Forgot from 'account/components/Forgot';
+import Login from 'account/components/Login';
+import Room from 'poka/Room';
+import Layout from 'layout/Layout';
 import RouteGuard from './utils/route-guard';
 import { store } from './store/store';
 import App from './App';
-import ChineseRoom from './features/chinese/components/ChineseRoom';
-import ChineseSaloon from './features/chinese/components/saloon/ChineseSaloon';
+import ChineseRoom from 'chinese/components/ChineseRoom';
+import ChineseSaloon from 'chinese/components/saloon/ChineseSaloon';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

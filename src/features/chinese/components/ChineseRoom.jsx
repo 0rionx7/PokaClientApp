@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetChineseStateQuery } from 'features/chinese/api/chineseApi';
+import { useGetChineseStateQuery } from 'chinese/api/chineseApi';
 import useMessageService from 'hooks/useMessageService';
-import LoadingSpinner from 'components/ui/LoadingSpinner';
-import Table from 'features/chinese/components/Table';
-import EmojiProvider from 'components/info/chat/EmojiProvider';
-import ChatBox from 'components/info/chat/ChatBox';
-import Deck from 'features/chinese/components/Deck';
+import LoadingSpinner from 'ui/LoadingSpinner';
+import Table from 'chinese/components/Table';
+import EmojiProvider from 'poka/components/info/chat/EmojiProvider';
+import ChatBox from 'poka/components/info/chat/ChatBox';
+import Deck from 'chinese/components/Deck';
 import classes from './Table.module.scss';
 
 const ChineseRoom = () => {

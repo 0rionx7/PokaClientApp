@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import BetOptionButton from 'components/action/BetOptionButton';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import BetOptionButton from 'poka/components/action/BetOptionButton';
 
 const BetOptions = ({ betAmount, setBetAmount, disabled, validate }) => {
   const { gameId } = useParams();

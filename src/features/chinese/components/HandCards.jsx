@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import { selectHandcards } from 'features/chinese/slice/chineseStateSlice';
-import { selectUserName } from 'features/account/slice/accountSlice';
-import RenderItem from 'features/chinese/components/RenderItem';
+import { selectHandcards } from 'chinese/slice/chineseStateSlice';
+import { selectUserName } from 'account/slice/accountSlice';
+import RenderItem from 'chinese/components/RenderItem';
 import classes from './Table.module.scss';
 
 const HandCards = () => {

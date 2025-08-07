@@ -5,15 +5,15 @@ import { useParams } from 'react-router-dom';
 import {
   useGetChineseStateQuery,
   useSitOutChineseMutation,
-} from 'features/chinese/api/chineseApi';
-import { resetMessages } from 'features/poka/pokaStateSlice';
-import { selectUserName } from 'features/account/slice/accountSlice';
+} from 'chinese/api/chineseApi';
+import { resetMessages } from 'poka/slice/pokaStateSlice';
+import { selectUserName } from 'account/slice/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
-import DealerScreen from 'features/chinese/components/dealer/DealerScreen';
-import SitOut from 'features/chinese/components/SitOut';
-import StayLeave from 'features/chinese/components/StayLeave';
-import RoundInfo from 'features/chinese/components/RoundInfo';
-import Board from 'features/chinese/components/Board';
+import DealerScreen from 'chinese/components/dealer/DealerScreen';
+import SitOut from 'chinese/components/SitOut';
+import StayLeave from 'chinese/components/StayLeave';
+import RoundInfo from 'chinese/components/RoundInfo';
+import Board from 'chinese/components/Board';
 import classes from './Table.module.scss';
 
 const Table = () => {

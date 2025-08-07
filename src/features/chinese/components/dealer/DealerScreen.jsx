@@ -5,10 +5,10 @@ import {
   useGetChineseStateQuery,
   useGetChineseRequestsQuery,
   useStartChineseGameMutation,
-} from 'features/chinese/api/chineseApi';
-import ListedPlayers from 'features/chinese/components/dealer/ListedPlayers';
-import Overlay from 'components/ui/Overlay';
-import Button from 'components/ui/Button';
+} from 'chinese/api/chineseApi';
+import ListedPlayers from 'chinese/components/dealer/ListedPlayers';
+import Overlay from 'ui/Overlay';
+import Button from 'ui/Button';
 import './DealerScreen.scss';
 import { isSitting } from 'utils/utilities-functions';
 

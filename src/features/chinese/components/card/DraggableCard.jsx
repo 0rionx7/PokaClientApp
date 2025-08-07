@@ -2,9 +2,9 @@ import { useRef } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { useParams } from 'react-router-dom';
 
-import { useReorderDeckMutation } from 'features/chinese/api/chineseApi';
+import { useReorderDeckMutation } from 'chinese/api/chineseApi';
 import { suits, symbols } from 'assets/svgs/suits';
-import Content from 'components/card/Content';
+import Content from 'chinese/components/card/Content';
 
 const DraggableCard = ({ card, index }) => {
   const { gameId } = useParams();

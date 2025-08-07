@@ -1,4 +1,4 @@
-import { baseUrl, pokaApi, socket } from 'features/poka/pokaApi';
+import { baseUrl, pokaApi, socket } from 'poka/api/pokaApi';
 
 export const accountApi = pokaApi.injectEndpoints({
   endpoints: build => ({

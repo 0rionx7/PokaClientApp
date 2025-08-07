@@ -1,6 +1,6 @@
 import { AppErrorBoundary } from 'utils/AppErrorBoundary';
-import ChatInput from 'components/info/chat/ChatInput';
-import Messages from 'components/info/chat/Messages';
+import ChatInput from 'poka/components/info/chat/ChatInput';
+import Messages from 'poka/components/info/chat/Messages';
 import './ChatBox.scss';
 
 const ChatBox = ({ className }) => {

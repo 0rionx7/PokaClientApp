@@ -1,13 +1,10 @@
 import { useEffect } from 'react';
 
-import SubscriptionItem from 'features/account/components/subscription/SubscriptionItem';
-import {
-  useGetUserQuery,
-  usePayMutation,
-} from 'features/account/api/accountApi';
-import LoadingSpinner from 'components/ui/LoadingSpinner';
-import Overlay from 'components/ui/Overlay';
-import Frame from 'components/ui/Frame';
+import SubscriptionItem from 'account/components/subscription/SubscriptionItem';
+import { useGetUserQuery, usePayMutation } from 'account/api/accountApi';
+import LoadingSpinner from 'ui/LoadingSpinner';
+import Overlay from 'ui/Overlay';
+import Frame from 'ui/Frame';
 import { subscriptionOption } from 'utils/text-constants';
 import { paymentsIcons } from 'assets/svgs/payments';
 

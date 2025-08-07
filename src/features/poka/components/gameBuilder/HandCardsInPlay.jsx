@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
-import CheckBox from 'components/ui/CheckBox';
-import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
+import CheckBox from 'ui/CheckBox';
+import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
 
 const HandCardsInPlay = memo(() => {
   const { values, setFieldValue } = useGameBuilderContext();

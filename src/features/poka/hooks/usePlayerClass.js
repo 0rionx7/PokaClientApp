@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { selectUserName } from 'features/account/slice/accountSlice';
-import { getPossitionClass } from 'features/poka/utils/createPlayerClass';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import { selectUserName } from 'account/slice/accountSlice';
+import { getPossitionClass } from 'poka/utils/createPlayerClass';
 import { playerEntry } from 'utils/utilities-functions';
-import { getChipsPosition } from 'features/poka/utils/getChipsPosition';
+import { getChipsPosition } from 'poka/utils/getChipsPosition';
 
 const usePlayerClass = index => {
   const hostPlayerName = useSelector(selectUserName);

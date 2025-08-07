@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { selectHandcards } from 'features/poka/pokaStateSlice';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import { selectHandcards } from 'poka/slice/pokaStateSlice';
 import { orderNumber, suitName } from 'utils/text-constants';
-import JokerSubmit from 'components/action/JokerSubmit';
+import JokerSubmit from 'poka/components/action/JokerSubmit';
 import { symbols } from 'assets/svgs/suits';
-import Button from 'components/ui/Button';
-import Card from 'components/card/Card';
+import Button from 'ui/Button';
+import Card from 'poka/components/card/Card';
 import './JokerSelect.scss';
 
 const JokerSelect = () => {

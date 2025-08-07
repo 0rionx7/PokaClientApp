@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { selectUserName } from 'features/account/slice/accountSlice';
-import GameDescription from 'components/info/GameDescription';
-import { useEmoji } from 'components/info/chat/EmojiProvider';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import { selectUserName } from 'account/slice/accountSlice';
+import GameDescription from 'poka/components/info/GameDescription';
+import { useEmoji } from 'poka/components/info/chat/EmojiProvider';
 import { collapseVertical } from 'assets/svgs/various';
 import { infoButton } from 'utils/text-constants';
-import Standings from 'components/info/Standings';
-import Results from 'components/info/Results';
-import GameInfo from 'components/info/GameInfo';
-import ChatBox from 'components/info/chat/ChatBox';
-import Buttons from 'components/info/Buttons';
+import Standings from 'poka/components/info/Standings';
+import Results from 'poka/components/info/Results';
+import GameInfo from 'poka/components/info/GameInfo';
+import ChatBox from 'poka/components/info/chat/ChatBox';
+import Buttons from 'poka/components/info/Buttons';
 import './Info.scss';
 
 const Info = ({ hideInfo, onToggleInfoPanel }) => {

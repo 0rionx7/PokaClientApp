@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
 import { countFem } from 'utils/text-constants';
 
 const Denies = () => {

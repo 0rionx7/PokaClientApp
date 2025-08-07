@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import BoardCard from 'components/table/BoardCard';
-import Kaves from 'components/table/Kaves';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import BoardCard from 'poka/components/table/BoardCard';
+import Kaves from 'poka/components/table/Kaves';
 
 const BoardRow = ({ rowIndexes, row, rows, totalPot }) => {
   const { gameId } = useParams();

@@ -1,4 +1,4 @@
-import { useGetUserQuery } from 'features/account/api/accountApi';
+import { useGetUserQuery } from 'account/api/accountApi';
 import Request from './Request';
 
 const Requests = () => {

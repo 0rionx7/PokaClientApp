@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
 import './LiveInfo.scss';
 
 const LiveInfo = () => {

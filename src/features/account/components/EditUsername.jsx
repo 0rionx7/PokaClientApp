@@ -1,7 +1,7 @@
 import { useActionState, useState } from 'react';
 
-import { useUsernameChangeMutation } from 'features/account/api/accountApi';
-import Button from 'components/ui/Button';
+import { useUsernameChangeMutation } from 'account/api/accountApi';
+import Button from 'ui/Button';
 import classes from './UserName.module.scss';
 
 const EditUsername = ({ stopEditing }) => {

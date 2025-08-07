@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 
-import MainNavigation from 'components/layout/MainNavigation.';
-import Footer from 'components/layout/Footer';
+import MainNavigation from 'layout/MainNavigation.';
+import Footer from 'layout/Footer';
 import './Layout.scss';
 
 const Layout = () => {

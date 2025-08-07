@@ -1,6 +1,6 @@
-import { useGetUserQuery } from 'features/account/api/accountApi';
+import { useGetUserQuery } from 'account/api/accountApi';
 import { creataPaymentTags } from 'utils/text-functions';
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 import './Subscription.scss';
 
 const SubscriptionItem = ({ option, onClick }) => {

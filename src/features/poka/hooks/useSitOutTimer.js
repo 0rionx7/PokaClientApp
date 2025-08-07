@@ -6,8 +6,8 @@ import {
   useGetPokaStateQuery,
   useNextRoundMutation,
   useSitOutMutation,
-} from 'features/poka/pokaApi';
-import { selectUserName } from 'features/account/slice/accountSlice';
+} from 'poka/api/pokaApi';
+import { selectUserName } from 'account/slice/accountSlice';
 
 const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const { gameId } = useParams();

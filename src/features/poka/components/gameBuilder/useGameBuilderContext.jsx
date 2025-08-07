@@ -1,9 +1,9 @@
 import { createContext, use, useCallback, useState } from 'react';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
 import { useParams } from 'react-router-dom';
 
-import { initialGameDefaults } from 'features/poka/utils/games';
+import { initialGameDefaults } from 'poka/utils/games';
 
 const GameBuilderContext = createContext({
   values: {},

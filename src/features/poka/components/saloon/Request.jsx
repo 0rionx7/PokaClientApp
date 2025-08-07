@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useCancelRequestMutation } from 'features/account/api/accountApi';
-import { useSitDownMutation } from 'features/poka/pokaApi';
-import ToolTip from 'components/ui/ToolTip';
+import { useCancelRequestMutation } from 'account/api/accountApi';
+import { useSitDownMutation } from 'poka/api/pokaApi';
+import ToolTip from 'ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 import './Requests.scss';
 

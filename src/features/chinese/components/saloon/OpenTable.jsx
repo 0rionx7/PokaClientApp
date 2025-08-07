@@ -2,11 +2,11 @@ import { useActionState, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useOpenChineseTableMutation } from 'features/chinese/api/chineseApi';
-import { selectUserName } from 'features/account/slice/accountSlice';
+import { useOpenChineseTableMutation } from 'chinese/api/chineseApi';
+import { selectUserName } from 'account/slice/accountSlice';
 import { createCode } from 'utils/utilities-functions';
 import { describeTime } from 'utils/text-functions';
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 
 const OpenTable = () => {
   const playerName = useSelector(selectUserName);

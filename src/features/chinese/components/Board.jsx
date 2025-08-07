@@ -1,18 +1,18 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetChineseStateQuery } from 'features/chinese/api/chineseApi';
-import { selectUserName } from 'features/account/slice/accountSlice';
+import { useGetChineseStateQuery } from 'chinese/api/chineseApi';
+import { selectUserName } from 'account/slice/accountSlice';
 import { fantasySvg, foulSvg } from 'assets/svgs/various';
 import { isSitting } from 'utils/utilities-functions';
-import usePlayerStyle from 'features/poka/hooks/usePlayerStyle';
-import PlayerRibbon from 'features/chinese/components/PlayerRibbon';
-import RoundScore from 'features/chinese/components/RoundScore';
-import LinesScore from 'features/chinese/components/LinesScore';
-import BoardRow from 'features/chinese/components/BoardRow';
-import Hand from 'features/chinese/components/Hand';
+import usePlayerStyle from 'chinese/hooks/usePlayerStyle';
+import PlayerRibbon from 'chinese/components/PlayerRibbon';
+import RoundScore from 'chinese/components/RoundScore';
+import LinesScore from 'chinese/components/LinesScore';
+import BoardRow from 'chinese/components/BoardRow';
+import Hand from 'chinese/components/Hand';
 import classes from './Table.module.scss';
-import useTimer from 'features/chinese/hooks/useTimer';
+import useTimer from 'chinese/hooks/useTimer';
 import './Board.scss';
 
 const Board = ({ index, playerState }) => {

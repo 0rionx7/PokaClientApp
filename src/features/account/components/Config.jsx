@@ -6,7 +6,7 @@ import {
   selectHideInfo,
   setDeckColor,
   setHideInfo,
-} from 'features/account/slice/accountSlice';
+} from 'account/slice/accountSlice';
 import classes from './Account.module.scss';
 
 const deckColors = [

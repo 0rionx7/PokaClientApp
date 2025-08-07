@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-import { useDenyCardMutation } from 'features/poka/pokaApi';
+import { useDenyCardMutation } from 'poka/api/pokaApi';
 import useSnackBar from 'hooks/useSnackBar';
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 
 const DenyAccept = () => {
   const [denyCard, { isLoading }] = useDenyCardMutation();

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useBetMutation, useGetPokaStateQuery } from 'features/poka/pokaApi';
-import BetOptions from 'components/action/BetOptions';
+import { useBetMutation, useGetPokaStateQuery } from 'poka/api/pokaApi';
+import BetOptions from 'poka/components/action/BetOptions';
 import { betPrompt } from 'utils/text-functions';
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 import './Bet.scss';
 
 const Bet = ({ bet, resta }) => {

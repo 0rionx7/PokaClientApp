@@ -1,4 +1,4 @@
-import RenewOptions from 'components/action/RenewOptions';
+import RenewOptions from 'poka/components/action/RenewOptions';
 import './Renew.scss';
 
 const Renew = () => {

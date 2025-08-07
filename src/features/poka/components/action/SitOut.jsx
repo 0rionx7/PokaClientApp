@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import { exitSvg } from 'assets/svgs/various';
-import Button from 'components/ui/Button';
-import Overlay from 'components/ui/Overlay';
-import ToolTip from 'components/ui/ToolTip';
+import Button from 'ui/Button';
+import Overlay from 'ui/Overlay';
+import ToolTip from 'ui/ToolTip';
 
 const SitOut = () => {
   const [showDiag, setShowDiag] = useState(false);

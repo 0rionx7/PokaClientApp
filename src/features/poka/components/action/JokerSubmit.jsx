@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-import { useAssignJokerMutation } from 'features/poka/pokaApi';
-import Button from 'components/ui/Button';
-import Card from 'components/card/Card';
+import { useAssignJokerMutation } from 'poka/api/pokaApi';
+import Button from 'ui/Button';
+import Card from 'poka/components/card/Card';
 
 const JokerSubmit = ({ jokers, resetJokers }) => {
   const [assignJoker, { isLoading, isSuccess }] = useAssignJokerMutation();

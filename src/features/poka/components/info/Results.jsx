@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
 import { sortPlayers } from 'utils/utilities-functions';
-import PlayerResult from 'components/info/PlayerResult';
+import PlayerResult from 'poka/components/info/PlayerResult';
 import './Results.scss';
 
 const Results = () => {

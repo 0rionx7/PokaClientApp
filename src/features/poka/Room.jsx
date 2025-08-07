@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import EmojiProvider from 'components/info/chat/EmojiProvider';
-import ActionContaineContextProvider from 'features/poka/utils/ActionContainerContext';
-import LoadingSpinner from 'components/ui/LoadingSpinner';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import EmojiProvider from 'poka/components/info/chat/EmojiProvider';
+import ActionContaineContextProvider from 'poka/utils/ActionContainerContext';
+import LoadingSpinner from 'ui/LoadingSpinner';
 import useMessageService from 'hooks/useMessageService';
-import Action from 'components/action/Action';
-import Table from 'components/table/Table';
-import Info from 'components/info/Info';
+import Action from 'poka/components/action/Action';
+import Table from 'poka/components/table/Table';
+import Info from 'poka/components/info/Info';
 import './Room.scss';
 
 const Room = () => {

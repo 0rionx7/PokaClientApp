@@ -1,12 +1,12 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 import {
   orderBySuit,
   orderByValue,
   selectHandcards,
   selectIsFantasy,
-} from 'features/chinese/slice/chineseStateSlice';
+} from 'chinese/slice/chineseStateSlice';
 import classes from './Table.module.scss';
 
 const FantasyButtons = () => {

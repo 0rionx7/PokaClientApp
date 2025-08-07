@@ -2,12 +2,12 @@ import { memo, useEffect, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { selectHandcards } from 'features/poka/pokaStateSlice';
-import { selectUserName } from 'features/account/slice/accountSlice';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import { selectHandcards } from 'poka/slice/pokaStateSlice';
+import { selectUserName } from 'account/slice/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
-import ChipStack from 'components/player/ChipStack';
-import Card from 'components/card/Card';
+import ChipStack from 'poka/components/player/ChipStack';
+import Card from 'poka/components/card/Card';
 import './HandCards.scss';
 
 const HandCards = ({ playerState, playingIndex, chipsPosition }) => {

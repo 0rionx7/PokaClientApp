@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router';
 
-import { selectUserName } from 'features/account/slice/accountSlice';
+import { selectUserName } from 'account/slice/accountSlice';
 
 const RouteGuard = ({ element }) => {
   const username = useSelector(selectUserName);

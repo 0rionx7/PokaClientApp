@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { cardSelected, selectedCardIndexes } from 'utils/utilities-functions';
-import { useSelectCardsMutation } from 'features/poka/pokaApi';
-import { selectHandcards } from 'features/poka/pokaStateSlice';
+import { useSelectCardsMutation } from 'poka/api/pokaApi';
+import { selectHandcards } from 'poka/slice/pokaStateSlice';
 import useSnackBar from 'hooks/useSnackBar';
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 
 const Discard = ({ selecting }) => {
   const { gameId } = useParams();

@@ -4,9 +4,9 @@ import {
   useGetPokaStateQuery,
   useJoinTableMutation,
   useRejectRequestMutation,
-} from 'features/poka/pokaApi';
-import StatusIcon from 'components/ui/StatusIcon';
-import ToolTip from 'components/ui/ToolTip';
+} from 'poka/api/pokaApi';
+import StatusIcon from 'ui/StatusIcon';
+import ToolTip from 'ui/ToolTip';
 import useSnackBar from 'hooks/useSnackBar';
 
 const ListedPlayer = ({ playerState, clickable }) => {

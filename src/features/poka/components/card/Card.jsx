@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { toggleSelectedCard } from 'features/poka/pokaStateSlice';
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { selectDeckColor } from 'features/account/slice/accountSlice';
+import { toggleSelectedCard } from 'poka/slice/pokaStateSlice';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import { selectDeckColor } from 'account/slice/accountSlice';
 import { suits, symbols } from 'assets/svgs/suits';
-import Content from 'components/card/Content';
-import ToolTip from 'components/ui/ToolTip';
+import Content from 'poka/components/card/Content';
+import ToolTip from 'ui/ToolTip';
 import './Card.scss';
 
 const Card = ({ card, canBeSelected, noColor }) => {

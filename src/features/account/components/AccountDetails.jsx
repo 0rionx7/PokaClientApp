@@ -1,17 +1,14 @@
-import {
-  useGetUserQuery,
-  useLogOutMutation,
-} from 'features/account/api/accountApi';
-import UserSubscription from 'features/account/components/UserSubscription';
-import AccountRow from 'features/account/components/AccountIRow';
-import EditPassword from 'features/account/components/EditPassword';
+import { useGetUserQuery, useLogOutMutation } from 'account/api/accountApi';
+import UserSubscription from 'account/components/UserSubscription';
+import AccountRow from 'account/components/AccountIRow';
+import EditPassword from 'account/components/EditPassword';
 import { logOutSvg } from 'assets/svgs/various';
-import LastGame from 'features/account/components/LastGame';
-import UserName from 'features/account/components/UserName';
-import Config from 'features/account/components/Config';
-import Frame from 'components/ui/Frame';
+import LastGame from 'account/components/LastGame';
+import UserName from 'account/components/UserName';
+import Config from 'account/components/Config';
+import Frame from 'ui/Frame';
 import classes from './Account.module.scss';
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 
 const AccountDetails = () => {
   const [logOut] = useLogOutMutation();

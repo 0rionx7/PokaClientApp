@@ -1,10 +1,10 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
 
-import { pokaApi } from '../features/poka/pokaApi';
-import { pokaStateSlice } from '../features/poka/pokaStateSlice';
+import { pokaApi } from 'poka/api/pokaApi';
+import { pokaStateSlice } from 'poka/slice/pokaStateSlice';
 import { errorHandling } from '../middleware/errorHandling';
-import { accountSlice } from '../features/account/slice/accountSlice';
-import { chineseStateSlice } from 'features/chinese/slice/chineseStateSlice';
+import { accountSlice } from 'account/slice/accountSlice';
+import { chineseStateSlice } from 'chinese/slice/chineseStateSlice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 const rootReducer = combineSlices(

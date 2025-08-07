@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { createChipStyle } from 'features/poka/utils/createChipStyle';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import { createChipStyle } from 'poka/utils/createChipStyle';
 import './Chip.scss';
 
 const Chip = ({ multiplier, index, startIndex }) => {

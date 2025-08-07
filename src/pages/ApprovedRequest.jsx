@@ -1,9 +1,9 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { useSitDownChineseMutation } from 'features/chinese/api/chineseApi';
-import { useSitDownMutation } from 'features/poka/pokaApi';
+import { useSitDownChineseMutation } from 'chinese/api/chineseApi';
+import { useSitDownMutation } from 'poka/api/pokaApi';
 import { createTableTitleJsx } from 'utils/text-functions';
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 import './ApprovedRequest.scss';
 
 const ApprovedRequest = ({ requestInfo: { tableName, gameId } }) => {

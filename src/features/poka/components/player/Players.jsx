@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import Player from 'components/player/Player';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import Player from 'poka/components/player/Player';
 
 const Players = () => {
   const { gameId } = useParams();

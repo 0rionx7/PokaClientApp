@@ -1,5 +1,5 @@
 import { describeHand } from 'utils/text-functions';
-import StatusIcon from 'components/ui/StatusIcon';
+import StatusIcon from 'ui/StatusIcon';
 
 const PlayerResult = ({ playerState }) => {
   const description = describeHand(playerState.handInfo);

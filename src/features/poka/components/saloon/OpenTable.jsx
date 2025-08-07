@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useOpenPokaTableMutation } from 'features/poka/pokaApi';
-import { selectUserName } from 'features/account/slice/accountSlice';
+import { useOpenPokaTableMutation } from 'poka/api/pokaApi';
+import { selectUserName } from 'account/slice/accountSlice';
 import { clockwise, counterclockwise } from 'assets/svgs/various';
 import { createCode } from 'utils/utilities-functions';
-import Reaction from 'features/poka/components/saloon/Reaction';
-import Button from 'components/ui/Button';
-import Radio from 'components/ui/Radio';
+import Reaction from 'poka/components/saloon/Reaction';
+import Button from 'ui/Button';
+import Radio from 'ui/Radio';
 import { useActionState, useState } from 'react';
 import './OpenTable.scss';
 

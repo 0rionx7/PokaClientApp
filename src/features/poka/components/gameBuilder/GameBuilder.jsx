@@ -6,23 +6,23 @@ import { builderRowTitle, speakingOrder, tablos } from 'utils/text-constants';
 import {
   useGetPokaStateQuery,
   useSetGameVariantMutation,
-} from 'features/poka/pokaApi';
+} from 'poka/api/pokaApi';
 import { isSitting } from 'utils/utilities-functions';
-import { useActionContainerNode } from 'features/poka/utils/ActionContainerContext';
-import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
-import BuilderRow from 'components/gameBuilder/BuilderRow';
-import GameChooser from 'components/gameBuilder/GameChooser';
-import WinningOrder from 'components/gameBuilder/WinningOrder';
-import Dilemma from 'components/gameBuilder/Dilemma';
-import HandCardsInPlay from 'components/gameBuilder/HandCardsInPlay';
-import FaceDown from 'components/gameBuilder/FaceDown';
-import CardsCount from 'components/gameBuilder/CardsCount';
-import Extra from 'components/gameBuilder/Extra';
-import Options from 'components/gameBuilder/Options';
-import Dealing from 'components/gameBuilder/Dealing';
+import { useActionContainerNode } from 'poka/utils/ActionContainerContext';
+import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
+import BuilderRow from 'poka/components/gameBuilder/BuilderRow';
+import GameChooser from 'poka/components/gameBuilder/GameChooser';
+import WinningOrder from 'poka/components/gameBuilder/WinningOrder';
+import Dilemma from 'poka/components/gameBuilder/Dilemma';
+import HandCardsInPlay from 'poka/components/gameBuilder/HandCardsInPlay';
+import FaceDown from 'poka/components/gameBuilder/FaceDown';
+import CardsCount from 'poka/components/gameBuilder/CardsCount';
+import Extra from 'poka/components/gameBuilder/Extra';
+import Options from 'poka/components/gameBuilder/Options';
+import Dealing from 'poka/components/gameBuilder/Dealing';
 import useSnackBar from 'hooks/useSnackBar';
-import Button from 'components/ui/Button';
-import Frame from 'components/ui/Frame';
+import Button from 'ui/Button';
+import Frame from 'ui/Frame';
 import './GameBuilder.scss';
 
 const GameBuilder = memo(() => {

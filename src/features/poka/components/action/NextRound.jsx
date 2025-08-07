@@ -4,11 +4,11 @@ import {
   useGetPokaStateQuery,
   useNextRoundMutation,
   useRevealCardsMutation,
-} from 'features/poka/pokaApi';
-import Button from 'components/ui/Button';
-import Overlay from 'components/ui/Overlay';
+} from 'poka/api/pokaApi';
+import Button from 'ui/Button';
+import Overlay from 'ui/Overlay';
 import { useSelector } from 'react-redux';
-import { selectUserName } from 'features/account/slice/accountSlice';
+import { selectUserName } from 'account/slice/accountSlice';
 import { isSitting, playerEntry } from 'utils/utilities-functions';
 
 const NextRound = () => {

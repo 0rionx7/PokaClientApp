@@ -1,4 +1,4 @@
-import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
+import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
 import './NumericInput.scss';
 
 const NumericInput = ({ name, className }) => {

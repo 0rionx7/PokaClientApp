@@ -1,4 +1,5 @@
-@use '../variables';
+@use '../../../styles/variables';
+
 $total-width: calc(var(--card-width) + 0.4rem);
 .corner {
   .card {

@@ -1,6 +1,6 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 import useLoginOnConnect from 'hooks/useLoginOnConnect';
 import './SuccessfulPayment.scss';
 

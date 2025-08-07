@@ -5,9 +5,9 @@ import { useParams } from 'react-router-dom';
 import {
   useGetChineseStateQuery,
   useTimedOutMutation,
-} from 'features/chinese/api/chineseApi';
-import { selectUserName } from 'features/account/slice/accountSlice';
-import Timer from 'features/chinese/components/Timer';
+} from 'chinese/api/chineseApi';
+import { selectUserName } from 'account/slice/accountSlice';
+import Timer from 'chinese/components/Timer';
 import { isSitting } from 'utils/utilities-functions';
 
 const useTimer = playerName => {

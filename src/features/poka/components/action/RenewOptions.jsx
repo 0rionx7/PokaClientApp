@@ -1,11 +1,8 @@
 import { useParams } from 'react-router-dom';
 
-import {
-  useGetPokaStateQuery,
-  useRenewCavaMutation,
-} from 'features/poka/pokaApi';
+import { useGetPokaStateQuery, useRenewCavaMutation } from 'poka/api/pokaApi';
 import useSnackBar from 'hooks/useSnackBar';
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 
 const RenewOptions = () => {
   const { gameId } = useParams();

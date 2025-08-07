@@ -6,16 +6,16 @@ import {
   useGetChineseStateQuery,
   useNextRoundChineseMutation,
   useSubmitCardsChineseMutation,
-} from 'features/chinese/api/chineseApi';
+} from 'chinese/api/chineseApi';
 import {
   selectBoardCards,
   selectHandcards,
-} from 'features/chinese/slice/chineseStateSlice';
-import { selectUserName } from 'features/account/slice/accountSlice';
+} from 'chinese/slice/chineseStateSlice';
+import { selectUserName } from 'account/slice/accountSlice';
 import { isSitting } from 'utils/utilities-functions';
-import FantasyButtons from 'features/chinese/components/FantasyButtons';
-import HandCards from 'features/chinese/components/HandCards';
-import Button from 'components/ui/Button';
+import FantasyButtons from 'chinese/components/FantasyButtons';
+import HandCards from 'chinese/components/HandCards';
+import Button from 'ui/Button';
 import classes from './Table.module.scss';
 
 const Hand = () => {

@@ -1,5 +1,5 @@
-import { useGetUserQuery } from 'features/account/api/accountApi';
-import Request from 'features/poka/components/saloon/Request';
+import { useGetUserQuery } from 'account/api/accountApi';
+import Request from 'poka/components/saloon/Request';
 import './Requests.scss';
 
 const Requests = () => {

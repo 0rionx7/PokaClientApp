@@ -1,4 +1,4 @@
-import Button from 'components/ui/Button';
+import Button from 'ui/Button';
 
 const BetOptionButton = ({ amount, color, ...rest }) => {
   const displayValue = amount >= 1000 ? amount / 1000 + 'K' : amount;

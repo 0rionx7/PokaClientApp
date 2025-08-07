@@ -1,13 +1,13 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import PlayHandCards from 'components/info/PlayHandCards';
-import FaceDownCards from 'components/info/FaceDownCards';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import PlayHandCards from 'poka/components/info/PlayHandCards';
+import FaceDownCards from 'poka/components/info/FaceDownCards';
 import { tablos } from 'utils/text-constants';
-import Denies from 'components/info/Denies';
-import Swaps from 'components/info/Swaps';
-import Hats from 'components/info/Hats';
+import Denies from 'poka/components/info/Denies';
+import Swaps from 'poka/components/info/Swaps';
+import Hats from 'poka/components/info/Hats';
 import './GameInfo.scss';
 
 const GameInfo = () => {

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import ToolTip from 'components/ui/ToolTip';
+import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import ToolTip from 'ui/ToolTip';
 
 const StatusInfo = ({ playerState }) => {
   const { gameId } = useParams();

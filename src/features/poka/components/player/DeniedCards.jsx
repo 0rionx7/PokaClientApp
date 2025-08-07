@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 
-import { selectUserName } from 'features/account/slice/accountSlice';
-import ToolTip from 'components/ui/ToolTip';
-import Card from 'components/card/Card';
+import { selectUserName } from 'account/slice/accountSlice';
+import ToolTip from 'ui/ToolTip';
+import Card from 'poka/components/card/Card';
 
 const DeniedCards = ({ playerState }) => {
   const hostPlayerName = useSelector(selectUserName);
