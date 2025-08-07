@@ -1,4 +1,4 @@
-@use '../../../../styles/variables';
+@use '@styles/variables';
 
 %table-grids {
   $handCards-shift: calc(-0.35 * var(--card-height));

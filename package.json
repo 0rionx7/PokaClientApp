@@ -2,6 +2,7 @@
   "name": "e-poka.client",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@microsoft/applicationinsights-react-js": "^17.1.0",
     "@microsoft/applicationinsights-web": "^3.1.0",
