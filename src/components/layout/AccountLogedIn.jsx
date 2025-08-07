@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { useLogOutMutation } from 'features/account/accountApi';
+import { useLogOutMutation } from 'features/account/api/accountApi';
 import { logOutSvg, settingsSvg } from 'assets/svgs/various';
 
 const AccountloggedInMenu = ({ setShowMenu }) => {

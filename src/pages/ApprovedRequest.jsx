@@ -1,6 +1,6 @@
 import { useNavigate, useLocation } from 'react-router-dom';
 
-import { useSitDownChineseMutation } from 'features/chinese/chineseApi';
+import { useSitDownChineseMutation } from 'features/chinese/api/chineseApi';
 import { useSitDownMutation } from 'features/poka/pokaApi';
 import { createTableTitleJsx } from 'utils/text-functions';
 import Button from 'components/ui/Button';

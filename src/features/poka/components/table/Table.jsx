@@ -7,7 +7,7 @@ import {
   useGetPokaStateQuery,
   useSitOutMutation,
 } from 'features/poka/pokaApi';
-import { selectUserName } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/slice/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import DealerScreen from 'components/dealer/DealerScreen';
 import StayLeave from 'components/action/StayLeave';

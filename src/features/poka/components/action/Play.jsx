@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { selectUserName } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/slice/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import JokerSelect from 'components/action/JokerSelect';
 import DenyAccept from 'components/action/DenyAccept';

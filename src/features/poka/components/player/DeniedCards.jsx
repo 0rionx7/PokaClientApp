@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { selectUserName } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/slice/accountSlice';
 import ToolTip from 'components/ui/ToolTip';
 import Card from 'components/card/Card';
 

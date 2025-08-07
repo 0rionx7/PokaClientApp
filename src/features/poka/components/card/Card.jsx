@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { toggleSelectedCard } from 'features/poka/pokaStateSlice';
 import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { selectDeckColor } from 'features/account/accountSlice';
+import { selectDeckColor } from 'features/account/slice/accountSlice';
 import { suits, symbols } from 'assets/svgs/suits';
 import Content from 'components/card/Content';
 import ToolTip from 'components/ui/ToolTip';

@@ -11,25 +11,25 @@ import {
 
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
-import SubscriptionOptions from './pages/account/subscription/SubscriptionOptions';
-import SuccessfulPayment from './pages/account/subscription/SuccessfulPayment';
-import FailedPayment from './pages/account/subscription/FailedPayment';
-import AccountDetails from './pages/account/AccountDetails';
-import ResetPassword from './pages/ResetPassword';
+import SubscriptionOptions from './features/account/components/subscription/SubscriptionOptions';
+import SuccessfulPayment from './features/account/components/subscription/SuccessfulPayment';
+import FailedPayment from './features/account/components/subscription/FailedPayment';
+import AccountDetails from './features/account/components/AccountDetails';
+import ResetPassword from './features/account/components/ResetPassword';
 import Instructions from './pages/Instructions';
-import Account from './pages/account/Account';
-import Saloon from './pages/saloon/Saloon';
-import Register from './pages/Register';
+import Account from './features/account/components/Account';
+import Saloon from './features/poka/Saloon';
+import Register from './features/account/components/Register';
 import Welcome from './pages/Welcome';
-import Forgot from './pages/Forgot';
-import Login from './pages/Login';
-import Room from './pages/Room';
+import Forgot from './features/account/components/Forgot';
+import Login from './features/account/components/Login';
+import Room from './features/poka/Room';
 import Layout from './components/layout/Layout';
 import RouteGuard from './utils/route-guard';
 import { store } from './store/store';
 import App from './App';
-import ChineseRoom from './componentsChinese/ChineseRoom';
-import ChineseSaloon from './componentsChinese/saloon/ChineseSaloon';
+import ChineseRoom from './features/chinese/components/ChineseRoom';
+import ChineseSaloon from './features/chinese/components/saloon/ChineseSaloon';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

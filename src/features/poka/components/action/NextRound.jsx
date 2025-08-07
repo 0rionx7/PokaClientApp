@@ -8,7 +8,7 @@ import {
 import Button from 'components/ui/Button';
 import Overlay from 'components/ui/Overlay';
 import { useSelector } from 'react-redux';
-import { selectUserName } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/slice/accountSlice';
 import { isSitting, playerEntry } from 'utils/utilities-functions';
 
 const NextRound = () => {

@@ -5,8 +5,8 @@ import { socket, useGetPokaTablesQuery } from 'features/poka/pokaApi';
 import { createTableTitleJsx } from 'utils/text-functions';
 import ApprovedRequest from 'pages/ApprovedRequest';
 import useSnackBar from 'hooks/useSnackBar';
-import { useGetUserQuery } from 'features/account/accountApi';
-import { useGetChineseTablesQuery } from 'features/chinese/chineseApi';
+import { useGetUserQuery } from 'features/account/api/accountApi';
+import { useGetChineseTablesQuery } from 'features/chinese/api/chineseApi';
 
 const useRequestResult = chinese => {
   const { refetch: refetchUserInfo } = useGetUserQuery();

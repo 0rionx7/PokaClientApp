@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import EmojiPicker, { Theme } from 'emoji-picker-react';
 
 import { useEmoji } from 'components/info/chat/EmojiProvider';
-import { selectUserName } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/slice/accountSlice';
 import { socket } from 'features/poka/pokaApi';
 import { sendSvg } from 'assets/svgs/various';
 

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router';
 
 import { useLogOutAllMutation } from 'features/poka/pokaApi';
-import { useLoginMutation } from 'features/account/accountApi';
+import { useLoginMutation } from 'features/account/api/accountApi';
 import Button from 'components/ui/Button';
 import { NavLink } from 'react-router-dom';
 

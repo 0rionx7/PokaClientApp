@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetChineseStateQuery } from 'features/chinese/chineseApi';
-import { selectUserName } from 'features/account/accountSlice';
+import { useGetChineseStateQuery } from 'features/chinese/api/chineseApi';
+import { selectUserName } from 'features/account/slice/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 
 const usePlayerStyle = index => {

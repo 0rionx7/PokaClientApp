@@ -1,0 +1,53 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useSitDownChineseMutation } from 'features/chinese/api/chineseApi';
+import { useCancelRequestChineseMutation } from 'features/account/api/accountApi';
+import useSnackBar from 'hooks/useSnackBar';
+import ToolTip from 'components/ui/ToolTip';
+
+const Request = ({ tableInfo }) => {
+  const [sitDown, { isSuccess, isLoading }] = useSitDownChineseMutation();
+  const [cancelHoveredPropagation, setCancelHoveredPropagation] =
+    useState(false);
+  const [cancelRequest, { isLoading: canceling }] =
+    useCancelRequestChineseMutation();
+  const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
+
+  const navigate = useNavigate();
+
+  const handleCancelRequest = async event => {
+    event.stopPropagation();
+    if (canceling) return;
+    cancelRequest(tableInfo);
+  };
+
+  const handleJoinTable = async () => {
+    if (!tableInfo.joined || isLoading || isSuccess) return;
+    const result = await sitDown({
+      gameId: tableInfo.joined,
+      tableName: tableInfo.tableName,
+    });
+    if (result.error?.data) return setSnackInfo(result.error.data);
+    if (result.data?.gameId) navigate(`/chinese/table/${result.data.gameId}`);
+  };
+
+  return (
+    <div className={'request-tableName ' + (tableInfo.joined ? 'joined' : '')}>
+      {!cancelHoveredPropagation && <ToolTip info="Καθήστε" />}
+      <div onClick={handleJoinTable}>
+        {tableInfo.tableName?.split('_')?.[0]}
+      </div>
+      <div
+        className="cancel"
+        onMouseOver={() => setCancelHoveredPropagation(true)}
+        onMouseLeave={() => setCancelHoveredPropagation(false)}
+        onClick={handleCancelRequest}>
+        X <ToolTip info="Ακύρωση" />
+      </div>
+      {snackElement}
+    </div>
+  );
+};
+
+export default Request;

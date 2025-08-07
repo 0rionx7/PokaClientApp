@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectHandcards } from 'features/poka/pokaStateSlice';
-import { selectUserName } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/slice/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import ChipStack from 'components/player/ChipStack';
 import Card from 'components/card/Card';

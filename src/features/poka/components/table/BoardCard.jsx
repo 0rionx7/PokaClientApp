@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectTablecards } from 'features/poka/pokaStateSlice';
-import { selectUserName } from 'features/account/accountSlice';
+import { selectUserName } from 'features/account/slice/accountSlice';
 import { playerEntry } from 'utils/utilities-functions';
 import Card from 'components/card/Card';
 

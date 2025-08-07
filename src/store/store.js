@@ -2,9 +2,9 @@ import { combineSlices, configureStore } from '@reduxjs/toolkit';
 
 import { pokaApi } from '../features/poka/pokaApi';
 import { pokaStateSlice } from '../features/poka/pokaStateSlice';
-import { errorHandling } from '../features/middleware/errorHandling';
-import { accountSlice } from '../features/account/accountSlice';
-import { chineseStateSlice } from 'features/chinese/chineseStateSlice';
+import { errorHandling } from '../middleware/errorHandling';
+import { accountSlice } from '../features/account/slice/accountSlice';
+import { chineseStateSlice } from 'features/chinese/slice/chineseStateSlice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 const rootReducer = combineSlices(
