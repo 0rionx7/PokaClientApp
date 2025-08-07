@@ -11,7 +11,7 @@ import classes from './Table.module.scss';
 
 const FantasyButtons = () => {
   const isFantasy = useSelector(selectIsFantasy);
-  const hand = useSelector(selectHandcards);
+  const handCards = useSelector(selectHandcards);
   const dispatch = useDispatch();
 
   const sortByValue = () => {
@@ -23,7 +23,7 @@ const FantasyButtons = () => {
 
   return (
     <>
-      {isFantasy && !!hand.filter(Boolean).length && (
+      {isFantasy && !!handCards.filter(Boolean).length && (
         <div>
           <Button className={classes.sort} onClick={sortByValue} prompt="V" />
           <Button className={classes.sort} onClick={sortBySuit} prompt="S" />

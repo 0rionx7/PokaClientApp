@@ -7,11 +7,11 @@ import classes from './Table.module.scss';
 
 const HandCards = () => {
   const username = useSelector(selectUserName);
-  const hand = useSelector(selectHandcards);
+  const handCards = useSelector(selectHandcards);
 
   return (
     <div className={classes['hand-cards-chinese']}>
-      {hand?.map((card, index) => (
+      {handCards?.map((card, index) => (
         <RenderItem
           key={index}
           card={card}

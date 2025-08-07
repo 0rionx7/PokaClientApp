@@ -20,7 +20,7 @@ import classes from './Table.module.scss';
 
 const Hand = () => {
   const { gameId } = useParams();
-  const hand = useSelector(selectHandcards);
+  const handCards = useSelector(selectHandcards);
   const boardCards = useSelector(selectBoardCards);
   const username = useSelector(selectUserName);
   const { data } = useGetChineseStateQuery(gameId);
@@ -32,15 +32,15 @@ const Hand = () => {
   useEffect(() => {
     setHasNexted(false);
     setHasSubmitted(false);
-  }, [hand]);
+  }, [handCards]);
 
   const { currentPlayerList } = data;
   const [currentPlayer] = currentPlayerList;
 
   const hasTurn = username === currentPlayer;
-  const cardsLeftInHand = hand?.filter(Boolean)?.length;
+  const cardsLeftInHand = handCards?.filter(Boolean)?.length;
   const legitSubmit =
-    hand?.length === 5 ? cardsLeftInHand === 0 : cardsLeftInHand === 1;
+    handCards?.length === 5 ? cardsLeftInHand === 0 : cardsLeftInHand === 1;
   const canSubmit = !hasSubmitted && hasTurn && legitSubmit;
   const sittedCount = data.playerStates.filter(isSitting).length;
   const canNext =
@@ -49,7 +49,7 @@ const Hand = () => {
     currentPlayerList.includes(username) &&
     !hasNexted;
   const shift = data.playerStates.length === 2 ? '-50%' : '50%';
-  const left = `calc(-.5 * (var(--card-width) + .3rem) * ${hand?.length} + ${shift})`;
+  const left = `calc(-.5 * (var(--card-width) + .3rem) * ${handCards?.length} + ${shift})`;
 
   const submitCards = useCallback(async () => {
     if (canSubmit) {
