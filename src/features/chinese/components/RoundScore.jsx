@@ -1,4 +1,4 @@
-import { colorClass } from 'utils/utilities-functions';
+import { colorClass } from '@utils/utilities-functions';
 
 const RoundScore = ({ roundScore, showScore }) => {
   if (!showScore) return <div className="round-score" />;

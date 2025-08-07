@@ -1,5 +1,5 @@
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import { gameConfigs } from 'poka/utils/games';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import { gameConfigs } from '@poka/utils/games';
 
 const BuilderRow = ({ title, element }) => {
   const { values } = useGameBuilderContext();

@@ -2,16 +2,16 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import { selectUserName } from 'account/slice/accountSlice';
-import { useActionContainerNode } from 'poka/utils/ActionContainerContext';
-import { playerEntry } from 'utils/utilities-functions';
-import NextRound from 'poka/components/action/NextRound';
-import Results from 'poka/components/info/Results';
-import LiveInfo from 'poka/components/action/LiveInfo';
-import Overlay from 'ui/Overlay';
-import Play from 'poka/components/action/Play';
-import Renew from 'poka/components/action/Renew';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { selectUserName } from '@account/slice/accountSlice';
+import { useActionContainerNode } from '@poka/utils/ActionContainerContext';
+import { playerEntry } from '@utils/utilities-functions';
+import NextRound from '@poka/components/action/NextRound';
+import Results from '@poka/components/info/Results';
+import LiveInfo from '@poka/components/action/LiveInfo';
+import Overlay from '@ui/Overlay';
+import Play from '@poka/components/action/Play';
+import Renew from '@poka/components/action/Renew';
 import './Action.scss';
 
 const Action = ({ hideInfo }) => {

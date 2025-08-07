@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectCurrentChoosenGame } from 'poka/slice/pokaStateSlice';
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import { selectUserName } from 'account/slice/accountSlice';
-import { gameInfo } from 'utils/text-constants';
+import { selectCurrentChoosenGame } from '@poka/slice/pokaStateSlice';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { selectUserName } from '@account/slice/accountSlice';
+import { gameInfo } from '@utils/text-constants';
 import './Info.scss';
 
 const GameDescription = () => {

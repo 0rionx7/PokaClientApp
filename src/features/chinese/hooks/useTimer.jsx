@@ -5,10 +5,10 @@ import { useParams } from 'react-router-dom';
 import {
   useGetChineseStateQuery,
   useTimedOutMutation,
-} from 'chinese/api/chineseApi';
-import { selectUserName } from 'account/slice/accountSlice';
-import Timer from 'chinese/components/Timer';
-import { isSitting } from 'utils/utilities-functions';
+} from '@chinese/api/chineseApi';
+import { selectUserName } from '@account/slice/accountSlice';
+import Timer from '@chinese/components/Timer';
+import { isSitting } from '@utils/utilities-functions';
 
 const useTimer = playerName => {
   const { gameId } = useParams();

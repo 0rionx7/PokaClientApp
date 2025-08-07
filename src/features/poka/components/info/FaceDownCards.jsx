@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import { orderName } from 'utils/text-constants';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { orderName } from '@utils/text-constants';
 
 const FaceDownCards = () => {
   const { gameId } = useParams();

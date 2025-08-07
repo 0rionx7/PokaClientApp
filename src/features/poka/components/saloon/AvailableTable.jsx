@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useSitDownMutation } from 'poka/api/pokaApi';
+import { useSitDownMutation } from '@poka/api/pokaApi';
 import {
   useGetUserQuery,
   useRequestJoinMutation,
-} from 'account/api/accountApi';
-import { createTableTitleJsx } from 'utils/text-functions';
-import ToolTip from 'ui/ToolTip';
-import useSnackBar from 'hooks/useSnackBar';
+} from '@account/api/accountApi';
+import { createTableTitleJsx } from '@utils/text-functions';
+import ToolTip from '@ui/ToolTip';
+import useSnackBar from '@hooks/useSnackBar';
 import './AvailableTables.scss';
 
 const AvailableTable = ({ tableInfo }) => {

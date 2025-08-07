@@ -1,5 +1,5 @@
-import Card from 'chinese/components/card/Card';
-import Cell from 'chinese/components/card/Cell';
+import Card from '@chinese/components/card/Card';
+import Cell from '@chinese/components/card/Cell';
 
 const RenderItem = ({ card, index, owner, place }) =>
   card ? (

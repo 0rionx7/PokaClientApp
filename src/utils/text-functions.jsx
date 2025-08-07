@@ -1,11 +1,11 @@
-import { gameNames } from 'poka/utils/games';
+import { gameNames } from '@poka/utils/games';
 import {
   primaryCardNames,
   secondaryCardNames,
   handKind,
   paymentDescription,
   subscriptionOption,
-} from 'utils/text-constants';
+} from '@utils/text-constants';
 
 export function createTableTitleJsx(tableName) {
   const names = tableName?.split('_');

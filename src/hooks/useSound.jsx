@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import { useState, useEffect } from 'react';
 
-import sound from '../assets/sounds/plays.mp3';
+import sound from '.@assets/sounds/plays.mp3';
 import { soundOffSvg, soundOnSvg } from 'assets/svgs/various';
 
 const useSound = ({ isActive, ownBoard }) => {

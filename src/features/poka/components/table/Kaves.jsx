@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import { createChipStack } from 'poka/utils/createChipStack';
-import { infoText } from 'utils/text-constants';
-import ToolTip from 'ui/ToolTip';
-import Kava from 'poka/components/table/Kava';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { createChipStack } from '@poka/utils/createChipStack';
+import { infoText } from '@utils/text-constants';
+import ToolTip from '@ui/ToolTip';
+import Kava from '@poka/components/table/Kava';
 import './Kaves.scss';
 
 const Kaves = ({ totalPot, rows }) => {

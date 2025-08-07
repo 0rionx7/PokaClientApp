@@ -3,18 +3,16 @@
     "baseUrl": ".",
     "paths": {
       "assets/*": ["public/assets/*"],
-      "components/*": ["src/components/*"],
-      "poka/*": ["src/features/poka/*"],
-      "chinese/*": ["src/features/chinese/*"],
-      "account/*": ["src/features/account/*"],
-      "ui/*": ["src/components/ui/*"],
-      "layout/*": ["src/components/layout/*"],
+      "@components/*": ["src/components/*"],
+      "@poka/*": ["src/features/poka/*"],
+      "@chinese/*": ["src/features/chinese/*"],
+      "@account/*": ["src/features/account/*"],
       "@styles/*": ["src/styles/*"],
-      "styles/*": ["src/styles/*"],
-      "hooks/*": ["src/hooks/*"],
-      "pages/*": ["src/pages/*"],
-      "store/*": ["src/store/*"],
-      "utils/*": ["src/utils/*"]
+      "@ui/*": ["src/components/ui/*"],
+      "@layout/*": ["src/components/layout/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@pages/*": ["src/pages/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": ["src", "vitest.config.ts"]

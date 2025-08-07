@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { chineseApi } from 'chinese/api/chineseApi';
+import { chineseApi } from '@chinese/api/chineseApi';
 
 export const initialGameState = {
   playerName: '',

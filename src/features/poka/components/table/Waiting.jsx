@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import Overlay from 'ui/Overlay';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import Overlay from '@ui/Overlay';
 import './Table.scss';
 
 const Waiting = () => {

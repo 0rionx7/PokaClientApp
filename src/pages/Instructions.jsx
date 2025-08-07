@@ -1,4 +1,4 @@
-import { accountInstructions, saloonInstructions } from 'utils/text-constants';
+import { accountInstructions, saloonInstructions } from '@utils/text-constants';
 import './Instructions.scss';
 
 const Instructions = () => {

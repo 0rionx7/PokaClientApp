@@ -1,9 +1,9 @@
 import { useActionState, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useLoginMutation } from 'account/api/accountApi';
-import Button from 'ui/Button';
-import Frame from 'ui/Frame';
+import { useLoginMutation } from '@account/api/accountApi';
+import Button from '@ui/Button';
+import Frame from '@ui/Frame';
 import './LoginRegister.scss';
 
 const initialValues = () => {

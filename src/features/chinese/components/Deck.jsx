@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { selectUserName } from 'account/slice/accountSlice';
-import { useGetChineseStateQuery } from 'chinese/api/chineseApi';
+import DraggableCard from '@chinese/components/card/DraggableCard';
+import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
+import { selectUserName } from '@account/slice/accountSlice';
 import classes from './Table.module.scss';
-import DraggableCard from 'chinese/components/card/DraggableCard';
 
 export default function Deck() {
   const username = useSelector(selectUserName);

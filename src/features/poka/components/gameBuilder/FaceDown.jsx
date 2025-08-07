@@ -1,7 +1,7 @@
 import { memo, useEffect } from 'react';
 
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import CheckBox from 'ui/CheckBox';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import CheckBox from '@ui/CheckBox';
 
 const label = ['1o', '2o', '3o', '4o', '5o', '6ο', '7ο'];
 

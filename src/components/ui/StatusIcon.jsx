@@ -1,4 +1,4 @@
-import ToolTip from 'ui/ToolTip';
+import ToolTip from '@ui/ToolTip';
 import './StatusIcon.scss';
 
 const getStatus = playerState => {

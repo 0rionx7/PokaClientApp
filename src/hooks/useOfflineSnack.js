@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
-import useOnlineStatus from 'hooks/useOnlineStatus';
-import useSnackBar from 'hooks/useSnackBar';
+import useOnlineStatus from '@hooks/useOnlineStatus';
+import useSnackBar from '@hooks/useSnackBar';
 
 const useOfflineSnack = () => {
   const isOnline = useOnlineStatus();

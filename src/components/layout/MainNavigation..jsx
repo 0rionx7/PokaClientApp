@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectUserName } from 'account/slice/accountSlice';
-import AccountloggedInMenu from 'layout/AccountLogedIn';
+import { selectUserName } from '@account/slice/accountSlice';
+import AccountloggedInMenu from '@layout/AccountLogedIn';
 import { accountSvg } from 'assets/svgs/various';
 import './MainNavigation.scss';
 

@@ -5,12 +5,12 @@ import {
   useGetChineseStateQuery,
   useGetChineseRequestsQuery,
   useStartChineseGameMutation,
-} from 'chinese/api/chineseApi';
-import ListedPlayers from 'chinese/components/dealer/ListedPlayers';
-import Overlay from 'ui/Overlay';
-import Button from 'ui/Button';
+} from '@chinese/api/chineseApi';
+import ListedPlayers from '@chinese/components/dealer/ListedPlayers';
+import Overlay from '@ui/Overlay';
+import Button from '@ui/Button';
 import './DealerScreen.scss';
-import { isSitting } from 'utils/utilities-functions';
+import { isSitting } from '@utils/utilities-functions';
 
 const DealerScreen = () => {
   const { gameId } = useParams();

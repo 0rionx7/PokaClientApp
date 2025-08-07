@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import { createChipStyle } from 'poka/utils/createChipStyle';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { createChipStyle } from '@poka/utils/createChipStyle';
 import './Chip.scss';
 
 const Chip = ({ multiplier, index, startIndex }) => {
@@ -18,10 +18,7 @@ const Chip = ({ multiplier, index, startIndex }) => {
 
   return (
     <div className="chip" style={style}>
-      <img
-        src={`${import.meta.env.VITE_IMAGE_URL}/assets/chips/${color}.png`}
-        alt="chip"
-      />
+      <img src={`/chips/${color}.png`} alt="chip" />
       <span style={{ bottom: '.6rem' }}>{displayValue}</span>
     </div>
   );

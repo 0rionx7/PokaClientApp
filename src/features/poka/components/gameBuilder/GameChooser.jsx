@@ -1,9 +1,9 @@
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setCurrentChoosenGame } from 'poka/slice/pokaStateSlice';
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import { builderDefaults, gameNames, gameConfigs } from 'poka/utils/games';
+import { setCurrentChoosenGame } from '@poka/slice/pokaStateSlice';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import { builderDefaults, gameNames, gameConfigs } from '@poka/utils/games';
 
 const startingCards = [2, 3, 4, 5, 6, 7];
 

@@ -9,27 +9,27 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import '@styles/index.scss';
 import reportWebVitals from './reportWebVitals';
-import SubscriptionOptions from 'account/components/subscription/SubscriptionOptions';
-import SuccessfulPayment from 'account/components/subscription/SuccessfulPayment';
-import FailedPayment from 'account/components/subscription/FailedPayment';
-import AccountDetails from 'account/components/AccountDetails';
-import ResetPassword from 'account/components/ResetPassword';
+import SubscriptionOptions from '@account/components/subscription/SubscriptionOptions';
+import SuccessfulPayment from '@account/components/subscription/SuccessfulPayment';
+import FailedPayment from '@account/components/subscription/FailedPayment';
+import ChineseSaloon from '@chinese/components/saloon/ChineseSaloon';
+import AccountDetails from '@account/components/AccountDetails';
+import ResetPassword from '@account/components/ResetPassword';
+import ChineseRoom from '@chinese/components/ChineseRoom';
 import Instructions from './pages/Instructions';
-import Account from 'account/components/Account';
-import Saloon from 'poka/Saloon';
-import Register from 'account/components/Register';
+import Account from '@account/components/Account';
+import Saloon from '@poka/Saloon';
+import Register from '@account/components/Register';
 import Welcome from './pages/Welcome';
-import Forgot from 'account/components/Forgot';
-import Login from 'account/components/Login';
-import Room from 'poka/Room';
-import Layout from 'layout/Layout';
-import RouteGuard from './utils/route-guard';
+import Forgot from '@account/components/Forgot';
+import Login from '@account/components/Login';
+import Room from '@poka/Room';
+import Layout from '@layout/Layout';
+import RouteGuard from '@utils/route-guard';
 import { store } from './store/store';
 import App from './App';
-import ChineseRoom from 'chinese/components/ChineseRoom';
-import ChineseSaloon from 'chinese/components/saloon/ChineseSaloon';
+import '@styles/index.scss';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

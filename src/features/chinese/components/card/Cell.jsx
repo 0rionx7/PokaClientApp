@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useDrop } from 'react-dnd';
 
-import { moveCard } from 'chinese/slice/chineseStateSlice';
+import { moveCard } from '@chinese/slice/chineseStateSlice';
 
 const Cell = ({ index, place, owner }) => {
   const dispatch = useDispatch();

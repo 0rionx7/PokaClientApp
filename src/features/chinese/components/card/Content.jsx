@@ -1,5 +1,5 @@
-import ContentItem from 'chinese/components/card/ContentItem';
-import Figure from 'chinese/components/card/Figure';
+import ContentItem from '@chinese/components/card/ContentItem';
+import Figure from '@chinese/components/card/Figure';
 import './Content.scss';
 
 const Content = ({ card }) => {

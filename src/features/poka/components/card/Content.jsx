@@ -1,5 +1,5 @@
-import ContentItem from 'poka/components/card/ContentItem';
-import Figure from 'poka/components/card/Figure';
+import ContentItem from '@poka/components/card/ContentItem';
+import Figure from '@poka/components/card/Figure';
 import './Content.scss';
 
 const Content = ({ card }) => {

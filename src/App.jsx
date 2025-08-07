@@ -5,11 +5,11 @@ import { useSelector } from 'react-redux';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import { useReconnectedLoginMutation } from 'account/api/accountApi';
-import { selectToken } from 'account/slice/accountSlice';
-import useRequestResult from 'hooks/useRequestResult';
-import useOfflineSnack from 'hooks/useOfflineSnack';
-import { socket } from 'poka/api/pokaApi';
+import { useReconnectedLoginMutation } from '@account/api/accountApi';
+import { selectToken } from '@account/slice/accountSlice';
+import useRequestResult from '@hooks/useRequestResult';
+import useOfflineSnack from '@hooks/useOfflineSnack';
+import { socket } from '@poka/api/pokaApi';
 
 function App() {
   const token = useSelector(selectToken);

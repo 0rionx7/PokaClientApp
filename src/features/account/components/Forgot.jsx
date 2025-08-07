@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { useForgotPasswordMutation } from 'account/api/accountApi';
-import useSnackBar from 'hooks/useSnackBar';
-import Button from 'ui/Button';
-import Frame from 'ui/Frame';
+import { useForgotPasswordMutation } from '@account/api/accountApi';
+import useSnackBar from '@hooks/useSnackBar';
+import Button from '@ui/Button';
+import Frame from '@ui/Frame';
 import './Forgot.scss';
 
 const Forgot = () => {

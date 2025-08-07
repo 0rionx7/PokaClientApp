@@ -1,6 +1,6 @@
-import { setLocalPlayerState } from 'chinese/slice/chineseStateSlice';
-import { baseUrl, pokaApi, socket } from 'poka/api/pokaApi';
-import { playerEntry } from 'utils/utilities-functions';
+import { setLocalPlayerState } from '@chinese/slice/chineseStateSlice';
+import { baseUrl, pokaApi, socket } from '@poka/api/pokaApi';
+import { playerEntry } from '@utils/utilities-functions';
 
 export const chineseApi = pokaApi.injectEndpoints({
   endpoints: build => ({

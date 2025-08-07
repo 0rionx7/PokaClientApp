@@ -3,10 +3,10 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetChineseStateQuery } from 'chinese/api/chineseApi';
-import { selectBoardCards } from 'chinese/slice/chineseStateSlice';
-import { selectUserName } from 'account/slice/accountSlice';
-import { isSitting } from 'utils/utilities-functions';
+import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
+import { selectBoardCards } from '@chinese/slice/chineseStateSlice';
+import { selectUserName } from '@account/slice/accountSlice';
+import { isSitting } from '@utils/utilities-functions';
 import './Board.scss';
 
 import RenderItem from './RenderItem';

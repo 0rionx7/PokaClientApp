@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import io from 'socket.io-client';
 
-import { playerEntry, updateAll } from 'utils/utilities-functions';
-import { setHandCards, setTableCards } from 'poka/slice/pokaStateSlice';
+import { playerEntry, updateAll } from '@utils/utilities-functions';
+import { setHandCards, setTableCards } from '@poka/slice/pokaStateSlice';
 
 export const baseUrl = import.meta.env.VITE_FRONTEND_URL;
 export const socket = io(baseUrl, { transports: ['websocket'] });

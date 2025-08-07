@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 
-import { useGetChineseTablesQuery } from 'chinese/api/chineseApi';
-import { useGetUserQuery } from 'account/api/accountApi';
+import { useGetChineseTablesQuery } from '@chinese/api/chineseApi';
+import { useGetUserQuery } from '@account/api/accountApi';
 import AvailableTable from './AvailableTable';
 
 const AvailableTables = () => {

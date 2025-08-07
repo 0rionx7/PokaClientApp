@@ -4,10 +4,10 @@ import {
   useGetPokaStateQuery,
   useJoinTableMutation,
   useRejectRequestMutation,
-} from 'poka/api/pokaApi';
-import StatusIcon from 'ui/StatusIcon';
-import ToolTip from 'ui/ToolTip';
-import useSnackBar from 'hooks/useSnackBar';
+} from '@poka/api/pokaApi';
+import StatusIcon from '@ui/StatusIcon';
+import ToolTip from '@ui/ToolTip';
+import useSnackBar from '@hooks/useSnackBar';
 
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();

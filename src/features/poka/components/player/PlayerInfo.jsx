@@ -1,7 +1,7 @@
-import DeniedCards from 'poka/components/player/DeniedCards';
-import StatusInfo from 'poka/components/player/StatusInfo';
-import ToolTip from 'ui/ToolTip';
-import useTimerBar from 'poka/hooks/useTimerBar';
+import DeniedCards from '@poka/components/player/DeniedCards';
+import StatusInfo from '@poka/components/player/StatusInfo';
+import ToolTip from '@ui/ToolTip';
+import useTimerBar from '@poka/hooks/useTimerBar';
 import './PlayerInfo.scss';
 
 const PlayerInfo = ({ playerState }) => {

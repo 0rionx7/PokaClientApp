@@ -1,8 +1,8 @@
 import { memo } from 'react';
 
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import { winningOrder } from 'utils/text-constants';
-import Radio from 'ui/Radio';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import { winningOrder } from '@utils/text-constants';
+import Radio from '@ui/Radio';
 
 const winningOrders = Object.values(winningOrder);
 

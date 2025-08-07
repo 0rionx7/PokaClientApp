@@ -1,6 +1,6 @@
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import Radio from 'ui/Radio';
-import { gameNames } from 'poka/utils/games';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import Radio from '@ui/Radio';
+import { gameNames } from '@poka/utils/games';
 
 const CardsCount = ({ name }) => {
   const { values, setFieldValue } = useGameBuilderContext();

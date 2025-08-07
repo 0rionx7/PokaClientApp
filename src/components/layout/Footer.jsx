@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router';
 
-import { useLogOutAllMutation } from 'poka/api/pokaApi';
-import { useLoginMutation } from 'account/api/accountApi';
-import Button from 'ui/Button';
+import { useLogOutAllMutation } from '@poka/api/pokaApi';
+import { useLoginMutation } from '@account/api/accountApi';
+import Button from '@ui/Button';
 import { NavLink } from 'react-router-dom';
 
 const Footer = () => {

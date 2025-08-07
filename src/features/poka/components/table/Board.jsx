@@ -1,10 +1,10 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import BoardRow from 'poka/components/table/BoardRow';
-import Kaves from 'poka/components/table/Kaves';
-import { gameConfigs, gameNames } from 'poka/utils/games';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import BoardRow from '@poka/components/table/BoardRow';
+import Kaves from '@poka/components/table/Kaves';
+import { gameConfigs, gameNames } from '@poka/utils/games';
 import './Board.scss';
 
 const Board = () => {

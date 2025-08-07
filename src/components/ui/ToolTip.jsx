@@ -1,4 +1,4 @@
-import { selectHideInfo } from 'account/slice/accountSlice';
+import { selectHideInfo } from '@account/slice/accountSlice';
 import { useSelector } from 'react-redux';
 
 const ToolTip = ({ info, children }) => {

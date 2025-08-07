@@ -1,9 +1,9 @@
 import { useActionState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useRegisterMutation } from 'account/api/accountApi';
-import Button from 'ui/Button';
-import Frame from 'ui/Frame';
+import { useRegisterMutation } from '@account/api/accountApi';
+import Button from '@ui/Button';
+import Frame from '@ui/Frame';
 
 const Register = () => {
   const [formState, formAction, isPending] = useActionState(registerAction, {

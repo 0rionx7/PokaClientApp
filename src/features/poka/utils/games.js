@@ -4,7 +4,7 @@ import {
   speakingOrder,
   tablos,
   winningOrder,
-} from '../../../utils/text-constants.js';
+} from '@utils/text-constants.js';
 
 export const gameNames = Object.freeze({
   POKER: 'ΠΟΚΕΡ',

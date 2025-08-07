@@ -1,6 +1,6 @@
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import { dealingType, infoText } from 'utils/text-constants';
-import Radio from 'ui/Radio';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import { dealingType, infoText } from '@utils/text-constants';
+import Radio from '@ui/Radio';
 
 const Dilemma = ({ name, options, setDeny }) => {
   const { values, setFieldValue } = useGameBuilderContext();

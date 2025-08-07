@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 
 const PlayHandCards = () => {
   const { gameId } = useParams();

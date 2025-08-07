@@ -2,15 +2,15 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import { selectUserName } from 'account/slice/accountSlice';
-import { playerEntry } from 'utils/utilities-functions';
-import JokerSelect from 'poka/components/action/JokerSelect';
-import DenyAccept from 'poka/components/action/DenyAccept';
-import Bet from 'poka/components/action/Bet';
-import Swap from 'poka/components/action/Swap';
-import Submit from 'poka/components/action/Submit';
-import Discard from 'poka/components/action/Discard';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { selectUserName } from '@account/slice/accountSlice';
+import { playerEntry } from '@utils/utilities-functions';
+import JokerSelect from '@poka/components/action/JokerSelect';
+import DenyAccept from '@poka/components/action/DenyAccept';
+import Bet from '@poka/components/action/Bet';
+import Swap from '@poka/components/action/Swap';
+import Submit from '@poka/components/action/Submit';
+import Discard from '@poka/components/action/Discard';
 
 const Play = () => {
   const { gameId } = useParams();

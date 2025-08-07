@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useSitDownMutation } from 'poka/api/pokaApi';
-import useSnackBar from 'hooks/useSnackBar';
-import Overlay from 'ui/Overlay';
-import Button from 'ui/Button';
+import { useSitDownMutation } from '@poka/api/pokaApi';
+import useSnackBar from '@hooks/useSnackBar';
+import Overlay from '@ui/Overlay';
+import Button from '@ui/Button';
 import './StayLeave.scss';
 
 const StayLeave = () => {

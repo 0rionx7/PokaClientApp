@@ -1,4 +1,4 @@
-import ListedPlayer from 'chinese/components/dealer/ListedPlayer';
+import ListedPlayer from '@chinese/components/dealer/ListedPlayer';
 
 const ListedPlayers = ({ playerStates, title }) => {
   return (

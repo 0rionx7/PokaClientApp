@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import DealingOptions from 'poka/components/gameBuilder/DealingOptions';
-import { builderRowTitle, dealingType } from 'utils/text-constants';
-import BuilderRow from 'poka/components/gameBuilder/BuilderRow';
-import Dilemma from 'poka/components/gameBuilder/Dilemma';
+import DealingOptions from '@poka/components/gameBuilder/DealingOptions';
+import { builderRowTitle, dealingType } from '@utils/text-constants';
+import BuilderRow from '@poka/components/gameBuilder/BuilderRow';
+import Dilemma from '@poka/components/gameBuilder/Dilemma';
 
 const Dealing = () => {
   const [deny, setDeny] = useState(false);

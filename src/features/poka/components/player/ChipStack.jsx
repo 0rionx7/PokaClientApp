@@ -1,8 +1,8 @@
 import { memo, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import { createChipStack } from 'poka/utils/createChipStack';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { createChipStack } from '@poka/utils/createChipStack';
 
 const ChipStack = ({ playerState, chipsPosition }) => {
   const { gameId } = useParams();

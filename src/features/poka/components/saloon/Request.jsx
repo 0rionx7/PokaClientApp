@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useCancelRequestMutation } from 'account/api/accountApi';
-import { useSitDownMutation } from 'poka/api/pokaApi';
-import ToolTip from 'ui/ToolTip';
-import useSnackBar from 'hooks/useSnackBar';
+import { useCancelRequestMutation } from '@account/api/accountApi';
+import { useSitDownMutation } from '@poka/api/pokaApi';
+import ToolTip from '@ui/ToolTip';
+import useSnackBar from '@hooks/useSnackBar';
 import './Requests.scss';
 
 const Request = ({ tableInfo }) => {

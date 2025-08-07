@@ -2,27 +2,27 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 
-import { builderRowTitle, speakingOrder, tablos } from 'utils/text-constants';
+import { builderRowTitle, speakingOrder, tablos } from '@utils/text-constants';
 import {
   useGetPokaStateQuery,
   useSetGameVariantMutation,
-} from 'poka/api/pokaApi';
-import { isSitting } from 'utils/utilities-functions';
-import { useActionContainerNode } from 'poka/utils/ActionContainerContext';
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import BuilderRow from 'poka/components/gameBuilder/BuilderRow';
-import GameChooser from 'poka/components/gameBuilder/GameChooser';
-import WinningOrder from 'poka/components/gameBuilder/WinningOrder';
-import Dilemma from 'poka/components/gameBuilder/Dilemma';
-import HandCardsInPlay from 'poka/components/gameBuilder/HandCardsInPlay';
-import FaceDown from 'poka/components/gameBuilder/FaceDown';
-import CardsCount from 'poka/components/gameBuilder/CardsCount';
-import Extra from 'poka/components/gameBuilder/Extra';
-import Options from 'poka/components/gameBuilder/Options';
-import Dealing from 'poka/components/gameBuilder/Dealing';
-import useSnackBar from 'hooks/useSnackBar';
-import Button from 'ui/Button';
-import Frame from 'ui/Frame';
+} from '@poka/api/pokaApi';
+import { isSitting } from '@utils/utilities-functions';
+import { useActionContainerNode } from '@poka/utils/ActionContainerContext';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import BuilderRow from '@poka/components/gameBuilder/BuilderRow';
+import GameChooser from '@poka/components/gameBuilder/GameChooser';
+import WinningOrder from '@poka/components/gameBuilder/WinningOrder';
+import Dilemma from '@poka/components/gameBuilder/Dilemma';
+import HandCardsInPlay from '@poka/components/gameBuilder/HandCardsInPlay';
+import FaceDown from '@poka/components/gameBuilder/FaceDown';
+import CardsCount from '@poka/components/gameBuilder/CardsCount';
+import Extra from '@poka/components/gameBuilder/Extra';
+import Options from '@poka/components/gameBuilder/Options';
+import Dealing from '@poka/components/gameBuilder/Dealing';
+import useSnackBar from '@hooks/useSnackBar';
+import Button from '@ui/Button';
+import Frame from '@ui/Frame';
 import './GameBuilder.scss';
 
 const GameBuilder = memo(() => {

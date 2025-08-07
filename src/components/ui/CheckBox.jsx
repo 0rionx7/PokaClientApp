@@ -1,4 +1,4 @@
-import ToolTip from 'ui/ToolTip';
+import ToolTip from '@ui/ToolTip';
 import './CheckBox.scss';
 
 const CheckBox = ({ label, style, className, info, ...rest }) => {

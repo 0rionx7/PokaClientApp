@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import { infoText } from 'utils/text-constants';
-import CheckBox from 'ui/CheckBox';
-import Radio from 'ui/Radio';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import { infoText } from '@utils/text-constants';
+import CheckBox from '@ui/CheckBox';
+import Radio from '@ui/Radio';
 
 const Options = () => {
   const { values, setFieldValue } = useGameBuilderContext();

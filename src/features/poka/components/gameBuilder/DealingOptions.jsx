@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import { dealingType, infoText } from 'utils/text-constants';
-import NumericInput from 'ui/NumericInput';
-import CheckBox from 'ui/CheckBox';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import { dealingType, infoText } from '@utils/text-constants';
+import NumericInput from '@ui/NumericInput';
+import CheckBox from '@ui/CheckBox';
 
 const DealingOptions = ({ deny, setDeny }) => {
   const { values, setFieldValue } = useGameBuilderContext();

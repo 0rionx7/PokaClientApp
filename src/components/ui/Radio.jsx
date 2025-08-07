@@ -1,4 +1,4 @@
-import ToolTip from 'ui/ToolTip';
+import ToolTip from '@ui/ToolTip';
 
 const Radio = ({ label, info, ...rest }) => {
   return (

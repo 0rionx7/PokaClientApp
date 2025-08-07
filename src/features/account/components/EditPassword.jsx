@@ -1,8 +1,8 @@
 import { useState, useActionState, useEffect } from 'react';
 
-import { useChangePasswordMutation } from 'account/api/accountApi';
+import { useChangePasswordMutation } from '@account/api/accountApi';
 import { editSvg } from 'assets/svgs/various';
-import Button from 'ui/Button';
+import Button from '@ui/Button';
 import classes from './UserName.module.scss';
 
 const initialValues = {

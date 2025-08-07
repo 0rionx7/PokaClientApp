@@ -1,4 +1,4 @@
-import ListedPlayer from 'poka/components/dealer/ListedPlayer';
+import ListedPlayer from '@poka/components/dealer/ListedPlayer';
 import './ListedPlayers.scss';
 
 const ListedPlayers = ({ playerStates, title }) => {

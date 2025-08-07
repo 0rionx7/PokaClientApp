@@ -2,11 +2,11 @@ import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from 'poka/api/pokaApi';
-import { selectTablecards } from 'poka/slice/pokaStateSlice';
-import { selectUserName } from 'account/slice/accountSlice';
-import { playerEntry } from 'utils/utilities-functions';
-import Card from 'poka/components/card/Card';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { selectTablecards } from '@poka/slice/pokaStateSlice';
+import { selectUserName } from '@account/slice/accountSlice';
+import { playerEntry } from '@utils/utilities-functions';
+import Card from '@poka/components/card/Card';
 
 const BoardCard = ({ index }) => {
   const tableCards = useSelector(selectTablecards);

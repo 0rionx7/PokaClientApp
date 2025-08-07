@@ -1,8 +1,8 @@
 import { memo } from 'react';
 
-import { useGameBuilderContext } from 'poka/components/gameBuilder/useGameBuilderContext';
-import { getNameAndLabel } from 'utils/text-functions';
-import CheckBox from 'ui/CheckBox';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
+import { getNameAndLabel } from '@utils/text-functions';
+import CheckBox from '@ui/CheckBox';
 
 const Extra = memo(() => {
   const { values, setFieldValue } = useGameBuilderContext();

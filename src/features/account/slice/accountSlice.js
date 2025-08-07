@@ -1,6 +1,6 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
-import { accountApi } from 'account/api/accountApi';
+import { accountApi } from '@account/api/accountApi';
 
 const initialStateFn = () => {
   const initialState = {

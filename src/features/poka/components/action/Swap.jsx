@@ -2,11 +2,11 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { cardSelected, selectedCardIndexes } from 'utils/utilities-functions';
-import { selectHandcards } from 'poka/slice/pokaStateSlice';
-import { useSelectCardsMutation } from 'poka/api/pokaApi';
-import useSnackBar from 'hooks/useSnackBar';
-import Button from 'ui/Button';
+import { cardSelected, selectedCardIndexes } from '@utils/utilities-functions';
+import { selectHandcards } from '@poka/slice/pokaStateSlice';
+import { useSelectCardsMutation } from '@poka/api/pokaApi';
+import useSnackBar from '@hooks/useSnackBar';
+import Button from '@ui/Button';
 
 const getCardLabel = count => `ΧΑΡΤΙ${count !== 1 ? 'Α' : ''}`;
 

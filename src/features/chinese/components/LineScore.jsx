@@ -1,4 +1,4 @@
-import { colorClass } from 'utils/utilities-functions';
+import { colorClass } from '@utils/utilities-functions';
 
 const LineScore = ({ lineScore, royalties, index }) => {
   const classColor = colorClass(lineScore);

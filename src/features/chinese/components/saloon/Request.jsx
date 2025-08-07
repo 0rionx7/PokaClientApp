@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { useSitDownChineseMutation } from 'chinese/api/chineseApi';
-import { useCancelRequestChineseMutation } from 'account/api/accountApi';
-import useSnackBar from 'hooks/useSnackBar';
-import ToolTip from 'ui/ToolTip';
+import { useSitDownChineseMutation } from '@chinese/api/chineseApi';
+import { useCancelRequestChineseMutation } from '@account/api/accountApi';
+import useSnackBar from '@hooks/useSnackBar';
+import ToolTip from '@ui/ToolTip';
 
 const Request = ({ tableInfo }) => {
   const [sitDown, { isSuccess, isLoading }] = useSitDownChineseMutation();

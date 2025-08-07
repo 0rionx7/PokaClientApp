@@ -1,4 +1,4 @@
-import Chip from 'poka/components/table/Chip';
+import Chip from '@poka/components/table/Chip';
 
 function createChipJsx(count, multiplier, startIndex) {
   return Array(count)

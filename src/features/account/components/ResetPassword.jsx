@@ -1,10 +1,10 @@
 import { useActionState, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { useChangePasswordMutation } from 'account/api/accountApi';
-import useLoginOnConnect from 'hooks/useLoginOnConnect';
-import Button from 'ui/Button';
-import Frame from 'ui/Frame';
+import { useChangePasswordMutation } from '@account/api/accountApi';
+import useLoginOnConnect from '@hooks/useLoginOnConnect';
+import Button from '@ui/Button';
+import Frame from '@ui/Frame';
 
 const ResetPassword = () => {
   const [changePassword, { isLoading, isSuccess }] =

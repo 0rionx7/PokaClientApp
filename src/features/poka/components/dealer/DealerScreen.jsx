@@ -3,12 +3,12 @@ import { useParams } from 'react-router-dom';
 import {
   useGetPokaStateQuery,
   useGetPokaRequestsQuery,
-} from 'poka/api/pokaApi';
-import GameBuilder from 'poka/components/gameBuilder/GameBuilder';
-import ListedPlayers from 'poka/components/dealer/ListedPlayers';
-import Overlay from 'ui/Overlay';
+} from '@poka/api/pokaApi';
+import GameBuilder from '@poka/components/gameBuilder/GameBuilder';
+import ListedPlayers from '@poka/components/dealer/ListedPlayers';
+import Overlay from '@ui/Overlay';
 import './DealerScreen.scss';
-import GameBuilderContextProvider from 'poka/components/gameBuilder/useGameBuilderContext';
+import GameBuilderContextProvider from '@poka/components/gameBuilder/useGameBuilderContext';
 
 const DealerScreen = () => {
   const { gameId } = useParams();

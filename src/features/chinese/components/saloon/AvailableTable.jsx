@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useSitDownChineseMutation } from 'chinese/api/chineseApi';
+import { useSitDownChineseMutation } from '@chinese/api/chineseApi';
 import {
   useGetUserQuery,
   useRequestJoinChineseMutation,
-} from 'account/api/accountApi';
-import { createTableTitleJsx } from 'utils/text-functions';
-import ToolTip from 'ui/ToolTip';
-import useSnackBar from 'hooks/useSnackBar';
+} from '@account/api/accountApi';
+import { createTableTitleJsx } from '@utils/text-functions';
+import ToolTip from '@ui/ToolTip';
+import useSnackBar from '@hooks/useSnackBar';
 
 const AvailableTable = ({ tableInfo }) => {
   const [requestJoin, { isLoading }] = useRequestJoinChineseMutation();

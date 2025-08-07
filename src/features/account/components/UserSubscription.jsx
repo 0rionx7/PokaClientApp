@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
-import { useGetUserQuery } from 'account/api/accountApi';
-import Button from 'ui/Button';
+import { useGetUserQuery } from '@account/api/accountApi';
+import Button from '@ui/Button';
 import classes from './UserName.module.scss';
 
 const UserSubscription = () => {

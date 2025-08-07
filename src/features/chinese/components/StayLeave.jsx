@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useSitDownChineseMutation } from 'chinese/api/chineseApi';
-import useSnackBar from 'hooks/useSnackBar';
-import Overlay from 'ui/Overlay';
-import Button from 'ui/Button';
+import { useSitDownChineseMutation } from '@chinese/api/chineseApi';
+import useSnackBar from '@hooks/useSnackBar';
+import Overlay from '@ui/Overlay';
+import Button from '@ui/Button';
 
 const StayLeave = () => {
   const { gameId } = useParams();

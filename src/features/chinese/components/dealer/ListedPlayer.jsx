@@ -4,10 +4,10 @@ import {
   useGetChineseStateQuery,
   useJoinChineseTableMutation,
   useRejectChineseRequestMutation,
-} from 'chinese/api/chineseApi';
-import StatusIcon from 'ui/StatusIcon';
-import ToolTip from 'ui/ToolTip';
-import useSnackBar from 'hooks/useSnackBar';
+} from '@chinese/api/chineseApi';
+import StatusIcon from '@ui/StatusIcon';
+import ToolTip from '@ui/ToolTip';
+import useSnackBar from '@hooks/useSnackBar';
 
 const ListedPlayer = ({ playerState, clickable }) => {
   const { gameId } = useParams();

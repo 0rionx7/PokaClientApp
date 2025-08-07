@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router';
 
-import { useRestartGameMutation } from 'poka/api/pokaApi';
-import { createTableTitleJsx } from 'utils/text-functions';
-import useSnackBar from 'hooks/useSnackBar';
+import { useRestartGameMutation } from '@poka/api/pokaApi';
+import { createTableTitleJsx } from '@utils/text-functions';
+import useSnackBar from '@hooks/useSnackBar';
 import classes from './Account.module.scss';
 
 const LastGame = ({ savedGame }) => {
