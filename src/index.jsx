@@ -9,7 +9,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 
-import 'styles/index.scss';
+import '@styles/index.scss';
 import reportWebVitals from './reportWebVitals';
 import SubscriptionOptions from 'account/components/subscription/SubscriptionOptions';
 import SuccessfulPayment from 'account/components/subscription/SuccessfulPayment';

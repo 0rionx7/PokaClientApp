@@ -2,19 +2,19 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "App/*": ["./App/*"],
-      "assets/*": ["./public/assets/*"],
-      "components/*": ["./src/components/*"],
-      "poka/*": ["./src/features/poka/*"],
-      "chinese/*": ["./src/features/chinese/*"],
-      "account/*": ["./src/features/account/*"],
-      "ui/*": ["./src/components/ui/*"],
-      "layout/*": ["./src/components/layout/*"],
-      "styles/*": ["./src/styles/*"],
-      "hooks/*": ["./src/hooks/*"],
-      "pages/*": ["./src/pages/*"],
-      "store/*": ["./src/store/*"],
-      "utils/*": ["./src/utils/*"]
+      "assets/*": ["public/assets/*"],
+      "components/*": ["src/components/*"],
+      "poka/*": ["src/features/poka/*"],
+      "chinese/*": ["src/features/chinese/*"],
+      "account/*": ["src/features/account/*"],
+      "ui/*": ["src/components/ui/*"],
+      "layout/*": ["src/components/layout/*"],
+      "@styles/*": ["src/styles/*"],
+      "styles/*": ["src/styles/*"],
+      "hooks/*": ["src/hooks/*"],
+      "pages/*": ["src/pages/*"],
+      "store/*": ["src/store/*"],
+      "utils/*": ["src/utils/*"]
     }
   },
   "include": ["src", "vitest.config.ts"]
