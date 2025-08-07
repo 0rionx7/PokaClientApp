@@ -12,7 +12,8 @@
       "@layout/*": ["src/components/layout/*"],
       "@hooks/*": ["src/hooks/*"],
       "@pages/*": ["src/pages/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@icons/*": ["src/assets/icons/*"]
     }
   },
   "include": ["src", "vitest.config.ts"]

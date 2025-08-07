@@ -1,4 +1,4 @@
-import { aceOfSpades } from 'assets/svgs/figures';
+import aceOfSpades from '@icons/aceOfSpades.svg';
 import { suits } from 'assets/svgs/suits';
 import './Card.scss';
 
@@ -9,7 +9,7 @@ const ContentItem = ({ card, i }) => {
         suits[card.suit]
       ) : (
         <div className="ace-of-spades">
-          {aceOfSpades}
+          <img src={aceOfSpades} alt={'aceOfSpades'} />
           <div className="card-logo">{import.meta.env.VITE_DOMAIN_NAME}</div>
         </div>
       )}
