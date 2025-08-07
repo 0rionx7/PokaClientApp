@@ -5,7 +5,7 @@ import { useGetChineseStateQuery } from 'features/chinese/chineseApi';
 import { selectUserName } from 'features/account/accountSlice';
 import { fantasySvg, foulSvg } from 'assets/svgs/various';
 import { isSitting } from 'utils/utilities-functions';
-import usePlayerStyle from 'hooks/usePlayerStyle';
+import usePlayerStyle from 'features/poka/hooks/usePlayerStyle';
 import PlayerRibbon from 'componentsChinese/PlayerRibbon';
 import RoundScore from 'componentsChinese/RoundScore';
 import LinesScore from 'componentsChinese/LinesScore';

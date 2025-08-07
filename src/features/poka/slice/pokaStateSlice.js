@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { revealCard, unselectAll } from 'utils/utilities-functions';
 import { pokaApi } from 'features/poka/pokaApi';
-import { gameNames } from 'utils/games';
+import { gameNames } from 'features/poka/utils/games';
 
 export const pokaStateSlice = createSlice({
   name: 'pokaState',

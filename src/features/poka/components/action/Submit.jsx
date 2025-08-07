@@ -11,7 +11,7 @@ import { describeHand } from 'utils/text-functions';
 import useSnackBar from 'hooks/useSnackBar';
 import Overlay from 'components/ui/Overlay';
 import Button from 'components/ui/Button';
-import { gameNames } from 'utils/games';
+import { gameNames } from 'features/poka/utils/games';
 import {
   selectHandcards,
   selectTablecards,

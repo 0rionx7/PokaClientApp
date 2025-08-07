@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { createChipStack } from 'utils/createChipStack';
+import { createChipStack } from 'features/poka/utils/createChipStack';
 import { infoText } from 'utils/text-constants';
 import ToolTip from 'components/ui/ToolTip';
 import Kava from 'components/table/Kava';

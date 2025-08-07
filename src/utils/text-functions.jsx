@@ -1,4 +1,4 @@
-import { gameNames } from 'utils/games';
+import { gameNames } from 'features/poka/utils/games';
 import {
   primaryCardNames,
   secondaryCardNames,

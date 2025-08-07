@@ -3,7 +3,11 @@ import { useDispatch } from 'react-redux';
 
 import { setCurrentChoosenGame } from 'features/poka/pokaStateSlice';
 import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
-import { builderDefaults, gameNames, gameConfigs } from 'utils/games';
+import {
+  builderDefaults,
+  gameNames,
+  gameConfigs,
+} from 'features/poka/utils/games';
 
 const startingCards = [2, 3, 4, 5, 6, 7];
 

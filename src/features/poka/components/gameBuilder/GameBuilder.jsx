@@ -8,7 +8,7 @@ import {
   useSetGameVariantMutation,
 } from 'features/poka/pokaApi';
 import { isSitting } from 'utils/utilities-functions';
-import { useActionContainerNode } from 'utils/ActionContainerContext';
+import { useActionContainerNode } from 'features/poka/utils/ActionContainerContext';
 import { useGameBuilderContext } from 'components/gameBuilder/useGameBuilderContext';
 import BuilderRow from 'components/gameBuilder/BuilderRow';
 import GameChooser from 'components/gameBuilder/GameChooser';

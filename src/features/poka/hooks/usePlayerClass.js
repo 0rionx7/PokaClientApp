@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { selectUserName } from 'features/account/accountSlice';
-import { getPossitionClass } from 'utils/createPlayerClass';
+import { getPossitionClass } from 'features/poka/utils/createPlayerClass';
 import { playerEntry } from 'utils/utilities-functions';
-import { getChipsPosition } from 'utils/getChipsPosition';
+import { getChipsPosition } from 'features/poka/utils/getChipsPosition';
 
 const usePlayerClass = index => {
   const hostPlayerName = useSelector(selectUserName);

@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from 'features/poka/pokaApi';
-import { createChipStyle } from 'utils/createChipStyle';
+import { createChipStyle } from 'features/poka/utils/createChipStyle';
 import './Chip.scss';
 
 const Chip = ({ multiplier, index, startIndex }) => {

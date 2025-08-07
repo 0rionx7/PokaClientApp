@@ -2,8 +2,8 @@ import { memo } from 'react';
 
 import PlayerInfo from 'components/player/PlayerInfo';
 import HandCards from 'components/player/HandCards';
-import useSitOutTimer from 'hooks/useSitOutTimer';
-import usePlayerClass from 'hooks/usePlayerClass';
+import useSitOutTimer from 'features/poka/hooks/useSitOutTimer';
+import usePlayerClass from 'features/poka/hooks/usePlayerClass';
 import './Player.scss';
 
 const Player = ({ playerState, index }) => {

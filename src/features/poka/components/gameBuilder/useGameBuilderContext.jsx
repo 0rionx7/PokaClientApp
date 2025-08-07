@@ -3,7 +3,7 @@ import { createContext, use, useCallback, useState } from 'react';
 import { useGetPokaStateQuery } from 'features/poka/pokaApi';
 import { useParams } from 'react-router-dom';
 
-import { initialGameDefaults } from 'utils/games';
+import { initialGameDefaults } from 'features/poka/utils/games';
 
 const GameBuilderContext = createContext({
   values: {},
