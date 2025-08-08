@@ -25,12 +25,10 @@
   right: 0;
   bottom: 0;
   z-index: 111;
-  svg {
-    width: 2rem;
-    height: 3rem;
-    fill: #d00303;
-    cursor: pointer;
-  }
+  width: 2rem;
+  height: 3rem;
+  fill: #d00303;
+  cursor: pointer;
   .tool-tip {
     right: 100%;
     bottom: 50%;

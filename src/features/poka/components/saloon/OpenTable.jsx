@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { useOpenPokaTableMutation } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
-import { clockwise, counterclockwise } from 'assets/svgs/various';
+import clockwise from '@icons/clockwise.svg';
 import { createCode } from '@utils/utilities-functions';
 import Reaction from '@poka/components/saloon/Reaction';
 import Button from '@ui/Button';
@@ -79,13 +79,19 @@ const OpenTable = () => {
             <div>Φορά μοιράσματος</div>
             <Radio
               name="rotation"
-              label={clockwise}
+              label={<img src={clockwise} alt="clockwise" />}
               value="clockwise"
               defaultChecked={true}
             />
             <Radio
               name="rotation"
-              label={counterclockwise}
+              label={
+                <img
+                  src={clockwise}
+                  alt="counterclockwise"
+                  style={{ transform: 'rotateY(180deg)' }}
+                />
+              }
               value="counterclockwise"
             />
           </div>

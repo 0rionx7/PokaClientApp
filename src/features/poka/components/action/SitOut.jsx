@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import { exitSvg } from 'assets/svgs/various';
+import exit from '@icons/exit.svg';
 import Button from '@ui/Button';
 import Overlay from '@ui/Overlay';
 import ToolTip from '@ui/ToolTip';
@@ -15,7 +15,7 @@ const SitOut = () => {
     <>
       <div className="sitout" onClick={() => setShowDiag(true)}>
         {!showDiag && <ToolTip info="Έξοδος" />}
-        {exitSvg}
+        <img src={exit} alt="exit" style={{ height: '3rem' }} />
       </div>
       {showDiag && (
         <Overlay style={{ zIndex: 200 }}>
