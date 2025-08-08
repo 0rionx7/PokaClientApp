@@ -23,11 +23,12 @@ const Card = ({ card, owner }) => {
         <div className="back-side" />
       </div>
     );
-  const classes = `card v-${card.value}`;
+
+  const className = `v-${card.value}`;
 
   return (
     <div
-      className={classes}
+      className={`card ${className}`}
       ref={drag}
       style={{ backgroundColor: isDragging ? '#5e7043' : undefined }}>
       <div
@@ -37,7 +38,7 @@ const Card = ({ card, owner }) => {
         <div className="suit">{suits[card.suit]}</div>
       </div>
       <div
-        className={'card-decoration v-' + card.value}
+        className={`card-decoration ${className}`}
         style={{ visibility: isDragging ? 'hidden' : 'visible' }}>
         <Content card={card} />
       </div>
