@@ -18,7 +18,7 @@ const Chip = ({ multiplier, index, startIndex }) => {
 
   return (
     <div className="chip" style={style}>
-      <img src={`/chips/${color}.png`} alt="chip" />
+      <img src={`/chipImages/${color}.png`} alt="chip" />
       <span style={{ bottom: '.6rem' }}>{displayValue}</span>
     </div>
   );

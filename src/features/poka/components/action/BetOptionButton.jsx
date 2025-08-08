@@ -5,7 +5,7 @@ const BetOptionButton = ({ amount, color, ...rest }) => {
   const prompt = (
     <div className="bet-options">
       {`+ ${displayValue.toLocaleString()}`}
-      <img src={`/chips/${color}.png`} alt="chip" />
+      <img src={`/chipImages/${color}.png`} alt="chip" />
     </div>
   );
 
