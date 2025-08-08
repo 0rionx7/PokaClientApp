@@ -26,6 +26,12 @@ const NextRound = () => {
     handCards.some(card => card.faceUp === false) &&
     data.playerStates.filter(isSitting).length > 1;
 
+  const prompt = isSuccess ? (
+    <h2>αναμονή υπολοίπων...</h2>
+  ) : (
+    <h2>Επόμενος γύρος</h2>
+  );
+
   return (
     <Overlay style={{ zIndex: 50, backgroundColor: 'rgb(0 0 0 / 4%)' }}>
       {showReveal && (
@@ -37,9 +43,7 @@ const NextRound = () => {
         />
       )}
       <Button
-        prompt={
-          isSuccess ? <h2>αναμονή υπολοίπων...</h2> : <h2>Επόμενος γύρος</h2>
-        }
+        prompt={prompt}
         onClick={() => nextRound(gameId)}
         disabled={isLoading || isSuccess}
         className="orange next-round"

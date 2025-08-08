@@ -42,6 +42,8 @@ const Table = () => {
     return () => socket.removeAllListeners('connect');
   }, [refetch]);
 
+  if (!data) return null;
+
   return (
     <div className={'table players-' + data.playerStates.length}>
       <div className="game-table">
