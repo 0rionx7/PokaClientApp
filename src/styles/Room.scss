@@ -2,7 +2,6 @@
 
 .room {
   display: grid;
-  place-self: center;
   grid-template:
     'table table' 1fr
     'ribbon ribbon' var(--ribbon-height);

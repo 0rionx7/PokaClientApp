@@ -6,13 +6,13 @@ import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
 import GameDescription from '@poka/components/info/GameDescription';
 import { useEmoji } from '@components/chat/EmojiProvider';
-import { collapseVertical } from 'assets/svgs/various';
 import { infoButton } from '@utils/text-constants';
 import Standings from '@poka/components/info/Standings';
 import Results from '@poka/components/info/Results';
 import GameInfo from '@poka/components/info/GameInfo';
 import ChatBox from '@components/chat/ChatBox';
 import Buttons from '@poka/components/info/Buttons';
+import toggle from '@icons/toggle.svg';
 import './Info.scss';
 
 const Info = ({ hideInfo, onToggleInfoPanel }) => {
@@ -43,7 +43,7 @@ const Info = ({ hideInfo, onToggleInfoPanel }) => {
         {selectedTab === infoButton.LAST_GAME_RESULTS && <Results />}
       </div>
       <div className="toggle-btn" onClick={handleToggleInfoPanel}>
-        {collapseVertical}
+        <img src={toggle} alt={'toggle'} />
       </div>
     </div>
   );
