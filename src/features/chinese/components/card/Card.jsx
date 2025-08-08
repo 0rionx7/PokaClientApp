@@ -1,7 +1,8 @@
 import { useDrag } from 'react-dnd';
 
-import { suits, symbols } from 'assets/svgs/suits';
+import { suits } from 'assets/svgs/suits';
 import Content from '@components/card/Content';
+import { symbols } from '@utils/text-constants';
 
 const Card = ({ card, owner }) => {
   const [{ isDragging }, drag] = useDrag(

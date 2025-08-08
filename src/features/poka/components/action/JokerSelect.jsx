@@ -6,7 +6,7 @@ import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectHandcards } from '@poka/slice/pokaStateSlice';
 import { orderNumber, suitName } from '@utils/text-constants';
 import JokerSubmit from '@poka/components/action/JokerSubmit';
-import { symbols } from 'assets/svgs/suits';
+import { symbols } from '@utils/text-constants';
 import Button from '@ui/Button';
 import Card from '@poka/components/card/Card';
 import './JokerSelect.scss';

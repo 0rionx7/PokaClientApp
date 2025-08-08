@@ -53,9 +53,3 @@ export const suits = {
   S: spade,
   D: diamond,
 };
-export const symbols = {
-  11: 'J',
-  12: 'Q',
-  13: 'K',
-  14: 'A',
-};
