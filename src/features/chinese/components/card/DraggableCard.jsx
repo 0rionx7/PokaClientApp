@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useReorderDeckMutation } from '@chinese/api/chineseApi';
 import { suits, symbols } from 'assets/svgs/suits';
-import Content from '@chinese/components/card/Content';
+import Content from '@components/card/Content';
 
 const DraggableCard = ({ card, index }) => {
   const { gameId } = useParams();

@@ -4,9 +4,8 @@ import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
 import useMessageService from '@hooks/useMessageService';
 import LoadingSpinner from '@ui/LoadingSpinner';
 import Table from '@chinese/components/Table';
-import EmojiProvider from '@poka/components/info/chat/EmojiProvider';
-import ChatBox from '@poka/components/info/chat/ChatBox';
-import Deck from '@chinese/components/Deck';
+import EmojiProvider from '@components/chat/EmojiProvider';
+import ChatBox from '@components/chat/ChatBox';
 import classes from './Table.module.scss';
 
 const ChineseRoom = () => {
@@ -27,7 +26,6 @@ const ChineseRoom = () => {
         <EmojiProvider>
           <ChatBox className={classes['chat-chinese']} />
         </EmojiProvider>
-        <Deck />
       </div>
     </div>
   );

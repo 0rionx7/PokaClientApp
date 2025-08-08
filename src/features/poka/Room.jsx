@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import EmojiProvider from '@poka/components/info/chat/EmojiProvider';
+import EmojiProvider from '@components/chat/EmojiProvider';
 import ActionContaineContextProvider from '@poka/utils/ActionContainerContext';
 import LoadingSpinner from '@ui/LoadingSpinner';
 import useMessageService from '@hooks/useMessageService';

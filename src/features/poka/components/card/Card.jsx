@@ -5,9 +5,9 @@ import { toggleSelectedCard } from '@poka/slice/pokaStateSlice';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectDeckColor } from '@account/slice/accountSlice';
 import { suits, symbols } from 'assets/svgs/suits';
-import Content from '@poka/components/card/Content';
+import Content from '@components/card/Content';
 import ToolTip from '@ui/ToolTip';
-import './Card.scss';
+import '@components/card/Card.scss';
 
 const Card = ({ card, canBeSelected, noColor }) => {
   const deckColor = useSelector(selectDeckColor);

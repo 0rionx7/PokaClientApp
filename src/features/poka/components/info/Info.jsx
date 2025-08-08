@@ -5,13 +5,13 @@ import { useParams } from 'react-router-dom';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
 import GameDescription from '@poka/components/info/GameDescription';
-import { useEmoji } from '@poka/components/info/chat/EmojiProvider';
+import { useEmoji } from '@components/chat/EmojiProvider';
 import { collapseVertical } from 'assets/svgs/various';
 import { infoButton } from '@utils/text-constants';
 import Standings from '@poka/components/info/Standings';
 import Results from '@poka/components/info/Results';
 import GameInfo from '@poka/components/info/GameInfo';
-import ChatBox from '@poka/components/info/chat/ChatBox';
+import ChatBox from '@components/chat/ChatBox';
 import Buttons from '@poka/components/info/Buttons';
 import './Info.scss';
 
