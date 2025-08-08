@@ -122,6 +122,12 @@ export const suitName = Object.freeze({
   S: 'ΜΠΑΣΤΟΥΝΙ',
   D: 'ΚΑΡΟ',
 });
+export const symbols = Object.freeze({
+  11: 'J',
+  12: 'Q',
+  13: 'K',
+  14: 'A',
+});
 export const orderName = Object.freeze([
   'ΠΡΩΤΟ',
   'ΔΕΥΤΕΡΟ',
