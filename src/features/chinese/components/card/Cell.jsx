@@ -10,7 +10,7 @@ const Cell = ({ index, place, owner }) => {
     () => ({
       accept: 'card',
       canDrop: item => item.owner === owner,
-      drop: ({ card }) => dispatch(moveCard({ place, index, card })),
+      drop: ({ card }) => dispatch(moveCard({ place, index, movedCard: card })),
       collect: monitor => ({
         isOver: !!monitor.isOver(),
         item: monitor.getItem(),

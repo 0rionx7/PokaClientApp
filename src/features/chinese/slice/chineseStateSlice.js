@@ -22,21 +22,19 @@ export const chineseStateSlice = createSlice({
   reducers: {
     setLocalPlayerState: (_state, action) => action.payload,
     moveCard: (state, action) => {
-      const { place, index, card } = action.payload;
-      const movedCard = matchedCard =>
-        matchedCard?.value + matchedCard?.suit === card.value + card.suit;
+      const { place, index, movedCard } = action.payload;
 
-      const boardCard = state.boardCards.find(movedCard);
-      const handCard = state.handCards.find(movedCard);
-      if (boardCard) {
-        const removalIndex = state.boardCards.indexOf(boardCard);
-        state.boardCards.splice(removalIndex, 1, null);
-      }
-      if (handCard) {
-        const removalIndex = state.handCards.indexOf(handCard);
-        state.handCards.splice(removalIndex, 1, null);
-      }
-      state[place][index] = card;
+      state.boardCards = state.boardCards.map(boardCard =>
+        boardCard?.value + boardCard?.suit === movedCard.value + movedCard.suit
+          ? null
+          : boardCard
+      );
+      state.handCards = state.handCards.map(handCard =>
+        handCard?.value + handCard?.suit === movedCard.value + movedCard.suit
+          ? null
+          : handCard
+      );
+      state[place][index] = movedCard;
     },
     orderByValue: (state, _action) => {
       state.handCards.sort((cardA, cardB) => {
