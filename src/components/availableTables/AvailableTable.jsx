@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   useGetUserQuery,
@@ -9,12 +9,14 @@ import ToolTip from '@ui/ToolTip';
 import useSnackBar from '@hooks/useSnackBar';
 import './AvailableTables.scss';
 
-const AvailableTable = ({ tableName, joined, useSitDown, game }) => {
+const AvailableTable = ({ tableName, joined, useSitDown }) => {
   const navigate = useNavigate();
   const [requestJoin, { isLoading }] = useRequestJoinMutation();
   const [sitDown, { isLoading: sittingDown }] = useSitDown();
   const { data } = useGetUserQuery();
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
+  const { state } = useLocation();
+
   const joinRequests = data?.joinRequests;
 
   const handleJoinTable = async () => {
@@ -32,7 +34,7 @@ const AvailableTable = ({ tableName, joined, useSitDown, game }) => {
     if (joinRequests?.length >= 3)
       return setSnackInfo('Έχετε συμπληρώσει των μέγιστο αριθμό αιτήσεων.');
 
-    const result = await requestJoin({ tableName, game });
+    const result = await requestJoin({ tableName, game: state.game });
     if (result.error?.data) setSnackInfo(result.error.data);
   };
 

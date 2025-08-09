@@ -23,7 +23,6 @@ const DealerScreen = () => {
         <PlayerRequests
           useGetStateQuery={useGetChineseStateQuery}
           maxPlayersCount={3}
-          game="chinese"
         />
       </div>
       <Button

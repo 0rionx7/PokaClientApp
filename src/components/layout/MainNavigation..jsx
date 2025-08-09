@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { selectUserName } from '@account/slice/accountSlice';
@@ -10,6 +10,7 @@ import './MainNavigation.scss';
 const MainNavigation = () => {
   const username = useSelector(selectUserName);
   const [showMenu, setShowMenu] = useState(false);
+  const { state } = useLocation();
 
   return (
     <header className="header-container">
@@ -19,12 +20,20 @@ const MainNavigation = () => {
       <div className="nav-items">
         {username && !showMenu && (
           <>
-            <NavLink to="/saloon" className="nav-link">
+            <Link
+              to="/saloon"
+              state={{ game: 'poka' }}
+              className={`nav-link${state.game === 'poka' ? ' active' : ''}`}>
               Σαλόνι Πόκας
-            </NavLink>
-            <NavLink to="/saloon-chinese" className="nav-link">
+            </Link>
+            <Link
+              to="/saloon"
+              state={{ game: 'chinese' }}
+              className={`nav-link${
+                state.game === 'chinese' ? ' active' : ''
+              }`}>
               Σαλόνι Κινέζικου Πόκερ
-            </NavLink>
+            </Link>
             <NavLink to="/account" className="nav-link">
               Λογαριασμός
             </NavLink>

@@ -15,7 +15,6 @@ const DealerScreen = () => {
         <PlayerRequests
           useGetStateQuery={useGetPokaStateQuery}
           maxPlayersCount={8}
-          game="poka"
         />
       </div>
     </Overlay>

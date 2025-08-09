@@ -13,13 +13,12 @@ import reportWebVitals from './reportWebVitals';
 import SubscriptionOptions from '@account/components/subscription/SubscriptionOptions';
 import SuccessfulPayment from '@account/components/subscription/SuccessfulPayment';
 import FailedPayment from '@account/components/subscription/FailedPayment';
-import ChineseSaloon from '@chinese/components/saloon/ChineseSaloon';
 import AccountDetails from '@account/components/AccountDetails';
 import ResetPassword from '@account/components/ResetPassword';
 import ChineseRoom from '@chinese/components/ChineseRoom';
 import Instructions from './pages/Instructions';
 import Account from '@account/components/Account';
-import Saloon from '@poka/Saloon';
+import Saloon from '@pages/Saloon';
 import Register from '@account/components/Register';
 import Welcome from './pages/Welcome';
 import Forgot from '@account/components/Forgot';
@@ -42,10 +41,6 @@ const router = createBrowserRouter(
           <Route index element={<Welcome />} />
           <Route path="instructions" element={<Instructions />} />
           <Route path="saloon" element={<RouteGuard element={<Saloon />} />} />
-          <Route
-            path="saloon-chinese"
-            element={<RouteGuard element={<ChineseSaloon />} />}
-          />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot" element={<Forgot />} />

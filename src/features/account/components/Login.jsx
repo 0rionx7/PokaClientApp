@@ -44,7 +44,7 @@ const Login = () => {
     if (result?.error?.data) {
       setError(result.error.data);
       return loginData;
-    } else navigate('/saloon', { replace: true });
+    } else navigate('/saloon', { replace: true }, { state: { game: 'poka' } });
   }
 
   return (

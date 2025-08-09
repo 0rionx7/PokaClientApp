@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { useSitDownChineseMutation } from '@chinese/api/chineseApi';
 import AvailableTable from '@components/availableTables/AvailableTable';
@@ -6,15 +7,17 @@ import { useGetUserQuery } from '@account/api/accountApi';
 import { useSitDownMutation } from '@poka/api/pokaApi';
 import { useGetTablesQuery } from '@store/gameApi';
 
-const AvailableTables = ({ game }) => {
+const AvailableTables = () => {
   const [query, setfQuery] = useState('');
-  const { data } = useGetTablesQuery(game, {
+  const { state } = useLocation();
+
+  const { data } = useGetTablesQuery(state.game, {
     refetchOnMountOrArgChange: true,
   });
   const { data: userData } = useGetUserQuery();
 
   const useSitDown =
-    game === 'poka' ? useSitDownMutation : useSitDownChineseMutation;
+    state.game === 'poka' ? useSitDownMutation : useSitDownChineseMutation;
 
   const joinRequests = userData?.joinRequests;
   const availableTables = useMemo(
@@ -57,7 +60,6 @@ const AvailableTables = ({ game }) => {
               tableName={tableInfo.tableName}
               joined={tableInfo.joined}
               useSitDown={useSitDown}
-              game={game}
             />
           ))
         )}

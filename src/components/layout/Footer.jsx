@@ -16,7 +16,7 @@ const Footer = () => {
   {
     const handleLogin = async username => {
       await login({ username, password: '' });
-      navigate('/saloon');
+      navigate('/saloon', { replace: true }, { state: { game: 'poka' } });
     };
 
     loginButtons = (
