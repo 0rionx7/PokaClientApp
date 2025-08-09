@@ -66,88 +66,6 @@ export const pokaApi = gameApi.injectEndpoints({
       },
       keepUnusedDataFor: 0,
     }),
-    getPokaRequests: build.query({
-      query: tableName => `/requests/${tableName}`,
-      async onCacheEntryAdded(
-        _arg,
-        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
-      ) {
-        try {
-          await cacheDataLoaded;
-          // dealers screen requests handlers=======================
-          const requestAddedListener = reqInfo => {
-            updateCachedData(draft => {
-              draft.push(reqInfo);
-            });
-          };
-          const requestRemovedListener = ({ username }) => {
-            updateCachedData(draft =>
-              draft.filter(reqInfo => reqInfo.username !== username)
-            );
-          };
-          socket.on('requestAdded', requestAddedListener);
-          socket.on('requestCanceled', requestRemovedListener);
-          await cacheEntryRemoved;
-          socket.off('requestAdded', requestAddedListener);
-          socket.off('requestCanceled', requestRemovedListener);
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      providesTags: ['Requests'],
-      keepUnusedDataFor: 0,
-    }),
-    getPokaTables: build.query({
-      queryFn: async (_args, { getState }) => {
-        try {
-          const token = getState().account.token;
-          if (!token) return { data: [] };
-
-          const httpHeaders = {
-            'Content-Type': 'application/json',
-            authorization: `Bearer ${token}`,
-          };
-          const headers = new Headers(httpHeaders);
-          const response = await fetch(baseUrl + '/tables  ', {
-            method: 'GET',
-            headers,
-          });
-
-          const responseData = await response.json();
-          if (!response.ok) throw Error(responseData);
-
-          return { data: responseData };
-        } catch (error) {
-          return { error };
-        }
-      },
-      async onCacheEntryAdded(
-        _arg,
-        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
-      ) {
-        try {
-          await cacheDataLoaded;
-          const tableCreatedListener = tableInfo => {
-            updateCachedData(draft => {
-              draft.push(tableInfo);
-            });
-          };
-          const tableDeletedListerner = deletedTable => {
-            updateCachedData(draft =>
-              draft.filter(({ tableName }) => tableName !== deletedTable)
-            );
-          };
-
-          socket.on('pokaTableCreated', tableCreatedListener);
-          socket.on('pokaTableDeleted', tableDeletedListerner);
-          await cacheEntryRemoved;
-          socket.off('pokaTableCreated', tableCreatedListener);
-          socket.off('pokaTableDeleted', tableDeletedListerner);
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    }),
     openPokaTable: build.mutation({
       query: openTableData => ({
         url: '/poka',
@@ -261,21 +179,11 @@ export const pokaApi = gameApi.injectEndpoints({
       }),
       invalidatesTags: ['Requests'],
     }),
-    rejectRequest: build.mutation({
-      query: rejectlInfo => ({
-        url: '/requests/reject',
-        method: 'PATCH',
-        body: rejectlInfo,
-      }),
-      invalidatesTags: ['Requests'],
-    }),
   }),
 });
 
 export const {
   useGetPokaStateQuery,
-  useGetPokaRequestsQuery,
-  useGetPokaTablesQuery,
   useOpenPokaTableMutation,
   useRestartGameMutation,
   useSetGameVariantMutation,
@@ -292,5 +200,4 @@ export const {
   useSitDownMutation,
   useSitOutMutation,
   useLogOutAllMutation,
-  useRejectRequestMutation,
 } = pokaApi;

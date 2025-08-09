@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 
 import { useSitDownChineseMutation } from '@chinese/api/chineseApi';
-import AvailableTable from '@components/saloon/AvailableTable';
+import AvailableTable from '@components/availableTables/AvailableTable';
 import { useGetUserQuery } from '@account/api/accountApi';
 import { useSitDownMutation } from '@poka/api/pokaApi';
 import { useGetTablesQuery } from '@store/gameApi';

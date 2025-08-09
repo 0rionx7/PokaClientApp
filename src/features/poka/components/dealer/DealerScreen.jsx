@@ -1,11 +1,6 @@
-import {
-  useGetPokaStateQuery,
-  useGetPokaRequestsQuery,
-  useJoinTableMutation,
-  useRejectRequestMutation,
-} from '@poka/api/pokaApi';
 import GameBuilderContextProvider from '@poka/components/gameBuilder/useGameBuilderContext';
-import PlayerRequests from '@components/joinRequests/PlayerRequests';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import PlayerRequests from '@components/requests/PlayerRequests';
 import GameBuilder from '@poka/components/gameBuilder/GameBuilder';
 import Overlay from '@ui/Overlay';
 import './DealerScreen.scss';
@@ -19,10 +14,8 @@ const DealerScreen = () => {
       <div className="players-info">
         <PlayerRequests
           useGetStateQuery={useGetPokaStateQuery}
-          useGetRequestsQuery={useGetPokaRequestsQuery}
-          useJoin={useJoinTableMutation}
-          useReject={useRejectRequestMutation}
           maxPlayersCount={8}
+          game="poka"
         />
       </div>
     </Overlay>

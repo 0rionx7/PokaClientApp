@@ -2,15 +2,12 @@ import { useParams } from 'react-router-dom';
 
 import {
   useGetChineseStateQuery,
-  useGetChineseRequestsQuery,
   useStartChineseGameMutation,
-  useJoinChineseTableMutation,
-  useRejectChineseRequestMutation,
 } from '@chinese/api/chineseApi';
 import Overlay from '@ui/Overlay';
 import Button from '@ui/Button';
 import { isSitting } from '@utils/utilities-functions';
-import PlayerRequests from '@components/joinRequests/PlayerRequests';
+import PlayerRequests from '@components/requests/PlayerRequests';
 import './DealerScreen.scss';
 
 const DealerScreen = () => {
@@ -25,10 +22,8 @@ const DealerScreen = () => {
       <div className="players-info">
         <PlayerRequests
           useGetStateQuery={useGetChineseStateQuery}
-          useGetRequestsQuery={useGetChineseRequestsQuery}
-          useJoin={useJoinChineseTableMutation}
-          useReject={useRejectChineseRequestMutation}
-          maxPlayersCount={8}
+          maxPlayersCount={3}
+          game="chinese"
         />
       </div>
       <Button

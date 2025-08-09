@@ -7,7 +7,7 @@ import { createTableTitleJsx } from '@utils/text-functions';
 import ApprovedRequest from '@pages/ApprovedRequest';
 import useSnackBar from '@hooks/useSnackBar';
 
-const useRequestResult = chinese => {
+const useRequestResult = () => {
   const { gameId } = useParams();
   const { refetch: refetchUserInfo } = useGetUserQuery();
   const { refetch: refetchChineseTables } = useGetTablesQuery('chinese');
@@ -15,46 +15,40 @@ const useRequestResult = chinese => {
   const { snackElement: rejectedElement, setSnackInfo: setRejectPopUp } =
     useSnackBar({ height: '100%' });
   const { snackElement: approvedElement, setSnackInfo: setApprovedPopUp } =
-    useSnackBar({ height: '100%', secs: 7 });
+    useSnackBar({ height: '100%', secs: 37 });
 
   useEffect(() => {
-    let event = 'pokaRequestApproved',
-      refetchTables = refetchPokaTables;
-    if (chinese) {
-      event = 'chineseRequestApproved';
-      refetchTables = refetchChineseTables;
-    }
-    socket.on(event, requestInfo => {
+    socket.on('requestApproved', requestInfo => {
       setApprovedPopUp(<ApprovedRequest requestInfo={requestInfo} />);
       refetchUserInfo();
-      refetchTables();
+      requestInfo.game === 'poka'
+        ? refetchPokaTables()
+        : refetchChineseTables();
     });
-    return () => socket.removeAllListeners(event);
+    return () => socket.removeAllListeners('requestApproved');
   }, [
     setApprovedPopUp,
     refetchUserInfo,
     refetchPokaTables,
     refetchChineseTables,
-    chinese,
   ]);
 
   useEffect(() => {
-    let event = chinese ? 'chineseRequestRejected' : 'pokaRequestRejected';
-    socket.on(event, ({ tableName }) => {
+    socket.on('requestRejected', ({ tableName, game }) => {
       refetchUserInfo();
       if (!gameId) {
-        const table = chinese ? ' κινέζικου πόκερ' : ' πόκας';
+        const table = game === 'poka' ? 'πόκας' : 'κινέζικου πόκερ';
         setRejectPopUp(
           <>
-            Η αίτηση συμμετοχής σας για το τραπέζι{table}{' '}
-            {createTableTitleJsx(tableName)} απορρίφθηκε.
+            {`Η αίτηση συμμετοχής σας για το τραπέζι ${table} 
+            ${createTableTitleJsx(tableName)} απορρίφθηκε.`}
           </>
         );
       }
     });
 
-    return () => socket.removeAllListeners(event);
-  }, [setRejectPopUp, gameId, refetchUserInfo, chinese]);
+    return () => socket.removeAllListeners('requestRejected');
+  }, [setRejectPopUp, gameId, refetchUserInfo]);
 
   return [approvedElement, rejectedElement];
 };

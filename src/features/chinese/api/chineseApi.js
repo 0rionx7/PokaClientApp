@@ -1,5 +1,5 @@
 import { setLocalPlayerState } from '@chinese/slice/chineseStateSlice';
-import { baseUrl, gameApi, socket } from '@store/gameApi';
+import { gameApi, socket } from '@store/gameApi';
 import { playerEntry } from '@utils/utilities-functions';
 
 export const chineseApi = gameApi.injectEndpoints({
@@ -46,88 +46,6 @@ export const chineseApi = gameApi.injectEndpoints({
       },
       keepUnusedDataFor: 0,
     }),
-    getChineseRequests: build.query({
-      query: tableName => `/chinese/requests/${tableName}`,
-      async onCacheEntryAdded(
-        _arg,
-        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
-      ) {
-        try {
-          await cacheDataLoaded;
-          // dealers screen requests handlers=======================
-          const requestAddedListener = reqInfo => {
-            updateCachedData(draft => {
-              draft.push(reqInfo);
-            });
-          };
-          const requestRemovedListener = ({ username }) => {
-            updateCachedData(draft =>
-              draft.filter(reqInfo => reqInfo.username !== username)
-            );
-          };
-          socket.on('requestChineseAdded', requestAddedListener);
-          socket.on('requestChineseCanceled', requestRemovedListener);
-          await cacheEntryRemoved;
-          socket.off('requestChineseAdded', requestAddedListener);
-          socket.off('requestChineseCanceled', requestRemovedListener);
-        } catch (error) {
-          console.log(error);
-        }
-      },
-      providesTags: ['ChineseRequests'],
-    }),
-    getChineseTables: build.query({
-      queryFn: async (_args, { getState }) => {
-        try {
-          const token = getState().account.token;
-          if (!token) return { data: [] };
-
-          const httpHeaders = {
-            'Content-Type': 'application/json',
-            authorization: `Bearer ${token}`,
-          };
-          const headers = new Headers(httpHeaders);
-          let response;
-          response = await fetch(baseUrl + '/chinese/tables  ', {
-            method: 'GET',
-            headers,
-          });
-
-          const responseData = await response.json();
-          if (!response.ok) throw Error(responseData);
-
-          return { data: responseData };
-        } catch (error) {
-          return { error };
-        }
-      },
-      async onCacheEntryAdded(
-        _arg,
-        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
-      ) {
-        try {
-          await cacheDataLoaded;
-          const tableCreatedListener = tableInfo => {
-            updateCachedData(draft => {
-              draft.push(tableInfo);
-            });
-          };
-          const tableDeletedListerner = deletedTable => {
-            updateCachedData(draft =>
-              draft.filter(({ tableName }) => tableName !== deletedTable)
-            );
-          };
-
-          socket.on('chineseTableCreated', tableCreatedListener);
-          socket.on('tableChineseDeleted', tableDeletedListerner);
-          await cacheEntryRemoved;
-          socket.off('chineseTableCreated', tableCreatedListener);
-          socket.off('tableChineseDeleted', tableDeletedListerner);
-        } catch (error) {
-          console.log(error);
-        }
-      },
-    }),
     openChineseTable: build.mutation({
       query: openTableData => ({
         url: 'chinese',
@@ -140,14 +58,6 @@ export const chineseApi = gameApi.injectEndpoints({
         url: 'chinese/join',
         method: 'PATCH',
         body: joinInfo,
-      }),
-      invalidatesTags: ['ChineseRequests'],
-    }),
-    rejectChineseRequest: build.mutation({
-      query: rejectlInfo => ({
-        url: 'chinese/requests/reject',
-        method: 'PATCH',
-        body: rejectlInfo,
       }),
       invalidatesTags: ['ChineseRequests'],
     }),
@@ -205,11 +115,8 @@ export const chineseApi = gameApi.injectEndpoints({
 
 export const {
   useGetChineseStateQuery,
-  useGetChineseRequestsQuery,
-  useGetChineseTablesQuery,
   useOpenChineseTableMutation,
   useJoinChineseTableMutation,
-  useRejectChineseRequestMutation,
   useSitDownChineseMutation,
   useStartChineseGameMutation,
   useSubmitCardsChineseMutation,

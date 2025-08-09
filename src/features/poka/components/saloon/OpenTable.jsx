@@ -43,7 +43,7 @@ const OpenTable = () => {
       setError(result.error.data);
       return tableData;
     }
-    navigate(`/table/${result.data.gameId}`);
+    navigate(`/poka/table/${result.data.gameId}`);
   }
   const validate = values => {
     if (

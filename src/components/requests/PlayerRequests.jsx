@@ -2,19 +2,18 @@ import { useParams } from 'react-router-dom';
 
 import PlayerRequest from './PlayerRequest';
 import './PlayerRequests.scss';
+import { useGetRequestsQuery } from '@account/api/accountApi';
+import { useJoinTableMutation } from '@poka/api/pokaApi';
+import { useJoinChineseTableMutation } from '@chinese/api/chineseApi';
 
-const PlayerRequests = ({
-  useGetStateQuery,
-  useGetRequestsQuery,
-  useJoin,
-  useReject,
-  maxPlayersCount,
-}) => {
+const PlayerRequests = ({ useGetStateQuery, maxPlayersCount, game }) => {
   const { gameId } = useParams();
   const { data: gameData } = useGetStateQuery(gameId);
   const { data } = useGetRequestsQuery(gameData.tableName);
 
   if (!data) return null;
+  const useJoin =
+    game === 'poka' ? useJoinTableMutation : useJoinChineseTableMutation;
 
   const requestedStates = data
     .filter(request =>
@@ -34,7 +33,6 @@ const PlayerRequests = ({
             key={playerState.playerName}
             playerState={playerState}
             useJoin={useJoin}
-            useReject={useReject}
           />
         ))}
       </div>
@@ -48,7 +46,7 @@ const PlayerRequests = ({
               tableName={gameData.tableName}
               tableFull={gameData.playerStates.length === maxPlayersCount}
               useJoin={useJoin}
-              useReject={useReject}
+              game={game}
               clickable
             />
           ))}

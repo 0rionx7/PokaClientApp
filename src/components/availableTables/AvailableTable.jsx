@@ -25,7 +25,8 @@ const AvailableTable = ({ tableName, joined, useSitDown, game }) => {
         tableName: tableName,
       });
       if (result.error?.data) setSnackInfo(result.error.data);
-      if (result.data?.gameId) return navigate(`/table/${result.data.gameId}`);
+      if (result.data?.gameId)
+        return navigate(`/${result.data.game}/table/${result.data.gameId}`);
     }
 
     if (joinRequests?.length >= 3)

@@ -1,13 +1,13 @@
-import AvailableTables from '@components/saloon/AvailableTables';
+import AvailableTables from '@components/availableTables/AvailableTables';
 import OpenTable from './OpenTable';
-import Requests from './Requests';
+import UserRequests from '@components/requests/UserRequests';
 
 const ChineseSaloon = () => {
   return (
     <div className="saloon">
       <div className="player-tables">
         <OpenTable />
-        <Requests />
+        <UserRequests game={'chinese'} />
       </div>
       <AvailableTables game={'chinese'} />
     </div>

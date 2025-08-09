@@ -1,4 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useSitDownChineseMutation } from '@chinese/api/chineseApi';
 import { useSitDownMutation } from '@poka/api/pokaApi';
@@ -6,22 +6,20 @@ import { createTableTitleJsx } from '@utils/text-functions';
 import Button from '@ui/Button';
 import './ApprovedRequest.scss';
 
-const ApprovedRequest = ({ requestInfo: { tableName, gameId } }) => {
+const ApprovedRequest = ({ requestInfo: { tableName, gameId, game } }) => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [sitDownChinese] = useSitDownChineseMutation();
   const [sitDown] = useSitDownMutation();
 
-  const isChinese = location?.pathname.includes('chinese');
-  const table = isChinese ? ' κινέζικου πόκερ' : ' πόκας';
+  const table = game === 'poka' ? 'πόκας' : 'κινέζικου πόκερ';
 
   const handleJoinTable = async _ => {
-    if (isChinese) {
+    if (game === 'poka') {
+      const { data } = await sitDown({ gameId, tableName });
+      if (data?.gameId) navigate(`poka/table/${gameId}`);
+    } else {
       const { data } = await sitDownChinese({ gameId, tableName });
       if (data?.gameId) navigate(`chinese/table/${gameId}`);
-    } else {
-      const { data } = await sitDown({ gameId, tableName });
-      if (data?.gameId) navigate(`table/${gameId}`);
     }
   };
 

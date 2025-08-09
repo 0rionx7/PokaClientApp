@@ -59,7 +59,7 @@ const router = createBrowserRouter(
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Route>
         <Route
-          path="table/:gameId"
+          path="poka/table/:gameId"
           element={<RouteGuard element={<Room />} />}
         />
         <Route

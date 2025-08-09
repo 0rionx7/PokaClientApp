@@ -2,13 +2,12 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useCancelRequestMutation } from '@account/api/accountApi';
-import { useSitDownMutation } from '@poka/api/pokaApi';
 import ToolTip from '@ui/ToolTip';
 import useSnackBar from '@hooks/useSnackBar';
 import './Requests.scss';
 
-const Request = ({ tableInfo }) => {
-  const [sitDown, { isSuccess, isLoading }] = useSitDownMutation();
+const UserRequest = ({ tableInfo, useSitDown }) => {
+  const [sitDown, { isSuccess, isLoading }] = useSitDown();
   const [cancelHoveredPropagation, setCancelHoveredPropagation] =
     useState(false);
   const [cancelRequest, { isLoading: canceling }] = useCancelRequestMutation();
@@ -25,7 +24,8 @@ const Request = ({ tableInfo }) => {
     if (!gameId || isLoading || isSuccess) return;
     const result = await sitDown({ gameId, tableName });
     if (result.error?.data) setSnackInfo(result.error.data);
-    if (result.data?.gameId) navigate(`/table/${result.data.gameId}`);
+    if (result.data?.gameId)
+      navigate(`/${result.data.game}/table/${result.data.gameId}`);
   };
 
   return (
@@ -51,4 +51,4 @@ const Request = ({ tableInfo }) => {
   );
 };
 
-export default Request;
+export default UserRequest;

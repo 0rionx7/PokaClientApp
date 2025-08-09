@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 
+import { useRejectRequestMutation } from '@account/api/accountApi';
 import useSnackBar from '@hooks/useSnackBar';
 import StatusIcon from '@ui/StatusIcon';
 import ToolTip from '@ui/ToolTip';
@@ -9,13 +10,14 @@ const PlayerRequest = ({
   tableName,
   tableFull,
   useJoin,
-  useReject,
   clickable,
+  game,
 }) => {
   const { gameId } = useParams();
   const [joinTable, { isLoading }] = useJoin();
   const { snackElement, setSnackInfo } = useSnackBar();
-  const [rejectRequest, { isSuccess, isLoading: rejecting }] = useReject();
+  const [rejectRequest, { isSuccess, isLoading: rejecting }] =
+    useRejectRequestMutation();
 
   const handleJoin = async () => {
     if (!clickable || isLoading || rejecting) return;
@@ -32,6 +34,7 @@ const PlayerRequest = ({
     const result = await rejectRequest({
       tableName,
       username: playerState.playerName,
+      game,
     });
     if (result.error?.data) setSnackInfo(result.error.data);
   };

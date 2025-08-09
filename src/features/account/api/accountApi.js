@@ -28,6 +28,38 @@ export const accountApi = gameApi.injectEndpoints({
       },
       providesTags: ['User'],
     }),
+
+    getRequests: build.query({
+      query: tableName => `user/requests/${tableName}`,
+      async onCacheEntryAdded(
+        _arg,
+        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
+      ) {
+        try {
+          await cacheDataLoaded;
+          // dealers screen requests handlers=======================
+          const requestAddedListener = reqInfo => {
+            updateCachedData(draft => {
+              draft.push(reqInfo);
+            });
+          };
+          const requestRemovedListener = ({ username }) => {
+            updateCachedData(draft =>
+              draft.filter(reqInfo => reqInfo.username !== username)
+            );
+          };
+          socket.on('requestAdded', requestAddedListener);
+          socket.on('requestCanceled', requestRemovedListener);
+          await cacheEntryRemoved;
+          socket.off('requestAdded', requestAddedListener);
+          socket.off('requestCanceled', requestRemovedListener);
+        } catch (error) {
+          console.log(error);
+        }
+      },
+      providesTags: ['Requests'],
+      keepUnusedDataFor: 0,
+    }),
     register: build.mutation({
       query: userData => ({
         url: 'user/register',
@@ -104,13 +136,13 @@ export const accountApi = gameApi.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
-    cancelRequestChinese: build.mutation({
-      query: cancelInfo => ({
-        url: 'user/chinese/cancelRequest',
+    rejectRequest: build.mutation({
+      query: rejectlInfo => ({
+        url: 'user/rejectRequest',
         method: 'PATCH',
-        body: cancelInfo,
+        body: rejectlInfo,
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['Requests'],
     }),
     pay: build.mutation({
       query: paymentInfo => ({
@@ -125,6 +157,7 @@ export const accountApi = gameApi.injectEndpoints({
 
 export const {
   useGetUserQuery,
+  useGetRequestsQuery,
   useRegisterMutation,
   useLoginMutation,
   useReconnectedLoginMutation,
@@ -135,6 +168,6 @@ export const {
   useForgotPasswordMutation,
   useRequestJoinMutation,
   useCancelRequestMutation,
-  useCancelRequestChineseMutation,
+  useRejectRequestMutation,
   usePayMutation,
 } = accountApi;

@@ -16,7 +16,7 @@ const LastGame = ({ savedGame }) => {
     if (isLoading || isSuccess) return;
     const result = await restartGame(savedGame);
     if (result.error?.data) setSnackInfo(result.error.data);
-    if (result.data?.gameId) navigate(`/table/${result.data.gameId}`);
+    if (result.data?.gameId) navigate(`/poka/table/${result.data.gameId}`);
   };
 
   const tableTitle = createTableTitleJsx(savedGame.tableName);

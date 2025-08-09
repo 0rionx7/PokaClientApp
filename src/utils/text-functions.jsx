@@ -9,11 +9,7 @@ import {
 
 export function createTableTitleJsx(tableName) {
   const names = tableName?.split('_');
-  return (
-    <div>
-      {names?.[0]} <span> από </span> {names?.[1]}
-    </div>
-  );
+  return `${names?.[0]} από ${names?.[1]}`;
 }
 export function describeTime(secs) {
   switch (secs) {

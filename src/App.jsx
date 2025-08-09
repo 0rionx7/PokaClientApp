@@ -15,7 +15,6 @@ function App() {
   const token = useSelector(selectToken);
   const [reconnectedLogin] = useReconnectedLoginMutation();
   const [approvedElement, rejectedElement] = useRequestResult();
-  const [approvedChElement, rejectedChElement] = useRequestResult('chinese');
   const offLineElement = useOfflineSnack();
 
   useEffect(() => {
@@ -32,9 +31,7 @@ function App() {
     <DndProvider backend={HTML5Backend}>
       {offLineElement}
       {approvedElement}
-      {approvedChElement}
       {rejectedElement}
-      {rejectedChElement}
       <Outlet />
     </DndProvider>
   );
