@@ -77,13 +77,6 @@ export const pokaApi = gameApi.injectEndpoints({
         body: { ...gameInfo, socketId: socket.id },
       }),
     }),
-    logOutAll: build.mutation({
-      query: _ => ({
-        url: '/user/logOutAll',
-        method: 'PATCH',
-        body: {},
-      }),
-    }),
     setGameVariant: build.mutation({
       query: builderConfig => ({
         url: '/poka/variant',
@@ -196,5 +189,4 @@ export const {
   useJoinTableMutation,
   useSitDownMutation,
   useSitOutMutation,
-  useLogOutAllMutation,
 } = pokaApi;

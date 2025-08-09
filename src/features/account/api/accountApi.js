@@ -152,6 +152,13 @@ export const accountApi = gameApi.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
+    logOutAll: build.mutation({
+      query: _ => ({
+        url: '/user/logOutAll',
+        method: 'PATCH',
+        body: {},
+      }),
+    }),
   }),
 });
 
@@ -170,4 +177,5 @@ export const {
   useCancelRequestMutation,
   useRejectRequestMutation,
   usePayMutation,
+  useLogOutAllMutation,
 } = accountApi;
