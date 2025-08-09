@@ -1,24 +1,8 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import io from 'socket.io-client';
-
 import { playerEntry, updateAll } from '@utils/utilities-functions';
 import { setHandCards, setTableCards } from '@poka/slice/pokaStateSlice';
+import { baseUrl, gameApi, socket } from '@store/gameApi';
 
-export const baseUrl = import.meta.env.VITE_FRONTEND_URL;
-export const socket = io(baseUrl, { transports: ['websocket'] });
-
-export const pokaApi = createApi({
-  reducerPath: 'gameApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl,
-    prepareHeaders: (headers, { getState }) => {
-      headers.set('Content-type', 'application/json');
-      const token = getState().account.token;
-      if (token) headers.set('authorization', `Bearer ${token}`);
-      return headers;
-    },
-  }),
-  tagTypes: ['User', 'Tables', 'Requests', 'ChineseRequests', 'ChineseTables'],
+export const pokaApi = gameApi.injectEndpoints({
   endpoints: build => ({
     getPokaState: build.query({
       query: gameId => ({
@@ -137,7 +121,6 @@ export const pokaApi = createApi({
           return { error };
         }
       },
-      providesTags: ['Tables'],
       async onCacheEntryAdded(
         _arg,
         { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
@@ -155,11 +138,11 @@ export const pokaApi = createApi({
             );
           };
 
-          socket.on('tableCreated', tableCreatedListener);
-          socket.on('tableDeleted', tableDeletedListerner);
+          socket.on('pokaTableCreated', tableCreatedListener);
+          socket.on('pokaTableDeleted', tableDeletedListerner);
           await cacheEntryRemoved;
-          socket.off('tableCreated', tableCreatedListener);
-          socket.off('tableDeleted', tableDeletedListerner);
+          socket.off('pokaTableCreated', tableCreatedListener);
+          socket.off('pokaTableDeleted', tableDeletedListerner);
         } catch (error) {
           console.log(error);
         }
@@ -171,7 +154,6 @@ export const pokaApi = createApi({
         method: 'POST',
         body: { openTableData, socketId: socket.id },
       }),
-      invalidatesTags: ['Tables'],
     }),
     restartGame: build.mutation({
       query: gameInfo => ({
@@ -179,7 +161,6 @@ export const pokaApi = createApi({
         method: 'POST',
         body: { ...gameInfo, socketId: socket.id },
       }),
-      invalidatesTags: ['Tables'],
     }),
     logOutAll: build.mutation({
       query: _ => ({
@@ -264,7 +245,6 @@ export const pokaApi = createApi({
         method: 'PATCH',
         body: { gameId, socketId: socket.id },
       }),
-      invalidatesTags: ['Tables'],
     }),
     sitOut: build.mutation({
       query: sitOutInfo => ({

@@ -9,7 +9,7 @@ import { useReconnectedLoginMutation } from '@account/api/accountApi';
 import { selectToken } from '@account/slice/accountSlice';
 import useRequestResult from '@hooks/useRequestResult';
 import useOfflineSnack from '@hooks/useOfflineSnack';
-import { socket } from '@poka/api/pokaApi';
+import { socket } from '@store/gameApi';
 
 function App() {
   const token = useSelector(selectToken);

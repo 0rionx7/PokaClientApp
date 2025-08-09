@@ -1,6 +1,6 @@
-import { baseUrl, pokaApi, socket } from '@poka/api/pokaApi';
+import { baseUrl, gameApi, socket } from '@store/gameApi';
 
-export const accountApi = pokaApi.injectEndpoints({
+export const accountApi = gameApi.injectEndpoints({
   endpoints: build => ({
     getUser: build.query({
       queryFn: async (_args, { getState }) => {

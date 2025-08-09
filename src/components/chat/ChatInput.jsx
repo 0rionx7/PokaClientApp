@@ -6,7 +6,7 @@ import EmojiPicker, { Theme } from 'emoji-picker-react';
 
 import { useEmoji } from '@components/chat/EmojiProvider';
 import { selectUserName } from '@account/slice/accountSlice';
-import { socket } from '@poka/api/pokaApi';
+import { socket } from '@store/gameApi';
 import { sendSvg } from 'assets/svgs/various';
 
 const ChatInput = () => {

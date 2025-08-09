@@ -1,12 +1,12 @@
 import { useMemo, useState } from 'react';
 
-import { useGetPokaTablesQuery } from '@poka/api/pokaApi';
 import { useGetUserQuery } from '@account/api/accountApi';
+import { useGetTablesQuery } from '@store/gameApi';
 import AvailableTable from '@poka/components/saloon/AvailableTable';
 
 const AvailableTables = () => {
   const [query, setfQuery] = useState('');
-  const { data } = useGetPokaTablesQuery(undefined, {
+  const { data } = useGetTablesQuery('poka', {
     refetchOnMountOrArgChange: true,
   });
   const { data: userData } = useGetUserQuery();

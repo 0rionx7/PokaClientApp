@@ -15,6 +15,7 @@ export default defineConfig(() => {
     resolve: {
       alias: {
         assets: path.resolve(__dirname, 'public/assets'),
+        '@store': path.resolve(__dirname, 'src/store'),
         '@components': path.resolve(__dirname, 'src/components'),
         '@poka': path.resolve(__dirname, 'src/features/poka'),
         '@chinese': path.resolve(__dirname, 'src/features/chinese'),

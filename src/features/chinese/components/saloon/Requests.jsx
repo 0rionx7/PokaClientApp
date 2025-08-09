@@ -5,7 +5,7 @@ const Requests = () => {
   const { data } = useGetUserQuery(undefined, {
     refetchOnMountOrArgChange: true,
   });
-  const joinRequests = data?.joinRequestsChinese;
+  const joinRequests = data?.joinChineseRequests;
 
   return (
     <>

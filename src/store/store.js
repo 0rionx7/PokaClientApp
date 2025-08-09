@@ -1,6 +1,6 @@
 import { combineSlices, configureStore } from '@reduxjs/toolkit';
 
-import { pokaApi } from '@poka/api/pokaApi';
+import { gameApi } from '@store/gameApi';
 import { pokaStateSlice } from '@poka/slice/pokaStateSlice';
 import { errorHandling } from '../middleware/errorHandling';
 import { accountSlice } from '@account/slice/accountSlice';
@@ -8,7 +8,7 @@ import { chineseStateSlice } from '@chinese/slice/chineseStateSlice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 const rootReducer = combineSlices(
-  pokaApi,
+  gameApi,
   pokaStateSlice,
   chineseStateSlice,
   accountSlice
@@ -20,7 +20,7 @@ export const makeStore = preloadedState => {
     // Adding the api middleware enables caching, invalidation, polling,
     // and other useful features of `rtk-query`.
     middleware: getDefaultMiddleware => {
-      return getDefaultMiddleware().concat(pokaApi.middleware, errorHandling);
+      return getDefaultMiddleware().concat(gameApi.middleware, errorHandling);
     },
     preloadedState,
   });

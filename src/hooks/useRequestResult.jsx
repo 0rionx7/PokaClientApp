@@ -1,18 +1,17 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { socket, useGetPokaTablesQuery } from '@poka/api/pokaApi';
+import { socket, useGetTablesQuery } from '@store/gameApi';
+import { useGetUserQuery } from '@account/api/accountApi';
 import { createTableTitleJsx } from '@utils/text-functions';
 import ApprovedRequest from '@pages/ApprovedRequest';
 import useSnackBar from '@hooks/useSnackBar';
-import { useGetUserQuery } from '@account/api/accountApi';
-import { useGetChineseTablesQuery } from '@chinese/api/chineseApi';
 
 const useRequestResult = chinese => {
-  const { refetch: refetchUserInfo } = useGetUserQuery();
   const { gameId } = useParams();
-  const { refetch: refetchPokaTables } = useGetPokaTablesQuery();
-  const { refetch: refetchChineseTables } = useGetChineseTablesQuery();
+  const { refetch: refetchUserInfo } = useGetUserQuery();
+  const { refetch: refetchChineseTables } = useGetTablesQuery('chinese');
+  const { refetch: refetchPokaTables } = useGetTablesQuery('poka');
   const { snackElement: rejectedElement, setSnackInfo: setRejectPopUp } =
     useSnackBar({ height: '100%' });
   const { snackElement: approvedElement, setSnackInfo: setApprovedPopUp } =

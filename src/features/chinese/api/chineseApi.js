@@ -1,8 +1,8 @@
 import { setLocalPlayerState } from '@chinese/slice/chineseStateSlice';
-import { baseUrl, pokaApi, socket } from '@poka/api/pokaApi';
+import { baseUrl, gameApi, socket } from '@store/gameApi';
 import { playerEntry } from '@utils/utilities-functions';
 
-export const chineseApi = pokaApi.injectEndpoints({
+export const chineseApi = gameApi.injectEndpoints({
   endpoints: build => ({
     getChineseState: build.query({
       query: gameId => {
@@ -127,7 +127,6 @@ export const chineseApi = pokaApi.injectEndpoints({
           console.log(error);
         }
       },
-      providesTags: ['ChineseTables'],
     }),
     openChineseTable: build.mutation({
       query: openTableData => ({
@@ -135,7 +134,6 @@ export const chineseApi = pokaApi.injectEndpoints({
         method: 'POST',
         body: { ...openTableData, socketId: socket.id },
       }),
-      invalidatesTags: ['ChineseTables'],
     }),
     joinChineseTable: build.mutation({
       query: joinInfo => ({
@@ -159,7 +157,6 @@ export const chineseApi = pokaApi.injectEndpoints({
         method: 'PATCH',
         body: { gameId, socketId: socket.id },
       }),
-      invalidatesTags: ['ChineseTables'],
     }),
     startChineseGame: build.mutation({
       query: gameId => ({

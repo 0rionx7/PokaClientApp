@@ -1,17 +1,17 @@
 import { useMemo, useState } from 'react';
 
-import { useGetChineseTablesQuery } from '@chinese/api/chineseApi';
 import { useGetUserQuery } from '@account/api/accountApi';
+import { useGetTablesQuery } from '@store/gameApi';
 import AvailableTable from './AvailableTable';
 
 const AvailableTables = () => {
   const [query, setfChineseQuery] = useState('');
-  const { data } = useGetChineseTablesQuery(undefined, {
+  const { data } = useGetTablesQuery('chinese', {
     refetchOnMountOrArgChange: true,
   });
   const { data: userData } = useGetUserQuery();
 
-  const joinRequests = userData?.joinRequestsChinese;
+  const joinRequests = userData?.joinChineseRequests;
   const availableTables = useMemo(
     () =>
       data?.filter(
@@ -25,6 +25,7 @@ const AvailableTables = () => {
       ),
     [data, query, joinRequests]
   );
+  console.log(joinRequests);
   return (
     <div className="saloon-tables">
       <div className="form-control">
