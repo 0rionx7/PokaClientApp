@@ -1,5 +1,5 @@
 import OpenTable from '@poka/components/saloon/OpenTable';
-import AvailableTables from '@poka/components/saloon/AvailableTables';
+import AvailableTables from '@components/saloon/AvailableTables';
 import Requests from '@poka/components/saloon/Requests';
 import './Saloon.scss';
 
@@ -10,7 +10,7 @@ const Saloon = () => {
         <OpenTable />
         <Requests />
       </div>
-      <AvailableTables />
+      <AvailableTables game="poka" />
     </div>
   );
 };

@@ -18,7 +18,7 @@ export const gameApi = createApi({
   tagTypes: ['User', 'Requests', 'ChineseRequests'],
   endpoints: build => ({
     getTables: build.query({
-      queryFn: async (type, { getState }) => {
+      queryFn: async (game, { getState }) => {
         try {
           const token = getState().account.token;
           if (!token) return { data: [] };
@@ -28,7 +28,7 @@ export const gameApi = createApi({
             authorization: `Bearer ${token}`,
           };
           const headers = new Headers(httpHeaders);
-          const params = new URLSearchParams({ type });
+          const params = new URLSearchParams({ game });
           const response = await fetch(
             `${baseUrl}/tables?${params.toString()}`,
             { method: 'GET', headers }
@@ -78,25 +78,4 @@ export const gameApi = createApi({
   }),
 });
 
-export const {
-  useGetPokaStateQuery,
-  useGetPokaRequestsQuery,
-  useGetTablesQuery,
-  useOpenPokaTableMutation,
-  useRestartGameMutation,
-  useSetGameVariantMutation,
-  useBetMutation,
-  useDenyCardMutation,
-  useSelectCardsMutation,
-  useAssignJokerMutation,
-  useEvaluateHandMutation,
-  useSubmitCardsMutation,
-  useRenewCavaMutation,
-  useNextRoundMutation,
-  useRevealCardsMutation,
-  useJoinTableMutation,
-  useSitDownMutation,
-  useSitOutMutation,
-  useLogOutAllMutation,
-  useRejectRequestMutation,
-} = gameApi;
+export const { useGetTablesQuery } = gameApi;

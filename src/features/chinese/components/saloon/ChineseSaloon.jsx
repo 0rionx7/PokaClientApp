@@ -1,4 +1,4 @@
-import AvailableTables from './AvailableTables';
+import AvailableTables from '@components/saloon/AvailableTables';
 import OpenTable from './OpenTable';
 import Requests from './Requests';
 
@@ -9,7 +9,7 @@ const ChineseSaloon = () => {
         <OpenTable />
         <Requests />
       </div>
-      <AvailableTables />
+      <AvailableTables game={'chinese'} />
     </div>
   );
 };

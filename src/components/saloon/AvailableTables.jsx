@@ -1,22 +1,20 @@
 import { useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
-import { useOpenChineseTableMutation } from '@chinese/api/chineseApi';
+import { useSitDownChineseMutation } from '@chinese/api/chineseApi';
 import AvailableTable from '@components/saloon/AvailableTable';
-import { useOpenPokaTableMutation } from '@store/gameApi';
 import { useGetUserQuery } from '@account/api/accountApi';
+import { useSitDownMutation } from '@poka/api/pokaApi';
+import { useGetTablesQuery } from '@store/gameApi';
 
-const AvailableTables = ({ useSitDown }) => {
-  const [query, setQuery] = useState('');
-  const location = useLocation();
-
-  const useGetTables = location.pathname.includes('chinese')
-    ? useOpenChineseTableMutation
-    : useOpenPokaTableMutation;
-  const { data } = useGetTables(undefined, {
+const AvailableTables = ({ game }) => {
+  const [query, setfQuery] = useState('');
+  const { data } = useGetTablesQuery(game, {
     refetchOnMountOrArgChange: true,
   });
   const { data: userData } = useGetUserQuery();
+
+  const useSitDown =
+    game === 'poka' ? useSitDownMutation : useSitDownChineseMutation;
 
   const joinRequests = userData?.joinRequests;
   const availableTables = useMemo(
@@ -42,10 +40,11 @@ const AvailableTables = ({ useSitDown }) => {
           name="query"
           type="text"
           value={query}
-          onChange={e => setQuery(e.target.value)}
+          onChange={e => setfQuery(e.target.value)}
         />
       </div>
       <h3>Διαθέσιμα τραπέζια</h3>
+      {/* <Button className="green" prompt="ανανέωση λίστας" onClick={refetch} /> */}
       <div className="tables-container">
         {!availableTables?.length ? (
           <div className="available-table" style={{ cursor: 'auto' }}>
@@ -55,8 +54,10 @@ const AvailableTables = ({ useSitDown }) => {
           availableTables?.map((tableInfo, i) => (
             <AvailableTable
               key={tableInfo.tableName}
-              tableInfo={tableInfo}
+              tableName={tableInfo.tableName}
+              joined={tableInfo.joined}
               useSitDown={useSitDown}
+              game={game}
             />
           ))
         )}

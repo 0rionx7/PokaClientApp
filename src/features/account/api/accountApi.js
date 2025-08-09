@@ -104,17 +104,6 @@ export const accountApi = gameApi.injectEndpoints({
       }),
       invalidatesTags: ['User'],
     }),
-    requestJoinChinese: build.mutation({
-      query: requestInfo => ({
-        url: 'user/chinese/requestJoin',
-        method: 'PATCH',
-        body: {
-          ...requestInfo,
-          socketId: socket.id,
-        },
-      }),
-      invalidatesTags: ['User'],
-    }),
     cancelRequestChinese: build.mutation({
       query: cancelInfo => ({
         url: 'user/chinese/cancelRequest',
@@ -146,7 +135,6 @@ export const {
   useForgotPasswordMutation,
   useRequestJoinMutation,
   useCancelRequestMutation,
-  useRequestJoinChineseMutation,
   useCancelRequestChineseMutation,
   usePayMutation,
 } = accountApi;
