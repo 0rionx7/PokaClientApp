@@ -1,26 +1,25 @@
 import { useParams } from 'react-router-dom';
 
-import {
-  useGetPokaStateQuery,
-  useJoinTableMutation,
-  useRejectRequestMutation,
-} from '@poka/api/pokaApi';
+import useSnackBar from '@hooks/useSnackBar';
 import StatusIcon from '@ui/StatusIcon';
 import ToolTip from '@ui/ToolTip';
-import useSnackBar from '@hooks/useSnackBar';
 
-const ListedPlayer = ({ playerState, clickable }) => {
+const PlayerRequest = ({
+  playerState,
+  tableName,
+  tableFull,
+  useJoin,
+  useReject,
+  clickable,
+}) => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
-  const [joinTable, { isLoading }] = useJoinTableMutation();
+  const [joinTable, { isLoading }] = useJoin();
   const { snackElement, setSnackInfo } = useSnackBar();
-  const [rejectRequest, { isSuccess, isLoading: rejecting }] =
-    useRejectRequestMutation();
+  const [rejectRequest, { isSuccess, isLoading: rejecting }] = useReject();
 
   const handleJoin = async () => {
     if (!clickable || isLoading || rejecting) return;
-    if (data?.playerStates.length === 8)
-      return setSnackInfo('έχει συμπληρωθεί το καρέ');
+    if (tableFull) return setSnackInfo('έχει συμπληρωθεί το καρέ');
 
     const { playerName } = playerState;
     const result = await joinTable({ playerName, gameId });
@@ -31,7 +30,7 @@ const ListedPlayer = ({ playerState, clickable }) => {
     if (rejecting || isSuccess || isLoading) return;
     e.stopPropagation();
     const result = await rejectRequest({
-      tableName: data?.tableName,
+      tableName,
       username: playerState.playerName,
     });
     if (result.error?.data) setSnackInfo(result.error.data);
@@ -39,9 +38,9 @@ const ListedPlayer = ({ playerState, clickable }) => {
 
   return (
     <div
-      className="listed-player"
+      className="player-request"
       onClick={handleJoin}
-      style={{ cursor: clickable ? 'pointer' : 'inherit' }}>
+      style={{ cursor: clickable && 'pointer' }}>
       <StatusIcon playerState={playerState} />
       <div className="approve">
         {playerState?.playerName}
@@ -57,4 +56,4 @@ const ListedPlayer = ({ playerState, clickable }) => {
   );
 };
 
-export default ListedPlayer;
+export default PlayerRequest;
