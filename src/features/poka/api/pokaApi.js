@@ -10,7 +10,7 @@ export const pokaApi = gameApi.injectEndpoints({
         params: { socketId: socket.id },
       }),
       async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
-        arg,
+        gameId,
         {
           dispatch,
           getState,
@@ -19,7 +19,7 @@ export const pokaApi = gameApi.injectEndpoints({
           updateCachedData, // available for query endpoints only
         }
       ) {
-        if (!arg) return;
+        if (!gameId) return;
         const hostPlayerName = getState().account.username;
 
         function updateLocalHandCards(data) {
@@ -33,23 +33,20 @@ export const pokaApi = gameApi.injectEndpoints({
           dispatch(setTableCards(data.tableCards));
 
           const stateUpdateListener = stateUpdate => {
-            // because might receive stateUpdate @ player socketId
-            if (arg === stateUpdate._id)
-              updateCachedData(draft => {
-                //for not to reset preselected cards ( players selected before their turn )
-                if (!draft.currentPlayerList?.[0]?.selecting?.submit) {
-                  if (stateUpdate.playerStates)
-                    updateLocalHandCards(stateUpdate);
-                  if (stateUpdate.tableCards)
-                    dispatch(setTableCards(stateUpdate.tableCards));
-                }
+            updateCachedData(draft => {
+              //for not to reset preselected cards ( player selected before their turn )
+              if (!draft.currentPlayerList?.at(0)?.selecting?.submit) {
+                if (stateUpdate.playerStates) updateLocalHandCards(stateUpdate);
+                if (stateUpdate.tableCards)
+                  dispatch(setTableCards(stateUpdate.tableCards));
+              }
 
-                return { ...draft, ...stateUpdate };
-              });
+              return { ...draft, ...stateUpdate };
+            });
           };
 
           const closingBetListener = ({ _id, playerStates }) => {
-            if (arg === _id) {
+            if (gameId === _id) {
               playerStates = updateAll(playerStates, { denying: 0 });
               updateCachedData(draft => ({ ...draft, playerStates }));
             }
