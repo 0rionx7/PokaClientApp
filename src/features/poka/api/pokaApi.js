@@ -1,6 +1,6 @@
 import { playerEntry, updateAll } from '@utils/utilities-functions';
 import { setHandCards, setTableCards } from '@poka/slice/pokaStateSlice';
-import { baseUrl, gameApi, socket } from '@store/gameApi';
+import { gameApi, socket } from '@store/gameApi';
 
 export const pokaApi = gameApi.injectEndpoints({
   endpoints: build => ({
