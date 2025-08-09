@@ -47,6 +47,9 @@ export const chineseStateSlice = createSlice({
       state.handCards = state.handCards.sort((a, b) => {
         if (!a) return -1;
         if (!b) return 1;
+        if (a.suit === 'D' && b.suit === 'D') return a.value - b.value;
+        if (a.suit === 'D') return -1;
+        if (b.suit === 'D') return 1;
         return a.suit.localeCompare(b.suit) || a.value - b.value;
       });
     },
