@@ -37,22 +37,18 @@ export const chineseStateSlice = createSlice({
       state[place][index] = movedCard;
     },
     orderByValue: (state, _action) => {
-      state.handCards.sort((cardA, cardB) => {
-        if (!cardA) return -1;
-        if (!cardB) return 1;
-        return cardA.value - cardB.value;
+      state.handCards.sort((a, b) => {
+        if (!a) return -1;
+        if (!b) return 1;
+        return a.value - b.value;
       });
     },
     orderBySuit: (state, _action) => {
-      function orderHandBySuit(handCards) {
-        const nulls = handCards.filter(card => card === null);
-        const hearts = handCards.filter(card => card?.suit === 'H');
-        const clubs = handCards.filter(card => card?.suit === 'C');
-        const spades = handCards.filter(card => card?.suit === 'S');
-        const diamonds = handCards.filter(card => card?.suit === 'D');
-        return nulls.concat(clubs, hearts, spades, diamonds);
-      }
-      state.handCards = orderHandBySuit(state.handCards);
+      state.handCards = state.handCards.sort((a, b) => {
+        if (!a) return -1;
+        if (!b) return 1;
+        return a.suit.localeCompare(b.suit) || a.value - b.value;
+      });
     },
   },
   extraReducers: builder =>
