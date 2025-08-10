@@ -11,9 +11,7 @@ const Standings = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
 
-  const playerStates = data.playerStates
-    .slice()
-    .sort((a, b) => b.resta - a.resta);
+  const playerStates = data.playerStates.toSorted((a, b) => b.resta - a.resta);
   const renderList = sortPlayers(playerStates);
 
   return (
