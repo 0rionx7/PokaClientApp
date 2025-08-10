@@ -33,7 +33,7 @@ const StayLeave = ({ useSitDown }) => {
           />
           <Button
             prompt="Αποχωρώ"
-            onClick={() => navigate('/saloon', state)}
+            onClick={() => navigate('/saloon', { state })}
             disabled={isLoading}
             className="red"
           />

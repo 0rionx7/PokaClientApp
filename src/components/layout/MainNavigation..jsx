@@ -23,14 +23,14 @@ const MainNavigation = () => {
             <Link
               to="/saloon"
               state={{ game: 'poka' }}
-              className={`nav-link${state.game === 'poka' ? ' active' : ''}`}>
+              className={`nav-link${state?.game === 'poka' ? ' active' : ''}`}>
               Σαλόνι Πόκας
             </Link>
             <Link
               to="/saloon"
               state={{ game: 'chinese' }}
               className={`nav-link${
-                state.game === 'chinese' ? ' active' : ''
+                state?.game === 'chinese' ? ' active' : ''
               }`}>
               Σαλόνι Κινέζικου Πόκερ
             </Link>

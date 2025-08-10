@@ -34,7 +34,7 @@ const SitOut = () => {
               />
               <Button
                 prompt="Έξοδος"
-                onClick={() => navigate('/saloon', state)}
+                onClick={() => navigate('/saloon', { state })}
                 className="red"
               />
             </div>
