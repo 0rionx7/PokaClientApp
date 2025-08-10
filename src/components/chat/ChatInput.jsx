@@ -16,7 +16,7 @@ const ChatInput = () => {
   const [message, setMessage] = useState('');
   const inputRef = useRef();
 
-  const handleSubmit = event => {
+  const handleSendMessage = event => {
     event.preventDefault();
     socket.emit('postMessage', { gameId, playerName, message });
     setShowPicker(false);
@@ -30,7 +30,7 @@ const ChatInput = () => {
 
   return (
     <>
-      <form className="chat-input" onSubmit={handleSubmit}>
+      <form className="chat-input" onSubmit={handleSendMessage}>
         <div className="input-container">
           <input
             ref={inputRef}

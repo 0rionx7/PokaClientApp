@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectMessagess } from '@poka/slice/pokaStateSlice';
+import { selectMessagess } from '@account/slice/accountSlice';
 import { createMessageJsx } from '@poka/utils/createMsgJsx';
 import './ChatBox.scss';
 

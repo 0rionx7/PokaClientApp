@@ -7,8 +7,7 @@ import {
   useSitDownChineseMutation,
   useSitOutChineseMutation,
 } from '@chinese/api/chineseApi';
-import { resetMessages } from '@poka/slice/pokaStateSlice';
-import { selectUserName } from '@account/slice/accountSlice';
+import { resetMessages, selectUserName } from '@account/slice/accountSlice';
 import { playerEntry } from '@utils/utilities-functions';
 import DealerScreen from '@chinese/components/dealer/DealerScreen';
 import RoundInfo from '@chinese/components/table/RoundInfo';
