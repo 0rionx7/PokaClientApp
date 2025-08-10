@@ -9,7 +9,6 @@ export const pokaStateSlice = createSlice({
   initialState: {
     tableCards: [],
     handCards: [],
-    messages: [],
     currentChoosenGame: gameNames.MAMUT,
   },
   reducers: {
@@ -32,12 +31,6 @@ export const pokaStateSlice = createSlice({
     setCurrentChoosenGame: (state, action) => {
       state.currentChoosenGame = action.payload;
     },
-    postMessage: (state, action) => {
-      state.messages.push(action.payload);
-    },
-    resetMessages: (state, action) => {
-      state.messages = [];
-    },
   },
   extraReducers: builder =>
     builder
@@ -54,7 +47,6 @@ export const pokaStateSlice = createSlice({
   selectors: {
     selectHandcards: pokaState => pokaState.handCards,
     selectTablecards: pokaState => pokaState.tableCards,
-    selectMessagess: pokaState => pokaState.messages,
     selectCurrentChoosenGame: pokaState => pokaState.currentChoosenGame,
   },
 });
@@ -64,13 +56,7 @@ export const {
   setCurrentChoosenGame,
   setHandCards,
   toggleSelectedCard,
-  postMessage,
-  resetMessages,
 } = pokaStateSlice.actions;
 
-export const {
-  selectHandcards,
-  selectTablecards,
-  selectMessagess,
-  selectCurrentChoosenGame,
-} = pokaStateSlice.selectors;
+export const { selectHandcards, selectTablecards, selectCurrentChoosenGame } =
+  pokaStateSlice.selectors;

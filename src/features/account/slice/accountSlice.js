@@ -6,6 +6,7 @@ const initialStateFn = () => {
   const initialState = {
     username: '',
     token: '',
+    messages: [],
     hideInfo: false,
     deckColor: 'rgb(255 0 0 / 90%)',
   };
@@ -25,6 +26,12 @@ export const accountSlice = createSlice({
   reducers: {
     setHideInfo: (state, action) => ({ ...state, hideInfo: action.payload }),
     setDeckColor: (state, action) => ({ ...state, deckColor: action.payload }),
+    postMessage: (state, action) => {
+      state.messages.push(action.payload);
+    },
+    resetMessages: (state, action) => {
+      state.messages = [];
+    },
   },
   extraReducers: builder => {
     builder
@@ -43,13 +50,20 @@ export const accountSlice = createSlice({
       );
   },
   selectors: {
-    selectUserName: account => account.username,
-    selectHideInfo: account => account.hideInfo,
-    selectDeckColor: account => account.deckColor,
-    selectToken: account => account.token,
+    selectUserName: accountState => accountState.username,
+    selectHideInfo: accountState => accountState.hideInfo,
+    selectMessagess: accountState => accountState.messages,
+    selectDeckColor: accountState => accountState.deckColor,
+    selectToken: accountState => accountState.token,
   },
 });
 
-export const { setHideInfo, setDeckColor } = accountSlice.actions;
-export const { selectUserName, selectHideInfo, selectDeckColor, selectToken } =
-  accountSlice.selectors;
+export const { setHideInfo, setDeckColor, postMessage, resetMessages } =
+  accountSlice.actions;
+export const {
+  selectUserName,
+  selectHideInfo,
+  selectMessagess,
+  selectDeckColor,
+  selectToken,
+} = accountSlice.selectors;
