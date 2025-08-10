@@ -14,7 +14,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
   const navigate = useNavigate();
 
-  const handleCancel = async event => {
+  const handleCancelRequest = async event => {
     if (canceling) return;
     event.stopPropagation();
     cancelRequest(tableInfo);
@@ -25,7 +25,9 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
     const result = await sitDown({ gameId, tableName });
     if (result.error?.data) setSnackInfo(result.error.data);
     if (result.data?.gameId)
-      navigate(`/${result.data.game}/table/${result.data.gameId}`);
+      navigate(`/${result.data.game}/table/${result.data.gameId}`, {
+        state: { game: 'poka' },
+      });
   };
 
   return (
@@ -43,7 +45,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
         className="cancel"
         onMouseOver={() => setCancelHoveredPropagation(true)}
         onMouseLeave={() => setCancelHoveredPropagation(false)}
-        onClick={handleCancel}>
+        onClick={handleCancelRequest}>
         X <ToolTip info="Ακύρωση" />
       </div>
       {snackElement}

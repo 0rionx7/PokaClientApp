@@ -37,7 +37,7 @@ const Register = () => {
     const result = await register(registerData);
     if (result?.error?.data)
       return { error: result.error.data, enteredValues: registerData };
-    else navigate('/saloon', { replace: true }, { state: { game: 'poka' } });
+    else navigate('/saloon', { replace: true, state: { game: 'poka' } });
   }
 
   return (

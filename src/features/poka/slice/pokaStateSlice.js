@@ -1,4 +1,4 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 import { revealCard, unselectAll } from '@utils/utilities-functions';
 import { gameNames } from '@poka/utils/games';
@@ -7,8 +7,6 @@ import { pokaApi } from '@poka/api/pokaApi';
 export const pokaStateSlice = createSlice({
   name: 'pokaState',
   initialState: {
-    gameId: '',
-    tableName: '',
     tableCards: [],
     handCards: [],
     messages: [],
@@ -18,17 +16,8 @@ export const pokaStateSlice = createSlice({
     setTableCards: (state, action) => {
       state.tableCards = action.payload;
     },
-    setCurrentChoosenGame: (state, action) => {
-      state.currentChoosenGame = action.payload;
-    },
     setHandCards: (state, action) => {
       state.handCards = action.payload.map(revealCard);
-    },
-    postMessage: (state, action) => {
-      state.messages.push(action.payload);
-    },
-    resetMessages: (state, action) => {
-      state.messages = [];
     },
     toggleSelectedCard: (state, action) => {
       const selectedCard = card =>
@@ -40,24 +29,18 @@ export const pokaStateSlice = createSlice({
       if (handIndex !== -1) toggleCard(state.handCards, handIndex);
       else toggleCard(state.tableCards, tableIndex);
     },
+    setCurrentChoosenGame: (state, action) => {
+      state.currentChoosenGame = action.payload;
+    },
+    postMessage: (state, action) => {
+      state.messages.push(action.payload);
+    },
+    resetMessages: (state, action) => {
+      state.messages = [];
+    },
   },
   extraReducers: builder =>
     builder
-      .addMatcher(
-        isAnyOf(
-          pokaApi.endpoints.openPokaTable.matchFulfilled,
-          pokaApi.endpoints.sitDown.matchFulfilled,
-          pokaApi.endpoints.restartGame.matchFulfilled
-        ),
-        (state, action) => ({ ...state, ...action.payload })
-      )
-      .addMatcher(
-        pokaApi.endpoints.getPokaState.matchFulfilled,
-        (state, action) => {
-          state.gameId = action.payload._id;
-          state.tableName = action.payload.tableName;
-        }
-      )
       .addMatcher(pokaApi.endpoints.sitOut.matchFulfilled, (_state, _action) =>
         pokaStateSlice.getInitialState()
       )
