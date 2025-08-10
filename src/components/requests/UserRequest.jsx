@@ -26,7 +26,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
     if (result.error?.data) setSnackInfo(result.error.data);
     if (result.data?.gameId)
       navigate(`/${result.data.game}/table/${result.data.gameId}`, {
-        state: { game: 'poka' },
+        state: { game: result.data.game },
       });
   };
 

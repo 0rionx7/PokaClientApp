@@ -28,7 +28,9 @@ const AvailableTable = ({ tableName, joined, useSitDown }) => {
       });
       if (result.error?.data) setSnackInfo(result.error.data);
       if (result.data?.gameId)
-        return navigate(`/${result.data.game}/table/${result.data.gameId}`);
+        return navigate(`/${result.data.game}/table/${result.data.gameId}`, {
+          state: { game: result.data.game },
+        });
     }
 
     if (joinRequests?.length >= 3)

@@ -21,7 +21,7 @@ const ApprovedRequest = ({ requestInfo: { tableName, gameId, game } }) => {
     } else {
       const { data } = await sitDownChinese({ gameId, tableName });
       if (data?.gameId)
-        navigate(`chinese/table/${gameId}`, { state: { game: 'poka' } });
+        navigate(`chinese/table/${gameId}`, { state: { game: 'chinese' } });
     }
   };
 
