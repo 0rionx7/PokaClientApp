@@ -15,6 +15,14 @@ import Buttons from '@poka/components/info/Buttons';
 import toggle from '@icons/toggle.svg';
 import './Info.scss';
 
+const TABS = {
+  [infoButton.GAME_DESCRIPTION]: <GameDescription />,
+  [infoButton.GAME_INFO]: <GameInfo />,
+  [infoButton.CHAT]: <ChatBox />,
+  [infoButton.STANDINGS]: <Standings />,
+  [infoButton.LAST_GAME_RESULTS]: <Results />,
+};
+
 const Info = ({ hideInfo, onToggleInfoPanel }) => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
@@ -36,11 +44,7 @@ const Info = ({ hideInfo, onToggleInfoPanel }) => {
     <div className="info">
       <div className={'info-content ' + (hideInfo ? 'hidden' : '')}>
         <Buttons setSelected={setSelectedTab} selected={selectedTab} />
-        {selectedTab === infoButton.GAME_DESCRIPTION && <GameDescription />}
-        {selectedTab === infoButton.GAME_INFO && <GameInfo />}
-        {selectedTab === infoButton.CHAT && <ChatBox />}
-        {selectedTab === infoButton.STANDINGS && <Standings />}
-        {selectedTab === infoButton.LAST_GAME_RESULTS && <Results />}
+        {TABS[selectedTab]}
       </div>
       <div className="toggle-btn" onClick={handleToggleInfoPanel}>
         <img src={toggle} alt={'toggle'} />
