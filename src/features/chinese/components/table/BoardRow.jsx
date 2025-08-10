@@ -9,7 +9,7 @@ import { selectUserName } from '@account/slice/accountSlice';
 import { isSitting } from '@utils/utilities-functions';
 import './Board.scss';
 
-import RenderItem from './RenderItem';
+import RenderItem from '../card/RenderItem';
 import './Board.scss';
 
 const BoardRow = ({ rowIndex, playerState }) => {

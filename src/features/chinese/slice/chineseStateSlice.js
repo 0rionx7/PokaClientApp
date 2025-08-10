@@ -2,18 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { chineseApi } from '@chinese/api/chineseApi';
 
 export const initialGameState = {
-  playerName: '',
   boardCards: Array(13).fill(null),
   handCards: [],
   isFantasy: false,
-  isFoul: false,
-  royalties: [0, 0, 0],
-  linesScore: [0, 0, 0],
-  gameScore: 0,
-  roundScore: 0,
-  sittingOut: true,
-  socketId: null,
-  isSubscribed: false,
 };
 
 export const chineseStateSlice = createSlice({

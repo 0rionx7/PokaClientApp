@@ -5,7 +5,7 @@ import EmojiProvider, { useEmoji } from '@components/chat/EmojiProvider';
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
 import useMessageService from '@hooks/useMessageService';
 import LoadingSpinner from '@ui/LoadingSpinner';
-import Table from '@chinese/components/Table';
+import Table from '@chinese/components/table/Table';
 import ChatBox from '@components/chat/ChatBox';
 import toggle from '@icons/toggle.svg';
 

@@ -7,7 +7,7 @@ import {
   useTimedOutMutation,
 } from '@chinese/api/chineseApi';
 import { selectUserName } from '@account/slice/accountSlice';
-import Timer from '@chinese/components/Timer';
+import Timer from '@chinese/components/table/Timer';
 import { isSitting } from '@utils/utilities-functions';
 
 const useTimer = playerName => {

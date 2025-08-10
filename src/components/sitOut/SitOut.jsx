@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import exit from '@icons/exit.svg';
@@ -10,6 +10,7 @@ import ToolTip from '@ui/ToolTip';
 const SitOut = () => {
   const [showDiag, setShowDiag] = useState(false);
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   return (
     <>
@@ -30,10 +31,10 @@ const SitOut = () => {
                 prompt="Επιστροφή "
                 onClick={() => setShowDiag(false)}
                 className="green"
-              />{' '}
+              />
               <Button
                 prompt="Έξοδος"
-                onClick={() => navigate('/saloon')}
+                onClick={() => navigate('/saloon', state)}
                 className="red"
               />
             </div>

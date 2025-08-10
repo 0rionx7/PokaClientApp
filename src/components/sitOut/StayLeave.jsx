@@ -1,16 +1,16 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { useSitDownMutation } from '@poka/api/pokaApi';
 import useSnackBar from '@hooks/useSnackBar';
 import Overlay from '@ui/Overlay';
 import Button from '@ui/Button';
 import './StayLeave.scss';
 
-const StayLeave = () => {
+const StayLeave = ({ useSitDown }) => {
   const { gameId } = useParams();
-  const [sitDownn, { isLoading }] = useSitDownMutation();
+  const [sitDownn, { isLoading }] = useSitDown();
   const { snackElement, setSnackInfo } = useSnackBar();
   const navigate = useNavigate();
+  const { state } = useLocation();
 
   const handleSitDown = async () => {
     const result = await sitDownn({ gameId });
@@ -30,10 +30,10 @@ const StayLeave = () => {
             onClick={handleSitDown}
             disabled={isLoading}
             className="green"
-          />{' '}
+          />
           <Button
             prompt="Αποχωρώ"
-            onClick={() => navigate('/saloon')}
+            onClick={() => navigate('/saloon', state)}
             disabled={isLoading}
             className="red"
           />

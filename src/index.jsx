@@ -23,7 +23,7 @@ import Register from '@account/components/Register';
 import Welcome from './pages/Welcome';
 import Forgot from '@account/components/Forgot';
 import Login from '@account/components/Login';
-import Room from '@poka/Room';
+import Room from '@poka/components/Room';
 import Layout from '@layout/Layout';
 import RouteGuard from '@utils/route-guard';
 import { store } from './store/store';
