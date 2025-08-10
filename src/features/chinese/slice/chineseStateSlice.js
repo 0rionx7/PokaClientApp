@@ -11,7 +11,10 @@ export const chineseStateSlice = createSlice({
   name: 'chineseState',
   initialState: initialGameState,
   reducers: {
-    setLocalPlayerState: (_state, action) => action.payload,
+    setLocalPlayerState: (_state, action) => {
+      const { boardCards, handCards, isFantasy } = action.payload;
+      return { boardCards, handCards, isFantasy };
+    },
     moveCard: (state, action) => {
       const { place, index, movedCard } = action.payload;
 
