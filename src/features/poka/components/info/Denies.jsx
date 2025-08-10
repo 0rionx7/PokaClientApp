@@ -7,13 +7,13 @@ const Denies = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
 
-  if (!data.denies) return null;
+  if (!data.denials) return null;
 
   return (
     <>
       {'με '}
       <span>
-        {`${countFem[data.denies]}  ΑΡΝΗΣ${data.denies > 1 ? 'ΕΙΣ ' : 'Η '}`}
+        {`${countFem[data.denials]}  ΑΡΝΗΣ${data.denials > 1 ? 'ΕΙΣ ' : 'Η '}`}
       </span>
     </>
   );

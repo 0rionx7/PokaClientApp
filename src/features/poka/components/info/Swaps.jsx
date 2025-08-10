@@ -11,7 +11,7 @@ const Swaps = () => {
 
   return (
     <>
-      {data.denies ? ' και ' : 'με '}
+      {data.denials ? ' και ' : 'με '}
       <span>
         {`${countFem[data.swaps]}  ΑΛΛΑΓ${data.swaps > 1 ? 'ΕΣ' : 'Η'}`}
       </span>

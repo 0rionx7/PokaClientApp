@@ -8,7 +8,7 @@ const Dilemma = ({ name, options, setDeny }) => {
   function handleChange(e) {
     if (name === 'dealing' && e.target.value === dealingType.OLA_MAZI) {
       setDeny(false);
-      setFieldValue('denies', 0);
+      setFieldValue('denials', 0);
     }
     setFieldValue([name], e.target.value);
   }

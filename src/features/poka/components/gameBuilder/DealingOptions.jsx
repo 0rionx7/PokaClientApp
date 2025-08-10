@@ -11,7 +11,7 @@ const DealingOptions = ({ deny, setDeny }) => {
 
   const handleDenyChange = e => {
     if (e.target.checked) setFieldValue('dealing', dealingType.ENA_ENA);
-    setFieldValue('denies', e.target.checked ? 1 : 0);
+    setFieldValue('denials', e.target.checked ? 1 : 0);
     setDeny(e.target.checked);
   };
 
@@ -37,7 +37,7 @@ const DealingOptions = ({ deny, setDeny }) => {
           info={infoText.ARNISI}
         />
         {deny && (
-          <NumericInput name="denies" className={deny && 'active-counter'} />
+          <NumericInput name="denials" className={deny && 'active-counter'} />
         )}
       </div>
       <div className="with-counter">

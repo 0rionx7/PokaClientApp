@@ -31,7 +31,7 @@ export const builderDefaults = Object.freeze({
   handCardsInPlay: ['2', '3'],
   faceDownIndexes: [],
   hats: 0,
-  denies: 0,
+  denials: 0,
   swaps: 0,
   obligation: false,
   skarto: false,
