@@ -21,30 +21,21 @@
   overflow-y: auto;
   height: 100%;
   padding: 0 0.8rem;
-  p {
-    font-size: 0.7rem;
-    font-weight: 600;
-  }
+  font-size: 0.6rem;
   span {
     color: rgb(255 0 0);
     font-weight: 600;
+  }
+  @media only screen and (min-height: 500px) and (min-width: 900px) {
+    font-size: 0.7rem;
   }
 }
 .chat-input {
   display: flex;
   align-items: center;
   height: 1rem;
-  p {
-    font-size: small;
-    width: 10%;
-    text-align: center;
-    cursor: pointer;
-  }
   @media only screen and (min-height: 500px) {
     height: 1.5rem;
-    p {
-      font-size: large;
-    }
   }
 }
 .text-input {
