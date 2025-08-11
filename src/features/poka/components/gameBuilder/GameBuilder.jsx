@@ -36,7 +36,6 @@ const GameBuilder = memo(() => {
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus({ pending: true });
-
     const result = await setGameVariant({ gameId, builderConfig: values });
     if (result?.error?.data) {
       setStatus({ error: result.error.data });

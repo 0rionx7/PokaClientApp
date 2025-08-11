@@ -38,6 +38,7 @@ const Bet = ({ bet, resta }) => {
     const amount = folded ? -1 : roundedAmount;
     const result = await placeBet({ gameId, amount });
     if (result.error?.data) return setStatus({ error: result.error?.data });
+    setStatus({});
   }
 
   return (
@@ -52,7 +53,6 @@ const Bet = ({ bet, resta }) => {
           disabled={isSuccess || status.pending}
           value={+betAmount}
           onChange={e => {
-            setStatus({});
             validate(+e.target.value);
             setBetAmount(+e.target.value);
           }}
