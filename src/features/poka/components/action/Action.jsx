@@ -41,14 +41,14 @@ const Action = ({ hideInfo }) => {
       }}>
       {currentPlayer?.handInfo?.kind ? (
         <Results />
-      ) : hostTurn || hostPlayerState.jokering ? (
+      ) : hostTurn || hostPlayerState.jokerReplacing ? (
         <Play />
       ) : (
         !dealer && <LiveInfo />
       )}
       {hostPlayerState.resta === 0 && !hostPlayerState.sittingOut && <Renew />}
       {currentPlayer?.handInfo?.kind && <NextRound />}
-      {currentPlayer?.jokering && (
+      {currentPlayer?.jokerReplacing && (
         <Overlay style={{ backgroundColor: 'rgb(0 0 0 / 4%)' }}>
           <div className="waiting-content">
             Αναμονή να ορίσουν οι παίκτες τα μπαλαντέρ

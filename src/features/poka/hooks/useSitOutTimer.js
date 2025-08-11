@@ -19,7 +19,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const { kind } = handInfo;
   const currentPlayer = data?.currentPlayerList?.at(0);
   const submitting = currentPlayer?.selecting?.submit;
-  const jokering = currentPlayer?.jokering;
+  const jokerReplacing = currentPlayer?.jokerReplacing;
   const isHostPlayer = playerName === hostPlayerName;
   const isPlaying = playerName === currentPlayer?.playerName;
 
@@ -27,7 +27,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
     if (!isHostPlayer || data?.reaction === 101) return;
     let timer;
     if (isPlaying && !kind) {
-      const factor = submitting || jokering ? 2 : 1;
+      const factor = submitting || jokerReplacing ? 2 : 1;
       const timeOut = factor * data?.reaction * 1000;
       timer = setTimeout(
         () => sitOut({ gameId, timedout: 'timedout' }),
@@ -44,7 +44,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
     sitOut,
     data?.reaction,
     submitting,
-    jokering,
+    jokerReplacing,
     gameId,
   ]);
 

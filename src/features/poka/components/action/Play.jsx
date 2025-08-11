@@ -25,7 +25,7 @@ const Play = () => {
   const swapping = hostPlayerState.selecting?.swaps;
   const submitting = hostPlayerState.selecting?.submit;
   const discarding = hostPlayerState.selecting?.discard;
-  const jokering = hostPlayerState.jokering;
+  const jokerReplacing = hostPlayerState.jokerReplacing;
   const denials = hostPlayerState.denying > 0;
   const denying =
     denials && ![betting, swapping, submitting, discarding].some(Boolean);
@@ -39,7 +39,7 @@ const Play = () => {
       {discarding && <Discard selecting={hostPlayerState.selecting} />}
       {submitting && <Submit />}
       {denying && <DenyAccept />}
-      {jokering && <JokerSelect />}
+      {jokerReplacing && <JokerSelect />}
     </>
   );
 };
