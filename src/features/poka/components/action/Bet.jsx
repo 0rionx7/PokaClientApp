@@ -11,7 +11,7 @@ const Bet = ({ bet, resta }) => {
   const { gameId } = useParams();
   const [placeBet, { reset, isSuccess }] = useBetMutation();
   const {
-    data: { maxBet, chip, currentPlayerList },
+    data: { maxBet, chip, nextPlayers },
   } = useGetPokaStateQuery(gameId);
   const minBet = Math.min(maxBet, resta) - bet;
   const [betAmount, setBetAmount] = useState(minBet);
@@ -19,7 +19,7 @@ const Bet = ({ bet, resta }) => {
 
   useEffect(() => {
     return () => reset();
-  }, [reset, currentPlayerList]);
+  }, [reset, nextPlayers]);
 
   const validate = amount => {
     if (amount < minBet && amount >= 0)

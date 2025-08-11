@@ -17,7 +17,7 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const [sitOut] = useSitOutMutation();
 
   const { kind } = handInfo;
-  const currentPlayer = data?.currentPlayerList?.at(0);
+  const currentPlayer = data?.nextPlayers?.at(0);
   const submitting = currentPlayer?.selecting?.submit;
   const jokerReplacing = currentPlayer?.jokerReplacing;
   const isHostPlayer = playerName === hostPlayerName;

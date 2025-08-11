@@ -13,14 +13,14 @@ const BoardCard = ({ index }) => {
   const playerName = useSelector(selectUserName);
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
-  const { currentPlayerList, thorns } = data;
+  const { nextPlayers, thorns } = data;
 
   const playerSubmitted = useMemo(
     () =>
       data?.playerStates.find(playerEntry(playerName))?.submittedHand.length,
     [data?.playerStates, playerName]
   );
-  const [currentPlayerState] = currentPlayerList;
+  const [currentPlayerState] = nextPlayers;
   const isSubmitting = currentPlayerState?.selecting?.submit;
   const card = tableCards[index];
 

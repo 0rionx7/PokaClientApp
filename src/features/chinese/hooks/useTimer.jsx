@@ -13,15 +13,15 @@ import { isSitting } from '@utils/utilities-functions';
 const useTimer = playerName => {
   const { gameId } = useParams();
   const { data } = useGetChineseStateQuery(gameId);
-  const { currentPlayerList, round, playerStates, playTime } = data;
+  const { nextPlayers, round, playerStates, playTime } = data;
   const [remainingTime, setRemainingTime] = useState(playTime);
   const username = useSelector(selectUserName);
   const [timedOut] = useTimedOutMutation();
 
   const isHostBoard = playerName === username;
-  const [currentPlayer] = currentPlayerList;
+  const [currentPlayer] = nextPlayers;
   const isRoundEnd =
-    currentPlayerList.length <= playerStates.filter(isSitting).length;
+    nextPlayers.length <= playerStates.filter(isSitting).length;
   const isActive = playerName === currentPlayer;
 
   useEffect(() => {

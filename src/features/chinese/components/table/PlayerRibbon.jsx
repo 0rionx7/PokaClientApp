@@ -8,10 +8,10 @@ import './PlayerRibbon.scss';
 const PlayerRibbon = ({ playerState }) => {
   const { gameId } = useParams();
   const { data } = useGetChineseStateQuery(gameId);
-  const { currentPlayerList, round, playerStates } = data;
-  const [currentPlayer] = currentPlayerList;
+  const { nextPlayers, round, playerStates } = data;
+  const [currentPlayer] = nextPlayers;
   const showScore =
-    currentPlayerList.length === playerStates.filter(isSitting).length;
+    nextPlayers.length === playerStates.filter(isSitting).length;
   const isActive = playerState.playerName === currentPlayer || showScore;
   const isDealing =
     playerStates[(round - 1) % playerStates.length].playerName ===

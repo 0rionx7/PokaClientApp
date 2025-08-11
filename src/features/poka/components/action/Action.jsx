@@ -18,7 +18,7 @@ const Action = ({ hideInfo }) => {
   const { gameId } = useParams();
   const hostPlayerName = useSelector(selectUserName);
   const {
-    data: { playerStates, currentPlayerList, dealer },
+    data: { playerStates, nextPlayers, dealer },
   } = useGetPokaStateQuery(gameId);
   const { setActionContainerNode } = useActionContainerNode();
 
@@ -27,7 +27,7 @@ const Action = ({ hideInfo }) => {
     [playerStates, hostPlayerName]
   );
 
-  const [currentPlayer] = currentPlayerList;
+  const [currentPlayer] = nextPlayers;
   const hostTurn = currentPlayer?.playerName === hostPlayerName;
 
   return (

@@ -7,9 +7,9 @@ import './LiveInfo.scss';
 const LiveInfo = () => {
   const { gameId } = useParams();
   const {
-    data: { currentPlayerList, playerStates, gamesCount },
+    data: { nextPlayers, playerStates, gamesCount },
   } = useGetPokaStateQuery(gameId);
-  const [currentPlayer] = currentPlayerList;
+  const [currentPlayer] = nextPlayers;
 
   const pot = useMemo(
     () => playerStates.reduce((acc, curr) => acc + curr.bet, 0),

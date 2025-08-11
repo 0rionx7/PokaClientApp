@@ -19,9 +19,9 @@ const BoardRow = ({ rowIndex, playerState }) => {
   const username = useSelector(selectUserName);
 
   const isHostBoard = playerState.playerName === username;
-  const { currentPlayerList, playerStates } = data;
+  const { nextPlayers, playerStates } = data;
   const isRoundEnd =
-    currentPlayerList.length <= playerStates.filter(isSitting).length;
+    nextPlayers.length <= playerStates.filter(isSitting).length;
 
   let pastIndexes = 0;
   let cards = isHostBoard ? boardCards : playerState.boardCards;

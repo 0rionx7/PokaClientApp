@@ -35,7 +35,7 @@ export const pokaApi = gameApi.injectEndpoints({
           const stateUpdateListener = stateUpdate => {
             updateCachedData(draft => {
               //for not to reset preselected cards ( player selected before their turn )
-              if (!draft.currentPlayerList?.at(0)?.selecting?.submit) {
+              if (!draft.nextPlayers?.at(0)?.selecting?.submit) {
                 if (stateUpdate.playerStates) updateLocalHandCards(stateUpdate);
                 if (stateUpdate.tableCards)
                   dispatch(setTableCards(stateUpdate.tableCards));

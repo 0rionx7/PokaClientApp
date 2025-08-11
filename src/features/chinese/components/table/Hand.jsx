@@ -34,8 +34,8 @@ const Hand = () => {
     setHasSubmitted(false);
   }, [handCards]);
 
-  const { currentPlayerList } = data;
-  const [currentPlayer] = currentPlayerList;
+  const { nextPlayers } = data;
+  const [currentPlayer] = nextPlayers;
 
   const hasTurn = username === currentPlayer;
   const cardsLeftInHand = handCards?.filter(Boolean)?.length;
@@ -45,8 +45,8 @@ const Hand = () => {
   const sittedCount = data.playerStates.filter(isSitting).length;
   const canNext =
     sittedCount > 1 &&
-    currentPlayerList.length <= sittedCount &&
-    currentPlayerList.includes(username) &&
+    nextPlayers.length <= sittedCount &&
+    nextPlayers.includes(username) &&
     !hasNexted;
   const shift = data.playerStates.length === 2 ? '-50%' : '50%';
   const left = `calc(-.5 * (var(--card-width) + .3rem) * ${handCards?.length} + ${shift})`;

@@ -16,7 +16,7 @@ const usePlayerClass = index => {
   const playersCount = data?.playerStates.length;
   const hostIndex = data?.playerStates.findIndex(playerEntry(hostPlayerName));
   const playingList = data?.playerStates.filter(ps =>
-    data?.currentPlayerList.some(playerEntry(ps.playerName))
+    data?.nextPlayers.some(playerEntry(ps.playerName))
   );
   const playerSubmitted = submittedHand.length;
   const playingIndex = playingList.findIndex(playerEntry(playerName));
