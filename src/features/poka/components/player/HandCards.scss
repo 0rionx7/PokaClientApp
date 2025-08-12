@@ -14,6 +14,9 @@
       line-height: calc(0.6 * var(--card-width));
     }
   }
+  &.cards-0 {
+    position: unset;
+  }
   @media only screen and (min-height: 500px) and (min-width: 750px) {
     top: 35%;
     .card .value {

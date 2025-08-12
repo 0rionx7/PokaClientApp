@@ -3,23 +3,17 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
-import { getPossitionClass } from '@poka/utils/createPlayerClass';
+import { getPosition } from '@poka/utils/getPosition';
 import { playerEntry } from '@utils/utilities-functions';
-import { getChipsPosition } from '@poka/utils/getChipsPosition';
 
 const usePlayerClass = index => {
-  const hostPlayerName = useSelector(selectUserName);
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
+  const hostPlayerName = useSelector(selectUserName);
 
-  const { playerName, submittedHand, handCards } = data?.playerStates.at(index);
   const playersCount = data?.playerStates.length;
   const hostIndex = data?.playerStates.findIndex(playerEntry(hostPlayerName));
-  const playingList = data?.playerStates.filter(ps =>
-    data?.nextPlayers.some(playerEntry(ps.playerName))
-  );
-  const playerSubmitted = submittedHand.length;
-  const playingIndex = playingList.findIndex(playerEntry(playerName));
+
   let seat;
   if (data.rotation === 'clockwise') {
     seat =
@@ -32,17 +26,11 @@ const usePlayerClass = index => {
         ? playersCount + 1 - (index - hostIndex)
         : hostIndex - index + 1;
   }
-  const position = getPossitionClass(playersCount, seat - 1);
-  const gridArea = 'player-' + seat;
-  const className =
-    'player p-' + seat + (playerSubmitted ? ' submitted' : '') + position;
+  const position = getPosition(playersCount, seat);
+  const gridArea = `player-${seat}`;
+  const className = `player seat-${seat} ${position}`;
 
-  const chipsPosition = getChipsPosition(
-    submittedHand.length || handCards.length,
-    position
-  );
-
-  return { className, gridArea, chipsPosition, playingIndex };
+  return { className, gridArea };
 };
 
 export default usePlayerClass;

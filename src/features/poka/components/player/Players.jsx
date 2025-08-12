@@ -12,9 +12,9 @@ const Players = () => {
     <>
       {playerStates.map((playerState, i) => (
         <Player
+          key={playerState.playerName}
           playerState={playerState}
           index={i}
-          key={playerState.playerName}
         />
       ))}
     </>

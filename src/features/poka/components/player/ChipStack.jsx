@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { createChipStack } from '@poka/utils/createChipStack';
 
-const ChipStack = ({ playerState, chipsPosition }) => {
+const ChipStack = ({ playerState }) => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
 
@@ -17,13 +17,13 @@ const ChipStack = ({ playerState, chipsPosition }) => {
   return (
     <>
       {amount > 0 && (
-        <div className="bet-grid" style={chipsPosition}>
+        <div className="bet-grid">
           <div className="chips">{chips}</div>
           <div className="bet-amount">{amount.toLocaleString()}</div>
         </div>
       )}
       {amount < 0 && (
-        <div className="bet-grid" style={chipsPosition}>
+        <div className="bet-grid">
           <div className="bet-amount">πάσο</div>
         </div>
       )}

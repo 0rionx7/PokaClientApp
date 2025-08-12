@@ -16,6 +16,7 @@ const Card = ({ card, canBeSelected, noColor }) => {
   const { data } = useGetPokaStateQuery(gameId);
   const dispatch = useDispatch();
 
+  if (card === null) return null; // for auxilary cards
   if (!card?.faceUp)
     return (
       <div className="card" style={{ padding: '.17rem' }}>

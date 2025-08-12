@@ -48,13 +48,10 @@
   }
 }
 .top {
-  $handCards-shift: calc(-0.35 * var(--card-height));
-  top: $handCards-shift;
-  &.submitted {
-    top: calc($handCards-shift - 1 * variables.$selected-shift);
-  }
+  top: calc(-0.15 * var(--card-height));
   .bet-grid {
     top: 100%;
+    right: calc(100% + 2.5rem);
   }
 }
 .right {
@@ -86,7 +83,7 @@
 }
 .left {
   .bet-grid {
-    left: calc(100% + 4px);
+    left: calc(100% + 0.5rem);
   }
   // .cards-5 {
   //   .bet-grid {

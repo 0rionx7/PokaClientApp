@@ -24,7 +24,9 @@ export const pokaApi = gameApi.injectEndpoints({
 
         function updateLocalHandCards(data) {
           const hostState = data.playerStates.find(playerEntry(hostPlayerName));
-          dispatch(setHandCards(hostState.handCards));
+          dispatch(
+            setHandCards(hostState.handCards.filter(card => card?.value > 1))
+          );
         }
 
         try {
