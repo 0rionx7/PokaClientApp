@@ -7,7 +7,7 @@ import { playerEntry } from '@utils/utilities-functions.js';
 const useDelayedDeal = ({ index, handCards }) => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
-  const [dealedCards, setDealedCards] = useState([]);
+  const [dealtCards, setDealtCards] = useState([]);
 
   const { playerName } = data?.playerStates.at(index);
   const activePlayers = data?.playerStates.filter(ps =>
@@ -19,13 +19,13 @@ const useDelayedDeal = ({ index, handCards }) => {
     let timer;
     const timeout = turnOrder * 150;
     timer = setTimeout(() => {
-      setDealedCards(handCards);
+      setDealtCards(handCards);
     }, timeout);
 
     return () => clearTimeout(timer);
   }, [turnOrder, handCards]);
 
-  return dealedCards;
+  return dealtCards;
 };
 
 export default useDelayedDeal;

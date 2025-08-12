@@ -29,6 +29,7 @@ import RouteGuard from '@utils/route-guard';
 import { store } from './store/store';
 import App from './App';
 import '@styles/index.scss';
+import MultiPlayerCardDeal from '@poka/components/MultiDeal';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -38,7 +39,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route errorElement={<div>Error - Router error element</div>}>
         <Route element={<Layout />}>
-          <Route index element={<Welcome />} />
+          <Route index element={<MultiPlayerCardDeal />} />
           <Route path="instructions" element={<Instructions />} />
           <Route path="saloon" element={<RouteGuard element={<Saloon />} />} />
           <Route path="login" element={<Login />} />
