@@ -53,3 +53,8 @@ export function createCode(length) {
   }
   return password;
 }
+export async function wait(ms) {
+  const { promise, resolve } = Promise.withResolvers();
+  setTimeout(resolve, ms);
+  await promise;
+}

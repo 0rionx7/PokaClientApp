@@ -28,13 +28,13 @@ const HandCards = ({ playerState, index }) => {
     : isHostPlayer
     ? hostPlayerHandCards
     : playerState.handCards;
-  const dealtHandCards = useDelayedDeal({ handCards, index });
+  const dealedHandCards = useDelayedDeal({ handCards, index });
   const canSelect = hostPlayerState.selecting;
   const className = `hand-cards cards-${handCards?.filter(Boolean).length}`;
 
   return (
     <div className={className}>
-      {dealtHandCards?.map((card, i) => (
+      {dealedHandCards?.map((card, i) => (
         <Card
           key={i}
           card={card}
