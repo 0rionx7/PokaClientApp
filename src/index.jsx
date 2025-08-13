@@ -39,7 +39,7 @@ const router = createBrowserRouter(
     <Route path="/" element={<App />}>
       <Route errorElement={<div>Error - Router error element</div>}>
         <Route element={<Layout />}>
-          <Route index element={<MultiPlayerCardDeal />} />
+          <Route index element={<Welcome />} />
           <Route path="instructions" element={<Instructions />} />
           <Route path="saloon" element={<RouteGuard element={<Saloon />} />} />
           <Route path="login" element={<Login />} />
