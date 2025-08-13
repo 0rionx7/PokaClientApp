@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { appInsights } from '../analytics';
+// import { appInsights } from '../analytics';
 
 export class AppErrorBoundary extends Component {
   constructor(props) {
@@ -12,10 +12,10 @@ export class AppErrorBoundary extends Component {
   }
 
   componentDidCatch(error, info) {
-    appInsights.trackException({
-      exception: error,
-      properties: { info },
-    });
+    // appInsights.trackException({
+    //   exception: error,
+    //   properties: { info },
+    // });
   }
 
   render() {
