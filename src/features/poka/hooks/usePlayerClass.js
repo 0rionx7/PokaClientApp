@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
 import { getPosition } from '@poka/utils/getPosition';
-import { playerEntry } from '@utils/utilities-functions';
+import { getPlayerState } from '@utils/helper-functions';
 
 const usePlayerClass = index => {
   const { gameId } = useParams();
@@ -12,7 +12,9 @@ const usePlayerClass = index => {
   const hostPlayerName = useSelector(selectUserName);
 
   const playersCount = data?.playerStates.length;
-  const hostIndex = data?.playerStates.findIndex(playerEntry(hostPlayerName));
+  const hostIndex = data?.playerStates.findIndex(
+    getPlayerState(hostPlayerName)
+  );
 
   let seat;
   if (data.rotation === 'clockwise') {

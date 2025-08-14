@@ -7,7 +7,7 @@ import {
   useGetPokaStateQuery,
   useSetGameVariantMutation,
 } from '@poka/api/pokaApi';
-import { isSitting } from '@utils/utilities-functions';
+import { isSitting } from '@utils/helper-functions';
 import { useActionContainerNode } from '@poka/utils/ActionContainerContext';
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
 import BuilderRow from '@poka/components/gameBuilder/BuilderRow';

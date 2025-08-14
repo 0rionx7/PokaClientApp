@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import PlayerStanding from '@poka/components/info/PlayerStanding';
-import { sortPlayers } from '@utils/utilities-functions';
+import { inGameFirst } from '@utils/helper-functions';
 import './Standings.scss';
 
 const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.'];
@@ -12,7 +12,7 @@ const Standings = () => {
   const { data } = useGetPokaStateQuery(gameId);
 
   const playerStates = data.playerStates.toSorted((a, b) => b.resta - a.resta);
-  const renderList = sortPlayers(playerStates);
+  const renderList = inGameFirst(playerStates);
 
   return (
     <div className="standings">

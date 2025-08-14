@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
 import { selectUserName } from '@account/slice/accountSlice';
 import { fantasySvg, foulSvg } from 'assets/svgs/various';
-import { isSitting } from '@utils/utilities-functions';
+import { isSitting } from '@utils/helper-functions';
 import usePlayerStyle from '@chinese/hooks/usePlayerStyle';
 import PlayerRibbon from '@chinese/components/table/PlayerRibbon';
 import RoundScore from '@chinese/components/table/RoundScore';

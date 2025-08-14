@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { sortPlayers } from '@utils/utilities-functions';
+import { inGameFirst } from '@utils/helper-functions';
 import PlayerResult from '@poka/components/info/PlayerResult';
 import './Results.scss';
 
@@ -22,7 +22,7 @@ const Results = () => {
     [data?.playerStates]
   );
 
-  const renderList = sortPlayers(playerStates);
+  const renderList = inGameFirst(playerStates);
 
   return (
     <div className="results-board">

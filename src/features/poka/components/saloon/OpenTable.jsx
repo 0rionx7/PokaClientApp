@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useOpenPokaTableMutation } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
 import clockwise from '@icons/clockwise.svg';
-import { createCode } from '@utils/utilities-functions';
+import { createCode } from '@utils/helper-functions';
 import Reaction from '@poka/components/saloon/Reaction';
 import Button from '@ui/Button';
 import Radio from '@ui/Radio';

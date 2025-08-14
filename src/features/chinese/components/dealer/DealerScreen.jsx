@@ -6,7 +6,7 @@ import {
 } from '@chinese/api/chineseApi';
 import Overlay from '@ui/Overlay';
 import Button from '@ui/Button';
-import { isSitting } from '@utils/utilities-functions';
+import { isSitting } from '@utils/helper-functions';
 import PlayerRequests from '@components/requests/PlayerRequests';
 import './DealerScreen.scss';
 

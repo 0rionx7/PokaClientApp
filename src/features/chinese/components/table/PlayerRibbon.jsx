@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
-import { isSitting } from '@utils/utilities-functions';
+import { isSitting } from '@utils/helper-functions';
 import './PlayerRibbon.scss';
 
 const PlayerRibbon = ({ playerState }) => {

@@ -8,7 +8,7 @@ import {
   useSitOutMutation,
 } from '@poka/api/pokaApi';
 import { resetMessages, selectUserName } from '@account/slice/accountSlice';
-import { playerEntry } from '@utils/utilities-functions';
+import { getPlayerState } from '@utils/helper-functions';
 import DealerScreen from '@poka/components/dealer/DealerScreen';
 import StayLeave from '@components/sitOut/StayLeave';
 import Players from '@poka/components/player/Players';
@@ -28,7 +28,9 @@ const Table = () => {
   const [sitOut] = useSitOutMutation();
   const dispatch = useDispatch();
 
-  const hostPlayerState = data.playerStates.find(playerEntry(hostPlayerName));
+  const hostPlayerState = data.playerStates.find(
+    getPlayerState(hostPlayerName)
+  );
   const dealer = data.playerStates.at(-1).playerName;
 
   useEffect(() => {

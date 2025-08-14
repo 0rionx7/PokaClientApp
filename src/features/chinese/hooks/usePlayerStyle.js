@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
 import { selectUserName } from '@account/slice/accountSlice';
-import { playerEntry } from '@utils/utilities-functions';
+import { getPlayerState } from '@utils/helper-functions';
 
 const usePlayerStyle = index => {
   const { gameId } = useParams();
   const username = useSelector(selectUserName);
   const { data } = useGetChineseStateQuery(gameId);
   const { playerStates } = data;
-  const hostIndex = playerStates.findIndex(playerEntry(username));
+  const hostIndex = playerStates.findIndex(getPlayerState(username));
 
   let gridArea;
   if (playerStates.length === 2)

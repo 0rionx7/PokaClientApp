@@ -1,7 +1,7 @@
-import { colorClass } from '@utils/utilities-functions';
+import { getColorClass } from '@utils/helper-functions';
 
 const LineScore = ({ lineScore, royalties, index }) => {
-  const classColor = colorClass(lineScore);
+  const classColor = getColorClass(lineScore);
   const gridArea = 'score-details-' + index;
 
   return (

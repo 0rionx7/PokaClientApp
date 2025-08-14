@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { useOpenChineseTableMutation } from '@chinese/api/chineseApi';
 import { selectUserName } from '@account/slice/accountSlice';
-import { createCode } from '@utils/utilities-functions';
+import { createCode } from '@utils/helper-functions';
 import { describeTime } from '@utils/text-functions';
 import Button from '@ui/Button';
 

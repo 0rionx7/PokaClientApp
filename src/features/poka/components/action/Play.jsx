@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
-import { playerEntry } from '@utils/utilities-functions';
+import { getPlayerState } from '@utils/helper-functions';
 import JokerSelect from '@poka/components/action/JokerSelect';
 import DenyAccept from '@poka/components/action/DenyAccept';
 import Bet from '@poka/components/action/Bet';
@@ -18,7 +18,7 @@ const Play = () => {
   const { data } = useGetPokaStateQuery(gameId);
 
   const hostPlayerState = useMemo(
-    () => data?.playerStates.find(playerEntry(hostPlayerName)),
+    () => data?.playerStates.find(getPlayerState(hostPlayerName)),
     [data?.playerStates, hostPlayerName]
   );
   const betting = hostPlayerState.betting;

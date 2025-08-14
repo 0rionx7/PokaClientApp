@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
 import { useActionContainerNode } from '@poka/utils/ActionContainerContext';
-import { playerEntry } from '@utils/utilities-functions';
+import { getPlayerState } from '@utils/helper-functions';
 import NextRound from '@poka/components/action/NextRound';
 import Results from '@poka/components/info/Results';
 import LiveInfo from '@poka/components/action/LiveInfo';
@@ -23,7 +23,7 @@ const Action = ({ hideInfo }) => {
   const { setActionContainerNode } = useActionContainerNode();
 
   const hostPlayerState = useMemo(
-    () => playerStates.find(playerEntry(hostPlayerName)),
+    () => playerStates.find(getPlayerState(hostPlayerName)),
     [playerStates, hostPlayerName]
   );
 

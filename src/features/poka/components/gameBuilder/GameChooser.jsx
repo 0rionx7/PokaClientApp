@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setCurrentChoosenGame } from '@poka/slice/pokaStateSlice';
+import { setChosenGame } from '@poka/slice/pokaStateSlice';
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
 import { builderDefaults, gameNames, gameConfigs } from '@poka/utils/games';
 
@@ -21,7 +21,7 @@ const GameChooser = () => {
       gameName,
       startingCard: values.startingCard,
     });
-    dispatch(setCurrentChoosenGame(gameName));
+    dispatch(setChosenGame(gameName));
   };
 
   const games = useMemo(

@@ -8,7 +8,7 @@ import {
 } from '@chinese/api/chineseApi';
 import { selectUserName } from '@account/slice/accountSlice';
 import Timer from '@chinese/components/table/Timer';
-import { isSitting } from '@utils/utilities-functions';
+import { isSitting } from '@utils/helper-functions';
 
 const useTimer = playerName => {
   const { gameId } = useParams();

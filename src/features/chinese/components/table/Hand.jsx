@@ -12,7 +12,7 @@ import {
   selectHandcards,
 } from '@chinese/slice/chineseStateSlice';
 import { selectUserName } from '@account/slice/accountSlice';
-import { isSitting } from '@utils/utilities-functions';
+import { isSitting } from '@utils/helper-functions';
 import FantasyButtons from '@chinese/components/table/FantasyButtons';
 import HandCards from '@chinese/components/table/HandCards';
 import Button from '@ui/Button';

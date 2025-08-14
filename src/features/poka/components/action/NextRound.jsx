@@ -9,7 +9,7 @@ import Button from '@ui/Button';
 import Overlay from '@ui/Overlay';
 import { useSelector } from 'react-redux';
 import { selectUserName } from '@account/slice/accountSlice';
-import { isSitting, playerEntry } from '@utils/utilities-functions';
+import { isSitting, getPlayerState } from '@utils/helper-functions';
 
 const NextRound = () => {
   const { gameId } = useParams();
@@ -18,7 +18,7 @@ const NextRound = () => {
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
   const [reveal, { revealing, revealed }] = useRevealCardsMutation();
   const { handCards, submittedHand } = data.playerStates.find(
-    playerEntry(hostPlayerName)
+    getPlayerState(hostPlayerName)
   );
 
   const showReveal =
