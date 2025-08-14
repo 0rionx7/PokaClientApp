@@ -9,7 +9,6 @@ import {
   useSitOutMutation,
 } from '@poka/api/pokaApi';
 import { resetMessages, selectUserName } from '@account/slice/accountSlice';
-import { isPlayerState } from '@utils/helper-functions';
 import DealerScreen from '@poka/components/dealer/DealerScreen';
 import StayLeave from '@components/sitOut/StayLeave';
 import Players from '@poka/components/player/Players';
@@ -26,7 +25,7 @@ const Table = () => {
   const { data, refetch } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
-  const hostPlayerState = useSelector(selectHostPlayerState);
+  const hostPlayerState = useSelector(selectHostPlayerState(gameId));
   const [sitOut] = useSitOutMutation();
   const dispatch = useDispatch();
 

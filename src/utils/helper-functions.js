@@ -18,9 +18,6 @@ export function isMirror(handCards, tableCards) {
     (card, i) => card.value === sortedHandCards[i].value
   );
 }
-export function inGameFirst(playerStates) {
-  playerStates.sort((a, b) => Number(b.sittingOut) - Number(a.sittingOut));
-}
 export function createCode(length) {
   let password = '';
   const characters =

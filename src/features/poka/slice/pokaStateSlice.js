@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { gameNames } from '@poka/utils/games';
 import { pokaApi } from '@poka/api/pokaApi';
@@ -41,14 +41,11 @@ export const pokaStateSlice = createSlice({
         pokaStateSlice.getInitialState()
       )
       .addMatcher(
-        pokaApi.endpoints.submitCards.matchFulfilled,
-        (state, _action) => {
-          const selectedHandIndexesCount = state.chosenHandCardIndexes.length;
-          state.chosenHandCardIndexes = [
-            ...Array(selectedHandIndexesCount).keys(),
-          ];
-          state.chosenTableCardIndexes = [];
-        }
+        isAnyOf(
+          pokaApi.endpoints.sitOut.matchFulfilled,
+          pokaApi.endpoints.submitCards.matchFulfilled
+        ),
+        (_state, _action) => pokaStateSlice.getInitialState()
       ),
   selectors: {
     selectChosenHandCardIndexes: pokaState => pokaState.chosenHandCardIndexes,

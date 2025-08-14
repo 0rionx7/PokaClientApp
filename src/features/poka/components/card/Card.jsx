@@ -22,7 +22,7 @@ const Card = ({ card, onChoose, isChosen, isJoker }) => {
   const cardClass = [
     'card',
     `v-${card.value}`,
-    isChosen && 'selected',
+    (isChosen || card.selected) && 'selected',
     isJoker && 'joker',
   ]
     .filter(Boolean)
