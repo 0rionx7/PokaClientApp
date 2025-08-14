@@ -174,11 +174,6 @@ export const selectPlayerStates = gameId =>
     selectGameState(gameId),
     result => result?.data?.playerStates ?? []
   );
-export const selectNextPlayers = gameId =>
-  createSelector(
-    selectGameState(gameId),
-    result => result?.data?.nextPlayers ?? []
-  );
 export const selectHostPlayerState = gameId =>
   createSelector(
     selectGameState(gameId),
@@ -187,6 +182,16 @@ export const selectHostPlayerState = gameId =>
       gameState?.data?.playerStates?.find(ps => ps.playerName === playerName) ??
       []
   );
+export const selectNextPlayers = gameId =>
+  createSelector(
+    selectGameState(gameId),
+    result => result?.data?.nextPlayers ?? []
+  );
+export const selectTableCards = gameId =>
+  createSelector(
+    selectGameState(gameId),
+    result => result?.data?.tableCards ?? []
+  );
 export const selectPlayerState = gameId =>
   createSelector(
     selectGameState(gameId),
@@ -194,9 +199,4 @@ export const selectPlayerState = gameId =>
     (gameState, playerName) =>
       gameState?.data?.playerStates?.find(ps => ps.playerName === playerName) ??
       []
-  );
-export const selectTableCards = gameId =>
-  createSelector(
-    selectGameState(gameId),
-    result => result?.data?.tableCards ?? []
   );
