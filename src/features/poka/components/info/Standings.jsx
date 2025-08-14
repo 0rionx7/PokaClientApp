@@ -1,18 +1,25 @@
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { selectPlayerStates } from '@poka/api/pokaApi';
 import PlayerStanding from '@poka/components/info/PlayerStanding';
-import { inGameFirst } from '@utils/helper-functions';
 import './Standings.scss';
+import { useSelector } from 'react-redux';
 
 const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.'];
 
 const Standings = () => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const playerStates = useSelector(selectPlayerStates(gameId));
 
-  const playerStates = data.playerStates.toSorted((a, b) => b.resta - a.resta);
-  const renderList = inGameFirst(playerStates);
+  const orderedPlayerStates = useMemo(
+    () =>
+      playerStates.toSorted(
+        (a, b) =>
+          b.resta - a.resta || Number(b.sittingOut) - Number(a.sittingOut)
+      ),
+    [playerStates]
+  );
 
   return (
     <div className="standings">
@@ -24,7 +31,7 @@ const Standings = () => {
             </div>
           ))}
         </div>
-        {renderList.map(playerState => (
+        {orderedPlayerStates.map(playerState => (
           <PlayerStanding
             playerState={playerState}
             key={playerState.playerName}

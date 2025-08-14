@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
+  selectHostPlayerState,
   useGetPokaStateQuery,
   useSitDownMutation,
   useSitOutMutation,
 } from '@poka/api/pokaApi';
 import { resetMessages, selectUserName } from '@account/slice/accountSlice';
-import { getPlayerState } from '@utils/helper-functions';
+import { isPlayerState } from '@utils/helper-functions';
 import DealerScreen from '@poka/components/dealer/DealerScreen';
 import StayLeave from '@components/sitOut/StayLeave';
 import Players from '@poka/components/player/Players';
@@ -25,12 +26,10 @@ const Table = () => {
   const { data, refetch } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
+  const hostPlayerState = useSelector(selectHostPlayerState);
   const [sitOut] = useSitOutMutation();
   const dispatch = useDispatch();
 
-  const hostPlayerState = data.playerStates.find(
-    getPlayerState(hostPlayerName)
-  );
   const dealer = data.playerStates.at(-1).playerName;
 
   useEffect(() => {

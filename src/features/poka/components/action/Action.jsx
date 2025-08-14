@@ -1,11 +1,13 @@
-import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import {
+  selectHostPlayerState,
+  selectNextPlayers,
+  useGetPokaStateQuery,
+} from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
 import { useActionContainerNode } from '@poka/utils/ActionContainerContext';
-import { getPlayerState } from '@utils/helper-functions';
 import NextRound from '@poka/components/action/NextRound';
 import Results from '@poka/components/info/Results';
 import LiveInfo from '@poka/components/action/LiveInfo';
@@ -17,17 +19,11 @@ import './Action.scss';
 const Action = ({ hideInfo }) => {
   const { gameId } = useParams();
   const hostPlayerName = useSelector(selectUserName);
-  const {
-    data: { playerStates, nextPlayers, dealer },
-  } = useGetPokaStateQuery(gameId);
+  const hostPlayerState = useSelector(selectHostPlayerState(gameId));
+  const [currentPlayer] = useSelector(selectNextPlayers(gameId));
+  const { data } = useGetPokaStateQuery(gameId);
   const { setActionContainerNode } = useActionContainerNode();
 
-  const hostPlayerState = useMemo(
-    () => playerStates.find(getPlayerState(hostPlayerName)),
-    [playerStates, hostPlayerName]
-  );
-
-  const [currentPlayer] = nextPlayers;
   const hostTurn = currentPlayer?.playerName === hostPlayerName;
 
   return (
@@ -44,7 +40,7 @@ const Action = ({ hideInfo }) => {
       ) : hostTurn || hostPlayerState.jokerReplacing ? (
         <Play />
       ) : (
-        !dealer && <LiveInfo />
+        !data.dealer && <LiveInfo />
       )}
       {hostPlayerState.resta === 0 && !hostPlayerState.sittingOut && <Renew />}
       {currentPlayer?.handInfo?.kind && <NextRound />}

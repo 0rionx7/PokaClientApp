@@ -1,12 +1,12 @@
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { selectPlayerStates } from '@poka/api/pokaApi';
 import Player from '@poka/components/player/Player';
 
 const Players = () => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
-  const playerStates = data?.playerStates;
+  const playerStates = useSelector(selectPlayerStates(gameId));
 
   return (
     <>

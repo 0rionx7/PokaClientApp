@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { selectCurrentChoosenGame } from '@poka/slice/pokaStateSlice';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { selectChosenGame } from '@poka/slice/pokaStateSlice';
 import { selectUserName } from '@account/slice/accountSlice';
 import { gameInfo } from '@utils/text-constants';
 import './Info.scss';
@@ -11,10 +11,9 @@ const GameDescription = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
-  const currentChoosenGame = useSelector(selectCurrentChoosenGame);
+  const chosenGame = useSelector(selectChosenGame);
 
-  const gameName =
-    hostPlayerName === data.dealer ? currentChoosenGame : data.gameName;
+  const gameName = hostPlayerName === data.dealer ? chosenGame : data.gameName;
   const tableTitle = data.tableName.split('_')?.[0];
 
   if (!gameName)

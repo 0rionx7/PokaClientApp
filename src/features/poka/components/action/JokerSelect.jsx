@@ -1,21 +1,19 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { selectHandcards } from '@poka/slice/pokaStateSlice';
+import { selectHostPlayerState, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { orderNumber, suitName } from '@utils/text-constants';
 import JokerSubmit from '@poka/components/action/JokerSubmit';
 import { symbols } from '@utils/text-constants';
-import Button from '@ui/Button';
 import Card from '@poka/components/card/Card';
+import Button from '@ui/Button';
 import './JokerSelect.scss';
 
 const JokerSelect = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
-  const handCards = useSelector(selectHandcards);
-
+  const { handCards } = useSelector(selectHostPlayerState(gameId));
   const [jokers, setJokers] = useState([]);
   const [suit, setSuit] = useState('S');
   const [cardValue, setCardValue] = useState(14);
@@ -49,7 +47,7 @@ const JokerSelect = () => {
           ))}
         </select>
       </div>
-      <Card card={card} noColor />
+      <Card card={card} />
       <Button
         prompt="ΕΠΙΛΟΓΗ"
         onClick={() => setJokers(curr => [...curr, card])}

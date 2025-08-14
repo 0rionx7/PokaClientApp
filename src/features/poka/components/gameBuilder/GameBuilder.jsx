@@ -1,10 +1,11 @@
 import { memo } from 'react';
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 
 import { builderRowTitle, speakingOrder, tablos } from '@utils/text-constants';
 import {
-  useGetPokaStateQuery,
+  selectPlayerStates,
   useSetGameVariantMutation,
 } from '@poka/api/pokaApi';
 import { isSitting } from '@utils/helper-functions';
@@ -27,7 +28,7 @@ import './GameBuilder.scss';
 
 const GameBuilder = memo(() => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const playerStates = useSelector(selectPlayerStates(gameId));
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const { actionContainerNode } = useActionContainerNode();
@@ -44,9 +45,9 @@ const GameBuilder = memo(() => {
     setStatus({});
   }
 
-  const noOthersInPlay = data.playerStates.filter(isSitting).length === 1;
+  const noOthersInPlay = playerStates.filter(isSitting).length === 1;
   const allOthersTapi =
-    data.playerStates.filter(state => state.resta > 0 && !state.sittingOut)
+    playerStates.filter(state => state.resta > 0 && !state.sittingOut)
       .length === 1;
 
   let btnPrompt;

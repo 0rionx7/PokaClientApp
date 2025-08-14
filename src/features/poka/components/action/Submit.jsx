@@ -2,23 +2,30 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
+  selectHostPlayerState,
+  selectTableCards,
   useEvaluateHandMutation,
   useGetPokaStateQuery,
   useSubmitCardsMutation,
 } from '@poka/api/pokaApi';
-import { isMirror, selectedCardIndexes } from '@utils/utilities-functions';
+import { isMirror } from '@utils/helper-functions';
 import { describeHand } from '@utils/text-functions';
 import useSnackBar from '@hooks/useSnackBar';
 import Overlay from '@ui/Overlay';
 import Button from '@ui/Button';
 import { gameNames } from '@poka/utils/games';
-import { selectHandcards, selectTablecards } from '@poka/slice/pokaStateSlice';
+import {
+  selectChosenHandCardIndexes,
+  selectChosenTableCardIndexes,
+} from '@poka/slice/pokaStateSlice';
 
 const Submit = () => {
   const { gameId } = useParams();
-  const handCards = useSelector(selectHandcards);
-  const tableCards = useSelector(selectTablecards);
+  const submittedHandCardIndexes = useSelector(selectChosenHandCardIndexes);
+  const submittedTableCardIndexes = useSelector(selectChosenTableCardIndexes);
   const { data: gameData } = useGetPokaStateQuery(gameId);
+  const tableCards = useSelector(selectTableCards(gameId));
+  const { handCards } = useSelector(selectHostPlayerState(gameId));
   const [submitHand, { isLoading: submitting, isSuccess: submissionSuccess }] =
     useSubmitCardsMutation();
   const [
@@ -26,9 +33,6 @@ const Submit = () => {
     { data, reset, isLoading: eveluating, isSuccess: evaluationSuccess },
   ] = useEvaluateHandMutation();
   const { snackElement, setSnackInfo } = useSnackBar({ top: true });
-
-  const submittedHandCardIndexes = selectedCardIndexes(handCards);
-  const submittedTableCardIndexes = selectedCardIndexes(tableCards);
 
   const selectedHandCardsCount =
     submittedHandCardIndexes.length + submittedTableCardIndexes.length;
@@ -44,7 +48,7 @@ const Submit = () => {
       submittedHandCardIndexes.concat(submittedTableCardIndexes).length !== 5 &&
       gameData.gameName !== gameNames.GRAVEYARD &&
       !(
-        gameData.gameName === gameNames.MAMUT && isMirror(tableCards, handCards)
+        gameData.gameName === gameNames.MAMUT && isMirror(handCards, tableCards)
       )
     )
       return setSnackInfo(` Επιλέξτε συνολικά 5 χαρτιά`);

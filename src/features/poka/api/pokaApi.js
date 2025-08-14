@@ -1,5 +1,7 @@
-import { playerEntry, updateAll } from '@utils/utilities-functions';
-import { setHandCards, setTableCards } from '@poka/slice/pokaStateSlice';
+import { createSelector } from '@reduxjs/toolkit';
+
+import { selectUserName } from '@account/slice/accountSlice';
+import { updateAll } from '@utils/helper-functions';
 import { gameApi, socket } from '@store/gameApi';
 
 export const pokaApi = gameApi.injectEndpoints({
@@ -9,48 +11,21 @@ export const pokaApi = gameApi.injectEndpoints({
         url: `/poka/${gameId}`,
         params: { socketId: socket.id },
       }),
-      async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
-        gameId,
-        {
-          dispatch,
-          getState,
-          cacheEntryRemoved,
-          cacheDataLoaded,
-          updateCachedData, // available for query endpoints only
-        }
-      ) {
+      async onCacheEntryAdded(gameId, { cacheEntryRemoved, updateCachedData }) {
         if (!gameId) return;
-        const hostPlayerName = getState().account.username;
-
-        function updateLocalHandCards(data) {
-          const hostState = data.playerStates.find(playerEntry(hostPlayerName));
-          dispatch(
-            setHandCards(hostState.handCards.filter(card => card?.value > 1))
-          );
-        }
 
         try {
-          const { data } = await cacheDataLoaded;
-          updateLocalHandCards(data);
-          dispatch(setTableCards(data.tableCards));
-
           const stateUpdateListener = stateUpdate => {
-            updateCachedData(draft => {
-              //for not to reset preselected cards ( player selected before their turn )
-              if (!draft.nextPlayers?.at(0)?.selecting?.submit) {
-                if (stateUpdate.playerStates) updateLocalHandCards(stateUpdate);
-                if (stateUpdate.tableCards)
-                  dispatch(setTableCards(stateUpdate.tableCards));
-              }
-
-              return { ...draft, ...stateUpdate };
-            });
+            updateCachedData(draft => ({ ...draft, ...stateUpdate }));
           };
 
           const closingBetListener = ({ _id, playerStates }) => {
             if (gameId === _id) {
-              playerStates = updateAll(playerStates, { denying: 0 });
-              updateCachedData(draft => ({ ...draft, playerStates }));
+              const updatedStates = updateAll(playerStates, { denying: 0 });
+              updateCachedData(draft => ({
+                ...draft,
+                playerStates: updatedStates,
+              }));
             }
           };
 
@@ -192,3 +167,36 @@ export const {
   useSitDownMutation,
   useSitOutMutation,
 } = pokaApi;
+
+const selectGameState = gameId => pokaApi.endpoints.getPokaState.select(gameId);
+export const selectPlayerStates = gameId =>
+  createSelector(
+    selectGameState(gameId),
+    result => result?.data?.playerStates ?? []
+  );
+export const selectNextPlayers = gameId =>
+  createSelector(
+    selectGameState(gameId),
+    result => result?.data?.nextPlayers ?? []
+  );
+export const selectHostPlayerState = gameId =>
+  createSelector(
+    selectGameState(gameId),
+    selectUserName,
+    (gameState, playerName) =>
+      gameState?.data?.playerStates?.find(ps => ps.playerName === playerName) ??
+      []
+  );
+export const selectPlayerState = gameId =>
+  createSelector(
+    selectGameState(gameId),
+    (_rootState, playerName) => playerName,
+    (gameState, playerName) =>
+      gameState?.data?.playerStates?.find(ps => ps.playerName === playerName) ??
+      []
+  );
+export const selectTableCards = gameId =>
+  createSelector(
+    selectGameState(gameId),
+    result => result?.data?.tableCards ?? []
+  );

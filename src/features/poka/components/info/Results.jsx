@@ -1,28 +1,25 @@
 import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { inGameFirst } from '@utils/helper-functions';
+import { selectPlayerStates } from '@poka/api/pokaApi';
 import PlayerResult from '@poka/components/info/PlayerResult';
 import './Results.scss';
 
 const Results = () => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const playerStates = useSelector(selectPlayerStates(gameId));
 
-  const playerStates = useMemo(
+  const orderedPlayerStates = useMemo(
     () =>
-      data?.playerStates
-        .slice()
-        .sort((a, b) =>
-          b.amountWon - a.amountWon !== 0
-            ? b.amountWon - a.amountWon
-            : b.handInfo.handValue - a.handInfo.handValue
-        ),
-    [data?.playerStates]
+      playerStates.toSorted(
+        (a, b) =>
+          b.amountWon - a.amountWon ||
+          b.handInfo.handValue - a.handInfo.handValue ||
+          Number(b.sittingOut) - Number(a.sittingOut)
+      ),
+    [playerStates]
   );
-
-  const renderList = inGameFirst(playerStates);
 
   return (
     <div className="results-board">
@@ -32,7 +29,7 @@ const Results = () => {
         <span>&quot;Φύλο&quot;</span>
         <span>Κέρδη/Απώλ.</span>
       </div>
-      {renderList.map(playerState => (
+      {orderedPlayerStates.map(playerState => (
         <PlayerResult playerState={playerState} key={playerState.playerName} />
       ))}
     </div>

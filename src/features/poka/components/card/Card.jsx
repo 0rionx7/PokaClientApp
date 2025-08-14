@@ -1,22 +1,17 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { toggleSelectedCard } from '@poka/slice/pokaStateSlice';
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectDeckColor } from '@account/slice/accountSlice';
 import { symbols } from '@utils/text-constants';
-import { suits } from 'assets/svgs/suits';
 import Content from '@components/card/Content';
+import { suits } from 'assets/svgs/suits';
 import ToolTip from '@ui/ToolTip';
 import '@components/card/Card.scss';
 
-const Card = ({ card, canBeSelected, noColor }) => {
+const Card = ({ card, onChoose, isChosen, isJoker }) => {
   const deckColor = useSelector(selectDeckColor);
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
-  const dispatch = useDispatch();
 
   if (card === null) return null; // for auxilary cards
+
   if (!card?.faceUp)
     return (
       <div className="card" style={{ padding: '.17rem' }}>
@@ -24,17 +19,17 @@ const Card = ({ card, canBeSelected, noColor }) => {
       </div>
     );
 
-  const toggleCardSelected = () => {
-    if (canBeSelected) dispatch(toggleSelectedCard(card));
-  };
-
-  const isJoker = data.joker.some(value => value === card.value);
-  const classes = `card v-${card.value} ${card.selected ? 'selected ' : ''}${
-    isJoker && !noColor ? 'joker' : ''
-  }`;
+  const cardClass = [
+    'card',
+    `v-${card.value}`,
+    isChosen && 'selected',
+    isJoker && 'joker',
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <div className={classes} onClick={toggleCardSelected}>
+    <div className={cardClass} onClick={onChoose}>
       <div className={`value-suit_${card.suit}`}>
         <div className="value">{symbols[card.value] || card.value}</div>
         <div className="suit">{suits[card.suit]}</div>

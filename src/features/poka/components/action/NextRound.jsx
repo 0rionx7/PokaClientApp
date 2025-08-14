@@ -1,30 +1,29 @@
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import {
-  useGetPokaStateQuery,
+  selectHostPlayerState,
+  selectPlayerStates,
   useNextRoundMutation,
   useRevealCardsMutation,
 } from '@poka/api/pokaApi';
 import Button from '@ui/Button';
 import Overlay from '@ui/Overlay';
-import { useSelector } from 'react-redux';
-import { selectUserName } from '@account/slice/accountSlice';
-import { isSitting, getPlayerState } from '@utils/helper-functions';
+import { isSitting } from '@utils/helper-functions';
 
 const NextRound = () => {
   const { gameId } = useParams();
-  const hostPlayerName = useSelector(selectUserName);
-  const { data } = useGetPokaStateQuery(gameId);
+  const playerStates = useSelector(selectPlayerStates(gameId));
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
   const [reveal, { revealing, revealed }] = useRevealCardsMutation();
-  const { handCards, submittedHand } = data.playerStates.find(
-    getPlayerState(hostPlayerName)
+  const { handCards, submittedHand } = useSelector(
+    selectHostPlayerState(gameId)
   );
 
   const showReveal =
     !submittedHand.length &&
     handCards.some(card => card.faceUp === false) &&
-    data.playerStates.filter(isSitting).length > 1;
+    playerStates.filter(isSitting).length > 1;
 
   const prompt = isSuccess ? (
     <h2>αναμονή υπολοίπων...</h2>

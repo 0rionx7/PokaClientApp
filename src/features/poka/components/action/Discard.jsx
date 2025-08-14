@@ -2,21 +2,16 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { cardSelected, selectedCardIndexes } from '@utils/utilities-functions';
 import { useSelectCardsMutation } from '@poka/api/pokaApi';
-import { selectHandcards } from '@poka/slice/pokaStateSlice';
+import { selectChosenHandCardIndexes } from '@poka/slice/pokaStateSlice';
 import useSnackBar from '@hooks/useSnackBar';
 import Button from '@ui/Button';
 
 const Discard = ({ selecting }) => {
   const { gameId } = useParams();
-  const handCards = useSelector(selectHandcards);
+  const selectedHandCardIndexes = useSelector(selectChosenHandCardIndexes);
   const [selectCards, { isLoading, isSuccess }] = useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
-
-  const selectedHandCardIndexes = selectedCardIndexes(handCards);
-  const selectedHandCardCount = handCards.filter(cardSelected).length;
-  const discardError = selectedHandCardCount > 1;
 
   const handleDiscard = async () => {
     const result = await selectCards({
@@ -27,14 +22,17 @@ const Discard = ({ selecting }) => {
     if (result.error?.data) setSnackInfo(result.error.data);
   };
 
+  const noSelection = !selectedHandCardIndexes.length;
+  const discardError = selectedHandCardIndexes.length > 1;
+  const prompt = noSelection ? 'Επιλέξτε σκάρτο' : 'Απόρριψη';
+
   useEffect(() => {
     if (discardError) {
-      setSnackInfo(`Έχετε επιλέξει ${selectedHandCardCount} χαρτιά αντί για 1`);
+      setSnackInfo(
+        `Έχετε επιλέξει ${selectedHandCardIndexes.length} χαρτιά αντί για 1`
+      );
     }
-  }, [selectedHandCardCount, discardError, setSnackInfo]);
-
-  const noSelection = selectedHandCardCount === 0;
-  const prompt = noSelection ? 'Επιλέξτε σκάρτο' : 'Απόρριψη';
+  }, [selectedHandCardIndexes.length, discardError, setSnackInfo]);
 
   return (
     <div className="buttons-container">

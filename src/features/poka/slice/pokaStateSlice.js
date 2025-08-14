@@ -1,35 +1,38 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { revealCard, unselectAll } from '@utils/utilities-functions';
 import { gameNames } from '@poka/utils/games';
 import { pokaApi } from '@poka/api/pokaApi';
 
 export const pokaStateSlice = createSlice({
   name: 'pokaState',
   initialState: {
-    tableCards: [],
-    handCards: [],
-    currentChoosenGame: gameNames.MAMUT,
+    chosenTableCardIndexes: [],
+    chosenHandCardIndexes: [],
+    chosenGame: gameNames.MAMUT,
   },
   reducers: {
-    setTableCards: (state, action) => {
-      state.tableCards = action.payload;
+    toggleChosenCard: (state, action) => {
+      const { place, index } = action.payload;
+
+      const toggleChosenIndex = (indexes, index) =>
+        indexes.includes(index)
+          ? indexes.filter(i => i !== index)
+          : [...indexes, index];
+
+      if (place === 'hand') {
+        state.chosenHandCardIndexes = toggleChosenIndex(
+          state.chosenHandCardIndexes,
+          index
+        );
+      } else {
+        state.chosenTableCardIndexes = toggleChosenIndex(
+          state.chosenTableCardIndexes,
+          index
+        );
+      }
     },
-    setHandCards: (state, action) => {
-      state.handCards = action.payload.map(revealCard);
-    },
-    toggleSelectedCard: (state, action) => {
-      const selectedCard = card =>
-        card.value + card.suit === action.payload.value + action.payload.suit;
-      const toggleCard = (cards, index) =>
-        (cards[index].selected = !cards[index].selected);
-      const handIndex = state.handCards.findIndex(selectedCard);
-      const tableIndex = state.tableCards.findIndex(selectedCard);
-      if (handIndex !== -1) toggleCard(state.handCards, handIndex);
-      else toggleCard(state.tableCards, tableIndex);
-    },
-    setCurrentChoosenGame: (state, action) => {
-      state.currentChoosenGame = action.payload;
+    setChosenGame: (state, action) => {
+      state.chosenGame = action.payload;
     },
   },
   extraReducers: builder =>
@@ -39,24 +42,25 @@ export const pokaStateSlice = createSlice({
       )
       .addMatcher(
         pokaApi.endpoints.submitCards.matchFulfilled,
-        (state, _action) => ({
-          ...state,
-          tableCards: state.tableCards.map(unselectAll),
-        })
+        (state, _action) => {
+          const selectedHandIndexesCount = state.chosenHandCardIndexes.length;
+          state.chosenHandCardIndexes = [
+            ...Array(selectedHandIndexesCount).keys(),
+          ];
+          state.chosenTableCardIndexes = [];
+        }
       ),
   selectors: {
-    selectHandcards: pokaState => pokaState.handCards,
-    selectTablecards: pokaState => pokaState.tableCards,
-    selectCurrentChoosenGame: pokaState => pokaState.currentChoosenGame,
+    selectChosenHandCardIndexes: pokaState => pokaState.chosenHandCardIndexes,
+    selectChosenTableCardIndexes: pokaState => pokaState.chosenTableCardIndexes,
+    selectChosenGame: pokaState => pokaState.chosenGame,
   },
 });
 
-export const {
-  setTableCards,
-  setCurrentChoosenGame,
-  setHandCards,
-  toggleSelectedCard,
-} = pokaStateSlice.actions;
+export const { setChosenGame, toggleChosenCard } = pokaStateSlice.actions;
 
-export const { selectHandcards, selectTablecards, selectCurrentChoosenGame } =
-  pokaStateSlice.selectors;
+export const {
+  selectChosenHandCardIndexes,
+  selectChosenTableCardIndexes,
+  selectChosenGame,
+} = pokaStateSlice.selectors;

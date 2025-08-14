@@ -8,7 +8,8 @@ import {
   useSitOutChineseMutation,
 } from '@chinese/api/chineseApi';
 import { resetMessages, selectUserName } from '@account/slice/accountSlice';
-import { getPlayerState } from '@utils/helper-functions';
+import { selectHostPlayerState } from '@poka/api/pokaApi';
+import { isPlayerState } from '@utils/helper-functions';
 import DealerScreen from '@chinese/components/dealer/DealerScreen';
 import RoundInfo from '@chinese/components/table/RoundInfo';
 import Board from '@chinese/components/table/Board';
@@ -21,8 +22,8 @@ const Table = () => {
   const username = useSelector(selectUserName);
   const { data } = useGetChineseStateQuery(gameId);
   const [sitOut] = useSitOutChineseMutation();
+  const hostPlayerState = useSelector(selectHostPlayerState(gameId));
   const dispatch = useDispatch();
-  const hostPlayerState = data.playerStates.find(getPlayerState(username));
 
   useEffect(() => {
     return () => {
@@ -33,7 +34,7 @@ const Table = () => {
 
   if (!data) return <h3>waiting for others to join...</h3>;
 
-  const isDealer = data.playerStates.findIndex(getPlayerState(username)) === 0;
+  const isDealer = data.playerStates.findIndex(isPlayerState(username)) === 0;
   const playerCount = data.playerStates.length;
 
   return (

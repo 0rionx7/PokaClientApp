@@ -1,45 +1,52 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { selectHandcards } from '@poka/slice/pokaStateSlice';
+import {
+  selectChosenHandCardIndexes,
+  toggleChosenCard,
+} from '@poka/slice/pokaStateSlice';
 import { selectUserName } from '@account/slice/accountSlice';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import useDelayedDeal from '@poka/hooks/useDelayedDeal';
-import { playerEntry } from '@utils/utilities-functions';
 import ChipStack from '@poka/components/player/ChipStack';
 import Card from '@poka/components/card/Card';
 import './HandCards.scss';
 
 const HandCards = ({ playerState, index }) => {
-  const hostPlayerName = useSelector(selectUserName);
-  const hostPlayerHandCards = useSelector(selectHandcards);
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
+  const hostPlayerName = useSelector(selectUserName);
+  const chosenCardIndexes = useSelector(selectChosenHandCardIndexes);
+  const dispatch = useDispatch();
 
-  const hostPlayerState = useMemo(
-    () => data?.playerStates.find(playerEntry(hostPlayerName)),
-    [data?.playerStates, hostPlayerName]
-  );
-  const isHostPlayer = playerState.playerName === hostPlayerName;
-  const playerSubmitted = playerState.submittedHand.length;
-  const handCards = playerSubmitted
+  const handSubmitted = playerState.submittedHand.length;
+  const handCards = handSubmitted
     ? playerState.submittedHand
-    : isHostPlayer
-    ? hostPlayerHandCards
     : playerState.handCards;
-  const dealedHandCards = useDelayedDeal({ handCards, index });
-  const canSelect = hostPlayerState.selecting;
+  const isHostPlayer = playerState.playerName === hostPlayerName;
+  // const dealtHandCards = useDelayedDeal({ handCards, index });
+  const selecting = playerState.selecting;
   const className = `hand-cards cards-${handCards?.filter(Boolean).length}`;
+
+  const isChosen = index =>
+    isHostPlayer && chosenCardIndexes.some(i => i === index);
+  const isJoker = value => data.joker.some(v => v === value) && !handSubmitted;
+
+  const handleChooseCard = index => {
+    const canBeChosen = isHostPlayer && selecting && !handSubmitted;
+    if (canBeChosen) dispatch(toggleChosenCard({ place: 'hand', index }));
+  };
 
   return (
     <div className={className}>
-      {dealedHandCards?.map((card, i) => (
+      {handCards?.map((card, i) => (
         <Card
-          key={i}
+          key={card.value + card.suit || i}
           card={card}
-          canBeSelected={!playerSubmitted && isHostPlayer && canSelect}
-          noColor={playerSubmitted}
+          onChoose={() => handleChooseCard(i)}
+          isChosen={isChosen(i)}
+          isJoker={isJoker(card.value)}
         />
       ))}
       <ChipStack playerState={playerState} />

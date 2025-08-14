@@ -1,40 +1,50 @@
-import { useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { selectTablecards } from '@poka/slice/pokaStateSlice';
-import { selectUserName } from '@account/slice/accountSlice';
-import { playerEntry } from '@utils/utilities-functions';
+import {
+  selectHostPlayerState,
+  selectTableCards,
+  useGetPokaStateQuery,
+} from '@poka/api/pokaApi';
+import {
+  selectChosenTableCardIndexes,
+  toggleChosenCard,
+} from '@poka/slice/pokaStateSlice';
 import Card from '@poka/components/card/Card';
 
 const BoardCard = ({ index }) => {
-  const tableCards = useSelector(selectTablecards);
-  const playerName = useSelector(selectUserName);
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
-  const { nextPlayers, thorns } = data;
+  const hostState = useSelector(selectHostPlayerState(gameId));
+  const tableCards = useSelector(selectTableCards(gameId));
+  const chosenCardIndexes = useSelector(selectChosenTableCardIndexes);
 
-  const playerSubmitted = useMemo(
-    () =>
-      data?.playerStates.find(playerEntry(playerName))?.submittedHand.length,
-    [data?.playerStates, playerName]
-  );
-  const [currentPlayerState] = nextPlayers;
-  const isSubmitting = currentPlayerState?.selecting?.submit;
+  const dispatch = useDispatch();
+
   const card = tableCards[index];
 
   if (!card) return <Card />;
 
+  const { nextPlayers, thorns } = data;
+  const playerSubmitted = hostState.submittedHand.length;
+  const [currentPlayerState] = nextPlayers;
+  const isSubmittingRound = currentPlayerState?.selecting?.submit;
+  const isChosen = index => chosenCardIndexes.some(i => i === index);
+
+  const handleChooseCard = index => {
+    const canBeChosen =
+      card.value &&
+      !thorns?.includes(index) &&
+      isSubmittingRound &&
+      !playerSubmitted;
+    if (canBeChosen) dispatch(toggleChosenCard({ place: 'board', index }));
+  };
+
   return (
     <Card
       card={card}
-      canBeSelected={
-        card.value &&
-        !thorns?.includes(index) &&
-        isSubmitting &&
-        !playerSubmitted
-      }
+      onChoose={() => handleChooseCard(index)}
+      isChosen={isChosen(index)}
     />
   );
 };

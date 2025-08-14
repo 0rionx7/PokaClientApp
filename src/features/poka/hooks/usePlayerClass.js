@@ -1,20 +1,19 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { selectPlayerStates, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/slice/accountSlice';
 import { getPosition } from '@poka/utils/getPosition';
-import { getPlayerState } from '@utils/helper-functions';
+import { isPlayerState } from '@utils/helper-functions';
 
 const usePlayerClass = index => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
+  const playerStates = useSelector(selectPlayerStates(gameId));
 
-  const playersCount = data?.playerStates.length;
-  const hostIndex = data?.playerStates.findIndex(
-    getPlayerState(hostPlayerName)
-  );
+  const playersCount = playerStates.length;
+  const hostIndex = playerStates.findIndex(isPlayerState(hostPlayerName));
 
   let seat;
   if (data.rotation === 'clockwise') {
