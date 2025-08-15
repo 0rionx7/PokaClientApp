@@ -9,7 +9,7 @@ import useMessageService from '@hooks/useMessageService';
 import Action from '@poka/components/action/Action';
 import Table from '@poka/components/table/Table';
 import Info from '@poka/components/info/Info';
-import '@styles/Room.scss';
+import './Room.scss';
 
 const Room = () => {
   const { gameId } = useParams();

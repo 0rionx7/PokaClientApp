@@ -3,7 +3,7 @@ import { creataPaymentTags } from '@utils/text-functions';
 import Button from '@ui/Button';
 import './Subscription.scss';
 
-const SubscriptionItem = ({ option, onClick }) => {
+const SubscriptionItem = ({ option, onSelect }) => {
   const { data } = useGetUserQuery();
 
   const infos = option?.split('_');
@@ -16,7 +16,7 @@ const SubscriptionItem = ({ option, onClick }) => {
   };
 
   const handleSubscriptionSelect = () =>
-    onClick({ customer, ...creataPaymentTags(title, data?.email) });
+    onSelect({ customer, ...creataPaymentTags(title, data?.email) });
 
   return (
     <div className="subscription-item" onClick={handleSubscriptionSelect}>

@@ -5,7 +5,7 @@ const Overlay = ({ className, style, onClick, children }) => {
     <>
       {createPortal(
         <div
-          className={'overlay ' + (className ?? '')}
+          className={`overlay ${className ?? ''}`}
           style={style}
           onClick={onClick}>
           {children}

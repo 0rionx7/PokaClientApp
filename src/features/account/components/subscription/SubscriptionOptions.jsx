@@ -9,7 +9,7 @@ import { SUBSCRIPTIONTYPES } from '@utils/text-constants';
 import { paymentsIcons } from 'assets/svgs/payments';
 
 const SubscriptionOptions = () => {
-  const [commitPayment, { data, isLoading, isSuccess }] = usePayMutation();
+  const [selectSubscription, { data, isLoading, isSuccess }] = usePayMutation();
   useGetUserQuery();
   const { data: userData } = useGetUserQuery();
 
@@ -22,8 +22,10 @@ const SubscriptionOptions = () => {
     return (
       <div className="subscription">
         <Overlay className="subscription-overlay">
-          Ανακατεύθυνση, σε ασφαλές για την πληρωμή περιβάλλον, σε εξέλιξη...
-          <LoadingSpinner color="red" />
+          <section>
+            Ανακατεύθυνση, σε ασφαλές για την πληρωμή περιβάλλον, σε εξέλιξη...
+            <LoadingSpinner color="red" />
+          </section>
         </Overlay>
       </div>
     );
@@ -54,7 +56,7 @@ const SubscriptionOptions = () => {
         <div className="subscription-options">
           {Object.values(SUBSCRIPTIONTYPES).map(option => (
             <SubscriptionItem
-              onClick={commitPayment}
+              onSelect={selectSubscription}
               key={option}
               option={option}
             />

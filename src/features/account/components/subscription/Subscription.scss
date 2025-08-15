@@ -21,9 +21,13 @@
     color: chartreuse;
   }
 }
-.subscription-overlay {
+.overlay.subscription-overlay {
   height: 100%;
   place-items: center;
+  section {
+    display: grid;
+    place-items: center;
+  }
 }
 .subscription-options {
   display: flex;
