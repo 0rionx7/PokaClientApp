@@ -1,6 +1,8 @@
+import { use } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
+import { useRoomContext } from '@poka/utils/RoomContext';
 import { selectHostPlayerState } from '@poka/api/pokaApi';
 import JokerSelect from '@poka/components/action/JokerSelect';
 import DenyAccept from '@poka/components/action/DenyAccept';
@@ -11,25 +13,28 @@ import Discard from '@poka/components/action/Discard';
 
 const Play = () => {
   const { gameId } = useParams();
-  const hostPlayerState = useSelector(selectHostPlayerState(gameId));
+  const {
+    betting,
+    selecting,
+    jokerReplacing,
+    denying: denialCount,
+    bet,
+    resta,
+  } = useSelector(selectHostPlayerState(gameId));
+  const { isDealing } = useRoomContext();
 
-  const betting = hostPlayerState.betting;
-  const swapping = hostPlayerState.selecting?.swaps;
-  const submitting = hostPlayerState.selecting?.submit;
-  const discarding = hostPlayerState.selecting?.discard;
-  const jokerReplacing = hostPlayerState.jokerReplacing;
-  const denials = hostPlayerState.denying > 0;
-  const denying =
-    denials && ![betting, swapping, submitting, discarding].some(Boolean);
+  if (isDealing) return null;
+
+  const { swaps, submit, discard } = selecting || {};
+  const denials = denialCount > 0;
+  const denying = denials && ![betting, swaps, submit, discard].some(Boolean);
 
   return (
     <>
-      {betting && (
-        <Bet bet={hostPlayerState.bet} resta={hostPlayerState.resta} />
-      )}
-      {swapping && <Swap selecting={hostPlayerState.selecting} />}
-      {discarding && <Discard selecting={hostPlayerState.selecting} />}
-      {submitting && <Submit />}
+      {betting && <Bet bet={bet} resta={resta} />}
+      {swaps && <Swap selecting={selecting} />}
+      {discard && <Discard selecting={selecting} />}
+      {submit && <Submit />}
       {denying && <DenyAccept />}
       {jokerReplacing && <JokerSelect />}
     </>

@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import EmojiProvider from '@components/chat/EmojiProvider';
-import ActionContaineContextProvider from '@poka/utils/ActionContainerContext';
+import RoomContextProvider from '@poka/utils/RoomContext';
 import LoadingSpinner from '@ui/LoadingSpinner';
 import useMessageService from '@hooks/useMessageService';
 import Action from '@poka/components/action/Action';
@@ -21,7 +21,7 @@ const Room = () => {
 
   return (
     <div className="room">
-      <ActionContaineContextProvider>
+      <RoomContextProvider>
         <Table />
         <div className="ribbon">
           <EmojiProvider>
@@ -32,7 +32,7 @@ const Room = () => {
           </EmojiProvider>
           <Action hideInfo={hideInfoPanel} />
         </div>
-      </ActionContaineContextProvider>
+      </RoomContextProvider>
     </div>
   );
 };

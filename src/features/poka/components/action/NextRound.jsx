@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -15,15 +16,14 @@ const NextRound = () => {
   const { gameId } = useParams();
   const playerStates = useSelector(selectPlayerStates(gameId));
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
-  const [reveal, { revealing, revealed }] = useRevealCardsMutation();
-  const { handCards, submittedHand } = useSelector(
-    selectHostPlayerState(gameId)
-  );
+  const [reveal] = useRevealCardsMutation();
+  const { submittedHand } = useSelector(selectHostPlayerState(gameId));
+  const [revealed, setRevealed] = useState(false);
 
   const showReveal =
     !submittedHand.length &&
-    handCards.some(card => card.faceUp === false) &&
-    playerStates.filter(isSitting).length > 1;
+    playerStates.filter(isSitting).length > 1 &&
+    !revealed;
 
   const prompt = isSuccess ? (
     <h2>αναμονή υπολοίπων...</h2>
@@ -36,8 +36,10 @@ const NextRound = () => {
       {showReveal && (
         <Button
           prompt={<h2>Αποκαλύψτε τα χαρτιά σας</h2>}
-          onClick={() => reveal(gameId)}
-          disabled={revealing || revealed}
+          onClick={() => {
+            reveal(gameId);
+            setRevealed(true);
+          }}
           className="purple reveal"
         />
       )}

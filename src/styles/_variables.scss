@@ -7,6 +7,7 @@ $even-outer: calc(0.625 * var(--card-width));
 $odd-core: calc(0.25 * var(--card-width));
 $odd-mid: calc(0.5 * var(--card-width));
 $odd-outer: calc(0.75 * var(--card-width));
+$eigth: calc(1 * var(--card-width));
 //selected card styling
 $selected-shadow: calc(0.1 * var(--card-height)) #3fa603;
 $selected-shadow-border: calc(0.1 * var(--card-height) + 1px) black;

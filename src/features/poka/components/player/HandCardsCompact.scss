@@ -115,4 +115,32 @@
       right: calc(100% + 4px - variables.$odd-outer);
     }
   }
+  &.cards-8 {
+    .card {
+      &:first-child {
+        left: variables.$odd-outer;
+      }
+      &:nth-child(2) {
+        left: variables.$odd-mid;
+      }
+      &:nth-child(3) {
+        left: variables.$odd-core;
+      }
+      &:nth-child(5) {
+        right: variables.$odd-core;
+      }
+      &:nth-child(6) {
+        right: variables.$odd-mid;
+      }
+      &:nth-child(7) {
+        right: variables.$odd-outer;
+      }
+      &:nth-child(8) {
+        right: variables.$eigth;
+      }
+    }
+    .bet-grid {
+      right: calc(100% + 4px - variables.$odd-outer);
+    }
+  }
 }

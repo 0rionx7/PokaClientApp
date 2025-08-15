@@ -6,6 +6,8 @@ import {
   WINNINGORDERS,
 } from '@utils/text-constants.js';
 
+export const DEAL_DELAY = 1000;
+
 export const gameNames = Object.freeze({
   POKER: 'ΠΟΚΕΡ',
   TEXAS_HOLDEM: 'TEXAS HOLDEM',

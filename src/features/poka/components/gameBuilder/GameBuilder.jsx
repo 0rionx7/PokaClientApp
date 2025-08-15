@@ -9,7 +9,7 @@ import {
   useSetGameVariantMutation,
 } from '@poka/api/pokaApi';
 import { isSitting } from '@utils/helper-functions';
-import { useActionContainerNode } from '@poka/utils/ActionContainerContext';
+import { useRoomContext } from '@poka/utils/RoomContext';
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
 import BuilderRow from '@poka/components/gameBuilder/BuilderRow';
 import GameChooser from '@poka/components/gameBuilder/GameChooser';
@@ -31,7 +31,7 @@ const GameBuilder = memo(() => {
   const playerStates = useSelector(selectPlayerStates(gameId));
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
-  const { actionContainerNode } = useActionContainerNode();
+  const { actionContainerNode } = useRoomContext();
   const { values, status, setStatus } = useGameBuilderContext();
 
   async function handleSubmit(e) {
