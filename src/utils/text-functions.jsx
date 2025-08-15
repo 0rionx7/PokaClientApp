@@ -1,10 +1,10 @@
 import { gameNames } from '@poka/utils/games';
 import {
-  primaryCardNames,
-  secondaryCardNames,
-  handKind,
-  paymentDescription,
-  subscriptionOption,
+  PRIMARYCARDNAMES,
+  SECONDARYCARDNAMES,
+  HANDKIND,
+  PAYMENTDESCRIPTION,
+  SUBSCRIPTIONTYPES,
 } from '@utils/text-constants';
 
 export function createTableTitleJsx(tableName) {
@@ -44,15 +44,15 @@ export function describeHand(submissionInfo, submitBtn) {
     );
   let firstPart;
   if (
-    submissionInfo.kind === handKind.TWO_PAIRS ||
-    submissionInfo.kind === handKind.PAIR ||
-    submissionInfo.kind === handKind.THREE_OF_A_KIND
+    submissionInfo.kind === HANDKIND.TWO_PAIRS ||
+    submissionInfo.kind === HANDKIND.PAIR ||
+    submissionInfo.kind === HANDKIND.THREE_OF_A_KIND
   )
-    firstPart = ' ' + secondaryCardNames[submissionInfo.desc[0]];
+    firstPart = ' ' + SECONDARYCARDNAMES[submissionInfo.desc[0]];
   else
     firstPart =
       (submissionInfo.desc[0] === 12 ? ' της ' : ' του ') +
-      primaryCardNames[submissionInfo.desc[0]];
+      PRIMARYCARDNAMES[submissionInfo.desc[0]];
 
   return (
     <>
@@ -64,7 +64,7 @@ export function describeHand(submissionInfo, submitBtn) {
       {submissionInfo.kind} {firstPart}
       {submitBtn && <br />}
       {submissionInfo.desc[1]
-        ? ` με ${secondaryCardNames[submissionInfo.desc[1]]}`
+        ? ` με ${SECONDARYCARDNAMES[submissionInfo.desc[1]]}`
         : ''}
     </>
   );
@@ -113,17 +113,17 @@ export function creataPaymentTags(title, email) {
   const tags = [];
 
   switch (title) {
-    case subscriptionOption.yearly.split('_')[0]:
+    case SUBSCRIPTIONTYPES.yearly.split('_')[0]:
       amount = 5000;
-      customerTrns = paymentDescription.yearly;
-      merchantTrns = paymentDescription.yearly + ` του χρήστη ${email}`;
-      tags.push(paymentDescription.yearly);
+      customerTrns = PAYMENTDESCRIPTION.yearly;
+      merchantTrns = PAYMENTDESCRIPTION.yearly + ` του χρήστη ${email}`;
+      tags.push(PAYMENTDESCRIPTION.yearly);
       break;
-    case subscriptionOption.monthly.split('_')[0]:
+    case SUBSCRIPTIONTYPES.monthly.split('_')[0]:
       amount = 500;
-      customerTrns = paymentDescription.monthly;
-      merchantTrns = paymentDescription.monthly + ` του χρήστη ${email}`;
-      tags.push(paymentDescription.monthly);
+      customerTrns = PAYMENTDESCRIPTION.monthly;
+      merchantTrns = PAYMENTDESCRIPTION.monthly + ` του χρήστη ${email}`;
+      tags.push(PAYMENTDESCRIPTION.monthly);
       break;
     default:
       break;

@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom';
-import { count } from '@utils/text-constants';
+import { COUNT } from '@utils/text-constants';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 
@@ -11,7 +11,7 @@ const Hats = () => {
 
   return (
     <div>
-      με <span>{count[data.hats]}</span> {'καπέλο '}
+      με <span>{COUNT[data.hats]}</span> {'καπέλο '}
       {data.obligation ? <span> ΥΠΟΧΡΕΩΣΗ</span> : ''}
     </div>
   );

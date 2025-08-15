@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
-import { dealingType, infoText } from '@utils/text-constants';
+import { DEALINGKIND, INFOTEXT } from '@utils/text-constants';
 import NumericInput from '@ui/NumericInput';
 import CheckBox from '@ui/CheckBox';
 
@@ -10,7 +10,7 @@ const DealingOptions = ({ deny, setDeny }) => {
   const [swap, setSwap] = useState(false);
 
   const handleDenyChange = e => {
-    if (e.target.checked) setFieldValue('dealing', dealingType.ENA_ENA);
+    if (e.target.checked) setFieldValue('dealing', DEALINGKIND.ENA_ENA);
     setFieldValue('denials', e.target.checked ? 1 : 0);
     setDeny(e.target.checked);
   };
@@ -26,7 +26,7 @@ const DealingOptions = ({ deny, setDeny }) => {
         label="ΜΕ ΣΚΑΡΤΟ"
         checked={values.skarto}
         onChange={e => setFieldValue('skarto', e.target.checked)}
-        info={infoText.SKARTO}
+        info={INFOTEXT.SKARTO}
       />
       <div className="with-counter">
         <CheckBox
@@ -34,7 +34,7 @@ const DealingOptions = ({ deny, setDeny }) => {
           checked={deny}
           onChange={handleDenyChange}
           className={deny && 'active-title'}
-          info={infoText.ARNISI}
+          info={INFOTEXT.ARNISI}
         />
         {deny && (
           <NumericInput name="denials" className={deny && 'active-counter'} />
@@ -46,7 +46,7 @@ const DealingOptions = ({ deny, setDeny }) => {
           checked={swap}
           onChange={handleSwapChange}
           className={swap && 'active-title'}
-          info={infoText.ALAGI}
+          info={INFOTEXT.ALAGI}
         />
         {swap && (
           <NumericInput name="swaps" className={swap && 'active-counter'} />

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import PlayHandCards from '@poka/components/info/PlayHandCards';
 import FaceDownCards from '@poka/components/info/FaceDownCards';
-import { tablos } from '@utils/text-constants';
+import { TABLOS } from '@utils/text-constants';
 import Denies from '@poka/components/info/Denies';
 import Swaps from '@poka/components/info/Swaps';
 import Hats from '@poka/components/info/Hats';
@@ -47,7 +47,7 @@ const GameInfo = () => {
         <div className="gameName">
           <span>
             {gameName} {bomba && 'ΜΠΟΜΠΑ '}
-            {tablo === tablos.DIPLO && (
+            {tablo === TABLOS.DIPLO && (
               <>
                 <span>σε</span> ΔΙΠΛΟ ΤΑΜΠΛΟ
               </>

@@ -1,10 +1,10 @@
 import { memo } from 'react';
 
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
-import { winningOrder } from '@utils/text-constants';
+import { WINNINGORDERS } from '@utils/text-constants';
 import Radio from '@ui/Radio';
 
-const winningOrders = Object.values(winningOrder);
+const winningOrders = Object.values(WINNINGORDERS);
 
 const WinningOrder = memo(() => {
   const { values, setFieldValue } = useGameBuilderContext();

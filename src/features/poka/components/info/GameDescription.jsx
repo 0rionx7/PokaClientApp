@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectChosenGame } from '@poka/slice/pokaStateSlice';
 import { selectUserName } from '@account/slice/accountSlice';
-import { gameInfo } from '@utils/text-constants';
+import { GAMEINFO } from '@utils/text-constants';
 import './Info.scss';
 
 const GameDescription = () => {
@@ -27,7 +27,7 @@ const GameDescription = () => {
   return (
     <div className="game-info">
       <div className="info-container description">
-        {gameInfo[gameName]?.split('&').map((infoText, i) => {
+        {GAMEINFO[gameName]?.split('&').map((infoText, i) => {
           const [title, text] = infoText.split('_');
           return (
             <div key={i}>

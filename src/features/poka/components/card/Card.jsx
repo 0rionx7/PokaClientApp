@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import { selectDeckColor } from '@account/slice/accountSlice';
-import { symbols } from '@utils/text-constants';
+import { SYMBOLS } from '@utils/text-constants';
 import Content from '@components/card/Content';
 import { suits } from 'assets/svgs/suits';
 import ToolTip from '@ui/ToolTip';
@@ -31,7 +31,7 @@ const Card = ({ card, onChoose, isChosen, isJoker }) => {
   return (
     <div className={cardClass} onClick={onChoose}>
       <div className={`value-suit_${card.suit}`}>
-        <div className="value">{symbols[card.value] || card.value}</div>
+        <div className="value">{SYMBOLS[card.value] || card.value}</div>
         <div className="suit">{suits[card.suit]}</div>
       </div>
       <div className={'card-decoration v-' + card.value}>

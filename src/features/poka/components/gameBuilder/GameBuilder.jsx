@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 
-import { builderRowTitle, speakingOrder, tablos } from '@utils/text-constants';
+import { BUILDERROWTITLE, SPEAKINGORDER, TABLOS } from '@utils/text-constants';
 import {
   selectPlayerStates,
   useSetGameVariantMutation,
@@ -61,46 +61,46 @@ const GameBuilder = memo(() => {
         onSubmit={handleSubmit}
         onFocus={() => setStatus({})}>
         {snackElement}
-        <BuilderRow title={builderRowTitle.GAME} element={<GameChooser />} />
+        <BuilderRow title={BUILDERROWTITLE.GAME} element={<GameChooser />} />
         <BuilderRow
-          title={builderRowTitle.WINNING_ORDER}
+          title={BUILDERROWTITLE.WINNING_ORDER}
           element={<WinningOrder />}
         />
-        <BuilderRow title={builderRowTitle.EXTRA} element={<Extra />} />
+        <BuilderRow title={BUILDERROWTITLE.EXTRA} element={<Extra />} />
         <BuilderRow
-          title={builderRowTitle.TABLO}
+          title={BUILDERROWTITLE.TABLO}
           element={
-            <Dilemma name="tablo" options={[tablos.MONO, tablos.DIPLO]} />
+            <Dilemma name="tablo" options={[TABLOS.MONO, TABLOS.DIPLO]} />
           }
         />
         <BuilderRow
-          title={builderRowTitle.CARDS_PER_LEG}
+          title={BUILDERROWTITLE.CARDS_PER_LEG}
           element={<CardsCount name="cornerLength" />}
         />
         <BuilderRow
-          title={builderRowTitle.RAILROAD_LENGTH}
+          title={BUILDERROWTITLE.RAILROAD_LENGTH}
           element={<CardsCount name="railroadLength" />}
         />
         <BuilderRow
-          title={builderRowTitle.OPTIONS}
+          title={BUILDERROWTITLE.OPTIONS}
           element={<Options key={values.gameName} />}
         />
         <BuilderRow
-          title={builderRowTitle.CARDS_IN_HAND}
+          title={BUILDERROWTITLE.CARDS_IN_HAND}
           element={<CardsCount name="cardsInHand" />}
         />
-        <BuilderRow title={builderRowTitle.FACE_DOWN} element={<FaceDown />} />
+        <BuilderRow title={BUILDERROWTITLE.FACE_DOWN} element={<FaceDown />} />
         <BuilderRow
-          title={builderRowTitle.SPEAKS}
+          title={BUILDERROWTITLE.SPEAKS}
           element={
             <Dilemma
               name="speaks"
-              options={[speakingOrder.BY_VALUE, speakingOrder.BY_SEAT]}
+              options={[SPEAKINGORDER.BY_VALUE, SPEAKINGORDER.BY_SEAT]}
             />
           }
         />
         <BuilderRow
-          title={builderRowTitle.HAND_CARDS_IN_PLAY}
+          title={BUILDERROWTITLE.HAND_CARDS_IN_PLAY}
           element={<HandCardsInPlay />}
         />
         <Dealing key={values.gameName} />

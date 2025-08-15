@@ -1,4 +1,4 @@
-export const gameNames = Object.freeze({
+export const GAMENAMES = Object.freeze({
   POKER: 'ΠΟΚΕΡ',
   TEXAS_HOLDEM: 'TEXAS HOLDEM',
   QUEEN: 'FOLLOW THE QUEEN',
@@ -17,7 +17,7 @@ export const gameNames = Object.freeze({
   KOYKOS_DIPLOS: `ΚΟΥΚΟΣ ΔΙΠΛΟΣ / "ΑΒΟΛΟΝΤΕ"`,
 });
 
-export const builderRowTitle = Object.freeze({
+export const BUILDERROWTITLE = Object.freeze({
   GAME: 'ΠΑΙΧΝΙΔΙ',
   WINNING_ORDER: 'ΝΙΚΗΤΗΡΙΑ ΣΕΙΡΑ',
   CARDS_IN_HAND: 'ΧΑΡΤΙΑ ΣΤΟ ΧΕΡΙ',
@@ -32,25 +32,25 @@ export const builderRowTitle = Object.freeze({
   TABLO: 'ΤΑΜΠΛΟ',
   SPEAKS: 'ΜΙΛΑΕΙ',
 });
-export const winningOrder = Object.freeze({
+export const WINNINGORDERS = Object.freeze({
   KENTA_CHROMA: 'ΚΕΝΤΑ ΧΡΩΜΑ',
   TRIA_FOUL: '3 ΦΟΥΛ',
   KENTA_FOUL: 'ΚΕΝΤΑ ΦΟΥΛ',
   MIZERIA: 'ΜΙΖΕΡΙΑ',
 });
-export const dealingType = Object.freeze({
+export const DEALINGKIND = Object.freeze({
   ENA_ENA: 'ΕΝΑ ΕΝΑ',
   OLA_MAZI: 'ΟΛΑ ΜΑΖΙ',
 });
-export const speakingOrder = Object.freeze({
+export const SPEAKINGORDER = Object.freeze({
   BY_VALUE: 'ΤΟ ΚΑΛΥΤΕΡΟ ΑΝΟΙΚΤΟ ΦΥΛΟ',
   BY_SEAT: 'ΜΕ ΤΗΝ ΣΕΙΡΑ',
 });
-export const tablos = Object.freeze({
+export const TABLOS = Object.freeze({
   MONO: 'ΜΟΝΟ',
   DIPLO: 'ΔΙΠΛΟ',
 });
-export const primaryCardNames = Object.freeze([
+export const PRIMARYCARDNAMES = Object.freeze([
   '',
   '',
   ' ΔΥΟ',
@@ -67,7 +67,7 @@ export const primaryCardNames = Object.freeze([
   ' ΡΗΓΑ',
   ' ΑΣΣΟΥ',
 ]);
-export const secondaryCardNames = Object.freeze([
+export const SECONDARYCARDNAMES = Object.freeze([
   '',
   '',
   ' ΔΥΑΡΙΑ',
@@ -84,7 +84,7 @@ export const secondaryCardNames = Object.freeze([
   ' ΡΗΓΑΔΕΣ',
   ' ΑΣΣΟΥΣ',
 ]);
-export const handKind = Object.freeze({
+export const HANDKIND = Object.freeze({
   SITTING_OUT: 'ΕΚΤΟΣ ΤΡΑΠΕΖΙΟΥ',
   AUTO_SITTING_OUT: 'ΑΠΩΛΕΙΑ ΣΥΝΔΕΣΗΣ',
   FOLDED: 'ΠΑΣΟ',
@@ -101,7 +101,7 @@ export const handKind = Object.freeze({
   ALL_DISCARDED: '"ΞΕΣΚΑΡΤΑΡΙΣΜΑ"',
   SCOOP: 'ΣΚΟΥΠΑ',
 });
-export const infoText = Object.freeze({
+export const INFOTEXT = Object.freeze({
   SKARTO:
     '+1 επιπλέον χαρτί μαζί με το τελευταίο και άμεσως ξεσκαρτάρισμα ενός.(αν έχετε επιλέξει π.χ 3 χαρτιά για το χέρι,θα πάρετε 4 και θα απορρίψετε ένα, συνιστάται μοίρασμα ΟΛΑ ΜΑΖΙ ).',
   ARNISI:
@@ -110,25 +110,25 @@ export const infoText = Object.freeze({
     'Αλλαγή όσων χαρτιών επιλέξετε, αφού πάρετε στα χέρια όλα τα χαρτιά και έχετε ποντάρει.',
   HAT: '"Παίζει" μόνο ένα από το καπέλο.',
   BOMBA: `Τα χαρτιά του τραπεζιού (εκτός αυτών του καπέλου) "σκάνε' όλα μαζί.`,
-  [dealingType.ENA_ENA]:
+  [DEALINGKIND.ENA_ENA]:
     'Μοιράζεται από ένα χαρτί σε κάθε παίκτη, ακολουθεί ποντάρισμα, ανοίγει ένα χαρτί στο τραπέζι (αν υπάρχει) και ακολουθεί ποντάρισμα κ.ο.κ ',
-  [dealingType.OLA_MAZI]:
+  [DEALINGKIND.OLA_MAZI]:
     'Μοιράζονται όλα τα χαρτία σε παίκτες και στο τραπέζι και ακολουθούν εναλάξ πονταρίσματα και ανοίγματα των χαρτιών του τραπεζιού.',
   KAVES: `Οι παίκτες που αναγράφονται σε κάθε κάβα, διεκδικούν αυτήν συν όλες όσες βρίσκονται από επάνω της. Οι υπόλοιποι διεκδικούν όλο το πότ.`,
 });
-export const suitName = Object.freeze({
+export const SUITNAME = Object.freeze({
   C: 'ΣΠΑΘΙ',
   H: 'ΚΟΥΠΑ',
   S: 'ΜΠΑΣΤΟΥΝΙ',
   D: 'ΚΑΡΟ',
 });
-export const symbols = Object.freeze({
+export const SYMBOLS = Object.freeze({
   11: 'J',
   12: 'Q',
   13: 'K',
   14: 'A',
 });
-export const orderName = Object.freeze([
+export const ORDERNAME = Object.freeze([
   'ΠΡΩΤΟ',
   'ΔΕΥΤΕΡΟ',
   'ΤΡΙΤΟ',
@@ -137,9 +137,9 @@ export const orderName = Object.freeze([
   'ΕΚΤΟ',
   'ΕΒΔΟΜΟ',
 ]);
-export const orderNumber = Object.freeze(['1ο', '2ο', '3ο', '4ο', '5ο']);
-export const count = Object.freeze(['', 'ΜΟΝΟ', 'ΔΙΠΛΟ', 'ΤΡΙΠΛΟ']);
-export const countFem = Object.freeze([
+export const ORDERNUMBER = Object.freeze(['1ο', '2ο', '3ο', '4ο', '5ο']);
+export const COUNT = Object.freeze(['', 'ΜΟΝΟ', 'ΔΙΠΛΟ', 'ΤΡΙΠΛΟ']);
+export const COUNTFEM = Object.freeze([
   '',
   'ΜΙΑ',
   'ΔΥΟ',
@@ -149,56 +149,56 @@ export const countFem = Object.freeze([
   'ΕΞΙ',
   'ΕΦΤΑ',
 ]);
-export const infoButton = Object.freeze({
+export const INFOBUTTONS = Object.freeze({
   GAME_DESCRIPTION: 'ΠΕΡΙΓΡΑΦΗ',
   GAME_INFO: 'ΠΑΡΑΛΛΑΓΗ',
   LAST_GAME_RESULTS: 'ΑΠΟΤΕΛΕΣΜΑ',
   STANDINGS: 'ΚΑΤΑΤΑΞΗ',
   CHAT: 'ΚΟΥΒΕΝΤΑ',
 });
-export const gameInfo = Object.freeze({
-  [gameNames.RAILROAD]:
+export const GAMEINFO = Object.freeze({
+  [GAMENAMES.RAILROAD]:
     'ΔΙΑΤΑΞΗ:_Όσα χαρτιά επιλέξετε σε μία ευθεία.&ΟΜΑΔΕΣ:_Διαλέγετε οποιαδήποτε από αυτά.&ΑΝΟΙΓΜΑ:_Άνοιγμα ένα ένα.',
-  [gameNames.MAMUT]:
+  [GAMENAMES.MAMUT]:
     'ΔΙΑΤΑΞΗ:_Τρία χαρτιά σε ευθεία.&ΟΜΑΔΕΣ:_Διαλέγετε οποιαδήποτε από αυτά.&ΑΝΟΙΓΜΑ:_Άνοιγμα ένα ένα.&ΕΠΙΛΟΓΕΣ:_Δυνατότητα επιλογής καθρέφτη (ίδιας αξίας χαρτιά στο χέρι\n και στο τραπέζι) ως ανώτατο φύλλο. ',
-  [gameNames.TRIANGLE]:
+  [GAMENAMES.TRIANGLE]:
     'ΔΙΑΤΑΞΗ:_Ισόπλευρο τρίγωνο τριών χαρτιών ανα πλευρά.&ΟΜΑΔΕΣ:_Διελέγετε χαρτιά από μία πλευρά μόνο.&ΑΝΟΙΓΜΑ:_Άνοιγμα ανά τρία, πρώτα οι γωνίες.',
-  [gameNames.SQUARE]:
+  [GAMENAMES.SQUARE]:
     'ΔΙΑΤΑΞΗ:_Τετράγωνο δύο χαρτιών ανά πλευρά.&ΟΜΑΔΕΣ:_Διελέγετε χαρτιά από μία πλευρά μόνο.&ΑΝΟΙΓΜΑ:_Άνοιγμα ανά δύο διαγώνια.',
-  [gameNames.KOYKOS_MONOS]:
+  [GAMENAMES.KOYKOS_MONOS]:
     'ΔΙΑΤΑΞΗ:_Πέντε χαρτιά στο τραπέζι σε ευθεία.&ΟΜΑΔΕΣ:_Διαλέγετε οποιαδήποτε από αυτά.&ΑΝΟΙΓΜΑ:_Άνοιγμα ένα ένα.',
-  [gameNames.KOYKOS_DIPLOS]:
+  [GAMENAMES.KOYKOS_DIPLOS]:
     'ΔΙΑΤΑΞΗ:_Πέντε χαρτιά στο τραπέζι σε ευθεία.&ΟΜΑΔΕΣ:_Διαλέγετε οποιαδήποτε από αυτά.&ΑΝΟΙΓΜΑ:_Άνοιγμα ένα ένα.',
-  [gameNames.POKER]: 'ΔΙΑΤΑΞΗ:_Κανένα χαρτί στο τραπέζι.',
-  [gameNames.TEXAS_HOLDEM]:
+  [GAMENAMES.POKER]: 'ΔΙΑΤΑΞΗ:_Κανένα χαρτί στο τραπέζι.',
+  [GAMENAMES.TEXAS_HOLDEM]:
     'ΔΙΑΤΑΞΗ:_Πέντε χαρτιά στο τραπέζι σε ευθεία.&ΟΜΑΔΕΣ:_Διαλέγετε οποιαδήποτε από αυτά.&ΑΝΟΙΓΜΑ:_Άνοιγμα τριών αρχικά και ενός ενός ύστερα.',
-  [gameNames.TARGET]:
+  [GAMENAMES.TARGET]:
     'ΔΙΑΤΑΞΗ:_Έξι χαρτιά σε διάταξη κύκλου και ένα στο κέντρο.&ΟΜΑΔΕΣ:_Διαλέγετε από οποιαδήποτε δύο συνεχόμενα χαρτιά απο την περιφέρεια\n και το χαρτί του κέντρου.&ΑΝΟΙΓΜΑ:_Άνοιγμα ανά δύο αντιδιαμετρικά και στο τέλος το κέντρου.',
-  [gameNames.CLOCK]:
+  [GAMENAMES.CLOCK]:
     'ΔΙΑΤΑΞΗ:_Έξι χαρτιά σε διάταξη κύκλου.&ΟΜΑΔΕΣ:_Διαλέγετε από οποιαδήποτε τρία συνεχόμενα χαρτιά απο την περιφέρεια.&ΑΝΟΙΓΜΑ:_Άνοιγμα ανά δύο αντιδιαμετρικά',
-  [gameNames.ELEVATOR]:
+  [GAMENAMES.ELEVATOR]:
     'ΔΙΑΤΑΞΗ_Δύο στήλες των τριών χαρτιών και μία ενδιάμεση του ενός.&ΟΜΑΔΕΣ:_Διαλέγετε από το ενδιάμεσο χαρτί, από ένα χαρτί της πρώτης στήλης\n και το αντίστοιχο χαρτί της δεύτερης.&ΑΝΟΙΓΜΑ:_Άνοιγμα κάθε στήλης χωριστά και στο τέλος του ενδιάμεσου χαρτιού.',
-  [gameNames.GRAVEYARD]: `ΔΙΑΤΑΞΗ:_Δύο πεντάδες χαρτιών, η πάνω αποτελείται από τα "νεκρά" χαρτιά.\n Χαρτιά ίσης αξίας με τα νεκρά αφαιρούνται από το τραπέζι και από τα χέρια\n των παικτών.&ΟΜΑΔΕΣ:_Διαλέγετε από τα χαρτιά που απομένουν στη κάτω σειρά.&ΑΝΟΙΓΜΑ:_Άνοιγμα ανά δύο, ένα πάνω ένα κάτω`,
-  [gameNames.CROSS]:
+  [GAMENAMES.GRAVEYARD]: `ΔΙΑΤΑΞΗ:_Δύο πεντάδες χαρτιών, η πάνω αποτελείται από τα "νεκρά" χαρτιά.\n Χαρτιά ίσης αξίας με τα νεκρά αφαιρούνται από το τραπέζι και από τα χέρια\n των παικτών.&ΟΜΑΔΕΣ:_Διαλέγετε από τα χαρτιά που απομένουν στη κάτω σειρά.&ΑΝΟΙΓΜΑ:_Άνοιγμα ανά δύο, ένα πάνω ένα κάτω`,
+  [GAMENAMES.CROSS]:
     'ΔΙΑΤΑΞΗ:_Πέντε χαρτιά σε διάταξη σταυρού.&ΟΜΑΔΕΣ:_Διαλέγετε από οποιαδήποτε τρία σε ευθεία.&ΑΝΟΙΓΜΑ:_Άνοιγμα ανα δύο -ένα σε κάθε σκέλος- και στο τέλος το κοινό.',
-  [gameNames.CORNER]:
+  [GAMENAMES.CORNER]:
     'ΔΙΑΤΑΞΗ:_Γωνία 2, 3ων ή 4ων χαρτιών.&ΟΜΑΔΕΣ:_Διελέγετε χαρτιά της ίδιας πλευράς.&ΑΝΟΙΓΜΑ:_Άνοιγμα ανά δύο -ένα σε κάθε πλευρά- στο τέλος η κορυφή.',
-  [gameNames.QUEEN]:
+  [GAMENAMES.QUEEN]:
     'ΠΕΡΙΓΡΑΦΗ:_Πόκερ 5 χαρτιών με κάποια απο αυτά ανοικτά και μπαλαντέρ όποιο φύλλο ανοίξει μετά απο την τελευταία ντάμα.(στην περίιπτωση που ανοίξει τελευταίο χαρτί ντάμα, το μπαλαντέρ ακυρώνεται.)&ΕΠΙΛΟΓΕΣ:_Δυνατότητα επιλογής και της ντάμας ως μπαλαντέρ.',
-  [gameNames.PYRAMID]:
+  [GAMENAMES.PYRAMID]:
     'ΔΙΑΤΑΞΗ:_10 χαρτιά σε διάταξη πυραμίδας.&ΟΜΑΔΕΣ:_Διελέγετε χαρτιά από οποιάδηποτε σειρά, με τον περιορισμό του ενός χαρτιού ανά σειρά.&ΑΝΟΙΓΜΑ:_Άνοιγμα κάθε σειράς χωριστά, ξεκινώντας απο την βάση.',
 });
-export const paymentDescription = Object.freeze({
+export const PAYMENTDESCRIPTION = Object.freeze({
   yearly: 'Ετήσια συνδρομή στο ♠',
   monthly: 'Μηνιαία συνδρομή στο ♠️',
 });
-export const subscriptionOption = Object.freeze({
+export const SUBSCRIPTIONTYPES = Object.freeze({
   monthly:
     'ΜΗΝΙΑΙΑ_ Προστίθεται ένας επιπλέον μήνας (31 μέρες) στην υφιστάμενη συνδρομή σας ή αν δεν έχετε ενεργή συνδρομή αποκτάτε μια μηνιαία._ 500',
   yearly:
     'ΕΤΗΣΙΑ_ Προστίθεται ένας επιπλέον χρόνος (366 μέρες) στην υφιστάμενη συνδρομή σας ή αν δεν έχετε ενεργή συνδρομή αποκτάτε μια ετήσια._ 5000',
 });
-export const saloonInstructions = `
+export const SUBSCRIPTIONINSTRUCTIONS = `
 ΟΝΟΜΑ ΤΡΑΠΕΖΙΟΥ:_
 Καταχώρειτε ένα όνομα για το τραπέζι που θα δημιουργήσετε ώστε να είναι αναγνωρίσιμο στην λίστα των διαθέσιμων τραπεζιών.
 @ΦΟΡΑ ΜΙΡΑΣΜΑΤΟΣ:_
@@ -218,7 +218,7 @@ export const saloonInstructions = `
 Η λίστα με όλα τα ενεργά τραπέζια. 
 Επιλέγοντας κάποιο απο αυτά, αποστέλεται αίτηση συμμετοχής στο αντίστοιχο τραπέζι.
 Σε πράσινο φόντο εμφανίζονται τα τραπέζια στα οποία έχετε συμμετάσχει και με επιλογή ενός απο αυτά ξανακάθεστε σε αυτό.`;
-export const accountInstructions = `
+export const ACCOUNTINSTRUCTIONS = `
 ΟΝΟΜΑ ΧΡΗΣΤΗ:_ Προβολή και επεξεργασία του ονόματος χρήστη.
 @ΚΩΔΙΚΟΣ ΕΙΣΟΔΟΥ:_ Προβολή και επεξεργασία του κωδικού εισόδου.
 @ΔΙΑΧΕΙΡΗΣΗ ΣΥΝΔΡΟΜΗΣ:_ Προβολή της κατάστασης της συνδρομής σας και δυνατότητα ανανέωσης αυτής. Μετά απο την επιλογή τύπου συνδρομής, μεταφέρεστε αυτόματα σε ασφαλές περιβάλλον της VivaWallet για την πληρωμή και στην συνέχεια επανακατευθύνεστε στον ιστότοπό μας.

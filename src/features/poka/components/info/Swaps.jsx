@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { countFem } from '@utils/text-constants';
+import { COUNTFEM } from '@utils/text-constants';
 
 const Swaps = () => {
   const { gameId } = useParams();
@@ -13,7 +13,7 @@ const Swaps = () => {
     <>
       {data.denials ? ' και ' : 'με '}
       <span>
-        {`${countFem[data.swaps]}  ΑΛΛΑΓ${data.swaps > 1 ? 'ΕΣ' : 'Η'}`}
+        {`${COUNTFEM[data.swaps]}  ΑΛΛΑΓ${data.swaps > 1 ? 'ΕΣ' : 'Η'}`}
       </span>
     </>
   );

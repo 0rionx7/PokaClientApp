@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import DealingOptions from '@poka/components/gameBuilder/DealingOptions';
-import { builderRowTitle, dealingType } from '@utils/text-constants';
+import { BUILDERROWTITLE, DEALINGKIND } from '@utils/text-constants';
 import BuilderRow from '@poka/components/gameBuilder/BuilderRow';
 import Dilemma from '@poka/components/gameBuilder/Dilemma';
 
@@ -11,17 +11,17 @@ const Dealing = () => {
   return (
     <>
       <BuilderRow
-        title={builderRowTitle.DEALING}
+        title={BUILDERROWTITLE.DEALING}
         element={
           <Dilemma
             name="dealing"
-            options={[dealingType.ENA_ENA, dealingType.OLA_MAZI]}
+            options={[DEALINGKIND.ENA_ENA, DEALINGKIND.OLA_MAZI]}
             setDeny={setDeny}
           />
         }
       />
       <BuilderRow
-        title={builderRowTitle.DEALING_OPTIONS}
+        title={BUILDERROWTITLE.DEALING_OPTIONS}
         element={<DealingOptions deny={deny} setDeny={setDeny} />}
       />
     </>

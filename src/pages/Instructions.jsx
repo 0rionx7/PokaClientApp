@@ -1,9 +1,12 @@
-import { accountInstructions, saloonInstructions } from '@utils/text-constants';
+import {
+  ACCOUNTINSTRUCTIONS,
+  SUBSCRIPTIONINSTRUCTIONS,
+} from '@utils/text-constants';
 import './Instructions.scss';
 
 const Instructions = () => {
-  const saloonParagraphs = saloonInstructions.split('@');
-  const accountParagraphs = accountInstructions.split('@');
+  const saloonParagraphs = SUBSCRIPTIONINSTRUCTIONS.split('@');
+  const accountParagraphs = ACCOUNTINSTRUCTIONS.split('@');
 
   return (
     <div className="instructions">

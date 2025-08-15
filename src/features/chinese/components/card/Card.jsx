@@ -2,7 +2,7 @@ import { useDrag } from 'react-dnd';
 
 import { suits } from 'assets/svgs/suits';
 import Content from '@components/card/Content';
-import { symbols } from '@utils/text-constants';
+import { SYMBOLS } from '@utils/text-constants';
 
 const Card = ({ card, owner }) => {
   const [{ isDragging }, drag] = useDrag(
@@ -34,7 +34,7 @@ const Card = ({ card, owner }) => {
       <div
         className={`value-suit_${card.suit}`}
         style={{ visibility: isDragging ? 'hidden' : 'visible' }}>
-        <div className="value">{symbols[card.value] || card.value}</div>
+        <div className="value">{SYMBOLS[card.value] || card.value}</div>
         <div className="suit">{suits[card.suit]}</div>
       </div>
       <div

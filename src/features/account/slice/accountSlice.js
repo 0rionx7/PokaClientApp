@@ -32,6 +32,9 @@ export const accountSlice = createSlice({
     resetMessages: (state, action) => {
       state.messages = [];
     },
+    resetToken: (state, action) => {
+      state.token = 'ale';
+    },
   },
   extraReducers: builder => {
     builder
@@ -58,8 +61,13 @@ export const accountSlice = createSlice({
   },
 });
 
-export const { setHideInfo, setDeckColor, postMessage, resetMessages } =
-  accountSlice.actions;
+export const {
+  setHideInfo,
+  setDeckColor,
+  postMessage,
+  resetMessages,
+  resetToken,
+} = accountSlice.actions;
 export const {
   selectUserName,
   selectHideInfo,
