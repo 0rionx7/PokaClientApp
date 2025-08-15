@@ -50,7 +50,7 @@ export const TABLOS = Object.freeze({
   MONO: 'ΜΟΝΟ',
   DIPLO: 'ΔΙΠΛΟ',
 });
-export const PRIMARYCARDNAMES = Object.freeze([
+export const POSSESSIVECARDNAMES = Object.freeze([
   '',
   '',
   ' ΔΥΟ',
@@ -67,7 +67,7 @@ export const PRIMARYCARDNAMES = Object.freeze([
   ' ΡΗΓΑ',
   ' ΑΣΣΟΥ',
 ]);
-export const SECONDARYCARDNAMES = Object.freeze([
+export const PLURALCARDNAMES = Object.freeze([
   '',
   '',
   ' ΔΥΑΡΙΑ',

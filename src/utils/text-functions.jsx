@@ -1,7 +1,7 @@
 import { gameNames } from '@poka/utils/games';
 import {
-  PRIMARYCARDNAMES,
-  SECONDARYCARDNAMES,
+  POSSESSIVECARDNAMES,
+  PLURALCARDNAMES,
   HANDKIND,
   PAYMENTDESCRIPTION,
   SUBSCRIPTIONTYPES,
@@ -12,60 +12,41 @@ export function createTableTitleJsx(tableName) {
   return `${names?.[0]} από ${names?.[1]}`;
 }
 export function describeTime(secs) {
-  switch (secs) {
-    case 60:
-      return '1 λεπτό';
-    case 90:
-      return '1,5 λεπτό';
-    case 101:
-      return 'άνευ χρ.ορίου';
-    case 120:
-      return '2 λεπτά';
-    case 180:
-      return '3 λεπτά';
-    case 300:
-      return '5 λεπτά';
-    default:
-      return secs + '"';
-  }
+  const timeMap = {
+    60: '1 λεπτό',
+    90: '1,5 λεπτό',
+    101: 'άνευ χρ.ορίου',
+    120: '2 λεπτά',
+    180: '3 λεπτά',
+    300: '5 λεπτά',
+  };
+
+  return timeMap[secs] ?? `${secs}"`;
 }
-export function describeHand(submissionInfo, submitBtn) {
-  if (!submissionInfo) return '';
-  if (!submissionInfo.desc)
-    return (
-      <>
-        {submitBtn && (
-          <>
-            ΥΠΟΒΟΛΗ <br />
-          </>
-        )}
-        {submissionInfo.kind}
-      </>
-    );
-  let firstPart;
-  if (
-    submissionInfo.kind === HANDKIND.TWO_PAIRS ||
-    submissionInfo.kind === HANDKIND.PAIR ||
-    submissionInfo.kind === HANDKIND.THREE_OF_A_KIND
-  )
-    firstPart = ' ' + SECONDARYCARDNAMES[submissionInfo.desc[0]];
-  else
-    firstPart =
-      (submissionInfo.desc[0] === 12 ? ' της ' : ' του ') +
-      PRIMARYCARDNAMES[submissionInfo.desc[0]];
+export function describeHand(submissionInfo) {
+  if (!submissionInfo) return null;
+
+  const { kind, desc } = submissionInfo;
+
+  if (!desc) return <>{kind}</>;
+
+  const [primary, secondary] = desc;
+  const isPlural =
+    kind === HANDKIND.TWO_PAIRS ||
+    kind === HANDKIND.PAIR ||
+    kind === HANDKIND.THREE_OF_A_KIND;
+
+  const firstPart = isPlural
+    ? ` ${PLURALCARDNAMES[primary]}`
+    : `${primary === 12 ? ' της ' : ' του '}${POSSESSIVECARDNAMES[primary]}`;
+
+  const secondPart = secondary ? ` με ${PLURALCARDNAMES[secondary]}` : '';
 
   return (
     <>
-      {submitBtn && (
-        <>
-          ΥΠΟΒΟΛΗ <br />
-        </>
-      )}
-      {submissionInfo.kind} {firstPart}
-      {submitBtn && <br />}
-      {submissionInfo.desc[1]
-        ? ` με ${SECONDARYCARDNAMES[submissionInfo.desc[1]]}`
-        : ''}
+      {kind}
+      {firstPart}
+      {secondPart}
     </>
   );
 }
@@ -93,20 +74,30 @@ export function betPrompt(value, minBet, resta, error) {
   }
 }
 export function getNameAndLabel(name) {
-  switch (name) {
-    case gameNames.GRAVEYARD:
-      return { name: 'allDiscardedWins', label: 'ΞΕΣΚΑΡΤΑΡΙΣΜΑ ΑΝΩΤΑΤΟ ΦΥΛΛΟ' };
-    case gameNames.MAMUT:
-      return { name: 'mirrorWins', label: 'ΚΑΘΡΕΦΤΗΣ ΑΝΩΤΑΤΟ ΦΥΛΛΟ' };
-    case gameNames.QUEEN:
-      return { name: 'queens', label: 'ΜΠΑΛΑΝΤΕΡ ΚΑΙ ΟΙ ΝΤΑΜΕΣ' };
-    case gameNames.TARGET:
-      return { name: 'targetObligation', label: 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ' };
-    case gameNames.CROSS:
-      return { name: 'crossObligation', label: 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ' };
-    default:
-      return { name: '', label: '' };
-  }
+  const gameMap = {
+    [gameNames.GRAVEYARD]: {
+      name: 'allDiscardedWins',
+      label: 'ΞΕΣΚΑΡΤΑΡΙΣΜΑ ΑΝΩΤΑΤΟ ΦΥΛΛΟ',
+    },
+    [gameNames.MAMUT]: {
+      name: 'mirrorWins',
+      label: 'ΚΑΘΡΕΦΤΗΣ ΑΝΩΤΑΤΟ ΦΥΛΛΟ',
+    },
+    [gameNames.QUEEN]: {
+      name: 'queens',
+      label: 'ΜΠΑΛΑΝΤΕΡ ΚΑΙ ΟΙ ΝΤΑΜΕΣ',
+    },
+    [gameNames.TARGET]: {
+      name: 'targetObligation',
+      label: 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ',
+    },
+    [gameNames.CROSS]: {
+      name: 'crossObligation',
+      label: 'ΥΠΟΧΡΕΩΣΗ ΤΟ ΚΕΝΤΡIΚΟ ΧΑΡΤΙ',
+    },
+  };
+
+  return gameMap[name] || { name: '', label: '' };
 }
 export function creataPaymentTags(title, email) {
   let amount, customerTrns, merchantTrns;

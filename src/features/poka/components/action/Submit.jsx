@@ -37,8 +37,6 @@ const Submit = () => {
   const selectedHandCardsCount =
     submittedHandCardIndexes.length + submittedTableCardIndexes.length;
 
-  let description = describeHand(data?.evaluatedHand, true);
-
   const handleEvaluate = async () => {
     if (selectedHandCardsCount > 5)
       return setSnackInfo(
@@ -70,6 +68,13 @@ const Submit = () => {
     if (result.error?.data) setSnackInfo(result.error.data);
   };
 
+  const btnPrompt = (
+    <h3>
+      ΥΠΟΒΟΛΗ <br />
+      {describeHand(data?.evaluatedHand)}
+    </h3>
+  );
+
   return (
     <div className="buttons-container">
       {snackElement}
@@ -77,7 +82,7 @@ const Submit = () => {
         <>
           <Overlay />
           <Button
-            prompt={<h3>{description}</h3>}
+            prompt={btnPrompt}
             onClick={handleSubmit}
             disabled={submitting || submissionSuccess}
             className="green"
