@@ -7,7 +7,7 @@ import {
   toggleChosenCard,
 } from '@poka/slice/pokaStateSlice';
 import { selectUserName } from '@account/slice/accountSlice';
-import { selectNextPlayers, useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import useDelayedDeal from '@poka/hooks/useDelayedDeal';
 import ChipStack from '@poka/components/player/ChipStack';
 import Card from '@poka/components/card/Card';
@@ -18,19 +18,14 @@ const HandCards = ({ playerState }) => {
   const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const chosenCardIndexes = useSelector(selectChosenHandCardIndexes);
-  const [currentPlayer] = useSelector(selectNextPlayers(gameId));
 
-  const { playerName, handCards, submittedHand, selecting } = playerState;
-  const dealtHandCards = useDelayedDeal({ playerState });
+  const { playerName, selecting } = playerState;
+  const displayedCards = useDelayedDeal({ playerState });
   const dispatch = useDispatch();
 
   const handSubmitted = playerState.submittedHand.length;
   const isHostPlayer = playerName === hostPlayerName;
-  const displayedCards = handSubmitted
-    ? submittedHand
-    : currentPlayer?.handInfo?.kind
-    ? handCards
-    : dealtHandCards;
+
   const className = `hand-cards cards-${
     displayedCards?.filter(Boolean).length
   }`;
