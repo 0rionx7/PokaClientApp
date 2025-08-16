@@ -13,7 +13,7 @@ import ChipStack from '@poka/components/player/ChipStack';
 import Card from '@poka/components/card/Card';
 import './HandCards.scss';
 
-const HandCards = ({ playerState, index }) => {
+const HandCards = ({ playerState }) => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
@@ -21,7 +21,7 @@ const HandCards = ({ playerState, index }) => {
   const [currentPlayer] = useSelector(selectNextPlayers(gameId));
 
   const { playerName, handCards, submittedHand, selecting } = playerState;
-  const dealtHandCards = useDelayedDeal({ handCards, index });
+  const dealtHandCards = useDelayedDeal({ playerState });
   const dispatch = useDispatch();
 
   const handSubmitted = playerState.submittedHand.length;

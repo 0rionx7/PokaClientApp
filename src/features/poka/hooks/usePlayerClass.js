@@ -6,7 +6,7 @@ import { selectUserName } from '@account/slice/accountSlice';
 import { getPosition } from '@poka/utils/getPosition';
 import { isPlayerState } from '@utils/helper-functions';
 
-const usePlayerClass = index => {
+const usePlayerClass = playerName => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
@@ -14,18 +14,19 @@ const usePlayerClass = index => {
 
   const playersCount = playerStates.length;
   const hostIndex = playerStates.findIndex(isPlayerState(hostPlayerName));
+  const playerIndex = playerStates.findIndex(isPlayerState(playerName));
 
   let seat;
   if (data.rotation === 'clockwise') {
     seat =
-      hostIndex <= index
-        ? index - hostIndex + 1
-        : playersCount + 1 - (hostIndex - index);
+      hostIndex <= playerIndex
+        ? playerIndex - hostIndex + 1
+        : playersCount + 1 - (hostIndex - playerIndex);
   } else {
     seat =
-      hostIndex < index
-        ? playersCount + 1 - (index - hostIndex)
-        : hostIndex - index + 1;
+      hostIndex < playerIndex
+        ? playersCount + 1 - (playerIndex - hostIndex)
+        : hostIndex - playerIndex + 1;
   }
   const position = getPosition(playersCount, seat);
   const gridArea = `player-${seat}`;

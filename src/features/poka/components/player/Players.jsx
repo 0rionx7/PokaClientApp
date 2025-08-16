@@ -10,12 +10,8 @@ const Players = () => {
 
   return (
     <>
-      {playerStates.map((playerState, i) => (
-        <Player
-          key={playerState.playerName}
-          playerState={playerState}
-          index={i}
-        />
+      {playerStates.map(playerState => (
+        <Player key={playerState.playerName} playerState={playerState} />
       ))}
     </>
   );

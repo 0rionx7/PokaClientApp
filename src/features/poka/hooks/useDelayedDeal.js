@@ -6,17 +6,17 @@ import { useGetPokaStateQuery } from '@poka/api/pokaApi.js';
 import { isPlayerState } from '@utils/helper-functions.js';
 import { DEAL_DELAY } from '@poka/utils/games';
 
-const useDelayedDeal = ({ index, handCards }) => {
+const useDelayedDeal = ({ playerState }) => {
   const { gameId } = useParams();
   const {
     data: { playerStates, dealer },
   } = useGetPokaStateQuery(gameId);
+  const { playerName, handCards } = playerState;
   const [dealtCards, setDealtCards] = useState([]);
   const [dealingIndex, setDealingIndex] = useState(0);
   const [firstDealt, setFirstDealt] = useState(false);
   const { setIsDealing } = useRoomContext();
 
-  const { playerName } = playerStates.at(index);
   const activePlayers = playerStates.filter(ps => ps.isInGame);
   const turnOrder = activePlayers.findIndex(isPlayerState(playerName));
   const dealingCard = handCards.at(dealingIndex);
