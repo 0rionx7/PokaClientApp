@@ -1,12 +1,12 @@
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
-import { DEALINGKIND, INFOTEXT } from '@utils/text-constants';
+import { DEALING_KIND, INFO_TEXT } from '@utils/text-constants';
 import Radio from '@ui/Radio';
 
 const Dilemma = ({ name, options, setDeny }) => {
   const { values, setFieldValue } = useGameBuilderContext();
 
   function handleChange(e) {
-    if (name === 'dealing' && e.target.value === DEALINGKIND.OLA_MAZI) {
+    if (name === 'dealing' && e.target.value === DEALING_KIND.OLA_MAZI) {
       setDeny(false);
       setFieldValue('denials', 0);
     }
@@ -23,7 +23,7 @@ const Dilemma = ({ name, options, setDeny }) => {
           value={option}
           checked={values[name] === option}
           onChange={handleChange}
-          info={INFOTEXT[option]}
+          info={INFO_TEXT[option]}
         />
       ))}
     </>

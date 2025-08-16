@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { createChipStack } from '@poka/utils/createChipStack';
-import { INFOTEXT } from '@utils/text-constants';
+import { INFO_TEXT } from '@utils/text-constants';
 import ToolTip from '@ui/ToolTip';
 import Kava from '@poka/components/table/Kava';
 import './Kaves.scss';
@@ -24,7 +24,7 @@ const Kaves = ({ totalPot, rows }) => {
           {data.kaves.map((kavaInfo, i) => (
             <Kava kavaInfo={kavaInfo} key={i} />
           ))}
-          <ToolTip info={INFOTEXT.KAVES} />
+          <ToolTip info={INFO_TEXT.KAVES} />
         </>
       )}
     </div>

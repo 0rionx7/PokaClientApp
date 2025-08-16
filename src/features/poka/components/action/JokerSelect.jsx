@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { selectHostPlayerState, useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { ORDERNUMBER, SUITNAME } from '@utils/text-constants';
+import { ORDER_NUMBER, SUIT_NAME } from '@utils/text-constants';
 import JokerSubmit from '@poka/components/action/JokerSubmit';
 import { SYMBOLS } from '@utils/text-constants';
 import Card from '@poka/components/card/Card';
@@ -23,7 +23,7 @@ const JokerSelect = () => {
   ).length;
   const card = { value: cardValue, suit, faceUp: true };
 
-  const prompt = jokerCount > 1 && ORDERNUMBER[jokers.length];
+  const prompt = jokerCount > 1 && ORDER_NUMBER[jokers.length];
 
   if (jokerCount === jokers.length)
     return <JokerSubmit jokers={jokers} resetJokers={() => setJokers([])} />;
@@ -42,7 +42,7 @@ const JokerSelect = () => {
         <select value={suit} onChange={e => setSuit(e.target.value)}>
           {['C', 'H', 'S', 'D'].map(suit => (
             <option key={suit} value={suit}>
-              {SUITNAME[suit]}
+              {SUIT_NAME[suit]}
             </option>
           ))}
         </select>

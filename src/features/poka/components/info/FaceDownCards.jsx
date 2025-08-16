@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { ORDERNAME } from '@utils/text-constants';
+import { ORDER_NAME } from '@utils/text-constants';
 
 const FaceDownCards = () => {
   const { gameId } = useParams();
@@ -12,7 +12,7 @@ const FaceDownCards = () => {
 
   let closed = data.faceDownIndexes
     .toSorted()
-    .map(index => ORDERNAME[index])
+    .map(index => ORDER_NAME[index])
     .join(', ');
 
   return (

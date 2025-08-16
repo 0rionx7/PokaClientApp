@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { COUNTFEM } from '@utils/text-constants';
+import { COUNT_FEM } from '@utils/text-constants';
 
 const Denies = () => {
   const { gameId } = useParams();
@@ -13,7 +13,7 @@ const Denies = () => {
     <>
       {'με '}
       <span>
-        {`${COUNTFEM[data.denials]}  ΑΡΝΗΣ${data.denials > 1 ? 'ΕΙΣ ' : 'Η '}`}
+        {`${COUNT_FEM[data.denials]}  ΑΡΝΗΣ${data.denials > 1 ? 'ΕΙΣ ' : 'Η '}`}
       </span>
     </>
   );

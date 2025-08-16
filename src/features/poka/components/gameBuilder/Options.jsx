@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
-import { INFOTEXT } from '@utils/text-constants';
+import { INFO_TEXT } from '@utils/text-constants';
 import CheckBox from '@ui/CheckBox';
 import Radio from '@ui/Radio';
 
@@ -22,7 +22,7 @@ const Options = () => {
         name="bomba"
         checked={values.bomba}
         onChange={e => setFieldValue('bomba', e.target.checked)}
-        info={INFOTEXT.BOMBA}
+        info={INFO_TEXT.BOMBA}
       />
       <CheckBox
         label="ΜΕ ΚΑΠΕΛΟ"
@@ -40,7 +40,7 @@ const Options = () => {
               value={i + 1}
               checked={values.hats === i + 1}
               onChange={e => setFieldValue('hats', i + 1)}
-              info={INFOTEXT.HAT}
+              info={INFO_TEXT.HAT}
             />
           ))}
           <CheckBox

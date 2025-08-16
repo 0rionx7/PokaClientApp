@@ -1,10 +1,10 @@
 import { gameNames } from '@poka/utils/games';
 import {
-  POSSESSIVECARDNAMES,
-  PLURALCARDNAMES,
+  POSSESSIVE_CARD_NAMES,
+  PLURAL_CARD_NAMES,
   HANDKIND,
-  PAYMENTDESCRIPTION,
-  SUBSCRIPTIONTYPES,
+  PAYMENT_DESCRIPTION,
+  SUBSCRIPTION_TYPES,
 } from '@utils/text-constants';
 
 export function createTableTitleJsx(tableName) {
@@ -37,10 +37,10 @@ export function describeHand(submissionInfo) {
     kind === HANDKIND.THREE_OF_A_KIND;
 
   const firstPart = isPlural
-    ? ` ${PLURALCARDNAMES[primary]}`
-    : `${primary === 12 ? ' της ' : ' του '}${POSSESSIVECARDNAMES[primary]}`;
+    ? ` ${PLURAL_CARD_NAMES[primary]}`
+    : `${primary === 12 ? ' της ' : ' του '}${POSSESSIVE_CARD_NAMES[primary]}`;
 
-  const secondPart = secondary ? ` με ${PLURALCARDNAMES[secondary]}` : '';
+  const secondPart = secondary ? ` με ${PLURAL_CARD_NAMES[secondary]}` : '';
 
   return (
     <>
@@ -104,17 +104,17 @@ export function creataPaymentTags(title, email) {
   const tags = [];
 
   switch (title) {
-    case SUBSCRIPTIONTYPES.yearly.split('_')[0]:
+    case SUBSCRIPTION_TYPES.yearly.split('_')[0]:
       amount = 5000;
-      customerTrns = PAYMENTDESCRIPTION.yearly;
-      merchantTrns = PAYMENTDESCRIPTION.yearly + ` του χρήστη ${email}`;
-      tags.push(PAYMENTDESCRIPTION.yearly);
+      customerTrns = PAYMENT_DESCRIPTION.yearly;
+      merchantTrns = PAYMENT_DESCRIPTION.yearly + ` του χρήστη ${email}`;
+      tags.push(PAYMENT_DESCRIPTION.yearly);
       break;
-    case SUBSCRIPTIONTYPES.monthly.split('_')[0]:
+    case SUBSCRIPTION_TYPES.monthly.split('_')[0]:
       amount = 500;
-      customerTrns = PAYMENTDESCRIPTION.monthly;
-      merchantTrns = PAYMENTDESCRIPTION.monthly + ` του χρήστη ${email}`;
-      tags.push(PAYMENTDESCRIPTION.monthly);
+      customerTrns = PAYMENT_DESCRIPTION.monthly;
+      merchantTrns = PAYMENT_DESCRIPTION.monthly + ` του χρήστη ${email}`;
+      tags.push(PAYMENT_DESCRIPTION.monthly);
       break;
     default:
       break;

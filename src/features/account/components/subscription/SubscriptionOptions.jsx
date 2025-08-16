@@ -5,7 +5,7 @@ import { useGetUserQuery, usePayMutation } from '@account/api/accountApi';
 import LoadingSpinner from '@ui/LoadingSpinner';
 import Overlay from '@ui/Overlay';
 import Frame from '@ui/Frame';
-import { SUBSCRIPTIONTYPES } from '@utils/text-constants';
+import { SUBSCRIPTION_TYPES } from '@utils/text-constants';
 import { paymentsIcons } from 'assets/svgs/payments';
 
 const SubscriptionOptions = () => {
@@ -54,7 +54,7 @@ const SubscriptionOptions = () => {
       <span>ΕΠΙΛΟΓΕΣ ΑΝΑΝΕΩΣΗΣ</span>
       <Frame>
         <div className="subscription-options">
-          {Object.values(SUBSCRIPTIONTYPES).map(option => (
+          {Object.values(SUBSCRIPTION_TYPES).map(option => (
             <SubscriptionItem
               onSelect={selectSubscription}
               key={option}
