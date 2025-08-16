@@ -43,7 +43,8 @@ export const pokaStateSlice = createSlice({
       .addMatcher(
         isAnyOf(
           pokaApi.endpoints.sitOut.matchFulfilled,
-          pokaApi.endpoints.submitCards.matchFulfilled
+          pokaApi.endpoints.submitCards.matchFulfilled,
+          pokaApi.endpoints.selectCards.matchFulfilled
         ),
         (_state, _action) => pokaStateSlice.getInitialState()
       ),

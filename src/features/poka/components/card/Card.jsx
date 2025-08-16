@@ -7,7 +7,7 @@ import { suits } from 'assets/svgs/suits';
 import ToolTip from '@ui/ToolTip';
 import '@components/card/Card.scss';
 
-const Card = ({ card, onChoose, isChosen, isJoker }) => {
+const Card = ({ card, onSelect, isChosen, isJoker }) => {
   const deckColor = useSelector(selectDeckColor);
 
   if (card === null) return null; // for auxilary cards
@@ -29,7 +29,7 @@ const Card = ({ card, onChoose, isChosen, isJoker }) => {
     .join(' ');
 
   return (
-    <div className={cardClass} onClick={onChoose}>
+    <div className={cardClass} onClick={onSelect}>
       <div className={`value-suit_${card.suit}`}>
         <div className="value">{SYMBOLS[card.value] || card.value}</div>
         <div className="suit">{suits[card.suit]}</div>
