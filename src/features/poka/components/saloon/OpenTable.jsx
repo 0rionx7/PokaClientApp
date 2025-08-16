@@ -55,7 +55,7 @@ const OpenTable = () => {
       return 'Το "τσίπ" είναι μεγαλύτερο από την κάβα.\n';
     if (values.cava <= 0 || values.chip <= 0)
       return 'Δεν επιτρέπονται αρνητικές τιμές\n';
-    if (values.cava > 1000000) return 'Μέγιστη κάβα 1Μ';
+    if (values.cava > 1_000_000) return 'Μέγιστη κάβα 1Μ';
   };
 
   return (
