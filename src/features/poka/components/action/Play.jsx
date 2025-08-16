@@ -2,7 +2,7 @@ import { use } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useRoomContext } from '@poka/utils/RoomContext';
+import { useRoomContext } from '@poka/components/RoomContext';
 import { selectHostPlayerState } from '@poka/api/pokaApi';
 import JokerSelect from '@poka/components/action/JokerSelect';
 import DenyAccept from '@poka/components/action/DenyAccept';

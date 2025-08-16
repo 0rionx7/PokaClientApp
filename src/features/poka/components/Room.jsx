@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import EmojiProvider from '@components/chat/EmojiProvider';
-import RoomContextProvider from '@poka/utils/RoomContext';
+import RoomContextProvider from '@poka/components/RoomContext';
 import LoadingSpinner from '@ui/LoadingSpinner';
 import useMessageService from '@hooks/useMessageService';
 import Action from '@poka/components/action/Action';

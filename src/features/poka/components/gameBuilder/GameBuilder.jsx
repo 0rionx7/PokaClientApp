@@ -13,7 +13,7 @@ import {
   useSetGameVariantMutation,
 } from '@poka/api/pokaApi';
 import { isSitting } from '@utils/helper-functions';
-import { useRoomContext } from '@poka/utils/RoomContext';
+import { useRoomContext } from '@poka/components/RoomContext';
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
 import BuilderRow from '@poka/components/gameBuilder/BuilderRow';
 import GameChooser from '@poka/components/gameBuilder/GameChooser';

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { useRoomContext } from '@poka/utils/RoomContext';
+import { useRoomContext } from '@poka/components/RoomContext';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi.js';
 import { isPlayerState } from '@utils/helper-functions.js';
 import { DEAL_DELAY } from '@poka/utils/games';
