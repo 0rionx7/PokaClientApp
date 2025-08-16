@@ -1,18 +1,15 @@
 export function createChipStyle(multiplier, index, startIndex) {
-  const color =
-    multiplier === 1
-      ? 'green'
-      : multiplier === 5
-      ? 'black'
-      : multiplier === 25
-      ? 'yellow'
-      : multiplier === 100
-      ? 'red'
-      : multiplier === 1000
-      ? 'blue'
-      : 'purple';
+  const colorMap = {
+    1: 'green',
+    5: 'black',
+    25: 'yellow',
+    100: 'red',
+    1000: 'blue',
+  };
+
+  const color = colorMap[multiplier] || 'purple';
   const style = {
-    bottom: 3 * (index + (startIndex ?? 0)) + 'px',
+    bottom: 3 * (index + (startIndex ?? 0)),
     gridArea: startIndex === undefined ? color : 'green',
   };
   return { color, style };

@@ -1,35 +1,48 @@
 import Chip from '@poka/components/table/Chip';
 
-function createChipJsx(count, multiplier, startIndex) {
-  return Array(count)
-    .fill('')
-    .map((_, i) => (
-      <Chip
-        multiplier={multiplier}
-        index={i}
-        startIndex={startIndex}
-        key={multiplier + i}
-      />
-    ));
+function createChipJsx(count, multiplier, startIndex = 0) {
+  return Array.from({ length: count }, (_, i) => (
+    <Chip
+      key={`${multiplier}-${i}`}
+      multiplier={multiplier}
+      index={i}
+      startIndex={startIndex}
+    />
+  ));
+}
+
+function calculateChipCounts(amount, chip) {
+  const denominations = [
+    { key: 'reds', value: 100 },
+    { key: 'yellows', value: 25 },
+    { key: 'blacks', value: 5 },
+    { key: 'greens', value: 1 },
+  ];
+
+  const result = {};
+  let remaining = amount;
+
+  for (const { key, value } of denominations) {
+    const unitValue = value * chip;
+    result[key] = Math.floor(remaining / unitValue);
+    remaining -= result[key] * unitValue;
+  }
+
+  return result;
 }
 
 export function createChipStack(amount, chip) {
-  if (amount < 0 || amount > 1200000 * chip) return [];
-  const reds = Math.floor(amount / (100 * chip));
-  const yellows = Math.floor((amount - reds * 100 * chip) / (25 * chip));
-  const blacks = Math.floor(
-    (amount - reds * 100 * chip - yellows * 25 * chip) / (5 * chip)
-  );
-  const greens = Math.floor(
-    (amount - reds * 100 * chip - yellows * 25 * chip - blacks * 5 * chip) /
-      chip
-  );
-  let redChips,
+  if (amount < 0 || amount > 1_200_000 * chip) return [];
+
+  const { reds, yellows, blacks, greens } = calculateChipCounts(amount, chip);
+
+  let purpleChips = [],
     blueChips = [],
-    purpleChips = [],
-    yellowChips = [];
+    redChips = [];
+
   if (reds > 40) {
     const blues = Math.floor(reds / 10);
+
     if (blues > 40) {
       const purples = Math.floor(blues / 10);
       purpleChips = createChipJsx(purples, 10000);
@@ -37,24 +50,21 @@ export function createChipStack(amount, chip) {
         Math.floor((amount % (10000 * chip)) / (1000 * chip)),
         1000
       );
-      redChips = createChipJsx(
-        Math.floor((amount % (1000 * chip)) / (100 * chip)),
-        100
-      );
     } else {
       blueChips = createChipJsx(blues, 1000);
-      redChips = createChipJsx(
-        Math.floor((amount % (1000 * chip)) / (100 * chip)),
-        100
-      );
     }
-  } else redChips = createChipJsx(reds, 100);
 
-  if (blueChips.length)
-    yellowChips = createChipJsx(yellows, 25, greens + blacks);
-  else yellowChips = createChipJsx(yellows, 25);
-  const blackChips = createChipJsx(blacks, 5, greens);
+    redChips = createChipJsx(
+      Math.floor((amount % (1000 * chip)) / (100 * chip)),
+      100
+    );
+  } else {
+    redChips = createChipJsx(reds, 100);
+  }
+
   const greenChips = createChipJsx(greens, 1);
+  const blackChips = createChipJsx(blacks, 5, greens);
+  const yellowChips = createChipJsx(yellows, 25, greens + blacks);
 
   return [
     ...purpleChips,
