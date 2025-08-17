@@ -9,7 +9,6 @@ import {
 import { selectUserName } from '@account/slice/accountSlice';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import useDelayedDeal from '@poka/hooks/useDelayedDeal';
-import ChipStack from '@poka/components/player/ChipStack';
 import Card from '@poka/components/card/Card';
 import './HandCards.scss';
 
@@ -49,7 +48,6 @@ const HandCards = ({ playerState }) => {
           />
         ))}
       </div>
-      <ChipStack playerState={playerState} />
     </>
   );
 };

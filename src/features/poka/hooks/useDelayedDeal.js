@@ -27,8 +27,7 @@ const useDelayedDeal = ({ playerState }) => {
   const interval = activePlayers.length * DEAL_DELAY;
   const delay = (turnOrder + 1) * DEAL_DELAY;
 
-  const showHandCards =
-    handCards.length <= dealtCards.length || currentPlayer?.handInfo?.kind;
+  const showHandCards = currentPlayer?.handInfo?.kind;
   const displayedCards = handSubmitted
     ? submittedHand
     : showHandCards
@@ -59,14 +58,14 @@ const useDelayedDeal = ({ playerState }) => {
   }, [dealingCard, firstDealt, interval, setIsDealing]);
 
   useEffect(() => {
-    if (dealingCard === undefined) {
+    if (dealingCard === undefined && dealingIndex !== 0) {
       const timer = setTimeout(() => {
         setIsDealing(false);
       }, interval - delay);
 
       return () => clearTimeout(timer);
     }
-  }, [setIsDealing, dealingCard, interval, delay]);
+  }, [setIsDealing, dealingCard, interval, dealingIndex, delay]);
 
   useEffect(() => {
     if (dealer) {
@@ -78,6 +77,10 @@ const useDelayedDeal = ({ playerState }) => {
   useEffect(() => {
     setFirstDealt(false);
   }, [handCards]);
+
+  useEffect(() => {
+    if (handCards.length === dealtCards.length) setDealtCards(handCards);
+  }, [dealtCards.length, handCards]);
 
   return displayedCards;
 };
