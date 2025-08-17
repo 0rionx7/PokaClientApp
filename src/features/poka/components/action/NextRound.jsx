@@ -1,28 +1,36 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import {
   selectHostPlayerState,
   selectPlayerStates,
+  useGetPokaStateQuery,
   useNextRoundMutation,
   useRevealCardsMutation,
 } from '@poka/api/pokaApi';
 import Button from '@ui/Button';
 import Overlay from '@ui/Overlay';
 import { isSitting } from '@utils/helper-functions';
+import { GAME_NAMES } from '@utils/text-constants';
 
 const NextRound = () => {
   const { gameId } = useParams();
+  const {
+    data: { gameName },
+  } = useGetPokaStateQuery(gameId);
   const playerStates = useSelector(selectPlayerStates(gameId));
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
-  const [reveal] = useRevealCardsMutation();
-  const { submittedHand } = useSelector(selectHostPlayerState(gameId));
-  const [revealed, setRevealed] = useState(false);
+  const [reveal, { isSuccess: revealed }] = useRevealCardsMutation();
+  const { submittedHand, handCards } = useSelector(
+    selectHostPlayerState(gameId)
+  );
 
-  const showReveal =
+  const isFiveCardsPoker =
+    gameName === GAME_NAMES.POKER && handCards.length === 5;
+  const showRevealBtn =
     !submittedHand.length &&
     playerStates.filter(isSitting).length > 1 &&
+    !isFiveCardsPoker &&
     !revealed;
 
   const prompt = isSuccess ? (
@@ -33,13 +41,10 @@ const NextRound = () => {
 
   return (
     <Overlay style={{ zIndex: 50, backgroundColor: 'rgb(0 0 0 / 4%)' }}>
-      {showReveal && (
+      {showRevealBtn && (
         <Button
           prompt={<h2>Αποκαλύψτε τα χαρτιά σας</h2>}
-          onClick={() => {
-            reveal(gameId);
-            setRevealed(true);
-          }}
+          onClick={() => reveal(gameId)}
           className="purple reveal"
         />
       )}

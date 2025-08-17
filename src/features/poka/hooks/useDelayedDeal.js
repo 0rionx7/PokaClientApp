@@ -27,9 +27,11 @@ const useDelayedDeal = ({ playerState }) => {
   const interval = activePlayers.length * DEAL_DELAY;
   const delay = (turnOrder + 1) * DEAL_DELAY;
 
+  const showHandCards =
+    handCards.length <= dealtCards.length || currentPlayer?.handInfo?.kind;
   const displayedCards = handSubmitted
     ? submittedHand
-    : currentPlayer?.handInfo?.kind
+    : showHandCards
     ? handCards
     : dealtCards;
 
@@ -65,10 +67,6 @@ const useDelayedDeal = ({ playerState }) => {
       return () => clearTimeout(timer);
     }
   }, [setIsDealing, dealingCard, interval, delay]);
-  // for skarto and swap
-  useEffect(() => {
-    if (handCards.length <= dealtCards.length) setDealtCards(handCards);
-  }, [dealtCards.length, handCards]);
 
   useEffect(() => {
     if (dealer) {
