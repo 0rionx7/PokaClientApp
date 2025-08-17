@@ -43,7 +43,7 @@ const BoardCard = ({ index }) => {
   return (
     <Card
       card={card}
-      onChoose={() => handleChooseCard(index)}
+      onSelect={() => handleChooseCard(index)}
       isChosen={isChosen(index)}
     />
   );

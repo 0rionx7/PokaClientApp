@@ -10,9 +10,6 @@
     //     right: variables.$even-core;
     //   }
     // }
-    // .bet-grid {
-    //   right: calc(100% + 4px - variables.$even-core);
-    // }
   }
   &.cards-3 {
     // .card {
@@ -22,9 +19,6 @@
     //   &:nth-child(3) {
     //     right: variables.$odd-core;
     //   }
-    // }
-    // .bet-grid {
-    //   right: calc(100% + 4px - variables.$odd-core);
     // }
   }
   &.cards-4 {
@@ -42,9 +36,6 @@
     //     right: variables.$even-mid;
     //   }
     // }
-    // .bet-grid {
-    //   right: calc(100% + 4px - variables.$even-mid);
-    // }
   }
   &.cards-5 {
     // .card {
@@ -60,9 +51,6 @@
     //   &:nth-child(5) {
     //     right: variables.$odd-mid;
     //   }
-    // }
-    // .bet-grid {
-    //   right: calc(100% + 4px - variables.$odd-mid);
     // }
   }
   &.cards-6 {
@@ -86,8 +74,8 @@
         right: variables.$even-outer;
       }
     }
-    .bet-grid {
-      right: calc(100% + 4px - variables.$even-outer);
+    & + .chips-grid {
+      --shift: 0;
     }
   }
   &.cards-7 {
@@ -111,8 +99,8 @@
         right: variables.$odd-outer;
       }
     }
-    .bet-grid {
-      right: calc(100% + 4px - variables.$odd-outer);
+    & + .chips-grid {
+      --shift: 0;
     }
   }
   &.cards-8 {
@@ -139,8 +127,8 @@
         right: variables.$eigth;
       }
     }
-    .bet-grid {
-      right: calc(100% + 4px - variables.$odd-outer);
+    & + .chips-grid {
+      --shift: 0;
     }
   }
 }

@@ -17,13 +17,13 @@ const ChipStack = ({ playerState }) => {
   return (
     <>
       {amount > 0 && (
-        <div className="bet-grid">
+        <div className="chips-grid">
           <div className="chips">{chips}</div>
           <div className="bet-amount">{amount.toLocaleString()}</div>
         </div>
       )}
       {amount < 0 && (
-        <div className="bet-grid">
+        <div className="chips-grid">
           <div className="bet-amount">πάσο</div>
         </div>
       )}

@@ -14,21 +14,18 @@ import Card from '@poka/components/card/Card';
 import './HandCards.scss';
 
 const HandCards = ({ playerState }) => {
+  const dispatch = useDispatch();
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const chosenCardIndexes = useSelector(selectChosenHandCardIndexes);
+  const displayedCards = useDelayedDeal({ playerState });
 
   const { playerName, selecting } = playerState;
-  const displayedCards = useDelayedDeal({ playerState });
-  const dispatch = useDispatch();
-
   const handSubmitted = playerState.submittedHand.length;
   const isHostPlayer = playerName === hostPlayerName;
 
-  const className = `hand-cards cards-${
-    displayedCards?.filter(Boolean).length
-  }`;
+  const handClass = `hand-cards cards-${displayedCards?.length}`;
 
   const isChosen = index =>
     isHostPlayer && chosenCardIndexes.some(i => i === index);
@@ -40,18 +37,20 @@ const HandCards = ({ playerState }) => {
   };
 
   return (
-    <div className={className}>
-      {displayedCards?.map((card, i) => (
-        <Card
-          key={card.value + card.suit || i}
-          card={card}
-          onSelect={() => handleSelectCard(i)}
-          isChosen={isChosen(i)}
-          isJoker={isJoker(card.value)}
-        />
-      ))}
+    <>
+      <div className={handClass}>
+        {displayedCards?.map((card, i) => (
+          <Card
+            key={card?.value + card?.suit || i}
+            card={card}
+            onSelect={() => handleSelectCard(i)}
+            isChosen={isChosen(i)}
+            isJoker={isJoker(card?.value)}
+          />
+        ))}
+      </div>
       <ChipStack playerState={playerState} />
-    </div>
+    </>
   );
 };
 

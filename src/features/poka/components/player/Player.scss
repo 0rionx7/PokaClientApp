@@ -49,9 +49,8 @@
 }
 .top {
   top: calc(-0.15 * var(--card-height));
-  .bet-grid {
-    top: 100%;
-    right: calc(100% + 2.5rem);
+  .chips-grid {
+    bottom: 0;
   }
 }
 .right {
@@ -82,23 +81,9 @@
   }
 }
 .left {
-  .bet-grid {
-    left: calc(100% + 0.5rem);
-  }
-  // .cards-5 {
-  //   .bet-grid {
-  //     left: calc(100% + 4px - variables.$odd-mid);
-  //   }
-  // }
-  .cards-6 {
-    .bet-grid {
-      left: calc(100% + 4px - variables.$even-outer);
-    }
-  }
-  .cards-7 {
-    .bet-grid {
-      left: calc(100% + 4px - variables.$odd-outer);
-    }
+  .chips-grid {
+    --shift: 1rem;
+    left: calc(100% + var(--shift));
   }
   .fold {
     left: initial;
