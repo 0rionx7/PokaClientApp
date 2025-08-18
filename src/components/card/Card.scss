@@ -84,11 +84,11 @@
       line-height: calc(0.4 * var(--card-width));
     }
   }
-  .back-side {
-    height: 100%;
-    width: 100%;
-    border-radius: 7px;
-    background-color: #ea0000cf;
-    background-image: url('@icons/backCard.svg');
-  }
+}
+.card-back {
+  height: 100%;
+  width: 100%;
+  border-radius: 7px;
+  background-color: #ea0000cf;
+  background-image: url('@icons/backCard.svg');
 }

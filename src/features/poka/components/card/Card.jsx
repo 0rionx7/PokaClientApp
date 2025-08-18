@@ -1,23 +1,14 @@
-import { useSelector } from 'react-redux';
-
-import { selectDeckColor } from '@account/slice/accountSlice';
+import CardBack from '@components/card/CardBack';
 import { SYMBOLS } from '@utils/text-constants';
-import Content from '@components/card/Content';
 import { suits } from 'assets/svgs/suits';
+import Content from '@components/card/Content';
 import ToolTip from '@ui/ToolTip';
 import '@components/card/Card.scss';
 
 const Card = ({ card, onSelect, isChosen, isJoker }) => {
-  const deckColor = useSelector(selectDeckColor);
-
   if (card === null) return null; // for auxilary cards
 
-  if (!card?.faceUp)
-    return (
-      <div className="card" style={{ padding: '.17rem' }}>
-        <div className="back-side" style={{ backgroundColor: deckColor }} />
-      </div>
-    );
+  if (!card?.faceUp) return <CardBack />;
 
   const cardClass = [
     'card',

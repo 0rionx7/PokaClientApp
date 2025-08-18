@@ -1,8 +1,9 @@
 import { useDrag } from 'react-dnd';
 
-import { suits } from 'assets/svgs/suits';
-import Content from '@components/card/Content';
 import { SYMBOLS } from '@utils/text-constants';
+import { suits } from 'assets/svgs/suits';
+import CardBack from '@components/card/CardBack';
+import Content from '@components/card/Content';
 
 const Card = ({ card, owner }) => {
   const [{ isDragging }, drag] = useDrag(
@@ -17,12 +18,7 @@ const Card = ({ card, owner }) => {
     [card, owner]
   );
 
-  if (card?.hidden)
-    return (
-      <div className="card" style={{ padding: '.17rem' }}>
-        <div className="back-side" />
-      </div>
-    );
+  if (card?.hidden) return <CardBack />;
 
   const className = `v-${card.value}`;
 
