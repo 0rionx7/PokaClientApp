@@ -21,7 +21,7 @@ const JokerSelect = () => {
   const jokerCount = handCards.filter(card =>
     data.joker.some(value => card.value === value)
   ).length;
-  const card = { value: cardValue, suit, faceUp: true, key: Date.now() };
+  const card = { value: cardValue, suit, faceUp: true };
 
   const prompt = jokerCount > 1 && ORDER_NUMBER[replacementCards.length];
 
