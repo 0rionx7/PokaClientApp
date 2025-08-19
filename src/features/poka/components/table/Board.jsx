@@ -10,21 +10,20 @@ import './Board.scss';
 const Board = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
+  const { gameName, rowIndexes, hats } = data;
 
   const totalPot = useMemo(
     () => data.playerStates.reduce((acc, curr) => acc + curr.bet, 0),
     [data.playerStates]
   );
-  let className = gameConfigs[data.gameName]?.boardClass;
-  if (data.gameName === gameNames.CORNER)
-    className += ` ${data.rowIndexes.length - (data.hats && 1)}`;
+  let className = gameConfigs[gameName]?.boardClass;
+  if (gameName === gameNames.CORNER)
+    className += ` ${rowIndexes.length - (hats && 1)}`;
 
   return (
     <div className={`board ${className ?? ''}`}>
-      {!data.rowIndexes?.length && totalPot > 0 && (
-        <Kaves totalPot={totalPot} />
-      )}
-      {data.rowIndexes?.map((rowIndexes, i, { length }) => (
+      {!rowIndexes?.length && totalPot > 0 && <Kaves totalPot={totalPot} />}
+      {rowIndexes?.map((rowIndexes, i, { length }) => (
         <BoardRow
           rowIndexes={rowIndexes}
           row={i}

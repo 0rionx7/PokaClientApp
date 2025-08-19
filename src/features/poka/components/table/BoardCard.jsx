@@ -18,7 +18,6 @@ const BoardCard = ({ index }) => {
   const hostState = useSelector(selectHostPlayerState(gameId));
   const tableCards = useSelector(selectTableCards(gameId));
   const chosenCardIndexes = useSelector(selectChosenTableCardIndexes);
-
   const dispatch = useDispatch();
 
   const card = tableCards[index];
