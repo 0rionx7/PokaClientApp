@@ -6,6 +6,7 @@ import { INFO_TEXT } from '@utils/text-constants';
 import ToolTip from '@ui/ToolTip';
 import Kava from '@poka/components/table/Kava';
 import './Kaves.scss';
+import { formatNumber } from '@utils/helper-functions';
 
 const Kaves = ({ totalPot, rows }) => {
   const { gameId } = useParams();
@@ -18,7 +19,7 @@ const Kaves = ({ totalPot, rows }) => {
   return (
     <div className={'kaves ' + kavesClass}>
       <div className="chips">{chips}</div>
-      <div className="pot">ποτ: {totalPot.toLocaleString()}</div>
+      <div className="pot">ποτ: {formatNumber(totalPot)}</div>
       {showKaves && (
         <>
           {data.kaves.map((kavaInfo, i) => (

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import './LiveInfo.scss';
+import { formatNumber } from '@utils/helper-functions';
 
 const GameInfo = () => {
   const { gameId } = useParams();
@@ -26,7 +27,7 @@ const GameInfo = () => {
       <div className="info-row">
         <h5>{`${gamesCount}o`}</h5>
         <h5>{currentPlayer?.playerName}</h5>
-        <h5>{pot.toLocaleString()}</h5>
+        <h5>{formatNumber(pot)}</h5>
       </div>
     </div>
   );

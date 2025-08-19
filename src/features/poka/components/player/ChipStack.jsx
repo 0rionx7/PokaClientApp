@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { createChipStack } from '@poka/utils/createChipStack';
+import { formatNumber } from '@utils/helper-functions';
 
 const ChipStack = ({ playerState }) => {
   const { gameId } = useParams();
@@ -19,7 +20,7 @@ const ChipStack = ({ playerState }) => {
       {amount > 0 && (
         <div className="chips-grid">
           <div className="chips">{chips}</div>
-          <div className="bet-amount">{amount.toLocaleString()}</div>
+          <div className="bet-amount">{formatNumber(amount)}</div>
         </div>
       )}
       {amount < 0 && (

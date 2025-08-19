@@ -31,3 +31,4 @@ export function createCode(length) {
   }
   return password;
 }
+export const formatNumber = n => n.toLocaleString();

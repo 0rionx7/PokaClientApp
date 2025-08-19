@@ -1,3 +1,5 @@
+import { formatNumber } from '@utils/helper-functions';
+
 const Kava = ({ kavaInfo }) => {
   const { amount, players } = kavaInfo;
 
@@ -5,7 +7,7 @@ const Kava = ({ kavaInfo }) => {
 
   return (
     <div className="kava">
-      {amount.toLocaleString()} {kavaPlayers}
+      {formatNumber(amount)} {kavaPlayers}
     </div>
   );
 };

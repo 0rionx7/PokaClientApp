@@ -1,4 +1,5 @@
 import { gameNames } from '@poka/utils/games';
+import { formatNumber } from '@utils/helper-functions';
 import {
   POSSESSIVE_CARD_NAMES,
   PLURAL_CARD_NAMES,
@@ -60,7 +61,7 @@ export function betPrompt(value, minBet, resta, error) {
         <>
           {minBet === resta ? 'Ρέστα' : 'ΜΕΣΑ στα'}
           <br />
-          <span> {minBet.toLocaleString()}</span>
+          <span> {formatNumber(minBet)}</span>
         </>
       );
     default:
@@ -68,7 +69,7 @@ export function betPrompt(value, minBet, resta, error) {
         <>
           ΑΝΕΒΑΣΜΑ
           <br />
-          <span> {(value - minBet).toLocaleString()}</span>
+          <span> {formatNumber(value - minBet)}</span>
         </>
       );
   }

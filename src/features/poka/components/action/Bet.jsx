@@ -6,6 +6,7 @@ import BetOptions from '@poka/components/action/BetOptions';
 import { betPrompt } from '@utils/text-functions';
 import Button from '@ui/Button';
 import './Bet.scss';
+import { formatNumber } from '@utils/helper-functions';
 
 const Bet = ({ bet, resta }) => {
   const { gameId } = useParams();
@@ -98,7 +99,7 @@ const Bet = ({ bet, resta }) => {
               setStatus({});
               setBetAmount(minBet);
             }}
-            prompt={minBet.toLocaleString()}
+            prompt={formatNumber(minBet)}
             className="call-btn green"
             type="button"
             disabled={isSuccess || status.pending}

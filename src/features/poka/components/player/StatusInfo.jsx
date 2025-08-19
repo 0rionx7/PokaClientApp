@@ -6,6 +6,7 @@ import ToolTip from '@ui/ToolTip';
 const StatusInfo = ({ playerState }) => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
+  const { sittingOut, isInGame, resta } = playerState;
 
   const lastAtList = data.playerStates.at(-1).playerName;
   const playerDeals = playerState.playerName === (data.dealer || lastAtList);
@@ -18,14 +19,10 @@ const StatusInfo = ({ playerState }) => {
           <ToolTip info='"Ντίιλερ"' />
         </>
       )}
-      {playerState.sittingOut && <div className="fold">απών</div>}
-      {!playerState.isInGame &&
-        !playerState.sittingOut &&
-        (playerState.resta > 0 ? (
-          <div className="fold">πάσο</div>
-        ) : (
-          <div className="fold">ταπί</div>
-        ))}
+      {sittingOut && <div className="fold">απών</div>}
+      {!isInGame && !sittingOut && (
+        <div className="fold">{resta > 0 ? 'πάσο' : 'ταπί'}</div>
+      )}
     </>
   );
 };

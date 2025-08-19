@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery, useRenewCavaMutation } from '@poka/api/pokaApi';
+import { formatNumber } from '@utils/helper-functions';
 import useSnackBar from '@hooks/useSnackBar';
 import Button from '@ui/Button';
 
@@ -26,7 +27,7 @@ const RenewOptions = () => {
         {amounts.map(amoount => (
           <Button
             key={amoount}
-            prompt={amoount.toLocaleString()}
+            prompt={formatNumber(amoount)}
             onClick={() => handleRenew(amoount)}
             disabled={isLoading || isSuccess}
             className="green"

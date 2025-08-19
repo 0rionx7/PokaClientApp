@@ -1,11 +1,13 @@
 import DeniedCards from '@poka/components/player/DeniedCards';
 import StatusInfo from '@poka/components/player/StatusInfo';
-import ToolTip from '@ui/ToolTip';
+import { formatNumber } from '@utils/helper-functions';
 import useTimerBar from '@poka/hooks/useTimerBar';
+import ToolTip from '@ui/ToolTip';
 import './PlayerInfo.scss';
 
 const PlayerInfo = ({ playerState }) => {
   const timerBar = useTimerBar(playerState);
+  const { playerName, swapped, bet, resta } = playerState;
 
   const backgroundColor = playerState.isInGame ? '#221f1b' : '#a00000';
 
@@ -13,22 +15,22 @@ const PlayerInfo = ({ playerState }) => {
     <div className="player-info-container" style={{ backgroundColor }}>
       <div className="playername">
         <StatusInfo playerState={playerState} />
-        {playerState.playerName}
+        {playerName}
       </div>
       {timerBar}
       <div className="gameplay-info">
-        {!!playerState.swapped && (
+        {swapped > 0 && (
           <>
-            <span id="swapped"> {playerState.swapped}</span>
+            <span id="swapped"> {swapped}</span>
             <ToolTip info="πραγμ. αλλαγές" />
           </>
         )}
-        {(playerState.resta - playerState.bet).toLocaleString()}
+        {formatNumber(resta - bet)}
         <DeniedCards playerState={playerState} />
       </div>
-      {playerState.bet > 0 && (
+      {bet > 0 && (
         <div className="total-bet">
-          {playerState.bet.toLocaleString()}
+          {formatNumber(bet)}
           <ToolTip info="συν.ποντάρισμα" />
         </div>
       )}
