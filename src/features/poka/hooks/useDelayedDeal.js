@@ -71,16 +71,18 @@ const useDelayedDeal = ({ playerState }) => {
     }
   }, [setIsDealing, interval, playerDelay, noDeal]);
   // reseting on game end
-  useEffect(() => {
-    if (dealer) {
-      setDealtCards([]);
-      setDealingIndex(0);
-    }
-  }, [dealer]);
   // for skarto , changed cards and show reveald cards
   useEffect(() => {
     if (handCards.length <= dealtCards.length) setDealtCards(handCards);
   }, [dealtCards.length, handCards, currentPlayer?.handInfo?.kind]);
+
+  useEffect(() => {
+    if (dealer) {
+      console.log('reste');
+      setDealtCards([]);
+      setDealingIndex(0);
+    }
+  }, [dealer]);
 
   return displayedCards;
 };

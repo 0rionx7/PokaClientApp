@@ -40,7 +40,7 @@ const HandCards = ({ playerState }) => {
       <div className={handClass}>
         {displayedCards?.map((card, i) => (
           <Card
-            key={card?.value + card?.suit || i}
+            key={card?.key || card?.value + card?.suit || i} // card?.key for jokers with same valu + suit
             card={card}
             onSelect={() => handleSelectCard(i)}
             isChosen={isChosen(i)}
