@@ -14,7 +14,7 @@ const JokerSelect = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
   const { handCards } = useSelector(selectHostPlayerState(gameId));
-  const [jokers, setJokers] = useState([]);
+  const [replacementCards, setReplacmentCards] = useState([]);
   const [suit, setSuit] = useState('S');
   const [cardValue, setCardValue] = useState(14);
 
@@ -23,10 +23,15 @@ const JokerSelect = () => {
   ).length;
   const card = { value: cardValue, suit, faceUp: true };
 
-  const prompt = jokerCount > 1 && ORDER_NUMBER[jokers.length];
+  const prompt = jokerCount > 1 && ORDER_NUMBER[replacementCards.length];
 
-  if (jokerCount === jokers.length)
-    return <JokerSubmit jokers={jokers} resetJokers={() => setJokers([])} />;
+  if (jokerCount === replacementCards.length)
+    return (
+      <JokerSubmit
+        replacmentCards={replacementCards}
+        resetReplacments={() => setReplacmentCards([])}
+      />
+    );
 
   return (
     <div className="card-container">
@@ -50,7 +55,7 @@ const JokerSelect = () => {
       <Card card={card} />
       <Button
         prompt="ΕΠΙΛΟΓΗ"
-        onClick={() => setJokers(curr => [...curr, card])}
+        onClick={() => setReplacmentCards(curr => [...curr, card])}
       />
     </div>
   );

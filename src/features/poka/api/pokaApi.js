@@ -83,10 +83,10 @@ export const pokaApi = gameApi.injectEndpoints({
       }),
     }),
     assignJoker: build.mutation({
-      query: jokers => ({
-        url: '/poka/joker',
+      query: replacmentCards => ({
+        url: '/poka/replace-joker',
         method: 'PATCH',
-        body: jokers,
+        body: replacmentCards,
       }),
     }),
     evaluateHand: build.mutation({

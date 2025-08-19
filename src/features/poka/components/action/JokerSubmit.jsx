@@ -4,7 +4,7 @@ import { useAssignJokerMutation } from '@poka/api/pokaApi';
 import Button from '@ui/Button';
 import Card from '@poka/components/card/Card';
 
-const JokerSubmit = ({ jokers, resetJokers }) => {
+const JokerSubmit = ({ replacmentCards, resetReplacments }) => {
   const [assignJoker, { isLoading, isSuccess }] = useAssignJokerMutation();
   const { gameId } = useParams();
 
@@ -13,16 +13,16 @@ const JokerSubmit = ({ jokers, resetJokers }) => {
       <div className="replace">
         ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΜΠΑΛΑΝΤΕΡ ΜΕ:
         <div className="jokers">
-          {jokers.map((card, i) => (
+          {replacmentCards.map((card, i) => (
             <Card card={card} key={i} />
           ))}
         </div>
       </div>
-      <Button className="red" prompt="ΑΚΥΡΩΣΗ" onClick={resetJokers} />
+      <Button className="red" prompt="ΑΚΥΡΩΣΗ" onClick={resetReplacments} />
       <Button
         className="green"
         prompt="ΑΝΤΙΚΑΤΑΣΤΑΣΗ"
-        onClick={() => assignJoker({ gameId, jokers })}
+        onClick={() => assignJoker({ gameId, replacmentCards })}
         disabled={isLoading || isSuccess}
       />
     </div>
