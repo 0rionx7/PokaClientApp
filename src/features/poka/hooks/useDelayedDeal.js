@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { selectNextPlayers, useGetPokaStateQuery } from '@poka/api/pokaApi.js';
@@ -16,38 +16,38 @@ const useDelayedDeal = ({ playerState }) => {
   const [dealtCards, setDealtCards] = useState([]);
   const [dealingIndex, setDealingIndex] = useState(0);
   const [firstDealt, setFirstDealt] = useState(false);
+
   const { setIsDealing } = useRoomContext();
 
   const { playerName, handCards, submittedHand } = playerState;
 
   const handSubmitted = playerState.submittedHand.length;
-  const activePlayers = playerStates.filter(ps => ps.isInGame);
+  const activePlayers = useMemo(
+    () => playerStates.filter(ps => ps.isInGame),
+    [playerStates]
+  );
   const turnOrder = activePlayers.findIndex(isPlayerState(playerName));
   const dealingCard = handCards.at(dealingIndex);
   const interval = activePlayers.length * DEAL_DELAY;
-  const delay = (turnOrder + 1) * DEAL_DELAY;
+  const playerDelay = (turnOrder + 1) * DEAL_DELAY;
 
-  const showHandCards = currentPlayer?.handInfo?.kind;
-  const displayedCards = handSubmitted
-    ? submittedHand
-    : showHandCards
-    ? handCards
-    : dealtCards;
+  const displayedCards = handSubmitted ? submittedHand : dealtCards;
+  const noDeal = dealingCard === undefined || playerDelay === 0; //second check for player leaving before deal ends
 
   useEffect(() => {
-    if (dealingCard === undefined || firstDealt) return;
+    if (noDeal || firstDealt) return;
     setIsDealing(true);
     const timer = setTimeout(() => {
       setDealtCards(prev => [...prev, dealingCard]);
       setDealingIndex(prev => prev + 1);
       setFirstDealt(true);
-    }, delay);
+    }, playerDelay);
 
     return () => clearTimeout(timer);
-  }, [dealingCard, delay, firstDealt, setIsDealing]);
+  }, [dealingCard, playerDelay, firstDealt, setIsDealing, noDeal]);
 
   useEffect(() => {
-    if (dealingCard === undefined || !firstDealt) return;
+    if (noDeal || !firstDealt) return;
     setIsDealing(true);
     const timer = setTimeout(() => {
       setDealtCards(prev => [...prev, dealingCard]);
@@ -55,32 +55,32 @@ const useDelayedDeal = ({ playerState }) => {
     }, interval);
 
     return () => clearTimeout(timer);
-  }, [dealingCard, firstDealt, interval, setIsDealing]);
-
-  useEffect(() => {
-    if (dealingCard === undefined && dealingIndex !== 0) {
-      const timer = setTimeout(() => {
-        setIsDealing(false);
-      }, interval - delay);
-
-      return () => clearTimeout(timer);
-    }
-  }, [setIsDealing, dealingCard, interval, dealingIndex, delay]);
-
-  useEffect(() => {
-    if (dealer) {
-      setDealtCards([]);
-      setDealingIndex(0);
-    }
-  }, [dealer]);
+  }, [dealingCard, firstDealt, interval, setIsDealing, noDeal]);
 
   useEffect(() => {
     setFirstDealt(false);
   }, [handCards]);
 
   useEffect(() => {
-    if (handCards.length === dealtCards.length) setDealtCards(handCards);
-  }, [dealtCards.length, handCards]);
+    if (noDeal) {
+      const timer = setTimeout(() => {
+        setIsDealing(false);
+      }, interval - playerDelay);
+
+      return () => clearTimeout(timer);
+    }
+  }, [setIsDealing, interval, playerDelay, noDeal]);
+  // reseting on game end
+  useEffect(() => {
+    if (dealer) {
+      setDealtCards([]);
+      setDealingIndex(0);
+    }
+  }, [dealer]);
+  // for skarto , changed cards and show reveald cards
+  useEffect(() => {
+    if (handCards.length <= dealtCards.length) setDealtCards(handCards);
+  }, [dealtCards.length, handCards, currentPlayer?.handInfo?.kind]);
 
   return displayedCards;
 };

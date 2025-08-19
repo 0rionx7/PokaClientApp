@@ -25,6 +25,7 @@ const Action = ({ hideInfo }) => {
   );
   const { data } = useGetPokaStateQuery(gameId);
   const { setActionContainerNode } = useRoomContext();
+  const { isDealing } = useRoomContext();
 
   const hostTurn = playerName === hostPlayerName;
   const showResults = handInfo?.kind;
@@ -46,15 +47,21 @@ const Action = ({ hideInfo }) => {
           setActionContainerNode(null);
         };
       }}>
-      {content}
-      {hostPlayerState.resta === 0 && !hostPlayerState.sittingOut && <Renew />}
-      {handInfo?.kind && <NextRound />}
-      {jokerReplacing && (
-        <Overlay style={{ backgroundColor: 'rgb(0 0 0 / 4%)' }}>
-          <div className="waiting-content">
-            Αναμονή να ορίσουν οι παίκτες τα μπαλαντέρ
-          </div>
-        </Overlay>
+      {!isDealing && (
+        <>
+          {content}
+          {hostPlayerState.resta === 0 && !hostPlayerState.sittingOut && (
+            <Renew />
+          )}
+          {handInfo?.kind && <NextRound />}
+          {jokerReplacing && (
+            <Overlay style={{ backgroundColor: 'rgb(0 0 0 / 4%)' }}>
+              <div className="waiting-content">
+                Αναμονή να ορίσουν οι παίκτες τα μπαλαντέρ
+              </div>
+            </Overlay>
+          )}
+        </>
       )}
     </div>
   );

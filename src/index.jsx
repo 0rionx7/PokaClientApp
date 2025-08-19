@@ -29,7 +29,6 @@ import RouteGuard from '@utils/route-guard';
 import { store } from './store/store';
 import App from './App';
 import '@styles/index.scss';
-import MultiPlayerCardDeal from '@poka/components/MultiDeal';
 
 const container = document.getElementById('root');
 const root = createRoot(container);

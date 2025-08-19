@@ -12,7 +12,7 @@ import { useActionState, useState } from 'react';
 import './OpenTable.scss';
 
 const initialValues = {
-  tableName: '',
+  tableName: 'Table',
   rotation: 'clockwise',
   cava: 1000,
   chip: 1,
