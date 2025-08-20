@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
@@ -85,4 +84,4 @@ const GameInfo = () => {
   );
 };
 
-export default memo(GameInfo);
+export default GameInfo;

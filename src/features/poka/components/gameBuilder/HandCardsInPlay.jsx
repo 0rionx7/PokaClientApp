@@ -1,9 +1,7 @@
-import { memo } from 'react';
-
 import CheckBox from '@ui/CheckBox';
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
 
-const HandCardsInPlay = memo(() => {
+const HandCardsInPlay = () => {
   const { values, setFieldValue } = useGameBuilderContext();
   const inPlay = [1, 2, 3, 4, 5, 6, 7].slice(0, +values.cardsInHand);
   const style = { alignSelf: 'flex-end', fontSize: '.8rem' };
@@ -35,6 +33,6 @@ const HandCardsInPlay = memo(() => {
       ))}
     </>
   );
-});
+};
 
 export default HandCardsInPlay;

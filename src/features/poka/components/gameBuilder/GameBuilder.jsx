@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
@@ -9,10 +8,10 @@ import {
   TABLOS,
 } from '@utils/text-constants';
 import {
-  selectPlayerStates,
+  selectSittingPlayers,
+  selectSittingPlayersWithMoney,
   useSetGameVariantMutation,
 } from '@poka/api/pokaApi';
-import { isSitting } from '@utils/helper-functions';
 import { useRoomContext } from '@poka/components/RoomContext';
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
 import BuilderRow from '@poka/components/gameBuilder/BuilderRow';
@@ -30,9 +29,10 @@ import Button from '@ui/Button';
 import Frame from '@ui/Frame';
 import './GameBuilder.scss';
 
-const GameBuilder = memo(() => {
+const GameBuilder = () => {
   const { gameId } = useParams();
-  const playerStates = useSelector(selectPlayerStates(gameId));
+  const sittingPlayers = useSelector(selectSittingPlayers(gameId));
+  const activePlayers = useSelector(selectSittingPlayersWithMoney(gameId));
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const { actionContainerNode } = useRoomContext();
@@ -49,14 +49,13 @@ const GameBuilder = memo(() => {
     setStatus({});
   }
 
-  const noOthersInPlay = playerStates.filter(isSitting).length === 1;
-  const allOthersTapi =
-    playerStates.filter(state => state.resta > 0 && !state.sittingOut)
-      .length === 1;
-
-  let btnPrompt;
-  if (allOthersTapi) btnPrompt = 'Μόνο ένας παίκτης έχει χρήματα';
-  if (noOthersInPlay) btnPrompt = 'Δεν κάθετε άλλος παίκτης στο τραπέζι';
+  const noOthersInPlay = sittingPlayers.length === 1;
+  const allOthersTapi = activePlayers.length === 1;
+  const btnPrompt =
+    (allOthersTapi && 'Μόνο ένας παίκτης έχει χρήματα') ||
+    (noOthersInPlay && 'Δεν κάθετε άλλος παίκτης στο τραπέζι') ||
+    status.error ||
+    'ΜΟΙΡΑΣΤΕ';
 
   return (
     <Frame className="game-builder">
@@ -130,6 +129,6 @@ const GameBuilder = memo(() => {
       </form>
     </Frame>
   );
-});
+};
 
 export default GameBuilder;

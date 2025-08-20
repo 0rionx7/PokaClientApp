@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
@@ -10,17 +9,12 @@ const Results = () => {
   const { gameId } = useParams();
   const playerStates = useSelector(selectPlayerStates(gameId));
 
-  const orderedPlayerStates = useMemo(
-    () =>
-      playerStates.toSorted(
-        (a, b) =>
-          b.amountWon - a.amountWon ||
-          b.handInfo.handValue - a.handInfo.handValue ||
-          Number(b.sittingOut) - Number(a.sittingOut)
-      ),
-    [playerStates]
+  const orderedPlayerStates = playerStates.toSorted(
+    (a, b) =>
+      b.amountWon - a.amountWon ||
+      b.handInfo.handValue - a.handInfo.handValue ||
+      Number(b.sittingOut) - Number(a.sittingOut)
   );
-
   return (
     <div className="results-board">
       <div className="player-result">

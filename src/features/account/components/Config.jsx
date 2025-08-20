@@ -1,4 +1,3 @@
-import { memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -69,4 +68,4 @@ const Config = () => {
   );
 };
 
-export default memo(Config);
+export default Config;

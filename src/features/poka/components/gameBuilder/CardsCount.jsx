@@ -5,10 +5,14 @@ import { gameNames } from '@poka/utils/games';
 const CardsCount = ({ name }) => {
   const { values, setFieldValue } = useGameBuilderContext();
 
-  let countOptions = [2, 3, 4, 5];
-  if (name === 'cornerLength') countOptions = [2, 3, 4];
-  if (name === 'railroadLength') countOptions = [2, 3, 4, 5, 6, 7];
-  if (values.gameName === gameNames.POKER) countOptions = [5, 6, 7];
+  const countMap = {
+    cardsInHand: [2, 3, 4, 5],
+    cornerLength: [2, 3, 4],
+    railroadLength: [2, 3, 4, 5, 6, 7],
+    [gameNames.POKER]: [5, 6, 7],
+  };
+
+  const countOptions = countMap[values.gameName] || countMap[name];
 
   function handleChange(e) {
     setFieldValue([name], e.target.value);

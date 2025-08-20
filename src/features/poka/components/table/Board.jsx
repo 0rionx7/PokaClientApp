@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
@@ -12,10 +11,7 @@ const Board = () => {
   const { data } = useGetPokaStateQuery(gameId);
   const { gameName, rowIndexes, hats } = data;
 
-  const totalPot = useMemo(
-    () => data.playerStates.reduce((acc, curr) => acc + curr.bet, 0),
-    [data.playerStates]
-  );
+  const totalPot = data.playerStates.reduce((acc, curr) => acc + curr.bet, 0);
   let className = gameConfigs[gameName]?.boardClass;
   if (gameName === gameNames.CORNER)
     className += ` ${rowIndexes.length - (hats && 1)}`;

@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
@@ -32,4 +32,4 @@ const ChipStack = ({ playerState }) => {
   );
 };
 
-export default memo(ChipStack);
+export default ChipStack;

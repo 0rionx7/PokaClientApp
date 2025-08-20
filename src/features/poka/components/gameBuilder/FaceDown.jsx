@@ -1,11 +1,11 @@
-import { memo, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
 import CheckBox from '@ui/CheckBox';
 
 const label = ['1o', '2o', '3o', '4o', '5o', '6ο', '7ο'];
 
-const FaceDown = memo(() => {
+const FaceDown = () => {
   const { values, setFieldValue } = useGameBuilderContext();
   const currentLabels = label.slice(0, +values.cardsInHand);
 
@@ -40,6 +40,6 @@ const FaceDown = memo(() => {
       ))}
     </>
   );
-});
+};
 
 export default FaceDown;

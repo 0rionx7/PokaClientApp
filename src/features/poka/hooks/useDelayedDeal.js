@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { selectNextPlayers, useGetPokaStateQuery } from '@poka/api/pokaApi.js';
@@ -22,10 +22,7 @@ const useDelayedDeal = ({ playerState }) => {
   const { playerName, handCards, submittedHand } = playerState;
 
   const handSubmitted = playerState.submittedHand.length;
-  const activePlayers = useMemo(
-    () => playerStates.filter(ps => ps.isInGame),
-    [playerStates]
-  );
+  const activePlayers = playerStates.filter(ps => ps.isInGame);
   const turnOrder = activePlayers.findIndex(isPlayerState(playerName));
   const dealingCard = handCards.at(dealingIndex);
   const interval = activePlayers.length * DEAL_DELAY;
@@ -78,7 +75,6 @@ const useDelayedDeal = ({ playerState }) => {
 
   useEffect(() => {
     if (dealer) {
-      console.log('reste');
       setDealtCards([]);
       setDealingIndex(0);
     }

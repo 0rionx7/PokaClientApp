@@ -6,7 +6,7 @@ const BuilderRow = ({ title, element }) => {
 
   const builderConfig = gameConfigs[values.gameName].builderOptions;
 
-  if (!builderConfig?.some(config => config === title)) return null;
+  if (!builderConfig?.includes(title)) return null;
 
   return (
     <div className="frame-row builder-row">

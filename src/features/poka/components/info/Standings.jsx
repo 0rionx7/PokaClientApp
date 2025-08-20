@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { selectPlayerStates } from '@poka/api/pokaApi';
@@ -12,13 +11,8 @@ const Standings = () => {
   const { gameId } = useParams();
   const playerStates = useSelector(selectPlayerStates(gameId));
 
-  const orderedPlayerStates = useMemo(
-    () =>
-      playerStates.toSorted(
-        (a, b) =>
-          b.resta - a.resta || Number(b.sittingOut) - Number(a.sittingOut)
-      ),
-    [playerStates]
+  const orderedPlayerStates = playerStates.toSorted(
+    (a, b) => b.resta - a.resta || Number(b.sittingOut) - Number(a.sittingOut)
   );
 
   return (

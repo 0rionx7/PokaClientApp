@@ -10,7 +10,7 @@ const FaceDownCards = () => {
 
   if (!faceDownCards) return null;
 
-  let closed = data.faceDownIndexes
+  const closed = data.faceDownIndexes
     .toSorted()
     .map(index => ORDER_NAME[index])
     .join(', ');

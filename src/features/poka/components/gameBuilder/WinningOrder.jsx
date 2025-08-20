@@ -1,12 +1,10 @@
-import { memo } from 'react';
-
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
 import { WINNING_ORDERS } from '@utils/text-constants';
 import Radio from '@ui/Radio';
 
 const winningOrders = Object.values(WINNING_ORDERS);
 
-const WinningOrder = memo(() => {
+const WinningOrder = () => {
   const { values, setFieldValue } = useGameBuilderContext();
 
   return (
@@ -23,6 +21,6 @@ const WinningOrder = memo(() => {
       ))}
     </>
   );
-});
+};
 
 export default WinningOrder;

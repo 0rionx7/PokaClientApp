@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
@@ -12,10 +11,7 @@ const GameInfo = () => {
   } = useGetPokaStateQuery(gameId);
   const [currentPlayer] = nextPlayers;
 
-  const pot = useMemo(
-    () => playerStates.reduce((acc, curr) => acc + curr.bet, 0),
-    [playerStates]
-  );
+  const pot = playerStates.reduce((acc, curr) => acc + curr.bet, 0);
 
   return (
     <div className="live-info">

@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { setChosenGame } from '@poka/slice/pokaStateSlice';
@@ -24,15 +23,11 @@ const GameChooser = () => {
     dispatch(setChosenGame(gameName));
   };
 
-  const games = useMemo(
-    () =>
-      Object.values(gameNames).map(game => (
-        <option key={game} value={game}>
-          {game}
-        </option>
-      )),
-    []
-  );
+  const games = Object.values(gameNames).map(game => (
+    <option key={game} value={game}>
+      {game}
+    </option>
+  ));
 
   return (
     <div className="game-chooser">
