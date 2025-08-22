@@ -16,7 +16,7 @@ import Play from '@poka/components/action/Play';
 import Renew from '@poka/components/action/Renew';
 import './Action.scss';
 
-const Action = ({ hideInfo }) => {
+const Action = () => {
   const { gameId } = useParams();
   const hostPlayerName = useSelector(selectUserName);
   const hostPlayerState = useSelector(selectHostPlayerState(gameId));
@@ -40,7 +40,7 @@ const Action = ({ hideInfo }) => {
 
   return (
     <div
-      className={`action-container ${hideInfo ? 'full-width' : ''}`}
+      className="action-container"
       ref={node => {
         setActionContainerNode(node);
         return () => {

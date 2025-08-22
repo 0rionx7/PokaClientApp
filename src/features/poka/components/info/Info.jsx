@@ -23,11 +23,12 @@ const TABS = {
   [INFO_BUTTONS.LAST_GAME_RESULTS]: <Results />,
 };
 
-const Info = ({ hideInfo, onToggleInfoPanel }) => {
+const Info = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const [selectedTab, setSelectedTab] = useState(INFO_BUTTONS.GAME_DESCRIPTION);
+  const [showInfoPanel, setShowInfoPanel] = useState(true);
   const { setShowPicker } = useEmoji();
 
   useEffect(() => {
@@ -36,16 +37,18 @@ const Info = ({ hideInfo, onToggleInfoPanel }) => {
   }, [setSelectedTab, data.dealer, hostPlayerName]);
 
   const handleToggleInfoPanel = () => {
-    onToggleInfoPanel();
+    setShowInfoPanel(curr => !curr);
     setShowPicker(false);
   };
 
   return (
     <div className="info">
-      <div className={'info-content ' + (hideInfo ? 'hidden' : '')}>
-        <Buttons setSelected={setSelectedTab} selected={selectedTab} />
-        {TABS[selectedTab]}
-      </div>
+      {showInfoPanel && (
+        <div className="info-content">
+          <Buttons setSelected={setSelectedTab} selected={selectedTab} />
+          {TABS[selectedTab]}
+        </div>
+      )}
       <div className="toggle-btn" onClick={handleToggleInfoPanel}>
         <img src={toggle} alt={'toggle'} />
       </div>

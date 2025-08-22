@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
@@ -14,7 +13,6 @@ import './Room.scss';
 const Room = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
-  const [hideInfoPanel, setHideInfoPanel] = useState(false);
   useMessageService();
 
   if (!data) return <LoadingSpinner centered color="red" />;
@@ -25,12 +23,9 @@ const Room = () => {
         <Table />
         <div className="ribbon">
           <EmojiProvider>
-            <Info
-              hideInfo={hideInfoPanel}
-              onToggleInfoPanel={() => setHideInfoPanel(curr => !curr)}
-            />
+            <Info />
           </EmojiProvider>
-          <Action hideInfo={hideInfoPanel} />
+          <Action />
         </div>
       </RoomContextProvider>
     </div>
