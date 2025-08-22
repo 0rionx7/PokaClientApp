@@ -2,6 +2,12 @@ import { Fragment } from 'react';
 import { describeTime } from '@utils/text-functions';
 
 export function createMessageJsx({ event, ...data }, index) {
+  const playerCall = (
+    <>
+      Ο παίκτης <span>{data.playerName || data.username}</span>
+    </>
+  );
+
   switch (event) {
     case 'neeext': {
       return (
@@ -19,36 +25,36 @@ export function createMessageJsx({ event, ...data }, index) {
     case 'newMessage':
       return (
         <Fragment key={index}>
-          <span>--{data.playerName}: </span> {data.message} <br />
+          <span>--{data.playerName}: </span> {data.message}
+          <br />
         </Fragment>
       );
     case 'playerSittingOut':
       return (
         <Fragment key={index}>
-          <span>#</span> Ο παίκτης <span>{data.playerName}</span> αποχώρησε.
+          <span>#</span> {playerCall} αποχώρησε.
           <br />
         </Fragment>
       );
     case 'playerJoined':
       return (
         <Fragment key={index}>
-          <span>#</span> Ο παίκτης <span>{data.playerName}</span> έκατσε στο
-          τραπέζι.
+          <span>#</span> {playerCall} έκατσε στο τραπέζι.
           <br />
         </Fragment>
       );
     case 'playerRenewed':
       return (
         <Fragment key={index}>
-          <span>#</span> Ο παίκτης <span>{data.playerName}</span> ανανέωσε με{' '}
-          <span>{data.amount}</span> μονάδες.
+          <span>#</span> {playerCall} ανανέωσε με <span>{data.amount}</span>{' '}
+          μονάδες.
           <br />
         </Fragment>
       );
     case 'requestAdded':
       return (
         <Fragment key={index}>
-          Ο παίκτης <span>{data.username}</span> ζήτησε θέση στο τραπέζι.
+          {playerCall} ζήτησε θέση στο τραπέζι.
           <br />
         </Fragment>
       );
@@ -63,29 +69,24 @@ export function createMessageJsx({ event, ...data }, index) {
     case 'playerDenied':
       return (
         <Fragment key={index}>
-          <span>#</span> Ο παίκτης <span>{data.playerName}</span> αρνήθηκε ένα
-          χαρτί.
+          <span>#</span> {playerCall} αρνήθηκε ένα χαρτί.
           <br />
         </Fragment>
       );
     case 'playerSwapped':
       return (
         <Fragment key={index}>
-          <span>#</span> Ο παίκτης <span>{data.playerName}</span>
+          <span>#</span> {playerCall}
           {data.count === 0 ? (
-            <>
-              {' '}
-              δεν άλλαξε κάποιο χαρτί
-              <br />
-            </>
+            <> δεν άλλαξε κάποιο χαρτί</>
           ) : (
             <>
               {' '}
               άλλαξε <span>{data.count} </span>
               χαρτ{data.count > 1 ? 'ά' : 'ί'}.
-              <br />
             </>
           )}
+          <br />
         </Fragment>
       );
     default:

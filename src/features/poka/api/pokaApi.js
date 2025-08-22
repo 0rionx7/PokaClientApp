@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { selectUserName } from '@account/slice/accountSlice';
-import { updateAll } from '@utils/helper-functions';
+import { isSitting, updateAll } from '@utils/helper-functions';
 import { gameApi, socket } from '@store/gameApi';
 
 export const pokaApi = gameApi.injectEndpoints({
@@ -149,30 +149,24 @@ export const pokaApi = gameApi.injectEndpoints({
   }),
 });
 
-export const {
-  useGetPokaStateQuery,
-  useOpenPokaTableMutation,
-  useRestartGameMutation,
-  useSetGameVariantMutation,
-  useBetMutation,
-  useDenyCardMutation,
-  useSelectCardsMutation,
-  useAssignJokerMutation,
-  useEvaluateHandMutation,
-  useSubmitCardsMutation,
-  useRenewCavaMutation,
-  useNextRoundMutation,
-  useRevealCardsMutation,
-  useJoinTableMutation,
-  useSitDownMutation,
-  useSitOutMutation,
-} = pokaApi;
-
 const selectGameState = gameId => pokaApi.endpoints.getPokaState.select(gameId);
 export const selectPlayerStates = gameId =>
   createSelector(
     selectGameState(gameId),
     result => result?.data?.playerStates ?? []
+  );
+export const selectSittingPlayers = gameId =>
+  createSelector(
+    selectGameState(gameId),
+    result => result?.data?.playerStates?.filter(isSitting) ?? []
+  );
+export const selectSittingPlayersWithMoney = gameId =>
+  createSelector(
+    selectGameState(gameId),
+    result =>
+      result?.data?.playerStates?.filter(
+        state => state.resta > 0 && !state.sittingOut
+      ) ?? []
   );
 export const selectHostPlayerState = gameId =>
   createSelector(
@@ -200,3 +194,22 @@ export const selectPlayerState = gameId =>
       gameState?.data?.playerStates?.find(ps => ps.playerName === playerName) ??
       []
   );
+
+export const {
+  useGetPokaStateQuery,
+  useOpenPokaTableMutation,
+  useRestartGameMutation,
+  useSetGameVariantMutation,
+  useBetMutation,
+  useDenyCardMutation,
+  useSelectCardsMutation,
+  useAssignJokerMutation,
+  useEvaluateHandMutation,
+  useSubmitCardsMutation,
+  useRenewCavaMutation,
+  useNextRoundMutation,
+  useRevealCardsMutation,
+  useJoinTableMutation,
+  useSitDownMutation,
+  useSitOutMutation,
+} = pokaApi;

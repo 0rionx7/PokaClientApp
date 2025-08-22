@@ -1,4 +1,4 @@
-export function getPosition(playersCount, index) {
+export function getPosition(playersCount, seat) {
   const positions = {
     2: { 1: 'top' },
     3: { 1: 'left', 2: 'right' },
@@ -24,5 +24,5 @@ export function getPosition(playersCount, index) {
     },
   };
 
-  return positions[playersCount]?.[index - 1] ?? '';
+  return positions[playersCount]?.[seat - 1] ?? '';
 }

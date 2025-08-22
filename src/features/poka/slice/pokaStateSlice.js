@@ -36,18 +36,14 @@ export const pokaStateSlice = createSlice({
     },
   },
   extraReducers: builder =>
-    builder
-      .addMatcher(pokaApi.endpoints.sitOut.matchFulfilled, (_state, _action) =>
-        pokaStateSlice.getInitialState()
-      )
-      .addMatcher(
-        isAnyOf(
-          pokaApi.endpoints.sitOut.matchFulfilled,
-          pokaApi.endpoints.submitCards.matchFulfilled,
-          pokaApi.endpoints.selectCards.matchFulfilled
-        ),
-        (_state, _action) => pokaStateSlice.getInitialState()
+    builder.addMatcher(
+      isAnyOf(
+        pokaApi.endpoints.sitOut.matchFulfilled,
+        pokaApi.endpoints.submitCards.matchFulfilled,
+        pokaApi.endpoints.selectCards.matchFulfilled
       ),
+      (_state, _action) => pokaStateSlice.getInitialState()
+    ),
   selectors: {
     selectChosenHandCardIndexes: pokaState => pokaState.chosenHandCardIndexes,
     selectChosenTableCardIndexes: pokaState => pokaState.chosenTableCardIndexes,

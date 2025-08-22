@@ -22,25 +22,23 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   const jokerReplacing = currentPlayer?.jokerReplacing;
   const isHostPlayer = playerName === hostPlayerName;
   const isPlaying = playerName === currentPlayer?.playerName;
+  const noTimer = !isHostPlayer || data?.reaction === 101;
 
   useEffect(() => {
-    if (!isHostPlayer || data?.reaction === 101) return;
-    let timer;
-    if (isPlaying && !kind) {
-      const factor = submitting || jokerReplacing ? 2 : 1;
-      const timeOut = factor * data?.reaction * 1000;
-      timer = setTimeout(
-        () => sitOut({ gameId, timedout: 'timedout' }),
-        timeOut
-      );
-    }
+    if (noTimer || !isPlaying || kind) return;
+
+    const factor = submitting || jokerReplacing ? 2 : 1;
+    const timeOut = factor * data?.reaction * 1000;
+    const timer = setTimeout(
+      () => sitOut({ gameId, timedout: 'timedout' }),
+      timeOut
+    );
 
     return () => clearTimeout(timer);
   }, [
+    noTimer,
     kind,
-    isHostPlayer,
     isPlaying,
-    sittingOut,
     sitOut,
     data?.reaction,
     submitting,
@@ -49,13 +47,12 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
   ]);
 
   useEffect(() => {
-    if (!isHostPlayer || data?.reaction === 101) return;
-    let timer;
-    if (kind && !sittingOut)
-      timer = setTimeout(() => nextRound(gameId), data?.reaction * 1200);
+    if (noTimer || !kind || sittingOut) return;
+
+    const timer = setTimeout(() => nextRound(gameId), data?.reaction * 1200);
 
     return () => clearTimeout(timer);
-  }, [kind, isHostPlayer, nextRound, sittingOut, data?.reaction, gameId]);
+  }, [noTimer, kind, nextRound, sittingOut, data?.reaction, gameId]);
 };
 
 export default useSitOutTimer;
