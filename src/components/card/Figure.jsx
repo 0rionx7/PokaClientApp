@@ -1,7 +1,7 @@
+import { suits } from 'assets/svgs/suits';
 import jack from '@icons/jack.svg';
 import king from '@icons/king.svg';
 import queen from '@icons/queen.svg';
-import { suits } from 'assets/svgs/suits';
 import './Card.scss';
 
 const icons = { king, queen, jack };

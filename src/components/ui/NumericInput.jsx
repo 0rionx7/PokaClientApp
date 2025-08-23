@@ -14,7 +14,7 @@ const NumericInput = ({ name, className }) => {
   };
 
   return (
-    <div className={'container ' + className}>
+    <div className={`container ${className}`}>
       <button
         type="button"
         style={{ backgroundColor: 'green' }}

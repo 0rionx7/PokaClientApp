@@ -16,7 +16,7 @@ const ContentItem = ({ card, i }) => {
     );
 
   return (
-    <div id={id} style={{ gridArea: id }} key={id}>
+    <div id={id} style={{ gridArea: id }}>
       {suits[card.suit]}
     </div>
   );

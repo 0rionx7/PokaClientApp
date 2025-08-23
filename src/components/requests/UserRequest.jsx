@@ -8,8 +8,7 @@ import './Requests.scss';
 
 const UserRequest = ({ tableInfo, useSitDown }) => {
   const [sitDown, { isSuccess, isLoading }] = useSitDown();
-  const [cancelHoveredPropagation, setCancelHoveredPropagation] =
-    useState(false);
+  const [cancelHovered, setCancelHovered] = useState(false);
   const [cancelRequest, { isLoading: canceling }] = useCancelRequestMutation();
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
   const navigate = useNavigate();
@@ -33,14 +32,14 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
 
   return (
     <div className={'request-tableName ' + (gameId ? 'joined' : '')}>
-      {!cancelHoveredPropagation && <ToolTip info="Καθήστε" />}
+      {!cancelHovered && <ToolTip info="Καθήστε" />}
       <div onClick={handleJoinTable}>
         {tableInfo.tableName?.split('_')?.[0]}
       </div>
       <div
         className="cancel"
-        onMouseOver={() => setCancelHoveredPropagation(true)}
-        onMouseLeave={() => setCancelHoveredPropagation(false)}
+        onMouseOver={() => setCancelHovered(true)}
+        onMouseLeave={() => setCancelHovered(false)}
         onClick={handleCancelRequest}>
         X <ToolTip info="Ακύρωση" />
       </div>
