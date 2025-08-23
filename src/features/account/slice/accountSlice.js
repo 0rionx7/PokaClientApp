@@ -4,7 +4,6 @@ import { accountApi } from '@account/api/accountApi';
 
 const initialStateFn = () => {
   const initialState = {
-    username: '',
     token: '',
     messages: [],
     hideInfo: false,
@@ -32,9 +31,6 @@ export const accountSlice = createSlice({
     resetMessages: (state, action) => {
       state.messages = [];
     },
-    resetToken: (state, action) => {
-      state.token = 'ale';
-    },
   },
   extraReducers: builder => {
     builder
@@ -53,7 +49,6 @@ export const accountSlice = createSlice({
       );
   },
   selectors: {
-    selectUserName: accountState => accountState.username,
     selectHideInfo: accountState => accountState.hideInfo,
     selectMessagess: accountState => accountState.messages,
     selectDeckColor: accountState => accountState.deckColor,
@@ -61,17 +56,7 @@ export const accountSlice = createSlice({
   },
 });
 
-export const {
-  setHideInfo,
-  setDeckColor,
-  postMessage,
-  resetMessages,
-  resetToken,
-} = accountSlice.actions;
-export const {
-  selectUserName,
-  selectHideInfo,
-  selectMessagess,
-  selectDeckColor,
-  selectToken,
-} = accountSlice.selectors;
+export const { setHideInfo, setDeckColor, postMessage, resetMessages } =
+  accountSlice.actions;
+export const { selectHideInfo, selectMessagess, selectDeckColor, selectToken } =
+  accountSlice.selectors;

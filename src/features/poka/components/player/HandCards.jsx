@@ -6,7 +6,7 @@ import {
   selectChosenHandCardIndexes,
   toggleChosenCard,
 } from '@poka/slice/pokaStateSlice';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import useDelayedDeal from '@poka/hooks/useDelayedDeal';
 import Card from '@poka/components/card/Card';

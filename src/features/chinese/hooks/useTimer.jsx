@@ -6,7 +6,7 @@ import {
   useGetChineseStateQuery,
   useTimedOutMutation,
 } from '@chinese/api/chineseApi';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import Timer from '@chinese/components/table/Timer';
 import { isSitting } from '@utils/helper-functions';
 

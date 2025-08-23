@@ -29,6 +29,8 @@ import RouteGuard from '@utils/route-guard';
 import { store } from './store/store';
 import App from './App';
 import '@styles/index.scss';
+import { accountApi } from '@account/api/accountApi';
+import { pokaApi } from '@poka/api/pokaApi';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -40,7 +42,19 @@ const router = createBrowserRouter(
         <Route element={<Layout />}>
           <Route index element={<Welcome />} />
           <Route path="instructions" element={<Instructions />} />
-          <Route path="saloon" element={<RouteGuard element={<Saloon />} />} />
+          <Route
+            path="saloon"
+            element={<RouteGuard element={<Saloon />} />}
+            loader={async () => {
+              const result = await store.dispatch(
+                accountApi.endpoints.getUser.initiate(undefined, {
+                  forceRefetch: true,
+                })
+              );
+              if (result.isError) return null;
+              return result.data;
+            }}
+          />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="forgot" element={<Forgot />} />
@@ -56,6 +70,14 @@ const router = createBrowserRouter(
         <Route
           path="poka/table/:gameId"
           element={<RouteGuard element={<Room />} />}
+          // prevent 'requestAnimationFrame' handler took 94ms
+          loader={async ({ params }) => {
+            const result = await store.dispatch(
+              pokaApi.endpoints.getPokaState.initiate(params.gameId)
+            );
+            if (result.isError) return null;
+            return result.data;
+          }}
         />
         <Route
           path="chinese/table/:gameId"

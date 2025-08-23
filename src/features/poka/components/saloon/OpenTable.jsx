@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useOpenPokaTableMutation } from '@poka/api/pokaApi';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import clockwise from '@icons/clockwise.svg';
 import { createCode } from '@utils/helper-functions';
 import Reaction from '@poka/components/saloon/Reaction';
@@ -72,7 +72,7 @@ const OpenTable = () => {
               name="tableName"
               type="text"
               placeholder="εισάγετε ένα όνομα"
-              defaultValue={formState.tableName}
+              defaultValue={formState?.tableName}
             />
           </div>
           <div className="rotation">
@@ -101,7 +101,7 @@ const OpenTable = () => {
               id="cava"
               name="cava"
               type="number"
-              defaultValue={formState.cava}
+              defaultValue={formState?.cava}
             />
           </div>
           <div className="form-control">
@@ -110,7 +110,7 @@ const OpenTable = () => {
               id="chip"
               name="chip"
               type="number"
-              defaultValue={formState.chip}
+              defaultValue={formState?.chip}
             />
           </div>
           <div className="form-control">

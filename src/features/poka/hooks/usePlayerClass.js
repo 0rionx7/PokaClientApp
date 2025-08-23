@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { selectPlayerStates, useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { getPosition } from '@poka/utils/getPosition';
 import { isPlayerState } from '@utils/helper-functions';
 

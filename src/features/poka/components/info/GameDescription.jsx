@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectChosenGame } from '@poka/slice/pokaStateSlice';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { GAME_INFO } from '@utils/text-constants';
 import './Info.scss';
 

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useOpenChineseTableMutation } from '@chinese/api/chineseApi';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { createCode } from '@utils/helper-functions';
 import { describeTime } from '@utils/text-functions';
 import Button from '@ui/Button';

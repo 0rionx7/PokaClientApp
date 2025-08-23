@@ -6,7 +6,7 @@ import {
   selectNextPlayers,
   useGetPokaStateQuery,
 } from '@poka/api/pokaApi';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { useRoomContext } from '@poka/components/RoomContext';
 import NextRound from '@poka/components/action/NextRound';
 import Results from '@poka/components/info/Results';

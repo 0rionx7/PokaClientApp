@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
 import { selectBoardCards } from '@chinese/slice/chineseStateSlice';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { isSitting } from '@utils/helper-functions';
 import './Board.scss';
 

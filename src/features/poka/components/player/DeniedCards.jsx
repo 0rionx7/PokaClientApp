@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import ToolTip from '@ui/ToolTip';
 import Card from '@poka/components/card/Card';
 

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import GameDescription from '@poka/components/info/GameDescription';
 import { useEmoji } from '@components/chat/EmojiProvider';
 import { INFO_BUTTONS } from '@utils/text-constants';

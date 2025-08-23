@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import EmojiPicker, { Theme } from 'emoji-picker-react';
 
 import { useEmoji } from '@components/chat/EmojiProvider';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { socket } from '@store/gameApi';
 import { sendSvg } from 'assets/svgs/various';
 

@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 
 import { selectHandcards } from '@chinese/slice/chineseStateSlice';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import RenderItem from '@chinese/components/card/RenderItem';
 import classes from './Table.module.scss';
 

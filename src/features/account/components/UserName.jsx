@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import EditUsername from '@account/components/EditUsername';
 import { editSvg } from 'assets/svgs/various';
 import classes from './UserName.module.scss';

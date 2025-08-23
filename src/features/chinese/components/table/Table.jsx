@@ -7,10 +7,11 @@ import {
   useSitDownChineseMutation,
   useSitOutChineseMutation,
 } from '@chinese/api/chineseApi';
-import { resetMessages, selectUserName } from '@account/slice/accountSlice';
+import DealerScreen from '@chinese/components/dealer/DealerScreen';
+import { resetMessages } from '@account/slice/accountSlice';
 import { selectHostPlayerState } from '@poka/api/pokaApi';
 import { isPlayerState } from '@utils/helper-functions';
-import DealerScreen from '@chinese/components/dealer/DealerScreen';
+import { selectUserName } from '@account/api/accountApi';
 import RoundInfo from '@chinese/components/table/RoundInfo';
 import Board from '@chinese/components/table/Board';
 import classes from './Table.module.scss';

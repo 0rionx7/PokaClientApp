@@ -1,9 +1,32 @@
-import { gameApi, socket } from '@store/gameApi';
+import { createSelector } from '@reduxjs/toolkit';
+import { baseUrl, gameApi, socket } from '@store/gameApi';
 
 export const accountApi = gameApi.injectEndpoints({
   endpoints: build => ({
     getUser: build.query({
-      query: () => '/user',
+      queryFn: async (_arg, { getState }) => {
+        try {
+          const token = getState().account.token;
+          if (!token) return { data: [] };
+
+          const httpHeaders = {
+            'Content-Type': 'application/json',
+            authorization: `Bearer ${token}`,
+          };
+          const headers = new Headers(httpHeaders);
+          const response = await fetch(`${baseUrl}/user`, {
+            method: 'GET',
+            headers,
+          });
+
+          const responseData = await response.json();
+          if (!response.ok) throw Error(responseData);
+
+          return { data: responseData };
+        } catch (error) {
+          return { error };
+        }
+      },
       providesTags: ['User'],
     }),
     getRequests: build.query({
@@ -138,6 +161,11 @@ export const accountApi = gameApi.injectEndpoints({
     }),
   }),
 });
+
+export const selectUserName = createSelector(
+  accountApi.endpoints.getUser.select(),
+  result => result?.data?.username
+);
 
 export const {
   useGetUserQuery,

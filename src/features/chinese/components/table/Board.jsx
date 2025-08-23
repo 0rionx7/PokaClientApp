@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { fantasySvg, foulSvg } from 'assets/svgs/various';
 import { isSitting } from '@utils/helper-functions';
 import usePlayerStyle from '@chinese/hooks/usePlayerStyle';

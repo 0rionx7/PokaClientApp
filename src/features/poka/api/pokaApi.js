@@ -1,6 +1,6 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { isSitting, updateAll } from '@utils/helper-functions';
 import { gameApi, socket } from '@store/gameApi';
 

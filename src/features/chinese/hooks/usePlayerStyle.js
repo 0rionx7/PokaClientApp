@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { isPlayerState } from '@utils/helper-functions';
 
 const usePlayerStyle = index => {

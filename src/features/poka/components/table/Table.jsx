@@ -7,7 +7,7 @@ import {
   useGetPokaStateQuery,
   useSitDownMutation,
 } from '@poka/api/pokaApi';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import DealerScreen from '@poka/components/dealer/DealerScreen';
 import StayLeave from '@components/sitOut/StayLeave';
 import GameInfo from '@poka/components/info/GameInfo';
@@ -32,8 +32,6 @@ const Table = () => {
   useEffect(() => {
     if (!data.dealer && hostPlayerName !== dealer) setSnackInfo(<GameInfo />);
   }, [dealer, hostPlayerName, setSnackInfo, data.dealer]);
-
-  if (!data) return null;
 
   return (
     <div className={'table players-' + data.playerStates.length}>

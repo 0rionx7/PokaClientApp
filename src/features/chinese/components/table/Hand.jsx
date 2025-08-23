@@ -11,7 +11,7 @@ import {
   selectBoardCards,
   selectHandcards,
 } from '@chinese/slice/chineseStateSlice';
-import { selectUserName } from '@account/slice/accountSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { isSitting } from '@utils/helper-functions';
 import FantasyButtons from '@chinese/components/table/FantasyButtons';
 import HandCards from '@chinese/components/table/HandCards';
