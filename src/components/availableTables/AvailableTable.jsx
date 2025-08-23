@@ -9,7 +9,7 @@ import ToolTip from '@ui/ToolTip';
 import useSnackBar from '@hooks/useSnackBar';
 import './AvailableTables.scss';
 
-const AvailableTable = ({ tableName, joined, useSitDown }) => {
+const AvailableTable = ({ tableName, gameId, useSitDown }) => {
   const navigate = useNavigate();
   const [requestJoin, { isLoading }] = useRequestJoinMutation();
   const [sitDown, { isLoading: sittingDown }] = useSitDown();
@@ -21,11 +21,8 @@ const AvailableTable = ({ tableName, joined, useSitDown }) => {
 
   const handleJoinTable = async () => {
     if (isLoading || sittingDown) return;
-    if (joined) {
-      const result = await sitDown({
-        gameId: joined,
-        tableName: tableName,
-      });
+    if (gameId) {
+      const result = await sitDown({ gameId, tableName });
       if (result.error?.data) setSnackInfo(result.error.data);
       if (result.data?.gameId)
         return navigate(`/${result.data.game}/table/${result.data.gameId}`, {
@@ -44,8 +41,8 @@ const AvailableTable = ({ tableName, joined, useSitDown }) => {
   return (
     <div
       onClick={handleJoinTable}
-      className={`available-table ${joined ? 'joined' : ''}`}>
-      <ToolTip info={joined ? 'Καθήστε' : 'Αιτηθείτε θέση'} />
+      className={`available-table ${gameId ? 'joined' : ''}`}>
+      <ToolTip info={gameId ? 'Καθήστε' : 'Αιτηθείτε θέση'} />
       {tableTitle}
       {snackElement}
     </div>

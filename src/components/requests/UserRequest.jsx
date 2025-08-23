@@ -13,6 +13,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
   const [cancelRequest, { isLoading: canceling }] = useCancelRequestMutation();
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
   const navigate = useNavigate();
+  const { gameId, tableName } = tableInfo;
 
   const handleCancelRequest = async event => {
     if (canceling) return;
@@ -20,7 +21,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
     cancelRequest(tableInfo);
   };
 
-  const handleJoinTable = async (gameId, tableName) => {
+  const handleJoinTable = async () => {
     if (!gameId || isLoading || isSuccess) return;
     const result = await sitDown({ gameId, tableName });
     if (result.error?.data) setSnackInfo(result.error.data);
@@ -31,14 +32,9 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
   };
 
   return (
-    <div className={'request-tableName ' + (tableInfo.joined ? 'joined' : '')}>
+    <div className={'request-tableName ' + (gameId ? 'joined' : '')}>
       {!cancelHoveredPropagation && <ToolTip info="Καθήστε" />}
-      <div
-        onClick={handleJoinTable.bind(
-          null,
-          tableInfo.joined,
-          tableInfo.tableName
-        )}>
+      <div onClick={handleJoinTable}>
         {tableInfo.tableName?.split('_')?.[0]}
       </div>
       <div

@@ -54,14 +54,17 @@ const AvailableTables = () => {
             Δεν υπάρχει διαθέσιμο τραπέζι.
           </div>
         ) : (
-          availableTables?.map((tableInfo, i) => (
-            <AvailableTable
-              key={tableInfo.tableName}
-              tableName={tableInfo.tableName}
-              joined={tableInfo.joined}
-              useSitDown={useSitDown}
-            />
-          ))
+          availableTables?.map(tableInfo => {
+            const { tableName, gameId } = tableInfo;
+            return (
+              <AvailableTable
+                key={tableName}
+                tableName={tableName}
+                gameId={gameId}
+                useSitDown={useSitDown}
+              />
+            );
+          })
         )}
       </div>
     </div>

@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 import { useRejectRequestMutation } from '@account/api/accountApi';
 import useSnackBar from '@hooks/useSnackBar';
@@ -17,7 +17,6 @@ const PlayerRequest = ({
   const { snackElement, setSnackInfo } = useSnackBar();
   const [rejectRequest, { isSuccess, isLoading: rejecting }] =
     useRejectRequestMutation();
-  const { state } = useLocation();
 
   const handleJoin = async () => {
     if (!clickable || isLoading || rejecting) return;
@@ -34,7 +33,6 @@ const PlayerRequest = ({
     const result = await rejectRequest({
       tableName,
       username: playerState.playerName,
-      game: state.game,
     });
     if (result.error?.data) setSnackInfo(result.error.data);
   };
