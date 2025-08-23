@@ -1,3 +1,4 @@
+import { useActionState, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -8,7 +9,6 @@ import { createCode } from '@utils/helper-functions';
 import Reaction from '@poka/components/saloon/Reaction';
 import Button from '@ui/Button';
 import Radio from '@ui/Radio';
-import { useActionState, useState } from 'react';
 import './OpenTable.scss';
 
 const initialValues = {
