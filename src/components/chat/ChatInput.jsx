@@ -7,7 +7,7 @@ import EmojiPicker, { Theme } from 'emoji-picker-react';
 import { useEmoji } from '@components/chat/EmojiProvider';
 import { selectUserName } from '@account/api/accountApi';
 import { socket } from '@store/gameApi';
-import { sendSvg } from 'assets/svgs/various';
+import { sendSvg } from '@icons/various';
 
 const ChatInput = () => {
   const playerName = useSelector(selectUserName);

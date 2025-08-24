@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 
 import sound from '.@assets/sounds/plays.mp3';
-import { soundOffSvg, soundOnSvg } from 'assets/svgs/various';
+import { soundOffSvg, soundOnSvg } from '@icons/various';
 
 const useSound = ({ isActive, ownBoard }) => {
   const [audio] = useState(() => new Audio(sound));

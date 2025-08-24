@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { selectUserName } from '@account/api/accountApi';
 import AccountloggedInMenu from '@layout/AccountLogedIn';
-import { accountSvg } from 'assets/svgs/various';
+import { accountSvg } from '@icons/various';
 import './MainNavigation.scss';
 
 const MainNavigation = () => {

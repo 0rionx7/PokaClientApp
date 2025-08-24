@@ -2,7 +2,7 @@ import { useGetUserQuery, useLogOutMutation } from '@account/api/accountApi';
 import UserSubscription from '@account/components/UserSubscription';
 import AccountRow from '@account/components/AccountIRow';
 import EditPassword from '@account/components/EditPassword';
-import { logOutSvg } from 'assets/svgs/various';
+import { logOutSvg } from '@icons/various';
 import LastGame from '@account/components/LastGame';
 import UserName from '@account/components/UserName';
 import Config from '@account/components/Config';

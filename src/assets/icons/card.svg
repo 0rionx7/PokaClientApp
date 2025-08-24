@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="none" viewBox="0 0 48 48" key="card">
+  <path fill="#0D101A" fillRule="evenodd" d="M7.5 15h33v4h-33v-4zM9 24.5a1.5 1.5 0 011.5-1.5h9a1.5 1.5 0 010 3h-9A1.5 1.5 0 019 24.5zM9 31.5a1.5 1.5 0 011.5-1.5h6a1.5 1.5 0 010 3h-6A1.5 1.5 0 019 31.5zM34 31.5a1.5 1.5 0 011.5-1.5h2a1.5 1.5 0 010 3h-2a1.5 1.5 0 01-1.5-1.5z" clipRule="evenodd"></path>
+  <rect width="34.5" height="22.5" x="6.75" y="12.75" stroke="#0D101A" strokeWidth="1.5" rx="2.25"></rect>
+</svg>

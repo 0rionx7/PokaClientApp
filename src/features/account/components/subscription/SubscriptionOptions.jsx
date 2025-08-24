@@ -6,7 +6,7 @@ import LoadingSpinner from '@ui/LoadingSpinner';
 import Overlay from '@ui/Overlay';
 import Frame from '@ui/Frame';
 import { SUBSCRIPTION_TYPES } from '@utils/text-constants';
-import { paymentsIcons } from 'assets/svgs/payments';
+import { payments } from '@icons/payments';
 
 const SubscriptionOptions = () => {
   const [selectSubscription, { data, isLoading, isSuccess }] = usePayMutation();
@@ -62,7 +62,11 @@ const SubscriptionOptions = () => {
             />
           ))}
         </div>
-        <div className="payments-icons">{paymentsIcons}</div>
+        <div className="payments-icons">
+          <img src={payments.card} alt={'card'} />
+          <img src={payments.dias} alt={'dias'} />
+          <img src={payments.vivaWallet} alt={'vivawallet'} />
+        </div>
       </Frame>
     </div>
   );

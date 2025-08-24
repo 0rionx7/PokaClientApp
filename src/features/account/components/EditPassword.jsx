@@ -1,7 +1,7 @@
 import { useState, useActionState, useEffect } from 'react';
 
 import { useChangePasswordMutation } from '@account/api/accountApi';
-import { editSvg } from 'assets/svgs/various';
+import { editSvg } from '@icons/various';
 import Button from '@ui/Button';
 import classes from './UserName.module.scss';
 
