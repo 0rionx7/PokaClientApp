@@ -30,14 +30,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20%;
     &[class*='H'],
     &[class*='D'] {
       color: red;
-    }
-    svg {
-      width: calc(0.55 * var(--card-width));
-      height: calc(0.55 * var(--card-width));
     }
   }
   &.selected {
@@ -64,24 +59,13 @@
     &[class*='v-'] {
       padding: 0.3rem 0.1rem 0.3rem 0.3rem;
     }
-    [class*='value-suit'] {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 20%;
-      &[class*='H'],
-      &[class*='D'] {
-        color: red;
-      }
-      svg {
-        width: calc(0.23 * var(--card-width));
-        height: calc(0.23 * var(--card-width));
-      }
-    }
     .value {
       align-self: center;
       font-size: calc(0.4 * var(--card-width));
       line-height: calc(0.4 * var(--card-width));
+    }
+    [class*='value-suit'] {
+      width: 20%;
     }
   }
 }
