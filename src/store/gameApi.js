@@ -76,6 +76,7 @@ export const gameApi = createApi({
       },
     }),
   }),
+  keepUnusedDataFor: 0,
 });
 
 export const { useGetTablesQuery } = gameApi;

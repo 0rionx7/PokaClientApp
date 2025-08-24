@@ -1,5 +1,6 @@
 import aceOfSpades from '@icons/aceOfSpades.svg';
-import { suits } from 'assets/svgs/suits';
+import { suits } from '@icons/suits';
+
 import './Card.scss';
 
 const ContentItem = ({ card, i }) => {
@@ -17,7 +18,7 @@ const ContentItem = ({ card, i }) => {
 
   return (
     <div id={id} style={{ gridArea: id }}>
-      {suits[card.suit]}
+      <img src={suits[card.suit]} alt={card.suit} />
     </div>
   );
 };

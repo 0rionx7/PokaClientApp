@@ -1,13 +1,24 @@
+%number-card {
+  img {
+    display: block;
+    width: calc(0.17 * var(--card-width));
+    height: calc(0.17 * var(--card-width));
+  }
+}
 %decoration-content-layout {
   &.v-2 {
     grid-template:
       ' .  s-0   .  '
       ' .   .    .  '
       ' .  s-1   .  ';
+    #s-0 {
+      transform: rotateZ(180deg);
+      align-self: unset;
+    }
     #s-1 {
-      align-self: flex-end;
       transform: rotateZ(180deg);
     }
+    @extend %number-card;
   }
   &.v-3 {
     grid-template:
@@ -22,6 +33,7 @@
       align-self: flex-end;
       transform: rotateZ(180deg);
     }
+    @extend %number-card;
   }
   &.v-4 {
     grid-template:
@@ -33,6 +45,7 @@
       align-self: flex-end;
       transform: rotateZ(180deg);
     }
+    @extend %number-card;
   }
   &.v-5 {
     grid-template:
@@ -44,6 +57,7 @@
       align-self: flex-end;
       transform: rotateZ(180deg);
     }
+    @extend %number-card;
   }
   &.v-6 {
     grid-template:
@@ -59,6 +73,7 @@
     #s-5 {
       align-self: flex-end;
     }
+    @extend %number-card;
   }
   &.v-7 {
     grid-template:
@@ -71,6 +86,7 @@
     #s-6 {
       align-self: flex-end;
     }
+    @extend %number-card;
   }
   &.v-8 {
     grid-template:
@@ -79,6 +95,7 @@
       's-3   .   s-4'
       ' .   s-5   . '
       's-6   .   s-7';
+    @extend %number-card;
   }
   &.v-9 {
     grid-template:
@@ -91,6 +108,7 @@
       '.     .   .  '
       '.     .   .  '
       's-7   .   s-8';
+    @extend %number-card;
   }
   &.v-10 {
     grid-template:
@@ -100,6 +118,7 @@
       's-5   .   s-7'
       '.    s-6  .  '
       's-8   .   s-9';
+    @extend %number-card;
   }
   &.v-11,
   &.v-12,
@@ -122,11 +141,15 @@
     }
   }
   &.v-14 {
-    svg {
-      height: 1.5rem;
+    div {
+      flex: 1;
+    }
+    img {
+      height: 100%;
     }
   }
   .ace-of-spades {
+    height: 100%;
     display: none;
     flex-direction: column;
     align-items: center;
@@ -134,9 +157,9 @@
     @media only screen and (min-height: 500px) and (min-width: 750px) {
       display: flex;
     }
-
-    svg {
-      height: 100% !important;
+    div {
+      position: absolute;
+      top: 80%;
     }
   }
   #s-5,

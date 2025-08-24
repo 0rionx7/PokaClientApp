@@ -1,9 +1,9 @@
 import { useDrag } from 'react-dnd';
 
 import { SYMBOLS } from '@utils/text-constants';
-import { suits } from 'assets/svgs/suits';
 import CardBack from '@components/card/CardBack';
 import Content from '@components/card/Content';
+import { suits } from '@icons/suits';
 
 const Card = ({ card, owner }) => {
   const [{ isDragging }, drag] = useDrag(
@@ -31,7 +31,7 @@ const Card = ({ card, owner }) => {
         className={`value-suit_${card.suit}`}
         style={{ visibility: isDragging ? 'hidden' : 'visible' }}>
         <div className="value">{SYMBOLS[card.value] || card.value}</div>
-        <div className="suit">{suits[card.suit]}</div>
+        <img src={suits[card.suit]} alt={card.suit} />
       </div>
       <div
         className={`card-decoration ${className}`}

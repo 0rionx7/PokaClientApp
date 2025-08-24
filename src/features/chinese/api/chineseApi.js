@@ -1,3 +1,4 @@
+import { selectUserName } from '@account/api/accountApi';
 import { setLocalPlayerState } from '@chinese/slice/chineseStateSlice';
 import { gameApi, socket } from '@store/gameApi';
 import { isPlayerState } from '@utils/helper-functions';
@@ -26,11 +27,12 @@ export const chineseApi = gameApi.injectEndpoints({
           await cacheDataLoaded;
           const stateUpdateListener = (stateUpdate, updateBoard) => {
             updateCachedData(_draft => {
-              const { username } = getState().account;
+              const username = selectUserName(getState());
               if (updateBoard?.some(br => (br === username) | (br === 'all'))) {
                 const updatedHostState = stateUpdate.playerStates.find(
                   isPlayerState(username)
                 );
+                console.log(updatedHostState);
                 dispatch(setLocalPlayerState(updatedHostState));
               }
               return stateUpdate;
