@@ -7,14 +7,14 @@ const useSnackBar = ({ secs = 2, height, top } = {}) => {
   const [info, setSnackInfo] = useState(null);
 
   useEffect(() => {
-    if (!secs || info === null) return;
+    if (secs === 0 || info === null) return;
     const timer = setTimeout(() => setSnackInfo(null), secs * 1000);
 
     return () => clearTimeout(timer);
   }, [setSnackInfo, secs, info]);
 
   const handleBackDropClick = () => {
-    if (!secs) return;
+    if (secs === 0) return;
     setSnackInfo(null);
   };
 

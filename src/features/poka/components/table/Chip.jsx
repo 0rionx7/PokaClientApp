@@ -14,7 +14,7 @@ const Chip = ({ multiplier, index, startIndex }) => {
     [multiplier, index, startIndex]
   );
   const value = multiplier * data.chip;
-  const displayValue = value >= 1000 ? value / 1000 + 'K' : value;
+  const displayValue = value >= 1000 ? `${value / 1000}K` : value;
 
   return (
     <div className="chip" style={style}>

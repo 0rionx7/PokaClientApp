@@ -20,6 +20,7 @@ const EditPassword = () => {
     editPasswordAction,
     initialValues
   );
+
   useEffect(() => {
     if (!edit) {
       setError(null);

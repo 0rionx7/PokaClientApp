@@ -45,15 +45,7 @@ const router = createBrowserRouter(
           <Route
             path="saloon"
             element={<RouteGuard element={<Saloon />} />}
-            loader={async () => {
-              const result = await store.dispatch(
-                accountApi.endpoints.getUser.initiate(undefined, {
-                  forceRefetch: true,
-                })
-              );
-              if (result.isError) return null;
-              return result.data;
-            }}
+            loader={loadUserData}
           />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
@@ -71,13 +63,7 @@ const router = createBrowserRouter(
           path="poka/table/:gameId"
           element={<RouteGuard element={<Room />} />}
           // prevent 'requestAnimationFrame' handler took 94ms
-          loader={async ({ params }) => {
-            const result = await store.dispatch(
-              pokaApi.endpoints.getPokaState.initiate(params.gameId)
-            );
-            if (result.isError) return null;
-            return result.data;
-          }}
+          loader={loadGameData}
         />
         <Route
           path="chinese/table/:gameId"
@@ -104,6 +90,23 @@ root.render(
   </Provider>
   // </StrictMode>
 );
+
+async function loadUserData() {
+  const result = await store.dispatch(
+    accountApi.endpoints.getUser.initiate(undefined, {
+      forceRefetch: true,
+    })
+  );
+  if (result.isError) return null;
+  return result.data;
+}
+async function loadGameData({ params }) {
+  const result = await store.dispatch(
+    pokaApi.endpoints.getPokaState.initiate(params.gameId)
+  );
+  if (result.isError) return null;
+  return result.data;
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

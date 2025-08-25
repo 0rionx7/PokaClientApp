@@ -24,8 +24,7 @@ const Action = () => {
     selectNextPlayers(gameId)
   );
   const { data } = useGetPokaStateQuery(gameId);
-  const { setActionContainerNode } = useRoomContext();
-  const { isDealing } = useRoomContext();
+  const { setActionContainerNode, isDealing } = useRoomContext();
 
   const hostTurn = playerName === hostPlayerName;
   const showResults = handInfo?.kind;
