@@ -17,7 +17,7 @@ const HandCards = () => {
           card={card}
           index={index}
           owner={username}
-          place="hand"
+          place="handCards"
         />
       ))}
     </div>

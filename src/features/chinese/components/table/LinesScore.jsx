@@ -4,7 +4,7 @@ import './LinesScore.scss';
 const LinesScore = ({ playerState }) => {
   return (
     <>
-      {playerState.linesScore.map((lineScore, i) => (
+      {playerState.lineScores.map((lineScore, i) => (
         <LineScore
           key={i}
           index={i}
