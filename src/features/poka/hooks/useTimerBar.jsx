@@ -12,16 +12,23 @@ const useTimerBar = playerState => {
   const [currentPlayerState] = data?.nextPlayers;
   const isActive = currentPlayerState?.playerName === playerName;
   const submitting = currentPlayerState?.selecting?.submit;
+  const shouldRun = isActive && !handInfo.kind && data?.reaction !== 101;
+  const period = data?.reaction * (submitting ? 20 : 10);
 
   useEffect(() => {
-    let timer;
-    const period = data?.reaction * (submitting ? 20 : 10);
-    if (isActive && !handInfo.kind && data?.reaction !== 101 && width > 0) {
-      timer = setInterval(() => setWidth(pre => pre - 1), period);
-    }
+    if (!shouldRun) return;
+    const timer = setInterval(() => {
+      setWidth(perv => {
+        if (perv === 0) {
+          clearInterval(timer);
+          return 0;
+        }
+        return perv - 1;
+      });
+    }, period);
 
     return () => clearInterval(timer);
-  }, [isActive, handInfo.kind, width, data?.reaction, submitting]);
+  }, [shouldRun, period]);
 
   useEffect(() => setWidth(100), [isActive]);
 
