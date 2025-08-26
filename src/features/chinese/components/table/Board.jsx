@@ -8,7 +8,7 @@ import { isSitting } from '@utils/helper-functions';
 import usePlayerStyle from '@chinese/hooks/usePlayerStyle';
 import PlayerRibbon from '@chinese/components/table/PlayerRibbon';
 import RoundScore from '@chinese/components/table/RoundScore';
-import LinesScore from '@chinese/components/table/LinesScore';
+import LineScores from '@chinese/components/table/LineScores';
 import BoardRow from '@chinese/components/table/BoardRow';
 import Hand from '@chinese/components/table/Hand';
 import useTimer from '@chinese/hooks/useTimer';
@@ -47,7 +47,7 @@ const Board = ({ index, playerState }) => {
             <div className="image-overlay">{fantasySvg}</div>
           )}
         </div>
-        {isRoundEnd && <LinesScore playerState={playerState} />}
+        {isRoundEnd && <LineScores playerState={playerState} />}
         {isHostBoard && <Hand />}
       </div>
     </>

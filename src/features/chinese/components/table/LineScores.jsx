@@ -1,7 +1,7 @@
 import LineScore from '@chinese/components/table/LineScore';
 import './LinesScore.scss';
 
-const LinesScore = ({ playerState }) => {
+const LineScores = ({ playerState }) => {
   return (
     <>
       {playerState.lineScores.map((lineScore, i) => (
@@ -16,4 +16,4 @@ const LinesScore = ({ playerState }) => {
   );
 };
 
-export default LinesScore;
+export default LineScores;
