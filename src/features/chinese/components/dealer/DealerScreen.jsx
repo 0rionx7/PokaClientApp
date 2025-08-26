@@ -12,10 +12,12 @@ import './DealerScreen.scss';
 
 const DealerScreen = () => {
   const { gameId } = useParams();
-  const { data: gameData } = useGetChineseStateQuery(gameId);
+  const {
+    data: { playerStates },
+  } = useGetChineseStateQuery(gameId);
   const [start] = useStartChineseGameMutation();
 
-  const canDeal = gameData.playerStates.filter(isSitting).length > 1;
+  const canDeal = playerStates.filter(isSitting).length > 1;
 
   return (
     <Overlay className="dealer-overlay">

@@ -19,19 +19,15 @@ const Cell = ({ index, place, owner }) => {
     [index, place, owner]
   );
 
-  return (
-    <div
-      ref={drop}
-      className="card"
-      style={{
-        backgroundColor: !isOver
-          ? '#5e7043'
-          : item.owner === owner
-          ? '#b5a239'
-          : 'red',
-      }}
-    />
-  );
+  const style = {
+    backgroundColor: !isOver
+      ? '#5e7043'
+      : item.owner === owner
+      ? '#b5a239'
+      : 'red',
+  };
+
+  return <div ref={drop} className="card" style={style} />;
 };
 
 export default memo(Cell);

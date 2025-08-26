@@ -20,13 +20,11 @@ const Card = ({ card, owner }) => {
 
   if (card?.hidden) return <CardBack />;
 
-  const className = `v-${card.value}`;
+  const valueClass = `v-${card.value}`;
+  const style = { backgroundColor: isDragging ? '#5e7043' : undefined };
 
   return (
-    <div
-      className={`card ${className}`}
-      ref={drag}
-      style={{ backgroundColor: isDragging ? '#5e7043' : undefined }}>
+    <div className={`card ${valueClass}`} ref={drag} style={style}>
       <div
         className={`value-suit_${card.suit}`}
         style={{ visibility: isDragging ? 'hidden' : 'visible' }}>
@@ -34,7 +32,7 @@ const Card = ({ card, owner }) => {
         <img src={suits[card.suit]} alt={card.suit} />
       </div>
       <div
-        className={`card-decoration ${className}`}
+        className={`card-decoration ${valueClass}`}
         style={{ visibility: isDragging ? 'hidden' : 'visible' }}>
         <Content card={card} />
       </div>
