@@ -11,6 +11,8 @@ export default function useRelogin(key) {
   const { refetch } = useGetUserQuery();
 
   useEffect(() => {
+    if (!key.token && !key.orderCode) return;
+
     socket.on('connect', async () => {
       await reconnectLogin(key);
       refetch();
