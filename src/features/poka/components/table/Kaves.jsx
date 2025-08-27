@@ -12,8 +12,9 @@ const Kaves = ({ totalPot, rows }) => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
 
-  const chips = createChipStack(totalPot, data.chip);
-  const showKaves = data.kaves[0]?.amount < totalPot;
+  const { chip, kaves } = data;
+  const chips = createChipStack(totalPot, chip);
+  const showKaves = kaves[0]?.amount < totalPot;
   const kavesClass = !rows ? 'center' : rows % 2 === 0 ? 'even' : '';
 
   return (
@@ -22,7 +23,7 @@ const Kaves = ({ totalPot, rows }) => {
       <div className="pot">ποτ: {formatNumber(totalPot)}</div>
       {showKaves && (
         <>
-          {data.kaves.map((kavaInfo, i) => (
+          {kaves.map((kavaInfo, i) => (
             <Kava kavaInfo={kavaInfo} key={i} />
           ))}
           <ToolTip info={INFO_TEXT.KAVES} />

@@ -18,7 +18,7 @@ const Play = () => {
     denying: denialCount,
     bet,
     resta,
-  } = useSelector(selectHostPlayerState(gameId));
+  } = useSelector(state => selectHostPlayerState(state, gameId));
 
   const { swaps, submit, discard } = selecting || {};
   const denials = denialCount > 0;

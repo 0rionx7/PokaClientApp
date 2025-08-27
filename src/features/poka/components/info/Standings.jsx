@@ -9,7 +9,7 @@ const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.
 
 const Standings = () => {
   const { gameId } = useParams();
-  const playerStates = useSelector(selectPlayerStates(gameId));
+  const playerStates = useSelector(state => selectPlayerStates(state, gameId));
 
   const orderedPlayerStates = playerStates.toSorted(
     (a, b) => b.resta - a.resta || Number(b.sittingOut) - Number(a.sittingOut)

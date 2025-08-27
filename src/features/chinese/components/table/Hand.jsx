@@ -34,7 +34,7 @@ const Hand = () => {
     setHasSubmitted(false);
   }, [handCards]);
 
-  const { nextPlayers } = data;
+  const { nextPlayers, playerStates } = data;
   const [currentPlayer] = nextPlayers;
 
   const hasTurn = username === currentPlayer;
@@ -42,13 +42,13 @@ const Hand = () => {
   const legitSubmit =
     handCards?.length === 5 ? cardsLeftInHand === 0 : cardsLeftInHand === 1;
   const canSubmit = !hasSubmitted && hasTurn && legitSubmit;
-  const sittedCount = data.playerStates.filter(isSitting).length;
+  const sittedCount = playerStates.filter(isSitting).length;
   const canNext =
     sittedCount > 1 &&
     nextPlayers.length <= sittedCount &&
     nextPlayers.includes(username) &&
     !hasNexted;
-  const shift = data.playerStates.length === 2 ? '-50%' : '50%';
+  const shift = playerStates.length === 2 ? '-50%' : '50%';
   const left = `calc(-.5 * (var(--card-width) + .3rem) * ${handCards?.length} + ${shift})`;
 
   const submitCards = useCallback(async () => {

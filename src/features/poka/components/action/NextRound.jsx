@@ -18,8 +18,8 @@ const NextRound = () => {
   } = useGetPokaStateQuery(gameId);
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
   const [reveal, { isSuccess: revealed }] = useRevealCardsMutation();
-  const { submittedHand, handCards } = useSelector(
-    selectHostPlayerState(gameId)
+  const { submittedHand, handCards } = useSelector(state =>
+    selectHostPlayerState(state, gameId)
   );
 
   const isFiveCardsPoker =

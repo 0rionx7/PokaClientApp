@@ -13,12 +13,15 @@ const PlayerRequests = ({ useGetStateQuery, maxPlayersCount }) => {
   const { state } = useLocation();
 
   if (!data) return null;
+
+  const { playerStates, tableName } = gameData;
+
   const useJoin =
     state.game === 'poka' ? useJoinTableMutation : useJoinChineseTableMutation;
 
   const requestedStates = data
     .filter(request =>
-      gameData?.playerStates.every(ps => ps.playerName !== request.username)
+      playerStates.every(ps => ps.playerName !== request.username)
     )
     .map(request => ({
       playerName: request.username,
@@ -29,7 +32,7 @@ const PlayerRequests = ({ useGetStateQuery, maxPlayersCount }) => {
     <>
       <div className="player-requests">
         <h4>Συμμετέχοντες</h4>
-        {gameData.playerStates?.map(playerState => (
+        {playerStates.map(playerState => (
           <PlayerRequest
             key={playerState.playerName}
             playerState={playerState}
@@ -44,8 +47,8 @@ const PlayerRequests = ({ useGetStateQuery, maxPlayersCount }) => {
             <PlayerRequest
               key={playerState.playerName}
               playerState={playerState}
-              tableName={gameData.tableName}
-              tableFull={gameData.playerStates.length === maxPlayersCount}
+              tableName={tableName}
+              tableFull={playerStates.length === maxPlayersCount}
               useJoin={useJoin}
               clickable
             />

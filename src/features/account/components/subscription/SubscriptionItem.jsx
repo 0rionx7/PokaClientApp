@@ -6,17 +6,18 @@ import './Subscription.scss';
 const SubscriptionItem = ({ option, onSelect }) => {
   const { data } = useGetUserQuery();
 
+  const { username, email } = data;
   const infos = option?.split('_');
   const title = infos.at(0);
   const customer = {
-    fullName: data?.username,
-    email: data?.email,
+    fullName: username,
+    email,
     countryCode: 'GR',
     requestLang: 'el-GR',
   };
 
   const handleSubscriptionSelect = () =>
-    onSelect({ customer, ...creataPaymentTags(title, data?.email) });
+    onSelect({ customer, ...creataPaymentTags(title, email) });
 
   return (
     <div className="subscription-item" onClick={handleSubscriptionSelect}>

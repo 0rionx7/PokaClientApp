@@ -11,7 +11,9 @@ import { payments } from '@icons/payments';
 const SubscriptionOptions = () => {
   const [selectSubscription, { data, isLoading, isSuccess }] = usePayMutation();
   useGetUserQuery();
-  const { data: userData } = useGetUserQuery();
+  const {
+    data: { subExpiration },
+  } = useGetUserQuery();
 
   useEffect(() => {
     if (data?.orderCode)
@@ -31,16 +33,13 @@ const SubscriptionOptions = () => {
     );
 
   const noSubscription =
-    !userData?.subExpiration || new Date(userData?.subExpiration) <= Date.now();
-  const expiresAt = new Date(userData?.subExpiration).toLocaleDateString(
-    'el-GR',
-    {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    }
-  );
+    !subExpiration || new Date(subExpiration) <= Date.now();
+  const expiresAt = new Date(subExpiration).toLocaleDateString('el-GR', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 
   return (
     <div className="subscription">

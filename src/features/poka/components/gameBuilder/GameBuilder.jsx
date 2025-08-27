@@ -31,8 +31,12 @@ import './GameBuilder.scss';
 
 const GameBuilder = () => {
   const { gameId } = useParams();
-  const sittingPlayers = useSelector(selectSittingPlayers(gameId));
-  const activePlayers = useSelector(selectSittingPlayersWithMoney(gameId));
+  const sittingPlayers = useSelector(state =>
+    selectSittingPlayers(state, gameId)
+  );
+  const activePlayers = useSelector(state =>
+    selectSittingPlayersWithMoney(state, gameId)
+  );
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const { actionContainerNode } = useRoomContext();

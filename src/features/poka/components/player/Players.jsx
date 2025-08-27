@@ -6,7 +6,7 @@ import Player from '@poka/components/player/Player';
 
 const Players = () => {
   const { gameId } = useParams();
-  const playerStates = useSelector(selectPlayerStates(gameId));
+  const playerStates = useSelector(state => selectPlayerStates(state, gameId));
 
   return (
     <>

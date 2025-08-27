@@ -13,8 +13,9 @@ const GameDescription = () => {
   const hostPlayerName = useSelector(selectUserName);
   const chosenGame = useSelector(selectChosenGame);
 
-  const gameName = hostPlayerName === data.dealer ? chosenGame : data.gameName;
-  const tableTitle = data.tableName.split('_')?.[0];
+  const { dealer, tableName } = data;
+  const gameName = hostPlayerName === dealer ? chosenGame : data.gameName;
+  const tableTitle = tableName.split('_')?.[0];
 
   if (!gameName)
     return (

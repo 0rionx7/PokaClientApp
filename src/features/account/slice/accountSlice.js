@@ -39,7 +39,7 @@ export const accountSlice = createSlice({
           accountApi.endpoints.login.matchFulfilled,
           accountApi.endpoints.register.matchFulfilled,
           accountApi.endpoints.usernameChange.matchFulfilled,
-          accountApi.endpoints.redirectedLogin.matchFulfilled
+          accountApi.endpoints.reconnectedLogin.matchFulfilled
         ),
         (state, action) => ({ ...state, ...action.payload })
       )

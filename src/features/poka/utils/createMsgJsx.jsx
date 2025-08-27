@@ -2,9 +2,11 @@ import { Fragment } from 'react';
 import { describeTime } from '@utils/text-functions';
 
 export function createMessageJsx({ event, ...data }, index) {
+  const { playerName, username, reaction, message, amount, dealer, count } =
+    data;
   const playerCall = (
     <>
-      Ο παίκτης <span>{data.playerName || data.username}</span>
+      Ο παίκτης <span>{playerName || username}</span>
     </>
   );
 
@@ -12,10 +14,10 @@ export function createMessageJsx({ event, ...data }, index) {
     case 'neeext': {
       return (
         <Fragment key={index}>
-          <span>@{data.playerName}</span> είναι σειρά σου να παίξεις.
-          {data.reaction && (
+          <span>@{playerName}</span> είναι σειρά σου να παίξεις.
+          {reaction && (
             <>
-              Έχεις<span> {describeTime(data.reaction)}</span>
+              Έχεις<span> {describeTime(reaction)}</span>
             </>
           )}
           <br />
@@ -25,7 +27,7 @@ export function createMessageJsx({ event, ...data }, index) {
     case 'newMessage':
       return (
         <Fragment key={index}>
-          <span>--{data.playerName}: </span> {data.message}
+          <span>--{playerName}: </span> {message}
           <br />
         </Fragment>
       );
@@ -46,8 +48,7 @@ export function createMessageJsx({ event, ...data }, index) {
     case 'playerRenewed':
       return (
         <Fragment key={index}>
-          <span>#</span> {playerCall} ανανέωσε με <span>{data.amount}</span>{' '}
-          μονάδες.
+          <span>#</span> {playerCall} ανανέωσε με <span>{amount}</span> μονάδες.
           <br />
         </Fragment>
       );
@@ -61,8 +62,7 @@ export function createMessageJsx({ event, ...data }, index) {
     case 'playerDeals':
       return (
         <Fragment key={index}>
-          <span>#</span> <span>{data.dealer}</span> είναι σειρά σου να
-          μοιράσεις.
+          <span>#</span> <span>{dealer}</span> είναι σειρά σου να μοιράσεις.
           <br />
         </Fragment>
       );
@@ -77,13 +77,13 @@ export function createMessageJsx({ event, ...data }, index) {
       return (
         <Fragment key={index}>
           <span>#</span> {playerCall}
-          {data.count === 0 ? (
+          {count === 0 ? (
             <> δεν άλλαξε κάποιο χαρτί</>
           ) : (
             <>
               {' '}
-              άλλαξε <span>{data.count} </span>
-              χαρτ{data.count > 1 ? 'ά' : 'ί'}.
+              άλλαξε <span>{count} </span>
+              χαρτ{count > 1 ? 'ά' : 'ί'}.
             </>
           )}
           <br />

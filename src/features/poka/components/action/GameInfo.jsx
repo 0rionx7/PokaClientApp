@@ -9,8 +9,8 @@ const GameInfo = () => {
   const {
     data: { nextPlayers, playerStates, gamesCount },
   } = useGetPokaStateQuery(gameId);
-  const [currentPlayer] = nextPlayers;
 
+  const [currentPlayer] = nextPlayers;
   const pot = playerStates.reduce((acc, curr) => acc + curr.bet, 0);
 
   return (

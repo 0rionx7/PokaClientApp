@@ -25,16 +25,18 @@ const TABS = {
 
 const Info = () => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const {
+    data: { dealer },
+  } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const [selectedTab, setSelectedTab] = useState(INFO_BUTTONS.GAME_DESCRIPTION);
   const [showInfoPanel, setShowInfoPanel] = useState(true);
   const { setShowPicker } = useEmoji();
 
   useEffect(() => {
-    if (data.dealer === hostPlayerName)
+    if (dealer === hostPlayerName)
       setSelectedTab(INFO_BUTTONS.GAME_DESCRIPTION);
-  }, [setSelectedTab, data.dealer, hostPlayerName]);
+  }, [setSelectedTab, dealer, hostPlayerName]);
 
   const handleToggleInfoPanel = () => {
     setShowInfoPanel(curr => !curr);

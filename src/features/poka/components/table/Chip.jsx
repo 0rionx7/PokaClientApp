@@ -7,13 +7,15 @@ import './Chip.scss';
 
 const Chip = ({ multiplier, index, startIndex }) => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const {
+    data: { chip },
+  } = useGetPokaStateQuery(gameId);
 
   const { color, style } = useMemo(
     () => createChipStyle(multiplier, index, startIndex),
     [multiplier, index, startIndex]
   );
-  const value = multiplier * data.chip;
+  const value = multiplier * chip;
   const displayValue = value >= 1000 ? `${value / 1000}K` : value;
 
   return (

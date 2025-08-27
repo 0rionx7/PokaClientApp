@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
@@ -7,23 +6,16 @@ const PlayHandCards = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
 
-  const handCardsInPlay = data.handCardsInPlay?.slice().sort();
+  const { cardsInHand, skarto, handCardsInPlay } = data;
+  const cardsInPlay = handCardsInPlay?.slice().sort();
 
-  let extraHandCards = [];
-  for (let i = 0; i < handCardsInPlay.length; i++) {
-    extraHandCards.push(
-      <Fragment key={i}>
-        {i === 0 ? '' : ' ή '}
-        <span>{handCardsInPlay[i]}</span>
-      </Fragment>
-    );
-  }
+  const extraHandCards = [cardsInPlay.join(' ή ')];
 
   return (
     <div>
-      <span>{data.cardsInHand}</span> {'χαρτιά στο χέρι '}
-      {data.skarto && <span> συν ΈΝΑ ΣΚΑΡΤΟ,</span>} {`"παίζουν" `}
-      {extraHandCards}
+      <span>{cardsInHand}</span> {'χαρτιά στο χέρι '}
+      {skarto && <span> συν ΈΝΑ ΣΚΑΡΤΟ,</span>} {`"παίζουν" `}
+      <span>{extraHandCards}</span>
     </div>
   );
 };

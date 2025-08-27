@@ -10,7 +10,6 @@ import {
 import DealerScreen from '@chinese/components/dealer/DealerScreen';
 import { resetMessages } from '@account/slice/accountSlice';
 import { selectHostPlayerState } from '@poka/api/pokaApi';
-import { isPlayerState } from '@utils/helper-functions';
 import { selectUserName } from '@account/api/accountApi';
 import RoundInfo from '@chinese/components/table/RoundInfo';
 import Board from '@chinese/components/table/Board';
@@ -20,11 +19,14 @@ import SitOut from '@components/sitOut/SitOut';
 
 const Table = () => {
   const { gameId } = useParams();
+  const dispatch = useDispatch();
   const username = useSelector(selectUserName);
   const { data } = useGetChineseStateQuery(gameId);
   const [sitOut] = useSitOutChineseMutation();
-  const hostPlayerState = useSelector(selectHostPlayerState(gameId));
-  const dispatch = useDispatch();
+  const hostPlayerState = useSelector(state =>
+    selectHostPlayerState(state, gameId)
+  );
+  const { playerStates, round, nextPlayers } = data;
 
   useEffect(() => {
     return () => {
@@ -35,18 +37,16 @@ const Table = () => {
 
   if (!data) return <h3>waiting for others to join...</h3>;
 
-  const isDealer = data.playerStates.findIndex(isPlayerState(username)) === 0;
-  const playerCount = data.playerStates.length;
+  const isDealer = playerStates.at(0).playerName === username;
+  const playerCount = playerStates.length;
 
   return (
     <div className={classes['table'] + ' ' + classes[`players-${playerCount}`]}>
-      <RoundInfo round={data.round} />
-      {isDealer && data.round === 1 && !data.nextPlayers.length && (
-        <DealerScreen />
-      )}
-      {data.playerStates.length > 1 && (
+      <RoundInfo round={round} />
+      {isDealer && round === 1 && !nextPlayers.length && <DealerScreen />}
+      {playerStates.length > 1 && (
         <>
-          {data.playerStates.map((playerState, i) => (
+          {playerStates.map((playerState, i) => (
             <Board
               key={playerState.playerName}
               playerState={playerState}

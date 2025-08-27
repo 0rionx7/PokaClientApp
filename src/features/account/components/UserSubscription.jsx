@@ -6,12 +6,13 @@ import classes from './UserName.module.scss';
 
 const UserSubscription = () => {
   const navigate = useNavigate();
-  const { data } = useGetUserQuery(undefined);
+  const {
+    data: { subExpiration },
+  } = useGetUserQuery(undefined);
 
-  const isExpired =
-    !data?.subExpiration || new Date(data?.subExpiration) <= Date.now();
+  const isExpired = !subExpiration || new Date(subExpiration) <= Date.now();
 
-  const expiresAt = new Date(data?.subExpiration).toLocaleDateString('el-GR', {
+  const expiresAt = new Date(subExpiration).toLocaleDateString('el-GR', {
     weekday: 'long',
     year: 'numeric',
     month: 'long',

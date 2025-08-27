@@ -1,25 +1,22 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { selectNextPlayers, useGetPokaStateQuery } from '@poka/api/pokaApi.js';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi.js';
 import { useRoomContext } from '@poka/components/RoomContext';
 import { isPlayerState } from '@utils/helper-functions.js';
 import { DEAL_DELAY } from '@poka/utils/games';
-import { useSelector } from 'react-redux';
 
 const useDelayedDeal = ({ playerState }) => {
   const { gameId } = useParams();
-  const {
-    data: { playerStates, dealer },
-  } = useGetPokaStateQuery(gameId);
-  const [currentPlayer] = useSelector(selectNextPlayers(gameId));
+  const { data } = useGetPokaStateQuery(gameId);
+  const { setIsDealing } = useRoomContext();
   const [dealtCards, setDealtCards] = useState([]);
   const [dealingIndex, setDealingIndex] = useState(0);
   const [firstDealt, setFirstDealt] = useState(false);
 
-  const { setIsDealing } = useRoomContext();
-
+  const { playerStates, dealer, nextPlayers } = data;
   const { playerName, handCards, submittedHand } = playerState;
+  const [currentPlayer] = nextPlayers;
 
   const handSubmitted = playerState.submittedHand.length;
   const activePlayers = playerStates.filter(ps => ps.isInGame);

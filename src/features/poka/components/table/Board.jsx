@@ -9,9 +9,9 @@ import './Board.scss';
 const Board = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
-  const { gameName, rowIndexes, hats } = data;
+  const { gameName, rowIndexes, hats, playerStates } = data;
 
-  const totalPot = data.playerStates.reduce((acc, curr) => acc + curr.bet, 0);
+  const totalPot = playerStates.reduce((acc, curr) => acc + curr.bet, 0);
   let className = gameConfigs[gameName]?.boardClass;
   if (gameName === gameNames.CORNER)
     className += ` ${rowIndexes.length - (hats && 1)}`;

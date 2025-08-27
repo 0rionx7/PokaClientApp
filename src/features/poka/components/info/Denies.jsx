@@ -5,15 +5,17 @@ import { COUNT_FEM } from '@utils/text-constants';
 
 const Denies = () => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const {
+    data: { denials },
+  } = useGetPokaStateQuery(gameId);
 
-  if (!data.denials) return null;
+  if (!denials) return null;
 
   return (
     <>
       {'με '}
       <span>
-        {`${COUNT_FEM[data.denials]}  ΑΡΝΗΣ${data.denials > 1 ? 'ΕΙΣ ' : 'Η '}`}
+        {`${COUNT_FEM[denials]}  ΑΡΝΗΣ${denials > 1 ? 'ΕΙΣ ' : 'Η '}`}
       </span>
     </>
   );

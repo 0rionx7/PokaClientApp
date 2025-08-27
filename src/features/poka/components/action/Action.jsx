@@ -1,11 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import {
-  selectHostPlayerState,
-  selectNextPlayers,
-  useGetPokaStateQuery,
-} from '@poka/api/pokaApi';
+import { selectHostPlayerState, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
 import { useRoomContext } from '@poka/components/RoomContext';
 import NextRound from '@poka/components/action/NextRound';
@@ -18,18 +14,19 @@ import './Action.scss';
 
 const Action = () => {
   const { gameId } = useParams();
-  const hostPlayerName = useSelector(selectUserName);
-  const hostPlayerState = useSelector(selectHostPlayerState(gameId));
-  const [{ playerName, handInfo, jokerReplacing } = {}] = useSelector(
-    selectNextPlayers(gameId)
-  );
   const { data } = useGetPokaStateQuery(gameId);
+  const hostPlayerName = useSelector(selectUserName);
+  const hostPlayerState = useSelector(state =>
+    selectHostPlayerState(state, gameId)
+  );
   const { setActionContainerNode, isDealing } = useRoomContext();
 
+  const { dealer, nextPlayers } = data;
+  const [{ playerName, handInfo, jokerReplacing } = {}] = nextPlayers;
   const hostTurn = playerName === hostPlayerName;
   const showResults = handInfo?.kind;
   const showPlay = hostTurn || hostPlayerState.jokerReplacing;
-  const showGameInfo = !data.dealer;
+  const showGameInfo = !dealer;
 
   let content;
 

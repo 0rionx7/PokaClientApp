@@ -23,25 +23,27 @@ const Table = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
-  const hostPlayerState = useSelector(selectHostPlayerState(gameId));
+  const hostPlayerState = useSelector(state =>
+    selectHostPlayerState(state, gameId)
+  );
   const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
   useTable();
 
-  const dealer = data?.playerStates?.at(-1)?.playerName;
+  const { playerStates, dealer } = data;
+  const isDealing = playerStates.at(-1).playerName;
 
   useEffect(() => {
-    if (!data.dealer && hostPlayerName !== dealer) setSnackInfo(<GameInfo />);
-  }, [dealer, hostPlayerName, setSnackInfo, data.dealer]);
+    if (!dealer && hostPlayerName !== isDealing) setSnackInfo(<GameInfo />);
+  }, [isDealing, hostPlayerName, setSnackInfo, dealer]);
 
   return (
-    <div className={'table players-' + data.playerStates.length}>
+    <div className={'table players-' + playerStates.length}>
       <div className="game-table">
         <div className="tsoxa" />
       </div>
       <Board />
       <Players />
-      {data.dealer &&
-        (data.dealer === hostPlayerName ? <DealerScreen /> : <Waiting />)}
+      {dealer && (dealer === hostPlayerName ? <DealerScreen /> : <Waiting />)}
       {hostPlayerState.sittingOut ? (
         <StayLeave useSitDown={useSitDownMutation} />
       ) : (

@@ -15,7 +15,9 @@ import './HandCards.scss';
 const HandCards = ({ playerState }) => {
   const dispatch = useDispatch();
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const {
+    data: { joker },
+  } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
   const chosenCardIndexes = useSelector(selectChosenHandCardIndexes);
   const displayedCards = useDelayedDeal({ playerState });
@@ -28,7 +30,7 @@ const HandCards = ({ playerState }) => {
 
   const isChosen = index =>
     isHostPlayer && chosenCardIndexes.some(i => i === index);
-  const isJoker = value => data.joker.some(v => v === value) && !handSubmitted;
+  const isJoker = value => joker.some(v => v === value) && !handSubmitted;
 
   const handleSelectCard = index => {
     const canBeChosen = isHostPlayer && selecting && !handSubmitted;

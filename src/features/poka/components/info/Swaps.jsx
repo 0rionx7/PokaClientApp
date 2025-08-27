@@ -7,14 +7,14 @@ const Swaps = () => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
 
-  if (!data.swaps) return null;
+  const { swaps, denials } = data;
+
+  if (!swaps) return null;
 
   return (
     <>
-      {data.denials ? ' και ' : 'με '}
-      <span>
-        {`${COUNT_FEM[data.swaps]}  ΑΛΛΑΓ${data.swaps > 1 ? 'ΕΣ' : 'Η'}`}
-      </span>
+      {denials ? ' και ' : 'με '}
+      <span>{`${COUNT_FEM[swaps]}  ΑΛΛΑΓ${swaps > 1 ? 'ΕΣ' : 'Η'}`}</span>
     </>
   );
 };

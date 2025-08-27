@@ -7,13 +7,12 @@ import { formatNumber } from '@utils/helper-functions';
 
 const ChipStack = ({ playerState }) => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const {
+    data: { chip },
+  } = useGetPokaStateQuery(gameId);
 
   const amount = playerState.amountWon + playerState.currentBet;
-  const chips = useMemo(
-    () => createChipStack(amount, data.chip),
-    [amount, data.chip]
-  );
+  const chips = useMemo(() => createChipStack(amount, chip), [amount, chip]);
 
   return (
     <>

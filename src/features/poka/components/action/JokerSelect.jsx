@@ -12,14 +12,18 @@ import './JokerSelect.scss';
 
 const JokerSelect = () => {
   const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
-  const { handCards } = useSelector(selectHostPlayerState(gameId));
+  const {
+    data: { joker, startingCard },
+  } = useGetPokaStateQuery(gameId);
+  const { handCards } = useSelector(state =>
+    selectHostPlayerState(state, gameId)
+  );
   const [replacementCards, setReplacmentCards] = useState([]);
   const [suit, setSuit] = useState('S');
   const [cardValue, setCardValue] = useState(14);
 
   const jokerCount = handCards.filter(card =>
-    data.joker.some(value => card.value === value)
+    joker.some(value => card.value === value)
   ).length;
   const card = { value: cardValue, suit, faceUp: true };
 
@@ -38,7 +42,7 @@ const JokerSelect = () => {
       <div className="selections">
         ΑΝΤΙΚΑΤΑΣΗ ΤΟΥ {prompt} ΜΠΑΛΑΝΤΕΡ ΜΕ
         <select value={cardValue} onChange={e => setCardValue(+e.target.value)}>
-          {[...Array(15).keys()].slice(data.startingCard).map(value => (
+          {[...Array(15).keys()].slice(startingCard).map(value => (
             <option key={value} value={value}>
               {SYMBOLS[value] || value}
             </option>

@@ -8,8 +8,9 @@ import { isPlayerState } from '@utils/helper-functions';
 const usePlayerStyle = index => {
   const { gameId } = useParams();
   const username = useSelector(selectUserName);
-  const { data } = useGetChineseStateQuery(gameId);
-  const { playerStates } = data;
+  const {
+    data: { playerStates },
+  } = useGetChineseStateQuery(gameId);
   const hostIndex = playerStates.findIndex(isPlayerState(username));
 
   let gridArea;

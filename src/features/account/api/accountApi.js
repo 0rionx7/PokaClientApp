@@ -75,15 +75,8 @@ export const accountApi = gameApi.injectEndpoints({
       }),
     }),
     reconnectedLogin: build.mutation({
-      query: _ => ({
-        url: '/user/reconnectedlogin',
-        method: 'POST',
-        body: { socketId: socket.id },
-      }),
-    }),
-    redirectedLogin: build.mutation({
       query: info => ({
-        url: '/user/redirectedlogin',
+        url: '/user/reconnectedlogin',
         method: 'POST',
         body: { info, socketId: socket.id },
       }),
@@ -173,7 +166,6 @@ export const {
   useRegisterMutation,
   useLoginMutation,
   useReconnectedLoginMutation,
-  useRedirectedLoginMutation,
   useLogOutMutation,
   useChangePasswordMutation,
   useUsernameChangeMutation,

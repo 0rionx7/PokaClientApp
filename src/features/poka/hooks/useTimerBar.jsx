@@ -9,11 +9,12 @@ const useTimerBar = playerState => {
   const [width, setWidth] = useState(100);
 
   const { playerName, handInfo } = playerState;
-  const [currentPlayerState] = data?.nextPlayers;
+  const { nextPlayers, reaction } = data;
+  const [currentPlayerState] = nextPlayers;
   const isActive = currentPlayerState?.playerName === playerName;
   const submitting = currentPlayerState?.selecting?.submit;
-  const shouldRun = isActive && !handInfo.kind && data?.reaction !== 101;
-  const period = data?.reaction * (submitting ? 20 : 10);
+  const shouldRun = isActive && !handInfo.kind && reaction !== 101;
+  const period = reaction * (submitting ? 20 : 10);
 
   useEffect(() => {
     if (!shouldRun) return;

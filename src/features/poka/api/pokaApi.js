@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
 import { selectUserName } from '@account/api/accountApi';
-import { isSitting, updateAll } from '@utils/helper-functions';
+import { isPlayerState, isSitting, updateAll } from '@utils/helper-functions';
 import { gameApi, socket } from '@store/gameApi';
 
 export const pokaApi = gameApi.injectEndpoints({
@@ -149,51 +149,26 @@ export const pokaApi = gameApi.injectEndpoints({
   }),
 });
 
-const selectGameState = gameId => pokaApi.endpoints.getPokaState.select(gameId);
-export const selectPlayerStates = gameId =>
-  createSelector(
-    selectGameState(gameId),
-    result => result?.data?.playerStates ?? []
-  );
-export const selectSittingPlayers = gameId =>
-  createSelector(
-    selectGameState(gameId),
-    result => result?.data?.playerStates?.filter(isSitting) ?? []
-  );
-export const selectSittingPlayersWithMoney = gameId =>
-  createSelector(
-    selectGameState(gameId),
-    result =>
-      result?.data?.playerStates?.filter(
-        state => state.resta > 0 && !state.sittingOut
-      ) ?? []
-  );
-export const selectHostPlayerState = gameId =>
-  createSelector(
-    selectGameState(gameId),
-    selectUserName,
-    (gameState, playerName) =>
-      gameState?.data?.playerStates?.find(ps => ps.playerName === playerName) ??
-      []
-  );
-export const selectNextPlayers = gameId =>
-  createSelector(
-    selectGameState(gameId),
-    result => result?.data?.nextPlayers ?? []
-  );
-export const selectTableCards = gameId =>
-  createSelector(
-    selectGameState(gameId),
-    result => result?.data?.tableCards ?? []
-  );
-export const selectPlayerState = gameId =>
-  createSelector(
-    selectGameState(gameId),
-    (_rootState, playerName) => playerName,
-    (gameState, playerName) =>
-      gameState?.data?.playerStates?.find(ps => ps.playerName === playerName) ??
-      []
-  );
+const selectGameState = (state, gameId) =>
+  pokaApi.endpoints.getPokaState.select(gameId)(state)?.data;
+export const selectPlayerStates = createSelector(
+  [selectGameState],
+  gameState => gameState.playerStates ?? []
+);
+export const selectSittingPlayers = createSelector(
+  [selectPlayerStates],
+  playerStates => playerStates.filter(isSitting) ?? []
+);
+export const selectSittingPlayersWithMoney = createSelector(
+  [selectPlayerStates],
+  playerStates =>
+    playerStates.filter(state => state.resta > 0 && !state.sittingOut) ?? []
+);
+export const selectHostPlayerState = createSelector(
+  [selectPlayerStates, selectUserName],
+  (playerStates, playerName) =>
+    playerStates.find(isPlayerState(playerName)) ?? null
+);
 
 export const {
   useGetPokaStateQuery,

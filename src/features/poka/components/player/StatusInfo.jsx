@@ -8,8 +8,9 @@ const StatusInfo = ({ playerState }) => {
   const { data } = useGetPokaStateQuery(gameId);
   const { sittingOut, isInGame, resta } = playerState;
 
-  const lastAtList = data.playerStates.at(-1).playerName;
-  const playerDeals = playerState.playerName === (data.dealer || lastAtList);
+  const { playerStates, dealer } = data;
+  const lastAtList = playerStates.at(-1).playerName;
+  const playerDeals = playerState.playerName === (dealer || lastAtList);
 
   return (
     <>

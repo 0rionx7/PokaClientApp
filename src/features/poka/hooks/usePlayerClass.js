@@ -10,7 +10,7 @@ const usePlayerClass = playerName => {
   const { gameId } = useParams();
   const { data } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
-  const playerStates = useSelector(selectPlayerStates(gameId));
+  const playerStates = useSelector(state => selectPlayerStates(state, gameId));
 
   const playersCount = playerStates.length;
   const hostIndex = playerStates.findIndex(isPlayerState(hostPlayerName));

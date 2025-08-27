@@ -7,7 +7,7 @@ import './Results.scss';
 
 const Results = () => {
   const { gameId } = useParams();
-  const playerStates = useSelector(selectPlayerStates(gameId));
+  const playerStates = useSelector(state => selectPlayerStates(state, gameId));
 
   const orderedPlayerStates = playerStates.toSorted(
     (a, b) =>

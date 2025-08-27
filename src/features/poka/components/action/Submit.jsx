@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 
 import {
   selectHostPlayerState,
-  selectTableCards,
   useEvaluateHandMutation,
   useGetPokaStateQuery,
   useSubmitCardsMutation,
@@ -23,9 +22,12 @@ const Submit = () => {
   const { gameId } = useParams();
   const submittedHandCardIndexes = useSelector(selectChosenHandCardIndexes);
   const submittedTableCardIndexes = useSelector(selectChosenTableCardIndexes);
-  const { data: gameData } = useGetPokaStateQuery(gameId);
-  const tableCards = useSelector(selectTableCards(gameId));
-  const { handCards } = useSelector(selectHostPlayerState(gameId));
+  const {
+    data: { gameName, tableCards },
+  } = useGetPokaStateQuery(gameId);
+  const { handCards } = useSelector(state =>
+    selectHostPlayerState(state, gameId)
+  );
   const [submitHand, { isLoading: submitting, isSuccess: submissionSuccess }] =
     useSubmitCardsMutation();
   const [
@@ -44,10 +46,8 @@ const Submit = () => {
       );
     if (
       submittedHandCardIndexes.concat(submittedTableCardIndexes).length !== 5 &&
-      gameData.gameName !== gameNames.GRAVEYARD &&
-      !(
-        gameData.gameName === gameNames.MAMUT && isMirror(handCards, tableCards)
-      )
+      gameName !== gameNames.GRAVEYARD &&
+      !(gameName === gameNames.MAMUT && isMirror(handCards, tableCards))
     )
       return setSnackInfo(` Επιλέξτε συνολικά 5 χαρτιά`);
 
