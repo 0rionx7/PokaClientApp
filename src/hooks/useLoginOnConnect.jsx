@@ -1,27 +1,23 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 
 import {
   useGetUserQuery,
   useReconnectedLoginMutation,
 } from '@account/api/accountApi';
-import { selectToken } from '@account/slice/accountSlice';
 import { socket } from '@store/gameApi';
 
-export default function useLoginOnConnect(key) {
-  const { refetch } = useGetUserQuery();
-  const token = useSelector(selectToken);
+export default function useRelogin(key) {
   const [reconnectLogin] = useReconnectedLoginMutation();
+  const { refetch } = useGetUserQuery();
 
   useEffect(() => {
-    refetch();
-  }, [token, refetch]);
-
-  useEffect(() => {
-    socket.on('connect', () => reconnectLogin(key));
+    socket.on('connect', async () => {
+      await reconnectLogin(key);
+      refetch();
+    });
 
     return () => {
       socket.removeAllListeners('connect');
     };
-  }, [key, reconnectLogin]);
+  }, [key, reconnectLogin, refetch]);
 }

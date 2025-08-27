@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 import Button from '@ui/Button';
-import useLoginOnConnect from '@hooks/useLoginOnConnect';
+import useRelogin from '@hooks/useLoginOnConnect';
 import './SuccessfulPayment.scss';
 
 const SuccessfulPayment = () => {
@@ -9,7 +9,7 @@ const SuccessfulPayment = () => {
   const transactionId = searchParams.get('t');
   const orderCode = searchParams.get('s');
   const navigate = useNavigate();
-  useLoginOnConnect({ orderCode });
+  useRelogin({ orderCode });
 
   return (
     <div className="payment-result">
