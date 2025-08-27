@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import PlayHandCards from '@poka/components/info/PlayHandCards';
 import FaceDownCards from '@poka/components/info/FaceDownCards';
+import { createTableTitle } from '@utils/text-functions';
 import { TABLOS } from '@utils/text-constants';
 import Denies from '@poka/components/info/Denies';
 import Swaps from '@poka/components/info/Swaps';
@@ -28,7 +29,7 @@ const GameInfo = () => {
     },
   } = useGetPokaStateQuery(gameId);
 
-  const tableTitle = tableName.split('_')?.[0];
+  const tableTitle = createTableTitle(tableName);
 
   if (!gameName)
     return (

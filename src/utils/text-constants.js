@@ -149,7 +149,7 @@ export const COUNT_FEM = Object.freeze([
   'ΕΞΙ',
   'ΕΦΤΑ',
 ]);
-export const INFO_BUTTONS = Object.freeze({
+export const INFO_BUTTONS_TITLES = Object.freeze({
   GAME_DESCRIPTION: 'ΠΕΡΙΓΡΑΦΗ',
   GAME_INFO: 'ΠΑΡΑΛΛΑΓΗ',
   LAST_GAME_RESULTS: 'ΑΠΟΤΕΛΕΣΜΑ',

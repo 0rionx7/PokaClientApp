@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectChosenGame } from '@poka/slice/pokaStateSlice';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
+import { createTableTitle } from '@utils/text-functions';
 import { GAME_INFO } from '@utils/text-constants';
 import './Info.scss';
 
@@ -15,7 +16,7 @@ const GameDescription = () => {
 
   const { dealer, tableName } = data;
   const gameName = hostPlayerName === dealer ? chosenGame : data.gameName;
-  const tableTitle = tableName.split('_')?.[0];
+  const tableTitle = createTableTitle(tableName);
 
   if (!gameName)
     return (

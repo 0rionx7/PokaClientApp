@@ -1,20 +1,22 @@
 import { memo } from 'react';
 
-import { INFO_BUTTONS } from '@utils/text-constants';
+import { INFO_BUTTONS_TITLES } from '@utils/text-constants';
 import Button from '@ui/Button';
 import './Buttons.scss';
 
 const Buttons = ({ setSelected, selected }) => {
-  const buttons = Object.values(INFO_BUTTONS);
+  const titles = Object.values(INFO_BUTTONS_TITLES);
+  const className = title =>
+    `info-button${selected === title ? ' selected' : ''}`;
 
   return (
     <div className="btns">
-      {buttons.map(item => (
+      {titles.map(title => (
         <Button
-          key={item}
-          prompt={item}
-          className={'info-button ' + (selected === item ? 'selected' : '')}
-          onClick={() => setSelected(item)}
+          key={title}
+          prompt={title}
+          className={className(title)}
+          onClick={() => setSelected(title)}
         />
       ))}
     </div>

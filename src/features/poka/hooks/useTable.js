@@ -1,16 +1,27 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { resetMessages } from '@account/slice/accountSlice';
 import { useGetPokaStateQuery, useSitOutMutation } from '@poka/api/pokaApi';
+import { selectUserName } from '@account/api/accountApi';
 import { socket } from '@store/gameApi';
+import { resetMessages } from '@account/slice/accountSlice';
+import useSnackBar from '@hooks/useSnackBar';
 
 export default function useTable() {
   const { gameId } = useParams();
-  const { refetch } = useGetPokaStateQuery(gameId);
+  const { data, refetch } = useGetPokaStateQuery(gameId);
   const [sitOut] = useSitOutMutation();
   const dispatch = useDispatch();
+  const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
+  const hostPlayerName = useSelector(selectUserName);
+
+  const { playerStates, dealer } = data;
+  const isDealing = playerStates.at(-1).playerName === hostPlayerName;
+
+  useEffect(() => {
+    if (!dealer && !isDealing) setSnackInfo('GameInfo');
+  }, [isDealing, setSnackInfo, dealer]);
 
   useEffect(() => {
     return () => {
@@ -23,4 +34,6 @@ export default function useTable() {
     socket.on('connect', () => refetch());
     return () => socket.removeAllListeners('connect');
   }, [refetch]);
+
+  return snackElement;
 }

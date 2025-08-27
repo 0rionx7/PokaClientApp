@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '@ui/LoadingSpinner';
 
+import GameInfo from '@poka/components/info/GameInfo';
 import Overlay from '@ui/Overlay';
 
 const useSnackBar = ({ secs = 2, height, top } = {}) => {
@@ -18,12 +19,14 @@ const useSnackBar = ({ secs = 2, height, top } = {}) => {
     setSnackInfo(null);
   };
 
+  const renderItem = info === 'GameInfo' ? <GameInfo /> : info;
+
   const snackElement = info && (
     <Overlay
       onClick={handleBackDropClick}
       style={{ height, zIndex: top && 501 }}>
       <div className="snack-message">
-        {info} {!secs && <LoadingSpinner color="red" />}
+        {renderItem} {!secs && <LoadingSpinner color="red" />}
       </div>
     </Overlay>
   );

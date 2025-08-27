@@ -6,7 +6,7 @@ import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
 import GameDescription from '@poka/components/info/GameDescription';
 import { useEmoji } from '@components/chat/EmojiProvider';
-import { INFO_BUTTONS } from '@utils/text-constants';
+import { INFO_BUTTONS_TITLES } from '@utils/text-constants';
 import Standings from '@poka/components/info/Standings';
 import Results from '@poka/components/info/Results';
 import GameInfo from '@poka/components/info/GameInfo';
@@ -16,11 +16,11 @@ import toggle from '@icons/toggle.svg';
 import './Info.scss';
 
 const TABS = {
-  [INFO_BUTTONS.GAME_DESCRIPTION]: <GameDescription />,
-  [INFO_BUTTONS.GAME_INFO]: <GameInfo />,
-  [INFO_BUTTONS.CHAT]: <ChatBox />,
-  [INFO_BUTTONS.STANDINGS]: <Standings />,
-  [INFO_BUTTONS.LAST_GAME_RESULTS]: <Results />,
+  [INFO_BUTTONS_TITLES.GAME_DESCRIPTION]: <GameDescription />,
+  [INFO_BUTTONS_TITLES.GAME_INFO]: <GameInfo />,
+  [INFO_BUTTONS_TITLES.CHAT]: <ChatBox />,
+  [INFO_BUTTONS_TITLES.STANDINGS]: <Standings />,
+  [INFO_BUTTONS_TITLES.LAST_GAME_RESULTS]: <Results />,
 };
 
 const Info = () => {
@@ -29,13 +29,15 @@ const Info = () => {
     data: { dealer },
   } = useGetPokaStateQuery(gameId);
   const hostPlayerName = useSelector(selectUserName);
-  const [selectedTab, setSelectedTab] = useState(INFO_BUTTONS.GAME_DESCRIPTION);
+  const [selectedTab, setSelectedTab] = useState(
+    INFO_BUTTONS_TITLES.GAME_DESCRIPTION
+  );
   const [showInfoPanel, setShowInfoPanel] = useState(true);
   const { setShowPicker } = useEmoji();
 
   useEffect(() => {
     if (dealer === hostPlayerName)
-      setSelectedTab(INFO_BUTTONS.GAME_DESCRIPTION);
+      setSelectedTab(INFO_BUTTONS_TITLES.GAME_DESCRIPTION);
   }, [setSelectedTab, dealer, hostPlayerName]);
 
   const handleToggleInfoPanel = () => {

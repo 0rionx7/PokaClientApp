@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useCancelRequestMutation } from '@account/api/accountApi';
-import ToolTip from '@ui/ToolTip';
+import { createTableTitle } from '@utils/text-functions';
 import useSnackBar from '@hooks/useSnackBar';
+import ToolTip from '@ui/ToolTip';
 import './Requests.scss';
 
 const UserRequest = ({ tableInfo, useSitDown }) => {
@@ -12,6 +13,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
   const [cancelRequest, { isLoading: canceling }] = useCancelRequestMutation();
   const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
   const navigate = useNavigate();
+
   const { gameId, tableName } = tableInfo;
 
   const handleCancelRequest = async event => {
@@ -31,11 +33,9 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
   };
 
   return (
-    <div className={'request-tableName ' + (gameId ? 'joined' : '')}>
+    <div className={`request-tableName${gameId ? ' joined' : ''}`}>
       {!cancelHovered && <ToolTip info="Καθήστε" />}
-      <div onClick={handleJoinTable}>
-        {tableInfo.tableName?.split('_')?.[0]}
-      </div>
+      <div onClick={handleJoinTable}>{createTableTitle(tableName)}</div>
       <div
         className="cancel"
         onMouseOver={() => setCancelHovered(true)}

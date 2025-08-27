@@ -12,6 +12,9 @@ export function createTableTitleJsx(tableName) {
   const names = tableName?.split('_');
   return `${names?.[0]} από ${names?.[1]}`;
 }
+export function createTableTitle(tableName) {
+  return tableName.split('_')?.[0];
+}
 export function describeTime(secs) {
   const timeMap = {
     60: '1 λεπτό',
