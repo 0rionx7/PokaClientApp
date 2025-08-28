@@ -41,7 +41,7 @@ const AvailableTable = ({ tableName, gameId, useSitDown }) => {
   return (
     <div
       onClick={handleJoinTable}
-      className={`available-table ${gameId ? 'joined' : ''}`}>
+      className={`available-table${gameId ? ' joined' : ''}`}>
       <ToolTip info={gameId ? 'Καθήστε' : 'Αιτηθείτε θέση'} />
       {tableTitle}
       {snackElement}

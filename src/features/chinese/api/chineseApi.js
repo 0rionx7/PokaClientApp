@@ -1,5 +1,7 @@
-import { selectUserName } from '@account/api/accountApi';
+import { createSelector } from '@reduxjs/toolkit';
+
 import { setLocalPlayerState } from '@chinese/slice/chineseStateSlice';
+import { selectUserName } from '@account/api/accountApi';
 import { gameApi, socket } from '@store/gameApi';
 import { isPlayerState } from '@utils/helper-functions';
 
@@ -32,7 +34,6 @@ export const chineseApi = gameApi.injectEndpoints({
                 const updatedHostState = stateUpdate.playerStates.find(
                   isPlayerState(username)
                 );
-                console.log(updatedHostState);
                 dispatch(setLocalPlayerState(updatedHostState));
               }
               return stateUpdate;
@@ -114,6 +115,18 @@ export const chineseApi = gameApi.injectEndpoints({
     }),
   }),
 });
+
+const selectGameState = (state, gameId) =>
+  chineseApi.endpoints.getChineseState.select(gameId)(state)?.data;
+export const selectPlayerStates = createSelector(
+  [selectGameState],
+  gameState => gameState.playerStates ?? []
+);
+export const selectHostPlayerState = createSelector(
+  [selectPlayerStates, selectUserName],
+  (playerStates, playerName) =>
+    playerStates.find(isPlayerState(playerName)) ?? null
+);
 
 export const {
   useGetChineseStateQuery,

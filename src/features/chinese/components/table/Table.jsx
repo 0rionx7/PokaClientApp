@@ -3,13 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import {
+  selectHostPlayerState,
   useGetChineseStateQuery,
   useSitDownChineseMutation,
   useSitOutChineseMutation,
 } from '@chinese/api/chineseApi';
 import DealerScreen from '@chinese/components/dealer/DealerScreen';
 import { resetMessages } from '@account/slice/accountSlice';
-import { selectHostPlayerState } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
 import RoundInfo from '@chinese/components/table/RoundInfo';
 import Board from '@chinese/components/table/Board';
