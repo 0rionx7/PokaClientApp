@@ -9,8 +9,14 @@ import {
 } from '@utils/text-constants';
 
 export function createTableTitleJsx(tableName) {
-  const names = tableName?.split('_');
-  return `${names?.[0]} από ${names?.[1]}`;
+  const parts = tableName?.split('_');
+  return (
+    <div>
+      {parts?.[0]}
+      <span> από </span>
+      {parts?.[1]}
+    </div>
+  );
 }
 export function createTableTitle(tableName) {
   return tableName.split('_')?.[0];

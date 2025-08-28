@@ -19,7 +19,7 @@ const useRequestResult = () => {
 
   useEffect(() => {
     socket.on('requestApproved', requestInfo => {
-      setApprovedPopUp(<ApprovedRequest requestInfo={requestInfo} />);
+      setApprovedPopUp(requestInfo);
       refetchUserInfo();
       requestInfo.game === 'poka'
         ? refetchPokaTables()
@@ -37,11 +37,11 @@ const useRequestResult = () => {
     socket.on('requestRejected', ({ tableName, game }) => {
       refetchUserInfo();
       if (!gameId) {
-        const table = game === 'poka' ? 'πόκας' : 'κινέζικου πόκερ';
+        const kind = game === 'poka' ? 'πόκας' : 'κινέζικου πόκερ';
         setRejectPopUp(
           <>
-            {`Η αίτηση συμμετοχής σας για το τραπέζι ${table} 
-            ${createTableTitleJsx(tableName)} απορρίφθηκε.`}
+            Η αίτηση συμμετοχής σας για το τραπέζι <b>{kind}</b>
+            {createTableTitleJsx(tableName)} απορρίφθηκε.
           </>
         );
       }

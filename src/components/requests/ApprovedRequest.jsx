@@ -29,10 +29,10 @@ const ApprovedRequest = ({ requestInfo: { tableName, gameId, game } }) => {
     <>
       {`Η αίτηση συμμετοχής σας για το τραπέζι ${table}`} <br />
       {createTableTitleJsx(tableName)} εγκρίθηκε.
-      <span style={{ fontSize: '.7rem' }}>
+      <section style={{ fontSize: '.7rem' }}>
         μπορείτε να καθήσετε οποιαδήποτε στιγμή επιθυμείτε, μέσω της λίστας
         ενεργών αιτήσεων ή αυτής των διαθέσιμων τραπεζιών
-      </span>
+      </section>
       <div className="action-btns">
         <Button
           className="green"

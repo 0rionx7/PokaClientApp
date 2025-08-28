@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '@ui/LoadingSpinner';
 
+import ApprovedRequest from '@components/requests/ApprovedRequest';
 import GameInfo from '@poka/components/info/GameInfo';
 import Overlay from '@ui/Overlay';
 
@@ -19,7 +20,14 @@ const useSnackBar = ({ secs = 2, height, top } = {}) => {
     setSnackInfo(null);
   };
 
-  const renderItem = info === 'GameInfo' ? <GameInfo /> : info;
+  const renderItem =
+    info === 'GameInfo' ? (
+      <GameInfo />
+    ) : info?.game ? (
+      <ApprovedRequest requestInfo={info} />
+    ) : (
+      info
+    );
 
   const snackElement = info && (
     <Overlay
