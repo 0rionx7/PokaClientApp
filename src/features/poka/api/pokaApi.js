@@ -38,7 +38,6 @@ export const pokaApi = gameApi.injectEndpoints({
           console.log(error);
         }
       },
-      keepUnusedDataFor: 0,
     }),
     openPokaTable: build.mutation({
       query: openTableData => ({

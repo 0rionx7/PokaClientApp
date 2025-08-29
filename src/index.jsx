@@ -27,10 +27,10 @@ import Room from '@poka/components/Room';
 import Layout from '@layout/Layout';
 import RouteGuard from '@utils/route-guard';
 import { store } from './store/store';
-import App from './App';
-import '@styles/index.scss';
 import { accountApi } from '@account/api/accountApi';
 import { pokaApi } from '@poka/api/pokaApi';
+import App from './App';
+import '@styles/index.scss';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
@@ -101,9 +101,11 @@ async function loadUserData() {
   return result.data;
 }
 async function loadGameData({ params }) {
-  const result = await store.dispatch(
+  const promise = store.dispatch(
     pokaApi.endpoints.getPokaState.initiate(params.gameId)
   );
+  const result = await promise;
+  promise.unsubscribe();
   if (result.isError) return null;
   return result.data;
 }

@@ -20,8 +20,8 @@ const PlayerRequests = ({ useGetStateQuery, maxPlayersCount }) => {
     state.game === 'poka' ? useJoinTableMutation : useJoinChineseTableMutation;
 
   const requestedStates = data
-    .filter(request =>
-      playerStates.every(ps => ps.playerName !== request.username)
+    .filter(
+      request => !playerStates.some(ps => ps.playerName === request.username)
     )
     .map(request => ({
       playerName: request.username,

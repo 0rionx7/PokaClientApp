@@ -58,7 +58,6 @@ export const accountApi = gameApi.injectEndpoints({
         }
       },
       providesTags: ['Requests'],
-      keepUnusedDataFor: 0,
     }),
     register: build.mutation({
       query: userData => ({

@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import { socket, useGetTablesQuery } from '@store/gameApi';
 import { useGetUserQuery } from '@account/api/accountApi';
 import { createTableTitleJsx } from '@utils/text-functions';
-import ApprovedRequest from '@components/requests/ApprovedRequest';
 import useSnackBar from '@hooks/useSnackBar';
 
 const useRequestResult = () => {

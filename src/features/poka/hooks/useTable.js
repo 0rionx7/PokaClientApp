@@ -2,7 +2,11 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
-import { useGetPokaStateQuery, useSitOutMutation } from '@poka/api/pokaApi';
+import {
+  pokaApi,
+  useGetPokaStateQuery,
+  useSitOutMutation,
+} from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
 import { socket } from '@store/gameApi';
 import { resetMessages } from '@account/slice/accountSlice';
@@ -26,7 +30,10 @@ export default function useTable() {
   useEffect(() => {
     return () => {
       dispatch(resetMessages());
-      sitOut({ gameId });
+      const promise = dispatch(pokaApi.endpoints.sitOut.initiate({ gameId }));
+      promise.finally(() => {
+        dispatch(pokaApi.util.resetApiState());
+      });
     };
   }, [gameId, sitOut, dispatch]);
 

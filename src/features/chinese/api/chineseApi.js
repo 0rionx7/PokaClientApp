@@ -47,7 +47,6 @@ export const chineseApi = gameApi.injectEndpoints({
           console.log(error);
         }
       },
-      keepUnusedDataFor: 0,
     }),
     openChineseTable: build.mutation({
       query: openTableData => ({
