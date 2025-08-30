@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
@@ -24,10 +23,9 @@ const TABS = {
 };
 
 const Info = () => {
-  const { gameId } = useParams();
   const {
     data: { dealer },
-  } = useGetPokaStateQuery(gameId);
+  } = useGetPokaStateQuery();
   const hostPlayerName = useSelector(selectUserName);
   const [selectedTab, setSelectedTab] = useState(
     INFO_BUTTONS_TITLES.GAME_DESCRIPTION

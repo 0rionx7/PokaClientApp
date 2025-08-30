@@ -1,17 +1,17 @@
 import { useState, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import EmojiPicker, { Theme } from 'emoji-picker-react';
 
 import { useEmoji } from '@components/chat/EmojiProvider';
+import { selectGameId } from '@poka/slice/pokaStateSlice';
 import { selectUserName } from '@account/api/accountApi';
 import { socket } from '@store/gameApi';
 import { sendSvg } from '@icons/various';
 
 const ChatInput = () => {
   const playerName = useSelector(selectUserName);
-  const { gameId } = useParams();
+  const gameId = useSelector(selectGameId);
   const { showPicker, setShowPicker } = useEmoji();
   const [message, setMessage] = useState('');
   const inputRef = useRef();

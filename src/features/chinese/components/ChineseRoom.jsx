@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import EmojiProvider, { useEmoji } from '@components/chat/EmojiProvider';
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
@@ -10,8 +9,7 @@ import ChatBox from '@components/chat/ChatBox';
 import toggle from '@icons/toggle.svg';
 
 const ChineseRoom = () => {
-  const { gameId } = useParams();
-  const { data } = useGetChineseStateQuery(gameId);
+  const { data } = useGetChineseStateQuery();
   const [showChat, setShowChat] = useState(true);
   const { setShowPicker } = useEmoji();
   useMessageService();

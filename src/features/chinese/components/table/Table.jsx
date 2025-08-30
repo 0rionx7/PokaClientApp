@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import {
   selectHostPlayerState,
@@ -18,22 +17,19 @@ import StayLeave from '@components/sitOut/StayLeave';
 import SitOut from '@components/sitOut/SitOut';
 
 const Table = () => {
-  const { gameId } = useParams();
   const dispatch = useDispatch();
   const username = useSelector(selectUserName);
-  const { data } = useGetChineseStateQuery(gameId);
+  const { data } = useGetChineseStateQuery();
   const [sitOut] = useSitOutChineseMutation();
-  const hostPlayerState = useSelector(state =>
-    selectHostPlayerState(state, gameId)
-  );
+  const hostPlayerState = useSelector(selectHostPlayerState);
   const { playerStates, round, nextPlayers } = data;
 
   useEffect(() => {
     return () => {
       dispatch(resetMessages());
-      sitOut({ gameId });
+      sitOut();
     };
-  }, [gameId, sitOut, dispatch]);
+  }, [sitOut, dispatch]);
 
   if (!data) return <h3>waiting for others to join...</h3>;
 

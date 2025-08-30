@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { selectHostPlayerState, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { ORDER_NUMBER, SUIT_NAME } from '@utils/text-constants';
@@ -11,13 +10,10 @@ import Button from '@ui/Button';
 import './JokerSelect.scss';
 
 const JokerSelect = () => {
-  const { gameId } = useParams();
   const {
     data: { joker, startingCard },
-  } = useGetPokaStateQuery(gameId);
-  const { handCards } = useSelector(state =>
-    selectHostPlayerState(state, gameId)
-  );
+  } = useGetPokaStateQuery();
+  const { handCards } = useSelector(selectHostPlayerState);
   const [replacementCards, setReplacmentCards] = useState([]);
   const [suit, setSuit] = useState('S');
   const [cardValue, setCardValue] = useState(14);

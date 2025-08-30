@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
@@ -17,8 +16,7 @@ import './Board.scss';
 
 const Board = ({ index, playerState }) => {
   const username = useSelector(selectUserName);
-  const { gameId } = useParams();
-  const { data } = useGetChineseStateQuery(gameId);
+  const { data } = useGetChineseStateQuery();
   const gridArea = usePlayerStyle(index);
   const timerJsx = useTimer(playerState.playerName);
 

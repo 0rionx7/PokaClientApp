@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import {
   selectHostPlayerState,
@@ -19,15 +18,12 @@ import {
 } from '@poka/slice/pokaStateSlice';
 
 const Submit = () => {
-  const { gameId } = useParams();
   const submittedHandCardIndexes = useSelector(selectChosenHandCardIndexes);
   const submittedTableCardIndexes = useSelector(selectChosenTableCardIndexes);
   const {
     data: { gameName, tableCards },
-  } = useGetPokaStateQuery(gameId);
-  const { handCards } = useSelector(state =>
-    selectHostPlayerState(state, gameId)
-  );
+  } = useGetPokaStateQuery();
+  const { handCards } = useSelector(selectHostPlayerState);
   const [submitHand, { isLoading: submitting, isSuccess: submissionSuccess }] =
     useSubmitCardsMutation();
   const [
@@ -52,7 +48,6 @@ const Submit = () => {
       return setSnackInfo(` Επιλέξτε συνολικά 5 χαρτιά`);
 
     const result = await evaluateHand({
-      gameId,
       submittedHandCardIndexes,
       submittedTableCardIndexes,
     });
@@ -61,7 +56,6 @@ const Submit = () => {
 
   const handleSubmit = async () => {
     const result = await submitHand({
-      gameId,
       submittedHandCardIndexes: submittedHandCardIndexes,
       submittedTableCardIndexes: submittedTableCardIndexes,
     });

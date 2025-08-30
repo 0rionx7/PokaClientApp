@@ -1,14 +1,13 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
-import PlayerRequest from './PlayerRequest';
-import './PlayerRequests.scss';
+import { useJoinChineseTableMutation } from '@chinese/api/chineseApi';
 import { useGetRequestsQuery } from '@account/api/accountApi';
 import { useJoinTableMutation } from '@poka/api/pokaApi';
-import { useJoinChineseTableMutation } from '@chinese/api/chineseApi';
+import PlayerRequest from './PlayerRequest';
+import './PlayerRequests.scss';
 
 const PlayerRequests = ({ useGetStateQuery, maxPlayersCount }) => {
-  const { gameId } = useParams();
-  const { data: gameData } = useGetStateQuery(gameId);
+  const { data: gameData } = useGetStateQuery();
   const { data } = useGetRequestsQuery(gameData.tableName);
   const { state } = useLocation();
 

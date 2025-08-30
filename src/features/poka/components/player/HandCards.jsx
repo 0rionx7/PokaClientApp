@@ -1,5 +1,4 @@
 import { memo } from 'react';
-import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import {
@@ -14,10 +13,9 @@ import './HandCards.scss';
 
 const HandCards = ({ playerState }) => {
   const dispatch = useDispatch();
-  const { gameId } = useParams();
   const {
     data: { joker },
-  } = useGetPokaStateQuery(gameId);
+  } = useGetPokaStateQuery();
   const hostPlayerName = useSelector(selectUserName);
   const chosenCardIndexes = useSelector(selectChosenHandCardIndexes);
   const displayedCards = useDelayedDeal({ playerState });

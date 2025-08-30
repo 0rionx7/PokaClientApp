@@ -4,17 +4,36 @@ import io from 'socket.io-client';
 export const baseUrl = import.meta.env.VITE_FRONTEND_URL;
 export const socket = io(baseUrl, { transports: ['websocket'] });
 
+const baseQuery = fetchBaseQuery({
+  baseUrl,
+  prepareHeaders: (headers, { getState }) => {
+    headers.set('Content-type', 'application/json');
+    const token = getState().account.token;
+    if (token) headers.set('authorization', `Bearer ${token}`);
+    return headers;
+  },
+});
+
+const injectingGameIdBaseQuery = async (args, api, extraOptions) => {
+  const gameId = api.getState().pokaState.gameId;
+
+  if (typeof args === 'object') {
+    args = {
+      ...args,
+      body: {
+        ...(args.body || {}),
+        gameId: gameId || args.body.gameId,
+        socketId: socket.id,
+      },
+    };
+  }
+
+  return baseQuery(args, api, extraOptions);
+};
+
 export const gameApi = createApi({
   reducerPath: 'gameApi',
-  baseQuery: fetchBaseQuery({
-    baseUrl,
-    prepareHeaders: (headers, { getState }) => {
-      headers.set('Content-type', 'application/json');
-      const token = getState().account.token;
-      if (token) headers.set('authorization', `Bearer ${token}`);
-      return headers;
-    },
-  }),
+  baseQuery: injectingGameIdBaseQuery,
   tagTypes: ['User', 'Requests', 'ChineseRequests'],
   endpoints: build => ({
     getTables: build.query({

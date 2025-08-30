@@ -1,16 +1,14 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
 import { selectUserName } from '@account/api/accountApi';
 import { isPlayerState } from '@utils/helper-functions';
 
 const usePlayerStyle = index => {
-  const { gameId } = useParams();
   const username = useSelector(selectUserName);
   const {
     data: { playerStates },
-  } = useGetChineseStateQuery(gameId);
+  } = useGetChineseStateQuery();
   const hostIndex = playerStates.findIndex(isPlayerState(username));
 
   let gridArea;

@@ -1,12 +1,14 @@
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import useSnackBar from '@hooks/useSnackBar';
 import Overlay from '@ui/Overlay';
 import Button from '@ui/Button';
 import './StayLeave.scss';
+import { useSelector } from 'react-redux';
+import { selectGameId } from '@poka/slice/pokaStateSlice';
 
 const StayLeave = ({ useSitDown }) => {
-  const { gameId } = useParams();
+  const gameId = useSelector(selectGameId);
   const [sitDownn, { isLoading }] = useSitDown();
   const { snackElement, setSnackInfo } = useSnackBar();
   const navigate = useNavigate();

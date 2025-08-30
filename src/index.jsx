@@ -100,10 +100,8 @@ async function loadUserData() {
   if (result.isError) return null;
   return result.data;
 }
-async function loadGameData({ params }) {
-  const promise = store.dispatch(
-    pokaApi.endpoints.getPokaState.initiate(params.gameId)
-  );
+async function loadGameData() {
+  const promise = store.dispatch(pokaApi.endpoints.getPokaState.initiate());
   const result = await promise;
   promise.unsubscribe();
   if (result.isError) return null;

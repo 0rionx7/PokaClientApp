@@ -9,6 +9,7 @@ export const pokaStateSlice = createSlice({
     chosenTableCardIndexes: [],
     chosenHandCardIndexes: [],
     chosenGame: gameNames.MAMUT,
+    gameId: '',
   },
   reducers: {
     toggleChosenCard: (state, action) => {
@@ -36,18 +37,31 @@ export const pokaStateSlice = createSlice({
     },
   },
   extraReducers: builder =>
-    builder.addMatcher(
-      isAnyOf(
-        pokaApi.endpoints.sitOut.matchFulfilled,
-        pokaApi.endpoints.submitCards.matchFulfilled,
-        pokaApi.endpoints.selectCards.matchFulfilled
+    builder
+      .addMatcher(
+        isAnyOf(
+          pokaApi.endpoints.sitOut.matchFulfilled,
+          pokaApi.endpoints.submitCards.matchFulfilled,
+          pokaApi.endpoints.selectCards.matchFulfilled
+        ),
+        (_state, _action) => pokaStateSlice.getInitialState()
+      )
+      .addMatcher(
+        isAnyOf(
+          pokaApi.endpoints.openPokaTable.matchFulfilled,
+          pokaApi.endpoints.restartGame.matchFulfilled,
+          pokaApi.endpoints.sitDown.matchFulfilled,
+          pokaApi.endpoints.restartGame.matchFulfilled
+        ),
+        (state, action) => {
+          state.gameId = action.payload.gameId;
+        }
       ),
-      (_state, _action) => pokaStateSlice.getInitialState()
-    ),
   selectors: {
     selectChosenHandCardIndexes: pokaState => pokaState.chosenHandCardIndexes,
     selectChosenTableCardIndexes: pokaState => pokaState.chosenTableCardIndexes,
     selectChosenGame: pokaState => pokaState.chosenGame,
+    selectGameId: pokaState => pokaState.gameId,
   },
 });
 
@@ -57,4 +71,5 @@ export const {
   selectChosenHandCardIndexes,
   selectChosenTableCardIndexes,
   selectChosenGame,
+  selectGameId,
 } = pokaStateSlice.selectors;

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import BoardRow from '@poka/components/table/BoardRow';
@@ -7,8 +7,7 @@ import { gameConfigs, gameNames } from '@poka/utils/games';
 import './Board.scss';
 
 const Board = () => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
   const { gameName, rowIndexes, hats, playerStates } = data;
 
   const totalPot = playerStates.reduce((acc, curr) => acc + curr.bet, 0);

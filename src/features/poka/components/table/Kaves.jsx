@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { createChipStack } from '@poka/utils/createChipStack';
 import { INFO_TEXT } from '@utils/text-constants';
@@ -9,8 +7,7 @@ import './Kaves.scss';
 import { formatNumber } from '@utils/helper-functions';
 
 const Kaves = ({ totalPot, rows }) => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
 
   const { chip, kaves } = data;
   const chips = createChipStack(totalPot, chip);

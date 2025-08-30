@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { selectPlayerStates, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
@@ -7,10 +6,9 @@ import { getPosition } from '@poka/utils/getPosition';
 import { isPlayerState } from '@utils/helper-functions';
 
 const usePlayerClass = playerName => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
   const hostPlayerName = useSelector(selectUserName);
-  const playerStates = useSelector(state => selectPlayerStates(state, gameId));
+  const playerStates = useSelector(selectPlayerStates);
 
   const playersCount = playerStates.length;
   const hostIndex = playerStates.findIndex(isPlayerState(hostPlayerName));

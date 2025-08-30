@@ -1,14 +1,11 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import './LiveInfo.scss';
 import { formatNumber } from '@utils/helper-functions';
 
 const GameInfo = () => {
-  const { gameId } = useParams();
   const {
     data: { nextPlayers, playerStates, gamesCount },
-  } = useGetPokaStateQuery(gameId);
+  } = useGetPokaStateQuery();
 
   const [currentPlayer] = nextPlayers;
   const pot = playerStates.reduce((acc, curr) => acc + curr.bet, 0);

@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 
 const useTimerBar = playerState => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
   const [width, setWidth] = useState(100);
 
   const { playerName, handInfo } = playerState;

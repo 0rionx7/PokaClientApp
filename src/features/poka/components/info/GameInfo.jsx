@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import PlayHandCards from '@poka/components/info/PlayHandCards';
 import FaceDownCards from '@poka/components/info/FaceDownCards';
@@ -11,7 +9,6 @@ import Hats from '@poka/components/info/Hats';
 import './GameInfo.scss';
 
 const GameInfo = () => {
-  const { gameId } = useParams();
   const {
     data: {
       gameName,
@@ -27,7 +24,7 @@ const GameInfo = () => {
       targetObligation,
       gamesCount,
     },
-  } = useGetPokaStateQuery(gameId);
+  } = useGetPokaStateQuery();
 
   const tableTitle = createTableTitle(tableName);
 

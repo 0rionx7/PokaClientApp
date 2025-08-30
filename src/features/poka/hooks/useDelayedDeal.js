@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi.js';
 import { useRoomContext } from '@poka/components/RoomContext';
@@ -7,8 +6,7 @@ import { isPlayerState } from '@utils/helper-functions.js';
 import { DEAL_DELAY } from '@poka/utils/games';
 
 const useDelayedDeal = ({ playerState }) => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
   const { setIsDealing } = useRoomContext();
   const [dealtCards, setDealtCards] = useState([]);
   const [dealingIndex, setDealingIndex] = useState(0);

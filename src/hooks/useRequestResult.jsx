@@ -1,13 +1,14 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
+import { selectGameId } from '@poka/slice/pokaStateSlice';
 import { socket, useGetTablesQuery } from '@store/gameApi';
 import { useGetUserQuery } from '@account/api/accountApi';
 import { createTableTitleJsx } from '@utils/text-functions';
 import useSnackBar from '@hooks/useSnackBar';
 
 const useRequestResult = () => {
-  const { gameId } = useParams();
+  const gameId = useSelector(selectGameId);
   const { refetch: refetchUserInfo } = useGetUserQuery();
   const { refetch: refetchChineseTables } = useGetTablesQuery('chinese');
   const { refetch: refetchPokaTables } = useGetTablesQuery('poka');

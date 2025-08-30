@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 
@@ -30,13 +29,8 @@ import Frame from '@ui/Frame';
 import './GameBuilder.scss';
 
 const GameBuilder = () => {
-  const { gameId } = useParams();
-  const sittingPlayers = useSelector(state =>
-    selectSittingPlayers(state, gameId)
-  );
-  const activePlayers = useSelector(state =>
-    selectSittingPlayersWithMoney(state, gameId)
-  );
+  const sittingPlayers = useSelector(selectSittingPlayers);
+  const activePlayers = useSelector(selectSittingPlayersWithMoney);
   const [setGameVariant, { isSuccess }] = useSetGameVariantMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
   const { actionContainerNode } = useRoomContext();
@@ -45,7 +39,7 @@ const GameBuilder = () => {
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus({ pending: true });
-    const result = await setGameVariant({ gameId, builderConfig: values });
+    const result = await setGameVariant({ builderConfig: values });
     if (result?.error?.data) {
       setStatus({ error: result.error.data });
       return setSnackInfo(result.error.data);

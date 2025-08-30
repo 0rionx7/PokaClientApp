@@ -1,11 +1,8 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { COUNT_FEM } from '@utils/text-constants';
 
 const Swaps = () => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
 
   const { swaps, denials } = data;
 

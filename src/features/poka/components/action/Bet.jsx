@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 
 import { useBetMutation, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import BetOptions from '@poka/components/action/BetOptions';
@@ -9,11 +8,10 @@ import './Bet.scss';
 import { formatNumber } from '@utils/helper-functions';
 
 const Bet = ({ bet, resta }) => {
-  const { gameId } = useParams();
   const [placeBet, { reset, isSuccess }] = useBetMutation();
   const {
     data: { maxBet, chip, nextPlayers },
-  } = useGetPokaStateQuery(gameId);
+  } = useGetPokaStateQuery();
   const minBet = Math.min(maxBet, resta) - bet;
   const [betAmount, setBetAmount] = useState(minBet);
   const [status, setStatus] = useState({});
@@ -37,7 +35,7 @@ const Bet = ({ bet, resta }) => {
     const folded = e.nativeEvent.submitter.value === 'ΠΑΣΟ';
     const roundedAmount = Math.floor(betAmount / chip) * chip;
     const amount = folded ? -1 : roundedAmount;
-    const result = await placeBet({ gameId, amount });
+    const result = await placeBet({ amount });
     if (result.error?.data) return setStatus({ error: result.error?.data });
     setStatus({});
   }

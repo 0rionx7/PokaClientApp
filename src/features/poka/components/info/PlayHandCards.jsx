@@ -1,10 +1,7 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 
 const PlayHandCards = () => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
 
   const { cardsInHand, skarto, handCardsInPlay } = data;
   const cardsInPlay = handCardsInPlay?.slice().sort();

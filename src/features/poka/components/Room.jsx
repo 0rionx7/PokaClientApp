@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import EmojiProvider from '@components/chat/EmojiProvider';
 import RoomContextProvider from '@poka/components/RoomContext';
@@ -11,8 +9,7 @@ import Info from '@poka/components/info/Info';
 import './Room.scss';
 
 const Room = () => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
   useMessageService();
 
   if (!data) return <LoadingSpinner centered color="red" />;

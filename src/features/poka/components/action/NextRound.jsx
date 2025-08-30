@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import {
@@ -12,15 +11,12 @@ import Overlay from '@ui/Overlay';
 import { GAME_NAMES } from '@utils/text-constants';
 
 const NextRound = () => {
-  const { gameId } = useParams();
   const {
     data: { gameName },
-  } = useGetPokaStateQuery(gameId);
+  } = useGetPokaStateQuery();
   const [nextRound, { isLoading, isSuccess }] = useNextRoundMutation();
   const [reveal, { isSuccess: revealed }] = useRevealCardsMutation();
-  const { submittedHand, handCards } = useSelector(state =>
-    selectHostPlayerState(state, gameId)
-  );
+  const { submittedHand, handCards } = useSelector(selectHostPlayerState);
 
   const isFiveCardsPoker =
     gameName === GAME_NAMES.POKER && handCards.length === 5;
@@ -39,13 +35,13 @@ const NextRound = () => {
       {showRevealBtn && (
         <Button
           prompt={<h2>Αποκαλύψτε τα χαρτιά σας</h2>}
-          onClick={() => reveal(gameId)}
+          onClick={() => reveal()}
           className="purple reveal"
         />
       )}
       <Button
         prompt={prompt}
-        onClick={() => nextRound(gameId)}
+        onClick={() => nextRound()}
         disabled={isLoading || isSuccess}
         className="orange next-round"
       />

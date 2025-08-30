@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { selectHostPlayerState, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
@@ -13,12 +12,9 @@ import Renew from '@poka/components/action/Renew';
 import './Action.scss';
 
 const Action = () => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
   const hostPlayerName = useSelector(selectUserName);
-  const hostPlayerState = useSelector(state =>
-    selectHostPlayerState(state, gameId)
-  );
+  const hostPlayerState = useSelector(selectHostPlayerState);
   const { setActionContainerNode, isDealing } = useRoomContext();
 
   const { dealer, nextPlayers } = data;

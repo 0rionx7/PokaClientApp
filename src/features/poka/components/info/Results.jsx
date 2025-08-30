@@ -1,13 +1,11 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { selectPlayerStates } from '@poka/api/pokaApi';
 import PlayerResult from '@poka/components/info/PlayerResult';
 import './Results.scss';
 
 const Results = () => {
-  const { gameId } = useParams();
-  const playerStates = useSelector(state => selectPlayerStates(state, gameId));
+  const playerStates = useSelector(selectPlayerStates);
 
   const orderedPlayerStates = playerStates.toSorted(
     (a, b) =>

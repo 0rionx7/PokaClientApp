@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import { selectPlayerStates } from '@poka/api/pokaApi';
 import PlayerStanding from '@poka/components/info/PlayerStanding';
 import './Standings.scss';
@@ -8,8 +6,7 @@ import { useSelector } from 'react-redux';
 const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.'];
 
 const Standings = () => {
-  const { gameId } = useParams();
-  const playerStates = useSelector(state => selectPlayerStates(state, gameId));
+  const playerStates = useSelector(selectPlayerStates);
 
   const orderedPlayerStates = playerStates.toSorted(
     (a, b) => b.resta - a.resta || Number(b.sittingOut) - Number(a.sittingOut)

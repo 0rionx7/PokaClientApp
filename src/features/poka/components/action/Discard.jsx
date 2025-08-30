@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useSelectCardsMutation } from '@poka/api/pokaApi';
@@ -8,14 +7,12 @@ import useSnackBar from '@hooks/useSnackBar';
 import Button from '@ui/Button';
 
 const Discard = ({ selecting }) => {
-  const { gameId } = useParams();
   const selectedHandCardIndexes = useSelector(selectChosenHandCardIndexes);
   const [selectCards, { isLoading, isSuccess }] = useSelectCardsMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
 
   const handleDiscard = async () => {
     const result = await selectCards({
-      gameId,
       selectionInfo: selecting,
       selectedHandCardIndexes,
     });

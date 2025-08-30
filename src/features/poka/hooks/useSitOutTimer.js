@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import {
   useGetPokaStateQuery,
@@ -10,8 +9,7 @@ import {
 import { selectUserName } from '@account/api/accountApi';
 
 const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
   const hostPlayerName = useSelector(selectUserName);
   const [nextRound] = useNextRoundMutation();
   const [sitOut] = useSitOutMutation();
@@ -30,30 +28,18 @@ const useSitOutTimer = ({ playerName, handInfo, sittingOut }) => {
 
     const factor = submitting || jokerReplacing ? 2 : 1;
     const timeOut = factor * reaction * 1000;
-    const timer = setTimeout(
-      () => sitOut({ gameId, timedout: 'timedout' }),
-      timeOut
-    );
+    const timer = setTimeout(() => sitOut({ timedout: 'timedout' }), timeOut);
 
     return () => clearTimeout(timer);
-  }, [
-    noTimer,
-    kind,
-    isPlaying,
-    sitOut,
-    reaction,
-    submitting,
-    jokerReplacing,
-    gameId,
-  ]);
+  }, [noTimer, kind, isPlaying, sitOut, reaction, submitting, jokerReplacing]);
 
   useEffect(() => {
     if (noTimer || !kind || sittingOut) return;
 
-    const timer = setTimeout(() => nextRound(gameId), reaction * 1200);
+    const timer = setTimeout(() => nextRound(), reaction * 1200);
 
     return () => clearTimeout(timer);
-  }, [noTimer, kind, nextRound, sittingOut, reaction, gameId]);
+  }, [noTimer, kind, nextRound, sittingOut, reaction]);
 };
 
 export default useSitOutTimer;

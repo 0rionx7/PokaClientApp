@@ -1,4 +1,4 @@
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import { useRejectRequestMutation } from '@account/api/accountApi';
 import useSnackBar from '@hooks/useSnackBar';
@@ -12,7 +12,6 @@ const PlayerRequest = ({
   useJoin,
   clickable,
 }) => {
-  const { gameId } = useParams();
   const [joinTable, { isLoading }] = useJoin();
   const { snackElement, setSnackInfo } = useSnackBar();
   const [rejectRequest, { isSuccess, isLoading: rejecting }] =
@@ -24,7 +23,7 @@ const PlayerRequest = ({
     if (tableFull) return setSnackInfo('έχει συμπληρωθεί το καρέ');
 
     const { playerName } = playerState;
-    const result = await joinTable({ playerName, gameId });
+    const result = await joinTable({ playerName });
     if (result.error?.data) setSnackInfo(result.error.data);
   };
 

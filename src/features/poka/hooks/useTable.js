@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import {
   pokaApi,
@@ -13,8 +12,7 @@ import { resetMessages } from '@account/slice/accountSlice';
 import useSnackBar from '@hooks/useSnackBar';
 
 export default function useTable() {
-  const { gameId } = useParams();
-  const { data, refetch } = useGetPokaStateQuery(gameId);
+  const { data, refetch } = useGetPokaStateQuery();
   const [sitOut] = useSitOutMutation();
   const dispatch = useDispatch();
   const { snackElement, setSnackInfo } = useSnackBar({ secs: 3, top: true });
@@ -30,12 +28,9 @@ export default function useTable() {
   useEffect(() => {
     return () => {
       dispatch(resetMessages());
-      const promise = dispatch(pokaApi.endpoints.sitOut.initiate({ gameId }));
-      promise.finally(() => {
-        dispatch(pokaApi.util.resetApiState());
-      });
+      sitOut();
     };
-  }, [gameId, sitOut, dispatch]);
+  }, [sitOut, dispatch]);
 
   useEffect(() => {
     socket.on('connect', () => refetch());

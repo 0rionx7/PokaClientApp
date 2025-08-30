@@ -1,5 +1,4 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { selectHostPlayerState, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import {
@@ -9,9 +8,8 @@ import {
 import Card from '@poka/components/card/Card';
 
 const BoardCard = ({ index }) => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
-  const hostState = useSelector(state => selectHostPlayerState(state, gameId));
+  const { data } = useGetPokaStateQuery();
+  const hostState = useSelector(selectHostPlayerState);
   const chosenCardIndexes = useSelector(selectChosenTableCardIndexes);
   const dispatch = useDispatch();
 

@@ -1,6 +1,5 @@
 import { memo } from 'react';
 
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
@@ -13,8 +12,7 @@ import RenderItem from '../card/RenderItem';
 import './Board.scss';
 
 const BoardRow = ({ rowIndex, playerState }) => {
-  const { gameId } = useParams();
-  const { data } = useGetChineseStateQuery(gameId);
+  const { data } = useGetChineseStateQuery();
   const boardCards = useSelector(selectBoardCards);
   const username = useSelector(selectUserName);
 

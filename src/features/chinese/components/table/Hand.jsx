@@ -1,5 +1,4 @@
 import { memo, useEffect, useCallback, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import {
@@ -19,11 +18,10 @@ import Button from '@ui/Button';
 import classes from './Table.module.scss';
 
 const Hand = () => {
-  const { gameId } = useParams();
   const handCards = useSelector(selectHandcards);
   const boardCards = useSelector(selectBoardCards);
   const username = useSelector(selectUserName);
-  const { data } = useGetChineseStateQuery(gameId);
+  const { data } = useGetChineseStateQuery();
   const [submit] = useSubmitCardsChineseMutation();
   const [nextRound] = useNextRoundChineseMutation();
   const [hasSubmitted, setHasSubmitted] = useState(false);
@@ -54,13 +52,13 @@ const Hand = () => {
   const submitCards = useCallback(async () => {
     if (canSubmit) {
       setHasSubmitted(true);
-      await submit({ boardCards: boardCards, gameId });
+      await submit({ boardCards });
     }
     if (canNext) {
       setHasNexted(true);
-      await nextRound(gameId);
+      await nextRound();
     }
-  }, [canSubmit, canNext, boardCards, nextRound, submit, gameId]);
+  }, [canSubmit, canNext, boardCards, nextRound, submit]);
 
   return (
     <div className={classes.hand} style={{ left }}>

@@ -1,12 +1,10 @@
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { selectPlayerStates } from '@poka/api/pokaApi';
 import Player from '@poka/components/player/Player';
 
 const Players = () => {
-  const { gameId } = useParams();
-  const playerStates = useSelector(state => selectPlayerStates(state, gameId));
+  const playerStates = useSelector(selectPlayerStates);
 
   return (
     <>

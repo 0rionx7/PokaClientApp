@@ -1,15 +1,13 @@
 import { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { createChipStack } from '@poka/utils/createChipStack';
 import { formatNumber } from '@utils/helper-functions';
 
 const ChipStack = ({ playerState }) => {
-  const { gameId } = useParams();
   const {
     data: { chip },
-  } = useGetPokaStateQuery(gameId);
+  } = useGetPokaStateQuery();
 
   const amount = playerState.amountWon + playerState.currentBet;
   const chips = useMemo(() => createChipStack(amount, chip), [amount, chip]);

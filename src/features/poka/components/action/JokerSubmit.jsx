@@ -1,12 +1,9 @@
-import { useParams } from 'react-router-dom';
-
 import { useAssignJokerMutation } from '@poka/api/pokaApi';
 import Button from '@ui/Button';
 import Card from '@poka/components/card/Card';
 
 const JokerSubmit = ({ replacmentCards, resetReplacments }) => {
   const [assignJoker, { isLoading, isSuccess }] = useAssignJokerMutation();
-  const { gameId } = useParams();
 
   return (
     <div className="card-container">
@@ -22,7 +19,7 @@ const JokerSubmit = ({ replacmentCards, resetReplacments }) => {
       <Button
         className="green"
         prompt="ΑΝΤΙΚΑΤΑΣΤΑΣΗ"
-        onClick={() => assignJoker({ gameId, replacmentCards })}
+        onClick={() => assignJoker({ replacmentCards })}
         disabled={isLoading || isSuccess}
       />
     </div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import {
   useGetChineseStateQuery,
@@ -11,8 +10,7 @@ import Timer from '@chinese/components/table/Timer';
 import { isSitting } from '@utils/helper-functions';
 
 const useTimer = playerName => {
-  const { gameId } = useParams();
-  const { data } = useGetChineseStateQuery(gameId);
+  const { data } = useGetChineseStateQuery();
   const { nextPlayers, round, playerStates, playTime } = data;
   const [remainingTime, setRemainingTime] = useState(playTime);
   const username = useSelector(selectUserName);
@@ -36,9 +34,9 @@ const useTimer = playerName => {
 
   useEffect(() => {
     if (remainingTime === 0 && isHostBoard) {
-      timedOut(gameId);
+      timedOut();
     }
-  }, [remainingTime, isHostBoard, timedOut, gameId]);
+  }, [remainingTime, isHostBoard, timedOut]);
 
   useEffect(() => {
     setRemainingTime(playTime);

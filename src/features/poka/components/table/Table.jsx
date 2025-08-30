@@ -1,4 +1,3 @@
-import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import {
@@ -17,12 +16,9 @@ import useTable from '@poka/hooks/useTable';
 import './Table.scss';
 
 const Table = () => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
   const hostPlayerName = useSelector(selectUserName);
-  const hostPlayerState = useSelector(state =>
-    selectHostPlayerState(state, gameId)
-  );
+  const hostPlayerState = useSelector(selectHostPlayerState);
   const snackElement = useTable();
 
   const { playerStates, dealer } = data;

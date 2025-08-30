@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import {
   useGetChineseStateQuery,
   useStartChineseGameMutation,
@@ -11,11 +9,10 @@ import PlayerRequests from '@components/requests/PlayerRequests';
 import './DealerScreen.scss';
 
 const DealerScreen = () => {
-  const { gameId } = useParams();
   const {
     data: { playerStates },
-  } = useGetChineseStateQuery(gameId);
-  const [start] = useStartChineseGameMutation();
+  } = useGetChineseStateQuery();
+  const [deal] = useStartChineseGameMutation();
 
   const canDeal = playerStates.filter(isSitting).length > 1;
 
@@ -30,7 +27,7 @@ const DealerScreen = () => {
       <Button
         prompt="ΜΟΙΡΑΣΤΕ"
         disabled={!canDeal}
-        onClick={() => start(gameId)}
+        onClick={() => deal()}
         className="orange"
       />
     </Overlay>

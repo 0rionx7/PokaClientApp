@@ -1,12 +1,9 @@
-import { useParams } from 'react-router-dom';
-
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import Overlay from '@ui/Overlay';
 import './Table.scss';
 
 const Waiting = () => {
-  const { gameId } = useParams();
-  const { data } = useGetPokaStateQuery(gameId);
+  const { data } = useGetPokaStateQuery();
 
   return (
     <Overlay>

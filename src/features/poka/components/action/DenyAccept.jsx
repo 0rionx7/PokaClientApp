@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-
 import { useDenyCardMutation } from '@poka/api/pokaApi';
 import useSnackBar from '@hooks/useSnackBar';
 import Button from '@ui/Button';
@@ -7,11 +5,10 @@ import Button from '@ui/Button';
 const DenyAccept = () => {
   const [denyCard, { isLoading }] = useDenyCardMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
-  const { gameId } = useParams();
 
   const handleAction = async action => {
     const deny = action === 'deny';
-    const result = await denyCard({ gameId, deny });
+    const result = await denyCard({ deny });
     if (result.error?.data) setSnackInfo(result.error.data);
   };
 

@@ -1,5 +1,4 @@
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
 import { selectHostPlayerState } from '@poka/api/pokaApi';
 import JokerSelect from '@poka/components/action/JokerSelect';
@@ -10,7 +9,6 @@ import Submit from '@poka/components/action/Submit';
 import Discard from '@poka/components/action/Discard';
 
 const Play = () => {
-  const { gameId } = useParams();
   const {
     betting,
     selecting,
@@ -18,7 +16,7 @@ const Play = () => {
     denying: denialCount,
     bet,
     resta,
-  } = useSelector(state => selectHostPlayerState(state, gameId));
+  } = useSelector(selectHostPlayerState);
 
   const { swaps, submit, discard } = selecting || {};
   const denials = denialCount > 0;

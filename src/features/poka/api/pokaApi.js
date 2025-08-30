@@ -1,32 +1,50 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { selectUserName } from '@account/api/accountApi';
 import { isPlayerState, isSitting, updateAll } from '@utils/helper-functions';
-import { gameApi, socket } from '@store/gameApi';
+import { selectUserName } from '@account/api/accountApi';
+import { baseUrl, gameApi, socket } from '@store/gameApi';
 
 export const pokaApi = gameApi.injectEndpoints({
   endpoints: build => ({
     getPokaState: build.query({
-      query: gameId => ({
-        url: `/poka/${gameId}`,
-        params: { socketId: socket.id },
-      }),
-      async onCacheEntryAdded(gameId, { cacheEntryRemoved, updateCachedData }) {
-        if (!gameId) return;
+      queryFn: async (_arg, { getState }) => {
+        const token = getState().account.token;
+        const gameId = getState().pokaState.gameId;
 
+        if (!token) return { error: 'noToken' };
+
+        const httpHeaders = {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${token}`,
+        };
+        const headers = new Headers(httpHeaders);
+        const url = new URL(`${baseUrl}/poka/${gameId}`);
+        url.search = new URLSearchParams({ socketId: socket.id });
+        const response = await fetch(url, { method: 'GET', headers });
+
+        const responseData = await response.json();
+        if (!response.ok) throw Error(responseData);
+
+        return { data: responseData };
+      },
+      async onCacheEntryAdded(
+        _,
+        { cacheEntryRemoved, updateCachedData, getState }
+      ) {
+        const gameId = getState().pokaState.gameId;
         try {
           const stateUpdateListener = stateUpdate => {
+            if (gameId !== stateUpdate._id) return;
             updateCachedData(draft => ({ ...draft, ...stateUpdate }));
           };
 
           const closingBetListener = ({ _id, playerStates }) => {
-            if (gameId === _id) {
-              const updatedStates = updateAll(playerStates, { denying: 0 });
-              updateCachedData(draft => ({
-                ...draft,
-                playerStates: updatedStates,
-              }));
-            }
+            if (gameId !== _id) return;
+            const updatedStates = updateAll(playerStates, { denying: 0 });
+            updateCachedData(draft => ({
+              ...draft,
+              playerStates: updatedStates,
+            }));
           };
 
           socket.on('stateUpdated', stateUpdateListener);
@@ -43,14 +61,14 @@ export const pokaApi = gameApi.injectEndpoints({
       query: openTableData => ({
         url: '/poka',
         method: 'POST',
-        body: { openTableData, socketId: socket.id },
+        body: { openTableData },
       }),
     }),
     restartGame: build.mutation({
       query: gameInfo => ({
         url: '/poka/restart',
         method: 'POST',
-        body: { ...gameInfo, socketId: socket.id },
+        body: gameInfo,
       }),
     }),
     setGameVariant: build.mutation({
@@ -103,10 +121,9 @@ export const pokaApi = gameApi.injectEndpoints({
       }),
     }),
     revealCards: build.mutation({
-      query: gameId => ({
+      query: _ => ({
         url: '/poka/reveal',
         method: 'PATCH',
-        body: { gameId },
       }),
     }),
     renewCava: build.mutation({
@@ -117,24 +134,24 @@ export const pokaApi = gameApi.injectEndpoints({
       }),
     }),
     nextRound: build.mutation({
-      query: gameId => ({
+      query: _ => ({
         url: '/poka/nextRound',
         method: 'PATCH',
-        body: { gameId },
+        body: {},
       }),
     }),
     sitDown: build.mutation({
-      query: ({ gameId }) => ({
+      query: tableinfo => ({
         url: '/poka/sitDown',
         method: 'PATCH',
-        body: { gameId, socketId: socket.id },
+        body: tableinfo,
       }),
     }),
     sitOut: build.mutation({
       query: sitOutInfo => ({
         url: '/poka/sitOut',
         method: 'PATCH',
-        body: { ...sitOutInfo, socketId: socket.id },
+        body: sitOutInfo,
       }),
     }),
     joinTable: build.mutation({
@@ -148,18 +165,17 @@ export const pokaApi = gameApi.injectEndpoints({
   }),
 });
 
-const selectGameState = (state, gameId) =>
-  pokaApi.endpoints.getPokaState.select(gameId)(state)?.data;
+const selectGameState = pokaApi.endpoints.getPokaState.select();
 export const selectPlayerStates = createSelector(
-  [selectGameState],
-  gameState => gameState.playerStates ?? []
+  selectGameState,
+  ({ data }) => data.playerStates ?? []
 );
 export const selectSittingPlayers = createSelector(
-  [selectPlayerStates],
+  selectPlayerStates,
   playerStates => playerStates.filter(isSitting) ?? []
 );
 export const selectSittingPlayersWithMoney = createSelector(
-  [selectPlayerStates],
+  selectPlayerStates,
   playerStates =>
     playerStates.filter(state => state.resta > 0 && !state.sittingOut) ?? []
 );
