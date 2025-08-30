@@ -44,14 +44,16 @@ export const pokaStateSlice = createSlice({
           pokaApi.endpoints.submitCards.matchFulfilled,
           pokaApi.endpoints.selectCards.matchFulfilled
         ),
-        (_state, _action) => pokaStateSlice.getInitialState()
+        (state, _action) => ({
+          ...pokaStateSlice.getInitialState(),
+          gameId: state.gameId,
+        })
       )
       .addMatcher(
         isAnyOf(
           pokaApi.endpoints.openPokaTable.matchFulfilled,
           pokaApi.endpoints.restartGame.matchFulfilled,
-          pokaApi.endpoints.sitDown.matchFulfilled,
-          pokaApi.endpoints.restartGame.matchFulfilled
+          pokaApi.endpoints.sitDown.matchFulfilled
         ),
         (state, action) => {
           state.gameId = action.payload.gameId;

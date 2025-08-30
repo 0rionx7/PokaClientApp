@@ -60,7 +60,7 @@ const router = createBrowserRouter(
           <Route path="*" element={<h1>404 Not Found</h1>} />
         </Route>
         <Route
-          path="poka/table/:gameId"
+          path="poka-table"
           element={<RouteGuard element={<Room />} />}
           // prevent 'requestAnimationFrame' handler took 94ms
           loader={loadGameData}
@@ -103,7 +103,9 @@ async function loadUserData() {
 async function loadGameData() {
   const promise = store.dispatch(pokaApi.endpoints.getPokaState.initiate());
   const result = await promise;
-  promise.unsubscribe();
+  setTimeout(() => {
+    promise.unsubscribe();
+  }, 1000);
   if (result.isError) return null;
   return result.data;
 }

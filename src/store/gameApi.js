@@ -22,7 +22,7 @@ const injectingGameIdBaseQuery = async (args, api, extraOptions) => {
       ...args,
       body: {
         ...(args.body || {}),
-        gameId: gameId || args.body.gameId,
+        gameId: args.body?.gameId || gameId,
         socketId: socket.id,
       },
     };

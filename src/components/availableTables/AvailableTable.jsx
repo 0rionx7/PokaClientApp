@@ -9,7 +9,7 @@ import ToolTip from '@ui/ToolTip';
 import useSnackBar from '@hooks/useSnackBar';
 import './AvailableTables.scss';
 
-const AvailableTable = ({ tableName, gameId, useSitDown }) => {
+const AvailableTable = ({ tableInfo: { tableName, gameId }, useSitDown }) => {
   const navigate = useNavigate();
   const [requestJoin, { isLoading }] = useRequestJoinMutation();
   const [sitDown, { isLoading: sittingDown }] = useSitDown();
@@ -25,7 +25,7 @@ const AvailableTable = ({ tableName, gameId, useSitDown }) => {
       const result = await sitDown({ gameId, tableName });
       if (result.error?.data) setSnackInfo(result.error.data);
       if (result.data?.gameId)
-        return navigate(`/${result.data.game}/table/${result.data.gameId}`, {
+        return navigate(`/${result.data.game}-table`, {
           state: { game: result.data.game },
         });
     }

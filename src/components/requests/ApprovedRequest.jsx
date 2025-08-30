@@ -16,8 +16,7 @@ const ApprovedRequest = ({ requestInfo: { tableName, gameId, game } }) => {
   const handleJoinTable = async _ => {
     if (game === 'poka') {
       const { data } = await sitDown({ gameId, tableName });
-      if (data?.gameId)
-        navigate(`poka/table/${gameId}`, { state: { game: 'poka' } });
+      if (data?.gameId) navigate('poka-table', { state: { game: 'poka' } });
     } else {
       const { data } = await sitDownChinese({ gameId, tableName });
       if (data?.gameId)

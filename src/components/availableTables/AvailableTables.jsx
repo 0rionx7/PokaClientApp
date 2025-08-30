@@ -55,12 +55,10 @@ const AvailableTables = () => {
           </div>
         ) : (
           availableTables?.map(tableInfo => {
-            const { tableName, gameId } = tableInfo;
             return (
               <AvailableTable
-                key={tableName}
-                tableName={tableName}
-                gameId={gameId}
+                key={tableInfo.tableName}
+                tableInfo={tableInfo}
                 useSitDown={useSitDown}
               />
             );

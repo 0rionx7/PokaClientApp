@@ -56,6 +56,7 @@ export const pokaApi = gameApi.injectEndpoints({
           console.log(error);
         }
       },
+      keepUnusedDataFor: 0,
     }),
     openPokaTable: build.mutation({
       query: openTableData => ({
@@ -137,7 +138,6 @@ export const pokaApi = gameApi.injectEndpoints({
       query: _ => ({
         url: '/poka/nextRound',
         method: 'PATCH',
-        body: {},
       }),
     }),
     sitDown: build.mutation({
