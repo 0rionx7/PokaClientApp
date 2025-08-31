@@ -66,7 +66,7 @@ const router = createBrowserRouter(
           loader={loadGameData}
         />
         <Route
-          path="chinese/table/:gameId"
+          path="chinese-table"
           element={<RouteGuard element={<ChineseRoom />} />}
         />
       </Route>

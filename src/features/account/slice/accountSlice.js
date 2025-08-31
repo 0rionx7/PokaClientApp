@@ -1,6 +1,8 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 
 import { accountApi } from '@account/api/accountApi';
+import { pokaApi } from '@poka/api/pokaApi';
+import { chineseApi } from '@chinese/api/chineseApi';
 
 const initialStateFn = () => {
   const initialState = {
@@ -8,6 +10,7 @@ const initialStateFn = () => {
     messages: [],
     hideInfo: false,
     deckColor: 'rgb(255 0 0 / 90%)',
+    gameId: '',
   };
   try {
     initialState.hideInfo =
@@ -46,6 +49,27 @@ export const accountSlice = createSlice({
       .addMatcher(
         accountApi.endpoints.logOut.matchFulfilled,
         (_state, _action) => accountSlice.getInitialState()
+      )
+      .addMatcher(
+        isAnyOf(
+          pokaApi.endpoints.openPokaTable.matchFulfilled,
+          pokaApi.endpoints.restartGame.matchFulfilled,
+          pokaApi.endpoints.sitDown.matchFulfilled,
+          chineseApi.endpoints.openChineseTable.matchFulfilled,
+          chineseApi.endpoints.sitDownChinese.matchFulfilled
+        ),
+        (state, action) => {
+          state.gameId = action.payload.gameId;
+        }
+      )
+      .addMatcher(
+        isAnyOf(
+          pokaApi.endpoints.sitOut.matchFulfilled,
+          chineseApi.endpoints.sitOutChinese.matchFulfilled
+        ),
+        (state, action) => {
+          state.gameId = '';
+        }
       );
   },
   selectors: {
@@ -53,10 +77,16 @@ export const accountSlice = createSlice({
     selectMessagess: accountState => accountState.messages,
     selectDeckColor: accountState => accountState.deckColor,
     selectToken: accountState => accountState.token,
+    selectGameId: accountState => accountState.gameId,
   },
 });
 
 export const { setHideInfo, setDeckColor, postMessage, resetMessages } =
   accountSlice.actions;
-export const { selectHideInfo, selectMessagess, selectDeckColor, selectToken } =
-  accountSlice.selectors;
+export const {
+  selectHideInfo,
+  selectMessagess,
+  selectDeckColor,
+  selectToken,
+  selectGameId,
+} = accountSlice.selectors;

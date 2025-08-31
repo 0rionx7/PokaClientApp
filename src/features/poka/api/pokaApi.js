@@ -1,17 +1,18 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { isPlayerState, isSitting, updateAll } from '@utils/helper-functions';
 import { selectUserName } from '@account/api/accountApi';
 import { baseUrl, gameApi, socket } from '@store/gameApi';
+import { selectGameId, selectToken } from '@account/slice/accountSlice';
+import { isPlayerState, isSitting, updateAll } from '@utils/helper-functions';
 
 export const pokaApi = gameApi.injectEndpoints({
   endpoints: build => ({
     getPokaState: build.query({
-      queryFn: async (_arg, { getState }) => {
-        const token = getState().account.token;
-        const gameId = getState().pokaState.gameId;
+      queryFn: async (_, { getState }) => {
+        const token = selectToken(getState());
+        const gameId = selectGameId(getState());
 
-        if (!token) return { error: 'noToken' };
+        if (!token) return { error: 'not authorized' };
 
         const httpHeaders = {
           'Content-Type': 'application/json',
@@ -31,7 +32,7 @@ export const pokaApi = gameApi.injectEndpoints({
         _,
         { cacheEntryRemoved, updateCachedData, getState }
       ) {
-        const gameId = getState().pokaState.gameId;
+        const gameId = selectGameId(getState());
         try {
           const stateUpdateListener = stateUpdate => {
             if (gameId !== stateUpdate._id) return;

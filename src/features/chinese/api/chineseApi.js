@@ -1,21 +1,36 @@
 import { createSelector } from '@reduxjs/toolkit';
 
+import { selectGameId, selectToken } from '@account/slice/accountSlice';
 import { setLocalPlayerState } from '@chinese/slice/chineseStateSlice';
 import { selectUserName } from '@account/api/accountApi';
-import { gameApi, socket } from '@store/gameApi';
+import { baseUrl, gameApi, socket } from '@store/gameApi';
 import { isPlayerState } from '@utils/helper-functions';
 
 export const chineseApi = gameApi.injectEndpoints({
   endpoints: build => ({
     getChineseState: build.query({
-      query: gameId => {
-        return {
-          url: `/chinese/${gameId}`,
-          params: { socketId: socket.id },
+      queryFn: async (_arg, { getState }) => {
+        const token = selectToken(getState());
+        const gameId = selectGameId(getState());
+
+        if (!token) return { error: 'not authorized' };
+
+        const httpHeaders = {
+          'Content-Type': 'application/json',
+          authorization: `Bearer ${token}`,
         };
+        const headers = new Headers(httpHeaders);
+        const url = new URL(`${baseUrl}/chinese/${gameId}`);
+        url.search = new URLSearchParams({ socketId: socket.id });
+        const response = await fetch(url, { method: 'GET', headers });
+
+        const responseData = await response.json();
+        if (!response.ok) throw Error(responseData);
+
+        return { data: responseData };
       },
       async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
-        arg,
+        _arg,
         {
           dispatch,
           getState,
@@ -24,7 +39,6 @@ export const chineseApi = gameApi.injectEndpoints({
           updateCachedData, // available for query endpoints only
         }
       ) {
-        if (!arg) return;
         try {
           await cacheDataLoaded;
           const stateUpdateListener = (stateUpdate, updateBoard) => {
@@ -52,7 +66,7 @@ export const chineseApi = gameApi.injectEndpoints({
       query: openTableData => ({
         url: 'chinese',
         method: 'POST',
-        body: { ...openTableData, socketId: socket.id },
+        body: { ...openTableData },
       }),
     }),
     joinChineseTable: build.mutation({
@@ -67,7 +81,7 @@ export const chineseApi = gameApi.injectEndpoints({
       query: ({ gameId }) => ({
         url: 'chinese/sitDown',
         method: 'PATCH',
-        body: { gameId, socketId: socket.id },
+        body: { gameId },
       }),
     }),
     startChineseGame: build.mutation({
@@ -78,48 +92,45 @@ export const chineseApi = gameApi.injectEndpoints({
       }),
     }),
     submitCardsChinese: build.mutation({
-      query: ({ boardCards, gameId }) => ({
+      query: boardCards => ({
         url: 'chinese/submitCards',
         method: 'PATCH',
-        body: { boardCards, gameId },
+        body: boardCards,
       }),
     }),
     reorderDeck: build.mutation({
-      query: ({ dragIndex, dropIndex, gameId }) => ({
+      query: reorderInfo => ({
         url: 'chinese/reorderDeck',
         method: 'PATCH',
-        body: { dragIndex, dropIndex, gameId },
+        body: reorderInfo,
       }),
     }),
     nextRoundChinese: build.mutation({
-      query: gameId => ({
+      query: _ => ({
         url: 'chinese/nextRound',
         method: 'PATCH',
-        body: { gameId },
       }),
     }),
     timedOut: build.mutation({
-      query: gameId => ({
+      query: _ => ({
         url: 'chinese/timedOut',
         method: 'PATCH',
-        body: { gameId },
       }),
     }),
     sitOutChinese: build.mutation({
       query: sitOutInfo => ({
         url: 'chinese/sitOut',
         method: 'PATCH',
-        body: { ...sitOutInfo, socketId: socket.id },
+        body: sitOutInfo,
       }),
     }),
   }),
 });
 
-const selectGameState = (state, gameId) =>
-  chineseApi.endpoints.getChineseState.select(gameId)(state)?.data;
+const selectGameState = chineseApi.endpoints.getChineseState.select();
 export const selectPlayerStates = createSelector(
-  [selectGameState],
-  gameState => gameState.playerStates ?? []
+  selectGameState,
+  ({ data }) => data.playerStates ?? []
 );
 export const selectHostPlayerState = createSelector(
   [selectPlayerStates, selectUserName],

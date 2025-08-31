@@ -15,7 +15,7 @@ const baseQuery = fetchBaseQuery({
 });
 
 const injectingGameIdBaseQuery = async (args, api, extraOptions) => {
-  const gameId = api.getState().pokaState.gameId;
+  const gameId = api.getState().account.gameId;
 
   if (typeof args === 'object') {
     args = {

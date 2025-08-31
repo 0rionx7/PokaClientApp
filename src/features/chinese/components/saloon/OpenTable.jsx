@@ -38,9 +38,7 @@ const OpenTable = () => {
       setError(result.error.data);
       return tableData;
     }
-    navigate(`/chinese/table/${result.data.gameId}`, {
-      state: { game: 'chinese' },
-    });
+    navigate('/chinese-table', { state: { game: 'chinese' } });
   }
 
   return (
