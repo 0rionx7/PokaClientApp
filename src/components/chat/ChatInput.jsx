@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 
 import EmojiPicker, { Theme } from 'emoji-picker-react';
 
+import { selectGameId } from '@account/slice/accountSlice';
 import { useEmoji } from '@components/chat/EmojiProvider';
-import { selectGameId } from '@poka/slice/pokaStateSlice';
 import { selectUserName } from '@account/api/accountApi';
 import { socket } from '@store/gameApi';
 import { sendSvg } from '@icons/various';

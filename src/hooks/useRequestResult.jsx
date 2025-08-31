@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
-import { selectGameId } from '@poka/slice/pokaStateSlice';
+import { selectGameId } from '@account/slice/accountSlice';
 import { socket, useGetTablesQuery } from '@store/gameApi';
 import { useGetUserQuery } from '@account/api/accountApi';
 import { createTableTitleJsx } from '@utils/text-functions';

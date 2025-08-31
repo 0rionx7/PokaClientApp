@@ -1,11 +1,11 @@
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router-dom';
 
+import { selectGameId } from '@account/slice/accountSlice';
 import useSnackBar from '@hooks/useSnackBar';
 import Overlay from '@ui/Overlay';
 import Button from '@ui/Button';
 import './StayLeave.scss';
-import { useSelector } from 'react-redux';
-import { selectGameId } from '@poka/slice/pokaStateSlice';
 
 const StayLeave = ({ useSitDown }) => {
   const gameId = useSelector(selectGameId);
