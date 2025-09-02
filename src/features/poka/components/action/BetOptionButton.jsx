@@ -6,7 +6,7 @@ const BetOptionButton = ({ amount, color, ...rest }) => {
   const prompt = (
     <div className="bet-options">
       {`+ ${formatNumber(displayValue)}`}
-      <img src={`/chipImages/${color}.png`} alt="chip" />
+      <div className={`chip ${color}`}></div>
     </div>
   );
 
