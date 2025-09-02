@@ -1,16 +1,16 @@
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
-import Radio from '@ui/Radio';
 import { gameNames } from '@poka/utils/games';
+import Radio from '@ui/Radio';
+
+const countMap = {
+  cardsInHand: [2, 3, 4, 5],
+  cornerLength: [2, 3, 4],
+  railroadLength: [2, 3, 4, 5, 6, 7],
+  [gameNames.POKER]: [5, 6, 7],
+};
 
 const CardsCount = ({ name }) => {
   const { values, setFieldValue } = useGameBuilderContext();
-
-  const countMap = {
-    cardsInHand: [2, 3, 4, 5],
-    cornerLength: [2, 3, 4],
-    railroadLength: [2, 3, 4, 5, 6, 7],
-    [gameNames.POKER]: [5, 6, 7],
-  };
 
   const countOptions = countMap[values.gameName] || countMap[name];
 

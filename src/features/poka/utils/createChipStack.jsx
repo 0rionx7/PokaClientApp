@@ -1,15 +1,4 @@
-import Chip from '@poka/components/table/Chip';
-
-function createChipJsx(count, multiplier, startIndex = 0) {
-  return Array.from({ length: count }, (_, i) => (
-    <Chip
-      key={`${multiplier}-${i}`}
-      multiplier={multiplier}
-      index={i}
-      startIndex={startIndex}
-    />
-  ));
-}
+import { createChipStyle } from '@poka/utils/createChipStyle';
 
 function calculateChipCounts(amount, chip) {
   const denominations = [
@@ -32,6 +21,22 @@ function calculateChipCounts(amount, chip) {
 }
 
 export function createChipStack(amount, chip) {
+  function createChipJsx(count, multiplier, startIndex) {
+    return Array.from({ length: count }, (_, i) => {
+      const { color, style } = createChipStyle(multiplier, i, startIndex);
+      const value = multiplier * chip;
+      const displayValue = value >= 1000 ? `${value / 1000}K` : value;
+
+      return (
+        <div
+          key={`${multiplier}-${i}`}
+          className={`chip ${color}`}
+          style={style}>
+          <span>{displayValue}</span>
+        </div>
+      );
+    });
+  }
   if (amount < 0 || amount > 1_200_000 * chip) return [];
 
   const { reds, yellows, blacks, greens } = calculateChipCounts(amount, chip);

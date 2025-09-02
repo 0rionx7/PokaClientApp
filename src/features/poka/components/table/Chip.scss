@@ -7,23 +7,56 @@
   img {
     display: block;
   }
+}
+.chip {
+  --chip-width: 0.7rem;
+  --chip-heigth: 0.45rem;
+  position: relative;
+  width: var(--chip-width);
+  height: var(--chip-heigth);
+  background: url('@assets/images/chip-sprite.png');
+  background-size: calc(7 * var(--chip-width)) var(--chip-heigth);
+  background-repeat: no-repeat;
+  @media only screen and (min-height: 500px) {
+    @media only screen and (min-width: 650px) {
+      --chip-width: 0.9rem;
+    }
+    @media only screen and (min-width: 1100px) {
+      --chip-width: 1.1rem;
+    }
+  }
   span {
     position: absolute;
     left: 50%;
+    top: 10%;
     color: white;
-    font-size: 0.3rem;
-    translate: -50% 100%;
+    font-size: 0.25rem;
+    translate: -50%;
   }
 }
-.chip {
-  position: relative;
-  width: 0.7rem;
-  @media only screen and (min-height: 500px) {
-    @media only screen and (min-width: 650px) {
-      width: 0.9rem;
-    }
-    @media only screen and (min-width: 1100px) {
-      width: 1.1rem;
-    }
-  }
+
+.chip.red {
+  background-position: 0 0;
+}
+
+.chip.gold {
+  background-position: calc(-1 * var(--chip-width)) 0;
+}
+.chip.blue {
+  background-position: calc(-2 * var(--chip-width)) 0;
+}
+.chip.black {
+  background-position: calc(-3 * var(--chip-width)) 0;
+}
+
+.chip.purple {
+  background-position: calc(-4 * var(--chip-width)) 0;
+}
+
+.chip.green {
+  background-position: calc(-5 * var(--chip-width)) 0;
+}
+
+.chip.yellow {
+  background-position: calc(-6 * var(--chip-width)) 0;
 }

@@ -14,6 +14,7 @@ export default defineConfig(() => {
     plugins: [react()],
     resolve: {
       alias: {
+        '@assets': path.resolve(__dirname, 'src/assets'),
         '@store': path.resolve(__dirname, 'src/store'),
         '@components': path.resolve(__dirname, 'src/components'),
         '@poka': path.resolve(__dirname, 'src/features/poka'),

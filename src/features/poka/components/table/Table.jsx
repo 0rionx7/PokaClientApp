@@ -14,6 +14,7 @@ import SitOut from '@components/sitOut/SitOut';
 import Board from '@poka/components/table/Board';
 import useTable from '@poka/hooks/useTable';
 import './Table.scss';
+import './Chip.scss';
 
 const Table = () => {
   const { data } = useGetPokaStateQuery();

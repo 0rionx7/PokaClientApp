@@ -17,9 +17,8 @@ const Chip = ({ multiplier, index, startIndex }) => {
   const displayValue = value >= 1000 ? `${value / 1000}K` : value;
 
   return (
-    <div className="chip" style={style}>
-      <img src={`/chipImages/${color}.png`} alt="chip" />
-      <span style={{ bottom: '.6rem' }}>{displayValue}</span>
+    <div className={`chip ${color}`} style={style}>
+      <span>{displayValue}</span>
     </div>
   );
 };
