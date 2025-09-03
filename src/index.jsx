@@ -103,9 +103,7 @@ async function loadUserData() {
 async function loadGameData() {
   const promise = store.dispatch(pokaApi.endpoints.getPokaState.initiate());
   const result = await promise;
-  setTimeout(() => {
-    promise.unsubscribe();
-  }, 1000);
+  setTimeout(() => promise.unsubscribe(), 1000);
   if (result.isError) return null;
   return result.data;
 }

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectPlayerStates, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
 import { getPosition } from '@poka/utils/getPosition';
-import { isPlayerState } from '@utils/helper-functions';
+import { playerStateOf } from '@utils/helper-functions';
 
 const usePlayerClass = playerName => {
   const { data } = useGetPokaStateQuery();
@@ -11,8 +11,8 @@ const usePlayerClass = playerName => {
   const playerStates = useSelector(selectPlayerStates);
 
   const playersCount = playerStates.length;
-  const hostIndex = playerStates.findIndex(isPlayerState(hostPlayerName));
-  const playerIndex = playerStates.findIndex(isPlayerState(playerName));
+  const hostIndex = playerStates.findIndex(playerStateOf(hostPlayerName));
+  const playerIndex = playerStates.findIndex(playerStateOf(playerName));
 
   let seat;
   if (data.rotation === 'clockwise') {

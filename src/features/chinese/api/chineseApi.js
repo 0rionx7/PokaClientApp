@@ -4,7 +4,7 @@ import { selectGameId, selectToken } from '@account/slice/accountSlice';
 import { setLocalPlayerState } from '@chinese/slice/chineseStateSlice';
 import { selectUserName } from '@account/api/accountApi';
 import { baseUrl, gameApi, socket } from '@store/gameApi';
-import { isPlayerState } from '@utils/helper-functions';
+import { playerStateOf } from '@utils/helper-functions';
 
 export const chineseApi = gameApi.injectEndpoints({
   endpoints: build => ({
@@ -46,7 +46,7 @@ export const chineseApi = gameApi.injectEndpoints({
               const username = selectUserName(getState());
               if (updateBoard?.some(br => (br === username) | (br === 'all'))) {
                 const updatedHostState = stateUpdate.playerStates.find(
-                  isPlayerState(username)
+                  playerStateOf(username)
                 );
                 dispatch(setLocalPlayerState(updatedHostState));
               }
@@ -135,7 +135,7 @@ export const selectPlayerStates = createSelector(
 export const selectHostPlayerState = createSelector(
   [selectPlayerStates, selectUserName],
   (playerStates, playerName) =>
-    playerStates.find(isPlayerState(playerName)) ?? null
+    playerStates.find(playerStateOf(playerName)) ?? null
 );
 
 export const {

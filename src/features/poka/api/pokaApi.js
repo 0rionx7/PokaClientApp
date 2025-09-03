@@ -3,7 +3,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { selectUserName } from '@account/api/accountApi';
 import { baseUrl, gameApi, socket } from '@store/gameApi';
 import { selectGameId, selectToken } from '@account/slice/accountSlice';
-import { isPlayerState, isSitting, updateAll } from '@utils/helper-functions';
+import { playerStateOf, isSitting, updateAll } from '@utils/helper-functions';
 
 export const pokaApi = gameApi.injectEndpoints({
   endpoints: build => ({
@@ -183,7 +183,7 @@ export const selectSittingPlayersWithMoney = createSelector(
 export const selectHostPlayerState = createSelector(
   [selectPlayerStates, selectUserName],
   (playerStates, playerName) =>
-    playerStates.find(isPlayerState(playerName)) ?? null
+    playerStates.find(playerStateOf(playerName)) ?? null
 );
 
 export const {

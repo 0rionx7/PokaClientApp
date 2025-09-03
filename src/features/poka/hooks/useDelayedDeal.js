@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi.js';
 import { useRoomContext } from '@poka/components/RoomContext';
-import { isPlayerState } from '@utils/helper-functions.js';
+import { playerStateOf } from '@utils/helper-functions.js';
 import { DEAL_DELAY } from '@poka/utils/games';
 
 const useDelayedDeal = ({ playerState }) => {
@@ -18,7 +18,7 @@ const useDelayedDeal = ({ playerState }) => {
 
   const handSubmitted = playerState.submittedHand.length;
   const activePlayers = playerStates.filter(ps => ps.isInGame);
-  const turnOrder = activePlayers.findIndex(isPlayerState(playerName));
+  const turnOrder = activePlayers.findIndex(playerStateOf(playerName));
   const dealingCard = handCards.at(dealingIndex);
   const interval = activePlayers.length * DEAL_DELAY;
   const playerDelay = (turnOrder + 1) * DEAL_DELAY;

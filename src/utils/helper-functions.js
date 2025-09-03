@@ -4,7 +4,7 @@ export function getColorClass(value) {
 export function isSitting(playerState) {
   return !playerState.sittingOut;
 }
-export function isPlayerState(playerName) {
+export function playerStateOf(playerName) {
   return entry => entry.playerName === playerName;
 }
 export function updateAll(playerStates, update) {
