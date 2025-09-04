@@ -23,7 +23,7 @@ const OpenTable = () => {
   const playerName = useSelector(selectUserName);
   const [formState, formAction, isPending] = useActionState(
     openTableAction,
-    initialValues
+    initialValues,
   );
   const [error, setError] = useState(null);
   const [openTable] = useOpenPokaTableMutation();

@@ -15,7 +15,7 @@ export function isMirror(handCards, tableCards) {
   const sortedTableCards = tableCards.toSorted(descValue);
   const sortedHandCards = handCards.toSorted(descValue);
   return sortedTableCards.every(
-    (card, i) => card.value === sortedHandCards[i].value
+    (card, i) => card.value === sortedHandCards[i].value,
   );
 }
 export function createCode(length) {
@@ -25,7 +25,7 @@ export function createCode(length) {
   let counter = 0;
   while (counter < length) {
     password += characters.charAt(
-      Math.floor(Math.random() * characters.length)
+      Math.floor(Math.random() * characters.length),
     );
     counter += 1;
   }

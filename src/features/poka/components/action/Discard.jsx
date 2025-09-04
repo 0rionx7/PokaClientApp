@@ -26,7 +26,7 @@ const Discard = ({ selecting }) => {
   useEffect(() => {
     if (discardError) {
       setSnackInfo(
-        `Έχετε επιλέξει ${selectedHandCardIndexes.length} χαρτιά αντί για 1`
+        `Έχετε επιλέξει ${selectedHandCardIndexes.length} χαρτιά αντί για 1`,
       );
     }
   }, [selectedHandCardIndexes.length, discardError, setSnackInfo]);

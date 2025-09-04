@@ -42,13 +42,13 @@ export const accountSlice = createSlice({
           accountApi.endpoints.login.matchFulfilled,
           accountApi.endpoints.register.matchFulfilled,
           accountApi.endpoints.usernameChange.matchFulfilled,
-          accountApi.endpoints.reconnectedLogin.matchFulfilled
+          accountApi.endpoints.reconnectedLogin.matchFulfilled,
         ),
-        (state, action) => ({ ...state, ...action.payload })
+        (state, action) => ({ ...state, ...action.payload }),
       )
       .addMatcher(
         accountApi.endpoints.logOut.matchFulfilled,
-        (_state, _action) => accountSlice.getInitialState()
+        (_state, _action) => accountSlice.getInitialState(),
       )
       .addMatcher(
         isAnyOf(
@@ -56,20 +56,20 @@ export const accountSlice = createSlice({
           pokaApi.endpoints.restartGame.matchFulfilled,
           pokaApi.endpoints.sitDown.matchFulfilled,
           chineseApi.endpoints.openChineseTable.matchFulfilled,
-          chineseApi.endpoints.sitDownChinese.matchFulfilled
+          chineseApi.endpoints.sitDownChinese.matchFulfilled,
         ),
         (state, action) => {
           state.gameId = action.payload.gameId;
-        }
+        },
       )
       .addMatcher(
         isAnyOf(
           pokaApi.endpoints.sitOut.matchFulfilled,
-          chineseApi.endpoints.sitOutChinese.matchFulfilled
+          chineseApi.endpoints.sitOutChinese.matchFulfilled,
         ),
         (state, _action) => {
           state.gameId = '';
-        }
+        },
       );
   },
   selectors: {

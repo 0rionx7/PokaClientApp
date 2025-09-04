@@ -37,7 +37,7 @@ export const chineseApi = gameApi.injectEndpoints({
           cacheEntryRemoved,
           cacheDataLoaded,
           updateCachedData, // available for query endpoints only
-        }
+        },
       ) {
         try {
           await cacheDataLoaded;
@@ -48,7 +48,7 @@ export const chineseApi = gameApi.injectEndpoints({
                 updateBoard?.some((br) => (br === username) | (br === 'all'))
               ) {
                 const updatedHostState = stateUpdate.playerStates.find(
-                  playerStateOf(username)
+                  playerStateOf(username),
                 );
                 dispatch(setLocalPlayerState(updatedHostState));
               }
@@ -132,12 +132,12 @@ export const chineseApi = gameApi.injectEndpoints({
 const selectGameState = chineseApi.endpoints.getChineseState.select();
 export const selectPlayerStates = createSelector(
   selectGameState,
-  ({ data }) => data.playerStates ?? []
+  ({ data }) => data.playerStates ?? [],
 );
 export const selectHostPlayerState = createSelector(
   [selectPlayerStates, selectUserName],
   (playerStates, playerName) =>
-    playerStates.find(playerStateOf(playerName)) ?? null
+    playerStates.find(playerStateOf(playerName)) ?? null,
 );
 
 export const {

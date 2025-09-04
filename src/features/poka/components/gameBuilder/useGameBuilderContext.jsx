@@ -22,7 +22,7 @@ export default function GameBuilderContextProvider({ children }) {
 
   const setFieldValue = useCallback(
     (field, value) => setValues((prev) => ({ ...prev, [field]: value })),
-    []
+    [],
   );
 
   return (

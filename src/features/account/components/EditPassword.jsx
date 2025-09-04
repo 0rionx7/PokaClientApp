@@ -18,7 +18,7 @@ const EditPassword = () => {
   const [error, setError] = useState(null);
   const [formState, formAction, isPending] = useActionState(
     editPasswordAction,
-    initialValues
+    initialValues,
   );
 
   useEffect(() => {

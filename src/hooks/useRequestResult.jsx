@@ -42,7 +42,7 @@ const useRequestResult = () => {
           <>
             Η αίτηση συμμετοχής σας για το τραπέζι <b>{kind}</b>
             {createTableTitleJsx(tableName)} απορρίφθηκε.
-          </>
+          </>,
         );
       }
     });

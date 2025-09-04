@@ -7,7 +7,7 @@ const Overlay = ({ className, children, ...rest }) => {
         <div className={`overlay ${className ?? ''}`} {...rest}>
           {children}
         </div>,
-        document.getElementById('overlay')
+        document.getElementById('overlay'),
       )}
     </>
   );

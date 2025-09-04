@@ -25,13 +25,13 @@ const AvailableTables = () => {
       data?.filter(
         (tableInfo) =>
           joinRequests?.every(
-            (request) => request.tableName !== tableInfo.tableName
+            (request) => request.tableName !== tableInfo.tableName,
           ) &&
           tableInfo.tableName
             .toLowerCase()
-            .startsWith(query.trim().toLowerCase())
+            .startsWith(query.trim().toLowerCase()),
       ),
-    [data, query, joinRequests]
+    [data, query, joinRequests],
   );
 
   return (

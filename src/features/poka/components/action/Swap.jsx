@@ -19,7 +19,7 @@ const Swap = ({ selecting }) => {
   useEffect(() => {
     if (swapError)
       setSnackInfo(
-        `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για ${selecting.swaps}`
+        `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για ${selecting.swaps}`,
       );
   }, [setSnackInfo, swapError, selectedHandCardsCount, selecting.swaps]);
 

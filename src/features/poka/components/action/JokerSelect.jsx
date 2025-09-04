@@ -19,7 +19,7 @@ const JokerSelect = () => {
   const [cardValue, setCardValue] = useState(14);
 
   const jokerCount = handCards.filter((card) =>
-    joker.some((value) => card.value === value)
+    joker.some((value) => card.value === value),
   ).length;
   const card = { value: cardValue, suit, faceUp: true };
 

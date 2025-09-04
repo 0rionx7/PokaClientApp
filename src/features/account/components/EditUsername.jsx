@@ -9,7 +9,7 @@ const EditUsername = ({ stopEditing }) => {
   const [error, setError] = useState(null);
   const [formState, formAction, isPending] = useActionState(
     editUserNameAction,
-    ''
+    '',
   );
 
   const validate = (userName) => {

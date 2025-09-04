@@ -28,7 +28,7 @@ const Info = () => {
   } = useGetPokaStateQuery();
   const hostPlayerName = useSelector(selectUserName);
   const [selectedTab, setSelectedTab] = useState(
-    INFO_BUTTONS_TITLES.GAME_DESCRIPTION
+    INFO_BUTTONS_TITLES.GAME_DESCRIPTION,
   );
   const [showInfoPanel, setShowInfoPanel] = useState(true);
   const { setShowPicker } = useEmoji();

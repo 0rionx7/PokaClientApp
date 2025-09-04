@@ -16,7 +16,7 @@ const Cell = ({ index, place, owner }) => {
         item: monitor.getItem(),
       }),
     }),
-    [index, place, owner]
+    [index, place, owner],
   );
 
   const style = {

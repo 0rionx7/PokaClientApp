@@ -69,7 +69,7 @@ const Bet = ({ bet, resta }) => {
             Math.floor(betAmount / chip) * chip,
             minBet,
             resta,
-            status.error
+            status.error,
           )}
           disabled={status.error || status.pending || isSuccess}
           className="green"

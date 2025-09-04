@@ -70,13 +70,13 @@ const router = createBrowserRouter(
           element={<RouteGuard element={<ChineseRoom />} />}
         />
       </Route>
-    </Route>
+    </Route>,
   ),
   {
     future: {
       v7_relativeSplatPath: true,
     },
-  }
+  },
 );
 root.render(
   // <StrictMode>
@@ -87,7 +87,7 @@ root.render(
         v7_startTransition: true,
       }}
     />
-  </Provider>
+  </Provider>,
   // </StrictMode>
 );
 
@@ -95,7 +95,7 @@ async function loadUserData() {
   const result = await store.dispatch(
     accountApi.endpoints.getUser.initiate(undefined, {
       forceRefetch: true,
-    })
+    }),
   );
   if (result.isError) return null;
   return result.data;

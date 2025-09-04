@@ -33,7 +33,7 @@ export const accountApi = gameApi.injectEndpoints({
       query: (tableName) => `user/requests/${tableName}`,
       async onCacheEntryAdded(
         _arg,
-        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
+        { cacheEntryRemoved, cacheDataLoaded, updateCachedData },
       ) {
         try {
           await cacheDataLoaded;
@@ -45,7 +45,7 @@ export const accountApi = gameApi.injectEndpoints({
           };
           const requestRemovedListener = ({ username }) => {
             updateCachedData((draft) =>
-              draft.filter((reqInfo) => reqInfo.username !== username)
+              draft.filter((reqInfo) => reqInfo.username !== username),
             );
           };
           socket.on('requestAdded', requestAddedListener);
@@ -156,7 +156,7 @@ export const accountApi = gameApi.injectEndpoints({
 
 export const selectUserName = createSelector(
   accountApi.endpoints.getUser.select(),
-  (result) => result?.data?.username
+  (result) => result?.data?.username,
 );
 
 export const {

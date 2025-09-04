@@ -15,7 +15,7 @@ const ResetPassword = () => {
   useRelogin({ token });
   const [formState, formAction, isPending] = useActionState(
     resetPasswordAction,
-    ''
+    '',
   );
   const [error, setError] = useState(null);
 

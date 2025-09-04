@@ -21,12 +21,12 @@ export const chineseStateSlice = createSlice({
       state.boardCards = state.boardCards.map((boardCard) =>
         boardCard?.value + boardCard?.suit === movedCard.value + movedCard.suit
           ? null
-          : boardCard
+          : boardCard,
       );
       state.handCards = state.handCards.map((handCard) =>
         handCard?.value + handCard?.suit === movedCard.value + movedCard.suit
           ? null
-          : handCard
+          : handCard,
       );
       state[place][index] = movedCard;
     },
@@ -51,7 +51,7 @@ export const chineseStateSlice = createSlice({
   extraReducers: (builder) =>
     builder.addMatcher(
       chineseApi.endpoints.sitOutChinese.matchPending,
-      (_state, _action) => chineseStateSlice.getInitialState()
+      (_state, _action) => chineseStateSlice.getInitialState(),
     ),
   selectors: {
     selectBoardCards: (chineseState) => chineseState.boardCards,

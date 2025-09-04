@@ -21,7 +21,7 @@ const PlayerRequests = ({ useGetStateQuery, maxPlayersCount }) => {
   const requestedStates = data
     .filter(
       (request) =>
-        !playerStates.some((ps) => ps.playerName === request.username)
+        !playerStates.some((ps) => ps.playerName === request.username),
     )
     .map((request) => ({
       playerName: request.username,

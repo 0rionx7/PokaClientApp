@@ -54,7 +54,7 @@ export function createChipStack(amount, chip) {
       purpleChips = createChipJsx(purples, 10000);
       blueChips = createChipJsx(
         Math.floor((amount % (10000 * chip)) / (1000 * chip)),
-        1000
+        1000,
       );
     } else {
       blueChips = createChipJsx(blues, 1000);
@@ -62,7 +62,7 @@ export function createChipStack(amount, chip) {
 
     redChips = createChipJsx(
       Math.floor((amount % (1000 * chip)) / (100 * chip)),
-      100
+      100,
     );
   } else {
     redChips = createChipJsx(reds, 100);

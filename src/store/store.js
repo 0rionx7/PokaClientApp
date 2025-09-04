@@ -11,7 +11,7 @@ const rootReducer = combineSlices(
   gameApi,
   pokaStateSlice,
   chineseStateSlice,
-  accountSlice
+  accountSlice,
 );
 
 export const makeStore = (preloadedState) => {

@@ -15,7 +15,7 @@ const Card = ({ card, owner }) => {
         isDragging: monitor.isDragging(),
       }),
     }),
-    [card, owner]
+    [card, owner],
   );
 
   if (card?.hidden) return <CardBack />;

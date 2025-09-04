@@ -30,7 +30,7 @@ export const pokaApi = gameApi.injectEndpoints({
       },
       async onCacheEntryAdded(
         _,
-        { cacheEntryRemoved, updateCachedData, getState }
+        { cacheEntryRemoved, updateCachedData, getState },
       ) {
         const gameId = selectGameId(getState());
         try {
@@ -169,21 +169,21 @@ export const pokaApi = gameApi.injectEndpoints({
 const selectGameState = pokaApi.endpoints.getPokaState.select();
 export const selectPlayerStates = createSelector(
   selectGameState,
-  ({ data }) => data.playerStates ?? []
+  ({ data }) => data.playerStates ?? [],
 );
 export const selectSittingPlayers = createSelector(
   selectPlayerStates,
-  (playerStates) => playerStates.filter(isSitting) ?? []
+  (playerStates) => playerStates.filter(isSitting) ?? [],
 );
 export const selectSittingPlayersWithMoney = createSelector(
   selectPlayerStates,
   (playerStates) =>
-    playerStates.filter((state) => state.resta > 0 && !state.sittingOut) ?? []
+    playerStates.filter((state) => state.resta > 0 && !state.sittingOut) ?? [],
 );
 export const selectHostPlayerState = createSelector(
   [selectPlayerStates, selectUserName],
   (playerStates, playerName) =>
-    playerStates.find(playerStateOf(playerName)) ?? null
+    playerStates.find(playerStateOf(playerName)) ?? null,
 );
 
 export const {

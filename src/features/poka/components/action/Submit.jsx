@@ -38,7 +38,7 @@ const Submit = () => {
   const handleEvaluate = async () => {
     if (selectedHandCardsCount > 5)
       return setSnackInfo(
-        `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για 5`
+        `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για 5`,
       );
     if (
       submittedHandCardIndexes.concat(submittedTableCardIndexes).length !== 5 &&

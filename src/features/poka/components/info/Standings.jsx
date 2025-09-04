@@ -9,7 +9,7 @@ const Standings = () => {
   const playerStates = useSelector(selectPlayerStates);
 
   const orderedPlayerStates = playerStates.toSorted(
-    (a, b) => b.resta - a.resta || Number(b.sittingOut) - Number(a.sittingOut)
+    (a, b) => b.resta - a.resta || Number(b.sittingOut) - Number(a.sittingOut),
   );
 
   return (

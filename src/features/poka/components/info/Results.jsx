@@ -11,7 +11,7 @@ const Results = () => {
     (a, b) =>
       b.amountWon - a.amountWon ||
       b.handInfo.handValue - a.handInfo.handValue ||
-      Number(b.sittingOut) - Number(a.sittingOut)
+      Number(b.sittingOut) - Number(a.sittingOut),
   );
   return (
     <div className="results-board">

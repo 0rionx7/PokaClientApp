@@ -11,7 +11,7 @@ const Chip = ({ multiplier, index, startIndex }) => {
 
   const { color, style } = useMemo(
     () => createChipStyle(multiplier, index, startIndex),
-    [multiplier, index, startIndex]
+    [multiplier, index, startIndex],
   );
   const value = multiplier * chip;
   const displayValue = value >= 1000 ? `${value / 1000}K` : value;

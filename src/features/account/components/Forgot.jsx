@@ -30,7 +30,7 @@ const Forgot = () => {
     if (result.error?.data)
       return setStatus({ error: result.error.data || 'server error' });
     setSnackInfo(
-      'Σας έχει αποσταλλεί στο email που δηλώσατε σύνδεσμος για την επαναφορά του κωδικού σας.'
+      'Σας έχει αποσταλλεί στο email που δηλώσατε σύνδεσμος για την επαναφορά του κωδικού σας.',
     );
     setStatus({});
   }

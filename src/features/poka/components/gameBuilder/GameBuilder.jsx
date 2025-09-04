@@ -123,7 +123,7 @@ const GameBuilder = () => {
               }
               className="deal-btn"
             />,
-            actionContainerNode
+            actionContainerNode,
           )}
       </form>
     </Frame>

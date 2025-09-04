@@ -23,7 +23,7 @@ const initialValues = () => {
 const Login = () => {
   const [formState, formAction, isPending] = useActionState(
     loginAction,
-    initialValues()
+    initialValues(),
   );
   const [error, setError] = useState(null);
   const [login] = useLoginMutation();
@@ -35,7 +35,7 @@ const Login = () => {
     try {
       window.localStorage.setItem(
         'username',
-        loginData.rememberMe ? loginData.username : ''
+        loginData.rememberMe ? loginData.username : '',
       );
     } catch (error) {
       console.log(error);

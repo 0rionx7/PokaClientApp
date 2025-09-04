@@ -13,7 +13,7 @@ const UserRequests = () => {
   const { state } = useLocation();
 
   const joinRequests = data?.joinRequests.filter(
-    (req) => req.game === state.game
+    (req) => req.game === state.game,
   );
   const useSitDown =
     state.game === 'poka' ? useSitDownMutation : useSitDownChineseMutation;

@@ -50,7 +50,7 @@ export const gameApi = createApi({
           const params = new URLSearchParams({ game });
           const response = await fetch(
             `${baseUrl}/tables?${params.toString()}`,
-            { method: 'GET', headers }
+            { method: 'GET', headers },
           );
 
           const responseData = await response.json();
@@ -63,7 +63,7 @@ export const gameApi = createApi({
       },
       async onCacheEntryAdded(
         type,
-        { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
+        { cacheEntryRemoved, cacheDataLoaded, updateCachedData },
       ) {
         try {
           await cacheDataLoaded;
@@ -74,7 +74,7 @@ export const gameApi = createApi({
           };
           const tableDeletedListerner = (deletedTable) => {
             updateCachedData((draft) =>
-              draft.filter(({ tableName }) => tableName !== deletedTable)
+              draft.filter(({ tableName }) => tableName !== deletedTable),
             );
           };
           const table =
