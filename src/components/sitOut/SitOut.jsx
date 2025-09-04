@@ -23,7 +23,8 @@ const SitOut = () => {
             className="sitback"
             initial={{ opacity: 0, top: 30 }}
             animate={{ opacity: 1, top: 0 }}
-            transition={{ duration: 0.5 }}>
+            transition={{ duration: 0.5 }}
+          >
             <h3>Τι επιθυμείτε;</h3>
             <div>
               <Button

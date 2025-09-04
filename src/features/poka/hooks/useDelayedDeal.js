@@ -17,7 +17,7 @@ const useDelayedDeal = ({ playerState }) => {
   const [currentPlayer] = nextPlayers;
 
   const handSubmitted = playerState.submittedHand.length;
-  const activePlayers = playerStates.filter(ps => ps.isInGame);
+  const activePlayers = playerStates.filter((ps) => ps.isInGame);
   const turnOrder = activePlayers.findIndex(playerStateOf(playerName));
   const dealingCard = handCards.at(dealingIndex);
   const interval = activePlayers.length * DEAL_DELAY;
@@ -30,8 +30,8 @@ const useDelayedDeal = ({ playerState }) => {
     if (noDeal || firstDealt) return;
     setIsDealing(true);
     const timer = setTimeout(() => {
-      setDealtCards(prev => [...prev, dealingCard]);
-      setDealingIndex(prev => prev + 1);
+      setDealtCards((prev) => [...prev, dealingCard]);
+      setDealingIndex((prev) => prev + 1);
       setFirstDealt(true);
     }, playerDelay);
 
@@ -42,8 +42,8 @@ const useDelayedDeal = ({ playerState }) => {
     if (noDeal || !firstDealt) return;
     setIsDealing(true);
     const timer = setTimeout(() => {
-      setDealtCards(prev => [...prev, dealingCard]);
-      setDealingIndex(prev => prev + 1);
+      setDealtCards((prev) => [...prev, dealingCard]);
+      setDealingIndex((prev) => prev + 1);
     }, interval);
 
     return () => clearTimeout(timer);

@@ -38,7 +38,8 @@
   &.selected {
     translate: 0 calc(-0.2 * var(--card-height));
     background-color: bisque;
-    box-shadow: 0 calc(-0.1 * var(--card-height)) #3fa603,
+    box-shadow:
+      0 calc(-0.1 * var(--card-height)) #3fa603,
       0 calc(-0.1 * var(--card-height) - 1px) black;
   }
   &.joker {

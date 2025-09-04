@@ -21,13 +21,14 @@ export default function GameBuilderContextProvider({ children }) {
   const [status, setStatus] = useState({});
 
   const setFieldValue = useCallback(
-    (field, value) => setValues(prev => ({ ...prev, [field]: value })),
+    (field, value) => setValues((prev) => ({ ...prev, [field]: value })),
     []
   );
 
   return (
     <GameBuilderContext
-      value={{ values, setValues, setFieldValue, status, setStatus }}>
+      value={{ values, setValues, setFieldValue, status, setStatus }}
+    >
       {children}
     </GameBuilderContext>
   );

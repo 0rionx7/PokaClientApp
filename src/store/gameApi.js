@@ -35,7 +35,7 @@ export const gameApi = createApi({
   reducerPath: 'gameApi',
   baseQuery: injectingGameIdBaseQuery,
   tagTypes: ['User', 'Requests', 'ChineseRequests'],
-  endpoints: build => ({
+  endpoints: (build) => ({
     getTables: build.query({
       queryFn: async (game, { getState }) => {
         try {
@@ -67,13 +67,13 @@ export const gameApi = createApi({
       ) {
         try {
           await cacheDataLoaded;
-          const tableCreatedListener = tableInfo => {
-            updateCachedData(draft => {
+          const tableCreatedListener = (tableInfo) => {
+            updateCachedData((draft) => {
               draft.push(tableInfo);
             });
           };
-          const tableDeletedListerner = deletedTable => {
-            updateCachedData(draft =>
+          const tableDeletedListerner = (deletedTable) => {
+            updateCachedData((draft) =>
               draft.filter(({ tableName }) => tableName !== deletedTable)
             );
           };

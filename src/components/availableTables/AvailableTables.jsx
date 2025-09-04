@@ -23,9 +23,9 @@ const AvailableTables = () => {
   const availableTables = useMemo(
     () =>
       data?.filter(
-        tableInfo =>
+        (tableInfo) =>
           joinRequests?.every(
-            request => request.tableName !== tableInfo.tableName
+            (request) => request.tableName !== tableInfo.tableName
           ) &&
           tableInfo.tableName
             .toLowerCase()
@@ -43,7 +43,7 @@ const AvailableTables = () => {
           name="query"
           type="text"
           value={query}
-          onChange={e => setfQuery(e.target.value)}
+          onChange={(e) => setfQuery(e.target.value)}
         />
       </div>
       <h3>Διαθέσιμα τραπέζια</h3>
@@ -54,7 +54,7 @@ const AvailableTables = () => {
             Δεν υπάρχει διαθέσιμο τραπέζι.
           </div>
         ) : (
-          availableTables?.map(tableInfo => {
+          availableTables?.map((tableInfo) => {
             return (
               <AvailableTable
                 key={tableInfo.tableName}

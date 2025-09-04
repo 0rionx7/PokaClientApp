@@ -19,7 +19,7 @@ const OpenTable = () => {
 
   const navigate = useNavigate();
 
-  const validate = name => {
+  const validate = (name) => {
     if (name.trim().length < 3 || name.trim().length > 17)
       return `Το όνομα τραπεζιού πρέπει να αποτελείται\n από 3 εώς 17 χαρακτήρες.`;
   };
@@ -61,7 +61,7 @@ const OpenTable = () => {
           <div className="form-control">
             <label htmlFor="playTime">Χρόνος παιχνιδιού</label>
             <select id="playTime" name="playTime" defaultValue={120}>
-              {[120, 180, 300].map(secs => (
+              {[120, 180, 300].map((secs) => (
                 <option key={secs} value={secs}>
                   {describeTime(secs)}
                 </option>

@@ -4,7 +4,8 @@ export const accountSvg = (
     height="16"
     fill="currentColor"
     className="bi bi-person-circle"
-    viewBox="0 0 16 16">
+    viewBox="0 0 16 16"
+  >
     <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
     <path
       fillRule="evenodd"
@@ -18,7 +19,8 @@ export const editSvg = (
     height="16"
     fill="currentColor"
     className="bi bi-pencil-square"
-    viewBox="0 0 16 16">
+    viewBox="0 0 16 16"
+  >
     <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
     <path
       fillRule="evenodd"
@@ -32,7 +34,8 @@ export const settingsSvg = (
     height="16"
     fill="black"
     className="bi bi-person-gear"
-    viewBox="0 0 16 16">
+    viewBox="0 0 16 16"
+  >
     <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm.256 7a4.474 4.474 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10c.26 0 .507.009.74.025.226-.341.496-.65.804-.918C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4s1 1 1 1h5.256Zm3.63-4.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" />
   </svg>
 );
@@ -42,7 +45,8 @@ export const logOutSvg = (
     height="16"
     fill="red"
     className="bi bi-box-arrow-right"
-    viewBox="0 0 16 16">
+    viewBox="0 0 16 16"
+  >
     <path
       fillRule="evenodd"
       d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"
@@ -59,7 +63,8 @@ export const logInSvg = (
     height="16"
     fill="currentColor"
     className="bi bi-door-open"
-    viewBox="0 0 16 16">
+    viewBox="0 0 16 16"
+  >
     <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z" />
     <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z" />
   </svg>
@@ -71,7 +76,8 @@ export const sendSvg = (
     fill="currentColor"
     className="bi bi-send-arrow-down-fill"
     style={{ display: 'inline' }}
-    viewBox="0 0 16 16">
+    viewBox="0 0 16 16"
+  >
     <path
       fillRule="evenodd"
       d="M15.854.146a.5.5 0 0 1 .11.54L13.026 8.03A4.5 4.5 0 0 0 8 12.5c0 .5 0 1.5-.773.36l-1.59-2.498L.644 7.184l-.002-.001-.41-.261a.5.5 0 0 1 .083-.886l.452-.18.001-.001L15.314.035a.5.5 0 0 1 .54.111ZM6.637 10.07l7.494-7.494.471-1.178-1.178.471L5.93 9.363l.338.215a.5.5 0 0 1 .154.154l.215.338Z"
@@ -90,11 +96,13 @@ export const foulSvg = (
     width="242px"
     height="192.000000pt"
     viewBox="0 0 209.000000 192.000000"
-    preserveAspectRatio="xMidYMid meet">
+    preserveAspectRatio="xMidYMid meet"
+  >
     <g
       transform="translate(0.000000,192.000000) scale(0.100000,-0.100000)"
       fill="#ff0000"
-      stroke="none">
+      stroke="none"
+    >
       <path
         d="M958 1915 c-5 -4 -110 -18 -145 -19 -17 -1 -31 -5 -30 -11 2 -8 -2
 -10 -34 -14 -5 0 -7 -7 -3 -13 6 -10 4 -10 -8 0 -12 9 -18 10 -23 2 -4 -7 -15
@@ -457,11 +465,13 @@ export const fantasySvg = (
     width="300px"
     height="229.000000pt"
     viewBox="0 0 252.000000 229.000000"
-    preserveAspectRatio="xMidYMid meet">
+    preserveAspectRatio="xMidYMid meet"
+  >
     <g
       transform="translate(0.000000,229.000000) scale(0.100000,-0.100000)"
       fill="#04e331"
-      stroke="none">
+      stroke="none"
+    >
       <path
         d="M1067 2253 c-4 -3 -7 -34 -8 -67 -2 -190 -70 -389 -187 -556 -26 -36
 -105 -126 -178 -200 -159 -163 -224 -234 -219 -238 1 -2 18 0 37 3 27 5 74 45
@@ -668,11 +678,13 @@ export const soundOnSvg = (
     version="1.0"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 300.000000 300.000000"
-    preserveAspectRatio="xMidYMid meet">
+    preserveAspectRatio="xMidYMid meet"
+  >
     <g
       transform="translate(0.000000,300.000000) scale(0.100000,-0.100000)"
       fill="bisque"
-      stroke="none">
+      stroke="none"
+    >
       <path
         d="M1525 2532 c-16 -11 -174 -144 -349 -296 l-319 -276 -309 0 c-331 0
 -358 -4 -392 -51 -14 -21 -16 -71 -16 -436 l0 -413 29 -32 29 -33 324 -3 324
@@ -706,11 +718,13 @@ export const soundOffSvg = (
     version="1.0"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 980.000000 728.000000"
-    preserveAspectRatio="xMidYMid meet">
+    preserveAspectRatio="xMidYMid meet"
+  >
     <g
       transform="translate(0.000000,728.000000) scale(0.100000,-0.100000)"
       fill="bisque"
-      stroke="none">
+      stroke="none"
+    >
       <path
         d="M4708 7266 c-104 -22 -171 -73 -1693 -1267 l-761 -596 -829 -7 -830
   -7 -121 -59 c-202 -100 -306 -204 -418 -420 l-56 -108 0 -1167 0 -1167 39 -83

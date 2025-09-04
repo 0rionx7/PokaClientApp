@@ -9,7 +9,7 @@ const BetOptions = ({ betAmount, setBetAmount, disabled, validate }) => {
   const betAmounts = [+chip, 5 * chip, 25 * chip, 100 * chip];
   const colors = ['green', 'black', 'yellow', 'red'];
 
-  const handleIncrese = amount => {
+  const handleIncrese = (amount) => {
     const newAmount = betAmount ? betAmount + amount : amount;
     validate(newAmount);
     setBetAmount(newAmount);

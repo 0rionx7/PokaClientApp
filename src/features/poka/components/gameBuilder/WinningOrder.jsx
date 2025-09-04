@@ -9,7 +9,7 @@ const WinningOrder = () => {
 
   return (
     <>
-      {winningOrders.map(winningOrder => (
+      {winningOrders.map((winningOrder) => (
         <Radio
           key={winningOrder}
           name="winningOrder"

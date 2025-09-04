@@ -20,7 +20,7 @@ const Bet = ({ bet, resta }) => {
     return () => reset();
   }, [reset, nextPlayers]);
 
-  const validate = amount => {
+  const validate = (amount) => {
     if (amount < minBet && amount >= 0)
       return setStatus({ error: `ελάχ. : ${minBet}` });
     if (amount > 0 && amount < chip)
@@ -51,7 +51,7 @@ const Bet = ({ bet, resta }) => {
           inputMode="numeric"
           disabled={isSuccess || status.pending}
           value={+betAmount}
-          onChange={e => {
+          onChange={(e) => {
             validate(+e.target.value);
             setBetAmount(+e.target.value);
           }}

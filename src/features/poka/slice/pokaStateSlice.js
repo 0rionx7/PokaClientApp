@@ -16,7 +16,7 @@ export const pokaStateSlice = createSlice({
 
       const toggleChosenIndex = (indexes, index) =>
         indexes.includes(index)
-          ? indexes.filter(i => i !== index)
+          ? indexes.filter((i) => i !== index)
           : [...indexes, index];
 
       if (place === 'hand') {
@@ -35,7 +35,7 @@ export const pokaStateSlice = createSlice({
       state.chosenGame = action.payload;
     },
   },
-  extraReducers: builder =>
+  extraReducers: (builder) =>
     builder.addMatcher(
       isAnyOf(
         pokaApi.endpoints.submitCards.matchFulfilled,
@@ -45,9 +45,10 @@ export const pokaStateSlice = createSlice({
       (_state, _action) => pokaStateSlice.getInitialState()
     ),
   selectors: {
-    selectChosenHandCardIndexes: pokaState => pokaState.chosenHandCardIndexes,
-    selectChosenTableCardIndexes: pokaState => pokaState.chosenTableCardIndexes,
-    selectChosenGame: pokaState => pokaState.chosenGame,
+    selectChosenHandCardIndexes: (pokaState) => pokaState.chosenHandCardIndexes,
+    selectChosenTableCardIndexes: (pokaState) =>
+      pokaState.chosenTableCardIndexes,
+    selectChosenGame: (pokaState) => pokaState.chosenGame,
   },
 });
 

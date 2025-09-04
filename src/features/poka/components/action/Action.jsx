@@ -33,12 +33,13 @@ const Action = () => {
   return (
     <div
       className="action-container"
-      ref={node => {
+      ref={(node) => {
         setActionContainerNode(node);
         return () => {
           setActionContainerNode(null);
         };
-      }}>
+      }}
+    >
       {!isDealing && (
         <>
           {content}

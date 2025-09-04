@@ -6,7 +6,7 @@ const DenyAccept = () => {
   const [denyCard, { isLoading }] = useDenyCardMutation();
   const { snackElement, setSnackInfo } = useSnackBar();
 
-  const handleAction = async action => {
+  const handleAction = async (action) => {
     const deny = action === 'deny';
     const result = await denyCard({ deny });
     if (result.error?.data) setSnackInfo(result.error.data);

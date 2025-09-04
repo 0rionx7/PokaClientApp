@@ -35,7 +35,7 @@ export const accountSlice = createSlice({
       state.messages = [];
     },
   },
-  extraReducers: builder => {
+  extraReducers: (builder) => {
     builder
       .addMatcher(
         isAnyOf(
@@ -73,11 +73,11 @@ export const accountSlice = createSlice({
       );
   },
   selectors: {
-    selectHideInfo: accountState => accountState.hideInfo,
-    selectMessagess: accountState => accountState.messages,
-    selectDeckColor: accountState => accountState.deckColor,
-    selectToken: accountState => accountState.token,
-    selectGameId: accountState => accountState.gameId,
+    selectHideInfo: (accountState) => accountState.hideInfo,
+    selectMessagess: (accountState) => accountState.messages,
+    selectDeckColor: (accountState) => accountState.deckColor,
+    selectToken: (accountState) => accountState.token,
+    selectGameId: (accountState) => accountState.gameId,
   },
 });
 

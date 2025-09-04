@@ -26,11 +26,11 @@ const HandCards = ({ playerState }) => {
 
   const handClass = `hand-cards cards-${displayedCards?.length}`;
 
-  const isChosen = index =>
-    isHostPlayer && chosenCardIndexes.some(i => i === index);
-  const isJoker = value => joker.some(v => v === value) && !handSubmitted;
+  const isChosen = (index) =>
+    isHostPlayer && chosenCardIndexes.some((i) => i === index);
+  const isJoker = (value) => joker.some((v) => v === value) && !handSubmitted;
 
-  const handleSelectCard = index => {
+  const handleSelectCard = (index) => {
     const canBeChosen = isHostPlayer && selecting && !handSubmitted;
     if (canBeChosen) dispatch(toggleChosenCard({ place: 'hand', index }));
   };

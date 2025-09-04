@@ -9,7 +9,7 @@ const FaceDownCards = () => {
 
   const closed = data.faceDownIndexes
     .toSorted()
-    .map(index => ORDER_NAME[index])
+    .map((index) => ORDER_NAME[index])
     .join(', ');
 
   return (

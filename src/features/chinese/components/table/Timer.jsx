@@ -1,5 +1,5 @@
 const Timer = ({ time, isActive }) => {
-  const formatTime = sec =>
+  const formatTime = (sec) =>
     sec > 0
       ? `${Math.floor(sec / 60)}:${sec % 60 < 10 ? '0' + (sec % 60) : sec % 60}`
       : '0:00';
@@ -11,7 +11,8 @@ const Timer = ({ time, isActive }) => {
       style={{
         color: timeColor,
         border: isActive ? '2px solid yellow' : 'none',
-      }}>
+      }}
+    >
       {formatTime(time)}
     </div>
   );

@@ -45,7 +45,7 @@ const OpenTable = () => {
     }
     navigate('/poka-table', { state: { game: 'poka' } });
   }
-  const validate = values => {
+  const validate = (values) => {
     if (
       values.tableName.trim().length < 3 ||
       values.tableName.trim().length > 17

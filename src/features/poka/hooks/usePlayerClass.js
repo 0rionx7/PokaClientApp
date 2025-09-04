@@ -5,7 +5,7 @@ import { selectUserName } from '@account/api/accountApi';
 import { getPosition } from '@poka/utils/getPosition';
 import { playerStateOf } from '@utils/helper-functions';
 
-const usePlayerClass = playerName => {
+const usePlayerClass = (playerName) => {
   const { data } = useGetPokaStateQuery();
   const hostPlayerName = useSelector(selectUserName);
   const playerStates = useSelector(selectPlayerStates);

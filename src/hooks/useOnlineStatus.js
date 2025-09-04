@@ -8,7 +8,7 @@ const useOnlineStatus = () => {
 
 const getSnapshot = () => navigator.onLine;
 
-const subscribe = callback => {
+const subscribe = (callback) => {
   window.addEventListener('online', callback);
   window.addEventListener('offline', callback);
 

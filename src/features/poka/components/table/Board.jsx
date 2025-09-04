@@ -1,5 +1,3 @@
-
-
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import BoardRow from '@poka/components/table/BoardRow';
 import Kaves from '@poka/components/table/Kaves';

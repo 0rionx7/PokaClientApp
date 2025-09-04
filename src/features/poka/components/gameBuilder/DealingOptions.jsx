@@ -9,13 +9,13 @@ const DealingOptions = ({ deny, setDeny }) => {
   const { values, setFieldValue } = useGameBuilderContext();
   const [swap, setSwap] = useState(false);
 
-  const handleDenyChange = e => {
+  const handleDenyChange = (e) => {
     if (e.target.checked) setFieldValue('dealing', DEALING_KIND.ENA_ENA);
     setFieldValue('denials', e.target.checked ? 1 : 0);
     setDeny(e.target.checked);
   };
 
-  const handleSwapChange = e => {
+  const handleSwapChange = (e) => {
     setFieldValue('swaps', e.target.checked ? 1 : 0);
     setSwap(e.target.checked);
   };
@@ -25,7 +25,7 @@ const DealingOptions = ({ deny, setDeny }) => {
       <CheckBox
         label="ΜΕ ΣΚΑΡΤΟ"
         checked={values.skarto}
-        onChange={e => setFieldValue('skarto', e.target.checked)}
+        onChange={(e) => setFieldValue('skarto', e.target.checked)}
         info={INFO_TEXT.SKARTO}
       />
       <div className="with-counter">

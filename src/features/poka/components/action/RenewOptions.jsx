@@ -10,7 +10,7 @@ const RenewOptions = () => {
     data: { cava },
   } = useGetPokaStateQuery();
 
-  const handleRenew = async amount => {
+  const handleRenew = async (amount) => {
     const result = await renew({ amount });
     if (result.error?.data) setSnackInfo(result.error.data);
   };
@@ -21,7 +21,7 @@ const RenewOptions = () => {
     <>
       <div className="renew-options">
         {snackElement}
-        {amounts.map(amoount => (
+        {amounts.map((amoount) => (
           <Button
             key={amoount}
             prompt={formatNumber(amoount)}

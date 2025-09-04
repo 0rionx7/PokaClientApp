@@ -5,10 +5,10 @@ export function isSitting(playerState) {
   return !playerState.sittingOut;
 }
 export function playerStateOf(playerName) {
-  return entry => entry.playerName === playerName;
+  return (entry) => entry.playerName === playerName;
 }
 export function updateAll(playerStates, update) {
-  return playerStates.map(playerState => ({ ...playerState, ...update }));
+  return playerStates.map((playerState) => ({ ...playerState, ...update }));
 }
 export function isMirror(handCards, tableCards) {
   const descValue = (cardA, cardB) => cardB.value - cardA.value;
@@ -31,4 +31,4 @@ export function createCode(length) {
   }
   return password;
 }
-export const formatNumber = n => n.toLocaleString();
+export const formatNumber = (n) => n.toLocaleString();

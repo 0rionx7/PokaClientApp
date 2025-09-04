@@ -15,7 +15,7 @@ const ChineseRoom = () => {
   useMessageService();
 
   const handleToggleInfoPanel = () => {
-    setShowChat(pr => !pr);
+    setShowChat((pr) => !pr);
     setShowPicker(false);
   };
 
@@ -31,7 +31,8 @@ const ChineseRoom = () => {
       <Table />
       <div
         className="ribbon"
-        style={{ width: '100%', height: '100%', background: 'none' }}>
+        style={{ width: '100%', height: '100%', background: 'none' }}
+      >
         <EmojiProvider>
           <div style={{ width: chatWidth }}>
             <ChatBox />

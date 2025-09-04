@@ -20,7 +20,7 @@ const CardsCount = ({ name }) => {
 
   return (
     <>
-      {countOptions.map(count => (
+      {countOptions.map((count) => (
         <Radio
           key={values.gameName + count}
           name={name}

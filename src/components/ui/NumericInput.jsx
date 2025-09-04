@@ -18,12 +18,14 @@ const NumericInput = ({ name, className }) => {
       <button
         type="button"
         style={{ backgroundColor: 'green' }}
-        onClick={handleIncrement}>
+        onClick={handleIncrement}
+      >
         {'+'}
       </button>
       <div
         className="form-control"
-        style={{ justifyContent: 'center', fontSize: '0.6rem' }}>
+        style={{ justifyContent: 'center', fontSize: '0.6rem' }}
+      >
         <input
           type="number"
           readOnly
@@ -35,7 +37,8 @@ const NumericInput = ({ name, className }) => {
       <button
         type="button"
         style={{ backgroundColor: '#d10000' }}
-        onClick={handleDecrement}>
+        onClick={handleDecrement}
+      >
         {'-'}
       </button>
     </div>

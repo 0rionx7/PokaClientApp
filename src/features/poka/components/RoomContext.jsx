@@ -19,7 +19,8 @@ export default function RoomContextProvider({ children }) {
         setActionContainerNode,
         isDealing,
         setIsDealing,
-      }}>
+      }}
+    >
       {children}
     </RoomContext>
   );

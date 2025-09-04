@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 import { baseUrl, gameApi, socket } from '@store/gameApi';
 
 export const accountApi = gameApi.injectEndpoints({
-  endpoints: build => ({
+  endpoints: (build) => ({
     getUser: build.query({
       queryFn: async (_arg, { getState }) => {
         try {
@@ -30,7 +30,7 @@ export const accountApi = gameApi.injectEndpoints({
       providesTags: ['User'],
     }),
     getRequests: build.query({
-      query: tableName => `user/requests/${tableName}`,
+      query: (tableName) => `user/requests/${tableName}`,
       async onCacheEntryAdded(
         _arg,
         { cacheEntryRemoved, cacheDataLoaded, updateCachedData }
@@ -38,14 +38,14 @@ export const accountApi = gameApi.injectEndpoints({
         try {
           await cacheDataLoaded;
           // dealers screen requests handlers=======================
-          const requestAddedListener = reqInfo => {
-            updateCachedData(draft => {
+          const requestAddedListener = (reqInfo) => {
+            updateCachedData((draft) => {
               draft.push(reqInfo);
             });
           };
           const requestRemovedListener = ({ username }) => {
-            updateCachedData(draft =>
-              draft.filter(reqInfo => reqInfo.username !== username)
+            updateCachedData((draft) =>
+              draft.filter((reqInfo) => reqInfo.username !== username)
             );
           };
           socket.on('requestAdded', requestAddedListener);
@@ -60,21 +60,21 @@ export const accountApi = gameApi.injectEndpoints({
       providesTags: ['Requests'],
     }),
     register: build.mutation({
-      query: userData => ({
+      query: (userData) => ({
         url: 'user/register',
         method: 'PUT',
         body: { ...userData, socketId: socket.id },
       }),
     }),
     login: build.mutation({
-      query: userData => ({
+      query: (userData) => ({
         url: 'user/login',
         method: 'POST',
         body: { ...userData, socketId: socket.id },
       }),
     }),
     reconnectedLogin: build.mutation({
-      query: info => ({
+      query: (info) => ({
         url: '/user/reconnectedlogin',
         method: 'POST',
         body: { info, socketId: socket.id },
@@ -88,14 +88,14 @@ export const accountApi = gameApi.injectEndpoints({
       }),
     }),
     changePassword: build.mutation({
-      query: userData => ({
+      query: (userData) => ({
         url: 'user/passwordChange',
         method: 'PATCH',
         body: userData,
       }),
     }),
     usernameChange: build.mutation({
-      query: username => ({
+      query: (username) => ({
         url: 'user/usernameChange',
         method: 'PATCH',
         body: username,
@@ -103,14 +103,14 @@ export const accountApi = gameApi.injectEndpoints({
       invalidatesTags: ['User'],
     }),
     forgotPassword: build.mutation({
-      query: email => ({
+      query: (email) => ({
         url: 'user/forgot',
         method: 'PATCH',
         body: email,
       }),
     }),
     requestJoin: build.mutation({
-      query: requestInfo => ({
+      query: (requestInfo) => ({
         url: 'user/requestJoin',
         method: 'PATCH',
         body: {
@@ -121,7 +121,7 @@ export const accountApi = gameApi.injectEndpoints({
       invalidatesTags: ['User'],
     }),
     cancelRequest: build.mutation({
-      query: cancelInfo => ({
+      query: (cancelInfo) => ({
         url: 'user/cancelRequest',
         method: 'PATCH',
         body: cancelInfo,
@@ -129,7 +129,7 @@ export const accountApi = gameApi.injectEndpoints({
       invalidatesTags: ['User'],
     }),
     rejectRequest: build.mutation({
-      query: rejectlInfo => ({
+      query: (rejectlInfo) => ({
         url: 'user/rejectRequest',
         method: 'PATCH',
         body: rejectlInfo,
@@ -137,7 +137,7 @@ export const accountApi = gameApi.injectEndpoints({
       invalidatesTags: ['Requests'],
     }),
     pay: build.mutation({
-      query: paymentInfo => ({
+      query: (paymentInfo) => ({
         url: '/payments',
         method: 'POST',
         body: paymentInfo,
@@ -156,7 +156,7 @@ export const accountApi = gameApi.injectEndpoints({
 
 export const selectUserName = createSelector(
   accountApi.endpoints.getUser.select(),
-  result => result?.data?.username
+  (result) => result?.data?.username
 );
 
 export const {

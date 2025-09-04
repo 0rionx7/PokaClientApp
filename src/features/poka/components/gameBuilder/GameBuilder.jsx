@@ -60,7 +60,8 @@ const GameBuilder = () => {
       <form
         id="builderForm"
         onSubmit={handleSubmit}
-        onFocus={() => setStatus({})}>
+        onFocus={() => setStatus({})}
+      >
         {snackElement}
         <BuilderRow title={BUILDER_ROW_TITLE.GAME} element={<GameChooser />} />
         <BuilderRow

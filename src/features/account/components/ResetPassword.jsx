@@ -19,7 +19,7 @@ const ResetPassword = () => {
   );
   const [error, setError] = useState(null);
 
-  const validate = values => {
+  const validate = (values) => {
     if (values.newPassword !== values.confirmPassword)
       return 'Λάθος επαλήθευση κωδικού.';
   };

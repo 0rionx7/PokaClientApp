@@ -16,13 +16,13 @@ const Standings = () => {
     <div className="standings">
       <div className="standings-container">
         <div className="player-result">
-          {titles.map(title => (
+          {titles.map((title) => (
             <div key={title} style={{ textAlign: 'center' }}>
               {title}
             </div>
           ))}
         </div>
-        {orderedPlayerStates.map(playerState => (
+        {orderedPlayerStates.map((playerState) => (
           <PlayerStanding
             playerState={playerState}
             key={playerState.playerName}

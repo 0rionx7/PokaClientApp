@@ -15,7 +15,7 @@ const Dilemma = ({ name, options, setDeny }) => {
 
   return (
     <>
-      {options.map(option => (
+      {options.map((option) => (
         <Radio
           key={option}
           name={name}

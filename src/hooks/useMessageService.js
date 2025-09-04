@@ -20,13 +20,13 @@ const useMessageService = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socketListen = event =>
-      socket.on(event, data => dispatch(postMessage({ event, ...data })));
+    const socketListen = (event) =>
+      socket.on(event, (data) => dispatch(postMessage({ event, ...data })));
 
     socketEvents.forEach(socketListen);
 
     return () => {
-      const stopListen = event => socket.removeAllListeners(event);
+      const stopListen = (event) => socket.removeAllListeners(event);
 
       socketEvents.forEach(stopListen);
     };

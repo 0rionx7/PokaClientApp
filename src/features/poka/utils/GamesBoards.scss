@@ -148,7 +148,8 @@ $total-width: calc(var(--card-width) + 0.4rem);
       right: 0;
       .card.selected {
         translate: 0 calc(-0.1 * var(--card-height));
-        box-shadow: 0px calc(0.1 * var(--card-height)) 0px 0px #3fa603,
+        box-shadow:
+          0px calc(0.1 * var(--card-height)) 0px 0px #3fa603,
           0 calc(0.1 * var(--card-height) + 2px) #040404;
       }
     }
@@ -175,11 +176,13 @@ $total-width: calc(var(--card-width) + 0.4rem);
       margin: 0 1.5rem;
       &.selected {
         translate: calc(-0.1 * var(--card-height)) 0;
-        box-shadow: calc(-0.1 * var(--card-height)) 0 #3fa603,
+        box-shadow:
+          calc(-0.1 * var(--card-height)) 0 #3fa603,
           calc(-0.1 * var(--card-height) - 2px) 0 #090909;
         &:nth-last-child(1) {
           translate: calc(0.1 * var(--card-height)) 0;
-          box-shadow: calc(0.1 * var(--card-height)) 0 #3fa603,
+          box-shadow:
+            calc(0.1 * var(--card-height)) 0 #3fa603,
             calc(0.1 * var(--card-height) + 2px) 0 #090909;
         }
       }
@@ -205,10 +208,12 @@ $total-width: calc(var(--card-width) + 0.4rem);
   }
   .card {
     &.selected {
-      box-shadow: calc(-0.1 * var(--card-height)) 0 #3fa603,
+      box-shadow:
+        calc(-0.1 * var(--card-height)) 0 #3fa603,
         calc(-0.1 * var(--card-height) - 2px) 0 #090909;
       &:nth-last-child(1) {
-        box-shadow: calc(0.1 * var(--card-height)) 0 #3fa603,
+        box-shadow:
+          calc(0.1 * var(--card-height)) 0 #3fa603,
           calc(0.1 * var(--card-height) + 2px) 0 #090909;
       }
     }

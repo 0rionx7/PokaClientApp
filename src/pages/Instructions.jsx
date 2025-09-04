@@ -12,7 +12,7 @@ const Instructions = () => {
     <div className="instructions">
       <h2>ΛΕΙΤΟΥΡΓΕΙΕΣ ΜΕΝΟΥ</h2>
       <h3>ΣΑΛΟΥΝ</h3>
-      {saloonParagraphs.map(paragraph => {
+      {saloonParagraphs.map((paragraph) => {
         const text = paragraph.split('_');
         return (
           <p key={text[0]}>
@@ -22,7 +22,7 @@ const Instructions = () => {
         );
       })}
       <h3 style={{ marginTop: '.5rem' }}>ΛΟΓΑΡΙΑΣΜΟΣ</h3>
-      {accountParagraphs.map(paragraph => {
+      {accountParagraphs.map((paragraph) => {
         const text = paragraph.split('_');
         return (
           <p key={text[0]}>

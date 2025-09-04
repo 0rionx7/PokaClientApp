@@ -18,7 +18,7 @@ const useRequestResult = () => {
     useSnackBar({ height: '100%', secs: 37 });
 
   useEffect(() => {
-    socket.on('requestApproved', requestInfo => {
+    socket.on('requestApproved', (requestInfo) => {
       setApprovedPopUp(requestInfo);
       refetchUserInfo();
       requestInfo.game === 'poka'

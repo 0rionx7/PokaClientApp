@@ -18,8 +18,8 @@ const JokerSelect = () => {
   const [suit, setSuit] = useState('S');
   const [cardValue, setCardValue] = useState(14);
 
-  const jokerCount = handCards.filter(card =>
-    joker.some(value => card.value === value)
+  const jokerCount = handCards.filter((card) =>
+    joker.some((value) => card.value === value)
   ).length;
   const card = { value: cardValue, suit, faceUp: true };
 
@@ -37,15 +37,18 @@ const JokerSelect = () => {
     <div className="card-container">
       <div className="selections">
         ΑΝΤΙΚΑΤΑΣΗ ΤΟΥ {prompt} ΜΠΑΛΑΝΤΕΡ ΜΕ
-        <select value={cardValue} onChange={e => setCardValue(+e.target.value)}>
-          {[...Array(15).keys()].slice(startingCard).map(value => (
+        <select
+          value={cardValue}
+          onChange={(e) => setCardValue(+e.target.value)}
+        >
+          {[...Array(15).keys()].slice(startingCard).map((value) => (
             <option key={value} value={value}>
               {SYMBOLS[value] || value}
             </option>
           ))}
         </select>
-        <select value={suit} onChange={e => setSuit(e.target.value)}>
-          {['C', 'H', 'S', 'D'].map(suit => (
+        <select value={suit} onChange={(e) => setSuit(e.target.value)}>
+          {['C', 'H', 'S', 'D'].map((suit) => (
             <option key={suit} value={suit}>
               {SUIT_NAME[suit]}
             </option>
@@ -55,7 +58,7 @@ const JokerSelect = () => {
       <Card card={card} />
       <Button
         prompt="ΕΠΙΛΟΓΗ"
-        onClick={() => setReplacmentCards(curr => [...curr, card])}
+        onClick={() => setReplacmentCards((curr) => [...curr, card])}
       />
     </div>
   );

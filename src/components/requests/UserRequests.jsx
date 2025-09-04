@@ -13,7 +13,7 @@ const UserRequests = () => {
   const { state } = useLocation();
 
   const joinRequests = data?.joinRequests.filter(
-    req => req.game === state.game
+    (req) => req.game === state.game
   );
   const useSitDown =
     state.game === 'poka' ? useSitDownMutation : useSitDownChineseMutation;
@@ -22,7 +22,7 @@ const UserRequests = () => {
     <>
       <div className="requests-title">Απεσταλμένες αιτήσεις</div>
       <div className="requests">
-        {joinRequests?.map(tableInfo => (
+        {joinRequests?.map((tableInfo) => (
           <UserRequest
             key={tableInfo.tableName}
             tableInfo={tableInfo}

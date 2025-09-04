@@ -9,7 +9,7 @@ import { selectUserName } from '@account/api/accountApi';
 import Timer from '@chinese/components/table/Timer';
 import { isSitting } from '@utils/helper-functions';
 
-const useTimer = playerName => {
+const useTimer = (playerName) => {
   const { data } = useGetChineseStateQuery();
   const { nextPlayers, round, playerStates, playTime } = data;
   const [remainingTime, setRemainingTime] = useState(playTime);
@@ -25,7 +25,7 @@ const useTimer = playerName => {
   useEffect(() => {
     if (isActive && !isRoundEnd) {
       const timer = setInterval(() => {
-        setRemainingTime(prev => prev - 1);
+        setRemainingTime((prev) => prev - 1);
       }, 1000);
 
       return () => clearInterval(timer);

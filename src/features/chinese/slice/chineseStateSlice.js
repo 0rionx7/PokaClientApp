@@ -18,12 +18,12 @@ export const chineseStateSlice = createSlice({
     moveCard: (state, action) => {
       const { place, index, movedCard } = action.payload;
 
-      state.boardCards = state.boardCards.map(boardCard =>
+      state.boardCards = state.boardCards.map((boardCard) =>
         boardCard?.value + boardCard?.suit === movedCard.value + movedCard.suit
           ? null
           : boardCard
       );
-      state.handCards = state.handCards.map(handCard =>
+      state.handCards = state.handCards.map((handCard) =>
         handCard?.value + handCard?.suit === movedCard.value + movedCard.suit
           ? null
           : handCard
@@ -48,15 +48,15 @@ export const chineseStateSlice = createSlice({
       });
     },
   },
-  extraReducers: builder =>
+  extraReducers: (builder) =>
     builder.addMatcher(
       chineseApi.endpoints.sitOutChinese.matchPending,
       (_state, _action) => chineseStateSlice.getInitialState()
     ),
   selectors: {
-    selectBoardCards: chineseState => chineseState.boardCards,
-    selectHandcards: chineseState => chineseState.handCards,
-    selectIsFantasy: chineseState => chineseState.isFantasy,
+    selectBoardCards: (chineseState) => chineseState.boardCards,
+    selectHandcards: (chineseState) => chineseState.handCards,
+    selectIsFantasy: (chineseState) => chineseState.isFantasy,
   },
 });
 

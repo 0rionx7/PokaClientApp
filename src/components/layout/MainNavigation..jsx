@@ -23,7 +23,8 @@ const MainNavigation = () => {
             <Link
               to="/saloon"
               state={{ game: 'poka' }}
-              className={`nav-link${state?.game === 'poka' ? ' active' : ''}`}>
+              className={`nav-link${state?.game === 'poka' ? ' active' : ''}`}
+            >
               Σαλόνι Πόκας
             </Link>
             <Link
@@ -31,7 +32,8 @@ const MainNavigation = () => {
               state={{ game: 'chinese' }}
               className={`nav-link${
                 state?.game === 'chinese' ? ' active' : ''
-              }`}>
+              }`}
+            >
               Σαλόνι Κινέζικου Πόκερ
             </Link>
             <NavLink to="/account" className="nav-link">
@@ -44,7 +46,8 @@ const MainNavigation = () => {
             {showMenu && <AccountloggedInMenu setShowMenu={setShowMenu} />}
             <div
               className="account-icon"
-              onMouseEnter={() => setShowMenu(true)}>
+              onMouseEnter={() => setShowMenu(true)}
+            >
               {accountSvg}
             </div>
           </div>

@@ -21,9 +21,9 @@ const BoardCard = ({ index }) => {
   const playerSubmitted = hostState.submittedHand.length;
   const [currentPlayerState] = nextPlayers;
   const isSubmittingRound = currentPlayerState?.selecting?.submit;
-  const isChosen = index => chosenCardIndexes.some(i => i === index);
+  const isChosen = (index) => chosenCardIndexes.some((i) => i === index);
 
-  const handleChooseCard = index => {
+  const handleChooseCard = (index) => {
     const canBeChosen =
       card.value &&
       !thorns?.includes(index) &&

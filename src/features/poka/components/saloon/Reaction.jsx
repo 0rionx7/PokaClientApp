@@ -7,7 +7,7 @@ const Reaction = () => {
     <>
       <label htmlFor="reaction">Χρόνος αντίδρασης</label>
       <select id="reaction" name="reaction" defaultValue={101}>
-        {reactionTimes.map(secs => (
+        {reactionTimes.map((secs) => (
           <option key={secs} value={secs}>
             {describeTime(secs)}
           </option>

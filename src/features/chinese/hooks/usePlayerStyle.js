@@ -4,7 +4,7 @@ import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
 import { selectUserName } from '@account/api/accountApi';
 import { playerStateOf } from '@utils/helper-functions';
 
-const usePlayerStyle = index => {
+const usePlayerStyle = (index) => {
   const username = useSelector(selectUserName);
   const {
     data: { playerStates },

@@ -14,7 +14,8 @@ const AccountloggedInMenu = ({ setShowMenu }) => {
       <div
         className="menu-item"
         style={{ color: 'red' }}
-        onClick={() => logOut()}>
+        onClick={() => logOut()}
+      >
         {logOutSvg}Αποσύνδεση
       </div>
     </div>

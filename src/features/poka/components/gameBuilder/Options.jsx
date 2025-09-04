@@ -9,7 +9,7 @@ const Options = () => {
   const { values, setFieldValue } = useGameBuilderContext();
   const [hat, setHat] = useState(false);
 
-  const handleHatChange = e => {
+  const handleHatChange = (e) => {
     setHat(e.target.checked);
     setFieldValue('hats', e.target.checked ? 1 : 0);
     if (!e.target.checked) setFieldValue('obligation', false);
@@ -21,7 +21,7 @@ const Options = () => {
         label='ΑΝΟΙΓΜΑ "ΜΠΟΜΠΑ"'
         name="bomba"
         checked={values.bomba}
-        onChange={e => setFieldValue('bomba', e.target.checked)}
+        onChange={(e) => setFieldValue('bomba', e.target.checked)}
         info={INFO_TEXT.BOMBA}
       />
       <CheckBox
@@ -47,7 +47,7 @@ const Options = () => {
             name="obligation"
             label="ΥΠΟΧΡΕΩΣΗ"
             checked={values.obligation}
-            onChange={e => setFieldValue('obligation', e.target.checked)}
+            onChange={(e) => setFieldValue('obligation', e.target.checked)}
           />
         </>
       )}

@@ -28,7 +28,7 @@ const Config = () => {
       console.log(error);
     }
   };
-  const handleChangeColor = e => {
+  const handleChangeColor = (e) => {
     dispatch(setDeckColor(e.target.value));
     try {
       window.localStorage.setItem('deckColor', e.target.value);

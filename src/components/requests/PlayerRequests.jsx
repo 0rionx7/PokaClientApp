@@ -20,9 +20,10 @@ const PlayerRequests = ({ useGetStateQuery, maxPlayersCount }) => {
 
   const requestedStates = data
     .filter(
-      request => !playerStates.some(ps => ps.playerName === request.username)
+      (request) =>
+        !playerStates.some((ps) => ps.playerName === request.username)
     )
-    .map(request => ({
+    .map((request) => ({
       playerName: request.username,
       isSubscribed: new Date(request.subExpiration) - Date.now() > 0,
     }));
@@ -31,7 +32,7 @@ const PlayerRequests = ({ useGetStateQuery, maxPlayersCount }) => {
     <>
       <div className="player-requests">
         <h4>Συμμετέχοντες</h4>
-        {playerStates.map(playerState => (
+        {playerStates.map((playerState) => (
           <PlayerRequest
             key={playerState.playerName}
             playerState={playerState}
@@ -42,7 +43,7 @@ const PlayerRequests = ({ useGetStateQuery, maxPlayersCount }) => {
       {requestedStates.length > 0 && (
         <div className="player-requests">
           <h4>Αιτούντες συμμετοχής</h4>
-          {requestedStates.map(playerState => (
+          {requestedStates.map((playerState) => (
             <PlayerRequest
               key={playerState.playerName}
               playerState={playerState}

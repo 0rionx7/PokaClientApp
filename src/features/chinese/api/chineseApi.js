@@ -7,7 +7,7 @@ import { baseUrl, gameApi, socket } from '@store/gameApi';
 import { playerStateOf } from '@utils/helper-functions';
 
 export const chineseApi = gameApi.injectEndpoints({
-  endpoints: build => ({
+  endpoints: (build) => ({
     getChineseState: build.query({
       queryFn: async (_arg, { getState }) => {
         const token = selectToken(getState());
@@ -42,9 +42,11 @@ export const chineseApi = gameApi.injectEndpoints({
         try {
           await cacheDataLoaded;
           const stateUpdateListener = (stateUpdate, updateBoard) => {
-            updateCachedData(_draft => {
+            updateCachedData((_draft) => {
               const username = selectUserName(getState());
-              if (updateBoard?.some(br => (br === username) | (br === 'all'))) {
+              if (
+                updateBoard?.some((br) => (br === username) | (br === 'all'))
+              ) {
                 const updatedHostState = stateUpdate.playerStates.find(
                   playerStateOf(username)
                 );
@@ -63,14 +65,14 @@ export const chineseApi = gameApi.injectEndpoints({
       },
     }),
     openChineseTable: build.mutation({
-      query: openTableData => ({
+      query: (openTableData) => ({
         url: 'chinese',
         method: 'POST',
         body: { ...openTableData },
       }),
     }),
     joinChineseTable: build.mutation({
-      query: joinInfo => ({
+      query: (joinInfo) => ({
         url: 'chinese/join',
         method: 'PATCH',
         body: joinInfo,
@@ -85,40 +87,40 @@ export const chineseApi = gameApi.injectEndpoints({
       }),
     }),
     startChineseGame: build.mutation({
-      query: gameId => ({
+      query: (gameId) => ({
         url: 'chinese/start',
         method: 'PATCH',
         body: { gameId },
       }),
     }),
     submitCardsChinese: build.mutation({
-      query: boardCards => ({
+      query: (boardCards) => ({
         url: 'chinese/submitCards',
         method: 'PATCH',
         body: boardCards,
       }),
     }),
     reorderDeck: build.mutation({
-      query: reorderInfo => ({
+      query: (reorderInfo) => ({
         url: 'chinese/reorderDeck',
         method: 'PATCH',
         body: reorderInfo,
       }),
     }),
     nextRoundChinese: build.mutation({
-      query: _ => ({
+      query: (_) => ({
         url: 'chinese/nextRound',
         method: 'PATCH',
       }),
     }),
     timedOut: build.mutation({
-      query: _ => ({
+      query: (_) => ({
         url: 'chinese/timedOut',
         method: 'PATCH',
       }),
     }),
     sitOutChinese: build.mutation({
-      query: sitOutInfo => ({
+      query: (sitOutInfo) => ({
         url: 'chinese/sitOut',
         method: 'PATCH',
         body: sitOutInfo,

@@ -15,7 +15,7 @@ const DeniedCards = ({ playerState }) => {
       <span id="denials">{playerState.deniedCards.length}</span>
       <ToolTip info="ΑΡΝΗΣΕΙΣ">
         <div className="denied-cards">
-          {playerState.deniedCards.map(card => {
+          {playerState.deniedCards.map((card) => {
             if (isHostPlayer) card = { ...card, faceUp: true };
             return <Card card={card} key={card.value + card.suit} />;
           })}

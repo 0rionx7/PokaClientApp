@@ -6,7 +6,7 @@ const HandCardsInPlay = () => {
   const inPlay = [1, 2, 3, 4, 5, 6, 7].slice(0, +values.cardsInHand);
   const style = { alignSelf: 'flex-end', fontSize: '.8rem' };
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { value, checked } = e.target;
     if (
       values.handCardsInPlay.length === 1 &&
@@ -15,13 +15,13 @@ const HandCardsInPlay = () => {
       return;
     const handCardsInPlay = checked
       ? [...values.handCardsInPlay, value]
-      : values.handCardsInPlay.filter(v => v !== value);
+      : values.handCardsInPlay.filter((v) => v !== value);
     setFieldValue('handCardsInPlay', handCardsInPlay);
   };
 
   return (
     <>
-      {inPlay.map(count => (
+      {inPlay.map((count) => (
         <CheckBox
           key={count}
           style={style}

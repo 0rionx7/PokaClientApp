@@ -29,7 +29,8 @@ const Board = ({ index, playerState }) => {
     <>
       <div
         className={'board-layout ' + (classes[gridArea] || '')}
-        style={{ gridArea }}>
+        style={{ gridArea }}
+      >
         <PlayerRibbon playerState={playerState} />
         <div className="board-grid">
           <div id={'timer' + playerState.playerName}>{timerJsx}</div>

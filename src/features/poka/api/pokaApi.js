@@ -6,7 +6,7 @@ import { selectGameId, selectToken } from '@account/slice/accountSlice';
 import { playerStateOf, isSitting, updateAll } from '@utils/helper-functions';
 
 export const pokaApi = gameApi.injectEndpoints({
-  endpoints: build => ({
+  endpoints: (build) => ({
     getPokaState: build.query({
       queryFn: async (_, { getState }) => {
         const token = selectToken(getState());
@@ -34,15 +34,15 @@ export const pokaApi = gameApi.injectEndpoints({
       ) {
         const gameId = selectGameId(getState());
         try {
-          const stateUpdateListener = stateUpdate => {
+          const stateUpdateListener = (stateUpdate) => {
             if (gameId !== stateUpdate._id) return;
-            updateCachedData(draft => ({ ...draft, ...stateUpdate }));
+            updateCachedData((draft) => ({ ...draft, ...stateUpdate }));
           };
 
           const closingBetListener = ({ _id, playerStates }) => {
             if (gameId !== _id) return;
             const updatedStates = updateAll(playerStates, { denying: 0 });
-            updateCachedData(draft => ({
+            updateCachedData((draft) => ({
               ...draft,
               playerStates: updatedStates,
             }));
@@ -60,103 +60,103 @@ export const pokaApi = gameApi.injectEndpoints({
       keepUnusedDataFor: 0,
     }),
     openPokaTable: build.mutation({
-      query: openTableData => ({
+      query: (openTableData) => ({
         url: '/poka',
         method: 'POST',
         body: { openTableData },
       }),
     }),
     restartGame: build.mutation({
-      query: gameInfo => ({
+      query: (gameInfo) => ({
         url: '/poka/restart',
         method: 'POST',
         body: gameInfo,
       }),
     }),
     setGameVariant: build.mutation({
-      query: builderConfig => ({
+      query: (builderConfig) => ({
         url: '/poka/variant',
         method: 'PATCH',
         body: builderConfig,
       }),
     }),
     bet: build.mutation({
-      query: betInfo => ({
+      query: (betInfo) => ({
         url: '/poka/bet',
         method: 'PATCH',
         body: betInfo,
       }),
     }),
     denyCard: build.mutation({
-      query: denyInfo => ({
+      query: (denyInfo) => ({
         url: '/poka/deny',
         method: 'PATCH',
         body: denyInfo,
       }),
     }),
     selectCards: build.mutation({
-      query: selectInfo => ({
+      query: (selectInfo) => ({
         url: '/poka/select',
         method: 'PATCH',
         body: selectInfo,
       }),
     }),
     assignJoker: build.mutation({
-      query: replacmentCards => ({
+      query: (replacmentCards) => ({
         url: '/poka/replace-joker',
         method: 'PATCH',
         body: replacmentCards,
       }),
     }),
     evaluateHand: build.mutation({
-      query: handInfo => ({
+      query: (handInfo) => ({
         url: '/poka/evaluate',
         method: 'POST',
         body: handInfo,
       }),
     }),
     submitCards: build.mutation({
-      query: handInfo => ({
+      query: (handInfo) => ({
         url: '/poka/submit',
         method: 'PATCH',
         body: handInfo,
       }),
     }),
     revealCards: build.mutation({
-      query: _ => ({
+      query: (_) => ({
         url: '/poka/reveal',
         method: 'PATCH',
       }),
     }),
     renewCava: build.mutation({
-      query: renewInfo => ({
+      query: (renewInfo) => ({
         url: '/poka/renew',
         method: 'PATCH',
         body: renewInfo,
       }),
     }),
     nextRound: build.mutation({
-      query: _ => ({
+      query: (_) => ({
         url: '/poka/nextRound',
         method: 'PATCH',
       }),
     }),
     sitDown: build.mutation({
-      query: tableinfo => ({
+      query: (tableinfo) => ({
         url: '/poka/sitDown',
         method: 'PATCH',
         body: tableinfo,
       }),
     }),
     sitOut: build.mutation({
-      query: sitOutInfo => ({
+      query: (sitOutInfo) => ({
         url: '/poka/sitOut',
         method: 'PATCH',
         body: sitOutInfo,
       }),
     }),
     joinTable: build.mutation({
-      query: joinInfo => ({
+      query: (joinInfo) => ({
         url: '/poka/join',
         method: 'PATCH',
         body: joinInfo,
@@ -173,12 +173,12 @@ export const selectPlayerStates = createSelector(
 );
 export const selectSittingPlayers = createSelector(
   selectPlayerStates,
-  playerStates => playerStates.filter(isSitting) ?? []
+  (playerStates) => playerStates.filter(isSitting) ?? []
 );
 export const selectSittingPlayersWithMoney = createSelector(
   selectPlayerStates,
-  playerStates =>
-    playerStates.filter(state => state.resta > 0 && !state.sittingOut) ?? []
+  (playerStates) =>
+    playerStates.filter((state) => state.resta > 0 && !state.sittingOut) ?? []
 );
 export const selectHostPlayerState = createSelector(
   [selectPlayerStates, selectUserName],

@@ -16,7 +16,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
 
   const { gameId, tableName } = tableInfo;
 
-  const handleCancelRequest = async event => {
+  const handleCancelRequest = async (event) => {
     if (canceling) return;
     event.stopPropagation();
     cancelRequest(tableInfo);
@@ -40,7 +40,8 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
         className="cancel"
         onMouseOver={() => setCancelHovered(true)}
         onMouseLeave={() => setCancelHovered(false)}
-        onClick={handleCancelRequest}>
+        onClick={handleCancelRequest}
+      >
         X <ToolTip info="Ακύρωση" />
       </div>
       {snackElement}

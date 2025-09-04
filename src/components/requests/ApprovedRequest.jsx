@@ -13,7 +13,7 @@ const ApprovedRequest = ({ requestInfo: { tableName, gameId, game } }) => {
 
   const table = game === 'poka' ? 'πόκας' : 'κινέζικου πόκερ';
 
-  const handleJoinTable = async _ => {
+  const handleJoinTable = async (_) => {
     if (game === 'poka') {
       const { data } = await sitDown({ gameId, tableName });
       if (data?.gameId) navigate('poka-table', { state: { game: 'poka' } });

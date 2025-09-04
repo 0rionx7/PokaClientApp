@@ -64,7 +64,8 @@ const Login = () => {
           </label>
           <label
             className="form-control"
-            style={{ alignSelf: 'flex-end', fontSize: '.8rem' }}>
+            style={{ alignSelf: 'flex-end', fontSize: '.8rem' }}
+          >
             να με θυμάσαι
             <input
               type="checkbox"

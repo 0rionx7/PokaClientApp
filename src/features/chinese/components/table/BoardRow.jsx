@@ -24,7 +24,7 @@ const BoardRow = ({ rowIndex, playerState }) => {
   let pastIndexes = 0;
   let cards = isHostBoard ? boardCards : playerState.boardCards;
   const hidden = playerState.isFantasy && !isHostBoard && !isRoundEnd;
-  cards = cards?.map(card => (card ? { ...card, hidden } : null));
+  cards = cards?.map((card) => (card ? { ...card, hidden } : null));
   if (rowIndex === 0) cards = cards?.slice(0, 3);
   else if (rowIndex === 1) {
     cards = cards?.slice(3, 8);

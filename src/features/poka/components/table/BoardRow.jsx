@@ -13,7 +13,7 @@ const BoardRow = ({ rowIndexes, row, rows, totalPot }) => {
       {potLine === row && totalPot > 0 && (
         <Kaves totalPot={totalPot} rows={rows} />
       )}
-      {rowIndexes.map(index => (
+      {rowIndexes.map((index) => (
         <BoardCard index={index} key={index} />
       ))}
     </div>

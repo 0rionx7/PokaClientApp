@@ -22,7 +22,8 @@ const useSound = ({ isActive, ownBoard }) => {
             width: '40px',
             cursor: 'pointer',
           }}
-          onClick={() => setIsOn(!isOn)}>
+          onClick={() => setIsOn(!isOn)}
+        >
           {isOn ? soundOnSvg : soundOffSvg}
         </div>
       )}

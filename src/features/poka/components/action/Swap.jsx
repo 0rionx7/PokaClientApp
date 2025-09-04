@@ -6,7 +6,7 @@ import { useSelectCardsMutation } from '@poka/api/pokaApi';
 import useSnackBar from '@hooks/useSnackBar';
 import Button from '@ui/Button';
 
-const getCardLabel = count => `ΧΑΡΤΙ${count !== 1 ? 'Α' : ''}`;
+const getCardLabel = (count) => `ΧΑΡΤΙ${count !== 1 ? 'Α' : ''}`;
 
 const Swap = ({ selecting }) => {
   const selectedHandCardIndexes = useSelector(selectChosenHandCardIndexes);

@@ -16,15 +16,15 @@ const ChatInput = () => {
   const [message, setMessage] = useState('');
   const inputRef = useRef();
 
-  const handleSendMessage = event => {
+  const handleSendMessage = (event) => {
     event.preventDefault();
     socket.emit('postMessage', { gameId, playerName, message });
     setShowPicker(false);
     setMessage('');
   };
 
-  const emojiPicked = emojiObject => {
-    setMessage(prevInput => prevInput + emojiObject.emoji);
+  const emojiPicked = (emojiObject) => {
+    setMessage((prevInput) => prevInput + emojiObject.emoji);
     inputRef.current.focus();
   };
 
@@ -35,13 +35,13 @@ const ChatInput = () => {
           <input
             ref={inputRef}
             value={message}
-            onChange={e => setMessage(e.target.value)}
+            onChange={(e) => setMessage(e.target.value)}
             className="text-input"
             placeholder="εισάγετε το μήνυμα σας"
           />
           <button className="send-btn">{sendSvg}</button>
         </div>
-        <p onClick={() => setShowPicker(pr => !pr)}> &#128522;</p>
+        <p onClick={() => setShowPicker((pr) => !pr)}> &#128522;</p>
       </form>
       {showPicker && (
         <div className="emoji-picker">

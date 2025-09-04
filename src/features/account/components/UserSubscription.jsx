@@ -21,7 +21,8 @@ const UserSubscription = () => {
 
   return (
     <div
-      className={classes['flex-center'] + ' ' + classes['user-subscription']}>
+      className={classes['flex-center'] + ' ' + classes['user-subscription']}
+    >
       {isExpired ? (
         <div>Δέν έχετε ενεργή συνδρομή.</div>
       ) : (

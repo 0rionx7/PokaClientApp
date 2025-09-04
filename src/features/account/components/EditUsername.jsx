@@ -12,7 +12,7 @@ const EditUsername = ({ stopEditing }) => {
     ''
   );
 
-  const validate = userName => {
+  const validate = (userName) => {
     if (userName.length < 3 || userName.length > 17)
       return `Το όνομα χρήστη πρέπει να αποτελείται\n από 2 εώς 17 χαρακτήρες.`;
   };
@@ -37,7 +37,8 @@ const EditUsername = ({ stopEditing }) => {
     <form
       className={classes['flex-center']}
       action={formAction}
-      onFocus={() => setError(null)}>
+      onFocus={() => setError(null)}
+    >
       <div className="form-control">
         <label htmlFor="username">{error ? '' : 'Νέο όνομα χρήστη'}</label>
         <input

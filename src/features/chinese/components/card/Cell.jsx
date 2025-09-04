@@ -9,9 +9,9 @@ const Cell = ({ index, place, owner }) => {
   const [{ isOver, item }, drop] = useDrop(
     () => ({
       accept: 'card',
-      canDrop: item => item.owner === owner,
+      canDrop: (item) => item.owner === owner,
       drop: ({ card }) => dispatch(moveCard({ place, index, movedCard: card })),
-      collect: monitor => ({
+      collect: (monitor) => ({
         isOver: !!monitor.isOver(),
         item: monitor.getItem(),
       }),
@@ -23,8 +23,8 @@ const Cell = ({ index, place, owner }) => {
     backgroundColor: !isOver
       ? '#5e7043'
       : item.owner === owner
-      ? '#b5a239'
-      : 'red',
+        ? '#b5a239'
+        : 'red',
   };
 
   return <div ref={drop} className="card" style={style} />;

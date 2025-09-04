@@ -21,7 +21,7 @@ const Results = () => {
         <span>&quot;Φύλο&quot;</span>
         <span>Κέρδη/Απώλ.</span>
       </div>
-      {orderedPlayerStates.map(playerState => (
+      {orderedPlayerStates.map((playerState) => (
         <PlayerResult playerState={playerState} key={playerState.playerName} />
       ))}
     </div>

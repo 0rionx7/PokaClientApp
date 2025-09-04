@@ -31,7 +31,8 @@ export function createChipStack(amount, chip) {
         <div
           key={`${multiplier}-${i}`}
           className={`chip ${color}`}
-          style={style}>
+          style={style}
+        >
           <span>{displayValue}</span>
         </div>
       );

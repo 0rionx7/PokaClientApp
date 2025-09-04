@@ -12,7 +12,7 @@ const Extra = () => {
       name={name}
       style={{ flexDirection: 'row-reverse' }}
       checked={!!values[name]}
-      onChange={e => setFieldValue(name, e.target.checked)}
+      onChange={(e) => setFieldValue(name, e.target.checked)}
     />
   );
 };

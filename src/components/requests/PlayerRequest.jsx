@@ -27,7 +27,7 @@ const PlayerRequest = ({
     if (result.error?.data) setSnackInfo(result.error.data);
   };
 
-  const handleCancel = async e => {
+  const handleCancel = async (e) => {
     if (rejecting || isSuccess || isLoading) return;
     e.stopPropagation();
     const result = await rejectRequest({
@@ -42,7 +42,8 @@ const PlayerRequest = ({
     <div
       className="player-request"
       onClick={handleJoin}
-      style={{ cursor: clickable && 'pointer' }}>
+      style={{ cursor: clickable && 'pointer' }}
+    >
       <StatusIcon playerState={playerState} />
       <div className="approve">
         {playerState?.playerName}

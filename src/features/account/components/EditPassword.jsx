@@ -38,7 +38,7 @@ const EditPassword = () => {
       </div>
     );
 
-  const validate = values => {
+  const validate = (values) => {
     if (values.newPassword !== values.confirmPassword)
       return 'Λάθος επαλήθευση κωδικού.';
   };
@@ -64,7 +64,8 @@ const EditPassword = () => {
         id="editForm"
         action={formAction}
         onFocus={() => setError(null)}
-        className={classes['edit-form']}>
+        className={classes['edit-form']}
+      >
         <div className="form-control">
           <label htmlFor="currentPassword">Τρέχων κωδικός</label>
           <input

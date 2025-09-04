@@ -39,7 +39,7 @@ const Info = () => {
   }, [setSelectedTab, dealer, hostPlayerName]);
 
   const handleToggleInfoPanel = () => {
-    setShowInfoPanel(curr => !curr);
+    setShowInfoPanel((curr) => !curr);
     setShowPicker(false);
   };
 

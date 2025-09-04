@@ -32,7 +32,8 @@ const useSnackBar = ({ secs = 2, height, top } = {}) => {
   const snackElement = info && (
     <Overlay
       onClick={handleBackDropClick}
-      style={{ height, zIndex: top && 501 }}>
+      style={{ height, zIndex: top && 501 }}
+    >
       <div className="snack-message">
         {renderItem} {!secs && <LoadingSpinner color="red" />}
       </div>

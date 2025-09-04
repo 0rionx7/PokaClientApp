@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 
-const useTimerBar = playerState => {
+const useTimerBar = (playerState) => {
   const { data } = useGetPokaStateQuery();
   const [width, setWidth] = useState(100);
 
@@ -17,7 +17,7 @@ const useTimerBar = playerState => {
   useEffect(() => {
     if (!shouldRun) return;
     const timer = setInterval(() => {
-      setWidth(perv => {
+      setWidth((perv) => {
         if (perv === 0) {
           clearInterval(timer);
           return 0;

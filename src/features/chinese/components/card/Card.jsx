@@ -11,7 +11,7 @@ const Card = ({ card, owner }) => {
       type: 'card',
       canDrag: !card.locked,
       item: { card, owner },
-      collect: monitor => ({
+      collect: (monitor) => ({
         isDragging: monitor.isDragging(),
       }),
     }),
@@ -27,13 +27,15 @@ const Card = ({ card, owner }) => {
     <div className={`card ${valueClass}`} ref={drag} style={style}>
       <div
         className={`value-suit_${card.suit}`}
-        style={{ visibility: isDragging ? 'hidden' : 'visible' }}>
+        style={{ visibility: isDragging ? 'hidden' : 'visible' }}
+      >
         <div className="value">{SYMBOLS[card.value] || card.value}</div>
         <img src={suits[card.suit]} alt={card.suit} />
       </div>
       <div
         className={`card-decoration ${valueClass}`}
-        style={{ visibility: isDragging ? 'hidden' : 'visible' }}>
+        style={{ visibility: isDragging ? 'hidden' : 'visible' }}
+      >
         <Content card={card} />
       </div>
     </div>

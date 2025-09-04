@@ -10,7 +10,7 @@ const GameChooser = () => {
   const { values, setValues, setFieldValue } = useGameBuilderContext();
   const dispatch = useDispatch();
 
-  const handleGameChange = e => {
+  const handleGameChange = (e) => {
     const gameName = e.target.value;
     const gameConfig = gameConfigs[gameName];
     if (!gameConfig) return;
@@ -23,7 +23,7 @@ const GameChooser = () => {
     dispatch(setChosenGame(gameName));
   };
 
-  const games = Object.values(gameNames).map(game => (
+  const games = Object.values(gameNames).map((game) => (
     <option key={game} value={game}>
       {game}
     </option>
@@ -39,8 +39,9 @@ const GameChooser = () => {
         <select
           name="startingCard"
           value={values.startingCard}
-          onChange={e => setFieldValue('startingCard', +e.target.value)}>
-          {startingCards.map(value => (
+          onChange={(e) => setFieldValue('startingCard', +e.target.value)}
+        >
+          {startingCards.map((value) => (
             <option key={value} value={value}>
               {value}
             </option>

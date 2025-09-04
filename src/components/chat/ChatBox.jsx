@@ -10,7 +10,8 @@ const ChatBox = () => {
         <div className="chat-error">
           Ζητούμε συγγνώμη, η συνομιλία δεν είναι δυνατή αυτήν την στιγμή.
         </div>
-      }>
+      }
+    >
       <div className="chat-box">
         <Messages />
         <ChatInput />

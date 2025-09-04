@@ -1,7 +1,7 @@
 import ToolTip from '@ui/ToolTip';
 import './StatusIcon.scss';
 
-const getStatus = playerState => {
+const getStatus = (playerState) => {
   if (playerState.sittingOut)
     return { color: 'red', status: 'δεν έχει καθήσει' };
   if (playerState.resta === 0) return { color: 'orange', status: 'ταπί' };

@@ -15,7 +15,7 @@ const Forgot = () => {
   const [status, setStatus] = useState({});
   const [enteredEmail, setEnteredEmail] = useState('');
 
-  const validate = email => {
+  const validate = (email) => {
     if (!email) return 'Το email είναι απαραίτητο.';
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email))
       return 'Λάθος διαμόρφοση email.';
@@ -48,7 +48,7 @@ const Forgot = () => {
               type="text"
               autoComplete="on"
               value={enteredEmail}
-              onChange={e => setEnteredEmail(e.target.value)}
+              onChange={(e) => setEnteredEmail(e.target.value)}
             />
           </div>
           <span>{status.error}</span>
