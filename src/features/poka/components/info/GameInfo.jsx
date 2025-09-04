@@ -1,7 +1,7 @@
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import PlayHandCards from '@poka/components/info/PlayHandCards';
 import FaceDownCards from '@poka/components/info/FaceDownCards';
-import { createTableTitle } from '@utils/text-functions';
+import { getTableTitle } from '@utils/text-functions';
 import { TABLOS } from '@utils/text-constants';
 import Denies from '@poka/components/info/Denies';
 import Swaps from '@poka/components/info/Swaps';
@@ -26,7 +26,7 @@ const GameInfo = () => {
     },
   } = useGetPokaStateQuery();
 
-  const tableTitle = createTableTitle(tableName);
+  const tableTitle = getTableTitle(tableName);
 
   if (!gameName)
     return (

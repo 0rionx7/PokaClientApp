@@ -35,7 +35,7 @@ const Submit = () => {
   const selectedHandCardsCount =
     submittedHandCardIndexes.length + submittedTableCardIndexes.length;
 
-  const handleEvaluate = async () => {
+  const handleEvaluation = async () => {
     if (selectedHandCardsCount > 5)
       return setSnackInfo(
         `Έχετε επιλέξει ${selectedHandCardsCount} χαρτιά αντί για 5`,
@@ -91,7 +91,7 @@ const Submit = () => {
       ) : (
         <Button
           prompt={'ΑΞΙΟΛΟΓΗΣΗ ΕΠΙΛΕΓΜΕΝΩΝ ΧΑΡΤΙΩΝ'}
-          onClick={handleEvaluate}
+          onClick={handleEvaluation}
           disabled={eveluating || evaluationSuccess}
           className="orange"
         />

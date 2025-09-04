@@ -5,21 +5,18 @@ import {
   PLURAL_CARD_NAMES,
   HANDKIND,
   PAYMENT_DESCRIPTION,
-  SUBSCRIPTION_TYPES,
 } from '@utils/text-constants';
 
 export function createTableTitleJsx(tableName) {
-  const parts = tableName?.split('_');
+  const [name, user] = tableName.split('_');
   return (
     <div>
-      {parts?.[0]}
-      <span> από </span>
-      {parts?.[1]}
+      {name} <span> από </span> {user}
     </div>
   );
 }
-export function createTableTitle(tableName) {
-  return tableName.split('_')?.[0];
+export function getTableTitle(tableName) {
+  return tableName.split('_')[0];
 }
 export function describeTime(secs) {
   const timeMap = {
@@ -61,27 +58,26 @@ export function describeHand(submissionInfo) {
   );
 }
 export function betPrompt(value, minBet, resta, error) {
+  const promptMap = {
+    0: <> &apos;ΝΤΟΥΚΟΥ&apos;</>,
+    [minBet]: (
+      <>
+        {minBet === resta ? 'Ρέστα' : 'ΜΕΣΑ στα'}
+        <br />
+        <span> {formatNumber(minBet)}</span>
+      </>
+    ),
+    default: (
+      <>
+        ΑΝΕΒΑΣΜΑ
+        <br />
+        <span> {formatNumber(value - minBet)}</span>
+      </>
+    ),
+  };
+
   if (error) return <span>{error}</span>;
-  switch (value) {
-    case 0:
-      return <> &apos;ΝΤΟΥΚΟΥ&apos;</>;
-    case minBet:
-      return (
-        <>
-          {minBet === resta ? 'Ρέστα' : 'ΜΕΣΑ στα'}
-          <br />
-          <span> {formatNumber(minBet)}</span>
-        </>
-      );
-    default:
-      return (
-        <>
-          ΑΝΕΒΑΣΜΑ
-          <br />
-          <span> {formatNumber(value - minBet)}</span>
-        </>
-      );
-  }
+  return promptMap[value] || promptMap.default;
 }
 export function getNameAndLabel(name) {
   const gameMap = {
@@ -109,25 +105,21 @@ export function getNameAndLabel(name) {
 
   return gameMap[name] || { name: '', label: '' };
 }
-export function creataPaymentTags(title, email) {
-  let amount, customerTrns, merchantTrns;
-  const tags = [];
+export function creataPaymentTags(amount, email) {
+  const tagsMap = {
+    5000: {
+      amount: 5000,
+      customerTrns: PAYMENT_DESCRIPTION.yearly,
+      merchantTrns: PAYMENT_DESCRIPTION.yearly + ` του χρήστη ${email}`,
+      tags: [PAYMENT_DESCRIPTION.yearly],
+    },
+    500: {
+      amount: 500,
+      customerTrns: PAYMENT_DESCRIPTION.monthly,
+      merchantTrns: PAYMENT_DESCRIPTION.monthly + ` του χρήστη ${email}`,
+      tags: [PAYMENT_DESCRIPTION.monthly],
+    },
+  };
 
-  switch (title) {
-    case SUBSCRIPTION_TYPES.yearly.split('_')[0]:
-      amount = 5000;
-      customerTrns = PAYMENT_DESCRIPTION.yearly;
-      merchantTrns = PAYMENT_DESCRIPTION.yearly + ` του χρήστη ${email}`;
-      tags.push(PAYMENT_DESCRIPTION.yearly);
-      break;
-    case SUBSCRIPTION_TYPES.monthly.split('_')[0]:
-      amount = 500;
-      customerTrns = PAYMENT_DESCRIPTION.monthly;
-      merchantTrns = PAYMENT_DESCRIPTION.monthly + ` του χρήστη ${email}`;
-      tags.push(PAYMENT_DESCRIPTION.monthly);
-      break;
-    default:
-      break;
-  }
-  return { amount, tags, customerTrns, merchantTrns };
+  return tagsMap[amount];
 }

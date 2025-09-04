@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectChosenGame } from '@poka/slice/pokaStateSlice';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
-import { createTableTitle } from '@utils/text-functions';
+import { getTableTitle } from '@utils/text-functions';
 import { GAME_INFO } from '@utils/text-constants';
 import './Info.scss';
 
@@ -14,7 +14,7 @@ const GameDescription = () => {
 
   const { dealer, tableName } = data;
   const gameName = hostPlayerName === dealer ? chosenGame : data.gameName;
-  const tableTitle = createTableTitle(tableName);
+  const tableTitle = getTableTitle(tableName);
 
   if (!gameName)
     return (
@@ -27,14 +27,11 @@ const GameDescription = () => {
   return (
     <div className="game-info">
       <div className="info-container description">
-        {GAME_INFO[gameName]?.split('&').map((infoText, i) => {
-          const [title, text] = infoText.split('_');
-          return (
-            <div key={i}>
-              <span>{title}</span> {text}
-            </div>
-          );
-        })}
+        {Object.entries(GAME_INFO[gameName]).map(([title, info]) => (
+          <div key={title}>
+            <span>{title}</span> {info}
+          </div>
+        ))}
       </div>
     </div>
   );

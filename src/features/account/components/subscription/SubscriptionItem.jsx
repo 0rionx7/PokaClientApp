@@ -3,12 +3,11 @@ import { creataPaymentTags } from '@utils/text-functions';
 import Button from '@ui/Button';
 import './Subscription.scss';
 
-const SubscriptionItem = ({ option, onSelect }) => {
+const SubscriptionItem = ({ title, infos, onSelect }) => {
   const { data } = useGetUserQuery();
 
   const { username, email } = data;
-  const infos = option?.split('_');
-  const title = infos.at(0);
+  const { description, value } = infos;
   const customer = {
     fullName: username,
     email,
@@ -17,16 +16,16 @@ const SubscriptionItem = ({ option, onSelect }) => {
   };
 
   const handleSubscriptionSelect = () =>
-    onSelect({ customer, ...creataPaymentTags(title, email) });
+    onSelect({ customer, ...creataPaymentTags(value, email) });
 
   return (
     <div className="subscription-item" onClick={handleSubscriptionSelect}>
       <div className="title">{title} </div>
-      <p>{infos.at(1)}</p>
+      <p>{description}</p>
       <Button prompt="ΕΠΙΛΟΓΗ" className="orange" />
       <div className="amount">
         <span>€</span>
-        {infos.at(2) / 100}
+        {value / 100}
       </div>
     </div>
   );

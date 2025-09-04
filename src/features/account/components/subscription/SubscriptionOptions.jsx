@@ -53,11 +53,12 @@ const SubscriptionOptions = () => {
       <span>ΕΠΙΛΟΓΕΣ ΑΝΑΝΕΩΣΗΣ</span>
       <Frame>
         <div className="subscription-options">
-          {Object.values(SUBSCRIPTION_TYPES).map((option) => (
+          {Object.entries(SUBSCRIPTION_TYPES).map(([title, infos]) => (
             <SubscriptionItem
+              key={title}
+              title={title}
+              infos={infos}
               onSelect={selectSubscription}
-              key={option}
-              option={option}
             />
           ))}
         </div>

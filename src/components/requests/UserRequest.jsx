@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { useCancelRequestMutation } from '@account/api/accountApi';
-import { createTableTitle } from '@utils/text-functions';
+import { getTableTitle } from '@utils/text-functions';
 import useSnackBar from '@hooks/useSnackBar';
 import ToolTip from '@ui/ToolTip';
 import './Requests.scss';
@@ -35,7 +35,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
   return (
     <div className={`request-tableName${gameId ? ' joined' : ''}`}>
       {!cancelHovered && <ToolTip info="Καθήστε" />}
-      <div onClick={handleJoinTable}>{createTableTitle(tableName)}</div>
+      <div onClick={handleJoinTable}>{getTableTitle(tableName)}</div>
       <div
         className="cancel"
         onMouseOver={() => setCancelHovered(true)}
