@@ -1,11 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import {
-  pokaApi,
-  useGetPokaStateQuery,
-  useSitOutMutation,
-} from '@poka/api/pokaApi';
+import { useGetPokaStateQuery, useSitOutMutation } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
 import { socket } from '@store/gameApi';
 import { resetMessages } from '@account/slice/accountSlice';

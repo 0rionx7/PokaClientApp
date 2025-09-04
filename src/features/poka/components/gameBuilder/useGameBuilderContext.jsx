@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, use, useCallback, useState } from 'react';
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
@@ -7,7 +8,7 @@ const GameBuilderContext = createContext({
   values: {},
   status: {},
   setValues: () => {},
-  setFieldValue: (field, value) => {},
+  setFieldValue: (_field, _value) => {},
   setStatus: () => {},
 });
 

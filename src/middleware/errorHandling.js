@@ -1,6 +1,6 @@
 import { isRejectedWithValue } from '@reduxjs/toolkit';
 
-export const errorHandling = store => next => action => {
+export const errorHandling = _store => next => action => {
   // RTK Query uses `createAsyncThunk` from redux-toolkit under the hood,
   // so we're able to utilize these matchers!
   if (isRejectedWithValue(action)) console.log(action.payload);

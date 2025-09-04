@@ -31,7 +31,7 @@ export const accountSlice = createSlice({
     postMessage: (state, action) => {
       state.messages.push(action.payload);
     },
-    resetMessages: (state, action) => {
+    resetMessages: (state, _action) => {
       state.messages = [];
     },
   },
@@ -67,7 +67,7 @@ export const accountSlice = createSlice({
           pokaApi.endpoints.sitOut.matchFulfilled,
           chineseApi.endpoints.sitOutChinese.matchFulfilled
         ),
-        (state, action) => {
+        (state, _action) => {
           state.gameId = '';
         }
       );

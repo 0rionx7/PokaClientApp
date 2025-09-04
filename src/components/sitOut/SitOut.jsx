@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 
 import exit from '@icons/exit.svg';
 import Button from '@ui/Button';

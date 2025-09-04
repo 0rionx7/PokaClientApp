@@ -11,7 +11,7 @@ export class AppErrorBoundary extends Component {
     return { hasError: true };
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(_error, _info) {
     // appInsights.trackException({
     //   exception: error,
     //   properties: { info },

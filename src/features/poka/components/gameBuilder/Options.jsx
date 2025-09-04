@@ -39,7 +39,7 @@ const Options = () => {
               label={label}
               value={i + 1}
               checked={values.hats === i + 1}
-              onChange={e => setFieldValue('hats', i + 1)}
+              onChange={() => setFieldValue('hats', i + 1)}
               info={INFO_TEXT.HAT}
             />
           ))}

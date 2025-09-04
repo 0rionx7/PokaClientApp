@@ -81,7 +81,7 @@ export const accountApi = gameApi.injectEndpoints({
       }),
     }),
     logOut: build.mutation({
-      query: _ => ({
+      query: () => ({
         url: 'user/logout',
         method: 'POST',
         body: { socketId: socket.id },
@@ -145,7 +145,7 @@ export const accountApi = gameApi.injectEndpoints({
       invalidatesTags: ['User'],
     }),
     logOutAll: build.mutation({
-      query: _ => ({
+      query: () => ({
         url: '/user/logOutAll',
         method: 'PATCH',
         body: {},
