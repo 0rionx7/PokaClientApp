@@ -47,7 +47,6 @@ const AvailableTables = () => {
         />
       </div>
       <h3>Διαθέσιμα τραπέζια</h3>
-      {/* <Button className="green" prompt="ανανέωση λίστας" onClick={refetch} /> */}
       <div className="tables-container">
         {!availableTables?.length ? (
           <div className="available-table" style={{ cursor: 'auto' }}>
