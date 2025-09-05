@@ -123,7 +123,7 @@ export const pokaApi = gameApi.injectEndpoints({
       }),
     }),
     revealCards: build.mutation({
-      query: (_) => ({
+      query: () => ({
         url: '/poka/reveal',
         method: 'PATCH',
       }),
@@ -136,7 +136,7 @@ export const pokaApi = gameApi.injectEndpoints({
       }),
     }),
     nextRound: build.mutation({
-      query: (_) => ({
+      query: () => ({
         url: '/poka/nextRound',
         method: 'PATCH',
       }),

@@ -108,13 +108,13 @@ export const chineseApi = gameApi.injectEndpoints({
       }),
     }),
     nextRoundChinese: build.mutation({
-      query: (_) => ({
+      query: () => ({
         url: 'chinese/nextRound',
         method: 'PATCH',
       }),
     }),
     timedOut: build.mutation({
-      query: (_) => ({
+      query: () => ({
         url: 'chinese/timedOut',
         method: 'PATCH',
       }),
