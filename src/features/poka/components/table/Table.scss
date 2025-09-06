@@ -1,0 +1,63 @@
+@use '@styles/colors';
+@use './TableGrids';
+
+.table {
+  @extend %table-grids;
+  display: grid;
+  grid-area: table;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+  width: 100%;
+  grid-gap: 1px;
+  padding: 0.5rem;
+  background-color: #112423;
+}
+.waiting-content {
+  display: grid;
+  place-self: center;
+  position: relative;
+  top: 10%;
+}
+.game-table {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  width: 85%;
+  height: 100%;
+  transform: rotateX(24deg);
+  border-radius: 40vh;
+  background-color: #2d2616;
+  box-shadow: inset 0 0 30px 0px black;
+  @media only screen and (min-width: 1200px) {
+    width: 75%;
+  }
+  .tsoxa {
+    place-self: center;
+    height: 90%;
+    width: 95%;
+    border-radius: 40vh;
+    box-shadow: inset 0 0 18px 0px black;
+    background: colors.$main-color;
+  }
+}
+.snack-message {
+  .game-info,
+  .info-container {
+    background: transparent;
+    width: 40vw;
+    font-size: 0.65rem;
+    @media only screen and (min-height: 500px) {
+      font-size: 0.85rem;
+    }
+  }
+  .table-name,
+  .games-count {
+    display: none;
+  }
+}

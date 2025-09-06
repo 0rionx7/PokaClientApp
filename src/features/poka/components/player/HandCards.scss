@@ -1,0 +1,38 @@
+@use './HandCardsCompact.scss';
+
+.hand-cards {
+  @extend %compact-cards;
+  display: flex;
+  position: relative;
+  top: 25%;
+  height: var(--card-height);
+  grid-area: handCards;
+  justify-self: center;
+  .card {
+    position: relative;
+    .value {
+      line-height: calc(0.6 * var(--card-width));
+    }
+  }
+  @media only screen and (min-height: 500px) and (min-width: 750px) {
+    top: 35%;
+    .card .value {
+      line-height: calc(0.4 * var(--card-width));
+    }
+  }
+}
+.chips-grid {
+  --shift: 1rem;
+  position: absolute;
+  display: grid;
+  right: calc(100% + var(--shift));
+  bottom: 40%;
+}
+.bet-amount {
+  place-self: center;
+  padding: 0.1rem 0.5rem;
+  border-radius: 7px;
+  color: rgba(255, 228, 196, 0.588);
+  background-color: #9d97944e;
+  font-size: 0.7rem;
+}

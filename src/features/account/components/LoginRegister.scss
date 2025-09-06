@@ -1,0 +1,80 @@
+@use '@styles/colors.scss';
+@use '@styles/variables.scss';
+
+.login {
+  form {
+    display: grid;
+    grid-template-areas:
+      'username remember'
+      'pass     forgot  '
+      'submit   error  ';
+    grid-template-columns: 60% 1fr;
+  }
+}
+.register {
+  form {
+    display: grid;
+    grid-template-areas:
+      'username pass'
+      'email confirm'
+      'submit agree'
+      'error error';
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.login,
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: colors.$sand-tan-shadow;
+  border-radius: variables.$pages-curves;
+  height: 100%;
+  width: 100%;
+  .frame {
+    background-color: #2a3236;
+    position: relative;
+    width: 50%;
+  }
+  form {
+    gap: 0.5rem;
+  }
+  input {
+    height: 2rem;
+    border-radius: 7px;
+    background-color: bisque;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  span {
+    grid-area: error;
+    place-self: center;
+    color: red;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: pre-line;
+    text-align: center;
+  }
+  button {
+    padding: 0.75rem 1.5rem;
+  }
+  p {
+    font-size: 0.8rem;
+    text-align: center;
+    color: orange;
+    &:hover {
+      color: rgb(200, 131, 1);
+    }
+  }
+  a {
+    width: fit-content;
+    place-self: center;
+  }
+  .checkbox {
+    height: 1rem;
+    margin: 0 0.3rem;
+  }
+  .agree-terms {
+    font-size: 0.8rem;
+  }
+}

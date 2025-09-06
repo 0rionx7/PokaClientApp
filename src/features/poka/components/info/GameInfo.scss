@@ -1,0 +1,59 @@
+.info-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex: 1 0 auto;
+  border-radius: 0.5rem;
+  background-color: #a29280;
+  span {
+    color: black !important;
+    display: inline-block;
+    font-weight: 600;
+    span {
+      font-weight: 400;
+    }
+  }
+}
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+  overflow-y: auto;
+  height: calc(var(--ribbon-height) - var(--info-buttons));
+  padding: 0.3rem;
+  background-color: rgb(112 108 101);
+  flex: 1 0 auto;
+  .gameName {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    font-weight: 600;
+  }
+}
+.description {
+  align-items: flex-start;
+  padding: 0.3rem;
+  span {
+    font-weight: 700;
+  }
+}
+.table-name {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #3c2e1e;
+}
+.games-count {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #3c2e1e;
+}

@@ -1,0 +1,20 @@
+.players-info {
+  display: grid;
+  justify-content: center;
+  height: 100%;
+  color: black;
+  .player-requests {
+    align-self: flex-end;
+    &:nth-child(2) {
+      align-self: flex-start;
+    }
+  }
+  @media only screen and (min-height: 500px) {
+    grid-template-rows: 1fr 1fr;
+  }
+}
+.builder-overlay {
+  justify-content: flex-start;
+  grid-template-columns: 1fr 1fr;
+  padding: 1.5rem;
+}

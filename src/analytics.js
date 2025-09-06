@@ -11,7 +11,7 @@ var reactPlugin = new ReactPlugin();
 }; */
 export const appInsights = new ApplicationInsights({
   config: {
-    connectionString: process.env.REACT_APP_APPINSIGHTS_KEY,
+    connectionString: import.meta.env.VITE_APPINSIGHTS_KEY,
     // *** If you're adding the Click Analytics plug-in, delete the next line. ***
     extensions: [reactPlugin],
     // *** Add the Click Analytics plug-in. ***

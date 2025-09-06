@@ -1,8 +1,8 @@
-@use '../../variables.scss';
-@import './DecorationLayouts.scss';
+@use '@styles/variables.scss';
+@use './DecorationLayouts.scss';
 
 .card-decoration {
-  @include decoration-content-layout;
+  @extend %decoration-content-layout;
   position: relative;
   display: none;
   place-items: center;
@@ -13,21 +13,19 @@
   @media only screen and (min-height: 500px) and (min-width: 750px) {
     display: grid;
   }
-  svg {
-    width: calc(0.17 * var(--card-width));
-    height: calc(0.17 * var(--card-width));
-  }
   .silhouette-suit {
-    position: absolute;
-    width: calc(0.19 * var(--card-width));
-    height: calc(0.19 * var(--card-width));
-    &:first-child {
-      top: 1px;
-      left: 1px;
+    & :not(:nth-child(2)) {
+      position: absolute;
+      width: calc(0.15 * var(--card-width));
+      height: calc(0.15 * var(--card-width));
     }
-    &:nth-child(2) {
-      bottom: 1px;
-      right: 1px;
+    & :first-child {
+      top: 1px;
+      left: 2px;
+    }
+    & :last-child {
+      bottom: 5px;
+      right: 2px;
       transform: rotateZ(180deg);
     }
   }

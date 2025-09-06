@@ -1,0 +1,119 @@
+@use '@styles/variables';
+
+%table-grids {
+  $handCards-shift: calc(-0.35 * var(--card-height));
+
+  &.players-2 {
+    grid-template:
+      '. player-2 .' variables.$player-height
+      '.  board   .' 1fr
+      '. player-1 .' variables.$player-height;
+    grid-template-columns: 1fr variables.$board-width 1fr;
+  }
+  &.players-3 {
+    grid-template:
+      '.           .            .' variables.$player-height
+      'player-2  board   player-3' 1fr
+      '.        player-1        .' variables.$player-height;
+    grid-template-columns: 1fr variables.$board-width 1fr;
+    .seat-2 {
+      align-self: flex-start;
+    }
+    .seat-3 {
+      align-self: flex-start;
+    }
+  }
+  &.players-4 {
+    grid-template:
+      '.        player-3        .' variables.$player-height
+      'player-2  board   player-4' 1fr
+      '.        player-1        .' variables.$player-height;
+    grid-template-columns: 1fr variables.$board-width 1fr;
+  }
+  &.players-5 {
+    grid-template:
+      'player-3   .      player-4' variables.$player-height
+      '.        board       .    ' 1fr
+      'player-2 player-1 player-5' variables.$player-height;
+    grid-template-columns: 1fr variables.$board-width 1fr;
+    .seat-2,
+    .seat-5 {
+      top: -150%;
+    }
+    .seat-3 {
+      left: 35%;
+    }
+    .seat-4 {
+      left: -35%;
+    }
+  }
+  &.players-6 {
+    grid-template:
+      'player-3 player-4  player-5' variables.$player-height
+      '.        board            .' 1fr
+      'player-2 player-1  player-6' variables.$player-height;
+    grid-template-columns: 1fr variables.$board-width 1fr;
+    .seat-2,
+    .seat-6 {
+      top: -75%;
+    }
+    .seat-3,
+    .seat-5 {
+      top: 75%;
+    }
+  }
+  &.players-7 {
+    grid-template:
+      'player-4   .      player-5' variables.$player-height
+      'player-3 board    player-6' 1fr
+      'player-2 player-1 player-7' variables.$player-height;
+    grid-template-columns: 1fr variables.$board-width 1fr;
+    .seat-2 {
+      top: -50%;
+    }
+    .seat-3 {
+      justify-self: flex-start;
+      top: calc(-0.7 * var(--card-height));
+    }
+    .seat-4 {
+      left: 35%;
+    }
+    .seat-5 {
+      left: -35%;
+    }
+    .seat-6 {
+      justify-self: flex-end;
+      top: calc(-0.7 * var(--card-height));
+    }
+    .seat-7 {
+      top: -50%;
+    }
+  }
+  &.players-8 {
+    grid-template:
+      'player-4 player-5 player-6' variables.$player-height
+      'player-3 board    player-7' 1fr
+      'player-2 player-1 player-8' variables.$player-height;
+    grid-template-columns: 1fr variables.$board-width 1fr;
+    .seat-2 {
+      top: -50%;
+    }
+    .seat-3 {
+      justify-self: flex-start;
+      top: $handCards-shift;
+    }
+    .seat-4 {
+      top: 15%;
+    }
+    .seat-6 {
+      top: 15%;
+    }
+    .seat-7 {
+      justify-self: flex-end;
+      top: $handCards-shift;
+    }
+    .seat-8 {
+      top: -50%;
+    }
+  }
+}

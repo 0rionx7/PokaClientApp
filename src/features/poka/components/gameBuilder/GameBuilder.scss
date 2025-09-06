@@ -1,0 +1,125 @@
+.game-builder {
+  align-self: flex-start;
+  * {
+    font-size: 0.65rem;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    @media only screen and (min-height: 450px) {
+      gap: 0.3rem;
+      select {
+        height: 2rem;
+      }
+    }
+  }
+  label {
+    cursor: pointer;
+    div {
+      margin: 0 0.4rem;
+    }
+  }
+  @media only screen and (min-height: 600px) {
+    .controls {
+      .form-control {
+        flex-direction: column;
+      }
+    }
+    @media only screen and (min-width: 900px) {
+      * {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+.controls {
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  gap: 0.3rem;
+  .form-control {
+    justify-content: center;
+    flex-direction: row;
+  }
+}
+
+.builder-row {
+  select {
+    height: 1rem;
+    border-radius: 7px;
+    background-color: bisque;
+    text-align: center;
+
+    &[name='startingCard'] {
+      width: 3rem;
+    }
+    &[name='gameName'] {
+      flex: 0.85 0;
+    }
+  }
+  .title {
+    width: 8rem;
+  }
+  .game-chooser {
+    flex: 1 0;
+    display: flex;
+    justify-content: space-around;
+  }
+  .starting-card {
+    display: flex;
+    align-items: center;
+  }
+  .with-counter {
+    display: flex;
+    flex-direction: column;
+    .active-title {
+      border: 2px solid bisque;
+      background-color: #ff6a00b4;
+      border-radius: 7px 7px 0 0;
+      border-bottom: none;
+      font-size: 0.65rem;
+      padding-left: 0.2rem;
+      margin: 0;
+      .checkbox:checked {
+        width: 0.9rem;
+        height: 0.9rem;
+      }
+    }
+    .active-counter {
+      border: 2px solid bisque;
+      border-radius: 0 0 7px 7px;
+      background-color: #ff6a00b4;
+      border-top: none;
+      * {
+        font-weight: 600;
+      }
+    }
+    @media only screen and (min-width: 1000px) {
+      flex-direction: row;
+      .active-title {
+        border: 2px solid bisque;
+        border-right: none;
+        border-radius: 7px 0 0 7px;
+      }
+      .active-counter {
+        border: 2px solid bisque;
+        border-radius: 0 7px 7px 0;
+        background-color: #ff6a00b4;
+        border-left: none;
+      }
+    }
+  }
+}
+.deal-btn {
+  height: 3rem;
+  width: 40vw;
+  font-weight: 600;
+  font-size: 0.9rem;
+  background-color: #e94009;
+  border-radius: 1rem;
+  &:hover {
+    background-color: #ff490d;
+  }
+}

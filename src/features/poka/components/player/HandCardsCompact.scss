@@ -1,0 +1,134 @@
+@use '@styles/variables';
+
+%compact-cards {
+  &.cards-2 {
+    // .card {
+    //   &:first-child {
+    //     left: variables.$even-core;
+    //   }
+    //   &:nth-child(2) {
+    //     right: variables.$even-core;
+    //   }
+    // }
+  }
+  &.cards-3 {
+    // .card {
+    //   &:first-child {
+    //     left: variables.$odd-core;
+    //   }
+    //   &:nth-child(3) {
+    //     right: variables.$odd-core;
+    //   }
+    // }
+  }
+  &.cards-4 {
+    // .card {
+    //   &:first-child {
+    //     left: variables.$even-mid;
+    //   }
+    //   &:nth-child(2) {
+    //     left: variables.$even-core;
+    //   }
+    //   &:nth-child(3) {
+    //     right: variables.$even-core;
+    //   }
+    //   &:nth-child(4) {
+    //     right: variables.$even-mid;
+    //   }
+    // }
+  }
+  &.cards-5 {
+    // .card {
+    //   &:first-child {
+    //     left: variables.$odd-mid;
+    //   }
+    //   &:nth-child(2) {
+    //     left: variables.$odd-core;
+    //   }
+    //   &:nth-child(4) {
+    //     right: variables.$odd-core;
+    //   }
+    //   &:nth-child(5) {
+    //     right: variables.$odd-mid;
+    //   }
+    // }
+  }
+  &.cards-6 {
+    .card {
+      &:first-child {
+        left: variables.$even-outer;
+      }
+      &:nth-child(2) {
+        left: variables.$even-mid;
+      }
+      &:nth-child(3) {
+        left: variables.$even-core;
+      }
+      &:nth-child(4) {
+        right: variables.$even-core;
+      }
+      &:nth-child(5) {
+        right: variables.$even-mid;
+      }
+      &:nth-child(6) {
+        right: variables.$even-outer;
+      }
+    }
+    & + .chips-grid {
+      --shift: 0;
+    }
+  }
+  &.cards-7 {
+    .card {
+      &:first-child {
+        left: variables.$odd-outer;
+      }
+      &:nth-child(2) {
+        left: variables.$odd-mid;
+      }
+      &:nth-child(3) {
+        left: variables.$odd-core;
+      }
+      &:nth-child(5) {
+        right: variables.$odd-core;
+      }
+      &:nth-child(6) {
+        right: variables.$odd-mid;
+      }
+      &:nth-child(7) {
+        right: variables.$odd-outer;
+      }
+    }
+    & + .chips-grid {
+      --shift: 0;
+    }
+  }
+  &.cards-8 {
+    .card {
+      &:first-child {
+        left: variables.$odd-outer;
+      }
+      &:nth-child(2) {
+        left: variables.$odd-mid;
+      }
+      &:nth-child(3) {
+        left: variables.$odd-core;
+      }
+      &:nth-child(5) {
+        right: variables.$odd-core;
+      }
+      &:nth-child(6) {
+        right: variables.$odd-mid;
+      }
+      &:nth-child(7) {
+        right: variables.$odd-outer;
+      }
+      &:nth-child(8) {
+        right: variables.$eigth;
+      }
+    }
+    & + .chips-grid {
+      --shift: 0;
+    }
+  }
+}

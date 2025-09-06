@@ -1,0 +1,91 @@
+.chat-box {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  height: calc(var(--ribbon-height) - var(--info-buttons));
+  overflow: hidden;
+  background-color: rgb(112 108 101);
+  padding: 0.2rem;
+  height: 100%;
+  width: 100%;
+}
+// for having scrollbar with rounded corners
+.messages-container {
+  flex: 1 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+.messages {
+  border-radius: 5px;
+  background-color: #a29280;
+  overflow-y: auto;
+  height: 100%;
+  padding: 0 0.8rem;
+  font-size: 0.6rem;
+  span {
+    color: rgb(255 0 0);
+    font-weight: 600;
+  }
+  @media only screen and (min-height: 500px) and (min-width: 900px) {
+    font-size: 0.7rem;
+  }
+}
+.chat-input {
+  display: flex;
+  align-items: center;
+  height: 1rem;
+  @media only screen and (min-height: 500px) {
+    height: 1.5rem;
+  }
+}
+.text-input {
+  margin: 0px;
+  padding-left: 1rem;
+  outline: none;
+  border-radius: 5px;
+  padding-left: 1rem;
+  background-color: #dbc3a8;
+  border: none;
+  outline: none;
+  width: 100%;
+}
+.send-btn {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  right: 0;
+  border-radius: 0 5px 5px 0;
+  z-index: 2;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: #1e90ff;
+  width: 9%;
+}
+.emoji-picker {
+  position: fixed;
+  bottom: var(--ribbon-height);
+  z-index: 110;
+}
+.EmojiPickerReact .epr-preview {
+  display: none;
+}
+
+.input-container {
+  height: 100%;
+  width: 90%;
+  position: relative;
+  input {
+    height: 100%;
+  }
+}
+.chat-error {
+  flex: 1 0 auto;
+  display: grid;
+  place-items: center;
+  color: bisque;
+  font-size: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-align: center;
+}

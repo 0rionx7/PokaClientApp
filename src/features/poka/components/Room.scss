@@ -1,0 +1,15 @@
+@use '@styles/colors';
+
+.room {
+  display: grid;
+  grid-template:
+    'table table' 1fr
+    'ribbon ribbon' var(--ribbon-height);
+  height: 100%;
+  width: 100%;
+  .ribbon {
+    grid-area: ribbon;
+    display: flex;
+    background: colors.$nav-color;
+  }
+}

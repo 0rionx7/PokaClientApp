@@ -1,0 +1,88 @@
+.table {
+  grid-area: table;
+  display: grid;
+  justify-content: space-evenly;
+  grid-row-gap: 0.5rem;
+  &.players-2 {
+    grid-template:
+      'other host' max-content
+      'hand hand' 1fr;
+    gap: 15rem;
+    .host,
+    .other {
+      position: relative;
+      top: 5rem;
+    }
+  }
+  &.players-3 {
+    grid-template:
+      'player-1 player-0 player-2' max-content
+      '. hand .' 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 3rem;
+    .player-2,
+    .player-1 {
+      position: relative;
+      top: -7rem;
+    }
+    .player-0 {
+      position: relative;
+      top: 9rem;
+      & + .hand {
+        position: relative;
+        top: 4rem;
+      }
+    }
+  }
+  & + button {
+    margin: 7px 0;
+    padding: 0.3rem 1.5rem;
+  }
+}
+.hand {
+  position: absolute;
+  left: -100%;
+  display: flex;
+  gap: 0.3rem;
+  flex-direction: column;
+  align-items: center;
+  grid-area: hand;
+}
+.hand-cards-chinese {
+  display: flex;
+  gap: 0.3rem;
+}
+.round {
+  position: fixed;
+  top: 1.2rem;
+  left: 17px;
+  color: bisque;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.2rem;
+}
+.sort {
+  width: 49px;
+  border: 1px solid rgb(15, 15, 15);
+  border-radius: 5px;
+  background: rgb(65, 64, 64);
+  font-weight: bold;
+  font-variant: small-caps;
+  padding: 0.3rem;
+  color: rgb(248, 96, 26);
+  margin: 7px;
+  cursor: pointer;
+}
+.sound-icon {
+  position: fixed;
+  bottom: 29px;
+  left: 29px;
+  width: 35px;
+  height: 35px;
+}
+.deck {
+  grid-area: ribbon;
+  display: flex;
+  flex-wrap: wrap;
+}

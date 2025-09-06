@@ -1,0 +1,26 @@
+.live-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: clamp(350px, 100%, 70vw);
+  padding: 0 1rem;
+}
+
+.info-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 4fr 1fr;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+  padding: 0.1rem 1rem;
+  border-radius: 1rem;
+  background-color: #f58505;
+  margin-bottom: 0.2rem;
+  white-space: pre-line;
+  &:nth-child(2) {
+    background-color: #a29280;
+    height: 2rem;
+    font-size: 1.2rem;
+  }
+}

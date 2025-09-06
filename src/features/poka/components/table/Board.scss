@@ -1,0 +1,45 @@
+@use '@poka/utils/GamesBoards.scss';
+@use '@styles/variables.scss';
+
+.board {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  justify-self: center;
+  grid-area: board;
+  height: 100%;
+  width: 100%;
+  .selected {
+    box-shadow:
+      0 variables.$selected-shadow,
+      0 variables.$selected-shadow-border;
+  }
+}
+.board-row {
+  position: relative;
+  display: flex;
+  margin-bottom: 0.2rem;
+  justify-content: space-between;
+  &.double {
+    .card:first-child {
+      transform: rotate(355deg) translateX(25%) translateY(1vh);
+    }
+    .card:nth-child(2) {
+      transform: rotate(5deg) translateX(-25%) translateY(1vh);
+    }
+  }
+  &.triple {
+    .card:first-child {
+      transform: rotate(350deg) translateX(50%) translateY(1vh);
+    }
+    .card:nth-child(2) {
+      z-index: 1;
+    }
+    .card:last-child {
+      z-index: 2;
+      transform: rotate(10deg) translateX(-50%) translateY(1vh);
+    }
+  }
+}

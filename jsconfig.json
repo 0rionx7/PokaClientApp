@@ -1,6 +1,21 @@
 {
   "compilerOptions": {
-    "baseUrl": "src"
+    "baseUrl": ".",
+    "paths": {
+      "@assets/*": ["src/assets/*"],
+      "@store/*": ["src/store/*"],
+      "@components/*": ["src/components/*"],
+      "@poka/*": ["src/features/poka/*"],
+      "@chinese/*": ["src/features/chinese/*"],
+      "@account/*": ["src/features/account/*"],
+      "@styles/*": ["src/styles/*"],
+      "@ui/*": ["src/components/ui/*"],
+      "@layout/*": ["src/components/layout/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@pages/*": ["src/pages/*"],
+      "@utils/*": ["src/utils/*"],
+      "@icons/*": ["src/assets/icons/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "vitest.config.ts"]
 }

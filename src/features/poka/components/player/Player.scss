@@ -1,0 +1,99 @@
+@use '@styles/variables';
+
+.player {
+  position: relative;
+  display: grid;
+  grid:
+    'handCards' max-content
+    'playerInfo' 1fr;
+  height: calc(1.7 * var(--card-height));
+  justify-self: center;
+  .line {
+    height: calc(0.2rem);
+    border-bottom: 1px solid #ffe4c436;
+    width: 100%;
+    grid-area: line;
+  }
+  .timer-bar {
+    position: relative;
+    height: 0.4rem;
+    align-self: flex-start;
+    width: 100%;
+  }
+  .timer-fragment {
+    position: absolute;
+    top: 0;
+    right: 0;
+    box-shadow: inset 0 0 2px 0px black;
+    height: 0.4rem;
+    border-radius: 2px;
+    width: 100%;
+  }
+}
+.avatar {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  right: 0;
+  height: calc(0.6 * var(--card-height));
+  width: calc(0.8 * var(--card-height));
+  border-radius: 50%;
+  background-color: rgb(90 135 44);
+  color: black;
+  font-size: 1rem;
+  font-family: Yellowtail;
+  @media only screen and (min-width: 750px) and (min-height: 500px) {
+    height: calc(0.8 * var(--card-height));
+    font-size: 2rem;
+  }
+}
+.top {
+  top: calc(-0.15 * var(--card-height));
+  .chips-grid {
+    bottom: 0;
+  }
+}
+.right {
+  .player-info-container {
+    padding: 0 0 0 calc(0.8 * var(--card-height));
+  }
+  .total-bet {
+    left: calc(0.8 * var(--card-height));
+  }
+  .avatar {
+    left: 0;
+  }
+  .dealer {
+    right: 7%;
+  }
+  .fold {
+    left: 0;
+  }
+  #denials,
+  #denials + .tool-tip {
+    right: 7%;
+  }
+  #swapped {
+    left: 0;
+    & + .tool-tip {
+      left: 0%;
+    }
+  }
+}
+.left {
+  .chips-grid {
+    --shift: 1rem;
+    left: calc(100% + var(--shift));
+  }
+  .fold {
+    left: initial;
+    right: 0;
+  }
+  .dealer {
+    left: 7%;
+    & + .tool-tip {
+      left: 0;
+      translate: 0;
+    }
+  }
+}
