@@ -5,7 +5,7 @@
       "name": "Debug React App",
       "type": "chrome",
       "request": "launch",
-      "url": "http://localhost:3000", // or 3000, depending on dev server
+      "url": "http://localhost:3000",
       "webRoot": "${workspaceFolder}/src",
       "sourceMaps": true
     }
