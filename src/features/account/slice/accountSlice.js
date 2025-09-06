@@ -7,10 +7,10 @@ import { chineseApi } from '@chinese/api/chineseApi';
 const initialStateFn = () => {
   const initialState = {
     token: '',
+    gameId: '',
     messages: [],
     hideInfo: false,
     deckColor: 'rgb(255 0 0 / 90%)',
-    gameId: '',
   };
   try {
     initialState.hideInfo =

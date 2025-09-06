@@ -8,16 +8,17 @@ import { useSitDownMutation } from '@poka/api/pokaApi';
 import { useGetTablesQuery } from '@store/gameApi';
 
 const AvailableTables = () => {
-  const [query, setfQuery] = useState('');
-  const { state } = useLocation();
-
-  const { data } = useGetTablesQuery(state.game, {
+  const {
+    state: { game },
+  } = useLocation();
+  const { data } = useGetTablesQuery(game, {
     refetchOnMountOrArgChange: true,
   });
   const { data: userData } = useGetUserQuery();
+  const [query, setfQuery] = useState('');
 
   const useSitDown =
-    state.game === 'poka' ? useSitDownMutation : useSitDownChineseMutation;
+    game === 'poka' ? useSitDownMutation : useSitDownChineseMutation;
 
   const joinRequests = userData?.joinRequests;
   const availableTables = useMemo(
