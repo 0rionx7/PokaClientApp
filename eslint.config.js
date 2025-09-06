@@ -11,10 +11,10 @@ export default defineConfig([
     files: ['**/*.{js,jsx}'],
     extends: [
       js.configs.recommended,
-      reactPlugin.configs.flat.recommended,
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
     ],
+    plugins: { reactPlugin },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -29,7 +29,7 @@ export default defineConfig([
         'error',
         { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^_' },
       ],
-      'react/react-in-jsx-scope': 'off',
+      'reactPlugin/jsx-no-undef': 'error',
     },
   },
 ]);

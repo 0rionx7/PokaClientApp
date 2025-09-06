@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 
 import { useBetMutation, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import BetOptions from '@poka/components/action/BetOptions';
+import { formatNumber } from '@utils/helper-functions';
 import { betPrompt } from '@utils/text-functions';
 import Button from '@ui/Button';
 import './Bet.scss';
-import { formatNumber } from '@utils/helper-functions';
 
 const Bet = ({ bet, resta }) => {
   const [placeBet, { reset, isSuccess }] = useBetMutation();
