@@ -14,11 +14,6 @@ export const pokaStateSlice = createSlice({
     toggleChosenCard: (state, action) => {
       const { place, index } = action.payload;
 
-      const toggleChosenIndex = (indexes, index) =>
-        indexes.includes(index)
-          ? indexes.filter((i) => i !== index)
-          : [...indexes, index];
-
       if (place === 'hand') {
         state.chosenHandCardIndexes = toggleChosenIndex(
           state.chosenHandCardIndexes,
@@ -59,3 +54,8 @@ export const {
   selectChosenTableCardIndexes,
   selectChosenGame,
 } = pokaStateSlice.selectors;
+
+const toggleChosenIndex = (indexes, index) =>
+  indexes.includes(index)
+    ? indexes.filter((i) => i !== index)
+    : [...indexes, index];
