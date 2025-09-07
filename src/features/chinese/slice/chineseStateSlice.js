@@ -1,15 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { chineseApi } from '@chinese/api/chineseApi';
 
-export const initialGameState = {
-  boardCards: Array(13).fill(null),
-  handCards: [],
-  isFantasy: false,
-};
-
 export const chineseStateSlice = createSlice({
   name: 'chineseState',
-  initialState: initialGameState,
+  initialState: {
+    boardCards: Array(13).fill(null),
+    handCards: [],
+    isFantasy: false,
+  },
   reducers: {
     setLocalPlayerState: (_state, action) => {
       const { boardCards, handCards, isFantasy } = action.payload;
@@ -18,34 +16,15 @@ export const chineseStateSlice = createSlice({
     moveCard: (state, action) => {
       const { place, index, movedCard } = action.payload;
 
-      state.boardCards = state.boardCards.map((boardCard) =>
-        boardCard?.value + boardCard?.suit === movedCard.value + movedCard.suit
-          ? null
-          : boardCard,
-      );
-      state.handCards = state.handCards.map((handCard) =>
-        handCard?.value + handCard?.suit === movedCard.value + movedCard.suit
-          ? null
-          : handCard,
-      );
+      state.boardCards = removeCard(state.boardCards, movedCard);
+      state.handCards = removeCard(state.handCards, movedCard);
       state[place][index] = movedCard;
     },
     orderByValue: (state, _action) => {
-      state.handCards.sort((a, b) => {
-        if (!a) return -1;
-        if (!b) return 1;
-        return a.value - b.value;
-      });
+      state.handCards.sort(byValue);
     },
     orderBySuit: (state, _action) => {
-      state.handCards = state.handCards.sort((a, b) => {
-        if (!a) return -1;
-        if (!b) return 1;
-        if (a.suit === 'D' && b.suit === 'D') return a.value - b.value;
-        if (a.suit === 'D') return -1;
-        if (b.suit === 'D') return 1;
-        return a.suit.localeCompare(b.suit) || a.value - b.value;
-      });
+      state.handCards.sort(bySuit);
     },
   },
   extraReducers: (builder) =>
@@ -65,3 +44,21 @@ export const { setLocalPlayerState, moveCard, orderBySuit, orderByValue } =
 
 export const { selectBoardCards, selectHandcards, selectIsFantasy } =
   chineseStateSlice.selectors;
+
+const removeCard = (cards, movedCard) =>
+  cards.map((card) =>
+    card?.value + card?.suit === movedCard.value + movedCard.suit ? null : card,
+  );
+const byValue = (a, b) => {
+  if (!a) return -1;
+  if (!b) return 1;
+  return a.value - b.value;
+};
+const bySuit = (a, b) => {
+  if (!a) return -1;
+  if (!b) return 1;
+  if (a.suit === 'D' && b.suit === 'D') return a.value - b.value;
+  if (a.suit === 'D') return -1;
+  if (b.suit === 'D') return 1;
+  return a.suit.localeCompare(b.suit) || a.value - b.value;
+};
