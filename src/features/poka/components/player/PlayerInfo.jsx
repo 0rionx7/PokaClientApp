@@ -1,12 +1,11 @@
 import DeniedCards from '@poka/components/player/DeniedCards';
 import StatusInfo from '@poka/components/player/StatusInfo';
+import TimerBar from '@poka/components/player/TimerBar';
 import { formatNumber } from '@utils/helper-functions';
-import useTimerBar from '@poka/hooks/useTimerBar';
 import ToolTip from '@ui/ToolTip';
 import './PlayerInfo.scss';
 
 const PlayerInfo = ({ playerState }) => {
-  const timerBar = useTimerBar(playerState);
   const { playerName, swapped, bet, resta } = playerState;
 
   const backgroundColor = playerState.isInGame ? '#221f1b' : '#a00000';
@@ -17,7 +16,7 @@ const PlayerInfo = ({ playerState }) => {
         <StatusInfo playerState={playerState} />
         {playerName}
       </div>
-      {timerBar}
+      <TimerBar playerState={playerState} />
       <div className="gameplay-info">
         {swapped > 0 && (
           <>

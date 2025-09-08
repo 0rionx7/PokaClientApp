@@ -1,4 +1,4 @@
-import { createChipStyle } from '@poka/utils/createChipStyle';
+import { getChipStyle } from '@poka/utils/getChipStyle';
 
 function calculateChipCounts(amount, chip) {
   const denominations = [
@@ -23,7 +23,7 @@ function calculateChipCounts(amount, chip) {
 export function createChipStack(amount, chip) {
   function createChipJsx(count, multiplier, startIndex) {
     return Array.from({ length: count }, (_, i) => {
-      const { color, style } = createChipStyle(multiplier, i, startIndex);
+      const { color, style } = getChipStyle(multiplier, i, startIndex);
       const value = multiplier * chip;
       const displayValue = value >= 1000 ? `${value / 1000}K` : value;
 

@@ -32,18 +32,9 @@ const useTimerBar = (playerState) => {
   useEffect(() => setWidth(100), [isActive]);
 
   const backgroundColor = width > 50 ? 'green' : width > 20 ? 'orange' : 'red';
+  const show = isActive && !playerState.handInfo.kind;
 
-  return (
-    <div className="timer-bar">
-      {isActive && !playerState.handInfo.kind && (
-        <div
-          className="timer-fragment"
-          style={{ width: width + '%', backgroundColor }}
-        />
-      )}
-      <div className="line" />
-    </div>
-  );
+  return { show, width, backgroundColor };
 };
 
 export default useTimerBar;

@@ -2,14 +2,12 @@ import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectMessagess } from '@account/slice/accountSlice';
-import { createMessageJsx } from '@poka/utils/createMsgJsx';
+import Message from '@components/chat/Message';
 import './ChatBox.scss';
 
 const Messages = () => {
   const messages = useSelector(selectMessagess);
   const container = useRef();
-
-  const messagesJsx = messages.map(createMessageJsx);
 
   useEffect(() => {
     container.current.scrollTop = container.current.scrollHeight;
@@ -18,7 +16,9 @@ const Messages = () => {
   return (
     <div className="messages-container">
       <div ref={container} className="messages">
-        {messagesJsx}
+        {messages.map((data, i) => (
+          <Message key={i} data={data} />
+        ))}
       </div>
     </div>
   );

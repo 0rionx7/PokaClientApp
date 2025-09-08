@@ -1,9 +1,17 @@
-import { Fragment } from 'react';
 import { describeTime } from '@utils/text-functions';
 
-export function createMessageJsx({ event, ...data }, index) {
-  const { playerName, username, reaction, message, amount, dealer, count } =
-    data;
+const Message = ({ data }) => {
+  const {
+    event,
+    playerName,
+    username,
+    reaction,
+    message,
+    amount,
+    dealer,
+    count,
+  } = data;
+
   const playerCall = (
     <>
       Ο παίκτης <span>{playerName || username}</span>
@@ -67,9 +75,11 @@ export function createMessageJsx({ event, ...data }, index) {
   };
 
   return (
-    <Fragment key={index}>
+    <>
       {messageMap[event]}
       <br />
-    </Fragment>
+    </>
   );
-}
+};
+
+export default Message;

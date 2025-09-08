@@ -1,4 +1,4 @@
-export function createChipStyle(multiplier, index, startIndex) {
+export function getChipStyle(multiplier, index, startIndex) {
   const colorMap = {
     1: 'green',
     5: 'black',
@@ -10,7 +10,7 @@ export function createChipStyle(multiplier, index, startIndex) {
   const color = colorMap[multiplier] || 'purple';
   const style = {
     bottom: 3 * (index + (startIndex ?? 0)),
-    gridArea: startIndex === undefined ? color : 'green',
+    gridArea: color,
   };
   return { color, style };
 }

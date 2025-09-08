@@ -1,4 +1,4 @@
-export function getPosition(playersCount, seat) {
+export function getPlayerPosition(playersCount, seat) {
   const positions = {
     2: { 1: 'top' },
     3: { 1: 'left', 2: 'right' },

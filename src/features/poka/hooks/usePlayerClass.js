@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 
 import { selectPlayerStates, useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { selectUserName } from '@account/api/accountApi';
-import { getPosition } from '@poka/utils/getPosition';
+import { getPlayerPosition } from '@poka/utils/getPlayerPosition';
 import { playerStateOf } from '@utils/helper-functions';
 
 const usePlayerClass = (playerName) => {
@@ -26,7 +26,7 @@ const usePlayerClass = (playerName) => {
         ? playersCount + 1 - (playerIndex - hostIndex)
         : hostIndex - playerIndex + 1;
   }
-  const position = getPosition(playersCount, seat);
+  const position = getPlayerPosition(playersCount, seat);
   const gridArea = `player-${seat}`;
   const className = `player seat-${seat} ${position}`;
 
