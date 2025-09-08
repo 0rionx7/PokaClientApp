@@ -24,12 +24,10 @@
 .chips-grid {
   --shift: 1rem;
   position: absolute;
-  display: grid;
   right: calc(100% + var(--shift));
   bottom: 40%;
 }
 .bet-amount {
-  place-self: center;
   padding: 0.1rem 0.5rem;
   border-radius: 7px;
   color: rgba(255, 228, 196, 0.588);

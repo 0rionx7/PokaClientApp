@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { createChipStack } from '@poka/utils/createChipStack';
 import { formatNumber } from '@utils/helper-functions';
+import './Chip.scss';
 
 const Chips = ({ playerState }) => {
   const {

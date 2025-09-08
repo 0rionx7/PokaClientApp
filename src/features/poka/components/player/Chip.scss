@@ -1,7 +1,7 @@
 .chips {
   position: relative;
   display: grid;
-  grid-template: 'green yellow red blue purple';
+  grid-template: 'green red blue purple';
   grid-template-columns: repeat(4, max-content);
   justify-content: center;
   img {
@@ -25,9 +25,9 @@
       --chip-width: 1.1rem;
     }
   }
+
   span {
-    // display: none;
-    // position: absolute;
+    position: absolute;
     left: 50%;
     top: 10%;
     color: white;
