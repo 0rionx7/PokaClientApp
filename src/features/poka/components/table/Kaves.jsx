@@ -1,22 +1,26 @@
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { createChipStack } from '@poka/utils/createChipStack';
-import { INFO_TEXT } from '@utils/text-constants';
-import ToolTip from '@ui/ToolTip';
-import Kava from '@poka/components/table/Kava';
-import './Kaves.scss';
+import { calculateChipCounts } from '@poka/utils/calculateChipCounts';
 import { formatNumber } from '@utils/helper-functions';
+import Chips from '@poka/components/player/Chips';
+import { INFO_TEXT } from '@utils/text-constants';
+import Kava from '@poka/components/table/Kava';
+import ToolTip from '@ui/ToolTip';
+import './Kaves.scss';
 
-const Kaves = ({ totalPot, rows }) => {
+const Kaves = ({ totalPot }) => {
   const { data } = useGetPokaStateQuery();
 
   const { chip, kaves } = data;
-  const chips = createChipStack(totalPot, chip);
+  const chips = calculateChipCounts(totalPot, chip);
   const showKaves = kaves[0]?.amount < totalPot;
-  const kavesClass = !rows ? 'center' : rows % 2 === 0 ? 'even' : '';
 
   return (
-    <div className={'kaves ' + kavesClass}>
-      <div className="chips">{chips}</div>
+    <div className="kaves ">
+      <div className="chips">
+        {Object.entries(chips).map((chipInfo) => (
+          <Chips key={chipInfo[0]} chipInfo={chipInfo} />
+        ))}
+      </div>
       <div className="pot">ποτ: {formatNumber(totalPot)}</div>
       {showKaves && (
         <>

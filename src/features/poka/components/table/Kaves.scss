@@ -1,14 +1,8 @@
 .kaves {
   position: absolute;
+  left: 7%;
   display: grid;
   cursor: help;
-  &:not([class*='center']) {
-    right: calc(100% + 0.7rem);
-    top: 55%;
-  }
-  &.even {
-    top: 0;
-  }
   &:hover {
     .tool-tip {
       visibility: visible;

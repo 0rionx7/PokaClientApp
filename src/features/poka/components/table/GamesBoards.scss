@@ -1,6 +1,11 @@
 @use '@styles/variables';
 
 $total-width: calc(var(--card-width) + 0.4rem);
+.empty {
+  .kaves {
+    left: 45%;
+  }
+}
 .corner {
   .card {
     margin-right: 0.4rem;
@@ -45,6 +50,9 @@ $total-width: calc(var(--card-width) + 0.4rem);
   }
   .card {
     margin-right: 0.3rem;
+  }
+  .kaves {
+    left: -10%;
   }
 }
 .mamut {
@@ -217,9 +225,6 @@ $total-width: calc(var(--card-width) + 0.4rem);
           calc(0.1 * var(--card-height) + 2px) 0 #090909;
       }
     }
-  }
-  .kaves {
-    right: calc(100% + 1.5rem);
   }
 }
 ///////////////////////////////////////

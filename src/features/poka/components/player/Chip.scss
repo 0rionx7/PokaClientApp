@@ -7,6 +7,22 @@
   img {
     display: block;
   }
+  & > * {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .green {
+    grid-area: green;
+  }
+  .red {
+    grid-area: red;
+  }
+  .blue {
+    grid-area: blue;
+  }
+  .purple {
+    grid-area: purple;
+  }
 }
 .chip {
   --chip-width: 0.7rem;
@@ -24,6 +40,9 @@
     @media only screen and (min-width: 1100px) {
       --chip-width: 1.1rem;
     }
+  }
+  &:not(:first-child) {
+    margin-bottom: -5px;
   }
 
   span {

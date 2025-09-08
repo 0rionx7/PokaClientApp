@@ -14,16 +14,10 @@ const Board = () => {
     className += ` ${rowIndexes.length - (hats && 1)}`;
 
   return (
-    <div className={`board ${className ?? ''}`}>
-      {!rowIndexes?.length && totalPot > 0 && <Kaves totalPot={totalPot} />}
-      {rowIndexes?.map((rowIndexes, i, { length }) => (
-        <BoardRow
-          rowIndexes={rowIndexes}
-          row={i}
-          rows={length}
-          key={i}
-          totalPot={totalPot}
-        />
+    <div className={`board ${className ?? 'empty'}`}>
+      {totalPot > 0 && <Kaves totalPot={totalPot} />}
+      {rowIndexes?.map((rowIndexes, i) => (
+        <BoardRow rowIndexes={rowIndexes} row={i} key={i} />
       ))}
     </div>
   );
