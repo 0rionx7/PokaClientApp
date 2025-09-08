@@ -6,16 +6,18 @@ import Card from '@poka/components/card/Card';
 
 const DeniedCards = ({ playerState }) => {
   const hostPlayerName = useSelector(selectUserName);
-  const isHostPlayer = playerState.playerName === hostPlayerName;
+  const { playerName, deniedCards } = playerState;
 
-  if (!playerState.deniedCards.length) return null;
+  if (!deniedCards.length) return null;
+
+  const isHostPlayer = playerName === hostPlayerName;
 
   return (
     <>
-      <span id="denials">{playerState.deniedCards.length}</span>
+      <span id="denials">{deniedCards.length}</span>
       <ToolTip info="ΑΡΝΗΣΕΙΣ">
         <div className="denied-cards">
-          {playerState.deniedCards.map((card) => {
+          {deniedCards.map((card) => {
             if (isHostPlayer) card = { ...card, faceUp: true };
             return <Card card={card} key={card.value + card.suit} />;
           })}
