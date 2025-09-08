@@ -59,9 +59,10 @@
   }
 }
 .bet-options {
-  display: grid;
-  grid-template-columns: 1fr max-content;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 0.5rem;
   padding: 0 4px;
 }
 .call {
