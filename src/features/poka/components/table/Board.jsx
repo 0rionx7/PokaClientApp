@@ -15,10 +15,21 @@ const Board = () => {
 
   return (
     <div className={`board ${className ?? 'empty'}`}>
-      {totalPot > 0 && <Kaves totalPot={totalPot} />}
-      {rowIndexes?.map((rowIndexes, i) => (
-        <BoardRow rowIndexes={rowIndexes} row={i} key={i} />
-      ))}
+      {!rowIndexes?.length && <Kaves totalPot={totalPot} />}
+      {rowIndexes?.map((rowIndexes, i, array) => {
+        const order = {
+          isFirst: i === 0,
+          isLast: i === array.length - 1,
+        };
+        return (
+          <BoardRow
+            key={i}
+            rowIndexes={rowIndexes}
+            order={order}
+            totalPot={totalPot}
+          />
+        );
+      })}
     </div>
   );
 };

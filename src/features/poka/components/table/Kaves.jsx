@@ -10,6 +10,8 @@ import './Kaves.scss';
 const Kaves = ({ totalPot }) => {
   const { data } = useGetPokaStateQuery();
 
+  if (totalPot <= 0) return null;
+
   const { chip, kaves } = data;
   const chipInfos = calculateChipCounts(totalPot, chip);
   const showKaves = kaves[0]?.amount < totalPot;

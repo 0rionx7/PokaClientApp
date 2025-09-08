@@ -1,6 +1,7 @@
 .kaves {
   position: absolute;
-  left: 7%;
+  right: 100%;
+  bottom: -30%;
   display: grid;
   cursor: help;
   &:hover {
@@ -21,14 +22,6 @@
   font-size: 0.4rem;
   background-color: #9d97944e;
   text-wrap: nowrap;
-  &:first-child {
-    text-align: right;
-    margin-bottom: 0.5rem;
-  }
-  span:not(:first-child)::before {
-    content: ', ';
-  }
-
   @media only screen and (min-height: 500px) {
     @media only screen and (min-width: 650px) {
       font-size: 0.55rem;
