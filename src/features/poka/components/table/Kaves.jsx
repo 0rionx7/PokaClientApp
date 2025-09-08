@@ -1,7 +1,7 @@
 import { useGetPokaStateQuery } from '@poka/api/pokaApi';
 import { calculateChipCounts } from '@poka/utils/calculateChipCounts';
 import { formatNumber } from '@utils/helper-functions';
-import Chips from '@poka/components/player/Chips';
+import Stack from '@poka/components/player/Stack';
 import { INFO_TEXT } from '@utils/text-constants';
 import Kava from '@poka/components/table/Kava';
 import ToolTip from '@ui/ToolTip';
@@ -11,14 +11,14 @@ const Kaves = ({ totalPot }) => {
   const { data } = useGetPokaStateQuery();
 
   const { chip, kaves } = data;
-  const chips = calculateChipCounts(totalPot, chip);
+  const chipInfos = calculateChipCounts(totalPot, chip);
   const showKaves = kaves[0]?.amount < totalPot;
 
   return (
     <div className="kaves ">
       <div className="chips">
-        {Object.entries(chips).map((chipInfo) => (
-          <Chips key={chipInfo[0]} chipInfo={chipInfo} />
+        {chipInfos.map((chipInfo) => (
+          <Stack key={chipInfo[0]} chipInfo={chipInfo} />
         ))}
       </div>
       <div className="pot">ποτ: {formatNumber(totalPot)}</div>

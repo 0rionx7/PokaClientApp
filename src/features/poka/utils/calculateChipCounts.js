@@ -27,5 +27,16 @@ export const calculateChipCounts = (amount, chip) => {
     remaining -= count * unitValue;
   }
 
-  return result;
+  let chipInfos = { green: [] };
+  for (const [key, value] of Object.entries(result)) {
+    if (typeof value === 'object') {
+      for (const [key, count] of Object.entries(value)) {
+        chipInfos.green.push(...Array(count).fill(key));
+      }
+    } else {
+      chipInfos[key] = Array(value).fill(key);
+    }
+  }
+
+  return Object.entries(chipInfos);
 };

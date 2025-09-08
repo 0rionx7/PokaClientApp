@@ -146,6 +146,9 @@ $total-width: calc(var(--card-width) + 0.4rem);
       transform: rotateZ(3deg);
     }
   }
+  .kaves {
+    left: 0;
+  }
 }
 .koukos {
   height: calc(4.3 * var(--card-height)) !important;
