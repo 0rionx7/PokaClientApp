@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import reactPlugin from 'eslint-plugin-react';
+import react from 'eslint-plugin-react';
 import { defineConfig, globalIgnores } from 'eslint/config';
 
 export default defineConfig([
@@ -14,7 +14,7 @@ export default defineConfig([
       reactHooks.configs['recommended-latest'],
       reactRefresh.configs.vite,
     ],
-    plugins: { reactPlugin },
+    plugins: { react },
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
@@ -29,7 +29,7 @@ export default defineConfig([
         'error',
         { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^_' },
       ],
-      'reactPlugin/jsx-no-undef': 'error',
+      'react/jsx-no-undef': 'error',
     },
   },
 ]);
