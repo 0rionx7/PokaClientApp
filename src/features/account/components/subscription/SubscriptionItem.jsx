@@ -15,8 +15,10 @@ const SubscriptionItem = ({ title, infos, onSelect }) => {
     requestLang: 'el-GR',
   };
 
-  const handleSubscriptionSelect = () =>
-    onSelect({ customer, ...creataPaymentTags(value, username) });
+  const handleSubscriptionSelect = () => {
+    const customerDetails = { customer, ...creataPaymentTags(value, username) };
+    onSelect(customerDetails);
+  };
 
   return (
     <div className="subscription-item" onClick={handleSubscriptionSelect}>
