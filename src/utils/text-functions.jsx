@@ -105,18 +105,18 @@ export function getNameAndLabel(name) {
 
   return gameMap[name] || { name: '', label: '' };
 }
-export function creataPaymentTags(amount, email) {
+export function creataPaymentTags(amount, username) {
   const tagsMap = {
     5000: {
       amount: 5000,
       customerTrns: PAYMENT_DESCRIPTION.yearly,
-      merchantTrns: PAYMENT_DESCRIPTION.yearly + ` του χρήστη ${email}`,
+      merchantTrns: PAYMENT_DESCRIPTION.yearly + ` του χρήστη ${username}`,
       tags: [PAYMENT_DESCRIPTION.yearly],
     },
     500: {
       amount: 500,
       customerTrns: PAYMENT_DESCRIPTION.monthly,
-      merchantTrns: PAYMENT_DESCRIPTION.monthly + ` του χρήστη ${email}`,
+      merchantTrns: PAYMENT_DESCRIPTION.monthly + ` του χρήστη ${username}`,
       tags: [PAYMENT_DESCRIPTION.monthly],
     },
   };

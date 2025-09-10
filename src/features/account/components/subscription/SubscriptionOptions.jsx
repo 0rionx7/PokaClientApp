@@ -9,7 +9,7 @@ import { SUBSCRIPTION_TYPES } from '@utils/text-constants';
 import { payments } from '@icons/payments';
 
 const SubscriptionOptions = () => {
-  const [selectSubscription, { data, isLoading, isSuccess }] = usePayMutation();
+  const [pay, { data, isLoading, isSuccess }] = usePayMutation();
   useGetUserQuery();
   const {
     data: { subExpiration },
@@ -58,7 +58,7 @@ const SubscriptionOptions = () => {
               key={title}
               title={title}
               infos={infos}
-              onSelect={selectSubscription}
+              onSelect={pay}
             />
           ))}
         </div>

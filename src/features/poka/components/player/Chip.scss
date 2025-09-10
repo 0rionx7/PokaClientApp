@@ -67,7 +67,6 @@
 }
 .chip.black {
   background-position: calc(-3 * var(--chip-width)) 0;
-  grid-area: green !important;
 }
 
 .chip.purple {
@@ -80,5 +79,4 @@
 
 .chip.yellow {
   background-position: calc(-6 * var(--chip-width)) 0;
-  grid-area: green !important;
 }

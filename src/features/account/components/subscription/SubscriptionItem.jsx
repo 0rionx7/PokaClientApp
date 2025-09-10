@@ -16,7 +16,7 @@ const SubscriptionItem = ({ title, infos, onSelect }) => {
   };
 
   const handleSubscriptionSelect = () =>
-    onSelect({ customer, ...creataPaymentTags(value, email) });
+    onSelect({ customer, ...creataPaymentTags(value, username) });
 
   return (
     <div className="subscription-item" onClick={handleSubscriptionSelect}>
