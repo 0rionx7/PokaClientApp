@@ -40,6 +40,16 @@ input:-webkit-autofill:active {
 input::placeholder {
   font-size: 0.9rem;
 }
+::selection {
+  background: yellow;
+  color: black;
+}
+// remove number input arrows
+::-webkit-outer-spin-button,
+::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 // custom scroll bar
 ::-webkit-scrollbar {
   width: 10px;
@@ -139,11 +149,5 @@ a {
     &:focus-visible {
       outline: none;
     }
-  }
-  // remove number input arrows
-  &::-webkit-outer-spin-button,
-  ::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
   }
 }

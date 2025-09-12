@@ -37,30 +37,7 @@ export const gameApi = createApi({
   tagTypes: ['User', 'Requests', 'ChineseRequests'],
   endpoints: (build) => ({
     getTables: build.query({
-      queryFn: async (game, { getState }) => {
-        try {
-          const token = getState().account.token;
-          if (!token) return { data: [] };
-
-          const httpHeaders = {
-            'Content-Type': 'application/json',
-            authorization: `Bearer ${token}`,
-          };
-          const headers = new Headers(httpHeaders);
-          const params = new URLSearchParams({ game });
-          const response = await fetch(
-            `${baseUrl}/tables?${params.toString()}`,
-            { method: 'GET', headers },
-          );
-
-          const responseData = await response.json();
-          if (!response.ok) throw Error(responseData);
-
-          return { data: responseData };
-        } catch (error) {
-          return { error };
-        }
-      },
+      query: (game) => `${baseUrl}/tables?game=${game}`,
       async onCacheEntryAdded(
         type,
         { cacheEntryRemoved, cacheDataLoaded, updateCachedData },

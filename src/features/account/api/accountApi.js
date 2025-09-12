@@ -4,29 +4,7 @@ import { baseUrl, gameApi, socket } from '@store/gameApi';
 export const accountApi = gameApi.injectEndpoints({
   endpoints: (build) => ({
     getUser: build.query({
-      queryFn: async (_arg, { getState }) => {
-        try {
-          const token = getState().account.token;
-          if (!token) return { data: [] };
-
-          const httpHeaders = {
-            'Content-Type': 'application/json',
-            authorization: `Bearer ${token}`,
-          };
-          const headers = new Headers(httpHeaders);
-          const response = await fetch(`${baseUrl}/user`, {
-            method: 'GET',
-            headers,
-          });
-
-          const responseData = await response.json();
-          if (!response.ok) throw Error(responseData);
-
-          return { data: responseData };
-        } catch (error) {
-          return { error };
-        }
-      },
+      query: () => `${baseUrl}/user`,
       providesTags: ['User'],
     }),
     getRequests: build.query({

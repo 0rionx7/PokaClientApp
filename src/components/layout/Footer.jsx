@@ -30,11 +30,11 @@ const Footer = () => {
   }
 
   return (
-    <div className="footer">
+    <footer className="footer">
       {loginButtons}
       <p>Όροι χρήσης</p>|<p>Πολιτική απορρήτου</p>|
       <NavLink to="instructions">Οδηγίες</NavLink>
-    </div>
+    </footer>
   );
 };
 

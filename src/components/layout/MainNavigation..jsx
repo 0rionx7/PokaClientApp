@@ -17,7 +17,7 @@ const MainNavigation = () => {
       <Link to="/" className="header-logo">
         {username}
       </Link>
-      <div className="nav-items">
+      <nav className="nav-items">
         {username && !showMenu && (
           <>
             <Link
@@ -61,7 +61,7 @@ const MainNavigation = () => {
             </NavLink>
           </>
         )}
-      </div>
+      </nav>
     </header>
   );
 };
