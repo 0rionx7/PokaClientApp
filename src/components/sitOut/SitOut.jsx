@@ -17,7 +17,7 @@ const SitOut = () => {
     <>
       <div className="sitout" onClick={() => setShowDiag(true)}>
         {!showDiag && <ToolTip info="Έξοδος" />}
-        <img src={exit} alt="exit" style={{ height: '3rem' }} />
+        <img src={exit} alt="exit" />
       </div>
       {showDiag && (
         <Overlay style={{ zIndex: 200 }}>

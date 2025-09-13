@@ -21,22 +21,23 @@
   }
 }
 .sitout {
+  display: flex;
+  align-items: center;
   position: absolute;
   right: 0;
   bottom: 0;
   z-index: 111;
-  width: 2rem;
-  height: 3rem;
   fill: #d00303;
   cursor: pointer;
   .tool-tip {
-    right: 100%;
-    bottom: 50%;
-    transform: translateY(50%);
+    position: static;
     background-color: red;
     border: 2px solid black;
     color: white;
     cursor: pointer;
+  }
+  img {
+    width: 2rem;
   }
   &:hover .tool-tip {
     visibility: visible;
