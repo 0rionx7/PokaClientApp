@@ -14,11 +14,11 @@ export const chineseStateSlice = createSlice({
       return { boardCards, handCards, isFantasy };
     },
     moveCard: (state, action) => {
-      const { place, index, movedCard } = action.payload;
+      const { place, index, card } = action.payload;
 
-      state.boardCards = removeCard(state.boardCards, movedCard);
-      state.handCards = removeCard(state.handCards, movedCard);
-      state[place][index] = movedCard;
+      state.boardCards = removeCard(state.boardCards, card);
+      state.handCards = removeCard(state.handCards, card);
+      state[place][index] = card;
     },
     orderByValue: (state, _action) => {
       state.handCards.sort(byValue);

@@ -22,20 +22,15 @@ const Card = ({ card, owner }) => {
 
   const valueClass = `v-${card.value}`;
   const style = { backgroundColor: isDragging ? '#5e7043' : undefined };
+  const hideWhenDrag = { visibility: isDragging ? 'hidden' : 'visible' };
 
   return (
     <div className={`card ${valueClass}`} ref={drag} style={style}>
-      <div
-        className={`value-suit_${card.suit}`}
-        style={{ visibility: isDragging ? 'hidden' : 'visible' }}
-      >
+      <div className={`value-suit_${card.suit}`} style={hideWhenDrag}>
         <div className="value">{SYMBOLS[card.value] || card.value}</div>
         <img src={suits[card.suit]} alt={card.suit} />
       </div>
-      <div
-        className={`card-decoration ${valueClass}`}
-        style={{ visibility: isDragging ? 'hidden' : 'visible' }}
-      >
+      <div className={`card-decoration ${valueClass}`} style={hideWhenDrag}>
         <Content card={card} />
       </div>
     </div>
