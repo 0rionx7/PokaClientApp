@@ -27,7 +27,7 @@ const DealerScreen = () => {
       <Button
         prompt="ΜΟΙΡΑΣΤΕ"
         disabled={!canDeal}
-        onClick={() => deal()}
+        onClick={deal}
         className="orange"
       />
     </Overlay>

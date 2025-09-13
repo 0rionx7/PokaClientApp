@@ -88,10 +88,9 @@ export const chineseApi = gameApi.injectEndpoints({
       }),
     }),
     startChineseGame: build.mutation({
-      query: (gameId) => ({
+      query: () => ({
         url: 'chinese/start',
         method: 'PATCH',
-        body: { gameId },
       }),
     }),
     submitCardsChinese: build.mutation({
