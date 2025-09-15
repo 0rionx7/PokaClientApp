@@ -14,11 +14,8 @@
     background-color: #11acac;
   }
   &:disabled {
-    background-color: rgb(151, 149, 145);
+    background-color: rgb(151, 149, 145) !important;
     cursor: not-allowed;
-    &:hover {
-      background-color: red;
-    }
   }
 
   &.red {

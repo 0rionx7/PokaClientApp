@@ -15,6 +15,7 @@ const DealerScreen = () => {
   const [deal] = useStartChineseGameMutation();
 
   const canDeal = playerStates.filter(isSitting).length > 1;
+  const prompt = canDeal ? 'ΜΟΙΡΑΣΤΕ' : 'Δεν κάθετε άλλος παίκτης στο τραπέζι';
 
   return (
     <Overlay className="dealer-overlay">
@@ -25,7 +26,7 @@ const DealerScreen = () => {
         />
       </div>
       <Button
-        prompt="ΜΟΙΡΑΣΤΕ"
+        prompt={prompt}
         disabled={!canDeal}
         onClick={deal}
         className="orange"
