@@ -55,7 +55,8 @@ export const {
   selectChosenGame,
 } = pokaStateSlice.selectors;
 
-const toggleChosenIndex = (indexes, index) =>
-  indexes.includes(index)
-    ? indexes.filter((i) => i !== index)
-    : [...indexes, index];
+const toggleChosenIndex = (indexes, index) => {
+  const set = new Set(indexes);
+  set.has(index) ? set.delete(index) : set.add(index);
+  return [...set];
+};
