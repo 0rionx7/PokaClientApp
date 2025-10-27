@@ -8,6 +8,7 @@ const useOnlineStatus = () => {
 
 const getSnapshot = () => navigator.onLine;
 
+// callback passed by react and whenever is called, react returns the snapshot
 const subscribe = (callback) => {
   window.addEventListener('online', callback);
   window.addEventListener('offline', callback);

@@ -14,7 +14,7 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-const injectingGameIdBaseQuery = async (args, api, extraOptions) => {
+const injectingGameIdBaseQuery = (args, api, extraOptions) => {
   const gameId = api.getState().account.gameId;
 
   if (typeof args === 'object') {
