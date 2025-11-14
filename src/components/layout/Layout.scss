@@ -4,11 +4,11 @@
   display: grid;
   position: relative;
   height: 100%;
-  grid-template-columns: max-content 1fr;
-  grid-template-rows: max-content 1fr;
+  grid-template-rows: auto 1fr auto;
   grid-template-areas:
-    'header header'
-    'sideNav main ';
+    'header'
+    'main '
+    'footer';
 }
 .main-area {
   grid-area: main;
@@ -22,6 +22,8 @@
   background-color: colors.$nav-color;
 }
 .footer {
+  grid-area: footer;
+  justify-self: center;
   display: flex;
   align-items: center;
   height: 8vh;

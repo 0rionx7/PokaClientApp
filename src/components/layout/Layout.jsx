@@ -11,9 +11,9 @@ const Layout = () => {
       <div className="main-area">
         <div className="yin-yang">
           <Outlet />
-          <Footer />
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
