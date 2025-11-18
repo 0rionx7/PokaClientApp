@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 import { useSelector } from 'react-redux'
 
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi'
@@ -48,4 +46,4 @@ const BoardRow = ({ rowIndex, playerState }) => {
   )
 }
 
-export default memo(BoardRow)
+export default BoardRow

@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 import PlayerInfo from '@poka/components/player/PlayerInfo'
 import HandCards from '@poka/components/player/HandCards'
 import useSitOutTimer from '@poka/hooks/useSitOutTimer'
@@ -24,4 +22,4 @@ const Player = ({ playerState }) => {
   )
 }
 
-export default memo(Player)
+export default Player

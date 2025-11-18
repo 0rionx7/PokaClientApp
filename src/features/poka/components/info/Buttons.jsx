@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 import { INFO_BUTTONS_TITLES } from '@utils/text-constants'
 import Button from '@ui/Button'
 import './Buttons.scss'
@@ -22,4 +20,4 @@ const Buttons = ({ setSelected, selected }) => {
   )
 }
 
-export default memo(Buttons)
+export default Buttons

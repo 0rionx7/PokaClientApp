@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { selectChosenHandCardIndexes, toggleChosenCard } from '@poka/slice/pokaStateSlice'
@@ -48,4 +47,4 @@ const HandCards = ({ playerState }) => {
   )
 }
 
-export default memo(HandCards)
+export default HandCards

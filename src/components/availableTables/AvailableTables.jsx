@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
 import { useSitDownChineseMutation } from '@chinese/api/chineseApi'
@@ -20,14 +20,10 @@ const AvailableTables = () => {
   const useSitDown = game === 'poka' ? useSitDownMutation : useSitDownChineseMutation
 
   const joinRequests = userData?.joinRequests
-  const availableTables = useMemo(
-    () =>
-      data?.filter(
-        (tableInfo) =>
-          joinRequests?.every((request) => request.tableName !== tableInfo.tableName) &&
-          tableInfo.tableName.toLowerCase().startsWith(query.trim().toLowerCase())
-      ),
-    [data, query, joinRequests]
+  const availableTables = data?.filter(
+    (tableInfo) =>
+      joinRequests?.every((request) => request.tableName !== tableInfo.tableName) &&
+      tableInfo.tableName.toLowerCase().startsWith(query.trim().toLowerCase())
   )
 
   return (

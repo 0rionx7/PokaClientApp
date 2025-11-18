@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, use, useCallback, useState } from 'react'
+import { createContext, use, useState } from 'react'
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi'
 import { initialGameDefaults } from '@poka/utils/games'
@@ -20,10 +20,7 @@ export default function GameBuilderContextProvider({ children }) {
   })
   const [status, setStatus] = useState({})
 
-  const setFieldValue = useCallback(
-    (field, value) => setValues((prev) => ({ ...prev, [field]: value })),
-    []
-  )
+  const setFieldValue = (field, value) => setValues((prev) => ({ ...prev, [field]: value }))
 
   return (
     <GameBuilderContext value={{ values, setValues, setFieldValue, status, setStatus }}>

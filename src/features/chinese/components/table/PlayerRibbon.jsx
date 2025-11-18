@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi'
 import { isSitting } from '@utils/helper-functions'
 import './PlayerRibbon.scss'
@@ -25,4 +23,4 @@ const PlayerRibbon = ({ playerState }) => {
   )
 }
 
-export default memo(PlayerRibbon)
+export default PlayerRibbon

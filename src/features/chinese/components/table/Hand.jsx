@@ -1,4 +1,4 @@
-import { memo, useEffect, useCallback, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
 import {
@@ -45,7 +45,7 @@ const Hand = () => {
   const shift = playerStates.length === 2 ? '-50%' : '50%'
   const left = `calc(-.5 * (var(--card-width) + .3rem) * ${handCards?.length} + ${shift})`
 
-  const submitCards = useCallback(async () => {
+  const submitCards = async () => {
     if (canSubmit) {
       setHasSubmitted(true)
       await submit({ boardCards })
@@ -54,7 +54,7 @@ const Hand = () => {
       setHasNexted(true)
       await nextRound()
     }
-  }, [canSubmit, canNext, boardCards, nextRound, submit])
+  }
 
   return (
     <div className={classes.hand} style={{ left }}>
@@ -70,4 +70,4 @@ const Hand = () => {
   )
 }
 
-export default memo(Hand)
+export default Hand

@@ -8,14 +8,9 @@ const __dirname = path.dirname(__filename)
 
 export default defineConfig(() => {
   return {
-    build: {
-      outDir: '../e-poka.frontend/build',
-      emptyOutDir: true
-    },
-    server: {
-      port: 3000
-    },
-    plugins: [react()],
+    build: { outDir: '../e-poka.frontend/build', emptyOutDir: true },
+    server: { port: 3000 },
+    plugins: [react({ babel: { plugins: ['babel-plugin-react-compiler'] } })],
     resolve: {
       alias: {
         '@assets': path.resolve(__dirname, 'src/assets'),

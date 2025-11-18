@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 import { formatNumber } from '@utils/helper-functions'
 import StatusIcon from '@ui/StatusIcon'
 import './Standings.scss'
@@ -23,4 +21,4 @@ const PlayerStanding = ({ playerState }) => {
   )
 }
 
-export default memo(PlayerStanding)
+export default PlayerStanding

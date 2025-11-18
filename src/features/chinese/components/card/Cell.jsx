@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { useDispatch } from 'react-redux'
 import { useDrop } from 'react-dnd'
 
@@ -26,4 +25,4 @@ const Cell = ({ index, place, owner }) => {
   return <div ref={drop} className="card" style={style} />
 }
 
-export default memo(Cell)
+export default Cell
