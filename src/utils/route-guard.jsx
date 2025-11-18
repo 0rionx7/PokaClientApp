@@ -1,6 +1,7 @@
-import { selectUserName } from '@account/api/accountApi';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Navigate, useLocation } from 'react-router';
+
+import { selectUserName } from '@account/api/accountApi';
 
 const RouteGuard = ({ element }) => {
   const location = useLocation();

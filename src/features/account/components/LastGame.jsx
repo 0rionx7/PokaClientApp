@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import { useRestartGameMutation } from '@poka/api/pokaApi';
 import { createTableTitleJsx } from '@utils/text-functions';
