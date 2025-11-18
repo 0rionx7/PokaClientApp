@@ -1,33 +1,33 @@
-import { createSelector } from '@reduxjs/toolkit';
+import { createSelector } from '@reduxjs/toolkit'
 
-import { selectGameId, selectToken } from '@account/slice/accountSlice';
-import { setLocalPlayerState } from '@chinese/slice/chineseStateSlice';
-import { selectUserName } from '@account/api/accountApi';
-import { baseUrl, gameApi, socket } from '@store/gameApi';
-import { playerStateOf } from '@utils/helper-functions';
+import { selectGameId, selectToken } from '@account/slice/accountSlice'
+import { setLocalPlayerState } from '@chinese/slice/chineseStateSlice'
+import { selectUserName } from '@account/api/accountApi'
+import { baseUrl, gameApi, socket } from '@store/gameApi'
+import { playerStateOf } from '@utils/helper-functions'
 
 export const chineseApi = gameApi.injectEndpoints({
   endpoints: (build) => ({
     getChineseState: build.query({
       queryFn: async (_arg, { getState }) => {
-        const token = selectToken(getState());
-        const gameId = selectGameId(getState());
+        const token = selectToken(getState())
+        const gameId = selectGameId(getState())
 
-        if (!token) return { error: 'not authorized' };
+        if (!token) return { error: 'not authorized' }
 
         const httpHeaders = {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${token}`,
-        };
-        const headers = new Headers(httpHeaders);
-        const url = new URL(`${baseUrl}/chinese/${gameId}`);
-        url.search = new URLSearchParams({ socketId: socket.id });
-        const response = await fetch(url, { method: 'GET', headers });
+          authorization: `Bearer ${token}`
+        }
+        const headers = new Headers(httpHeaders)
+        const url = new URL(`${baseUrl}/chinese/${gameId}`)
+        url.search = new URLSearchParams({ socketId: socket.id })
+        const response = await fetch(url, { method: 'GET', headers })
 
-        const responseData = await response.json();
-        if (!response.ok) throw Error(responseData);
+        const responseData = await response.json()
+        if (!response.ok) throw Error(responseData)
 
-        return { data: responseData };
+        return { data: responseData }
       },
       async onCacheEntryAdded( // i.e after a component has created a new subscription to the given endpoint+params combination
         _arg,
@@ -36,109 +36,104 @@ export const chineseApi = gameApi.injectEndpoints({
           getState,
           cacheEntryRemoved,
           cacheDataLoaded,
-          updateCachedData, // available for query endpoints only
-        },
+          updateCachedData // available for query endpoints only
+        }
       ) {
         try {
-          await cacheDataLoaded;
+          await cacheDataLoaded
           const stateUpdateListener = (stateUpdate, updateBoard) => {
             updateCachedData((_draft) => {
-              const username = selectUserName(getState());
-              if (
-                updateBoard?.some((br) => (br === username) | (br === 'all'))
-              ) {
-                const updatedHostState = stateUpdate.playerStates.find(
-                  playerStateOf(username),
-                );
-                dispatch(setLocalPlayerState(updatedHostState));
+              const username = selectUserName(getState())
+              if (updateBoard?.some((br) => (br === username) | (br === 'all'))) {
+                const updatedHostState = stateUpdate.playerStates.find(playerStateOf(username))
+                dispatch(setLocalPlayerState(updatedHostState))
               }
-              return stateUpdate;
-            });
-          };
-          socket.on('chineseStateUpdated', stateUpdateListener);
+              return stateUpdate
+            })
+          }
+          socket.on('chineseStateUpdated', stateUpdateListener)
 
-          await cacheEntryRemoved;
-          socket.off('chineseStateUpdated', stateUpdateListener);
+          await cacheEntryRemoved
+          socket.off('chineseStateUpdated', stateUpdateListener)
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
       },
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 0
     }),
     openChineseTable: build.mutation({
       query: (openTableData) => ({
         url: 'chinese',
         method: 'POST',
-        body: { ...openTableData },
-      }),
+        body: { ...openTableData }
+      })
     }),
     joinChineseTable: build.mutation({
       query: (joinInfo) => ({
         url: 'chinese/join',
         method: 'PATCH',
-        body: joinInfo,
+        body: joinInfo
       }),
-      invalidatesTags: ['ChineseRequests'],
+      invalidatesTags: ['ChineseRequests']
     }),
     sitDownChinese: build.mutation({
       query: ({ gameId }) => ({
         url: 'chinese/sitDown',
         method: 'PATCH',
-        body: { gameId },
-      }),
+        body: { gameId }
+      })
     }),
     startChineseGame: build.mutation({
       query: () => ({
         url: 'chinese/start',
-        method: 'PATCH',
-      }),
+        method: 'PATCH'
+      })
     }),
     submitCardsChinese: build.mutation({
       query: (boardCards) => ({
         url: 'chinese/submitCards',
         method: 'PATCH',
-        body: boardCards,
-      }),
+        body: boardCards
+      })
     }),
     reorderDeck: build.mutation({
       query: (reorderInfo) => ({
         url: 'chinese/reorderDeck',
         method: 'PATCH',
-        body: reorderInfo,
-      }),
+        body: reorderInfo
+      })
     }),
     nextRoundChinese: build.mutation({
       query: () => ({
         url: 'chinese/nextRound',
-        method: 'PATCH',
-      }),
+        method: 'PATCH'
+      })
     }),
     timedOut: build.mutation({
       query: () => ({
         url: 'chinese/timedOut',
-        method: 'PATCH',
-      }),
+        method: 'PATCH'
+      })
     }),
     sitOutChinese: build.mutation({
       query: (sitOutInfo) => ({
         url: 'chinese/sitOut',
         method: 'PATCH',
-        body: sitOutInfo,
-      }),
-    }),
-  }),
-});
+        body: sitOutInfo
+      })
+    })
+  })
+})
 
-const selectGameState = chineseApi.endpoints.getChineseState.select();
+const selectGameState = chineseApi.endpoints.getChineseState.select()
 export const selectPlayerStates = createSelector(
   selectGameState,
-  ({ data }) => data.playerStates ?? [],
-);
+  ({ data }) => data.playerStates ?? []
+)
 export const selectHostPlayerState = createSelector(
   [selectPlayerStates, selectUserName],
-  (playerStates, playerName) =>
-    playerStates.find(playerStateOf(playerName)) ?? null,
-);
+  (playerStates, playerName) => playerStates.find(playerStateOf(playerName)) ?? null
+)
 
 export const {
   useGetChineseStateQuery,
@@ -150,5 +145,5 @@ export const {
   useReorderDeckMutation,
   useNextRoundChineseMutation,
   useTimedOutMutation,
-  useSitOutChineseMutation,
-} = chineseApi;
+  useSitOutChineseMutation
+} = chineseApi

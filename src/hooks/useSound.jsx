@@ -1,15 +1,15 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
-import sound from '.@assets/sounds/plays.mp3';
-import { soundOffSvg, soundOnSvg } from '@icons/various';
+import sound from '.@assets/sounds/plays.mp3'
+import { soundOffSvg, soundOnSvg } from '@icons/various'
 
 const useSound = ({ isActive, ownBoard }) => {
-  const [audio] = useState(() => new Audio(sound));
-  const [isOn, setIsOn] = useState(true);
+  const [audio] = useState(() => new Audio(sound))
+  const [isOn, setIsOn] = useState(true)
 
   useEffect(() => {
-    if (isOn && isActive && ownBoard) audio.play();
-  }, [isOn, audio, isActive, ownBoard]);
+    if (isOn && isActive && ownBoard) audio.play()
+  }, [isOn, audio, isActive, ownBoard])
 
   return (
     <>
@@ -20,7 +20,7 @@ const useSound = ({ isActive, ownBoard }) => {
             top: '22px',
             right: '25px',
             width: '40px',
-            cursor: 'pointer',
+            cursor: 'pointer'
           }}
           onClick={() => setIsOn(!isOn)}
         >
@@ -28,7 +28,7 @@ const useSound = ({ isActive, ownBoard }) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default useSound;
+export default useSound

@@ -1,9 +1,9 @@
-import { useDrag } from 'react-dnd';
+import { useDrag } from 'react-dnd'
 
-import { SYMBOLS } from '@utils/text-constants';
-import CardBack from '@components/card/CardBack';
-import Content from '@components/card/Content';
-import { suits } from '@icons/suits';
+import { SYMBOLS } from '@utils/text-constants'
+import CardBack from '@components/card/CardBack'
+import Content from '@components/card/Content'
+import { suits } from '@icons/suits'
 
 const Card = ({ card, owner }) => {
   const [{ isDragging }, drag] = useDrag(
@@ -12,17 +12,17 @@ const Card = ({ card, owner }) => {
       canDrag: !card.locked,
       item: { card, owner },
       collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
+        isDragging: monitor.isDragging()
+      })
     }),
-    [card, owner],
-  );
+    [card, owner]
+  )
 
-  if (card?.hidden) return <CardBack />;
+  if (card?.hidden) return <CardBack />
 
-  const valueClass = `v-${card.value}`;
-  const style = { backgroundColor: isDragging ? '#5e7043' : undefined };
-  const hideWhenDrag = { visibility: isDragging ? 'hidden' : 'visible' };
+  const valueClass = `v-${card.value}`
+  const style = { backgroundColor: isDragging ? '#5e7043' : undefined }
+  const hideWhenDrag = { visibility: isDragging ? 'hidden' : 'visible' }
 
   return (
     <div className={`card ${valueClass}`} ref={drag} style={style}>
@@ -34,7 +34,7 @@ const Card = ({ card, owner }) => {
         <Content card={card} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

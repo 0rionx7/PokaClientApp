@@ -1,22 +1,13 @@
-import { describeTime } from '@utils/text-functions';
+import { describeTime } from '@utils/text-functions'
 
 const Message = ({ data }) => {
-  const {
-    event,
-    playerName,
-    username,
-    reaction,
-    message,
-    amount,
-    dealer,
-    count,
-  } = data;
+  const { event, playerName, username, reaction, message, amount, dealer, count } = data
 
   const playerCall = (
     <>
       Ο παίκτης <span>{playerName || username}</span>
     </>
-  );
+  )
   const messageMap = {
     neeext: (
       <>
@@ -71,15 +62,15 @@ const Message = ({ data }) => {
           </>
         )}
       </>
-    ),
-  };
+    )
+  }
 
   return (
     <>
       {messageMap[event]}
       <br />
     </>
-  );
-};
+  )
+}
 
-export default Message;
+export default Message

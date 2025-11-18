@@ -1,19 +1,17 @@
-import { memo } from 'react';
+import { memo } from 'react'
 
-import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
-import { isSitting } from '@utils/helper-functions';
-import './PlayerRibbon.scss';
+import { useGetChineseStateQuery } from '@chinese/api/chineseApi'
+import { isSitting } from '@utils/helper-functions'
+import './PlayerRibbon.scss'
 
 const PlayerRibbon = ({ playerState }) => {
-  const { data } = useGetChineseStateQuery();
-  const { nextPlayers, round, playerStates } = data;
-  const [currentPlayer] = nextPlayers;
-  const showScore =
-    nextPlayers.length === playerStates.filter(isSitting).length;
-  const isActive = playerState.playerName === currentPlayer || showScore;
+  const { data } = useGetChineseStateQuery()
+  const { nextPlayers, round, playerStates } = data
+  const [currentPlayer] = nextPlayers
+  const showScore = nextPlayers.length === playerStates.filter(isSitting).length
+  const isActive = playerState.playerName === currentPlayer || showScore
   const isDealing =
-    playerStates[(round - 1) % playerStates.length].playerName ===
-    playerState.playerName;
+    playerStates[(round - 1) % playerStates.length].playerName === playerState.playerName
   // const isHostBoard = playerState.playerName === username;
   // const soundJsx = useSound({ ownBoard, isActive });
 
@@ -24,7 +22,7 @@ const PlayerRibbon = ({ playerState }) => {
       <div className="score">{playerState.gameScore}</div>
       {/* {isHostBoard && soundJsx} */}
     </div>
-  );
-};
+  )
+}
 
-export default memo(PlayerRibbon);
+export default memo(PlayerRibbon)

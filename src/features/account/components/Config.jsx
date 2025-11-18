@@ -1,41 +1,41 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'
 
 import {
   selectDeckColor,
   selectHideInfo,
   setDeckColor,
-  setHideInfo,
-} from '@account/slice/accountSlice';
-import classes from './Account.module.scss';
+  setHideInfo
+} from '@account/slice/accountSlice'
+import classes from './Account.module.scss'
 
 const deckColors = [
   'rgb(255 0 0 / 90%)',
   'rgb(168 0 234 / 81%)',
   'rgb(0 116 234 / 81%)',
-  'rgb(255 143 0 / 92%)',
-];
+  'rgb(255 143 0 / 92%)'
+]
 
 const Config = () => {
-  const hideInfo = useSelector(selectHideInfo);
-  const deckColor = useSelector(selectDeckColor);
-  const dispatch = useDispatch();
+  const hideInfo = useSelector(selectHideInfo)
+  const deckColor = useSelector(selectDeckColor)
+  const dispatch = useDispatch()
 
   const toggleHideInfo = () => {
-    dispatch(setHideInfo(!hideInfo));
+    dispatch(setHideInfo(!hideInfo))
     try {
-      window.localStorage.setItem('hideInfo', !hideInfo);
+      window.localStorage.setItem('hideInfo', !hideInfo)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
   const handleChangeColor = (e) => {
-    dispatch(setDeckColor(e.target.value));
+    dispatch(setDeckColor(e.target.value))
     try {
-      window.localStorage.setItem('deckColor', e.target.value);
+      window.localStorage.setItem('deckColor', e.target.value)
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   return (
     <div className={classes.config}>
@@ -65,7 +65,7 @@ const Config = () => {
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Config;
+export default Config

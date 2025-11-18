@@ -1,51 +1,45 @@
-import { useActionState, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useActionState, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { useLoginMutation } from '@account/api/accountApi';
-import Button from '@ui/Button';
-import Frame from '@ui/Frame';
-import './LoginRegister.scss';
+import { useLoginMutation } from '@account/api/accountApi'
+import Button from '@ui/Button'
+import Frame from '@ui/Frame'
+import './LoginRegister.scss'
 
 const initialValues = () => {
-  let values = { username: '', password: '', rememberMe: false };
+  let values = { username: '', password: '', rememberMe: false }
   try {
-    let username = window.localStorage.getItem('username');
+    let username = window.localStorage.getItem('username')
     if (username) {
-      values.username = username;
-      values.rememberMe = true;
+      values.username = username
+      values.rememberMe = true
     }
   } catch (error) {
-    console.log(error);
+    console.log(error)
   }
-  return values;
-};
+  return values
+}
 
 const Login = () => {
-  const [formState, formAction, isPending] = useActionState(
-    loginAction,
-    initialValues(),
-  );
-  const [error, setError] = useState(null);
-  const [login] = useLoginMutation();
-  const navigate = useNavigate();
+  const [formState, formAction, isPending] = useActionState(loginAction, initialValues())
+  const [error, setError] = useState(null)
+  const [login] = useLoginMutation()
+  const navigate = useNavigate()
 
   async function loginAction(_prevFormState, formData) {
-    const loginData = Object.fromEntries(formData.entries());
-    loginData.username = loginData.username.trim();
+    const loginData = Object.fromEntries(formData.entries())
+    loginData.username = loginData.username.trim()
     try {
-      window.localStorage.setItem(
-        'username',
-        loginData.rememberMe ? loginData.username : '',
-      );
+      window.localStorage.setItem('username', loginData.rememberMe ? loginData.username : '')
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-    const result = await login(loginData);
+    const result = await login(loginData)
     if (result?.error?.data) {
-      setError(result.error.data);
-      return loginData;
-    } else navigate('/saloon', { replace: true, state: { game: 'poka' } });
-    return loginData;
+      setError(result.error.data)
+      return loginData
+    } else navigate('/saloon', { replace: true, state: { game: 'poka' } })
+    return loginData
   }
 
   return (
@@ -62,10 +56,7 @@ const Login = () => {
               defaultValue={formState.username}
             />
           </label>
-          <label
-            className="form-control"
-            style={{ alignSelf: 'flex-end', fontSize: '.8rem' }}
-          >
+          <label className="form-control" style={{ alignSelf: 'flex-end', fontSize: '.8rem' }}>
             να με θυμάσαι
             <input
               type="checkbox"
@@ -76,12 +67,7 @@ const Login = () => {
           </label>
           <label className="form-control">
             Κωδικός
-            <input
-              id="password"
-              name="password"
-              type="text"
-              defaultValue={formState.password}
-            />
+            <input id="password" name="password" type="text" defaultValue={formState.password} />
           </label>
           <Link to="/forgot">
             <p>Ξέχασα τον κωδικό.</p>
@@ -94,7 +80,7 @@ const Login = () => {
         </Link>
       </Frame>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

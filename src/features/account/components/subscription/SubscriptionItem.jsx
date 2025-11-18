@@ -1,24 +1,24 @@
-import { useGetUserQuery } from '@account/api/accountApi';
-import { creataPaymentTags } from '@utils/text-functions';
-import Button from '@ui/Button';
-import './Subscription.scss';
+import { useGetUserQuery } from '@account/api/accountApi'
+import { creataPaymentTags } from '@utils/text-functions'
+import Button from '@ui/Button'
+import './Subscription.scss'
 
 const SubscriptionItem = ({ title, infos, onSelect }) => {
-  const { data } = useGetUserQuery();
+  const { data } = useGetUserQuery()
 
-  const { username, email } = data;
-  const { description, value } = infos;
+  const { username, email } = data
+  const { description, value } = infos
   const customer = {
     fullName: username,
     email,
     countryCode: 'GR',
-    requestLang: 'el-GR',
-  };
+    requestLang: 'el-GR'
+  }
 
   const handleSubscriptionSelect = () => {
-    const customerDetails = { customer, ...creataPaymentTags(value, username) };
-    onSelect(customerDetails);
-  };
+    const customerDetails = { customer, ...creataPaymentTags(value, username) }
+    onSelect(customerDetails)
+  }
 
   return (
     <div className="subscription-item" onClick={handleSubscriptionSelect}>
@@ -30,7 +30,7 @@ const SubscriptionItem = ({ title, infos, onSelect }) => {
         {value / 100}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default SubscriptionItem;
+export default SubscriptionItem

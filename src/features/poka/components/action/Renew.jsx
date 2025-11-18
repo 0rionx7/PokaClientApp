@@ -1,5 +1,5 @@
-import RenewOptions from '@poka/components/action/RenewOptions';
-import './Renew.scss';
+import RenewOptions from '@poka/components/action/RenewOptions'
+import './Renew.scss'
 
 const Renew = () => {
   return (
@@ -8,7 +8,7 @@ const Renew = () => {
       <span>Επιλογές ανανέωσης:</span>
       <RenewOptions />
     </div>
-  );
-};
+  )
+}
 
-export default Renew;
+export default Renew

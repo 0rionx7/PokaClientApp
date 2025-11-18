@@ -1,5 +1,5 @@
 const Chips = ({ chips }) => {
-  const renderChips = chips.slice(0, 70);
+  const renderChips = chips.slice(0, 70)
 
   return (
     <>
@@ -7,7 +7,7 @@ const Chips = ({ chips }) => {
         <div key={i} className={`chip ${color}`}></div>
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Chips;
+export default Chips

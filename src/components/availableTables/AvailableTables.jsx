@@ -1,39 +1,34 @@
-import { useMemo, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useMemo, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 
-import { useSitDownChineseMutation } from '@chinese/api/chineseApi';
-import AvailableTable from '@components/availableTables/AvailableTable';
-import { useGetUserQuery } from '@account/api/accountApi';
-import { useSitDownMutation } from '@poka/api/pokaApi';
-import { useGetTablesQuery } from '@store/gameApi';
+import { useSitDownChineseMutation } from '@chinese/api/chineseApi'
+import AvailableTable from '@components/availableTables/AvailableTable'
+import { useGetUserQuery } from '@account/api/accountApi'
+import { useSitDownMutation } from '@poka/api/pokaApi'
+import { useGetTablesQuery } from '@store/gameApi'
 
 const AvailableTables = () => {
   const {
-    state: { game },
-  } = useLocation();
+    state: { game }
+  } = useLocation()
   const { data } = useGetTablesQuery(game, {
-    refetchOnMountOrArgChange: true,
-  });
-  const { data: userData } = useGetUserQuery();
-  const [query, setfQuery] = useState('');
+    refetchOnMountOrArgChange: true
+  })
+  const { data: userData } = useGetUserQuery()
+  const [query, setfQuery] = useState('')
 
-  const useSitDown =
-    game === 'poka' ? useSitDownMutation : useSitDownChineseMutation;
+  const useSitDown = game === 'poka' ? useSitDownMutation : useSitDownChineseMutation
 
-  const joinRequests = userData?.joinRequests;
+  const joinRequests = userData?.joinRequests
   const availableTables = useMemo(
     () =>
       data?.filter(
         (tableInfo) =>
-          joinRequests?.every(
-            (request) => request.tableName !== tableInfo.tableName,
-          ) &&
-          tableInfo.tableName
-            .toLowerCase()
-            .startsWith(query.trim().toLowerCase()),
+          joinRequests?.every((request) => request.tableName !== tableInfo.tableName) &&
+          tableInfo.tableName.toLowerCase().startsWith(query.trim().toLowerCase())
       ),
-    [data, query, joinRequests],
-  );
+    [data, query, joinRequests]
+  )
 
   return (
     <div className="saloon-tables">
@@ -61,12 +56,12 @@ const AvailableTables = () => {
                 tableInfo={tableInfo}
                 useSitDown={useSitDown}
               />
-            );
+            )
           })
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AvailableTables;
+export default AvailableTables

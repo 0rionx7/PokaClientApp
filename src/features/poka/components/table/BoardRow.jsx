@@ -1,11 +1,11 @@
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import BoardCard from '@poka/components/table/BoardCard';
-import Kaves from '@poka/components/table/Kaves';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi'
+import BoardCard from '@poka/components/table/BoardCard'
+import Kaves from '@poka/components/table/Kaves'
 
 const BoardRow = ({ rowIndexes, totalPot, order }) => {
-  const { data } = useGetPokaStateQuery();
+  const { data } = useGetPokaStateQuery()
 
-  const rowClass = (order.isFirst && data.hatClass) || '';
+  const rowClass = (order.isFirst && data.hatClass) || ''
 
   return (
     <div className={`board-row${rowClass}`}>
@@ -14,7 +14,7 @@ const BoardRow = ({ rowIndexes, totalPot, order }) => {
         <BoardCard index={index} key={index} />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default BoardRow;
+export default BoardRow

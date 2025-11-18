@@ -11,7 +11,7 @@ export function getPlayerPosition(playersCount, seat) {
       3: 'top left',
       4: 'top right',
       5: 'right',
-      6: 'right',
+      6: 'right'
     },
     8: {
       1: 'left',
@@ -20,9 +20,9 @@ export function getPlayerPosition(playersCount, seat) {
       4: 'top',
       5: 'right',
       6: 'right',
-      7: 'right',
-    },
-  };
+      7: 'right'
+    }
+  }
 
-  return positions[playersCount]?.[seat - 1] ?? '';
+  return positions[playersCount]?.[seat - 1] ?? ''
 }

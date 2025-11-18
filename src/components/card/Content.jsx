@@ -1,11 +1,11 @@
-import ContentItem from '@components/card/ContentItem';
-import Figure from '@components/card/Figure';
-import './Content.scss';
+import ContentItem from '@components/card/ContentItem'
+import Figure from '@components/card/Figure'
+import './Content.scss'
 
 const Content = ({ card }) => {
-  if (card.value > 10 && card.value !== 14) return <Figure card={card} />;
+  if (card.value > 10 && card.value !== 14) return <Figure card={card} />
 
-  const contentItems = Array(card.value === 14 ? 1 : card.value).fill('');
+  const contentItems = Array(card.value === 14 ? 1 : card.value).fill('')
 
   return (
     <>
@@ -13,7 +13,7 @@ const Content = ({ card }) => {
         <ContentItem card={card} i={i} key={i} />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Content;
+export default Content

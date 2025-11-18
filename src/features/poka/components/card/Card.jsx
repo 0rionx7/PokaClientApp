@@ -1,23 +1,23 @@
-import CardBack from '@components/card/CardBack';
-import { SYMBOLS } from '@utils/text-constants';
-import Content from '@components/card/Content';
-import ToolTip from '@ui/ToolTip';
-import { suits } from '@icons/suits';
-import '@components/card/Card.scss';
+import CardBack from '@components/card/CardBack'
+import { SYMBOLS } from '@utils/text-constants'
+import Content from '@components/card/Content'
+import ToolTip from '@ui/ToolTip'
+import { suits } from '@icons/suits'
+import '@components/card/Card.scss'
 
 const Card = ({ card, onSelect, isChosen, isJoker }) => {
-  if (card === null) return null; // for auxilary cards
+  if (card === null) return null // for auxilary cards
 
-  if (!card?.faceUp) return <CardBack />;
+  if (!card?.faceUp) return <CardBack />
 
   const cardClass = [
     'card',
     `v-${card.value}`,
     (isChosen || card.selected) && 'selected',
-    isJoker && 'joker',
+    isJoker && 'joker'
   ]
     .filter(Boolean)
-    .join(' ');
+    .join(' ')
 
   return (
     <div className={cardClass} onClick={onSelect}>
@@ -30,7 +30,7 @@ const Card = ({ card, onSelect, isChosen, isJoker }) => {
       </div>
       {isJoker && <ToolTip info="Joker" />}
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card

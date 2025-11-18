@@ -1,4 +1,4 @@
-import ToolTip from '@ui/ToolTip';
+import ToolTip from '@ui/ToolTip'
 
 const Radio = ({ label, info, ...rest }) => {
   return (
@@ -7,7 +7,7 @@ const Radio = ({ label, info, ...rest }) => {
       <input type="radio" className="checkbox" {...rest} />
       {info && <ToolTip info={info} />}
     </label>
-  );
-};
+  )
+}
 
-export default Radio;
+export default Radio

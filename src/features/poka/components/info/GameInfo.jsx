@@ -1,12 +1,12 @@
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import PlayHandCards from '@poka/components/info/PlayHandCards';
-import FaceDownCards from '@poka/components/info/FaceDownCards';
-import { getTableTitle } from '@utils/text-functions';
-import { TABLOS } from '@utils/text-constants';
-import Denies from '@poka/components/info/Denies';
-import Swaps from '@poka/components/info/Swaps';
-import Hats from '@poka/components/info/Hats';
-import './GameInfo.scss';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi'
+import PlayHandCards from '@poka/components/info/PlayHandCards'
+import FaceDownCards from '@poka/components/info/FaceDownCards'
+import { getTableTitle } from '@utils/text-functions'
+import { TABLOS } from '@utils/text-constants'
+import Denies from '@poka/components/info/Denies'
+import Swaps from '@poka/components/info/Swaps'
+import Hats from '@poka/components/info/Hats'
+import './GameInfo.scss'
 
 const GameInfo = () => {
   const {
@@ -22,11 +22,11 @@ const GameInfo = () => {
       tablo,
       crossObligation,
       targetObligation,
-      gamesCount,
-    },
-  } = useGetPokaStateQuery();
+      gamesCount
+    }
+  } = useGetPokaStateQuery()
 
-  const tableTitle = getTableTitle(tableName);
+  const tableTitle = getTableTitle(tableName)
 
   if (!gameName)
     return (
@@ -34,7 +34,7 @@ const GameInfo = () => {
         <h2>{tableTitle}</h2>
         <p>Δέν υπάρχει επιλεγμένο παιχνίδι.</p>
       </div>
-    );
+    )
 
   return (
     <div className="game-info">
@@ -79,7 +79,7 @@ const GameInfo = () => {
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GameInfo;
+export default GameInfo

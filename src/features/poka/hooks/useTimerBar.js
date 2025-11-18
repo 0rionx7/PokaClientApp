@@ -1,40 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
 
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi'
 
 const useTimerBar = (playerState) => {
-  const { data } = useGetPokaStateQuery();
-  const [width, setWidth] = useState(100);
+  const { data } = useGetPokaStateQuery()
+  const [width, setWidth] = useState(100)
 
-  const { playerName, handInfo } = playerState;
-  const { nextPlayers, reaction } = data;
-  const [currentPlayerState] = nextPlayers;
-  const isActive = currentPlayerState?.playerName === playerName;
-  const submitting = currentPlayerState?.selecting?.submit;
-  const shouldRun = isActive && !handInfo.kind && reaction !== 101;
-  const period = reaction * (submitting ? 20 : 10);
+  const { playerName, handInfo } = playerState
+  const { nextPlayers, reaction } = data
+  const [currentPlayerState] = nextPlayers
+  const isActive = currentPlayerState?.playerName === playerName
+  const submitting = currentPlayerState?.selecting?.submit
+  const shouldRun = isActive && !handInfo.kind && reaction !== 101
+  const period = reaction * (submitting ? 20 : 10)
 
   useEffect(() => {
-    if (!shouldRun) return;
+    if (!shouldRun) return
     const timer = setInterval(() => {
       setWidth((perv) => {
         if (perv === 0) {
-          clearInterval(timer);
-          return 0;
+          clearInterval(timer)
+          return 0
         }
-        return perv - 1;
-      });
-    }, period);
+        return perv - 1
+      })
+    }, period)
 
-    return () => clearInterval(timer);
-  }, [shouldRun, period]);
+    return () => clearInterval(timer)
+  }, [shouldRun, period])
 
-  useEffect(() => setWidth(100), [isActive]);
+  useEffect(() => setWidth(100), [isActive])
 
-  const backgroundColor = width > 50 ? 'green' : width > 20 ? 'orange' : 'red';
-  const show = isActive && !playerState.handInfo.kind;
+  const backgroundColor = width > 50 ? 'green' : width > 20 ? 'orange' : 'red'
+  const show = isActive && !playerState.handInfo.kind
 
-  return { show, width, backgroundColor };
-};
+  return { show, width, backgroundColor }
+}
 
-export default useTimerBar;
+export default useTimerBar

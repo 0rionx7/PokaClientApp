@@ -1,4 +1,4 @@
-import classes from './Table.module.scss';
+import classes from './Table.module.scss'
 
 const RoundInfo = ({ round }) => {
   return (
@@ -6,7 +6,7 @@ const RoundInfo = ({ round }) => {
       <div>Round</div>
       <div>{round}</div>
     </h2>
-  );
-};
+  )
+}
 
-export default RoundInfo;
+export default RoundInfo

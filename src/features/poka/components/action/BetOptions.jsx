@@ -1,19 +1,19 @@
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import BetOptionButton from '@poka/components/action/BetOptionButton';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi'
+import BetOptionButton from '@poka/components/action/BetOptionButton'
 
 const BetOptions = ({ betAmount, setBetAmount, disabled, validate }) => {
   const {
-    data: { chip },
-  } = useGetPokaStateQuery();
+    data: { chip }
+  } = useGetPokaStateQuery()
 
-  const betAmounts = [+chip, 5 * chip, 25 * chip, 100 * chip];
-  const colors = ['green', 'black', 'yellow', 'red'];
+  const betAmounts = [+chip, 5 * chip, 25 * chip, 100 * chip]
+  const colors = ['green', 'black', 'yellow', 'red']
 
   const handleIncrese = (amount) => {
-    const newAmount = betAmount ? betAmount + amount : amount;
-    validate(newAmount);
-    setBetAmount(newAmount);
-  };
+    const newAmount = betAmount ? betAmount + amount : amount
+    validate(newAmount)
+    setBetAmount(newAmount)
+  }
 
   return (
     <>
@@ -29,7 +29,7 @@ const BetOptions = ({ betAmount, setBetAmount, disabled, validate }) => {
         />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default BetOptions;
+export default BetOptions

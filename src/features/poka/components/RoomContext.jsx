@@ -1,16 +1,16 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, use, useState } from 'react';
+import { createContext, use, useState } from 'react'
 
 const RoomContext = createContext({
   actionContainerNode: null,
   setActionContainerNode: () => {},
   isDealing: false,
-  setIsDealing: () => {},
-});
+  setIsDealing: () => {}
+})
 
 export default function RoomContextProvider({ children }) {
-  const [actionContainerNode, setActionContainerNode] = useState(null);
-  const [isDealing, setIsDealing] = useState(false);
+  const [actionContainerNode, setActionContainerNode] = useState(null)
+  const [isDealing, setIsDealing] = useState(false)
 
   return (
     <RoomContext
@@ -18,12 +18,12 @@ export default function RoomContextProvider({ children }) {
         actionContainerNode,
         setActionContainerNode,
         isDealing,
-        setIsDealing,
+        setIsDealing
       }}
     >
       {children}
     </RoomContext>
-  );
+  )
 }
 
-export const useRoomContext = () => use(RoomContext);
+export const useRoomContext = () => use(RoomContext)

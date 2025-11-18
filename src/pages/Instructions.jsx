@@ -1,8 +1,5 @@
-import {
-  ACCOUNT_INSTRUCTIONS,
-  SUBSCRIPTION_INSTRUCTIONS,
-} from '@utils/text-constants';
-import './Instructions.scss';
+import { ACCOUNT_INSTRUCTIONS, SUBSCRIPTION_INSTRUCTIONS } from '@utils/text-constants'
+import './Instructions.scss'
 
 const Instructions = () => {
   return (
@@ -23,7 +20,7 @@ const Instructions = () => {
         </p>
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default Instructions;
+export default Instructions

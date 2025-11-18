@@ -1,16 +1,16 @@
-import { selectPlayerStates } from '@poka/api/pokaApi';
-import PlayerStanding from '@poka/components/info/PlayerStanding';
-import './Standings.scss';
-import { useSelector } from 'react-redux';
+import { selectPlayerStates } from '@poka/api/pokaApi'
+import PlayerStanding from '@poka/components/info/PlayerStanding'
+import './Standings.scss'
+import { useSelector } from 'react-redux'
 
-const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.'];
+const titles = ['Κατ.', 'Παίκτης', 'Ρέστα', 'Κέρδη/Απώλ.']
 
 const Standings = () => {
-  const playerStates = useSelector(selectPlayerStates);
+  const playerStates = useSelector(selectPlayerStates)
 
   const orderedPlayerStates = playerStates.toSorted(
-    (a, b) => b.resta - a.resta || Number(b.sittingOut) - Number(a.sittingOut),
-  );
+    (a, b) => b.resta - a.resta || Number(b.sittingOut) - Number(a.sittingOut)
+  )
 
   return (
     <div className="standings">
@@ -23,14 +23,11 @@ const Standings = () => {
           ))}
         </div>
         {orderedPlayerStates.map((playerState) => (
-          <PlayerStanding
-            playerState={playerState}
-            key={playerState.playerName}
-          />
+          <PlayerStanding playerState={playerState} key={playerState.playerName} />
         ))}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Standings;
+export default Standings

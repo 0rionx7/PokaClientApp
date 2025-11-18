@@ -1,7 +1,7 @@
-import { describeTime } from '@utils/text-functions';
+import { describeTime } from '@utils/text-functions'
 
 const Reaction = () => {
-  const reactionTimes = [30, 45, 60, 90, 101];
+  const reactionTimes = [30, 45, 60, 90, 101]
 
   return (
     <>
@@ -14,7 +14,7 @@ const Reaction = () => {
         ))}
       </select>
     </>
-  );
-};
+  )
+}
 
-export default Reaction;
+export default Reaction

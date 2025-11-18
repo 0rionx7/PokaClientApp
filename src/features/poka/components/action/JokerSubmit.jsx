@@ -1,9 +1,9 @@
-import { useAssignJokerMutation } from '@poka/api/pokaApi';
-import Button from '@ui/Button';
-import Card from '@poka/components/card/Card';
+import { useAssignJokerMutation } from '@poka/api/pokaApi'
+import Button from '@ui/Button'
+import Card from '@poka/components/card/Card'
 
 const JokerSubmit = ({ replacmentCards, resetReplacments }) => {
-  const [assignJoker, { isLoading, isSuccess }] = useAssignJokerMutation();
+  const [assignJoker, { isLoading, isSuccess }] = useAssignJokerMutation()
 
   return (
     <div className="card-container">
@@ -23,7 +23,7 @@ const JokerSubmit = ({ replacmentCards, resetReplacments }) => {
         disabled={isLoading || isSuccess}
       />
     </div>
-  );
-};
+  )
+}
 
-export default JokerSubmit;
+export default JokerSubmit

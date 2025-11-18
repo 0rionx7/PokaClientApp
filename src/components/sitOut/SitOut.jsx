@@ -1,17 +1,17 @@
 /*eslint no-unused-vars: "off"*/
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
-import exit from '@icons/exit.svg';
-import Button from '@ui/Button';
-import Overlay from '@ui/Overlay';
-import ToolTip from '@ui/ToolTip';
+import exit from '@icons/exit.svg'
+import Button from '@ui/Button'
+import Overlay from '@ui/Overlay'
+import ToolTip from '@ui/ToolTip'
 
 const SitOut = () => {
-  const [showDiag, setShowDiag] = useState(false);
-  const navigate = useNavigate();
-  const { state } = useLocation();
+  const [showDiag, setShowDiag] = useState(false)
+  const navigate = useNavigate()
+  const { state } = useLocation()
 
   return (
     <>
@@ -29,11 +29,7 @@ const SitOut = () => {
           >
             <h3>Τι επιθυμείτε;</h3>
             <div>
-              <Button
-                prompt="Επιστροφή "
-                onClick={() => setShowDiag(false)}
-                className="green"
-              />
+              <Button prompt="Επιστροφή " onClick={() => setShowDiag(false)} className="green" />
               <Button
                 prompt="Έξοδος"
                 onClick={() => navigate('/saloon', { state })}
@@ -44,7 +40,7 @@ const SitOut = () => {
         </Overlay>
       )}
     </>
-  );
-};
+  )
+}
 
-export default SitOut;
+export default SitOut

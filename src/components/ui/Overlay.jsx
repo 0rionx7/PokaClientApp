@@ -1,4 +1,4 @@
-import { createPortal } from 'react-dom';
+import { createPortal } from 'react-dom'
 
 const Overlay = ({ className, children, ...rest }) => {
   return (
@@ -7,10 +7,10 @@ const Overlay = ({ className, children, ...rest }) => {
         <div className={`overlay ${className ?? ''}`} {...rest}>
           {children}
         </div>,
-        document.getElementById('overlay'),
+        document.getElementById('overlay')
       )}
     </>
-  );
-};
+  )
+}
 
-export default Overlay;
+export default Overlay

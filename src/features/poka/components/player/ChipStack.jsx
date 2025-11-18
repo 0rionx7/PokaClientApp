@@ -1,17 +1,17 @@
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { formatNumber } from '@utils/helper-functions';
-import './Chip.scss';
-import { calculateChipCounts } from '@poka/utils/calculateChipCounts';
-import Stack from '@poka/components/player/Stack';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi'
+import { formatNumber } from '@utils/helper-functions'
+import './Chip.scss'
+import { calculateChipCounts } from '@poka/utils/calculateChipCounts'
+import Stack from '@poka/components/player/Stack'
 
 const ChipStack = ({ playerState }) => {
   const {
-    data: { chip },
-  } = useGetPokaStateQuery();
+    data: { chip }
+  } = useGetPokaStateQuery()
 
-  const amount = playerState.amountWon + playerState.currentBet;
+  const amount = playerState.amountWon + playerState.currentBet
 
-  const chipInfos = calculateChipCounts(amount, chip);
+  const chipInfos = calculateChipCounts(amount, chip)
 
   return (
     <>
@@ -31,7 +31,7 @@ const ChipStack = ({ playerState }) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ChipStack;
+export default ChipStack

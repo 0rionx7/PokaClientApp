@@ -1,7 +1,7 @@
-import { AppErrorBoundary } from '@utils/AppErrorBoundary';
-import ChatInput from '@components/chat/ChatInput';
-import Messages from '@components/chat/Messages';
-import './ChatBox.scss';
+import { AppErrorBoundary } from '@utils/AppErrorBoundary'
+import ChatInput from '@components/chat/ChatInput'
+import Messages from '@components/chat/Messages'
+import './ChatBox.scss'
 
 const ChatBox = () => {
   return (
@@ -17,7 +17,7 @@ const ChatBox = () => {
         <ChatInput />
       </div>
     </AppErrorBoundary>
-  );
-};
+  )
+}
 
-export default ChatBox;
+export default ChatBox

@@ -1,91 +1,86 @@
-import { createSelector } from '@reduxjs/toolkit';
-import { baseUrl, gameApi, socket } from '@store/gameApi';
+import { createSelector } from '@reduxjs/toolkit'
+import { baseUrl, gameApi, socket } from '@store/gameApi'
 
 export const accountApi = gameApi.injectEndpoints({
   endpoints: (build) => ({
     getUser: build.query({
       query: () => `${baseUrl}/user`,
-      providesTags: ['User'],
+      providesTags: ['User']
     }),
     getRequests: build.query({
       query: (tableName) => `user/requests/${tableName}`,
-      async onCacheEntryAdded(
-        _arg,
-        { cacheEntryRemoved, cacheDataLoaded, updateCachedData },
-      ) {
+      async onCacheEntryAdded(_arg, { cacheEntryRemoved, cacheDataLoaded, updateCachedData }) {
         try {
-          await cacheDataLoaded;
+          await cacheDataLoaded
           // dealers screen requests handlers=======================
           const requestAddedListener = (reqInfo) => {
             updateCachedData((draft) => {
-              draft.push(reqInfo);
-            });
-          };
+              draft.push(reqInfo)
+            })
+          }
           const requestRemovedListener = ({ username }) => {
-            updateCachedData((draft) =>
-              draft.filter((reqInfo) => reqInfo.username !== username),
-            );
-          };
-          socket.on('requestAdded', requestAddedListener);
-          socket.on('requestCanceled', requestRemovedListener);
-          await cacheEntryRemoved;
-          socket.off('requestAdded', requestAddedListener);
-          socket.off('requestCanceled', requestRemovedListener);
+            updateCachedData((draft) => draft.filter((reqInfo) => reqInfo.username !== username))
+          }
+          socket.on('requestAdded', requestAddedListener)
+          socket.on('requestCanceled', requestRemovedListener)
+          await cacheEntryRemoved
+          socket.off('requestAdded', requestAddedListener)
+          socket.off('requestCanceled', requestRemovedListener)
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
       },
-      providesTags: ['Requests'],
+      providesTags: ['Requests']
     }),
     register: build.mutation({
       query: (userData) => ({
         url: 'user/register',
         method: 'PUT',
-        body: { ...userData, socketId: socket.id },
-      }),
+        body: { ...userData, socketId: socket.id }
+      })
     }),
     login: build.mutation({
       query: (userData) => ({
         url: 'user/login',
         method: 'POST',
-        body: { ...userData, socketId: socket.id },
-      }),
+        body: { ...userData, socketId: socket.id }
+      })
     }),
     reconnectedLogin: build.mutation({
       query: (info) => ({
         url: '/user/reconnectedlogin',
         method: 'POST',
-        body: { info, socketId: socket.id },
-      }),
+        body: { info, socketId: socket.id }
+      })
     }),
     logOut: build.mutation({
       query: () => ({
         url: 'user/logout',
         method: 'POST',
-        body: { socketId: socket.id },
-      }),
+        body: { socketId: socket.id }
+      })
     }),
     changePassword: build.mutation({
       query: (userData) => ({
         url: 'user/passwordChange',
         method: 'PATCH',
-        body: userData,
-      }),
+        body: userData
+      })
     }),
     usernameChange: build.mutation({
       query: (username) => ({
         url: 'user/usernameChange',
         method: 'PATCH',
-        body: username,
+        body: username
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User']
     }),
     forgotPassword: build.mutation({
       query: (email) => ({
         url: 'user/forgot',
         method: 'PATCH',
-        body: email,
-      }),
+        body: email
+      })
     }),
     requestJoin: build.mutation({
       query: (requestInfo) => ({
@@ -93,49 +88,49 @@ export const accountApi = gameApi.injectEndpoints({
         method: 'PATCH',
         body: {
           ...requestInfo,
-          socketId: socket.id,
-        },
+          socketId: socket.id
+        }
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User']
     }),
     cancelRequest: build.mutation({
       query: (cancelInfo) => ({
         url: 'user/cancelRequest',
         method: 'PATCH',
-        body: cancelInfo,
+        body: cancelInfo
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User']
     }),
     rejectRequest: build.mutation({
       query: (rejectlInfo) => ({
         url: 'user/rejectRequest',
         method: 'PATCH',
-        body: rejectlInfo,
+        body: rejectlInfo
       }),
-      invalidatesTags: ['Requests'],
+      invalidatesTags: ['Requests']
     }),
     pay: build.mutation({
       query: (paymentInfo) => ({
         url: '/payments',
         method: 'POST',
-        body: paymentInfo,
+        body: paymentInfo
       }),
-      invalidatesTags: ['User'],
+      invalidatesTags: ['User']
     }),
     logOutAll: build.mutation({
       query: () => ({
         url: '/user/logOutAll',
         method: 'PATCH',
-        body: {},
-      }),
-    }),
-  }),
-});
+        body: {}
+      })
+    })
+  })
+})
 
 export const selectUserName = createSelector(
   accountApi.endpoints.getUser.select(),
-  (result) => result?.data?.username,
-);
+  (result) => result?.data?.username
+)
 
 export const {
   useGetUserQuery,
@@ -151,5 +146,5 @@ export const {
   useCancelRequestMutation,
   useRejectRequestMutation,
   usePayMutation,
-  useLogOutAllMutation,
-} = accountApi;
+  useLogOutAllMutation
+} = accountApi

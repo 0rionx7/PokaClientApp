@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { Link, NavLink, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import { selectUserName } from '@account/api/accountApi';
-import AccountloggedInMenu from '@layout/AccountLogedIn';
-import { accountSvg } from '@icons/various';
-import './MainNavigation.scss';
+import { selectUserName } from '@account/api/accountApi'
+import AccountloggedInMenu from '@layout/AccountLogedIn'
+import { accountSvg } from '@icons/various'
+import './MainNavigation.scss'
 
 const MainNavigation = () => {
-  const username = useSelector(selectUserName);
-  const [showMenu, setShowMenu] = useState(false);
-  const { state } = useLocation();
+  const username = useSelector(selectUserName)
+  const [showMenu, setShowMenu] = useState(false)
+  const { state } = useLocation()
 
   return (
     <header className="header-container">
@@ -30,9 +30,7 @@ const MainNavigation = () => {
             <Link
               to="/saloon"
               state={{ game: 'chinese' }}
-              className={`nav-link${
-                state?.game === 'chinese' ? ' active' : ''
-              }`}
+              className={`nav-link${state?.game === 'chinese' ? ' active' : ''}`}
             >
               Σαλόνι Κινέζικου Πόκερ
             </Link>
@@ -44,10 +42,7 @@ const MainNavigation = () => {
         {username ? (
           <div className="account-nav" onMouseLeave={() => setShowMenu(false)}>
             {showMenu && <AccountloggedInMenu setShowMenu={setShowMenu} />}
-            <div
-              className="account-icon"
-              onMouseEnter={() => setShowMenu(true)}
-            >
+            <div className="account-icon" onMouseEnter={() => setShowMenu(true)}>
               {accountSvg}
             </div>
           </div>
@@ -63,6 +58,6 @@ const MainNavigation = () => {
         )}
       </nav>
     </header>
-  );
-};
-export default MainNavigation;
+  )
+}
+export default MainNavigation

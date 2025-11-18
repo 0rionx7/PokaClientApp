@@ -1,13 +1,12 @@
-import { memo } from 'react';
+import { memo } from 'react'
 
-import { INFO_BUTTONS_TITLES } from '@utils/text-constants';
-import Button from '@ui/Button';
-import './Buttons.scss';
+import { INFO_BUTTONS_TITLES } from '@utils/text-constants'
+import Button from '@ui/Button'
+import './Buttons.scss'
 
 const Buttons = ({ setSelected, selected }) => {
-  const titles = Object.values(INFO_BUTTONS_TITLES);
-  const className = (title) =>
-    `info-button${selected === title ? ' selected' : ''}`;
+  const titles = Object.values(INFO_BUTTONS_TITLES)
+  const className = (title) => `info-button${selected === title ? ' selected' : ''}`
 
   return (
     <div className="btns">
@@ -20,7 +19,7 @@ const Buttons = ({ setSelected, selected }) => {
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default memo(Buttons);
+export default memo(Buttons)

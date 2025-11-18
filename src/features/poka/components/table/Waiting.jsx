@@ -1,17 +1,15 @@
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import Overlay from '@ui/Overlay';
-import './Table.scss';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi'
+import Overlay from '@ui/Overlay'
+import './Table.scss'
 
 const Waiting = () => {
-  const { data } = useGetPokaStateQuery();
+  const { data } = useGetPokaStateQuery()
 
   return (
     <Overlay>
-      <div className="waiting-content">
-        Αναμονή να μοιράσει ο {data?.dealer}
-      </div>
+      <div className="waiting-content">Αναμονή να μοιράσει ο {data?.dealer}</div>
     </Overlay>
-  );
-};
+  )
+}
 
-export default Waiting;
+export default Waiting

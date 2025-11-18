@@ -1,12 +1,12 @@
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi'
 
 const PlayHandCards = () => {
-  const { data } = useGetPokaStateQuery();
+  const { data } = useGetPokaStateQuery()
 
-  const { cardsInHand, skarto, handCardsInPlay } = data;
-  const cardsInPlay = handCardsInPlay?.slice().sort();
+  const { cardsInHand, skarto, handCardsInPlay } = data
+  const cardsInPlay = handCardsInPlay?.slice().sort()
 
-  const extraHandCards = [cardsInPlay.join(' ή ')];
+  const extraHandCards = [cardsInPlay.join(' ή ')]
 
   return (
     <div>
@@ -14,7 +14,7 @@ const PlayHandCards = () => {
       {skarto && <span> συν ΈΝΑ ΣΚΑΡΤΟ,</span>} {`"παίζουν" `}
       <span>{extraHandCards}</span>
     </div>
-  );
-};
+  )
+}
 
-export default PlayHandCards;
+export default PlayHandCards

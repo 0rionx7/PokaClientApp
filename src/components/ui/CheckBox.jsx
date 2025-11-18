@@ -1,5 +1,5 @@
-import ToolTip from '@ui/ToolTip';
-import './CheckBox.scss';
+import ToolTip from '@ui/ToolTip'
+import './CheckBox.scss'
 
 const CheckBox = ({ label, style, className, info, ...rest }) => {
   return (
@@ -8,7 +8,7 @@ const CheckBox = ({ label, style, className, info, ...rest }) => {
       <input type="checkbox" className="checkbox" {...rest} />
       {info && <ToolTip info={info} />}
     </label>
-  );
-};
+  )
+}
 
-export default CheckBox;
+export default CheckBox

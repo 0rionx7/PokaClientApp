@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom'
 
 const Account = () => {
-  return <Outlet />;
-};
+  return <Outlet />
+}
 
-export default Account;
+export default Account

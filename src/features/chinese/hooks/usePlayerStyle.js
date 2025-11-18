@@ -1,27 +1,23 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
-import { useGetChineseStateQuery } from '@chinese/api/chineseApi';
-import { selectUserName } from '@account/api/accountApi';
-import { playerStateOf } from '@utils/helper-functions';
+import { useGetChineseStateQuery } from '@chinese/api/chineseApi'
+import { selectUserName } from '@account/api/accountApi'
+import { playerStateOf } from '@utils/helper-functions'
 
 const usePlayerStyle = (index) => {
-  const username = useSelector(selectUserName);
+  const username = useSelector(selectUserName)
   const {
-    data: { playerStates },
-  } = useGetChineseStateQuery();
-  const hostIndex = playerStates.findIndex(playerStateOf(username));
+    data: { playerStates }
+  } = useGetChineseStateQuery()
+  const hostIndex = playerStates.findIndex(playerStateOf(username))
 
-  let gridArea;
-  if (playerStates.length === 2)
-    gridArea = hostIndex === index ? 'host' : 'other';
+  let gridArea
+  if (playerStates.length === 2) gridArea = hostIndex === index ? 'host' : 'other'
   else {
-    let count =
-      index >= hostIndex
-        ? index - hostIndex
-        : playerStates.length - (hostIndex - index);
-    gridArea = `player-${count}`;
+    let count = index >= hostIndex ? index - hostIndex : playerStates.length - (hostIndex - index)
+    gridArea = `player-${count}`
   }
-  return gridArea;
-};
+  return gridArea
+}
 
-export default usePlayerStyle;
+export default usePlayerStyle

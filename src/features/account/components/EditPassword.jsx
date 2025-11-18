@@ -1,32 +1,28 @@
-import { useState, useActionState, useEffect } from 'react';
+import { useState, useActionState, useEffect } from 'react'
 
-import { useChangePasswordMutation } from '@account/api/accountApi';
-import { editSvg } from '@icons/various';
-import Button from '@ui/Button';
-import classes from './UserName.module.scss';
+import { useChangePasswordMutation } from '@account/api/accountApi'
+import { editSvg } from '@icons/various'
+import Button from '@ui/Button'
+import classes from './UserName.module.scss'
 
 const initialValues = {
   currentPassword: '',
   newPassword: '',
-  confirmPassword: '',
-};
+  confirmPassword: ''
+}
 
 const EditPassword = () => {
-  const [edit, setEdit] = useState(false);
-  const [changePassword, { isLoading, isSuccess, reset }] =
-    useChangePasswordMutation();
-  const [error, setError] = useState(null);
-  const [formState, formAction, isPending] = useActionState(
-    editPasswordAction,
-    initialValues,
-  );
+  const [edit, setEdit] = useState(false)
+  const [changePassword, { isLoading, isSuccess, reset }] = useChangePasswordMutation()
+  const [error, setError] = useState(null)
+  const [formState, formAction, isPending] = useActionState(editPasswordAction, initialValues)
 
   useEffect(() => {
     if (!edit) {
-      setError(null);
-      reset();
+      setError(null)
+      reset()
     }
-  }, [edit, reset]);
+  }, [edit, reset])
 
   if (!edit)
     return (
@@ -36,26 +32,25 @@ const EditPassword = () => {
           {editSvg} Αλλαγή κωδικού.
         </div>
       </div>
-    );
+    )
 
   const validate = (values) => {
-    if (values.newPassword !== values.confirmPassword)
-      return 'Λάθος επαλήθευση κωδικού.';
-  };
+    if (values.newPassword !== values.confirmPassword) return 'Λάθος επαλήθευση κωδικού.'
+  }
   async function editPasswordAction(_prevState, formData) {
-    const passwordData = Object.fromEntries(formData.entries());
-    const error = validate(passwordData);
+    const passwordData = Object.fromEntries(formData.entries())
+    const error = validate(passwordData)
     if (error) {
-      setError(error);
-      return passwordData;
+      setError(error)
+      return passwordData
     }
-    const result = await changePassword(passwordData);
+    const result = await changePassword(passwordData)
     if (result.error) {
-      setError(result.error.data);
-      return passwordData;
+      setError(result.error.data)
+      return passwordData
     }
-    setTimeout(() => setEdit(false), 1000);
-    return { success: 'Επιτυχής αλλαγή κωδικού.' };
+    setTimeout(() => setEdit(false), 1000)
+    return { success: 'Επιτυχής αλλαγή κωδικού.' }
   }
 
   return (
@@ -96,9 +91,7 @@ const EditPassword = () => {
         <div className={classes.error} style={{ margin: 0 }}>
           {error}
         </div>
-        {isSuccess && (
-          <span style={{ color: '#1cf31c' }}>{formState.success}</span>
-        )}
+        {isSuccess && <span style={{ color: '#1cf31c' }}>{formState.success}</span>}
       </form>
       <Button
         form="editForm"
@@ -112,7 +105,7 @@ const EditPassword = () => {
         onClick={() => setEdit(false)}
       />
     </>
-  );
-};
+  )
+}
 
-export default EditPassword;
+export default EditPassword

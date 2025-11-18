@@ -1,20 +1,20 @@
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import { calculateChipCounts } from '@poka/utils/calculateChipCounts';
-import { formatNumber } from '@utils/helper-functions';
-import Stack from '@poka/components/player/Stack';
-import { INFO_TEXT } from '@utils/text-constants';
-import Kava from '@poka/components/table/Kava';
-import ToolTip from '@ui/ToolTip';
-import './Kaves.scss';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi'
+import { calculateChipCounts } from '@poka/utils/calculateChipCounts'
+import { formatNumber } from '@utils/helper-functions'
+import Stack from '@poka/components/player/Stack'
+import { INFO_TEXT } from '@utils/text-constants'
+import Kava from '@poka/components/table/Kava'
+import ToolTip from '@ui/ToolTip'
+import './Kaves.scss'
 
 const Kaves = ({ totalPot }) => {
-  const { data } = useGetPokaStateQuery();
+  const { data } = useGetPokaStateQuery()
 
-  if (totalPot <= 0) return null;
+  if (totalPot <= 0) return null
 
-  const { chip, kaves } = data;
-  const chipInfos = calculateChipCounts(totalPot, chip);
-  const showKaves = kaves[0]?.amount < totalPot;
+  const { chip, kaves } = data
+  const chipInfos = calculateChipCounts(totalPot, chip)
+  const showKaves = kaves[0]?.amount < totalPot
 
   return (
     <div className="kaves ">
@@ -33,7 +33,7 @@ const Kaves = ({ totalPot }) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Kaves;
+export default Kaves

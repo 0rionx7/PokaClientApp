@@ -1,8 +1,8 @@
-import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit'
 
-import { accountApi } from '@account/api/accountApi';
-import { pokaApi } from '@poka/api/pokaApi';
-import { chineseApi } from '@chinese/api/chineseApi';
+import { accountApi } from '@account/api/accountApi'
+import { pokaApi } from '@poka/api/pokaApi'
+import { chineseApi } from '@chinese/api/chineseApi'
 
 const initialStateFn = () => {
   const initialState = {
@@ -10,18 +10,16 @@ const initialStateFn = () => {
     gameId: '',
     messages: [],
     hideInfo: false,
-    deckColor: 'rgb(255 0 0 / 90%)',
-  };
-  try {
-    initialState.hideInfo =
-      JSON.parse(window.localStorage.getItem('hideInfo')) || false;
-    initialState.deckColor =
-      window.localStorage.getItem('deckColor') || 'rgb(255 0 0 / 90%)';
-  } catch (error) {
-    console.log(error);
+    deckColor: 'rgb(255 0 0 / 90%)'
   }
-  return initialState;
-};
+  try {
+    initialState.hideInfo = JSON.parse(window.localStorage.getItem('hideInfo')) || false
+    initialState.deckColor = window.localStorage.getItem('deckColor') || 'rgb(255 0 0 / 90%)'
+  } catch (error) {
+    console.log(error)
+  }
+  return initialState
+}
 export const accountSlice = createSlice({
   name: 'account',
   initialState: initialStateFn,
@@ -29,11 +27,11 @@ export const accountSlice = createSlice({
     setHideInfo: (state, action) => ({ ...state, hideInfo: action.payload }),
     setDeckColor: (state, action) => ({ ...state, deckColor: action.payload }),
     postMessage: (state, action) => {
-      state.messages.push(action.payload);
+      state.messages.push(action.payload)
     },
     resetMessages: (state, _action) => {
-      state.messages = [];
-    },
+      state.messages = []
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -42,13 +40,12 @@ export const accountSlice = createSlice({
           accountApi.endpoints.login.matchFulfilled,
           accountApi.endpoints.register.matchFulfilled,
           accountApi.endpoints.usernameChange.matchFulfilled,
-          accountApi.endpoints.reconnectedLogin.matchFulfilled,
+          accountApi.endpoints.reconnectedLogin.matchFulfilled
         ),
-        (state, action) => ({ ...state, ...action.payload }),
+        (state, action) => ({ ...state, ...action.payload })
       )
-      .addMatcher(
-        accountApi.endpoints.logOut.matchFulfilled,
-        (_state, _action) => accountSlice.getInitialState(),
+      .addMatcher(accountApi.endpoints.logOut.matchFulfilled, (_state, _action) =>
+        accountSlice.getInitialState()
       )
       .addMatcher(
         isAnyOf(
@@ -56,37 +53,31 @@ export const accountSlice = createSlice({
           pokaApi.endpoints.restartGame.matchFulfilled,
           pokaApi.endpoints.sitDown.matchFulfilled,
           chineseApi.endpoints.openChineseTable.matchFulfilled,
-          chineseApi.endpoints.sitDownChinese.matchFulfilled,
+          chineseApi.endpoints.sitDownChinese.matchFulfilled
         ),
         (state, action) => {
-          state.gameId = action.payload.gameId;
-        },
+          state.gameId = action.payload.gameId
+        }
       )
       .addMatcher(
         isAnyOf(
           pokaApi.endpoints.sitOut.matchFulfilled,
-          chineseApi.endpoints.sitOutChinese.matchFulfilled,
+          chineseApi.endpoints.sitOutChinese.matchFulfilled
         ),
         (state, _action) => {
-          state.gameId = '';
-        },
-      );
+          state.gameId = ''
+        }
+      )
   },
   selectors: {
     selectHideInfo: (accountState) => accountState.hideInfo,
     selectMessagess: (accountState) => accountState.messages,
     selectDeckColor: (accountState) => accountState.deckColor,
     selectToken: (accountState) => accountState.token,
-    selectGameId: (accountState) => accountState.gameId,
-  },
-});
+    selectGameId: (accountState) => accountState.gameId
+  }
+})
 
-export const { setHideInfo, setDeckColor, postMessage, resetMessages } =
-  accountSlice.actions;
-export const {
-  selectHideInfo,
-  selectMessagess,
-  selectDeckColor,
-  selectToken,
-  selectGameId,
-} = accountSlice.selectors;
+export const { setHideInfo, setDeckColor, postMessage, resetMessages } = accountSlice.actions
+export const { selectHideInfo, selectMessagess, selectDeckColor, selectToken, selectGameId } =
+  accountSlice.selectors

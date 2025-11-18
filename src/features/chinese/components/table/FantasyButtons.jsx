@@ -1,25 +1,25 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux'
 
-import Button from '@ui/Button';
+import Button from '@ui/Button'
 import {
   orderBySuit,
   orderByValue,
   selectHandcards,
-  selectIsFantasy,
-} from '@chinese/slice/chineseStateSlice';
-import classes from './Table.module.scss';
+  selectIsFantasy
+} from '@chinese/slice/chineseStateSlice'
+import classes from './Table.module.scss'
 
 const FantasyButtons = () => {
-  const isFantasy = useSelector(selectIsFantasy);
-  const handCards = useSelector(selectHandcards);
-  const dispatch = useDispatch();
+  const isFantasy = useSelector(selectIsFantasy)
+  const handCards = useSelector(selectHandcards)
+  const dispatch = useDispatch()
 
   const sortByValue = () => {
-    dispatch(orderByValue());
-  };
+    dispatch(orderByValue())
+  }
   const sortBySuit = () => {
-    dispatch(orderBySuit());
-  };
+    dispatch(orderBySuit())
+  }
 
   return (
     <>
@@ -30,7 +30,7 @@ const FantasyButtons = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default FantasyButtons;
+export default FantasyButtons

@@ -1,44 +1,43 @@
-import { useActionState, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useActionState, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import { useOpenChineseTableMutation } from '@chinese/api/chineseApi';
-import { selectUserName } from '@account/api/accountApi';
-import { createCode } from '@utils/helper-functions';
-import { describeTime } from '@utils/text-functions';
-import Button from '@ui/Button';
+import { useOpenChineseTableMutation } from '@chinese/api/chineseApi'
+import { selectUserName } from '@account/api/accountApi'
+import { createCode } from '@utils/helper-functions'
+import { describeTime } from '@utils/text-functions'
+import Button from '@ui/Button'
 
 const OpenTable = () => {
-  const playerName = useSelector(selectUserName);
-  const [openTable] = useOpenChineseTableMutation();
+  const playerName = useSelector(selectUserName)
+  const [openTable] = useOpenChineseTableMutation()
   const [formState, formAction, isPending] = useActionState(openTableAction, {
     tableName: '',
-    playTime: 120,
-  });
-  const [error, setError] = useState(null);
+    playTime: 120
+  })
+  const [error, setError] = useState(null)
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const validate = (name) => {
     if (name.trim().length < 3 || name.trim().length > 17)
-      return `Το όνομα τραπεζιού πρέπει να αποτελείται\n από 3 εώς 17 χαρακτήρες.`;
-  };
+      return `Το όνομα τραπεζιού πρέπει να αποτελείται\n από 3 εώς 17 χαρακτήρες.`
+  }
 
   async function openTableAction(_prevFormState, formData) {
-    const tableData = Object.fromEntries(formData.entries());
-    const error = validate(tableData.tableName);
+    const tableData = Object.fromEntries(formData.entries())
+    const error = validate(tableData.tableName)
     if (error) {
-      setError(error);
-      return tableData;
+      setError(error)
+      return tableData
     }
-    const tableName =
-      tableData.tableName + '_' + playerName + '_' + createCode(6);
-    const result = await openTable({ ...tableData, tableName });
+    const tableName = tableData.tableName + '_' + playerName + '_' + createCode(6)
+    const result = await openTable({ ...tableData, tableName })
     if (result?.error?.data) {
-      setError(result.error.data);
-      return tableData;
+      setError(result.error.data)
+      return tableData
     }
-    navigate('/chinese-table', { state: { game: 'chinese' } });
+    navigate('/chinese-table', { state: { game: 'chinese' } })
   }
 
   return (
@@ -70,14 +69,10 @@ const OpenTable = () => {
           </div>
         </div>
         <span>{error}</span>
-        <Button
-          prompt="Δημιουργία"
-          disabled={isPending || error}
-          className="orange"
-        />
+        <Button prompt="Δημιουργία" disabled={isPending || error} className="orange" />
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default OpenTable;
+export default OpenTable

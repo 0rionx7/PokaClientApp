@@ -1,9 +1,9 @@
-import { ApplicationInsights } from '@microsoft/applicationinsights-web';
-import { ReactPlugin } from '@microsoft/applicationinsights-react-js';
-import { createBrowserHistory } from 'history';
+import { ApplicationInsights } from '@microsoft/applicationinsights-web'
+import { ReactPlugin } from '@microsoft/applicationinsights-react-js'
+import { createBrowserHistory } from 'history'
 
-const browserHistory = createBrowserHistory({ basename: '' });
-var reactPlugin = new ReactPlugin();
+const browserHistory = createBrowserHistory({ basename: '' })
+var reactPlugin = new ReactPlugin()
 // *** Add the Click Analytics plug-in. ***
 /* var clickPluginInstance = new ClickAnalyticsPlugin();
    var clickPluginConfig = {
@@ -17,14 +17,14 @@ export const appInsights = new ApplicationInsights({
     // *** Add the Click Analytics plug-in. ***
     // extensions: [reactPlugin, clickPluginInstance],
     extensionConfig: {
-      [reactPlugin.identifier]: { history: browserHistory },
+      [reactPlugin.identifier]: { history: browserHistory }
       // *** Add the Click Analytics plug-in. ***
       // [clickPluginInstance.identifier]: clickPluginConfig
     },
     disableExceptionTracking: false,
-    disablePageUnloadEvents: ['unload'],
-  },
-});
+    disablePageUnloadEvents: ['unload']
+  }
+})
 
-appInsights.loadAppInsights();
-appInsights.trackPageView();
+appInsights.loadAppInsights()
+appInsights.trackPageView()

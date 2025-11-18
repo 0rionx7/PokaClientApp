@@ -1,14 +1,14 @@
-import { Component } from 'react';
+import { Component } from 'react'
 // import { appInsights } from '../analytics';
 
 export class AppErrorBoundary extends Component {
   constructor(props) {
-    super(props);
-    this.state = { hasError: false };
+    super(props)
+    this.state = { hasError: false }
   }
 
   static getDerivedStateFromError(_error) {
-    return { hasError: true };
+    return { hasError: true }
   }
 
   componentDidCatch(_error, _info) {
@@ -19,6 +19,6 @@ export class AppErrorBoundary extends Component {
   }
 
   render() {
-    return this.state.hasError ? this.props.fallback : this.props.children;
+    return this.state.hasError ? this.props.fallback : this.props.children
   }
 }

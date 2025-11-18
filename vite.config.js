@@ -1,19 +1,19 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import { fileURLToPath } from 'url';
-import path from 'path';
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import { fileURLToPath } from 'url'
+import path from 'path'
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export default defineConfig(() => {
   return {
     build: {
       outDir: '../e-poka.frontend/build',
-      emptyOutDir: true,
+      emptyOutDir: true
     },
     server: {
-      port: 3000,
+      port: 3000
     },
     plugins: [react()],
     resolve: {
@@ -30,8 +30,8 @@ export default defineConfig(() => {
         '@hooks': path.resolve(__dirname, 'src/hooks'),
         '@pages': path.resolve(__dirname, 'src/pages'),
         '@utils': path.resolve(__dirname, 'src/utils'),
-        '@icons': path.resolve(__dirname, 'src/assets/icons'),
-      },
-    },
-  };
-});
+        '@icons': path.resolve(__dirname, 'src/assets/icons')
+      }
+    }
+  }
+})

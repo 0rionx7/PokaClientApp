@@ -1,190 +1,185 @@
-import { createSelector } from '@reduxjs/toolkit';
+import { createSelector } from '@reduxjs/toolkit'
 
-import { selectUserName } from '@account/api/accountApi';
-import { baseUrl, gameApi, socket } from '@store/gameApi';
-import { selectGameId, selectToken } from '@account/slice/accountSlice';
-import { playerStateOf, isSitting, updateAll } from '@utils/helper-functions';
+import { selectUserName } from '@account/api/accountApi'
+import { baseUrl, gameApi, socket } from '@store/gameApi'
+import { selectGameId, selectToken } from '@account/slice/accountSlice'
+import { playerStateOf, isSitting, updateAll } from '@utils/helper-functions'
 
 export const pokaApi = gameApi.injectEndpoints({
   endpoints: (build) => ({
     getPokaState: build.query({
       queryFn: async (_, { getState }) => {
-        const token = selectToken(getState());
-        const gameId = selectGameId(getState());
+        const token = selectToken(getState())
+        const gameId = selectGameId(getState())
 
-        if (!token) return { error: 'not authorized' };
+        if (!token) return { error: 'not authorized' }
 
         const httpHeaders = {
           'Content-Type': 'application/json',
-          authorization: `Bearer ${token}`,
-        };
-        const headers = new Headers(httpHeaders);
-        const url = new URL(`${baseUrl}/poka/${gameId}`);
-        url.search = new URLSearchParams({ socketId: socket.id });
-        const response = await fetch(url, { method: 'GET', headers });
+          authorization: `Bearer ${token}`
+        }
+        const headers = new Headers(httpHeaders)
+        const url = new URL(`${baseUrl}/poka/${gameId}`)
+        url.search = new URLSearchParams({ socketId: socket.id })
+        const response = await fetch(url, { method: 'GET', headers })
 
-        const responseData = await response.json();
-        if (!response.ok) throw Error(responseData);
+        const responseData = await response.json()
+        if (!response.ok) throw Error(responseData)
 
-        return { data: responseData };
+        return { data: responseData }
       },
-      async onCacheEntryAdded(
-        _,
-        { cacheEntryRemoved, updateCachedData, getState },
-      ) {
-        const gameId = selectGameId(getState());
+      async onCacheEntryAdded(_, { cacheEntryRemoved, updateCachedData, getState }) {
+        const gameId = selectGameId(getState())
         try {
           const stateUpdateListener = (stateUpdate) => {
-            if (gameId !== stateUpdate._id) return;
-            updateCachedData((draft) => ({ ...draft, ...stateUpdate }));
-          };
+            if (gameId !== stateUpdate._id) return
+            updateCachedData((draft) => ({ ...draft, ...stateUpdate }))
+          }
 
           const closingBetListener = ({ _id, playerStates }) => {
-            if (gameId !== _id) return;
-            const updatedStates = updateAll(playerStates, { denying: 0 });
+            if (gameId !== _id) return
+            const updatedStates = updateAll(playerStates, { denying: 0 })
             updateCachedData((draft) => ({
               ...draft,
-              playerStates: updatedStates,
-            }));
-          };
+              playerStates: updatedStates
+            }))
+          }
 
-          socket.on('stateUpdated', stateUpdateListener);
-          socket.on('closingBet', closingBetListener);
-          await cacheEntryRemoved;
-          socket.removeAllListeners('stateUpdated');
-          socket.removeAllListeners('closingBet');
+          socket.on('stateUpdated', stateUpdateListener)
+          socket.on('closingBet', closingBetListener)
+          await cacheEntryRemoved
+          socket.removeAllListeners('stateUpdated')
+          socket.removeAllListeners('closingBet')
         } catch (error) {
-          console.log(error);
+          console.log(error)
         }
       },
-      keepUnusedDataFor: 0,
+      keepUnusedDataFor: 0
     }),
     openPokaTable: build.mutation({
       query: (openTableData) => ({
         url: '/poka',
         method: 'POST',
-        body: { openTableData },
-      }),
+        body: { openTableData }
+      })
     }),
     restartGame: build.mutation({
       query: (gameInfo) => ({
         url: '/poka/restart',
         method: 'POST',
-        body: gameInfo,
-      }),
+        body: gameInfo
+      })
     }),
     setGameVariant: build.mutation({
       query: (builderConfig) => ({
         url: '/poka/variant',
         method: 'PATCH',
-        body: builderConfig,
-      }),
+        body: builderConfig
+      })
     }),
     bet: build.mutation({
       query: (betInfo) => ({
         url: '/poka/bet',
         method: 'PATCH',
-        body: betInfo,
-      }),
+        body: betInfo
+      })
     }),
     denyCard: build.mutation({
       query: (denyInfo) => ({
         url: '/poka/deny',
         method: 'PATCH',
-        body: denyInfo,
-      }),
+        body: denyInfo
+      })
     }),
     selectCards: build.mutation({
       query: (selectInfo) => ({
         url: '/poka/select',
         method: 'PATCH',
-        body: selectInfo,
-      }),
+        body: selectInfo
+      })
     }),
     assignJoker: build.mutation({
       query: (replacmentCards) => ({
         url: '/poka/replace-joker',
         method: 'PATCH',
-        body: replacmentCards,
-      }),
+        body: replacmentCards
+      })
     }),
     evaluateHand: build.mutation({
       query: (handInfo) => ({
         url: '/poka/evaluate',
         method: 'POST',
-        body: handInfo,
-      }),
+        body: handInfo
+      })
     }),
     submitCards: build.mutation({
       query: (handInfo) => ({
         url: '/poka/submit',
         method: 'PATCH',
-        body: handInfo,
-      }),
+        body: handInfo
+      })
     }),
     revealCards: build.mutation({
       query: () => ({
         url: '/poka/reveal',
-        method: 'PATCH',
-      }),
+        method: 'PATCH'
+      })
     }),
     renewCava: build.mutation({
       query: (renewInfo) => ({
         url: '/poka/renew',
         method: 'PATCH',
-        body: renewInfo,
-      }),
+        body: renewInfo
+      })
     }),
     nextRound: build.mutation({
       query: () => ({
         url: '/poka/nextRound',
-        method: 'PATCH',
-      }),
+        method: 'PATCH'
+      })
     }),
     sitDown: build.mutation({
       query: (tableinfo) => ({
         url: '/poka/sitDown',
         method: 'PATCH',
-        body: tableinfo,
-      }),
+        body: tableinfo
+      })
     }),
     sitOut: build.mutation({
       query: (sitOutInfo) => ({
         url: '/poka/sitOut',
         method: 'PATCH',
-        body: sitOutInfo,
-      }),
+        body: sitOutInfo
+      })
     }),
     joinTable: build.mutation({
       query: (joinInfo) => ({
         url: '/poka/join',
         method: 'PATCH',
-        body: joinInfo,
+        body: joinInfo
       }),
-      invalidatesTags: ['Requests'],
-    }),
-  }),
-});
+      invalidatesTags: ['Requests']
+    })
+  })
+})
 
-const selectGameState = pokaApi.endpoints.getPokaState.select();
+const selectGameState = pokaApi.endpoints.getPokaState.select()
 export const selectPlayerStates = createSelector(
   selectGameState,
-  ({ data }) => data.playerStates ?? [],
-);
+  ({ data }) => data.playerStates ?? []
+)
 export const selectSittingPlayers = createSelector(
   selectPlayerStates,
-  (playerStates) => playerStates.filter(isSitting) ?? [],
-);
+  (playerStates) => playerStates.filter(isSitting) ?? []
+)
 export const selectSittingPlayersWithMoney = createSelector(
   selectPlayerStates,
-  (playerStates) =>
-    playerStates.filter((state) => state.resta > 0 && !state.sittingOut) ?? [],
-);
+  (playerStates) => playerStates.filter((state) => state.resta > 0 && !state.sittingOut) ?? []
+)
 export const selectHostPlayerState = createSelector(
   [selectPlayerStates, selectUserName],
-  (playerStates, playerName) =>
-    playerStates.find(playerStateOf(playerName)) ?? null,
-);
+  (playerStates, playerName) => playerStates.find(playerStateOf(playerName)) ?? null
+)
 
 export const {
   useGetPokaStateQuery,
@@ -202,5 +197,5 @@ export const {
   useRevealCardsMutation,
   useJoinTableMutation,
   useSitDownMutation,
-  useSitOutMutation,
-} = pokaApi;
+  useSitOutMutation
+} = pokaApi

@@ -1,19 +1,19 @@
-import { Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Outlet } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { DndProvider } from 'react-dnd'
+import { HTML5Backend } from 'react-dnd-html5-backend'
 
-import { selectToken } from '@account/slice/accountSlice';
-import useRequestResult from '@hooks/useRequestResult';
-import useOfflineSnack from '@hooks/useOfflineSnack';
-import useRelogin from '@hooks/useLoginOnConnect';
+import { selectToken } from '@account/slice/accountSlice'
+import useRequestResult from '@hooks/useRequestResult'
+import useOfflineSnack from '@hooks/useOfflineSnack'
+import useRelogin from '@hooks/useLoginOnConnect'
 
 function App() {
-  const token = useSelector(selectToken);
-  const [approvedElement, rejectedElement] = useRequestResult();
-  const offLineElement = useOfflineSnack();
-  useRelogin({ token });
+  const token = useSelector(selectToken)
+  const [approvedElement, rejectedElement] = useRequestResult()
+  const offLineElement = useOfflineSnack()
+  useRelogin({ token })
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -22,7 +22,7 @@ function App() {
       {rejectedElement}
       <Outlet />
     </DndProvider>
-  );
+  )
 }
 
-export default App;
+export default App

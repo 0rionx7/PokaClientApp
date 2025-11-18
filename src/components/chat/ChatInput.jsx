@@ -1,32 +1,32 @@
-import { useState, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useState, useRef } from 'react'
+import { useSelector } from 'react-redux'
 
-import EmojiPicker, { Theme } from 'emoji-picker-react';
+import EmojiPicker, { Theme } from 'emoji-picker-react'
 
-import { selectGameId } from '@account/slice/accountSlice';
-import { useEmoji } from '@components/chat/EmojiProvider';
-import { selectUserName } from '@account/api/accountApi';
-import { socket } from '@store/gameApi';
-import { sendSvg } from '@icons/various';
+import { selectGameId } from '@account/slice/accountSlice'
+import { useEmoji } from '@components/chat/EmojiProvider'
+import { selectUserName } from '@account/api/accountApi'
+import { socket } from '@store/gameApi'
+import { sendSvg } from '@icons/various'
 
 const ChatInput = () => {
-  const playerName = useSelector(selectUserName);
-  const gameId = useSelector(selectGameId);
-  const { showPicker, setShowPicker } = useEmoji();
-  const [message, setMessage] = useState('');
-  const inputRef = useRef();
+  const playerName = useSelector(selectUserName)
+  const gameId = useSelector(selectGameId)
+  const { showPicker, setShowPicker } = useEmoji()
+  const [message, setMessage] = useState('')
+  const inputRef = useRef()
 
   const handleSendMessage = (event) => {
-    event.preventDefault();
-    socket.emit('postMessage', { gameId, playerName, message });
-    setShowPicker(false);
-    setMessage('');
-  };
+    event.preventDefault()
+    socket.emit('postMessage', { gameId, playerName, message })
+    setShowPicker(false)
+    setMessage('')
+  }
 
   const emojiPicked = (emojiObject) => {
-    setMessage((prevInput) => prevInput + emojiObject.emoji);
-    inputRef.current.focus();
-  };
+    setMessage((prevInput) => prevInput + emojiObject.emoji)
+    inputRef.current.focus()
+  }
 
   return (
     <>
@@ -55,7 +55,7 @@ const ChatInput = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default ChatInput;
+export default ChatInput

@@ -1,11 +1,11 @@
-import { memo } from 'react';
-import { useDispatch } from 'react-redux';
-import { useDrop } from 'react-dnd';
+import { memo } from 'react'
+import { useDispatch } from 'react-redux'
+import { useDrop } from 'react-dnd'
 
-import { moveCard } from '@chinese/slice/chineseStateSlice';
+import { moveCard } from '@chinese/slice/chineseStateSlice'
 
 const Cell = ({ index, place, owner }) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
   const [{ isOver, item }, drop] = useDrop(
     () => ({
       accept: 'card',
@@ -13,21 +13,17 @@ const Cell = ({ index, place, owner }) => {
       drop: ({ card }) => dispatch(moveCard({ place, index, card })),
       collect: (monitor) => ({
         isOver: !!monitor.isOver(),
-        item: monitor.getItem(),
-      }),
+        item: monitor.getItem()
+      })
     }),
-    [index, place, owner],
-  );
+    [index, place, owner]
+  )
 
   const style = {
-    backgroundColor: !isOver
-      ? '#5e7043'
-      : item.owner === owner
-        ? '#b5a239'
-        : 'red',
-  };
+    backgroundColor: !isOver ? '#5e7043' : item.owner === owner ? '#b5a239' : 'red'
+  }
 
-  return <div ref={drop} className="card" style={style} />;
-};
+  return <div ref={drop} className="card" style={style} />
+}
 
-export default memo(Cell);
+export default memo(Cell)

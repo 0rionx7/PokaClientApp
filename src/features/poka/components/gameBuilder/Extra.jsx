@@ -1,10 +1,10 @@
-import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
-import { getNameAndLabel } from '@utils/text-functions';
-import CheckBox from '@ui/CheckBox';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext'
+import { getNameAndLabel } from '@utils/text-functions'
+import CheckBox from '@ui/CheckBox'
 
 const Extra = () => {
-  const { values, setFieldValue } = useGameBuilderContext();
-  const { name, label } = getNameAndLabel(values.gameName);
+  const { values, setFieldValue } = useGameBuilderContext()
+  const { name, label } = getNameAndLabel(values.gameName)
 
   return (
     <CheckBox
@@ -14,7 +14,7 @@ const Extra = () => {
       checked={!!values[name]}
       onChange={(e) => setFieldValue(name, e.target.checked)}
     />
-  );
-};
+  )
+}
 
-export default Extra;
+export default Extra

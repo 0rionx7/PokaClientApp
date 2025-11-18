@@ -1,14 +1,14 @@
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
-import Button from '@ui/Button';
-import useRelogin from '@hooks/useLoginOnConnect';
-import './SuccessfulPayment.scss';
+import Button from '@ui/Button'
+import useRelogin from '@hooks/useLoginOnConnect'
+import './SuccessfulPayment.scss'
 
 const FailedPayment = () => {
-  let [searchParams] = useSearchParams();
-  const navigate = useNavigate();
-  const orderCode = searchParams.get('s');
-  useRelogin({ orderCode });
+  let [searchParams] = useSearchParams()
+  const navigate = useNavigate()
+  const orderCode = searchParams.get('s')
+  useRelogin({ orderCode })
 
   return (
     <div className="payment-result">
@@ -18,17 +18,11 @@ const FailedPayment = () => {
         <p>Παρακαλούμε δοκιμάστε ξανά.</p>
       </section>
       <div className="failed-options">
-        <Button
-          prompt="Δοκιμάστε ξανα"
-          onClick={() => navigate('/account/subscription')}
-        />
-        <Button
-          prompt="Επιστροφή στον λογαριασμό σας"
-          onClick={() => navigate('/account')}
-        />
+        <Button prompt="Δοκιμάστε ξανα" onClick={() => navigate('/account/subscription')} />
+        <Button prompt="Επιστροφή στον λογαριασμό σας" onClick={() => navigate('/account')} />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default FailedPayment;
+export default FailedPayment

@@ -1,10 +1,10 @@
-import aceOfSpades from '@icons/aceOfSpades.svg';
-import { suits } from '@icons/suits';
+import aceOfSpades from '@icons/aceOfSpades.svg'
+import { suits } from '@icons/suits'
 
-import './Card.scss';
+import './Card.scss'
 
 const ContentItem = ({ card, i }) => {
-  const id = `s-${i}`;
+  const id = `s-${i}`
 
   if (card.value + card.suit === '14S')
     return (
@@ -14,13 +14,13 @@ const ContentItem = ({ card, i }) => {
           <div className="card-logo">{import.meta.env.VITE_DOMAIN_NAME}</div>
         </div>
       </div>
-    );
+    )
 
   return (
     <div id={id} style={{ gridArea: id }}>
       <img src={suits[card.suit]} alt={card.suit} />
     </div>
-  );
-};
+  )
+}
 
-export default ContentItem;
+export default ContentItem

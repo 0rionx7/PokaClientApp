@@ -1,36 +1,36 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-import { useCancelRequestMutation } from '@account/api/accountApi';
-import { getTableTitle } from '@utils/text-functions';
-import useSnackBar from '@hooks/useSnackBar';
-import ToolTip from '@ui/ToolTip';
-import './Requests.scss';
+import { useCancelRequestMutation } from '@account/api/accountApi'
+import { getTableTitle } from '@utils/text-functions'
+import useSnackBar from '@hooks/useSnackBar'
+import ToolTip from '@ui/ToolTip'
+import './Requests.scss'
 
 const UserRequest = ({ tableInfo, useSitDown }) => {
-  const [sitDown, { isSuccess, isLoading }] = useSitDown();
-  const [cancelHovered, setCancelHovered] = useState(false);
-  const [cancelRequest, { isLoading: canceling }] = useCancelRequestMutation();
-  const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' });
-  const navigate = useNavigate();
+  const [sitDown, { isSuccess, isLoading }] = useSitDown()
+  const [cancelHovered, setCancelHovered] = useState(false)
+  const [cancelRequest, { isLoading: canceling }] = useCancelRequestMutation()
+  const { snackElement, setSnackInfo } = useSnackBar({ height: '100%' })
+  const navigate = useNavigate()
 
-  const { gameId, tableName } = tableInfo;
+  const { gameId, tableName } = tableInfo
 
   const handleCancelRequest = async (event) => {
-    if (canceling) return;
-    event.stopPropagation();
-    cancelRequest(tableInfo);
-  };
+    if (canceling) return
+    event.stopPropagation()
+    cancelRequest(tableInfo)
+  }
 
   const handleJoinTable = async () => {
-    if (!gameId || isLoading || isSuccess) return;
-    const result = await sitDown({ gameId, tableName });
-    if (result.error?.data) setSnackInfo(result.error.data);
+    if (!gameId || isLoading || isSuccess) return
+    const result = await sitDown({ gameId, tableName })
+    if (result.error?.data) setSnackInfo(result.error.data)
     if (result.data?.gameId)
       navigate(`/${result.data.game}-table`, {
-        state: { game: result.data.game },
-      });
-  };
+        state: { game: result.data.game }
+      })
+  }
 
   return (
     <div className={`request-tableName${gameId ? ' joined' : ''}`}>
@@ -46,7 +46,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
       </div>
       {snackElement}
     </div>
-  );
-};
+  )
+}
 
-export default UserRequest;
+export default UserRequest

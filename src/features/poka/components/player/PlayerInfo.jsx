@@ -1,14 +1,14 @@
-import DeniedCards from '@poka/components/player/DeniedCards';
-import StatusInfo from '@poka/components/player/StatusInfo';
-import TimerBar from '@poka/components/player/TimerBar';
-import { formatNumber } from '@utils/helper-functions';
-import ToolTip from '@ui/ToolTip';
-import './PlayerInfo.scss';
+import DeniedCards from '@poka/components/player/DeniedCards'
+import StatusInfo from '@poka/components/player/StatusInfo'
+import TimerBar from '@poka/components/player/TimerBar'
+import { formatNumber } from '@utils/helper-functions'
+import ToolTip from '@ui/ToolTip'
+import './PlayerInfo.scss'
 
 const PlayerInfo = ({ playerState }) => {
-  const { playerName, swapped, bet, resta } = playerState;
+  const { playerName, swapped, bet, resta } = playerState
 
-  const backgroundColor = playerState.isInGame ? '#221f1b' : '#a00000';
+  const backgroundColor = playerState.isInGame ? '#221f1b' : '#a00000'
 
   return (
     <div className="player-info-container" style={{ backgroundColor }}>
@@ -34,7 +34,7 @@ const PlayerInfo = ({ playerState }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default PlayerInfo;
+export default PlayerInfo

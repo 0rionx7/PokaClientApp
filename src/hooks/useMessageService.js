@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 
-import { postMessage } from '@account/slice/accountSlice';
-import { socket } from '@store/gameApi';
+import { postMessage } from '@account/slice/accountSlice'
+import { socket } from '@store/gameApi'
 
 const socketEvents = [
   'neeext',
@@ -13,24 +13,24 @@ const socketEvents = [
   'playerSwapped',
   'playerDenied',
   'playerSittingOut',
-  'requestAdded',
-];
+  'requestAdded'
+]
 
 const useMessageService = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const socketListen = (event) =>
-      socket.on(event, (data) => dispatch(postMessage({ event, ...data })));
+      socket.on(event, (data) => dispatch(postMessage({ event, ...data })))
 
-    socketEvents.forEach(socketListen);
+    socketEvents.forEach(socketListen)
 
     return () => {
-      const stopListen = (event) => socket.removeAllListeners(event);
+      const stopListen = (event) => socket.removeAllListeners(event)
 
-      socketEvents.forEach(stopListen);
-    };
-  }, [dispatch]);
-};
+      socketEvents.forEach(stopListen)
+    }
+  }, [dispatch])
+}
 
-export default useMessageService;
+export default useMessageService

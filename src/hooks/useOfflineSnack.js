@@ -1,23 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
-import useOnlineStatus from '@hooks/useOnlineStatus';
-import useSnackBar from '@hooks/useSnackBar';
+import useOnlineStatus from '@hooks/useOnlineStatus'
+import useSnackBar from '@hooks/useSnackBar'
 
 const useOfflineSnack = () => {
-  const isOnline = useOnlineStatus();
+  const isOnline = useOnlineStatus()
   const { snackElement, setSnackInfo } = useSnackBar({
     height: '100%',
-    secs: 0,
-  });
+    secs: 0
+  })
 
   useEffect(() => {
-    const msg = !isOnline
-      ? 'Απώλεια σύνδεσης...\nΠροσπάθεια επανασύνδεσης σε εξέλιξη...'
-      : '';
-    setSnackInfo(msg);
-  }, [isOnline, setSnackInfo]);
+    const msg = !isOnline ? 'Απώλεια σύνδεσης...\nΠροσπάθεια επανασύνδεσης σε εξέλιξη...' : ''
+    setSnackInfo(msg)
+  }, [isOnline, setSnackInfo])
 
-  return snackElement;
-};
+  return snackElement
+}
 
-export default useOfflineSnack;
+export default useOfflineSnack

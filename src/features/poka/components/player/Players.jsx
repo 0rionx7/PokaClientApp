@@ -1,10 +1,10 @@
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
-import { selectPlayerStates } from '@poka/api/pokaApi';
-import Player from '@poka/components/player/Player';
+import { selectPlayerStates } from '@poka/api/pokaApi'
+import Player from '@poka/components/player/Player'
 
 const Players = () => {
-  const playerStates = useSelector(selectPlayerStates);
+  const playerStates = useSelector(selectPlayerStates)
 
   return (
     <>
@@ -12,7 +12,7 @@ const Players = () => {
         <Player key={playerState.playerName} playerState={playerState} />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default Players;
+export default Players

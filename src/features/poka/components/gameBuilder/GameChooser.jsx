@@ -1,33 +1,33 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux'
 
-import { setChosenGame } from '@poka/slice/pokaStateSlice';
-import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
-import { builderDefaults, gameNames, gameConfigs } from '@poka/utils/games';
+import { setChosenGame } from '@poka/slice/pokaStateSlice'
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext'
+import { builderDefaults, gameNames, gameConfigs } from '@poka/utils/games'
 
-const startingCards = [2, 3, 4, 5, 6, 7];
+const startingCards = [2, 3, 4, 5, 6, 7]
 
 const GameChooser = () => {
-  const { values, setValues, setFieldValue } = useGameBuilderContext();
-  const dispatch = useDispatch();
+  const { values, setValues, setFieldValue } = useGameBuilderContext()
+  const dispatch = useDispatch()
 
   const handleGameChange = (e) => {
-    const gameName = e.target.value;
-    const gameConfig = gameConfigs[gameName];
-    if (!gameConfig) return;
+    const gameName = e.target.value
+    const gameConfig = gameConfigs[gameName]
+    if (!gameConfig) return
     setValues({
       ...builderDefaults,
       ...gameConfig.builderDefaults,
       gameName,
-      startingCard: values.startingCard,
-    });
-    dispatch(setChosenGame(gameName));
-  };
+      startingCard: values.startingCard
+    })
+    dispatch(setChosenGame(gameName))
+  }
 
   const games = Object.values(gameNames).map((game) => (
     <option key={game} value={game}>
       {game}
     </option>
-  ));
+  ))
 
   return (
     <div className="game-chooser">
@@ -49,7 +49,7 @@ const GameChooser = () => {
         </select>
       </label>
     </div>
-  );
-};
+  )
+}
 
-export default GameChooser;
+export default GameChooser

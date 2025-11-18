@@ -1,14 +1,14 @@
-import { useGetPokaStateQuery } from '@poka/api/pokaApi';
-import './LiveInfo.scss';
-import { formatNumber } from '@utils/helper-functions';
+import { useGetPokaStateQuery } from '@poka/api/pokaApi'
+import './LiveInfo.scss'
+import { formatNumber } from '@utils/helper-functions'
 
 const GameInfo = () => {
   const {
-    data: { nextPlayers, playerStates, gamesCount },
-  } = useGetPokaStateQuery();
+    data: { nextPlayers, playerStates, gamesCount }
+  } = useGetPokaStateQuery()
 
-  const [currentPlayer] = nextPlayers;
-  const pot = playerStates.reduce((acc, curr) => acc + curr.bet, 0);
+  const [currentPlayer] = nextPlayers
+  const pot = playerStates.reduce((acc, curr) => acc + curr.bet, 0)
 
   return (
     <div className="live-info">
@@ -23,7 +23,7 @@ const GameInfo = () => {
         <h5>{formatNumber(pot)}</h5>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GameInfo;
+export default GameInfo

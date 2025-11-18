@@ -1,11 +1,11 @@
-import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext';
-import { WINNING_ORDERS } from '@utils/text-constants';
-import Radio from '@ui/Radio';
+import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext'
+import { WINNING_ORDERS } from '@utils/text-constants'
+import Radio from '@ui/Radio'
 
-const winningOrders = Object.values(WINNING_ORDERS);
+const winningOrders = Object.values(WINNING_ORDERS)
 
 const WinningOrder = () => {
-  const { values, setFieldValue } = useGameBuilderContext();
+  const { values, setFieldValue } = useGameBuilderContext()
 
   return (
     <>
@@ -20,7 +20,7 @@ const WinningOrder = () => {
         />
       ))}
     </>
-  );
-};
+  )
+}
 
-export default WinningOrder;
+export default WinningOrder
