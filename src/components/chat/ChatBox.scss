@@ -33,6 +33,7 @@
 .chat-input {
   display: flex;
   align-items: center;
+  gap: 0.5rem;
   height: 1rem;
   @media only screen and (min-height: 500px) {
     height: 1.5rem;
