@@ -52,9 +52,6 @@ $total-width: calc(var(--card-width) + 0.4rem);
   .card {
     margin-right: 0.3rem;
   }
-  .kaves {
-    left: -10%;
-  }
 }
 .mamut {
   .card {
@@ -146,9 +143,6 @@ $total-width: calc(var(--card-width) + 0.4rem);
     .card {
       transform: rotateZ(3deg);
     }
-  }
-  .kaves {
-    left: 0;
   }
 }
 .koukos {
