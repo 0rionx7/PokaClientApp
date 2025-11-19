@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useEffectEvent } from 'react'
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi.js'
 import { useRoomContext } from '@poka/components/RoomContext'
@@ -11,6 +11,9 @@ const useDelayedDeal = ({ playerState }) => {
   const [dealtCards, setDealtCards] = useState([])
   const [dealingIndex, setDealingIndex] = useState(0)
   const [firstDealt, setFirstDealt] = useState(false)
+  const resetFirstDealt = useEffectEvent(() => setFirstDealt(false))
+  const resetDealtCards = useEffectEvent((cards) => setDealtCards(cards))
+  const resetDealingIndex = useEffectEvent(() => setDealingIndex(0))
 
   const { playerStates, dealer, nextPlayers } = data
   const { playerName, handCards, submittedHand } = playerState
@@ -49,9 +52,7 @@ const useDelayedDeal = ({ playerState }) => {
     return () => clearTimeout(timer)
   }, [dealingCard, firstDealt, interval, setIsDealing, noDeal])
 
-  useEffect(() => {
-    setFirstDealt(false)
-  }, [handCards])
+  useEffect(() => resetFirstDealt(), [handCards])
 
   useEffect(() => {
     if (noDeal) {
@@ -65,13 +66,13 @@ const useDelayedDeal = ({ playerState }) => {
   // reseting on game end
   // for skarto , changed cards and show reveald cards
   useEffect(() => {
-    if (handCards.length <= dealtCards.length) setDealtCards(handCards)
+    if (handCards.length <= dealtCards.length) resetDealtCards(handCards)
   }, [dealtCards.length, handCards, currentPlayer?.handInfo?.kind])
 
   useEffect(() => {
     if (dealer) {
-      setDealtCards([])
-      setDealingIndex(0)
+      resetFirstDealt([])
+      resetDealingIndex()
     }
   }, [dealer])
 

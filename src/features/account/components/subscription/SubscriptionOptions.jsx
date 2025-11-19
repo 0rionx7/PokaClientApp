@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 import SubscriptionItem from '@account/components/subscription/SubscriptionItem'
 import { useGetUserQuery, usePayMutation } from '@account/api/accountApi'
@@ -14,6 +14,7 @@ const SubscriptionOptions = () => {
   const {
     data: { subExpiration }
   } = useGetUserQuery()
+  const [now] = useState(() => Date.now())
 
   useEffect(() => {
     if (data?.orderCode)
@@ -32,7 +33,7 @@ const SubscriptionOptions = () => {
       </div>
     )
 
-  const noSubscription = !subExpiration || new Date(subExpiration) <= Date.now()
+  const noSubscription = !subExpiration || new Date(subExpiration) <= now
   const expiresAt = new Date(subExpiration).toLocaleDateString('el-GR', {
     weekday: 'long',
     year: 'numeric',

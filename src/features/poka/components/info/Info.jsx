@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useEffectEvent } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi'
@@ -30,10 +30,13 @@ const Info = () => {
   const [selectedTab, setSelectedTab] = useState(INFO_BUTTONS_TITLES.GAME_DESCRIPTION)
   const [showInfoPanel, setShowInfoPanel] = useState(true)
   const { setShowPicker } = useEmoji()
+  const selecteDescription = useEffectEvent(() =>
+    setSelectedTab(INFO_BUTTONS_TITLES.GAME_DESCRIPTION)
+  )
 
   useEffect(() => {
-    if (dealer === hostPlayerName) setSelectedTab(INFO_BUTTONS_TITLES.GAME_DESCRIPTION)
-  }, [setSelectedTab, dealer, hostPlayerName])
+    if (dealer === hostPlayerName) selecteDescription()
+  }, [dealer, hostPlayerName])
 
   const handleToggleInfoPanel = () => {
     setShowInfoPanel((curr) => !curr)

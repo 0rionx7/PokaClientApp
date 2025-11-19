@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useEffectEvent } from 'react'
 import { useSelector } from 'react-redux'
 
 import {
@@ -23,11 +23,12 @@ const Hand = () => {
   const [nextRound] = useNextRoundChineseMutation()
   const [hasSubmitted, setHasSubmitted] = useState(false)
   const [hasNexted, setHasNexted] = useState(false)
-
-  useEffect(() => {
+  const resetActions = useEffectEvent(() => {
     setHasNexted(false)
     setHasSubmitted(false)
-  }, [handCards])
+  })
+
+  useEffect(() => resetActions(), [handCards])
 
   const { nextPlayers, playerStates } = data
   const [currentPlayer] = nextPlayers

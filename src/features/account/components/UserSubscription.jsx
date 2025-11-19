@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { useGetUserQuery } from '@account/api/accountApi'
@@ -9,8 +10,9 @@ const UserSubscription = () => {
   const {
     data: { subExpiration }
   } = useGetUserQuery(undefined)
+  const [now] = useState(() => Date.now())
 
-  const isExpired = !subExpiration || new Date(subExpiration) <= Date.now()
+  const isExpired = !subExpiration || new Date(subExpiration) <= now
 
   const expiresAt = new Date(subExpiration).toLocaleDateString('el-GR', {
     weekday: 'long',

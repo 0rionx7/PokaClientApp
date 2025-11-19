@@ -1,4 +1,4 @@
-import { useState, useActionState, useEffect } from 'react'
+import { useState, useActionState, useEffect, useEffectEvent } from 'react'
 
 import { useChangePasswordMutation } from '@account/api/accountApi'
 import { editSvg } from '@icons/various'
@@ -16,10 +16,11 @@ const EditPassword = () => {
   const [changePassword, { isLoading, isSuccess, reset }] = useChangePasswordMutation()
   const [error, setError] = useState(null)
   const [formState, formAction, isPending] = useActionState(editPasswordAction, initialValues)
+  const resetError = useEffectEvent(() => setError(null))
 
   useEffect(() => {
     if (!edit) {
-      setError(null)
+      resetError()
       reset()
     }
   }, [edit, reset])

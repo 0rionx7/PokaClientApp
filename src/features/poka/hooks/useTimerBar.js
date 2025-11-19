@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useEffectEvent } from 'react'
 
 import { useGetPokaStateQuery } from '@poka/api/pokaApi'
 
 const useTimerBar = (playerState) => {
   const { data } = useGetPokaStateQuery()
   const [width, setWidth] = useState(100)
+  const resetWidth = useEffectEvent(() => setWidth(100))
 
   const { playerName, handInfo } = playerState
   const { nextPlayers, reaction } = data
@@ -29,7 +30,7 @@ const useTimerBar = (playerState) => {
     return () => clearInterval(timer)
   }, [shouldRun, period])
 
-  useEffect(() => setWidth(100), [isActive])
+  useEffect(() => resetWidth(), [isActive])
 
   const backgroundColor = width > 50 ? 'green' : width > 20 ? 'orange' : 'red'
   const show = isActive && !playerState.handInfo.kind

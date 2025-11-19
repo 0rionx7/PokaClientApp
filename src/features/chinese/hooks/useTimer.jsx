@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useEffectEvent } from 'react'
 import { useSelector } from 'react-redux'
 
 import { useGetChineseStateQuery, useTimedOutMutation } from '@chinese/api/chineseApi'
@@ -12,6 +12,7 @@ const useTimer = (playerName) => {
   const [remainingTime, setRemainingTime] = useState(playTime)
   const username = useSelector(selectUserName)
   const [timedOut] = useTimedOutMutation()
+  const resetRemainingTime = useEffectEvent(() => setRemainingTime(playTime))
 
   const isHostBoard = playerName === username
   const [currentPlayer] = nextPlayers
@@ -34,9 +35,7 @@ const useTimer = (playerName) => {
     }
   }, [remainingTime, isHostBoard, timedOut])
 
-  useEffect(() => {
-    setRemainingTime(playTime)
-  }, [round, playTime])
+  useEffect(() => resetRemainingTime(), [round])
 
   return <Timer time={remainingTime} isActive={isActive} />
 }
