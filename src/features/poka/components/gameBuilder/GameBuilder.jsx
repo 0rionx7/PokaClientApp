@@ -46,8 +46,8 @@ const GameBuilder = () => {
   const noOthersInPlay = sittingPlayers.length === 1
   const allOthersTapi = activePlayers.length === 1
   const btnPrompt =
-    (allOthersTapi && 'Μόνο ένας παίκτης έχει χρήματα') ||
     (noOthersInPlay && 'Δεν κάθετε άλλος παίκτης στο τραπέζι') ||
+    (allOthersTapi && 'Μόνο ένας παίκτης έχει χρήματα') ||
     status.error ||
     'ΜΟΙΡΑΣΤΕ'
 
