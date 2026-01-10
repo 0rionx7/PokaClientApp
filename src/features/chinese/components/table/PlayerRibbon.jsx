@@ -1,5 +1,6 @@
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi'
-import { isSitting } from '@utils/helper-functions'
+import { cn, isSitting } from '@utils/helper-functions'
+
 import './PlayerRibbon.scss'
 
 const PlayerRibbon = ({ playerState }) => {
@@ -14,7 +15,7 @@ const PlayerRibbon = ({ playerState }) => {
   // const soundJsx = useSound({ ownBoard, isActive });
 
   return (
-    <div className={'playerRibbon ' + (isActive ? 'active' : '')}>
+    <div className={cn('playerRibbon', { active: isActive })}>
       <h3>{playerState.playerName}</h3>
       {isDealing && <div className="dealer-icon">D</div>}
       <div className="score">{playerState.gameScore}</div>

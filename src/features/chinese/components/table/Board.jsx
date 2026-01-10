@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useGetChineseStateQuery } from '@chinese/api/chineseApi'
 import { selectUserName } from '@account/api/accountApi'
 import { fantasySvg, foulSvg } from '@icons/various'
-import { isSitting } from '@utils/helper-functions'
+import { cn, isSitting } from '@utils/helper-functions'
 import usePlayerStyle from '@chinese/hooks/usePlayerStyle'
 import PlayerRibbon from '@chinese/components/table/PlayerRibbon'
 import RoundScore from '@chinese/components/table/RoundScore'
@@ -26,7 +26,7 @@ const Board = ({ index, playerState }) => {
 
   return (
     <>
-      <div className={'board-layout ' + (classes[gridArea] || '')} style={{ gridArea }}>
+      <div className={cn('board-layout', classes[gridArea])} style={{ gridArea }}>
         <PlayerRibbon playerState={playerState} />
         <div className="board-grid">
           <div id={'timer' + playerState.playerName}>{timerJsx}</div>

@@ -5,6 +5,8 @@ import { selectUserName } from '@account/api/accountApi'
 import { useGetPokaStateQuery } from '@poka/api/pokaApi'
 import useDelayedDeal from '@poka/hooks/useDelayedDeal'
 import Card from '@poka/components/card/Card'
+import { cn } from '@utils/helper-functions'
+
 import './HandCards.scss'
 
 const HandCards = ({ playerState }) => {
@@ -20,8 +22,6 @@ const HandCards = ({ playerState }) => {
   const handSubmitted = playerState.submittedHand.length
   const isHostPlayer = playerName === hostPlayerName
 
-  const handClass = `hand-cards cards-${displayedCards?.length}`
-
   const isChosen = (index) => isHostPlayer && chosenCardIndexes.some((i) => i === index)
   const isJoker = (value) => joker.some((v) => v === value) && !handSubmitted
 
@@ -32,7 +32,7 @@ const HandCards = ({ playerState }) => {
 
   return (
     <>
-      <div className={handClass}>
+      <div className={cn('hand-cards', `cards-${displayedCards?.length}`)}>
         {displayedCards?.map((card, i) => (
           <Card
             key={card?.value + card?.suit + i || i} // (+ i) for jokers with same valu + suit

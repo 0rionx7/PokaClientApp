@@ -1,10 +1,11 @@
+import { cn } from '@utils/helper-functions'
 import { createPortal } from 'react-dom'
 
 const Overlay = ({ className, children, ...rest }) => {
   return (
     <>
       {createPortal(
-        <div className={`overlay ${className ?? ''}`} {...rest}>
+        <div className={cn('overlay', className)} {...rest}>
           {children}
         </div>,
         document.getElementById('overlay')

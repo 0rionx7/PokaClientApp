@@ -2,6 +2,8 @@ import { useGetPokaStateQuery } from '@poka/api/pokaApi'
 import BoardRow from '@poka/components/table/BoardRow'
 import Kaves from '@poka/components/table/Kaves'
 import { gameConfigs, gameNames } from '@poka/utils/games'
+import { cn } from '@utils/helper-functions'
+
 import './Board.scss'
 
 const Board = () => {
@@ -13,7 +15,7 @@ const Board = () => {
   if (gameName === gameNames.CORNER) className += ` ${rowIndexes.length - (hats && 1)}`
 
   return (
-    <div className={`board ${className ?? 'empty'}`}>
+    <div className={cn('board', `${className ?? 'empty'}`)}>
       {!rowIndexes?.length && <Kaves totalPot={totalPot} />}
       {rowIndexes?.map((rowIndexes, i, array) => {
         const order = {

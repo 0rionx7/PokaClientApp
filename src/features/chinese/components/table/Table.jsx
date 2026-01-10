@@ -12,9 +12,11 @@ import { resetMessages } from '@account/slice/accountSlice'
 import { selectUserName } from '@account/api/accountApi'
 import RoundInfo from '@chinese/components/table/RoundInfo'
 import Board from '@chinese/components/table/Board'
-import classes from './Table.module.scss'
 import StayLeave from '@components/sitOut/StayLeave'
 import SitOut from '@components/sitOut/SitOut'
+import { cn } from '@utils/helper-functions'
+
+import classes from './Table.module.scss'
 
 const Table = () => {
   const dispatch = useDispatch()
@@ -37,7 +39,7 @@ const Table = () => {
   const playerCount = playerStates.length
 
   return (
-    <div className={classes['table'] + ' ' + classes[`players-${playerCount}`]}>
+    <div className={cn(classes['table'], classes[`players-${playerCount}`])}>
       <RoundInfo round={round} />
       {isDealer && round === 1 && !nextPlayers.length && <DealerScreen />}
       {playerStates.length > 1 && (

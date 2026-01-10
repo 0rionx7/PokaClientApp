@@ -27,3 +27,15 @@ export function createCode(length) {
   return password
 }
 export const formatNumber = (n) => n.toLocaleString()
+
+export function cn(...inputs) {
+  let className = ''
+  for (const input of inputs) {
+    if (input) {
+      if (typeof input === 'object') {
+        for (const [key, value] of Object.entries(input)) if (value) className += ` ${key}`
+      } else className += ` ${input}`
+    }
+  }
+  return className
+}

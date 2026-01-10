@@ -1,4 +1,5 @@
 import { useGameBuilderContext } from '@poka/components/gameBuilder/useGameBuilderContext'
+import { cn } from '@utils/helper-functions'
 import './NumericInput.scss'
 
 const NumericInput = ({ name, className }) => {
@@ -14,7 +15,7 @@ const NumericInput = ({ name, className }) => {
   }
 
   return (
-    <div className={`container ${className}`}>
+    <div className={cn('container', className)}>
       <button type="button" style={{ backgroundColor: 'green' }} onClick={handleIncrement}>
         {'+'}
       </button>

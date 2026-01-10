@@ -6,8 +6,10 @@ import { logOutSvg } from '@icons/various'
 import LastGame from '@account/components/LastGame'
 import UserName from '@account/components/UserName'
 import Config from '@account/components/Config'
+import { cn } from '@utils/helper-functions'
 import Button from '@ui/Button'
 import Frame from '@ui/Frame'
+
 import classes from './Account.module.scss'
 
 const AccountDetails = () => {
@@ -34,7 +36,7 @@ const AccountDetails = () => {
         <AccountRow
           element={
             <Button
-              className={classes.logout + ' red'}
+              className={cn(classes.logout, 'red')}
               prompt={<>{logOutSvg}Αποσύνδεση</>}
               onClick={() => logOut()}
             />

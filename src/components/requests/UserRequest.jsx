@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { useCancelRequestMutation } from '@account/api/accountApi'
 import { getTableTitle } from '@utils/text-functions'
 import useSnackBar from '@hooks/useSnackBar'
+import { cn } from '@utils/helper-functions'
 import ToolTip from '@ui/ToolTip'
 import './Requests.scss'
 
@@ -33,7 +34,7 @@ const UserRequest = ({ tableInfo, useSitDown }) => {
   }
 
   return (
-    <div className={`request-tableName${gameId ? ' joined' : ''}`}>
+    <div className={cn('request-tableName', { joined: gameId })}>
       {!cancelHovered && <ToolTip info="Καθήστε" />}
       <div onClick={handleJoinTable}>{getTableTitle(tableName)}</div>
       <div

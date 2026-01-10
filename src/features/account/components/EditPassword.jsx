@@ -1,8 +1,10 @@
 import { useState, useActionState, useEffect, useEffectEvent } from 'react'
 
 import { useChangePasswordMutation } from '@account/api/accountApi'
+import { cn } from '@utils/helper-functions'
 import { editSvg } from '@icons/various'
 import Button from '@ui/Button'
+
 import classes from './UserName.module.scss'
 
 const initialValues = {
@@ -98,11 +100,11 @@ const EditPassword = () => {
         form="editForm"
         prompt="Υποβολή"
         disabled={isPending || isLoading || isSuccess}
-        className={classes['confirm-btn'] + ' green'}
+        className={cn('green', classes['confirm-btn'])}
       />
       <Button
         prompt="X"
-        className={classes['cancel-btn'] + ' red'}
+        className={cn('red', classes['cancel-btn'])}
         onClick={() => setEdit(false)}
       />
     </>

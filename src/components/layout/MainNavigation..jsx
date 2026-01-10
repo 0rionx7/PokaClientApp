@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 
 import { selectUserName } from '@account/api/accountApi'
 import AccountloggedInMenu from '@layout/AccountLogedIn'
+import { cn } from '@utils/helper-functions'
 import { accountSvg } from '@icons/various'
 import './MainNavigation.scss'
 
@@ -23,14 +24,14 @@ const MainNavigation = () => {
             <Link
               to="/saloon"
               state={{ game: 'poka' }}
-              className={`nav-link${state?.game === 'poka' ? ' active' : ''}`}
+              className={cn('nav-link', { active: state?.game === 'poka' })}
             >
               Σαλόνι Πόκας
             </Link>
             <Link
               to="/saloon"
               state={{ game: 'chinese' }}
-              className={`nav-link${state?.game === 'chinese' ? ' active' : ''}`}
+              className={cn('nav-link', { active: state?.game === 'chinese' })}
             >
               Σαλόνι Κινέζικου Πόκερ
             </Link>

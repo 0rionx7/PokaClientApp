@@ -1,4 +1,4 @@
-import { getColorClass } from '@utils/helper-functions'
+import { cn, getColorClass } from '@utils/helper-functions'
 
 const LineScore = ({ lineScore, royalties, index }) => {
   const classColor = getColorClass(lineScore)
@@ -6,7 +6,7 @@ const LineScore = ({ lineScore, royalties, index }) => {
 
   return (
     <div className="score-details" style={{ gridArea }}>
-      <div className={'row-score ' + classColor}>{lineScore}</div>
+      <div className={cn('row-score', classColor)}>{lineScore}</div>
       <div className="row-royalties">{royalties[index]}</div>
     </div>
   )

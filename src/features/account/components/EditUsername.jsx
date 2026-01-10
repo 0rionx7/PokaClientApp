@@ -1,7 +1,9 @@
 import { useActionState, useState } from 'react'
 
 import { useUsernameChangeMutation } from '@account/api/accountApi'
+import { cn } from '@utils/helper-functions'
 import Button from '@ui/Button'
+
 import classes from './UserName.module.scss'
 
 const EditUsername = ({ stopEditing }) => {
@@ -40,9 +42,9 @@ const EditUsername = ({ stopEditing }) => {
       <Button
         prompt="Aποθήκευση"
         disabled={isPending}
-        className={classes['confirm-btn'] + ' green'}
+        className={cn('green', classes['confirm-btn'])}
       />
-      <Button prompt="X" className={classes['cancel-btn'] + ' red'} onClick={stopEditing} />
+      <Button prompt="X" className={cn('red', classes['cancel-btn'])} onClick={stopEditing} />
     </form>
   )
 }

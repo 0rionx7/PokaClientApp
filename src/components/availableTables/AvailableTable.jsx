@@ -2,8 +2,10 @@ import { useLocation, useNavigate } from 'react-router-dom'
 
 import { useGetUserQuery, useRequestJoinMutation } from '@account/api/accountApi'
 import { createTableTitleJsx } from '@utils/text-functions'
+import { cn } from '@utils/helper-functions'
 import ToolTip from '@ui/ToolTip'
 import useSnackBar from '@hooks/useSnackBar'
+
 import './AvailableTables.scss'
 
 const AvailableTable = ({ tableInfo: { tableName, gameId }, useSitDown }) => {
@@ -36,7 +38,7 @@ const AvailableTable = ({ tableInfo: { tableName, gameId }, useSitDown }) => {
   const tableTitle = createTableTitleJsx(tableName)
 
   return (
-    <div onClick={handleJoinTable} className={`available-table${gameId ? ' joined' : ''}`}>
+    <div onClick={handleJoinTable} className={cn('available-table', { joined: gameId })}>
       <ToolTip info={gameId ? 'Καθήστε' : 'Αιτηθείτε θέση'} />
       {tableTitle}
       {snackElement}

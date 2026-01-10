@@ -3,6 +3,7 @@ import { useDrag } from 'react-dnd'
 import { SYMBOLS } from '@utils/text-constants'
 import CardBack from '@components/card/CardBack'
 import Content from '@components/card/Content'
+import { cn } from '@utils/helper-functions'
 import { suits } from '@icons/suits'
 
 const Card = ({ card, owner }) => {
@@ -25,12 +26,12 @@ const Card = ({ card, owner }) => {
   const hideWhenDrag = { visibility: isDragging ? 'hidden' : 'visible' }
 
   return (
-    <div className={`card ${valueClass}`} ref={drag} style={style}>
-      <div className={`value-suit_${card.suit}`} style={hideWhenDrag}>
+    <div className={cn('card', valueClass)} ref={drag} style={style}>
+      <div className={cn('value-suit', card.suit)} style={hideWhenDrag}>
         <div className="value">{SYMBOLS[card.value] || card.value}</div>
         <img src={suits[card.suit]} alt={card.suit} />
       </div>
-      <div className={`card-decoration ${valueClass}`} style={hideWhenDrag}>
+      <div className={cn('card-decoration', valueClass)} style={hideWhenDrag}>
         <Content card={card} />
       </div>
     </div>
