@@ -29,7 +29,7 @@ const AvailableTable = ({ tableInfo: { tableName, gameId }, useSitDown }) => {
         })
     }
     if (joinRequests?.length >= 3)
-      return setSnackInfo('Έχετε συμπληρώσει των μέγιστο αριθμό αιτήσεων.')
+      return setSnackInfo('Έχετε συμπληρώσει τoν μέγιστο αριθμό αιτήσεων.')
 
     const result = await requestJoin({ tableName, game: state.game })
     if (result.error?.data) setSnackInfo(result.error.data)
