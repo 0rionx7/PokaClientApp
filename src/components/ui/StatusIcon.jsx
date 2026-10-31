@@ -2,17 +2,23 @@ import ToolTip from '@ui/ToolTip'
 import './StatusIcon.scss'
 
 const getStatus = (playerState) => {
-  if (playerState.sittingOut) return { color: 'red', status: 'δεν έχει καθήσει' }
-  if (playerState.resta === 0) return { color: 'orange', status: 'ταπί' }
-  if (!playerState.isSubscribed) return { color: 'purple', status: 'άνευ συνδρομής' }
-  return { color: 'green', status: 'ενεργός' }
+  switch (true) {
+    case playerState.sittingOut:
+      return { backgroundColor: 'red', status: 'δεν έχει καθήσει' }
+    case playerState.resta === 0:
+      return { backgroundColor: 'orange', status: 'ταπί' }
+    case !playerState.isSubscribed:
+      return { backgroundColor: 'purple', status: 'άνευ συνδρομής' }
+    default:
+      return { backgroundColor: 'green', status: 'ενεργός' }
+  }
 }
 
 const StatusIcon = ({ playerState }) => {
-  const { color, status } = getStatus(playerState)
+  const { backgroundColor, status } = getStatus(playerState)
 
   return (
-    <div className="status" style={{ backgroundColor: color }}>
+    <div className="status" style={{ backgroundColor }}>
       <ToolTip info={status} />
     </div>
   )
